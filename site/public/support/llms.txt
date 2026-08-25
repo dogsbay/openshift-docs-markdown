@@ -1,0 +1,28 @@
+# OpenShift Container Platform — Support
+
+## Support
+
+- [Support overview](/support.md)
+- [Managing your cluster resources](/support/managing-cluster-resources.md)
+- [Getting support](/support/getting-support.md)
+- [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring.md)
+- [Showing data collected by remote health monitoring](/support/remote_health_monitoring/showing-data-collected-by-remote-health-monitoring.md)
+- [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting.md)
+- [Using Insights to identify issues with your cluster](/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster.md)
+- [Using the Insights Operator](/support/remote_health_monitoring/using-insights-operator.md)
+- [Using remote health reporting in a disconnected environment](/support/remote_health_monitoring/remote-health-reporting-from-restricted-network.md)
+- [Importing simple content access entitlements with Insights Operator](/support/remote_health_monitoring/insights-operator-simple-access.md)
+- [Gathering data about your cluster](/support/gathering-cluster-data.md)
+- [Summarizing cluster specifications](/support/summarizing-cluster-specifications.md)
+- [Troubleshooting installations](/support/troubleshooting/troubleshooting-installations.md)
+- [Verifying node health](/support/troubleshooting/verifying-node-health.md)
+- [Troubleshooting CRI-O container runtime issues](/support/troubleshooting/troubleshooting-crio-issues.md)
+- [Troubleshooting operating system issues](/support/troubleshooting/troubleshooting-operating-system-issues.md)
+- [Troubleshooting network issues](/support/troubleshooting/troubleshooting-network-issues.md)
+- [Troubleshooting Operator issues](/support/troubleshooting/troubleshooting-operator-issues.md)
+- [Investigating pod issues](/support/troubleshooting/investigating-pod-issues.md)
+- [Troubleshooting the Source-to-Image process](/support/troubleshooting/troubleshooting-s2i.md)
+- [Troubleshooting storage issues](/support/troubleshooting/troubleshooting-storage-issues.md)
+- [Troubleshooting Windows container workload issues](/support/troubleshooting/troubleshooting-windows-container-workload-issues.md)
+- [Investigating monitoring issues](/support/troubleshooting/investigating-monitoring-issues.md)
+- [Diagnosing OpenShift CLI (oc) issues](/support/troubleshooting/diagnosing-oc-issues.md)

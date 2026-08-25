@@ -1,0 +1,19 @@
+---
+title: Deploy your plugin on a cluster
+---
+
+# Deploy your plugin on a cluster {#deploy-plugin-cluster_{{ context }}}
+
+You can deploy the plugin to an OpenShift Container Platform
+
+cluster.
+
+**Additional resources**
+
+- [Service CA certificates](/security/certificate_types_descriptions/service-ca-certificates#service-ca-certificates)
+- [Securing service traffic using service serving certificate secrets](/security/certificates/service-serving-certificate#service-serving-certificate)
+- [Dynamic plugin API](/web_console/dynamic-plugin/dynamic-plugins-reference#dynamic-plugin-api_dynamic-plugins-reference)
+
+## Additional resources {#dynamic-plugins_additional-resources}
+
+- [Understanding Helm](/applications/working_with_helm_charts/understanding-helm#understaning-helm)

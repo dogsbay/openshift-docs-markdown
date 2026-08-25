@@ -1,0 +1,6 @@
+# OpenShift Container Platform — What's new?
+
+## What's new?
+
+- [New features and enhancements](/whats_new/new-features.md)
+- [Deprecated features](/whats_new/deprecated-features.md)

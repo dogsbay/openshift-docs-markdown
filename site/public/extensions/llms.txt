@@ -1,0 +1,21 @@
+# OpenShift Container Platform — Extensions
+
+## Extensions
+
+- [Extensions overview](/extensions.md)
+- [Components overview](/extensions/arch/components.md)
+- [Operator Controller](/extensions/arch/operator-controller.md)
+- [Catalogd](/extensions/arch/catalogd.md)
+- [Common terms](/extensions/of-terms.md)
+- [File-based catalogs](/extensions/catalogs/fbc.md)
+- [Red Hat-provided catalogs](/extensions/catalogs/rh-catalogs.md)
+- [Managing catalogs](/extensions/catalogs/managing-catalogs.md)
+- [Catalog content resolution](/extensions/catalogs/catalog-content-resolution.md)
+- [Creating catalogs](/extensions/catalogs/creating-catalogs.md)
+- [Disconnected environment support in OLM v1](/extensions/catalogs/disconnected-catalogs.md)
+- [Supported extensions](/extensions/ce/olmv1-supported-extensions.md)
+- [Managing extensions](/extensions/ce/managing-ce.md)
+- [Extension configuration](/extensions/ce/olmv1-configuring-extensions.md)
+- [User access to extension resources](/extensions/ce/user-access-resources.md)
+- [Update paths](/extensions/ce/update-paths.md)
+- [CRD upgrade safety](/extensions/ce/crd-upgrade-safety.md)

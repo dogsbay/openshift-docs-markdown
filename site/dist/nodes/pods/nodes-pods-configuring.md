@@ -1,0 +1,20 @@
+---
+title: Configuring an OpenShift Container Platform cluster for pods
+---
+
+# Configuring an OpenShift Container Platform cluster for pods {#nodes-pods-configuring}
+
+To maintain optimal pod performance and availability, administrators can configure pod restart behavior, lifecycle settings, resource limits, disruption budgets, and other behaviors. You can use these configurations to ensure that your cluster remains resilient while providing a stable environment for application development.
+
+By keeping your cluster efficient, you can provide a better environment for your developers using such tools as what a pod does when it exits, ensuring that the required number of pods is always running, when to restart pods designed to run only once, limit the bandwidth available to pods, and how to keep pods running during disruptions.
+
+**Additional resources**
+
+- [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
+- [Unhealthy Pod Eviction Policy (Kubernetes documentation)](https://kubernetes.io/docs/tasks/run-application/configure-pdb/#unhealthy-pod-eviction-policy)
+
+## Additional resources {#additional-resources_nodes-pods-configuring}
+
+- [Enabling features using feature gates](/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
+- [Unhealthy Pod Eviction Policy (Kubernetes documentation)](https://kubernetes.io/docs/tasks/run-application/configure-pdb/#unhealthy-pod-eviction-policy)
+- [Example States (Kubernetes documentation)](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#example-states)

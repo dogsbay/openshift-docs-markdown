@@ -1,0 +1,17 @@
+---
+title: Converting a connected cluster to a disconnected cluster
+---
+
+# Converting a connected cluster to a disconnected cluster {#converting-to-disconnected}
+
+You can convert a connected OpenShift Container Platform cluster to a disconnected cluster by mirroring required registry content and installation media for use without internet access.
+
+There might be some scenarios where you need to convert your OpenShift Container Platform cluster from a connected cluster to a disconnected cluster.
+
+A disconnected cluster, also known as a restricted cluster, does not have an active connection to the internet. As such, you must mirror the contents of your registries and installation media. You can create this mirror registry on a host that can access both the internet and your closed network, or copy images to a device that you can move across network boundaries.
+
+For information on how to convert your cluster, see the "Converting a connected cluster to a disconnected cluster" procedure in the Disconnected environments section.
+
+## Additional resources {#additional-resources_converting-to-disconnected}
+
+- [Converting a connected cluster to a disconnected cluster](/disconnected/connected-to-disconnected#converting-to-disconnected)

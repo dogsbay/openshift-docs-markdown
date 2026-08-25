@@ -1,0 +1,5 @@
+# OpenShift Container Platform — Serverless
+
+## Serverless
+
+- [Serverless overview](/serverless/about/about-serverless.md)

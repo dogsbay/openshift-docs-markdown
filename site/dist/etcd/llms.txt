@@ -1,0 +1,15 @@
+# OpenShift Container Platform — etcd
+
+## etcd
+
+- [Overview of etcd](/etcd/etcd-overview.md)
+- [Recommended etcd practices](/etcd/etcd-practices.md)
+- [Ensuring reliable etcd performance and scalability](/etcd/etcd-performance.md)
+- [Backing up etcd](/etcd/etcd-backup-restore/etcd-backup.md)
+- [Replacing an unhealthy etcd member](/etcd/etcd-backup-restore/replace-unhealthy-etcd-member.md)
+- [Disaster recovery](/etcd/etcd-backup-restore/etcd-disaster-recovery.md)
+- [Enabling etcd encryption](/etcd/etcd-encrypt.md)
+- [About KMS](/etcd/KMS_v2.md)
+- [Configuring KMS](/etcd/KMS_v2/kms-configuring.md)
+- [Disabling KMS](/etcd/KMS_v2/kms-disabling.md)
+- [Guidance for clusters that span data centers](/etcd/etcd-guidance-span.md)

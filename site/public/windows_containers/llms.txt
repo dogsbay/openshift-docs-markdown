@@ -1,0 +1,23 @@
+# OpenShift Container Platform — Windows Container Support for OpenShift
+
+## Windows Container Support for OpenShift
+
+- [Red Hat OpenShift support for Windows Containers overview](/windows_containers.md)
+- [Red Hat OpenShift support for Windows Containers release notes](/windows_containers/wmco_rn/windows-containers-release-notes.md)
+- [Past releases](/windows_containers/wmco_rn/windows-containers-release-notes-past.md)
+- [Windows Machine Config Operator prerequisites](/windows_containers/wmco_rn/windows-containers-release-notes-prereqs.md)
+- [Windows Machine Config Operator known limitations](/windows_containers/wmco_rn/windows-containers-release-notes-limitations.md)
+- [Getting support](/windows_containers/windows-containers-support.md)
+- [Understanding Windows container workloads](/windows_containers/understanding-windows-container-workloads.md)
+- [Enabling Windows container workloads](/windows_containers/enabling-windows-container-workloads.md)
+- [Creating a Windows machine set on AWS](/windows_containers/creating_windows_machinesets/creating-windows-machineset-aws.md)
+- [Creating a Windows machine set on Azure](/windows_containers/creating_windows_machinesets/creating-windows-machineset-azure.md)
+- [Creating a Windows machine set on Google Cloud](/windows_containers/creating_windows_machinesets/creating-windows-machineset-gcp.md)
+- [Creating a Windows machine set on Nutanix](/windows_containers/creating_windows_machinesets/creating-windows-machineset-nutanix.md)
+- [Creating a Windows machine set on vSphere](/windows_containers/creating_windows_machinesets/creating-windows-machineset-vsphere.md)
+- [Scheduling Windows container workloads](/windows_containers/scheduling-windows-workloads.md)
+- [Windows node updates](/windows_containers/windows-node-upgrades.md)
+- [Using Bring-Your-Own-Host Windows instances as nodes](/windows_containers/byoh-windows-instance.md)
+- [Removing Windows nodes](/windows_containers/removing-windows-nodes.md)
+- [Disabling Windows container workloads](/windows_containers/disabling-windows-container-workloads.md)
+- [Troubleshooting Windows container workloads](/windows_containers/windows-containers-troubleshooting.md)

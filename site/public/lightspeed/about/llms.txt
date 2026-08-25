@@ -1,0 +1,5 @@
+# OpenShift Container Platform — OpenShift Lightspeed
+
+## OpenShift Lightspeed
+
+- [OpenShift Lightspeed overview](/lightspeed/about/ols-openshift-lightspeed-overview.md)

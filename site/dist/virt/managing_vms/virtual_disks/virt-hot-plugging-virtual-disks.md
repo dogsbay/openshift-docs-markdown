@@ -1,0 +1,20 @@
+---
+title: Hot-plug virtual disks to running VMs
+---
+
+# Hot-plug virtual disks to running VMs {#virt-hot-plugging-virtual-disks}
+
+You can hot-plug or hot-unplug virtual disks from running VMs to dynamically adjust storage without downtime.
+
+Only data volumes and persistent volume claims (PVCs) can be hot plugged and hot-unplugged. You cannot hot plug or hot-unplug container disks.
+
+A hot plugged disk remains attached to the VM even after reboot. You must unplug the disk to remove it from the VM.
+
+> [!NOTE]
+> Each VM has a `virtio-scsi` controller so that hot plugged disks can use the SCSI bus. The `virtio-scsi` controller overcomes the limitations of VirtIO while retaining its performance advantages. It is highly scalable and supports hot plugging over 4 million disks.
+>
+> When you hot plug disks to the VirtIO (`virtio-blk`) bus, each disk uses a PCI Express (PCIe) slot in the VM. The number of PCIe slots is limited and pre-set automatically at the VM creation as specified in the "Available VirtIO Ports" table. Therefore, you can use `virtio-blk` for a small number of disks that does not exceed the number of available slots.
+
+## Additional resources {#additional-resources_virt-hot-plugging-virtual-disks}
+
+- [Available VirtIO Ports](https://kubevirt.io/user-guide/storage/hotplug_volumes/#available-virtio-ports)

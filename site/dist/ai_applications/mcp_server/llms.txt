@@ -1,0 +1,5 @@
+# OpenShift Container Platform — AI applications
+
+## AI applications
+
+- [MCP server overview](/ai_applications/mcp_server/mcp-server-overview.md)

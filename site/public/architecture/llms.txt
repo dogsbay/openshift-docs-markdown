@@ -1,0 +1,13 @@
+# OpenShift Container Platform — Architecture
+
+## Architecture
+
+- [Architecture overview](/architecture.md)
+- [Product architecture](/architecture/architecture.md)
+- [Installation and update](/architecture/architecture-installation.md)
+- [Red Hat OpenShift Cluster Manager](/architecture/ocm-overview-ocp.md)
+- [About the multicluster engine for Kubernetes Operator](/architecture/mce-overview-ocp.md)
+- [Control plane architecture](/architecture/control-plane.md)
+- [Understanding OpenShift development](/architecture/understanding-development.md)
+- [Red Hat Enterprise Linux CoreOS](/architecture/architecture-rhcos.md)
+- [Admission plugins](/architecture/admission-plug-ins.md)

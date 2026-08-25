@@ -1,0 +1,24 @@
+# OpenShift Container Platform — Web console
+
+## Web console
+
+- [Web console overview](/web_console/web-console-overview.md)
+- [Accessing the web console](/web_console/web-console.md)
+- [Using the OpenShift Container Platform dashboard to get cluster information](/web_console/using-dashboard-to-get-cluster-information.md)
+- [Adding user preferences](/web_console/adding-user-preferences.md)
+- [Configuring the web console](/web_console/configuring-web-console.md)
+- [Customizing the web console](/web_console/customizing-the-web-console.md)
+- [Overview of dynamic plugins](/web_console/dynamic-plugin/overview-dynamic-plugin.md)
+- [Getting started with dynamic plugins](/web_console/dynamic-plugin/dynamic-plugins-get-started.md)
+- [Deploy your plugin on a cluster](/web_console/dynamic-plugin/deploy-plugin-cluster.md)
+- [Content Security Policy](/web_console/dynamic-plugin/content-security-policy.md)
+- [Dynamic plugin example](/web_console/dynamic-plugin/dynamic-plugin-example.md)
+- [Dynamic plugin reference](/web_console/dynamic-plugin/dynamic-plugins-reference.md)
+- [Installing the web terminal](/web_console/web_terminal/installing-web-terminal.md)
+- [Configuring the web terminal](/web_console/web_terminal/configuring-web-terminal.md)
+- [Using the web terminal](/web_console/web_terminal/odc-using-web-terminal.md)
+- [Troubleshooting the web terminal](/web_console/web_terminal/troubleshooting-web-terminal.md)
+- [Uninstalling the web terminal](/web_console/web_terminal/uninstalling-web-terminal.md)
+- [Disabling the web console](/web_console/disabling-web-console.md)
+- [Creating quick start tutorials](/web_console/creating-quick-start-tutorials.md)
+- [Optional capabilities and products](/web_console/capabilities_products-web-console.md)

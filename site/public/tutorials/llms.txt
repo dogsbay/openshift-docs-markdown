@@ -1,0 +1,8 @@
+# OpenShift Container Platform — Tutorials
+
+## Tutorials
+
+- [Tutorials overview](/tutorials.md)
+- [Deploying an application by using the web console](/tutorials/dev-app-web-console.md)
+- [Deploying an application by using the CLI](/tutorials/dev-app-cli.md)
+- [Additional hands-on learning](/tutorials/additional-tutorials.md)

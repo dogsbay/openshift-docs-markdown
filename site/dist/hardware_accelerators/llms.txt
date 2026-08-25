@@ -1,0 +1,9 @@
+# OpenShift Container Platform — Hardware accelerators
+
+## Hardware accelerators
+
+- [About hardware accelerators](/hardware_accelerators/about-hardware-accelerators.md)
+- [NVIDIA GPU architecture](/hardware_accelerators/nvidia-gpu-architecture.md)
+- [AMD GPU Operator](/hardware_accelerators/amd-gpu-operator.md)
+- [Intel Gaudi AI accelerators](/hardware_accelerators/gaudi-ai-accelerator.md)
+- [Remote Direct Memory Access (RDMA)](/hardware_accelerators/rdma-remote-direct-memory-access.md)

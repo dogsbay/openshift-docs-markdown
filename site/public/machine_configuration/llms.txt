@@ -1,0 +1,17 @@
+# OpenShift Container Platform — Machine configuration
+
+## Machine configuration
+
+- [Machine configuration overview](/machine_configuration.md)
+- [Using machine config objects to configure nodes](/machine_configuration/machine-configs-configure.md)
+- [Using node disruption policies to minimize disruption from machine config changes](/machine_configuration/machine-config-node-disruption.md)
+- [Configuring MCO-related custom resources](/machine_configuration/machine-configs-custom.md)
+- [Pinning images to nodes](/machine_configuration/machine-config-pin-preload-images-about.md)
+- [Boot image management](/machine_configuration/mco-update-boot-images.md)
+- [Boot image skew enforcement](/machine_configuration/mco-update-boot-skew-mgmt.md)
+- [Manually updating the boot image](/machine_configuration/mco-update-boot-images-manual.md)
+- [Creating custom machine config pools](/machine_configuration/machine-config-custom-mcp.md)
+- [Managing unused rendered machine configs](/machine_configuration/machine-configs-garbage-collection.md)
+- [Image mode for OpenShift](/machine_configuration/mco-coreos-layering.md)
+- [Setting the RHCOS version in a cluster](/machine_configuration/mco-image-streams.md)
+- [Machine Config Daemon metrics](/machine_configuration/machine-config-daemon-metrics.md)

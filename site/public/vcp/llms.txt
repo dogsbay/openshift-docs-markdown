@@ -1,0 +1,8 @@
+# OpenShift Container Platform — Virtualized control planes
+
+## Virtualized control planes
+
+- [Understanding virtualized control planes](/vcp/vcp-overview.md)
+- [Prerequisites for virtualized control planes](/vcp/vcp-prerequisites.md)
+- [Preparing the environment for virtualized control planes](/vcp/vcp-preparing-environment.md)
+- [Deploying a virtualized control plane](/vcp/vcp-installing-cluster.md)

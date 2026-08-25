@@ -1,0 +1,26 @@
+# OpenShift Container Platform — CI/CD
+
+## CI/CD
+
+- [About CI/CD](/cicd/overview.md)
+- [Overview of Builds](/cicd/builds_using_shipwright/overview-openshift-builds.md)
+- [Understanding image builds](/cicd/builds/understanding-image-builds.md)
+- [Understanding build configurations](/cicd/builds/understanding-buildconfigs.md)
+- [Creating build inputs](/cicd/builds/creating-build-inputs.md)
+- [Managing build output](/cicd/builds/managing-build-output.md)
+- [Using build strategies](/cicd/builds/build-strategies.md)
+- [Custom image builds with Buildah](/cicd/builds/custom-builds-buildah.md)
+- [Performing and configuring basic builds](/cicd/builds/basic-build-operations.md)
+- [Triggering and modifying builds](/cicd/builds/triggering-builds-build-hooks.md)
+- [Performing advanced builds](/cicd/builds/advanced-build-operations.md)
+- [Using Red Hat subscriptions in builds](/cicd/builds/running-entitled-builds.md)
+- [Securing builds by strategy](/cicd/builds/securing-builds-by-strategy.md)
+- [Build configuration resources](/cicd/builds/build-configuration.md)
+- [Troubleshooting builds](/cicd/builds/troubleshooting-builds.md)
+- [Setting up additional trusted certificate authorities for builds](/cicd/builds/setting-up-trusted-ca.md)
+- [About OpenShift Pipelines](/cicd/pipelines/about-pipelines.md)
+- [About OpenShift GitOps](/cicd/gitops/about-redhat-openshift-gitops.md)
+- [Configuring Jenkins images](/cicd/jenkins/images-other-jenkins.md)
+- [Jenkins agent](/cicd/jenkins/images-other-jenkins-agent.md)
+- [Migrating from Jenkins to OpenShift Pipelines](/cicd/jenkins/migrating-from-jenkins-to-openshift-pipelines.md)
+- [Important changes to OpenShift Jenkins images](/cicd/jenkins/important-changes-to-openshift-jenkins-images.md)

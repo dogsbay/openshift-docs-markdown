@@ -1,0 +1,15 @@
+---
+title: Distributing certificates by using trust-manager operand
+---
+
+# Distributing certificates by using trust-manager operand {#cert-manager-trust-manager}
+
+The trust-manager operand simplifies the distribution of certificate authority (CA) certificates across OpenShift Container Platform clusters. As an administrator, you can configure the operand according to the cluster requirements and manage trust bundles efficiently.
+
+The trust-manager operand provides the following benefits:
+
+- Distribution of CA certificates across your cluster as a Day 2 operation.
+- Consolidation of certificates from multiple sources, such as ConfigMaps, Secrets, inline data, and default CAs, into a single trust bundle.
+- Automatic updates to target objects whenever the underlying source certificates change.
+- Creation of trust bundles as secret objects for applications that explicitly require secrets instead of ConfigMap objects.
+- Automatic integration with the default trusted CA bundle of the cluster, requiring no manual configuration.

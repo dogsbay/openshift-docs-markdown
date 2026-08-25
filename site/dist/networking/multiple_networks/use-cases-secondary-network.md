@@ -1,0 +1,56 @@
+---
+title: Use cases for a secondary network
+---
+
+# Use cases for a secondary network {#use-cases-secondary-network}
+
+You can use a secondary network in situations where you require network isolation, including data plane and control plane separation.
+
+Isolating network traffic is useful for the following performance and security reasons:
+
+- Performance
+
+  ***Traffic management***: You can send traffic on two different planes to manage how much traffic is along each plane.
+- Security
+
+  ***Network isolation***: You can send sensitive traffic onto a network plane that is managed specifically for security considerations, and you can separate private data that must not be shared between tenants or customers.
+
+All of the pods in the cluster still use the cluster-wide default network to maintain connectivity across the cluster. Every pod has an `eth0` interface that is attached to the cluster-wide pod network. You can view the interfaces for a pod by using the `oc exec -it <pod_name> \-- ip a` command. If you add secondary network interfaces that use the Multus Container Network Interface (CNI). These secondary networks are named `net1`, `net2`, and so on.
+
+To attach secondary network interfaces to a pod, you must create configurations that define how the interfaces are attached. Use either a `UserDefinedNetwork` custom resource (CR) or a `NetworkAttachmentDefinition` CR to specify each interface. A CNI configuration inside each of these CRs defines how that interface is created.
+
+## Secondary networks in OpenShift Container Platform {#additional-networks-provided_use-cases-secondary-network}
+
+OpenShift Container Platform provides the following CNI plugins for creating secondary networks in your cluster:
+
+- **bridge**: To configure a bridge-based secondary network to allow pods on the same host to communicate with each other and the host, use the following procedure:
+
+  - [Configure a bridge-based secondary network](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-bridge-object_configuring-additional-network-cni)
+- **bond-cni**: To provide a method for aggregating multiple network interfaces into a single logical *bonded* interface, use the following procedure:
+
+  - [Configure a Bond CNI secondary network](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-bond-cni-object_configuring-additional-network-cni)
+- **host-device**: To allow pods access to a physical Ethernet network device on the host system, use the following procedure:
+
+  - [Configure a host-device secondary network](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-host-device-object_configuring-additional-network-cni)
+- **ipvlan**: Allow pods on a host to communicate with other hosts and pods on those hosts, similar to a macvlan-based secondary network. Unlike a macvlan-based secondary network, each pod shares the same MAC address as the parent physical network interface. Use the following procedure:
+
+  - [Configure an ipvlan-based secondary network](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-ipvlan-object_configuring-additional-network-cni)
+- **VLAN**: To allow VLAN-based network isolation and connectivity for pods, use the following procedure:
+
+  - [Configure a VLAN-based secondary network](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-vlan-object_configuring-additional-network-cni)
+- **macvlan**: To allow pods on a host to communicate with other hosts and pods on those hosts by using a physical network interface. Each pod that is attached to a macvlan-based secondary network is provided a unique MAC address:
+
+  - [Configure a macvlan-based secondary network](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-macvlan-object_configuring-additional-network-cni)
+- **TAP**: A TAP device enables user space programs to send and receive network packets. To create a TAP device inside the container namespace, use the following procedure:
+
+  - [Configure a TAP-based secondary network](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-tap-object_configuring-additional-network-cni)
+- **SR-IOV**: To allow pods to attach to a virtual function (VF) interface on SR-IOV capable hardware on the host system.
+
+  - [Configure an SR-IOV based secondary network](/networking/hardware_networks/about-sriov#about-sriov)
+- **route-override**: To allow pods to override and set routes, use the following procedure:
+
+  - [Configure a `route-override` based secondary network](/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-route-override-cni_configuring-additional-network-cni)
+
+## Additional resources {#additional-resources_use-cases-secondary-network}
+
+- [Enabling multicast for a project](/networking/ovn_kubernetes_network_provider/enabling-multicast#nw-ovn-kubernetes-enabling-multicast)

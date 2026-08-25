@@ -1,0 +1,5 @@
+# OpenShift Container Platform — OpenShift sandboxed containers
+
+## OpenShift sandboxed containers
+
+- [About OpenShift sandboxed containers](/sandboxed_containers/about-openshift-sandboxed-containers.md)

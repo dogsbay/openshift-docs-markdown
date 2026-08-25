@@ -1,0 +1,26 @@
+# OpenShift Container Platform — CLI tools
+
+## CLI tools
+
+- [CLI tools overview](/cli_reference.md)
+- [Getting started with the OpenShift CLI](/cli_reference/openshift_cli/getting-started-cli.md)
+- [Configuring the OpenShift CLI](/cli_reference/openshift_cli/configuring-cli.md)
+- [Usage of oc and kubectl commands](/cli_reference/openshift_cli/usage-oc-kubectl.md)
+- [Managing CLI profiles](/cli_reference/openshift_cli/managing-cli-profiles.md)
+- [Extending the OpenShift CLI with plugins](/cli_reference/openshift_cli/extending-cli-plugins.md)
+- [OpenShift CLI developer command reference](/cli_reference/openshift_cli/developer-cli-commands.md)
+- [OpenShift CLI administrator command reference](/cli_reference/openshift_cli/administrator-cli-commands.md)
+- [OpenShift CLI Manager overview](/cli_reference/cli_manager.md)
+- [OpenShift CLI Manager release notes](/cli_reference/cli_manager/cli-manager-release-notes.md)
+- [Installing the Openshift CLI Manager](/cli_reference/cli_manager/cli-manager-install.md)
+- [Using the OpenShift CLI Manager](/cli_reference/cli_manager/cli-manager-using.md)
+- [Uninstalling the OpenShift CLI Manager](/cli_reference/cli_manager/cli-manager-uninstall.md)
+- [Developer CLI (odo)](/cli_reference/odo-important-update.md)
+- [Knative CLI (kn) for use with OpenShift Serverless](/cli_reference/kn-cli-tools.md)
+- [Installing tkn](/cli_reference/tkn_cli/installing-tkn.md)
+- [Configuring tkn](/cli_reference/tkn_cli/op-configuring-tkn.md)
+- [Basic tkn commands](/cli_reference/tkn_cli/op-tkn-reference.md)
+- [GitOps CLI (argocd) for use with OpenShift GitOps](/cli_reference/gitops-argocd-cli-tools.md)
+- [Installing the opm CLI](/cli_reference/opm/cli-opm-install.md)
+- [opm CLI reference](/cli_reference/opm/cli-opm-ref.md)
+- [Hosted control planes CLI](/cli_reference/hcp-cli-ref.md)

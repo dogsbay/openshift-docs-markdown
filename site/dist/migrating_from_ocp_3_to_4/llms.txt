@@ -1,0 +1,8 @@
+# OpenShift Container Platform — Migrating from version 3 to 4
+
+## Migrating from version 3 to 4
+
+- [Migrating from version 3 to 4 overview](/migrating_from_ocp_3_to_4.md)
+- [About migrating from OpenShift Container Platform 3 to 4](/migrating_from_ocp_3_to_4/about-migrating-from-3-to-4.md)
+- [Differences between OpenShift Container Platform 3 and 4](/migrating_from_ocp_3_to_4/planning-migration-3-4.md)
+- [Network considerations](/migrating_from_ocp_3_to_4/planning-considerations-3-4.md)
