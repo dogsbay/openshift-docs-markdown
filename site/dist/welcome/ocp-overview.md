@@ -37,7 +37,7 @@ You can manage applications within the cluster either manually by configuring de
 
 The Multicluster Management layer can manage multiple clusters including their deployment, configuration, compliance and distribution of workloads in a single console.
 
-![Red Hat OpenShift Kubernetes Engine](/openshift-docs-markdown/_assets/images/oke-about-ocp-stack-image.png)
+![Red Hat OpenShift Kubernetes Engine](/openshift-docs-markdown/images/oke-about-ocp-stack-image.png)
 
 ## OpenShift Container Platform use cases {#openshift-use-cases_ocp-overview}
 

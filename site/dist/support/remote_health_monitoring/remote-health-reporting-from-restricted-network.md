@@ -208,13 +208,13 @@ The following procedure enables obfuscation using the `support` secret in the `o
 1. Navigate to **Workloads** → **Secrets**.
 2. Select the **openshift-config** project.
 3. Search for the **support** secret using the **Search by name** field. If it does not exist, click **Create** → **Key/value secret** to create it.
-4. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu"), and then click **Edit Secret**.
+4. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu"), and then click **Edit Secret**.
 5. Click **Add Key/Value**.
 6. Create a key named `enableGlobalObfuscation` with a value of `true`, and click **Save**.
 7. Navigate to **Workloads** → **Pods**
 8. Select the `openshift-insights` project.
 9. Find the `insights-operator` pod.
-10. To restart the `insights-operator` pod, click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu"), and then click **Delete Pod**.
+10. To restart the `insights-operator` pod, click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu"), and then click **Delete Pod**.
 
 **Verification**
 

@@ -91,7 +91,7 @@ The `eBPF agent` runs on each cluster node with some privileges to collect netwo
 
 If you do not use Loki, you can generate metrics with Prometheus. Those metrics and their related dashboards are accessible in the web console. For more information, see "Network Observability without Loki".
 
-![Network Observability eBPF export architecture](/openshift-docs-markdown/_assets/images/network-observability-architecture.png)
+![Network Observability eBPF export architecture](/openshift-docs-markdown/images/network-observability-architecture.png)
 
 There are three deployment model options for the Network Observability Operator.
 
@@ -105,7 +105,7 @@ Direct deployment model
 :   When the `spec.deploymentModel` field is set to `Direct`, agents and the `flowlogs-pipeline` are both deployed per node as daemon sets. This model is suitable for technology assessments and small clusters. However, it is less memory-efficient in large clusters because each instance of `flowlogs-pipeline` caches the same cluster information.
 
 Kafka deployment model (optional)
-:   If you use the Kafka option, the `eBPF agent` sends the network flow data to Kafka. You can scale the `flowlogs-pipeline` component by using the `spec.processor.consumerReplicas` field. The `flowlogs-pipeline` component reads from the Kafka topic before sending data to Loki, as shown in the following diagram. ![Network Observability using Kafka](/openshift-docs-markdown/_assets/images/network-observability-arch-kafka-FLP.png)
+:   If you use the Kafka option, the `eBPF agent` sends the network flow data to Kafka. You can scale the `flowlogs-pipeline` component by using the `spec.processor.consumerReplicas` field. The `flowlogs-pipeline` component reads from the Kafka topic before sending data to Loki, as shown in the following diagram. ![Network Observability using Kafka](/openshift-docs-markdown/images/network-observability-arch-kafka-FLP.png)
 
 **Additional resources**
 {._additional-resources}

@@ -872,7 +872,7 @@ When creating an Ingress Controller on cloud platforms, the Ingress Controller i
 
 **Figure 1. Diagram of LoadBalancer**
 
-![OpenShift Container Platform Ingress LoadBalancerService endpoint publishing strategy](/openshift-docs-markdown/_assets/images/202_OpenShift_Ingress_0222_load_balancer.png)
+![OpenShift Container Platform Ingress LoadBalancerService endpoint publishing strategy](/openshift-docs-markdown/images/202_OpenShift_Ingress_0222_load_balancer.png)
 
 The preceding graphic shows the following concepts pertaining to OpenShift Container Platform Ingress LoadBalancerService endpoint publishing strategy:
 

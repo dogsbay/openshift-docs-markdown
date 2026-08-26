@@ -635,7 +635,7 @@ You can customize a developer catalog by using the form view in the Web Console.
 
    **Verification**
 
-   After you have customized the developer catalog, your changes are automatically saved in the system and take effect in the browser after a refresh. ![Developer catalog customization options in the form view](/openshift-docs-markdown/_assets/images/odc_customizing_developer_catalog.png)
+   After you have customized the developer catalog, your changes are automatically saved in the system and take effect in the browser after a refresh. ![Developer catalog customization options in the form view](/openshift-docs-markdown/images/odc_customizing_developer_catalog.png)
 
    > [!NOTE]
    > As an administrator, you can define the navigation items that appear by default for all users. You can also reorder the navigation items.

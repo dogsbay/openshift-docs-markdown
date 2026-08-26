@@ -29,14 +29,14 @@ Non-security API changes will involve, at minimum, two minor releases (4.1 to 4.
 |  |  |  |
 | --- | --- | --- |
 |  | **X.Y** (`oc` Client) | **X.Y+N** [^versionpolicyn] (`oc` Client) |
-| **X.Y** (Server) | ![Red circle 1](/openshift-docs-markdown/_assets/images/redcircle-1.png) | ![Red circle 3](/openshift-docs-markdown/_assets/images/redcircle-3.png) |
-| **X.Y+N** [^versionpolicyn] (Server) | ![Red circle 2](/openshift-docs-markdown/_assets/images/redcircle-2.png) | ![Red circle 1](/openshift-docs-markdown/_assets/images/redcircle-1.png) |
+| **X.Y** (Server) | ![Red circle 1](/openshift-docs-markdown/images/redcircle-1.png) | ![Red circle 3](/openshift-docs-markdown/images/redcircle-3.png) |
+| **X.Y+N** [^versionpolicyn] (Server) | ![Red circle 2](/openshift-docs-markdown/images/redcircle-2.png) | ![Red circle 1](/openshift-docs-markdown/images/redcircle-1.png) |
 
-![Red circle 1](/openshift-docs-markdown/_assets/images/redcircle-1.png) Fully compatible.
+![Red circle 1](/openshift-docs-markdown/images/redcircle-1.png) Fully compatible.
 
-![Red circle 2](/openshift-docs-markdown/_assets/images/redcircle-2.png) `oc` client might not be able to access server features.
+![Red circle 2](/openshift-docs-markdown/images/redcircle-2.png) `oc` client might not be able to access server features.
 
-![Red circle 3](/openshift-docs-markdown/_assets/images/redcircle-3.png) `oc` client might provide options and features that might not be compatible with the accessed server.
+![Red circle 3](/openshift-docs-markdown/images/redcircle-3.png) `oc` client might provide options and features that might not be compatible with the accessed server.
 
 **Additional resources**
 {._additional-resources}

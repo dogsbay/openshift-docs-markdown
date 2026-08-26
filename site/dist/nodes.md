@@ -71,7 +71,7 @@ Kubelet
 DNS
 :   Cluster DNS is a DNS server which serves DNS records for Kubernetes services. Containers started by Kubernetes automatically include this DNS server in their DNS searches.
 
-![Overview of control plane and worker node](/openshift-docs-markdown/_assets/images/295_OpenShift_Nodes_Overview_1222.png)
+![Overview of control plane and worker node](/openshift-docs-markdown/images/295_OpenShift_Nodes_Overview_1222.png)
 
 ## Node operations {#nodes-overview-nodes-operations-reference_overview-of-nodes}
 

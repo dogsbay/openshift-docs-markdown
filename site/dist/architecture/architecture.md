@@ -12,7 +12,7 @@ You can use the OpenShift Container Platform to develop and run containerized ap
 
 With the foundation of OpenShift Container Platform in Kubernetes, OpenShift Container Platform incorporates the same technology that serves as the engine for massive telecommunications, streaming video, gaming, banking, and other applications. With the OpenShift Container Platform implementation in open Red Hat technologies, you can extend your containerized applications beyond a single cloud to on-premises and multi-cloud environments.
 
-![Red Hat OpenShift Kubernetes Engine](/openshift-docs-markdown/_assets/images/525-OpenShift-arch-012025.png)
+![Red Hat OpenShift Kubernetes Engine](/openshift-docs-markdown/images/525-OpenShift-arch-012025.png)
 
 ### About Kubernetes {#architecture-kubernetes-introduction_architecture}
 
@@ -92,7 +92,7 @@ OpenShift Container Platform lifecycle
 
     **Figure 1. High-level OpenShift Container Platform overview**
 
-    ![High-level OpenShift Container Platform flow](/openshift-docs-markdown/_assets/images/ocp_arch_lifecycle.png)
+    ![High-level OpenShift Container Platform flow](/openshift-docs-markdown/images/ocp_arch_lifecycle.png)
 
 ### Internet access for OpenShift Container Platform {#cluster-entitlements_architecture}
 

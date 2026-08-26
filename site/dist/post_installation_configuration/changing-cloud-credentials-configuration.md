@@ -710,7 +710,7 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
 </tbody>
 </table>
 
-1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") in the same row as the secret and select **Edit Secret**.
+1. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") in the same row as the secret and select **Edit Secret**.
 2. Record the contents of the **Value** field or fields. You can use this information to verify that the value is different after updating the credentials.
 3. Update the text in the **Value** field or fields with the new authentication information for your cloud provider, and then click **Save**.
 4. If you are updating the credentials for a vSphere cluster that does not have the vSphere CSI Driver Operator enabled, you must force a rollout of the Kubernetes controller manager to apply the updated credentials.
@@ -822,7 +822,7 @@ After installing an OpenShift Container Platform cluster with the CCO in mint mo
    | --- | --- |
    | AWS | `aws-creds` |
    | Google Cloud | `gcp-credentials` |
-3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") in the same row as the secret and select **Delete Secret**.
+3. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") in the same row as the secret and select **Delete Secret**.
 
 **Additional resources**
 {._additional-resources}

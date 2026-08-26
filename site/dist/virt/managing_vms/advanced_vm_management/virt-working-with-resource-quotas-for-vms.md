@@ -188,7 +188,7 @@ The Application Aware Quota (AAQ) quotas page in the OpenShift Container Platfor
    > [!NOTE]
    > Cluster-scoped quotas can only be created or edited using YAML. The form-based creation option is not available for cluster-scoped quotas due to their complexity.
 3. To view detailed information about a specific quota, click the quota name to open the quota details page.
-4. To edit a quota, click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") at the end of the quota row
+4. To edit a quota, click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") at the end of the quota row
 
    1. Select **Edit quota**.
 
@@ -197,7 +197,7 @@ The Application Aware Quota (AAQ) quotas page in the OpenShift Container Platfor
 
       > [!NOTE]
       > If the quota was initially created with advanced settings via YAML, clicking **Edit quota** opens the YAML editor instead of the form.
-5. To delete a quota, click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") at the end of the quota row and select **Delete quota**. A confirmation dialog is displayed.
+5. To delete a quota, click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") at the end of the quota row and select **Delete quota**. A confirmation dialog is displayed.
 
    1. Click **Delete** to remove the quota.
 

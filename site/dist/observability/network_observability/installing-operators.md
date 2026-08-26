@@ -420,17 +420,17 @@ Uninstall the Network Observability Operator using the OpenShift Container Platf
 1. Remove the `FlowCollector` custom resource.
 
    1. Click **Flow Collector**, which is next to the **Network Observability Operator** in the **Provided APIs** column.
-   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") for the **cluster** and select **Delete FlowCollector**.
+   2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") for the **cluster** and select **Delete FlowCollector**.
 2. Uninstall the Network Observability Operator.
 
    1. Navigate back to the **Ecosystem** → **Installed Operators** area.
-   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the  **Network Observability Operator** and select **Uninstall Operator**.
+   2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the  **Network Observability Operator** and select **Uninstall Operator**.
    3. **Home** → **Projects** and select `openshift-netobserv-operator`
    4. Navigate to **Actions** and select **Delete Project**
 3. Remove the `FlowCollector` custom resource definition (CRD).
 
    1. Navigate to **Administration** → **CustomResourceDefinitions**.
-   2. Look for **FlowCollector** and click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu").
+   2. Look for **FlowCollector** and click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu").
    3. Select **Delete CustomResourceDefinition**.
 
       > [!IMPORTANT]

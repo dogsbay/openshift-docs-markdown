@@ -128,7 +128,7 @@ The process for rotating cloud credentials depends on the mode that the CCO is c
 </tbody>
 </table>
 
-1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") in the same row as the secret and select **Edit Secret**.
+1. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") in the same row as the secret and select **Edit Secret**.
 2. Record the contents of the **Value** field or fields. You can use this information to verify that the value is different after updating the credentials.
 3. Update the text in the **Value** field or fields with the new authentication information for your cloud provider, and then click **Save**.
 4. Delete each component secret that is referenced by the individual `CredentialsRequest` objects.

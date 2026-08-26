@@ -32,7 +32,7 @@ The Lifecycle Agent uses a stage-driven workflow controlled through the `spec.st
 
 **Figure 1. single-node OpenShift network reconfiguration stages**
 
-![single-node OpenShift network reconfiguration stages](/openshift-docs-markdown/_assets/images/600_telco_network_sno_reconfig.png)
+![single-node OpenShift network reconfiguration stages](/openshift-docs-markdown/images/600_telco_network_sno_reconfig.png)
 
 Idle stage
 :   The initial and final stage. In this stage, the Lifecycle Agent runs health checks, performs cleanup operations, and prepares the cluster for configuration changes. Transitioning to Idle after a successful configuration is the finalization point that removes rollback capability.

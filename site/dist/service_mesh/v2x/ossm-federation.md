@@ -454,7 +454,7 @@ Follow this procedure to create or edit the `ServiceMeshControlPlane` with the c
 
 You declare the federation between two meshes by creating a `ServiceMeshPeer` resource. The `ServiceMeshPeer` resource defines the federation between two meshes, and you use it to configure discovery for the peer mesh, access to the peer mesh, and certificates used to validate the other mesh’s clients.
 
-![Service Mesh federated mesh peers illustration](/openshift-docs-markdown/_assets/images/ossm-federated-mesh.png)
+![Service Mesh federated mesh peers illustration](/openshift-docs-markdown/images/ossm-federated-mesh.png)
 
 Meshes are federated on a one-to-one basis, so each pair of peers requires a pair of `ServiceMeshPeer` resources specifying the federation connection to the other service mesh. For example, federating two meshes named `red` and `green` would require two `ServiceMeshPeer` files.
 
@@ -661,7 +661,7 @@ Follow this procedure to create a `ServiceMeshPeer` resource from the command li
 
 Exporting services allows a mesh to share one or more of its services with another member of the federated mesh.
 
-![Service Mesh federation exporting service illustration](/openshift-docs-markdown/_assets/images/ossm-federation-export-service.png)
+![Service Mesh federation exporting service illustration](/openshift-docs-markdown/images/ossm-federation-export-service.png)
 
 You use an `ExportedServiceSet` resource to declare the services from one mesh that you are making available to another peer in the federated mesh. You must explicitly declare each service to be shared with a peer.
 
@@ -881,7 +881,7 @@ Follow this procedure to create an `ExportedServiceSet` from the command line.
 
 Importing services lets you explicitly specify which services exported from another mesh should be accessible within your service mesh.
 
-![Service Mesh federation importing service illustration](/openshift-docs-markdown/_assets/images/ossm-federation-import-service.png)
+![Service Mesh federation importing service illustration](/openshift-docs-markdown/images/ossm-federation-import-service.png)
 
 You use an `ImportedServiceSet` resource to select services for import. Only services exported by a mesh peer and explicitly imported are available to the mesh. Services that you do not explicitly import are not made available within the mesh.
 

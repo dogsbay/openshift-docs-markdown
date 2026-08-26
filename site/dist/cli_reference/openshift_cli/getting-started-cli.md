@@ -139,8 +139,8 @@ To manage your cluster and deploy applications from the command line on Linux, i
 
 **Procedure**
 
-1. From the web console, click **?**. ![click-question-mark](/openshift-docs-markdown/_assets/images/click-question-mark.png)
-2. Click **Command Line Tools**. ![CLI-list](/openshift-docs-markdown/_assets/images/CLI-list.png)
+1. From the web console, click **?**. ![click-question-mark](/openshift-docs-markdown/images/click-question-mark.png)
+2. Click **Command Line Tools**. ![CLI-list](/openshift-docs-markdown/images/CLI-list.png)
 3. Select appropriate `oc` binary for your Linux platform, and then click **Download oc for Linux**.
 4. Save the file.
 5. Unpack the archive.
@@ -170,8 +170,8 @@ To manage your cluster and deploy applications from the command line on Windows,
 
 **Procedure**
 
-1. From the web console, click **?**. ![click-question-mark](/openshift-docs-markdown/_assets/images/click-question-mark.png)
-2. Click **Command Line Tools**. ![CLI-list](/openshift-docs-markdown/_assets/images/CLI-list.png)
+1. From the web console, click **?**. ![click-question-mark](/openshift-docs-markdown/images/click-question-mark.png)
+2. Click **Command Line Tools**. ![CLI-list](/openshift-docs-markdown/images/CLI-list.png)
 3. Select the `oc` binary for Windows platform, and then click **Download oc for Windows for x86_64**.
 4. Save the file.
 5. Unzip the archive with a ZIP program.
@@ -197,8 +197,8 @@ To manage your cluster and deploy applications from the command line on macOS, i
 
 **Procedure**
 
-1. From the web console, click **?**. ![click-question-mark](/openshift-docs-markdown/_assets/images/click-question-mark.png)
-2. Click **Command Line Tools**. ![CLI-list](/openshift-docs-markdown/_assets/images/CLI-list.png)
+1. From the web console, click **?**. ![click-question-mark](/openshift-docs-markdown/images/click-question-mark.png)
+2. Click **Command Line Tools**. ![CLI-list](/openshift-docs-markdown/images/CLI-list.png)
 3. Select the `oc` binary for macOS platform, and then click **Download oc for Mac for x86_64**.
 
    > [!NOTE]

@@ -26,12 +26,12 @@ You can use the web console to uninstall the Run Once Duration Override Operator
 4. Delete the `RunOnceDurationOverride` instance.
 
    1. Click **Run Once Duration Override Operator** and select the **Run Once Duration Override** tab.
-   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **cluster** entry and select **Delete RunOnceDurationOverride**.
+   2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **cluster** entry and select **Delete RunOnceDurationOverride**.
    3. In the confirmation dialog, click **Delete**.
 5. Uninstall the Run Once Duration Override Operator.
 
    1. Navigate to **Ecosystem** → **Installed Operators**.
-   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **Run Once Duration Override Operator** entry and click **Uninstall Operator**.
+   2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **Run Once Duration Override Operator** entry and click **Uninstall Operator**.
    3. In the confirmation dialog, click **Uninstall**.
 
 ## Uninstalling Run Once Duration Override Operator resources {#rodoo-uninstall-resources_run-once-duration-override-uninstall}
@@ -51,13 +51,13 @@ Optionally, after uninstalling the Run Once Duration Override Operator, you can 
 
    1. Navigate to **Administration** → **CustomResourceDefinitions**.
    2. Enter `RunOnceDurationOverride` in the **Name** field to filter the CRDs.
-   3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **RunOnceDurationOverride** CRD and select **Delete CustomResourceDefinition**.
+   3. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **RunOnceDurationOverride** CRD and select **Delete CustomResourceDefinition**.
    4. In the confirmation dialog, click **Delete**.
 3. Delete the `openshift-run-once-duration-override-operator` namespace.
 
    1. Navigate to **Administration** → **Namespaces**.
    2. Enter `openshift-run-once-duration-override-operator` into the filter box.
-   3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **openshift-run-once-duration-override-operator** entry and select **Delete Namespace**.
+   3. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **openshift-run-once-duration-override-operator** entry and select **Delete Namespace**.
    4. In the confirmation dialog, enter `openshift-run-once-duration-override-operator` and click **Delete**.
 4. Remove the run-once duration override label from the namespaces that it was enabled on.
 

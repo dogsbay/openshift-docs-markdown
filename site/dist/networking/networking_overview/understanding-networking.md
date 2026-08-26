@@ -10,7 +10,7 @@ The following diagram shows the flow of external and internal network traffic am
 
 **Figure 1. Diagram showing traffic flow among networking components**
 
-![Diagram showing traffic flow among networking components](/openshift-docs-markdown/_assets/images/494_OpenShift_pod_networking_0426.png)
+![Diagram showing traffic flow among networking components](/openshift-docs-markdown/images/494_OpenShift_pod_networking_0426.png)
 
 ## Core network layers and components {#nw-understanding-networking-core-layers-and-components_understanding-networking}
 

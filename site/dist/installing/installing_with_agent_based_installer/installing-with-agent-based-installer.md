@@ -893,7 +893,7 @@ If there are host network configuration issues that might cause an installation 
    > However, if you choose to interact with the agent console application rather than letting it time out, you must manually quit the TUI to proceed with the installation.
 3. If the agent console application checks have failed, which is indicated by a red icon beside the `Release image URL` pull check, use the following steps to reconfigure the host’s network settings:
 
-   1. Read the `Check Errors` section of the TUI. This section displays error messages specific to the failed checks. ![The home screen of the agent console application  displaying check errors](/openshift-docs-markdown/_assets/images/agent-tui-home.png)
+   1. Read the `Check Errors` section of the TUI. This section displays error messages specific to the failed checks. ![The home screen of the agent console application  displaying check errors](/openshift-docs-markdown/images/agent-tui-home.png)
    2. Select **Configure network** to launch the NetworkManager TUI.
    3. Select **Edit a connection** and select the connection you want to reconfigure.
    4. Edit the configuration and select **OK** to save your changes.

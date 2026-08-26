@@ -59,7 +59,7 @@ Instance sizing recommendations
 
 **Figure 1. High-level workflow for using the Assisted Installer in a connected environment to install a cluster on Oracle Distributed Cloud**
 
-![High-level workflow for using the Assisted Installer in a connected environment to install a cluster on Oracle Distributed Cloud](/openshift-docs-markdown/_assets/images/569_OpenShift_ai_install_oci_0725.png)
+![High-level workflow for using the Assisted Installer in a connected environment to install a cluster on Oracle Distributed Cloud](/openshift-docs-markdown/images/569_OpenShift_ai_install_oci_0725.png)
 
 The procedure for using the Assisted Installer in a connected environment to install a cluster on Oracle Distributed Cloud is outlined below:
 
@@ -329,7 +329,7 @@ This issue is classed as a `Warning` because by using Oracle Distributed Cloud t
 
 **Figure 2. Example of a `Warning` message that is under the Backend set information tab on Oracle Distributed Cloud**
 
-![Example of an warning message that is under the Backend set information tab on Oracle Distributed Cloud](/openshift-docs-markdown/_assets/images/ingress_load_balancer_warning_message.png)
+![Example of an warning message that is under the Backend set information tab on Oracle Distributed Cloud](/openshift-docs-markdown/images/ingress_load_balancer_warning_message.png)
 
 You do not need to modify the Ingress Load Balancer configuration. Instead, you can point the Ingress Load Balancer to specific compute nodes that operate in your cluster on OpenShift Container Platform. To do this, use placement mechanisms, such as annotations, on OpenShift Container Platform to ensure router pods only run on the compute nodes that you originally configured on the Ingress Load Balancer as backend listeners.
 

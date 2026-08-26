@@ -32,7 +32,7 @@ Red Hat OpenShift Service Mesh also provides more complex operational functions
 
 Service mesh technology operates at the network communication level. That is, service mesh components capture or intercept traffic to and from microservices, either modifying requests, redirecting them, or creating new requests to other services.
 
-![Service Mesh architecture image](/openshift-docs-markdown/_assets/images/ossm-architecture.png)
+![Service Mesh architecture image](/openshift-docs-markdown/images/ossm-architecture.png)
 
 At a high level, Red Hat OpenShift Service Mesh consists of a data plane and a control plane
 

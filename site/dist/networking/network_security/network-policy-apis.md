@@ -36,7 +36,7 @@ OVN-Kubernetes evaluates connections against network policy objects in the follo
 
 <a name="img-ovn-kubernetes-network-policy-evaluation"></a>**Figure 1. Evaluation of network policies by OVN-Kubernetes**
 
-![OVN-Kubernetes Access Control List (ACL)](/openshift-docs-markdown/_assets/images/615_OpenShift_OVN-K_ACLs_0324.png)
+![OVN-Kubernetes Access Control List (ACL)](/openshift-docs-markdown/images/615_OpenShift_OVN-K_ACLs_0324.png)
 
 ## Key differences between AdminNetworkPolicy and NetworkPolicy custom resources {#nw-anp-differences-networkpolicy_network-policy-apis}
 

@@ -324,7 +324,8 @@ If an instance type for your platform meets the minimum requirements for cluster
 
 Use these tested IBM Cloud(R) instance types to ensure compatibility when selecting machine types for your OpenShift Container Platform cluster.
 
-:::details{title="Machine series"}
+See the following machine series:
+
 - `bx2-8x32`
 - `bx2d-4x16`
 - `bx3d-4x20`
@@ -342,7 +343,6 @@ Use these tested IBM Cloud(R) instance types to ensure compatibility when select
 - `ox2-8x64`
 - `ux2d-2x56`
 - `vx2d-4x56`
-:::
 
 **Additional resources**
 {._additional-resources}

@@ -42,7 +42,7 @@ After you create applications in your project and deploy them, you can use the *
 
    **Figure 1. Monitoring metrics**
 
-   ![odc_project_metrics](/openshift-docs-markdown/_assets/images/odc_project_metrics.png)
+   ![odc_project_metrics](/openshift-docs-markdown/images/odc_project_metrics.png)
 
    1. In the **Select Query** list, select an option to filter the required details for your project. The filtered metrics for all the application pods in your project are displayed in the graph. The pods in your project are also listed below.
    2. From the list of pods, clear the colored square boxes to remove the metrics for specific pods to further filter your query result.
@@ -57,19 +57,19 @@ After you create applications in your project and deploy them, you can use the *
 
    **Figure 2. Monitoring alerts**
 
-   ![odc_project_alerts](/openshift-docs-markdown/_assets/images/odc_project_alerts.png)
+   ![odc_project_alerts](/openshift-docs-markdown/images/odc_project_alerts.png)
 
    Use the following options to see further details:
 
    - Use the **Filter** list to filter the alerts by their **Alert State** and **Severity**.
    - Click on an alert to go to the details page for that alert. In the **Alerts Details** page, you can click **View Metrics** to see the metrics for the alert.
    - Use the **Notifications** toggle adjoining an alert rule to silence all the alerts for that rule, and then select the duration for which the alerts will be silenced from the **Silence for** list. You must have the permissions to edit alerts to see the **Notifications** toggle.
-   - Use the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") adjoining an alert rule to see the details of the alerting rule.
+   - Use the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") adjoining an alert rule to see the details of the alerting rule.
 5. Optional: Use the **Events** tab to see the events for your project.
 
    **Figure 3. Monitoring events**
 
-   ![odc_project_events](/openshift-docs-markdown/_assets/images/odc_project_events.png)
+   ![odc_project_events](/openshift-docs-markdown/images/odc_project_events.png)
 
    You can filter the displayed events using the following options:
 
@@ -93,7 +93,7 @@ To see the alerts for your workload:
 
    **Figure 4. Monitoring application metrics**
 
-   ![odc_app_metrics](/openshift-docs-markdown/_assets/images/odc_app_metrics.png)
+   ![odc_app_metrics](/openshift-docs-markdown/images/odc_app_metrics.png)
 
    1. Click the alert listed in the right panel to see the alert details in the **Alert Details** page.
    2. Click any of the charts to go to the **Metrics** tab to see the detailed metrics for the application.
@@ -111,7 +111,7 @@ Based on the severity level, you can prioritize vulnerabilities and fix them in 
 
 **Figure 5. Viewing image vulnerabilities**
 
-![odc_image_vulnerabilities](/openshift-docs-markdown/_assets/images/odc_image_vulnerabilities.png)
+![odc_image_vulnerabilities](/openshift-docs-markdown/images/odc_image_vulnerabilities.png)
 
 ## Monitoring your application and image vulnerabilities metrics {#odc-monitoring-your-application-image-vulnerabilities-metrics_odc-monitoring-project-and-application-metrics-using-developer-perspective}
 

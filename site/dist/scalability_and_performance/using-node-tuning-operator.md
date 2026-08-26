@@ -272,7 +272,7 @@ If the labels for the profile with priority `10` matched, `openshift-control-pla
 
 Finally, the profile `openshift-node` has the lowest priority of `30`. It lacks the `<match>` section and, therefore, will always match. It acts as a profile catch-all to set `openshift-node` profile, if no other profile with higher priority matches on a given node.
 
-![Decision workflow](/openshift-docs-markdown/_assets/images/node-tuning-operator-workflow-revised.png)
+![Decision workflow](/openshift-docs-markdown/images/node-tuning-operator-workflow-revised.png)
 
 ```yaml {title="Example: Machine config pool based matching"}
 apiVersion: tuned.openshift.io/v1

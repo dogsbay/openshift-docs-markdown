@@ -6,7 +6,7 @@ title: Creating applications by using the Developer perspective
 
 The **Developer** perspective in the web console provides you the following options from the **+Add** view to create applications and associated services and deploy them on OpenShift Container Platform:
 
-- **Getting started resources**: Use these resources to help you get started with Developer Console. You can choose to hide the header using the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu").
+- **Getting started resources**: Use these resources to help you get started with Developer Console. You can choose to hide the header using the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu").
 
   - **Creating applications using samples**: Use existing code samples to get started with creating applications on the OpenShift Container Platform.
   - **Build with guided documentation**: Follow the guided documentation to build applications and familiarize yourself with key concepts and terminologies.
@@ -283,7 +283,7 @@ You use the Developer Catalog to deploy applications and services based on Opera
 
    **Figure 1. MariaDB in Topology**
 
-   ![odc_devcatalog_toplogy](/openshift-docs-markdown/_assets/images/odc_devcatalog_toplogy.png)
+   ![odc_devcatalog_toplogy](/openshift-docs-markdown/images/odc_devcatalog_toplogy.png)
 
 **Additional resources**
 {._additional-resources}

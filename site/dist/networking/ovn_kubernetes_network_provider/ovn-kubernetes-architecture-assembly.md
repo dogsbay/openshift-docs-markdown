@@ -12,7 +12,7 @@ The OVN-Kubernetes architecture comprises specialized databases and daemons that
 
 **Figure 1. OVN-Kubernetes architecture**
 
-![OVN-Kubernetes architecture](/openshift-docs-markdown/_assets/images/299_OpenShift_OVN_Kubernetes_arch_1_0725.png)
+![OVN-Kubernetes architecture](/openshift-docs-markdown/images/299_OpenShift_OVN_Kubernetes_arch_1_0725.png)
 
 The key components are:
 
@@ -410,7 +410,7 @@ OVN-Kubernetes is a network virtualization solution that creates logical switche
 
 **Figure 2. OVN-Kubernetes router and switch components**
 
-![OVN-Kubernetes logical architecture](/openshift-docs-markdown/_assets/images/299_OpenShift_OVN-Kubernetes_arch_1023_2.png)
+![OVN-Kubernetes logical architecture](/openshift-docs-markdown/images/299_OpenShift_OVN-Kubernetes_arch_1023_2.png)
 
 The key components involved in packet processing are:
 

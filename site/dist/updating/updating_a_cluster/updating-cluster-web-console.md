@@ -73,7 +73,7 @@ During the update process, nodes in the cluster might become temporarily unavail
 1. On the web console, navigate to **Compute** → **MachineHealthChecks**.
 2. For each `MachineHealthCheck` resource, pause the machine health checks by adding the `cluster.x-k8s.io/paused=""` annotation to the resource. For example, to add the annotation to the `machine-api-termination-handler` resource, complete the following steps:
 
-   1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the `machine-api-termination-handler` and click **Edit annotations**.
+   1. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the `machine-api-termination-handler` and click **Edit annotations**.
    2. In the **Edit annotations** dialog, click **Add more**.
    3. In the **Key** and **Value** fields, add `cluster.x-k8s.io/paused` and `""` values, respectively, and click **Save**.
 

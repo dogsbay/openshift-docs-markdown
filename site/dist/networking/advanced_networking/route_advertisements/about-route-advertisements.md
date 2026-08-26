@@ -204,7 +204,7 @@ With this `FRRConfiguration` object, routes will be imported from neighbor `172.
 
 The CUDNs are advertised over the default VRF as illustrated in the following diagram:
 
-![Advertising pod IPs from a cluster user-defined network over BGP](/openshift-docs-markdown/_assets/images/524-openshift-bgp-ovn-k8s-no-vpn-0325.png)
+![Advertising pod IPs from a cluster user-defined network over BGP](/openshift-docs-markdown/images/524-openshift-bgp-ovn-k8s-no-vpn-0325.png)
 
 Red CUDN
 :   - A VRF named `red` associated with a CUDN named `red`
@@ -287,7 +287,7 @@ In this scenario, a VLAN interface is attached to the VRF device associated with
 
 The following diagram illustrates this configuration:
 
-![Advertising pod IPs from a cluster user-defined network over BGP with VPN](/openshift-docs-markdown/_assets/images/524-openshift-bgp-ovn-k8s-vrf-lite-0325.png)
+![Advertising pod IPs from a cluster user-defined network over BGP with VPN](/openshift-docs-markdown/images/524-openshift-bgp-ovn-k8s-vrf-lite-0325.png)
 
 Red CUDN
 :   - A VRF named `red` associated with a CUDN named `red`

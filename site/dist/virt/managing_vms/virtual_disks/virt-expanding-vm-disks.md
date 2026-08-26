@@ -20,7 +20,7 @@ You can increase the size of a virtual machine (VM) disk by expanding the persis
 1. In the **Administrator** or **Virtualization** perspective, open the **VirtualMachines** page.
 2. Select the running VM to open its **Details** page.
 3. Select the **Configuration** tab and click **Storage**.
-4. Click the options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the disk you want to expand. Select the **Edit** option.
+4. Click the options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the disk you want to expand. Select the **Edit** option.
 
    The **Edit disk** dialog opens.
 5. In the **PersistentVolumeClaim size** field, enter the desired size.

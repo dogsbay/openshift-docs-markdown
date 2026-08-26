@@ -18,13 +18,13 @@ Operator metadata, defined in CSVs, can be stored in a collection called a catal
 
 **Figure 1. Catalog source overview**
 
-![olm-catalogsource](/openshift-docs-markdown/_assets/images/olm-catalogsource.png)
+![olm-catalogsource](/openshift-docs-markdown/images/olm-catalogsource.png)
 
 Within a catalog source, Operators are organized into *packages* and streams of updates called *channels*, which should be a familiar update pattern from OpenShift Container Platform or other software on a continuous release cycle like web browsers.
 
 **Figure 2. Packages and channels in a Catalog source**
 
-![olm-channels](/openshift-docs-markdown/_assets/images/olm-channels.png)
+![olm-channels](/openshift-docs-markdown/images/olm-channels.png)
 
 A user indicates a particular package and channel in a particular catalog source in a *subscription*, for example an `etcd` package and its `alpha` channel. If a subscription is made to a package that has not yet been installed in the namespace, the latest Operator for that package is installed.
 
@@ -35,7 +35,7 @@ Each CSV has a `replaces` parameter that indicates which Operator it replaces. T
 
 **Figure 3. OLM graph of available channel updates**
 
-![olm-replaces](/openshift-docs-markdown/_assets/images/olm-replaces.png)
+![olm-replaces](/openshift-docs-markdown/images/olm-replaces.png)
 
 ```yaml {title="Example channels in a package"}
 packageName: example
@@ -92,7 +92,7 @@ Consider the following example of **Old CatalogSource** and **New CatalogSource*
 
 **Figure 4. Skipping updates**
 
-![olm-skipping-updates](/openshift-docs-markdown/_assets/images/olm-skipping-updates.png)
+![olm-skipping-updates](/openshift-docs-markdown/images/olm-skipping-updates.png)
 
 This graph maintains that:
 
@@ -137,7 +137,7 @@ In other words, OLM must be able to take a graph as in **Old CatalogSource** and
 
 **Figure 5. Replacing several Operators**
 
-![olm-z-stream](/openshift-docs-markdown/_assets/images/olm-z-stream.png)
+![olm-z-stream](/openshift-docs-markdown/images/olm-z-stream.png)
 
 This graph maintains that:
 

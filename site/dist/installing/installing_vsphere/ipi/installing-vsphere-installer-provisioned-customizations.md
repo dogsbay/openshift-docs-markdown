@@ -1141,15 +1141,15 @@ You can choose whether you want to configure one or all of these services for a 
 
 **Figure 1. Example network workflow that shows an Ingress Controller operating in an OpenShift Container Platform environment**
 
-![An image that shows an example network workflow of an Ingress Controller operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/_assets/images/external-load-balancer-default.png)
+![An image that shows an example network workflow of an Ingress Controller operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/images/external-load-balancer-default.png)
 
 **Figure 2. Example network workflow that shows an OpenShift API operating in an OpenShift Container Platform environment**
 
-![An image that shows an example network workflow of an OpenShift API operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/_assets/images/external-load-balancer-openshift-api.png)
+![An image that shows an example network workflow of an OpenShift API operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/images/external-load-balancer-openshift-api.png)
 
 **Figure 3. Example network workflow that shows an OpenShift `MachineConfig` API operating in an OpenShift Container Platform environment**
 
-![An image that shows an example network workflow of an OpenShift \`MachineConfig\` API operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/_assets/images/external-load-balancer-machine-config-api.png)
+![An image that shows an example network workflow of an OpenShift \`MachineConfig\` API operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/images/external-load-balancer-machine-config-api.png)
 
 The following configuration options are supported for user-managed load balancers:
 
@@ -1791,7 +1791,7 @@ You can configure networking components to run exclusively on the control plane 
 > [!IMPORTANT]
 > When deploying remote nodes in separate subnets, you must place the `ingressVIP` virtual IP address exclusively with the control plane nodes.
 
-![Installer-provisioned networking](/openshift-docs-markdown/_assets/images/325_OpenShift_vSphere_Deployment_updates_0323.png)
+![Installer-provisioned networking](/openshift-docs-markdown/images/325_OpenShift_vSphere_Deployment_updates_0323.png)
 
 **Procedure**
 

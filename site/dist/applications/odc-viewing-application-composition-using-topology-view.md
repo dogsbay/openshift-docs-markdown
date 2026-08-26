@@ -18,7 +18,7 @@ To view your applications in the **Topology** view and interact with them, ensur
 
 You can navigate to the **Topology** view using the left navigation panel in the **Developer** perspective. After you deploy an application, you are directed automatically to the **Graph view** where you can see the status of the application pods, quickly access the application on a public URL, access the source code to modify it, and see the status of your last build. You can zoom in and out to see more details for a particular application.
 
-The **Topology** view provides you the option to monitor your applications using the **List** view. Use the **List view** icon (![title="List view icon"](/openshift-docs-markdown/_assets/images/odc_list_view_icon.png)) to see a list of all your applications and use the **Graph view** icon (![title="Topology view icon"](/openshift-docs-markdown/_assets/images/odc_topology_view_icon.png)) to switch back to the graph view.
+The **Topology** view provides you the option to monitor your applications using the **List** view. Use the **List view** icon (![odc_list_view_icon](/openshift-docs-markdown/images/odc_list_view_icon.png "List view icon")) to see a list of all your applications and use the **Graph view** icon (![odc_topology_view_icon](/openshift-docs-markdown/images/odc_topology_view_icon.png "Topology view icon")) to switch back to the graph view.
 
 You can customize the views as required using the following:
 
@@ -41,27 +41,27 @@ You can customize the views as required using the following:
 
 In the **Topology** view in the **Developer** perspective of the web console, the **Graph view** provides the following options to interact with applications and components:
 
-- Click **Open URL** (![title="Application Link"](/openshift-docs-markdown/_assets/images/odc_open_url.png)) to see your application exposed by the route on a public URL.
+- Click **Open URL** (![odc_open_url](/openshift-docs-markdown/images/odc_open_url.png "Application Link")) to see your application exposed by the route on a public URL.
 - Click **Edit Source code** to access your source code and modify it.
 
   > [!NOTE]
   > This feature is available only when you create applications using the **From Git**, **From Catalog**, and the **From Dockerfile** options.
-- Hover your cursor over the lower left icon on the pod to see the name of the latest build and its status. The status of the application build is indicated as **New** (![title="New Build"](/openshift-docs-markdown/_assets/images/odc_build_new.png)), **Pending** (![title="Pending Build"](/openshift-docs-markdown/_assets/images/odc_build_pending.png)), **Running** (![title="Running Build"](/openshift-docs-markdown/_assets/images/odc_build_running.png)), **Completed** (![title="Completed Build"](/openshift-docs-markdown/_assets/images/odc_build_completed.png)), **Failed** (![title="Failed Build"](/openshift-docs-markdown/_assets/images/odc_build_failed.png)), and **Canceled** (![title="Canceled Build"](/openshift-docs-markdown/_assets/images/odc_build_canceled.png)).
+- Hover your cursor over the lower left icon on the pod to see the name of the latest build and its status. The status of the application build is indicated as **New** (![odc_build_new](/openshift-docs-markdown/images/odc_build_new.png "New Build")), **Pending** (![odc_build_pending](/openshift-docs-markdown/images/odc_build_pending.png "Pending Build")), **Running** (![odc_build_running](/openshift-docs-markdown/images/odc_build_running.png "Running Build")), **Completed** (![odc_build_completed](/openshift-docs-markdown/images/odc_build_completed.png "Completed Build")), **Failed** (![odc_build_failed](/openshift-docs-markdown/images/odc_build_failed.png "Failed Build")), and **Canceled** (![odc_build_canceled](/openshift-docs-markdown/images/odc_build_canceled.png "Canceled Build")).
 - The status or phase of the pod is indicated by different colors and tooltips as:
 
-  - **Running** (![title="Pod Running"](/openshift-docs-markdown/_assets/images/odc_pod_running.png)): The pod is bound to a node and all of the containers are created. At least one container is still running or is in the process of starting or restarting.
-  - **Not Ready** (![title="Pod Not Ready"](/openshift-docs-markdown/_assets/images/odc_pod_not_ready.png)): The pods which are running multiple containers, not all containers are ready.
-  - **Warning**(![title="Pod Warning"](/openshift-docs-markdown/_assets/images/odc_pod_warning.png)): Containers in pods are being terminated, however termination did not succeed. Some containers may be other states.
-  - **Failed**(![title="Pod Failed"](/openshift-docs-markdown/_assets/images/odc_pod_failed.png)): All containers in the pod terminated but least one container has terminated in failure. That is, the container either exited with non-zero status or was terminated by the system.
-  - **Pending**(![title="Pod Pending"](/openshift-docs-markdown/_assets/images/odc_pod_pending.png)): The pod is accepted by the Kubernetes cluster, but one or more of the containers has not been set up and made ready to run. This includes time a pod spends waiting to be scheduled as well as the time spent downloading container images over the network.
-  - **Succeeded**(![title="Pod Succeeded"](/openshift-docs-markdown/_assets/images/odc_pod_succeeded.png)): All containers in the pod terminated successfully and will not be restarted.
-  - **Terminating**(![title="Pod Terminating"](/openshift-docs-markdown/_assets/images/odc_pod_terminating.png)): When a pod is being deleted, it is shown as **Terminating** by some kubectl commands. **Terminating** status is not one of the pod phases. A pod is granted a graceful termination period, which defaults to 30 seconds.
-  - **Unknown**(![title="Pod Unknown"](/openshift-docs-markdown/_assets/images/odc_pod_unknown.png)): The state of the pod could not be obtained. This phase typically occurs due to an error in communicating with the node where the pod should be running.
+  - **Running** (![odc_pod_running](/openshift-docs-markdown/images/odc_pod_running.png "Pod Running")): The pod is bound to a node and all of the containers are created. At least one container is still running or is in the process of starting or restarting.
+  - **Not Ready** (![odc_pod_not_ready](/openshift-docs-markdown/images/odc_pod_not_ready.png "Pod Not Ready")): The pods which are running multiple containers, not all containers are ready.
+  - **Warning**(![odc_pod_warning](/openshift-docs-markdown/images/odc_pod_warning.png "Pod Warning")): Containers in pods are being terminated, however termination did not succeed. Some containers may be other states.
+  - **Failed**(![odc_pod_failed](/openshift-docs-markdown/images/odc_pod_failed.png "Pod Failed")): All containers in the pod terminated but least one container has terminated in failure. That is, the container either exited with non-zero status or was terminated by the system.
+  - **Pending**(![odc_pod_pending](/openshift-docs-markdown/images/odc_pod_pending.png "Pod Pending")): The pod is accepted by the Kubernetes cluster, but one or more of the containers has not been set up and made ready to run. This includes time a pod spends waiting to be scheduled as well as the time spent downloading container images over the network.
+  - **Succeeded**(![odc_pod_succeeded](/openshift-docs-markdown/images/odc_pod_succeeded.png "Pod Succeeded")): All containers in the pod terminated successfully and will not be restarted.
+  - **Terminating**(![odc_pod_terminating](/openshift-docs-markdown/images/odc_pod_terminating.png "Pod Terminating")): When a pod is being deleted, it is shown as **Terminating** by some kubectl commands. **Terminating** status is not one of the pod phases. A pod is granted a graceful termination period, which defaults to 30 seconds.
+  - **Unknown**(![odc_pod_unknown](/openshift-docs-markdown/images/odc_pod_unknown.png "Pod Unknown")): The state of the pod could not be obtained. This phase typically occurs due to an error in communicating with the node where the pod should be running.
 - After you create an application and an image is deployed, the status is shown as **Pending**. After the application is built, it is displayed as **Running**.
 
   **Figure 1. Application topology**
 
-  ![odc_application_topology](/openshift-docs-markdown/_assets/images/odc_application_topology.png)
+  ![odc_application_topology](/openshift-docs-markdown/images/odc_application_topology.png)
 
   The application resource name is appended with indicators for the different types of resource objects as follows:
 
@@ -72,7 +72,7 @@ In the **Topology** view in the **Developer** perspective of the web console, th
   - **J**: `Job`
   - **P**: `Pod`
   - **SS**: `StatefulSet`
-  - ![title="Serverless Application"](/openshift-docs-markdown/_assets/images/odc_serverless_app.png) (Knative): A serverless application
+  - ![odc_serverless_app](/openshift-docs-markdown/images/odc_serverless_app.png "Serverless Application") (Knative): A serverless application
 
     > [!NOTE]
     > Serverless applications take some time to load and display on the **Graph view**. When you deploy a serverless application, it first creates a service resource and then a revision. After that, it is deployed and displayed on the **Graph view**. If it is the only workload, you might be redirected to the **Add** page. After the revision is deployed, the serverless application is displayed on the **Graph view**.
@@ -100,18 +100,18 @@ You can add components to a project.
 **Procedure**
 
 1. Navigate to the **+Add** view.
-2. Click **Add to Project** (![title="Add to Project"](/openshift-docs-markdown/_assets/images/odc_add_to_project.png)) next to left navigation pane or press <kbd>Ctrl+Space</kbd>
+2. Click **Add to Project** (![odc_add_to_project](/openshift-docs-markdown/images/odc_add_to_project.png "Add to Project")) next to left navigation pane or press <kbd>Ctrl+Space</kbd>
 3. Search for the component and click the **Start**/**Create**/**Install** button or click <kbd>Enter</kbd> to add the component to the project and see it in the topology **Graph view**.
 
    **Figure 2. Adding component via quick search**
 
-   ![odc_quick_search](/openshift-docs-markdown/_assets/images/odc_quick_search.png)
+   ![odc_quick_search](/openshift-docs-markdown/images/odc_quick_search.png)
 
 Alternatively, you can also use the available  options in the context menu, such as **Import from Git**, **Container Image**, **Database**, **From Catalog**, **Operator Backed**, **Helm Charts**, **Samples**, or **Upload JAR file**, by right-clicking in the topology **Graph view** to add a component to your project.
 
 **Figure 3. Context menu to add services**
 
-![odc_context_project](/openshift-docs-markdown/_assets/images/odc_context_project.png)
+![odc_context_project](/openshift-docs-markdown/images/odc_context_project.png)
 
 ## Grouping multiple components within an application {#odc-grouping-multiple-components_viewing-application-composition-using-topology-view}
 
@@ -127,7 +127,7 @@ You can use the **+Add** view to add multiple components or services to your pro
 
   **Figure 4. Application grouping**
 
-  ![odc_app_grouping_label](/openshift-docs-markdown/_assets/images/odc_app_grouping_label.png)
+  ![odc_app_grouping_label](/openshift-docs-markdown/images/odc_app_grouping_label.png)
 
 Alternatively, you can also add the component to an application as follows:
 
@@ -151,7 +151,7 @@ To add a service to your application use the **+Add** actions using the context 
 
    **Figure 5. Add resource context menu**
 
-   ![odc_context_menu](/openshift-docs-markdown/_assets/images/odc_context_menu.png)
+   ![odc_context_menu](/openshift-docs-markdown/images/odc_context_menu.png)
 2. Use **Add to Application** to select a method for adding a service to the application group, such as **From Git**, **Container Image**, **From Dockerfile**, **From Devfile**, **Upload JAR file**, **Event Source**, **Channel**, or **Broker**.
 3. Complete the form for the method you choose and click **Create**. For example, to add a service based on the source code in your Git repository, choose the **From Git** method, fill in the **Import from Git** form, and click **Create**.
 
@@ -166,7 +166,7 @@ In the topology **Graph view** remove a service from your application using the 
 
    **Figure 6. Deleting deployment option**
 
-   ![odc_deleting_deployment](/openshift-docs-markdown/_assets/images/odc_deleting_deployment.png)
+   ![odc_deleting_deployment](/openshift-docs-markdown/images/odc_deleting_deployment.png)
 
 ## Labels and annotations used for the Topology view {#odc-labels-and-annotations-used-for-topology-view_viewing-application-composition-using-topology-view}
 

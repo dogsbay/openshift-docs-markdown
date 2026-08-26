@@ -23,7 +23,7 @@ You can use the **Topology** view in the **Developer** perspective to edit the s
   > [!NOTE]
   > This feature is available only when you create applications using the **From Git**, **From Catalog**, and the **From Dockerfile** options.
 
-  If the **Eclipse Che** Operator is installed in your cluster, a Che workspace (![title="Che Workspace"](/openshift-docs-markdown/_assets/images/odc_che_workspace.png)) is created and you are directed to the workspace to edit your source code. If it is not installed, you will be directed to the Git repository (![title="Git Repository"](/openshift-docs-markdown/_assets/images/odc_git_repository.png)) your source code is hosted in.
+  If the **Eclipse Che** Operator is installed in your cluster, a Che workspace (![odc_che_workspace](/openshift-docs-markdown/images/odc_che_workspace.png "Che Workspace")) is created and you are directed to the workspace to edit your source code. If it is not installed, you will be directed to the Git repository (![odc_git_repository](/openshift-docs-markdown/images/odc_git_repository.png "Git Repository")) your source code is hosted in.
 
 ## Editing the application configuration using the Developer perspective {#odc-editing-application-configuration-using-developer-perspective_odc-editing-applications}
 
@@ -42,7 +42,7 @@ Ensure that you have created an application using  the **From Git**, **Container
 
    **Figure 1. Edit application**
 
-   ![odc_edit_app](/openshift-docs-markdown/_assets/images/odc_edit_app.png)
+   ![odc_edit_app](/openshift-docs-markdown/images/odc_edit_app.png)
 2. Click **Edit *application-name*** to see the **Add** workflow you used to create the application. The form is pre-populated with the values you had added while creating the application.
 3. Edit the necessary values for the application.
 
@@ -52,4 +52,4 @@ Ensure that you have created an application using  the **From Git**, **Container
 
    **Figure 2. Edit and redeploy application**
 
-   ![odc_edit_redeploy](/openshift-docs-markdown/_assets/images/odc_edit_redeploy.png)
+   ![odc_edit_redeploy](/openshift-docs-markdown/images/odc_edit_redeploy.png)

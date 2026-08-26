@@ -3762,7 +3762,7 @@ Outputs:
 
 - [AWS `CloudFormation` console](https://console.aws.amazon.com/cloudformation/)
 
-### Creating the `CloudFormation` stack for compute machines {#installation-aws-creating-cloudformation-stack_installing-aws-user-infra}
+### Creating the CloudFormation stack for compute machines {#installation-aws-creating-cloudformation-stack_installing-aws-user-infra}
 
 You can create a stack of Amazon Web Services (AWS) resources for the compute machines by using the provided `CloudFormation` template.
 

@@ -996,4 +996,4 @@ As a cluster administrator, you can remove custom Operator catalogs that have be
 1. In the **Administrator** perspective of the web console, navigate to **Administration** → **Cluster Settings**.
 2. Click the **Configuration** tab, and then click **OperatorHub**.
 3. Click the **Sources** tab.
-4. Select the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") for the catalog that you want to remove, and then click **Delete CatalogSource**.
+4. Select the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") for the catalog that you want to remove, and then click **Delete CatalogSource**.

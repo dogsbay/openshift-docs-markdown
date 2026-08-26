@@ -908,7 +908,7 @@ The following diagram shows `balance-slb` mode on a simple cluster infrastructur
 
 **Figure 1. OVS `balance-slb` mode operating on a localnet with two NADs**
 
-![OVS \`balance-slb\` mode \` operating on a localnet with two NADs](/openshift-docs-markdown/_assets/images/552_OpenShift_slb_mode_0625.png)
+![OVS \`balance-slb\` mode \` operating on a localnet with two NADs](/openshift-docs-markdown/images/552_OpenShift_slb_mode_0625.png)
 
 You can integrate the `balance-slb` mode interface into primary or secondary network types by using OVS bonding. Note the following points about OVS bonding:
 

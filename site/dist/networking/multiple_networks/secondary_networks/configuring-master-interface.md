@@ -18,7 +18,7 @@ You can create multiple VLANs based on SR-IOV VFs. For this configuration, creat
 
 The following diagram shows the setup process for creating multiple VLANs on SR-IOV VFs.
 
-![Creating VLANs](/openshift-docs-markdown/_assets/images/345_OpenShift_config_additional_network_0823.png)
+![Creating VLANs](/openshift-docs-markdown/images/345_OpenShift_config_additional_network_0823.png)
 
 **Prerequisites**
 

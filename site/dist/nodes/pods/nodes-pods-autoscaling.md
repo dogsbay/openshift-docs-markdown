@@ -107,7 +107,7 @@ By using the horizontal pod autoscaler (HPA) you can create and manage a group o
 
 **Figure 1. High level workflow of the HPA**
 
-![workflow](/openshift-docs-markdown/_assets/images/HPAflow.png)
+![workflow](/openshift-docs-markdown/images/HPAflow.png)
 
 The HPA is an API resource in the Kubernetes autoscaling API group. The autoscaler works as a control loop with a default of 15 seconds for the sync period. During this period, the controller manager queries the CPU, memory utilization, or both, against what is defined in the YAML file for the HPA. The controller manager obtains the utilization metrics from the resource metrics API for per-pod resource metrics like CPU or memory, for each pod that is targeted by the HPA.
 
@@ -290,7 +290,7 @@ The following procedure creates an HPA in the web console.
 
    **Figure 2. Add HorizontalPodAutoscaler**
 
-   ![Add HorizontalPodAutoscaler form](/openshift-docs-markdown/_assets/images/node-add-hpa-action.png)
+   ![Add HorizontalPodAutoscaler form](/openshift-docs-markdown/images/node-add-hpa-action.png)
 3. From the **Add HorizontalPodAutoscaler** form, define the name, minimum and maximum pod limits, the CPU and memory usage, and click **Save**.
 
    > [!NOTE]

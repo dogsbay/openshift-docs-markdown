@@ -144,7 +144,7 @@ OADP provides an `openshift-adp-velero-metrics-svc` service. The user workload m
 
      **Figure 1. OADP metrics targets**
 
-![OADP metrics targets](/openshift-docs-markdown/_assets/images/oadp-metrics-targets.png)
+![OADP metrics targets](/openshift-docs-markdown/images/oadp-metrics-targets.png)
 
 ## Creating an alerting rule {#creating-alerting-rules_oadp-monitoring}
 
@@ -200,7 +200,7 @@ The OpenShift Container Platform monitoring stack receives alerts configured by 
 
     **Figure 2. OADP backup failing alert**
 
-![OADP backup failing alert](/openshift-docs-markdown/_assets/images/oadp-backup-failing-alert.png)
+![OADP backup failing alert](/openshift-docs-markdown/images/oadp-backup-failing-alert.png)
 
 ## List of available metrics {#list-of-metrics_oadp-monitoring}
 
@@ -258,7 +258,7 @@ Review metrics in the OpenShift Container Platform web console from the **Admini
 
     **Figure 3. OADP metrics query**
 
-    ![OADP metrics query](/openshift-docs-markdown/_assets/images/oadp-metrics-query.png)
+    ![OADP metrics query](/openshift-docs-markdown/images/oadp-metrics-query.png)
 
 **Additional resources**
 {._additional-resources}

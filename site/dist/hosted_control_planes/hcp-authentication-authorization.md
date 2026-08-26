@@ -111,7 +111,7 @@ Adding any identity provider in the OAuth configuration removes the default `kub
 2. Use the **Filter by kind** box to search for your `HostedCluster` resource.
 3. Click the `HostedCluster` resource that you want to edit.
 4. Click the **Instances** tab.
-5. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to your hosted cluster name entry and click **Edit HostedCluster**.
+5. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to your hosted cluster name entry and click **Edit HostedCluster**.
 6. Add the OAuth configuration in the YAML file:
 
    ```yaml

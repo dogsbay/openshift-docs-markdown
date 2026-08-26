@@ -79,7 +79,7 @@ After generating the seed image on the seed cluster, you can move through the st
 
 **Figure 1. Stages of the image-based upgrade**
 
-![Stages of the image-based upgrade](/openshift-docs-markdown/_assets/images/696_OpenShift_Lifecycle_Agent_0624_0.png)
+![Stages of the image-based upgrade](/openshift-docs-markdown/images/696_OpenShift_Lifecycle_Agent_0624_0.png)
 
 ### Idle stage {#cnf-image-based-upgrade-concept-idle_understanding-image-based-upgrade}
 
@@ -87,7 +87,7 @@ The Lifecycle Agent creates an `ImageBasedUpgrade` CR set to `stage: Idle` when 
 
 **Figure 2. Transition from Idle stage**
 
-![Transition from Idle stage](/openshift-docs-markdown/_assets/images/696_OpenShift_Lifecycle_Agent_0624_1.png)
+![Transition from Idle stage](/openshift-docs-markdown/images/696_OpenShift_Lifecycle_Agent_0624_1.png)
 
 You also move to the `Idle` stage to do one of the following steps:
 
@@ -99,7 +99,7 @@ Moving to the `Idle` stage ensures that the Lifecycle Agent cleans up resources,
 
 **Figure 3. Transitions to Idle stage**
 
-![Transitions to Idle stage](/openshift-docs-markdown/_assets/images/696_OpenShift_Lifecycle_Agent_0624_2.png)
+![Transitions to Idle stage](/openshift-docs-markdown/images/696_OpenShift_Lifecycle_Agent_0624_2.png)
 
 > [!IMPORTANT]
 > If using RHACM when you cancel an upgrade, you must remove the `import.open-cluster-management.io/disable-auto-import` annotation from the target managed cluster to re-enable the automatic import of the cluster.
@@ -125,7 +125,7 @@ After the `Prep` stage finishes, you can cancel the upgrade process by moving to
 
 **Figure 4. Transition from Prep stage**
 
-![Transition from Prep stage](/openshift-docs-markdown/_assets/images/696_OpenShift_Lifecycle_Agent_0624_3.png)
+![Transition from Prep stage](/openshift-docs-markdown/images/696_OpenShift_Lifecycle_Agent_0624_3.png)
 
 ### Upgrade stage {#cnf-image-based-upgrade-concept-upgrade_understanding-image-based-upgrade}
 
@@ -144,7 +144,7 @@ After the upgrade has completed and you are satisfied with the changes, you can 
 
 **Figure 5. Transitions from Upgrade stage**
 
-![Transitions from Upgrade stage](/openshift-docs-markdown/_assets/images/696_OpenShift_Lifecycle_Agent_0624_4.png)
+![Transitions from Upgrade stage](/openshift-docs-markdown/images/696_OpenShift_Lifecycle_Agent_0624_4.png)
 
 If you want to cancel the upgrade, you can do so until the pre-pivot phase of the `Upgrade` stage. If you encounter issues after the upgrade, you can move to the `Rollback` stage for a manual rollback.
 
@@ -159,7 +159,7 @@ The Lifecycle Agent initiates an automatic rollback if the upgrade does not comp
 
 **Figure 6. Transition from Rollback stage**
 
-![Transition from Rollback stage](/openshift-docs-markdown/_assets/images/696_OpenShift_Lifecycle_Agent_0624_4.png)
+![Transition from Rollback stage](/openshift-docs-markdown/images/696_OpenShift_Lifecycle_Agent_0624_4.png)
 
 **Additional resources**
 {._additional-resources}

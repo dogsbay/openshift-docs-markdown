@@ -19,7 +19,7 @@ By using the OpenShift Container Platform web console, you can migrate single-cl
 2. From the list of VMs in the same namespace, select each VM that you want to move from its current storage class.
 3. Select **Actions** → **Migrate storage**.
 
-   Alternatively, you can access this option by opening the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") for a selected VM, and then selecting **Migration** → **Storage**.
+   Alternatively, you can access this option by opening the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") for a selected VM, and then selecting **Migration** → **Storage**.
 
    The **Migrate VirtualMachine storage** page opens.
 4. To review the VMs that you want to migrate, click the link that identifies the number of VMs and volumes. Click **View more** to see the full list.

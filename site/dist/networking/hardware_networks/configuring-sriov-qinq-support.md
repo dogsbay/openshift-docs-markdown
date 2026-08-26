@@ -20,7 +20,7 @@ The diagram shows how double VLAN tagging (QinQ) works in a worker node with SR-
 
 This demonstrates how QinQ enables finer traffic segmentation and isolation within the network. The Ethernet frame structure is detailed on the right, highlighting the inclusion of both VLAN tags, EtherType, IP, TCP, and Payload sections. QinQ facilitates the delivery of VLAN-based services to multiple customers over a shared infrastructure while ensuring traffic separation and isolation.
 
-![alt="Diagram showing QinQ (double VLAN tagging)"](/openshift-docs-markdown/_assets/images/693_OpenShift_QinQ_SR-IOV_CNI_0624.png)
+![693_OpenShift_QinQ_SR-IOV_CNI_0624](/openshift-docs-markdown/images/693_OpenShift_QinQ_SR-IOV_CNI_0624.png)
 
 The OpenShift Container Platform SR-IOV solution already supports setting the VLAN protocol on the `SriovNetwork` custom resource (CR). The virtual function (VF) can use this protocol to set the VLAN tag, also known as the outer tag. Pods can then use the VLAN CNI plugin to configure the inner tag.
 

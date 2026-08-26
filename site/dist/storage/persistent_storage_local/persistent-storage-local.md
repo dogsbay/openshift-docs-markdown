@@ -945,7 +945,7 @@ Safely uninstall the Local Storage Operator (LSO) when local storage persistent 
    1. Log in to the OpenShift Container Platform web console.
    2. Go to **Ecosystem** → **Installed Operators**.
    3. Type **Local Storage** into the filter box to locate the LSO.
-   4. Click the **Options** menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") at the end of the LSO.
+   4. Click the **Options** menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") at the end of the LSO.
    5. Click **Uninstall Operator**.
    6. Click **Remove** in the window that appears.
 3. The PVs created by the LSO remain in the cluster until deleted. After these volumes are no longer in use, delete them by running the following command:

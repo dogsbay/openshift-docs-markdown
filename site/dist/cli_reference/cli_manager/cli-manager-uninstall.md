@@ -27,7 +27,7 @@ You can uninstall the CLI Manager Operator by using the web console.
 2. Uninstall the CLI Manager Operator by completing the following steps:
 
    1. Navigate to **Ecosystem** → **Installed Operators**.
-   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **CLI Manager Operator** entry and click **Uninstall Operator**.
+   2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **CLI Manager Operator** entry and click **Uninstall Operator**.
    3. In the confirmation dialog, click **Uninstall**.
 
 ## Removing CLI Manager Operator resources {#cli-manager-remove-resources_cli-manager-uninstall}
@@ -45,5 +45,5 @@ Optionally, after you uninstall the CLI Manager Operator, you can remove its rel
 2. Remove the `openshift-cli-manager-operator` namespace:
 
    1. Navigate to **Administration** → **Namespaces**.
-   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **openshift-cli-manager-operator** entry and select **Delete Namespace**.
+   2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **openshift-cli-manager-operator** entry and select **Delete Namespace**.
    3. In the confirmation dialog, enter `openshift-cli-manager-operator` in the field and click **Delete**.

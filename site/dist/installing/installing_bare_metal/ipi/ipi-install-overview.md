@@ -10,7 +10,7 @@ The following diagram illustrates phase 1 of deployment:
 
 **Figure 1. Deployment phase one**
 
-![Deployment phase one](/openshift-docs-markdown/_assets/images/210_OpenShift_Baremetal_IPI_Deployment_updates_0122_1.png)
+![Deployment phase one](/openshift-docs-markdown/images/210_OpenShift_Baremetal_IPI_Deployment_updates_0122_1.png)
 
 For the installation, the key elements in the deployment phase one diagram are:
 
@@ -32,7 +32,7 @@ The following diagram illustrates phase 2 of deployment:
 
 **Figure 2. Deployment phase two**
 
-![Deployment phase two](/openshift-docs-markdown/_assets/images/210_OpenShift_Baremetal_IPI_Deployment_updates_0122_2.png)
+![Deployment phase two](/openshift-docs-markdown/images/210_OpenShift_Baremetal_IPI_Deployment_updates_0122_2.png)
 
 After this point, the node used by the provisioner can be removed or repurposed. From here, all additional provisioning tasks are carried out by the control plane.
 

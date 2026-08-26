@@ -17,15 +17,15 @@ You can install the NBDE Tang Server Operator from the software catalog using th
 **Procedure**
 
 1. In the OpenShift Container Platform web console, navigate to **Ecosystem** → **Software Catalog**.
-2. Search for the NBDE Tang Server Operator: ![NBDE Tang Server Operator in the software catalog](/openshift-docs-markdown/_assets/images/nbde-tang-server-operator-01-operatorhub.png)
+2. Search for the NBDE Tang Server Operator: ![NBDE Tang Server Operator in the software catalog](/openshift-docs-markdown/images/nbde-tang-server-operator-01-operatorhub.png)
 3. Click **Install**.
 4. On the **Operator Installation** screen, keep the **Update channel**, **Version**, **Installation mode**, **Installed Namespace**, and **Update approval** fields on the default values.
-5. After you confirm the installation options by clicking **Install**, the console displays the installation confirmation. ![Confirmation of a NBDE Tang Server Operator installation](/openshift-docs-markdown/_assets/images/nbde-tang-server-operator-03-confirmation.png)
+5. After you confirm the installation options by clicking **Install**, the console displays the installation confirmation. ![Confirmation of a NBDE Tang Server Operator installation](/openshift-docs-markdown/images/nbde-tang-server-operator-03-confirmation.png)
 
 **Verification**
 
 1. Navigate to the **Ecosystem** → **Installed Operators** page.
-2. Check that the NBDE Tang Server Operator is installed and its status is `Succeeded`. ![NBDE Tang Server Operator status](/openshift-docs-markdown/_assets/images/nbde-tang-server-operator-05-succeeded.png)
+2. Check that the NBDE Tang Server Operator is installed and its status is `Succeeded`. ![NBDE Tang Server Operator status](/openshift-docs-markdown/images/nbde-tang-server-operator-05-succeeded.png)
 
 ## Installing the NBDE Tang Server Operator using CLI {#installing-nbde-tang-server-operator-using-cli_installing-nbde-tang-server-operator}
 

@@ -535,10 +535,10 @@ You can use the Kiali console to validate your Service Mesh installation. The Ki
 
    **Figure 1. Kiali Overview page**
 
-   ![Kiali Overview page showing istio-system](/openshift-docs-markdown/_assets/images/ossm-kiali-overview.png)
+   ![Kiali Overview page showing istio-system](/openshift-docs-markdown/images/ossm-kiali-overview.png)
 
    The tile for each namespace displays the number of labels, the **Istio Config** health, the number of and **Applications** health, and **Traffic** for the namespace. If you are validating the console installation and namespaces have not yet been added to the mesh, there might not be any data to display other than `istio-system`.
-5. Kiali has four dashboards specifically for the namespace where the Service Mesh control plane is installed.  To view these dashboards, click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") on the tile for the control plane namespace, for example, `istio-system`, and select one of the following options:
+5. Kiali has four dashboards specifically for the namespace where the Service Mesh control plane is installed.  To view these dashboards, click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") on the tile for the control plane namespace, for example, `istio-system`, and select one of the following options:
 
    - **Istio Mesh Dashboard**
    - **Istio Control Plane Dashboard**
@@ -547,7 +547,7 @@ You can use the Kiali console to validate your Service Mesh installation. The Ki
 
      **Figure 2. Grafana Istio Control Plane Dashboard**
 
-     ![Istio Control Plane Dashboard showing data for bookinfo sample project](/openshift-docs-markdown/_assets/images/ossm-grafana-control-plane-dashboard.png)
+     ![Istio Control Plane Dashboard showing data for bookinfo sample project](/openshift-docs-markdown/images/ossm-grafana-control-plane-dashboard.png)
 
      Kiali also installs two additional Grafana dashboards, available from the Grafana **Home** page:
    - **Istio Workload Dashboard**

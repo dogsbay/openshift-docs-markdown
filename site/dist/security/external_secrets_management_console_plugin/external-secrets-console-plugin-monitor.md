@@ -24,7 +24,7 @@ You can inspect custom resources for installed secrets management Operators in t
 
 1. Log in to the OpenShift Container Platform web console.
 2. Navigate to **Plugins** → **Secrets Management**.
-3. Click ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") for the custom resource that you want to monitor, and then click **Inspect**.
+3. Click ![](/openshift-docs-markdown/images/kebab.png "Options menu") for the custom resource that you want to monitor, and then click **Inspect**.
 
 **Verification**
 

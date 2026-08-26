@@ -119,7 +119,7 @@ The following diagram illustrates the sequential admission chain process within 
 
 **Figure 1. API admission chain with mutating and validating admission plugins**
 
-![API admission stage](/openshift-docs-markdown/_assets/images/api-admission-chain.png)
+![API admission stage](/openshift-docs-markdown/images/api-admission-chain.png)
 
 An example webhook admission plugin use case is where all pods must have a common set of labels. In this example, the mutating admission plugin can inject labels and the validating admission plugin can check that labels are as expected. OpenShift Container Platform would subsequently schedule pods that include required labels and reject those that do not.
 

@@ -160,7 +160,7 @@ Before installation, you must configure networking settings for the provisioner 
 
 **Figure 1. Configure networking**
 
-![Configure networking](/openshift-docs-markdown/_assets/images/210_OpenShift_Baremetal_IPI_Deployment_updates_0122_1.png)
+![Configure networking](/openshift-docs-markdown/images/210_OpenShift_Baremetal_IPI_Deployment_updates_0122_1.png)
 
 > [!NOTE]
 > You can also configure networking settings from the OpenShift Container Platform web console.
@@ -920,15 +920,15 @@ You can choose whether you want to configure one or all of these services for a 
 
 **Figure 2. Example network workflow that shows an Ingress Controller operating in an OpenShift Container Platform environment**
 
-![An image that shows an example network workflow of an Ingress Controller operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/_assets/images/external-load-balancer-default.png)
+![An image that shows an example network workflow of an Ingress Controller operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/images/external-load-balancer-default.png)
 
 **Figure 3. Example network workflow that shows an OpenShift API operating in an OpenShift Container Platform environment**
 
-![An image that shows an example network workflow of an OpenShift API operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/_assets/images/external-load-balancer-openshift-api.png)
+![An image that shows an example network workflow of an OpenShift API operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/images/external-load-balancer-openshift-api.png)
 
 **Figure 4. Example network workflow that shows an OpenShift `MachineConfig` API operating in an OpenShift Container Platform environment**
 
-![An image that shows an example network workflow of an OpenShift \`MachineConfig\` API operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/_assets/images/external-load-balancer-machine-config-api.png)
+![An image that shows an example network workflow of an OpenShift \`MachineConfig\` API operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/images/external-load-balancer-machine-config-api.png)
 
 The following configuration options are supported for user-managed load balancers:
 
@@ -3073,7 +3073,7 @@ OpenShift Container Platform installs the `chrony` Network Time Protocol (NTP) s
 
 **Figure 5. Configuring NTP for disconnected clusters**
 
-![Configuring NTP for disconnected clusters](/openshift-docs-markdown/_assets/images/152_OpenShift_Config_NTP_0421.png)
+![Configuring NTP for disconnected clusters](/openshift-docs-markdown/images/152_OpenShift_Config_NTP_0421.png)
 
 OpenShift Container Platform nodes must agree on a date and time to run properly. When compute nodes retrieve the date and time from the NTP servers on the control plane nodes, it enables the installation and operation of clusters that are not connected to a routable network and thereby do not have access to a higher stratum NTP server.
 
@@ -3201,7 +3201,7 @@ You can configure networking components to run exclusively on the control plane 
 > [!IMPORTANT]
 > When deploying remote nodes in separate subnets, you must place the `ingressVIP` virtual IP address exclusively with the control plane nodes.
 
-![Installer-provisioned networking](/openshift-docs-markdown/_assets/images/161_OpenShift_Baremetal_IPI_Deployment_updates_0521.png)
+![Installer-provisioned networking](/openshift-docs-markdown/images/161_OpenShift_Baremetal_IPI_Deployment_updates_0521.png)
 
 **Procedure**
 

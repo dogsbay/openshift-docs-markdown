@@ -23,7 +23,7 @@ The WMCO is a Linux-based Operator that runs on the Linux-based control plane an
 
 **Figure 1. WMCO design**
 
-![WMCO workflow](/openshift-docs-markdown/_assets/images/wmco-design.png)
+![WMCO workflow](/openshift-docs-markdown/images/wmco-design.png)
 
 Before deploying Windows workloads, you must create a Windows compute node and have it join the cluster. The Windows node hosts the Windows workloads in a cluster, and can run alongside other Linux-based compute nodes. You can create a Windows compute node by creating a Windows compute machine set to host Windows Server compute machines. You must apply a Windows-specific label to the compute machine set that specifies a Windows OS image.
 
@@ -31,7 +31,7 @@ The WMCO watches for machines with the Windows label. After a Windows compute ma
 
 **Figure 2. Mixed Windows and Linux workloads**
 
-![Mixed Windows and Linux workloads](/openshift-docs-markdown/_assets/images/mixed-windows-linux-workloads.png)
+![Mixed Windows and Linux workloads](/openshift-docs-markdown/images/mixed-windows-linux-workloads.png)
 
 The WMCO expects a predetermined secret in its namespace containing a private key that is used to interact with the Windows instance. WMCO checks for this secret during boot up time and creates a user data secret which you must reference in the Windows `MachineSet` object that you created. Then the WMCO populates the user data secret with a public key that corresponds to the private key. With this data in place, the cluster can connect to the Windows VM using an SSH connection.
 

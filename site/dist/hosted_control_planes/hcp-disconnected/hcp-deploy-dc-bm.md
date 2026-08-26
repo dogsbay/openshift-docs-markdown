@@ -14,7 +14,7 @@ Get familiar with the architecture for a deployment of hosted control planes on 
 
 The following diagram illustrates an example architecture of a disconnected environment:
 
-![Disconnected architecture diagram](/openshift-docs-markdown/_assets/images/489_RHACM_HyperShift_on_bare_metal_1223.png)
+![Disconnected architecture diagram](/openshift-docs-markdown/images/489_RHACM_HyperShift_on_bare_metal_1223.png)
 
 1. Configure infrastructure services, including the registry certificate deployment with TLS support, web server, and DNS, to ensure that the disconnected deployment works.
 2. Create a config map in the `openshift-config` namespace. In this example, the config map is named `registry-config`. The content of the config map is the Registry CA certificate. The data field of the config map must contain the following key/value:

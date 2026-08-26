@@ -201,7 +201,7 @@ You can create a policy by using either a form or YAML in the web console. When 
    5. Optional: Enter the port number in **Port** field.
    6. Optional: Check the checkbox **Enable STP** to enable STP.
    7. Optional: To add an interface to the policy, click **Add another interface to the policy**.
-   8. Optional: To remove an interface from the policy, click ![minus](/openshift-docs-markdown/_assets/images/fa-minus-circle.svg) icon next to the interface.
+   8. Optional: To remove an interface from the policy, click ![minus](/openshift-docs-markdown/images/fa-minus-circle.svg) icon next to the interface.
 
       > [!NOTE]
       > Alternatively, you can click **Edit YAML** on the top of the page to continue editing the form using YAML.
@@ -222,7 +222,7 @@ You can update a `NodeNetworkConfigurationPolicy` object by using the form view 
 **Procedure**
 
 1. Navigate to **Networking** → **NodeNetworkConfigurationPolicy**.
-2. In the **NodeNetworkConfigurationPolicy** page, click the ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") icon placed next to the policy you want to edit, and click **Edit**.
+2. In the **NodeNetworkConfigurationPolicy** page, click the ![](/openshift-docs-markdown/images/kebab.png "Options menu") icon placed next to the policy you want to edit, and click **Edit**.
 3. Edit the fields that you want to update.
 4. Click **Save**.
 
@@ -244,7 +244,7 @@ You can delete a `NodeNetworkConfigurationPolicy` object when it is no longer ne
 **Procedure**
 
 1. Navigate to **Networking** → **NodeNetworkConfigurationPolicy**.
-2. In the **NodeNetworkConfigurationPolicy** page, click the ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") icon placed next to the policy you want to delete, and click **Delete**.
+2. In the **NodeNetworkConfigurationPolicy** page, click the ![](/openshift-docs-markdown/images/kebab.png "Options menu") icon placed next to the policy you want to delete, and click **Delete**.
 3. In the pop-up window, enter the policy name to confirm deletion, and click **Delete**.
 
 ## Managing the NodeNetworkConfigurationPolicy manifest file {#virt-manage-nncp-cli_k8s-nmstate-updating-node-network-config}

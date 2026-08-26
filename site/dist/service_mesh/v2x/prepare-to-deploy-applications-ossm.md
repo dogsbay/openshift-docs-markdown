@@ -92,7 +92,7 @@ The Kiali console offers several ways to validate whether or not your applicatio
 
 **Figure 1. Missing sidecar badge**
 
-![Missing Sidecar badge](/openshift-docs-markdown/_assets/images/ossm-node-badge-missing-sidecar.png)
+![Missing Sidecar badge](/openshift-docs-markdown/images/ossm-node-badge-missing-sidecar.png)
 
 The **Graph** page displays a node badge indicating a **Missing Sidecar** on the following graphs:
 
@@ -102,7 +102,7 @@ The **Graph** page displays a node badge indicating a **Missing Sidecar** on the
 
 **Figure 2. Missing sidecar icon**
 
-![Missing Sidecar icon](/openshift-docs-markdown/_assets/images/ossm-icon-missing-sidecar.png)
+![Missing Sidecar icon](/openshift-docs-markdown/images/ossm-icon-missing-sidecar.png)
 
 The **Applications** page displays a **Missing Sidecar** icon in the **Details** column for any applications in a namespace that do not have a sidecar.
 

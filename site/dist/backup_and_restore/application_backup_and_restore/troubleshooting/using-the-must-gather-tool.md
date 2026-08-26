@@ -71,7 +71,7 @@ $ oc adm must-gather --image=registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.5 
 
    **Figure 1. Example markdown output of must-gather tool**
 
-   ![must-gather markdown output](/openshift-docs-markdown/_assets/images/oadp-must-gather-markdown-output.png)
+   ![must-gather markdown output](/openshift-docs-markdown/images/oadp-must-gather-markdown-output.png)
 
 **Additional resources**
 {._additional-resources}

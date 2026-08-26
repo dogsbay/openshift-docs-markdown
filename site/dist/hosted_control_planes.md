@@ -35,7 +35,7 @@ The standalone control plane is hosted by a dedicated group of nodes, which can 
 
 Although the standalone model works well, some situations require an architecture where the control plane and data plane are decoupled. In those cases, the data plane is on a separate network domain with a dedicated physical hosting environment. The control plane is hosted by using high-level primitives such as deployments and stateful sets that are native to Kubernetes. The control plane is treated as any other workload.
 
-![Diagram that compares the hosted control plane model against OpenShift with a coupled control plane and workers](/openshift-docs-markdown/_assets/images/hosted-control-planes-diagram.png)
+![Diagram that compares the hosted control plane model against OpenShift with a coupled control plane and workers](/openshift-docs-markdown/images/hosted-control-planes-diagram.png)
 
 ### Benefits of hosted control planes {#hosted-control-planes-benefits_hcp-overview}
 
@@ -282,7 +282,7 @@ The multicluster engine Operator is the cluster lifecycle Operator that provides
 
 **Figure 1. Cluster life cycle and foundation**
 
-![Cluster life cycle and foundation](/openshift-docs-markdown/_assets/images/acm-mce-intro-diagram.png)
+![Cluster life cycle and foundation](/openshift-docs-markdown/images/acm-mce-intro-diagram.png)
 
 You can use the multicluster engine Operator with OpenShift Container Platform as a standalone cluster manager or as part of a RHACM hub cluster.
 
@@ -293,7 +293,7 @@ You can deploy OpenShift Container Platform clusters by using two different cont
 
 **Figure 2. RHACM and the multicluster engine Operator introduction diagram**
 
-![RHACM and the multicluster engine Operator introduction diagram](/openshift-docs-markdown/_assets/images/rhacm-flow.png)
+![RHACM and the multicluster engine Operator introduction diagram](/openshift-docs-markdown/images/rhacm-flow.png)
 
 ### Hosted clusters in Red Hat Advanced Cluster Management {#hcp-acm-discover_hcp-overview}
 

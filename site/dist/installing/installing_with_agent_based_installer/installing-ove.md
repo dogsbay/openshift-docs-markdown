@@ -69,7 +69,7 @@ The rendezvous node runs as the bootstrap host during the installation, which ho
    > [!IMPORTANT]
    > You must select only one machine to act as the rendezvous node. Selecting two or more machines as a rendezvous node is not supported.
 4. In the **Rendezvous node IP selection** menu, select an IP address from the list to use as the rendezvous node IP address and select **Continue**. Make note of this address for later use.
-5. Wait for the rendezvous node to provide a URL for finishing the installation and save the URL for later use, as shown in the following image. ![The rendezvous host providing the URL of the installation console](/openshift-docs-markdown/_assets/images/installing-ove-console.png)
+5. Wait for the rendezvous node to provide a URL for finishing the installation and save the URL for later use, as shown in the following image. ![The rendezvous host providing the URL of the installation console](/openshift-docs-markdown/images/installing-ove-console.png)
 
 ## Configuring cluster details and choosing Operators to install {#virt-installing-ove-console-initial_installing-ove}
 

@@ -64,7 +64,7 @@ You can add one or more OpenShift Container Platform worker nodes to an existing
 **Procedure**
 
 1. In the OpenShift Container Platform web console, go to **Networking** → **Physical networks**.
-2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the network that you want to edit.
+2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the network that you want to edit.
 3. Click **Configure nodes**. The **Network configuration wizard** is displayed.
 
    > [!NOTE]
@@ -111,7 +111,7 @@ If your use case does not permit the use of network address translation (NAT), y
 **Procedure**
 
 1. In the OpenShift Container Platform web console, go to **Networking** → **Physical networks**.
-2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the network that you want to edit.
+2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the network that you want to edit.
 3. Click **Create a virtual machines network using this physical network**. The **Create virtual machine network** wizard is displayed with the network name populated.
 4. Select a **Physical network**.
 5. Optional: Select **VLAN tagging** and enter a **VLAN ID**.

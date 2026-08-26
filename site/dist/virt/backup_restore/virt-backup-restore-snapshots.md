@@ -250,10 +250,10 @@ You can restore a virtual machine (VM) to a previous configuration represented b
 
 1. Navigate to **Virtualization** → **VirtualMachines** in the web console.
 2. Select a VM to open the **VirtualMachine details** page.
-3. If the VM is running, click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") and select **Stop** to power it down.
+3. If the VM is running, click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") and select **Stop** to power it down.
 4. Click the **Snapshots** tab to view a list of snapshots associated with the VM.
 5. Select a snapshot to open the **Snapshot Details** screen.
-6. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") and select **Restore VirtualMachine from snapshot**.
+6. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") and select **Restore VirtualMachine from snapshot**.
 7. Optional: In the **Volume restore policy** section, select how restored persistent volume claims (PVCs) are named:
 
    - **Prefix target name** - The restored PVC names use the target VM name as a prefix. This is the default setting.
@@ -262,7 +262,7 @@ You can restore a virtual machine (VM) to a previous configuration represented b
 8. Click **Restore**.
 9. Optional: You can also create a new VM based on the snapshot. To do so:
 
-   1. In the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") of the snapshot, select **Create VirtualMachine from Snapshot**.
+   1. In the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") of the snapshot, select **Create VirtualMachine from Snapshot**.
    2. Provide a name for the new VM.
    3. Click **Create**
 
@@ -416,7 +416,7 @@ You can delete an existing virtual machine (VM) snapshot by using the web consol
 1. Navigate to **Virtualization** → **VirtualMachines** in the web console.
 2. Select a VM to open the **VirtualMachine details** page.
 3. Click the **Snapshots** tab to view a list of snapshots associated with the VM.
-4. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") beside a snapshot and select **Delete snapshot**.
+4. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") beside a snapshot and select **Delete snapshot**.
 5. Click **Delete**.
 
 ## Deleting a virtual machine snapshot in the CLI {#virt-deleting-vm-snapshot-cli_virt-backup-restore-snapshots}

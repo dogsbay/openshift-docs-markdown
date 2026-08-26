@@ -1390,7 +1390,7 @@ After removing the VPA, it is recommended that you remove the other components a
 
 1. In the OpenShift Container Platform web console, click **Ecosystem** → **Installed Operators**.
 2. Switch to the **openshift-vertical-pod-autoscaler** project.
-3. For the **VerticalPodAutoscaler**  Operator, click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") and select **Uninstall Operator**.
+3. For the **VerticalPodAutoscaler**  Operator, click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") and select **Uninstall Operator**.
 4. Optional: To remove all operands associated with the Operator, in the dialog box, select **Delete all operand instances for this operator** checkbox.
 5. Click **Uninstall**.
 6. Optional: Use the OpenShift CLI to remove the VPA components:

@@ -55,7 +55,7 @@ You can use the OpenShift Container Platform web console to create a project in 
 
      **Figure 1. Create project**
 
-     ![Web console image showing the Create project option](/openshift-docs-markdown/_assets/images/odc_create_project.png)
+     ![Web console image showing the Create project option](/openshift-docs-markdown/images/odc_create_project.png)
 
      1. In the **Create Project** dialog box, enter a unique name, such as `myproject`, in the **Name** field.
      2. Optional: Add the **Display name** and **Description** details for the project.
@@ -158,7 +158,7 @@ You can use the **Project** view in the **Developer** perspective to grant or re
 
    **Figure 2. Project permissions**
 
-   ![odc_project_permissions](/openshift-docs-markdown/_assets/images/odc_project_permissions.png)
+   ![odc_project_permissions](/openshift-docs-markdown/images/odc_project_permissions.png)
 5. Enter the user name, click the **Select a role** drop-down list, and select an appropriate role.
 6. Click **Save** to add the new permissions.
 7. Optional: You can complete any of the following additional tasks:

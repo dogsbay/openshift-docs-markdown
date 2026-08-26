@@ -87,7 +87,7 @@ In OpenShift Container Platform 4.22, there are two lifecycle hooks for the mach
 
 **Figure 1. Machine deletion flow**
 
-![The sequence of events in the machine \`Deleting\` phase.](/openshift-docs-markdown/_assets/images/310_OpenShift_machine_deletion_hooks_0223.png)
+![The sequence of events in the machine \`Deleting\` phase.](/openshift-docs-markdown/images/310_OpenShift_machine_deletion_hooks_0223.png)
 
 The machine `Deleting` phase proceeds in the following order:
 

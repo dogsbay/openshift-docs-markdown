@@ -378,7 +378,7 @@ In OpenShift Container Platform version 4.14 and later, you can use non-privileg
 
 **Figure 1. DPDK and TAP example configuration**
 
-![DPDK and TAP plugin](/openshift-docs-markdown/_assets/images/348_OpenShift_rootless_DPDK_0923.png)
+![DPDK and TAP plugin](/openshift-docs-markdown/images/348_OpenShift_rootless_DPDK_0923.png)
 
 **Prerequisites**
 
@@ -641,7 +641,7 @@ To achieve a specific Data Plane Development Kit (DPDK) line rate, deploy a Node
 
 The following diagram shows the components of a DPDK test environment:
 
-![DPDK test environment](/openshift-docs-markdown/_assets/images/261_OpenShift_DPDK_0722.png)
+![DPDK test environment](/openshift-docs-markdown/images/261_OpenShift_DPDK_0722.png)
 
 - **Traffic generator**: An application that can generate high-volume packet traffic.
 - **SR-IOV-supporting NIC**: A network interface controller (NIC) compatible with SR-IOV. The card runs several virtual functions on a physical interface.

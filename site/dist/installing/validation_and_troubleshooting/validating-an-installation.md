@@ -371,7 +371,7 @@ As an administrator, you can access dashboards for core OpenShift Container Plat
 
 **Figure 1. Example compute resources dashboard**
 
-![Screenshot of the OpenShift Container Platform monitoring dashboard showing compute resources including CPU usage](/openshift-docs-markdown/_assets/images/monitoring-dashboard-compute-resources.png)
+![Screenshot of the OpenShift Container Platform monitoring dashboard showing compute resources including CPU usage](/openshift-docs-markdown/images/monitoring-dashboard-compute-resources.png)
 
 **Prerequisites**
 

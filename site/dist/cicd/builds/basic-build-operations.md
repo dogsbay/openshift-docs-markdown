@@ -138,7 +138,7 @@ You can switch between the **Form view** and **YAML view** without losing any da
 
 **Procedure**
 
-1. On the **Builds** page, click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") to see the **Edit BuildConfig** option.
+1. On the **Builds** page, click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") to see the **Edit BuildConfig** option.
 2. Click **Edit BuildConfig** to see the **Form view** option.
 3. In the **Git** section, enter the Git repository URL for the codebase you want to use to create an application. The URL is then validated.
 

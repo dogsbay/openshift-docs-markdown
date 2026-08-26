@@ -30,7 +30,7 @@ For platforms that support using the CCO in multiple modes, you must determine w
 
 **Figure 1. Credentials update requirements by platform type**
 
-![Decision tree showing the possible update paths for your cluster depending on the configured CCO credentials mode.](/openshift-docs-markdown/_assets/images/334_OpenShift_cluster_updating_and_CCO_workflows_0523_4.11_B_AliCloud_patch.png)
+![Decision tree showing the possible update paths for your cluster depending on the configured CCO credentials mode.](/openshift-docs-markdown/images/334_OpenShift_cluster_updating_and_CCO_workflows_0523_4.11_B_AliCloud_patch.png)
 
 Red Hat OpenStack Platform (RHOSP) and VMware vSphere
 :   These platforms do not support using the CCO in manual mode. Clusters on these platforms handle changes in cloud provider resources automatically and do not require an update to the `upgradeable-to` annotation.

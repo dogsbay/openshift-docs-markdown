@@ -825,7 +825,8 @@ The following Google Cloud instance types have been tested with OpenShift Contai
 >
 > Some instance types require the use of Hyperdisk storage. If you use an instance type that requires Hyperdisk storage, all of the nodes in your cluster must support Hyperdisk storage, and you must change the default storage class to use Hyperdisk storage. For more information, see [machine series support for Hyperdisk](https://cloud.google.com/compute/docs/disks/hyperdisks#machine-type-support) (Google documentation). For instructions on modifying storage classes, see the "GCE PersistentDisk (gcePD) object definition" section in the Dynamic Provisioning page in *Storage*.
 
-:::details{title="Machine series"}
+See the following machine series:
+
 - `A2`
 - `A3`
 - `C2`
@@ -840,7 +841,6 @@ The following Google Cloud instance types have been tested with OpenShift Contai
 - `N2D`
 - `N4`
 - `Tau T2D`
-:::
 
 ### Using custom machine types {#installation-custom-machine-types_installing-restricted-networks-gcp}
 

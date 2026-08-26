@@ -84,7 +84,7 @@ The diagram describes the following workflow:
 
 **Figure 1. How OADP Self-Service works**
 
-![OADP Self-Service](/openshift-docs-markdown/_assets/images/oadp-self-service.svg)
+![OADP Self-Service](/openshift-docs-markdown/images/oadp-self-service.svg)
 
 ## OADP Self-Service prerequisites {#oadp-self-service-prerequisites_oadp-self-service}
 

@@ -22,7 +22,7 @@ You can uninstall the cert-manager Operator for Red Hat OpenShift by using the w
 2. Uninstall the cert-manager Operator for Red Hat OpenShift Operator.
 
    1. Navigate to **Ecosystem** → **Installed Operators**.
-   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **cert-manager Operator for Red Hat OpenShift** entry and click **Uninstall Operator**.
+   2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **cert-manager Operator for Red Hat OpenShift** entry and click **Uninstall Operator**.
    3. In the confirmation dialog, click **Uninstall**.
 
 ## Removing cert-manager Operator for Red Hat OpenShift resources {#cert-manager-remove-resources-console_cert-manager-operator-uninstall}
@@ -58,7 +58,7 @@ After you uninstall the cert-manager Operator for Red Hat OpenShift, you can del
       ```
    2. Navigate to **Administration** → **CustomResourceDefinitions**.
    3. Enter `certmanager` in the **Name** field to filter the CRDs.
-   4. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to each of the following CRDs, and select **Delete Custom Resource Definition**:
+   4. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to each of the following CRDs, and select **Delete Custom Resource Definition**:
 
       - `Certificate`
       - `CertificateRequest`
@@ -70,5 +70,5 @@ After you uninstall the cert-manager Operator for Red Hat OpenShift, you can del
 4. Optional: Remove the `cert-manager-operator` namespace.
 
    1. Navigate to **Administration** → **Namespaces**.
-   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **cert-manager-operator** and select **Delete Namespace**.
+   2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **cert-manager-operator** and select **Delete Namespace**.
    3. In the confirmation dialog, enter `cert-manager-operator` in the field and click **Delete**.

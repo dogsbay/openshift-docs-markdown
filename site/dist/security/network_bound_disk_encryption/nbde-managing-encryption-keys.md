@@ -54,7 +54,7 @@ Rekeying a Tang server, and all associated NBDE-encrypted nodes, is a three-step
 
 **Figure 1. Example workflow for rekeying a Tang server**
 
-![Rekeying a Tang server](/openshift-docs-markdown/_assets/images/179_OpenShift_NBDE_implementation_0821_4.png)
+![Rekeying a Tang server](/openshift-docs-markdown/images/179_OpenShift_NBDE_implementation_0821_4.png)
 
 ### Generating a new Tang server key {#nbde-generating-a-new-tang-server-key_nbde-implementation}
 

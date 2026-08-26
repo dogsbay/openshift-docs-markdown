@@ -382,8 +382,9 @@ If an instance type for your platform meets the minimum requirements for cluster
 
 There are several Microsoft Azure instance types tested with OpenShift Container Platform. Choose a listed instance type when you install a cluster on 64-bit x86 infrastructure.
 
-:::details{title="Machine types based on 64-bit x86 architecture"}
-##### General Purpose
+See the following machine types based on 64-bit x86 architecture:
+
+##### General Purpose {#general-purpose}
 
 | Azure VM Series | Family Name |
 | --- | --- |
@@ -420,7 +421,7 @@ There are several Microsoft Azure instance types tested with OpenShift Container
 | Dsv5-series | `standardDSv5Family` |
 | Dsv6-series | `StandardDsv6Family` |
 
-##### Memory Optimized
+##### Memory Optimized {#memory-optimized}
 
 | Azure VM Series | Family Name |
 | --- | --- |
@@ -454,7 +455,7 @@ There are several Microsoft Azure instance types tested with OpenShift Container
 | Msv2 Medium Memory-series | `standardMISMediumMemoryv2Family`, `standardMSMediumMemoryv2Family` |
 | Msv3 Medium Memory-series | `standardMSMediumMemoryv3Family` |
 
-##### Compute Optimized
+##### Compute Optimized {#compute-optimized}
 
 | Azure VM Series | Family Name |
 | --- | --- |
@@ -467,7 +468,7 @@ There are several Microsoft Azure instance types tested with OpenShift Container
 | FX-series | `standardFXMDVSFamily` |
 | FXmsv2-series | `StandardFXmsv2Family` |
 
-##### Storage Optimized
+##### Storage Optimized {#storage-optimized}
 
 | Azure VM Series | Family Name |
 | --- | --- |
@@ -480,7 +481,7 @@ There are several Microsoft Azure instance types tested with OpenShift Container
 | Lsv3-series | `standardLSv3Family` |
 | Lsv4-series | `standardLsv4Family` |
 
-##### GPU Accelerated
+##### GPU Accelerated {#gpu-accelerated}
 
 | Azure VM Series | Family Name |
 | --- | --- |
@@ -498,13 +499,13 @@ There are several Microsoft Azure instance types tested with OpenShift Container
 | NVads V710 v5-series | `StandardNVadsV710v5Family` |
 | NVv3-series | `standardNVSv3Family` |
 
-##### FPGA Accelerated
+##### FPGA Accelerated {#fpga-accelerated}
 
 | Azure VM Series | Family Name |
 | --- | --- |
 | NPS-series | `standardNPSFamily` |
 
-##### High Performance Compute
+##### High Performance Compute {#high-performance-compute}
 
 | Azure VM Series | Family Name |
 | --- | --- |
@@ -513,14 +514,14 @@ There are several Microsoft Azure instance types tested with OpenShift Container
 | HBv5-series | `standardHBv5Family` |
 | HC-series | `standardHCSFamily` |
 | HX-series | `standardHXFamily` |
-:::
 
 ### Tested instance types for Azure on 64-bit ARM infrastructures {#installation-azure-arm-tested-machine-types_installing-azure-vnet}
 
 There are several Microsoft Azure ARM64 instance types tested with OpenShift Container Platform. Choose a listed instance type when you install a cluster on 64-bit ARM infrastructure.
 
-:::details{title="Machine types based on 64-bit ARM architecture"}
-##### General Purpose (ARM64)
+See the following machine types based on 64-bit ARM architecture:
+
+##### General Purpose (ARM64) {#general-purpose-arm64}
 
 | Azure VM Series | Family Name |
 | --- | --- |
@@ -534,7 +535,7 @@ There are several Microsoft Azure ARM64 instance types tested with OpenShift Con
 | Dplsv6-series | `StandardDplsv6Family` |
 | Dpsv6-series | `StandardDpsv6Family` |
 
-##### Memory Optimized (ARM64)
+##### Memory Optimized (ARM64) {#memory-optimized-arm64}
 
 | Azure VM Series | Family Name |
 | --- | --- |
@@ -542,7 +543,6 @@ There are several Microsoft Azure ARM64 instance types tested with OpenShift Con
 | Epsv5-series | `standardEPSv5Family` |
 | Epdsv6-series | `StandardEpdsv6Family` |
 | Epsv6-series | `StandardEpsv6Family` |
-:::
 
 ### Enabling trusted launch for Azure VMs {#installation-azure-trusted-launch_installing-azure-vnet}
 

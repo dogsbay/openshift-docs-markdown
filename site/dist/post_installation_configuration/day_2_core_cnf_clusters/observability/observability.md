@@ -20,7 +20,7 @@ The monitoring stack uses the following components:
 
 **Figure 1. OpenShift Container Platform monitoring architecture**
 
-![OpenShift Container Platform monitoring architecture](/openshift-docs-markdown/_assets/images/monitoring-architecture.png)
+![OpenShift Container Platform monitoring architecture](/openshift-docs-markdown/images/monitoring-architecture.png)
 
 > [!NOTE]
 > For single-node OpenShift clusters, disable Alertmanager and Thanos because the clusters sends all metrics to the hub cluster for analysis and retention.

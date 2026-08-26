@@ -37,11 +37,11 @@ The hot plugged disk remains attached to the VM until you unplug it.
 5. Optional: Select the type of the interface bus. The options are **VirtIO** and **SCSI**. The default bus type is **VirtIO**.
 6. Optional: Change the type of the interface bus of an existing hot plugged disk:
 
-   1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") beside the disk and select the **Edit** option.
+   1. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") beside the disk and select the **Edit** option.
    2. In the **Interface** field, select the desired option.
 7. Optional: Unplug a hot plugged disk:
 
-   1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") beside the disk and select **Detach**.
+   1. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") beside the disk and select **Detach**.
    2. Click **Detach**.
 
 ## Hot plugging and hot unplugging a disk by using the CLI {#virt-hot-plugging-disk-cli_virt-hot-plugging-virtual-disks}

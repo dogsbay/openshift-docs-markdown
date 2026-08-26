@@ -43,11 +43,11 @@ When a node starts, it attempts to contact a predefined set of Tang servers by p
 
 The following figure illustrates the deployment model for NBDE.
 
-![NBDE deployment model](/openshift-docs-markdown/_assets/images/179_OpenShift_NBDE_implementation_0821_1.png)
+![NBDE deployment model](/openshift-docs-markdown/images/179_OpenShift_NBDE_implementation_0821_1.png)
 
 The following figure illustrates NBDE behavior during a reboot.
 
-![NBDE reboot behavior](/openshift-docs-markdown/_assets/images/179_OpenShift_NBDE_implementation_0821_2.png)
+![NBDE reboot behavior](/openshift-docs-markdown/images/179_OpenShift_NBDE_implementation_0821_2.png)
 
 ### Secret sharing encryption {#nbde-secret-sharing-encryption_nbde-implementation}
 
@@ -61,7 +61,7 @@ The following components and technologies implement Network-Bound Disk Encryptio
 
 <a name="fig-NBDE-Clevis-Tang"></a>**Figure 1. NBDE scheme when using a LUKS1-encrypted volume. The luksmeta package is not used for LUKS2 volumes.**
 
-![Network-Bound Disk Encryption (NBDE)](/openshift-docs-markdown/_assets/images/179_OpenShift_NBDE_implementation_0821_3.png)
+![Network-Bound Disk Encryption (NBDE)](/openshift-docs-markdown/images/179_OpenShift_NBDE_implementation_0821_3.png)
 
 <a name="fig-NBDE-Clevis-Tang"></a>
 

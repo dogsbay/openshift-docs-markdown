@@ -14,7 +14,7 @@ It is also important to maintain the immutability of your containers. You should
 
 As your software moves through the stages of building, testing, and production, it is important that the tools making up your software supply chain be trusted. The following figure illustrates the process and tools that could be incorporated into a trusted software supply chain for containerized software:
 
-![trustedsupplychain](/openshift-docs-markdown/_assets/images/trustedsupplychain.png)
+![trustedsupplychain](/openshift-docs-markdown/images/trustedsupplychain.png)
 
 OpenShift Container Platform can be integrated with trusted code repositories (such as GitHub) and development platforms (such as Che) for creating and managing secure code. Unit testing frameworks can validate code quality before builds.
 
@@ -44,7 +44,7 @@ When developers commit code with Git for an application by using build images, O
 - Automatically deploy the newly built image for testing.
 - Promote the tested image to production where it can be automatically deployed using a CI process.
 
-![Source-to-Image Builds](/openshift-docs-markdown/_assets/images/build_process1.png)
+![Source-to-Image Builds](/openshift-docs-markdown/images/build_process1.png)
 
 You can use the integrated OpenShift Container Registry to manage access to final images. Both S2I and native build images are automatically pushed to your OpenShift Container Registry.
 
@@ -94,7 +94,7 @@ You can design your container image management to separate control across teams 
 
 You can design your container image management and build process to use container layers so that you can separate control.
 
-![Designing Your Build Process](/openshift-docs-markdown/_assets/images/build_process2.png)
+![Designing Your Build Process](/openshift-docs-markdown/images/build_process2.png)
 
 For example, an operations team manages base images, while architects manage middleware, runtimes, databases, and other solutions. Developers can then focus on application layers and focus on writing code.
 

@@ -19,7 +19,7 @@ An image-based approach to installing and deploying single-node OpenShift cluste
 
 **Figure 1. Overview of an image-based installation and deployment for managed single-node OpenShift clusters**
 
-![Overview of an image-based installation and deployment](/openshift-docs-markdown/_assets/images/711_OpenShift_IBI_Installation_high-level_0624.png)
+![Overview of an image-based installation and deployment](/openshift-docs-markdown/images/711_OpenShift_IBI_Installation_high-level_0624.png)
 
 Imaged-based installation
 :   Preinstall multiple hosts with single-node OpenShift at a central site, such as a service depot or a factory. Then, validate the base configuration for these hosts and leverage the image-based approach to perform reproducible factory installs at scale by using a single live installation ISO.

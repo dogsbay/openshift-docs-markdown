@@ -22,7 +22,7 @@ You can use the web console to uninstall the Secondary Scheduler Operator for Re
 2. Uninstall the Secondary Scheduler Operator for Red Hat OpenShift Operator.
 
    1. Navigate to **Ecosystem** → **Installed Operators**.
-   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **Secondary Scheduler Operator** entry and click **Uninstall Operator**.
+   2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **Secondary Scheduler Operator** entry and click **Uninstall Operator**.
    3. In the confirmation dialog, click **Uninstall**.
 
 ## Removing Secondary Scheduler Operator resources {#nodes-secondary-scheduler-remove-resources-console_secondary-scheduler-uninstalling}
@@ -41,9 +41,9 @@ Optionally, remove the custom resource definition (CRD) and associated namespace
 
    1. Navigate to **Administration** → **CustomResourceDefinitions**.
    2. Enter `SecondaryScheduler` in the **Name** field to filter the CRDs.
-   3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **SecondaryScheduler** CRD and select **Delete Custom Resource Definition**:
+   3. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **SecondaryScheduler** CRD and select **Delete Custom Resource Definition**:
 3. Remove the `openshift-secondary-scheduler-operator` namespace.
 
    1. Navigate to **Administration** → **Namespaces**.
-   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **openshift-secondary-scheduler-operator** and select **Delete Namespace**.
+   2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **openshift-secondary-scheduler-operator** and select **Delete Namespace**.
    3. In the confirmation dialog, enter `openshift-secondary-scheduler-operator` in the field and click **Delete**.

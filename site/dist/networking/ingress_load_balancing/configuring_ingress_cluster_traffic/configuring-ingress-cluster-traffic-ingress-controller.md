@@ -280,7 +280,7 @@ You can use route labels to configure Ingress Controller sharding so that the In
 
 **Figure 1. Ingress sharding by using route labels**
 
-![A diagram showing multiple Ingress Controllers with different route selectors serving any route containing a label that matches a given route selector regardless of the namespace a route belongs to](/openshift-docs-markdown/_assets/images/nw-sharding-route-labels.png)
+![A diagram showing multiple Ingress Controllers with different route selectors serving any route containing a label that matches a given route selector regardless of the namespace a route belongs to](/openshift-docs-markdown/images/nw-sharding-route-labels.png)
 
 Ingress Controller sharding is useful when balancing incoming traffic load among a set of Ingress Controllers and when isolating traffic to a specific Ingress Controller. For example, company A goes to one Ingress Controller and company B to another.
 
@@ -325,7 +325,7 @@ You can use namespace labels to configure Ingress Controller sharding so that th
 
 **Figure 2. Ingress sharding by using namespace labels**
 
-![A diagram showing multiple Ingress Controllers with different namespace selectors serving routes that belong to the namespace containing a label that matches a given namespace selector](/openshift-docs-markdown/_assets/images/nw-sharding-namespace-labels.png)
+![A diagram showing multiple Ingress Controllers with different namespace selectors serving routes that belong to the namespace containing a label that matches a given namespace selector](/openshift-docs-markdown/images/nw-sharding-namespace-labels.png)
 
 Ingress Controller sharding is useful when balancing incoming traffic load among a set of Ingress Controllers and when isolating traffic to a specific Ingress Controller. For example, company A goes to one Ingress Controller and company B to another.
 

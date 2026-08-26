@@ -973,7 +973,7 @@ You can uninstall the Support Log Gather by using the web console.
 2. Uninstall the Support Log Gather Operator.
 
    1. Navigate to **Ecosystem** → **Installed Operators**.
-   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **Support Log Gather** entry and click **Uninstall Operator**.
+   2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **Support Log Gather** entry and click **Uninstall Operator**.
    3. In the confirmation dialog, click **Uninstall**.
 
 ### Removing Support Log Gather resources {#support-log-gather-remove-resources-console_gathering-cluster-data}
@@ -1004,13 +1004,13 @@ Once you have uninstalled the Support Log Gather, you can remove the associated 
 
    1. Navigate to **Administration** → **CustomResourceDefinitions**.
    2. Enter `MustGather` in the **Name** field to filter the CRDs.
-   3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to each of the following CRDs, and select **Delete Custom Resource Definition**:
+   3. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to each of the following CRDs, and select **Delete Custom Resource Definition**:
 
       - `MustGather`
 4. Optional: Remove the `must-gather-operator` namespace.
 
    1. Navigate to **Administration** → **Namespaces**.
-   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **must-gather-operator** and select **Delete Namespace**.
+   2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **must-gather-operator** and select **Delete Namespace**.
    3. In the confirmation dialog box, enter `must-gather-operator` and click **Delete**.
 
 ## Obtaining your cluster ID {#support-get-cluster-id_gathering-cluster-data}

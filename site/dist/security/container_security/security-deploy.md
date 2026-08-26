@@ -10,7 +10,7 @@ You can use a variety of techniques to make sure that the containers you deploy 
 
 If something happens during the build process, or if a vulnerability is discovered after an image has been deployed, you can use tool for automated, policy-based deployment to remediate. You can use triggers to rebuild and replace images, ensuring the immutable containers process, instead of patching running containers, which is not recommended.
 
-![Secure Deployments](/openshift-docs-markdown/_assets/images/secure_deployments.png)
+![Secure Deployments](/openshift-docs-markdown/images/secure_deployments.png)
 
 For example, you build an application by using three container image layers: core, middleware, and applications. An issue is discovered in the core image and that image is rebuilt. After the build is complete, the image is pushed to your OpenShift Container Registry. OpenShift Container Platform detects that the image has changed and automatically rebuilds and deploys the application image, based on the defined triggers. This change incorporates the fixed libraries and ensures that the production code is identical to the most current image.
 

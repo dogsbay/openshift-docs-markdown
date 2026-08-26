@@ -17,7 +17,7 @@ After the Web Terminal Operator is installed, you can access the web terminal. A
 
 **Procedure**
 
-1. To launch the web terminal, click the command-line terminal icon (![title="wto icon"](/openshift-docs-markdown/_assets/images/odc-wto-icon.png)) in the masthead of the console. A web terminal instance is displayed in the **Command line terminal** pane. This instance is automatically logged in with your credentials.
+1. To launch the web terminal, click the command-line terminal icon (![odc-wto-icon](/openshift-docs-markdown/images/odc-wto-icon.png "wto icon")) in the masthead of the console. A web terminal instance is displayed in the **Command line terminal** pane. This instance is automatically logged in with your credentials.
 2. If a project has not been selected in the current session, select the project where the `DevWorkspace` CR must be created from the **Project** drop-down list. By default, the current project is selected.
 
    > [!NOTE]

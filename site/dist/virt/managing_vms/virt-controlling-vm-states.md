@@ -153,7 +153,7 @@ You can start a virtual machine (VM) from the web console.
 
    - To stay on this page, where you can perform actions on multiple VMs:
 
-     1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Start VirtualMachine**.
+     1. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Start VirtualMachine**.
    - To start the VM from the tree view:
 
      1. Click the **>** icon next to the project name to open the list of VMs.
@@ -178,7 +178,7 @@ You can stop a virtual machine (VM) from the web console.
 
    - To stay on this page, where you can perform actions on multiple VMs:
 
-     1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Stop VirtualMachine**.
+     1. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Stop VirtualMachine**.
      2. If action confirmation is enabled, click **Stop** in the confirmation dialog.
    - To stop the VM from the tree view:
 
@@ -208,7 +208,7 @@ You can restart a running virtual machine (VM) from the web console.
 
    - To stay on this page, where you can perform actions on multiple VMs:
 
-     1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Restart**.
+     1. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Restart**.
      2. If action confirmation is enabled, click **Restart** in the confirmation dialog.
    - To restart the VM from the tree view:
 
@@ -235,7 +235,7 @@ You can reset a VM from the web console.
 
    - To stay on this page, where you can perform actions on multiple VMs:
 
-     1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Reset**.
+     1. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Reset**.
      2. If action confirmation is enabled, click **Reset** in the confirmation dialog.
    - To reset the VM from the tree view:
 
@@ -260,7 +260,7 @@ You can pause a virtual machine (VM) from the web console.
 
    - To stay on this page, where you can perform actions on multiple VMs:
 
-     1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Pause VirtualMachine**.
+     1. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Pause VirtualMachine**.
      2. If action confirmation is enabled, click **Pause** in the confirmation dialog.
    - To pause the VM from the tree view:
 
@@ -289,7 +289,7 @@ You can unpause a paused virtual machine (VM) from the web console.
 
    - To stay on this page, where you can perform actions on multiple VMs:
 
-     1. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Unpause VirtualMachine**.
+     1. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") located at the far right end of the row and click **Control** → **Unpause VirtualMachine**.
    - To unpause the VM from the tree view:
 
      1. Click the **>** icon next to the project name to open the list of VMs.

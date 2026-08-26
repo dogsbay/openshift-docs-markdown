@@ -3666,7 +3666,7 @@ Outputs:
     Value: !GetAtt Worker0.PrivateIp
 ```
 
-### Creating the `CloudFormation` stack for compute machines {#installation-aws-creating-cloudformation-stack_installing-restricted-networks-aws}
+### Creating the CloudFormation stack for compute machines {#installation-aws-creating-cloudformation-stack_installing-restricted-networks-aws}
 
 You can create a stack of Amazon Web Services (AWS) resources for the compute machines by using the provided `CloudFormation` template.
 

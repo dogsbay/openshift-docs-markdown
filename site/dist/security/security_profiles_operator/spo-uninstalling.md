@@ -20,11 +20,11 @@ To remove the Security Profiles Operator, you must first delete the `seccomp` an
 1. Navigate to the **Ecosystem** → **Installed Operators** page.
 2. Delete all `seccomp` profiles, SELinux profiles, and webhook configurations.
 3. Switch to the **Administration** → **Ecosystem** → **Installed Operators** page.
-4. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") on the **Security Profiles Operator** entry.
+4. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") on the **Security Profiles Operator** entry.
 5. Select **Uninstall Operator**.
 6. Switch to the **Home** → **Projects** page.
 7. Search for `security profiles`.
-8. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **openshift-security-profiles** project.
+8. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **openshift-security-profiles** project.
 9. Select **Delete Project**.
 
    1. Enter `openshift-security-profiles` in the dialog box.

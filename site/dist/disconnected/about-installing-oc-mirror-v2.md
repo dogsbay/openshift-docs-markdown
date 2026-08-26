@@ -889,7 +889,7 @@ Enclave support has the following benefits:
 
 ### Enclave mirroring workflow {#oc-mirror-enclave-how-to_about-installing-oc-mirror-v2}
 
-![Enclave Support](/openshift-docs-markdown/_assets/images/445_OpenShift_Enclave_support_0724.png)
+![Enclave Support](/openshift-docs-markdown/images/445_OpenShift_Enclave_support_0724.png)
 
 The previous image outlines the flow for using the oc-mirror plugin in different environments, including environments with and without an internet connection.
 

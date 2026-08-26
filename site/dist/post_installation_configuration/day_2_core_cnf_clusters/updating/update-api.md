@@ -31,7 +31,7 @@ Use the [Red Hat OpenShift Container Platform Update Graph](https://access.redha
 
 **Figure 1. Bug fix backporting and the update graph**
 
-![Bug fix backporting and the update graph](/openshift-docs-markdown/_assets/images/openshift-bug-fix-backporting-update-graph.png)
+![Bug fix backporting and the update graph](/openshift-docs-markdown/images/openshift-bug-fix-backporting-update-graph.png)
 
 > [!IMPORTANT]
 > OpenShift Container Platform development has a strict backport policy that prevents regressions. For example, a bug must be fixed in 4.16.z before it is fixed in 4.15.z. This means that the update graph does not allow for updates to chronologically older releases even if the minor version is greater, for example, updating from 4.15.24 to 4.16.2.

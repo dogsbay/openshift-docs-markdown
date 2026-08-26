@@ -25,7 +25,7 @@ You can delete certificates and secrets from installed secrets management Operat
 
 1. Log in to the OpenShift Container Platform web console.
 2. Navigate to **Plugins** → **Secrets Management**.
-3. Click ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") for the custom resource that you want to delete, and then click **Delete**.
+3. Click ![](/openshift-docs-markdown/images/kebab.png "Options menu") for the custom resource that you want to delete, and then click **Delete**.
 4. Enter the name of the custom resource.
 5. Click **Delete**.
 

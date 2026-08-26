@@ -24,7 +24,7 @@ You can uninstall the External Secrets Management Console Plug-in from your clus
 
 1. Log in to the OpenShift Container Platform web console.
 2. Navigate to **Ecosystem** → **Installed Operators**.
-3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **External Secrets Management Console** entry, and then click **Uninstall Operator**.
+3. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **External Secrets Management Console** entry, and then click **Uninstall Operator**.
 4. In the confirmation dialog, select the **Delete all operand instances for this operator** checkbox and then click **Uninstall**.
 
 **Verification**

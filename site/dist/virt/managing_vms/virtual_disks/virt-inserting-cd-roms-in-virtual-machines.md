@@ -131,6 +131,6 @@ Setting up a virtual CD-ROM drive requires rebooting the VM, but you can insert 
 
    The CD-ROM drive is added to the **Storage** list.
 10. If the VM is running, shut it down or restart it.
-11. To insert the ISO file attached to the CD-ROM drive as a CD-ROM volume into the VM, click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the CD-ROM drive, and click **Inject**. You can do this while the VM is running.
+11. To insert the ISO file attached to the CD-ROM drive as a CD-ROM volume into the VM, click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the CD-ROM drive, and click **Inject**. You can do this while the VM is running.
 12. Optional: In the guest operating system, verify that the CD-ROM has been detected.
-13. Optional: To eject the CD-ROM from the VM, click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the CD-ROM device in the web console, and select **Eject**. You can do this while the VM is running.
+13. Optional: To eject the CD-ROM from the VM, click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the CD-ROM device in the web console, and select **Eject**. You can do this while the VM is running.

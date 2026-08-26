@@ -24,7 +24,7 @@ You start the GitOps ZTP workflow by creating declarative site definition and co
 
 The following diagram shows how GitOps ZTP works within the far edge framework.
 
-![GitOps ZTP at the network far edge](/openshift-docs-markdown/_assets/images/217_OpenShift_Zero_Touch_Provisioning_updates_1022_1.png)
+![GitOps ZTP at the network far edge](/openshift-docs-markdown/images/217_OpenShift_Zero_Touch_Provisioning_updates_1022_1.png)
 
 ## Using GitOps ZTP to provision clusters at the network far edge {#about-ztp_ztp-deploying-far-edge-clusters-at-scale}
 
@@ -40,7 +40,7 @@ A high-level overview of using GitOps ZTP to provision and maintain bare-metal h
 
 Installing and deploying the clusters is a two-stage process, involving an initial installation phase, and a subsequent configuration and deployment phase. The following diagram illustrates this workflow:
 
-![Using GitOps and GitOps ZTP to install and deploy managed clusters](/openshift-docs-markdown/_assets/images/474_OpenShift_OpenShift_RAN_RDS_arch_updates_1023.png)
+![Using GitOps and GitOps ZTP to install and deploy managed clusters](/openshift-docs-markdown/images/474_OpenShift_OpenShift_RAN_RDS_arch_updates_1023.png)
 
 ## Installing managed clusters with ClusterInstance resources and RHACM {#ztp-creating-ztp-crs-for-multiple-managed-clusters_ztp-deploying-far-edge-clusters-at-scale}
 
@@ -69,7 +69,7 @@ The policy generator is a plugin for the GitOps Operator that enables the creati
 
 The following diagram shows how the policy generator interacts with GitOps and RHACM in the configuration phase of cluster deployment.
 
-![Policy generator](/openshift-docs-markdown/_assets/images/217_OpenShift_Zero_Touch_Provisioning_updates_1022_3.png)
+![Policy generator](/openshift-docs-markdown/images/217_OpenShift_Zero_Touch_Provisioning_updates_1022_3.png)
 
 For large fleets of clusters, it is typical for there to be a high-level of consistency in the configuration of those clusters.
 

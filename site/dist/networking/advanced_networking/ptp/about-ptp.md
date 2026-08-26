@@ -28,7 +28,7 @@ The clocks synchronized by PTP are organized in a leader-follower hierarchy. The
 
 **Figure 1. PTP nodes in the network**
 
-![Diagram showing a PTP grandmaster clock](/openshift-docs-markdown/_assets/images/319_OpenShift_PTP_bare-metal_OCP_nodes_1123_PTP_network.png)
+![Diagram showing a PTP grandmaster clock](/openshift-docs-markdown/images/319_OpenShift_PTP_bare-metal_OCP_nodes_1123_PTP_network.png)
 
 The three primary types of PTP clocks are described in the following sections.
 
@@ -100,7 +100,7 @@ OpenShift Container Platform supports receiving precision PTP timing from Global
 
 **Figure 2. Overview of Synchronization with GNSS and T-GM**
 
-![GNSS and T-GM system architecture](/openshift-docs-markdown/_assets/images/319_OpenShift_PTP_bare-metal_OCP_nodes_1023_PTP.png)
+![GNSS and T-GM system architecture](/openshift-docs-markdown/images/319_OpenShift_PTP_bare-metal_OCP_nodes_1023_PTP.png)
 
 Global Navigation Satellite System (GNSS)
 :   GNSS is a satellite-based system used to provide positioning, navigation, and timing information to receivers around the globe. In PTP, GNSS receivers are often used as a highly accurate and stable reference clock source. These receivers receive signals from multiple GNSS satellites, allowing them to calculate precise time information. The timing information obtained from GNSS is used as a reference by the PTP grandmaster clock.
@@ -138,7 +138,7 @@ Dual NIC grandmaster clock
 
     **Figure 3. Dual NIC grandmaster clock**
 
-    ![Dual NIC PTP grandmaster clock connected to GNSS timing source and downstream PTP boundary and ordinary clocks](/openshift-docs-markdown/_assets/images/openshift-ptp-using-dual-nic-ptp.png)
+    ![Dual NIC PTP grandmaster clock connected to GNSS timing source and downstream PTP boundary and ordinary clocks](/openshift-docs-markdown/images/openshift-ptp-using-dual-nic-ptp.png)
 
     > [!NOTE]
     > In a dual-NIC T-GM configuration, a single `ts2phc` program operate on two PTP hardware clocks (PHCs), one for each NIC.
@@ -192,7 +192,7 @@ OpenShift Container Platform supports cluster hosts with 3 Intel E810 NICs as PT
 
     **Figure 4. 3-card Intel E810 PTP grandmaster clock**
 
-    ![3-card PTP grandmaster clock connected to GNSS timing source and downstream PTP boundary and ordinary clocks](/openshift-docs-markdown/_assets/images/openshift-ptp-3-card-grandmaster.png)
+    ![3-card PTP grandmaster clock connected to GNSS timing source and downstream PTP boundary and ordinary clocks](/openshift-docs-markdown/images/openshift-ptp-3-card-grandmaster.png)
 
     > [!NOTE]
     > In a 3-card T-GM configuration, a single `ts2phc` process reports as 3 `ts2phc` instances in the system.

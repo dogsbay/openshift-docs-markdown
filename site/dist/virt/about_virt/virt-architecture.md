@@ -21,13 +21,13 @@ The `HyperConverged` CR creates corresponding CRs for the operators of all other
 
 The OLM deploys the Hostpath Provisioner (HPP) Operator, but it is not functional until you create a `hostpath-provisioner` CR.
 
-![Deployments](/openshift-docs-markdown/_assets/images/cnv_components_main.png)
+![Deployments](/openshift-docs-markdown/images/cnv_components_main.png)
 
 ## About the HyperConverged Operator (HCO) {#virt-about-hco-operator_virt-architecture}
 
 The HCO, `hco-operator`, provides a single entry point for deploying and managing OpenShift Virtualization and several helper operators with opinionated defaults. It also creates custom resources (CRs) for those operators.
 
-![hco-operator components](/openshift-docs-markdown/_assets/images/cnv_components_hco-operator.png)
+![hco-operator components](/openshift-docs-markdown/images/cnv_components_hco-operator.png)
 
 **HyperConverged Operator components**
 
@@ -44,7 +44,7 @@ The HCO, `hco-operator`, provides a single entry point for deploying and managin
 
 The CDI Operator, `cdi-operator`, manages CDI and its related resources, which imports a virtual machine (VM) image into a persistent volume claim (PVC) by using a data volume.
 
-![cdi-operator components](/openshift-docs-markdown/_assets/images/cnv_components_cdi-operator.png)
+![cdi-operator components](/openshift-docs-markdown/images/cnv_components_cdi-operator.png)
 
 **CDI Operator components**
 
@@ -58,7 +58,7 @@ The CDI Operator, `cdi-operator`, manages CDI and its related resources, which i
 
 The Cluster Network Addons Operator, `cluster-network-addons-operator`, deploys networking components on a cluster and manages the related resources for extended network functionality.
 
-![cluster-network-addons-operator components](/openshift-docs-markdown/_assets/images/cnv_components_cluster-network-addons-operator.png)
+![cluster-network-addons-operator components](/openshift-docs-markdown/images/cnv_components_cluster-network-addons-operator.png)
 
 **Cluster Network Addons Operator components**
 
@@ -73,7 +73,7 @@ The Cluster Network Addons Operator, `cluster-network-addons-operator`, deploys 
 
 The HPP Operator, `hostpath-provisioner-operator`, deploys and manages the multi-node HPP and related resources.
 
-![hpp-operator components](/openshift-docs-markdown/_assets/images/cnv_components_hpp-operator.png)
+![hpp-operator components](/openshift-docs-markdown/images/cnv_components_hpp-operator.png)
 
 **HPP Operator components**
 
@@ -91,7 +91,7 @@ The SSP Operator, `ssp-operator`, deploys the common templates, the related defa
 
 The OpenShift Virtualization Operator, `virt-operator`, deploys, upgrades, and manages OpenShift Virtualization without disrupting current virtual machine (VM) workloads. In addition, the OpenShift Virtualization Operator deploys the common instance types and common preferences.
 
-![virt-operator components](/openshift-docs-markdown/_assets/images/cnv_components_virt-operator.png)
+![virt-operator components](/openshift-docs-markdown/images/cnv_components_virt-operator.png)
 
 **virt-operator components**
 

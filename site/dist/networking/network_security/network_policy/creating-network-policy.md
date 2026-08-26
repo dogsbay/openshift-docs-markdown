@@ -247,7 +247,7 @@ Follow this procedure to configure a policy that allows external service from th
    $ oc apply -f web-allow-external.yaml
    ```
 
-   This policy allows traffic from all resources, including external traffic as illustrated in the following diagram: ![Allow traffic from external clients](/openshift-docs-markdown/_assets/images/292_OpenShift_Configuring_multi-network_policy_1122.png)
+   This policy allows traffic from all resources, including external traffic as illustrated in the following diagram: ![Allow traffic from external clients](/openshift-docs-markdown/images/292_OpenShift_Configuring_multi-network_policy_1122.png)
 
 ## Create a network policy allowing traffic to an application from all namespaces {#nw-networkpolicy-allow-traffic-from-all-applications_creating-network-policy}
 

@@ -30,7 +30,7 @@ To uninstall OpenShift Virtualization, you first delete the `HyperConverged` cus
 1. Navigate to the **Ecosystem** → **Installed Operators** page.
 2. Select the OpenShift Virtualization Operator.
 3. Click the **OpenShift Virtualization Deployment** tab.
-4. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") beside `kubevirt-hyperconverged` and select **Delete HyperConverged**.
+4. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") beside `kubevirt-hyperconverged` and select **Delete HyperConverged**.
 5. Click **Delete** in the confirmation window.
 
 ## Deleting Operators from a cluster using the web console {#olm-deleting-operators-from-a-cluster-using-web-console_uninstalling-virt}
@@ -65,7 +65,7 @@ You can delete a namespace by using the OpenShift Container Platform web console
 
 1. Navigate to **Administration** → **Namespaces**.
 2. Locate the namespace that you want to delete in the list of namespaces.
-3. On the far right side of the namespace listing, select **Delete Namespace** from the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu").
+3. On the far right side of the namespace listing, select **Delete Namespace** from the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu").
 4. When the **Delete Namespace** pane opens, enter the name of the namespace that you want to delete in the field.
 5. Click **Delete**.
 
@@ -81,7 +81,7 @@ You can delete the OpenShift Virtualization custom resource definitions (CRDs) b
 
 1. Navigate to **Administration** → **CustomResourceDefinitions**.
 2. Select the **Label** filter and enter `operators.coreos.com/kubevirt-hyperconverged.openshift-cnv` in the **Search** field to display the OpenShift Virtualization CRDs.
-3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") beside each CRD and select **Delete CustomResourceDefinition**.
+3. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") beside each CRD and select **Delete CustomResourceDefinition**.
 
 ## Uninstalling OpenShift Virtualization by using the CLI {#virt-deleting-virt-cli_uninstalling-virt}
 

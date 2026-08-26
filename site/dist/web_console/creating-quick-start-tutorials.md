@@ -122,7 +122,7 @@ The `conclusion` field defines the conclusion text.
 
 In the web console, the conclusion is displayed in the last section of the quick start.
 
-![quick start conclusion in the web console](/openshift-docs-markdown/_assets/images/quick-start-conclusion.png)
+![quick start conclusion in the web console](/openshift-docs-markdown/images/quick-start-conclusion.png)
 
 #### Description element {#description-quick-start-element_creating-quick-start-tutorials}
 
@@ -140,7 +140,7 @@ The `description` field defines the description text.
 
 In the web console, the description is displayed on the introductory tile of the quick start on the **Quick Starts** page.
 
-![quick start description in the web console](/openshift-docs-markdown/_assets/images/quick-start-description.png)
+![quick start description in the web console](/openshift-docs-markdown/images/quick-start-description.png)
 
 #### The `displayName` element {#displayName-quick-start-element_creating-quick-start-tutorials}
 
@@ -159,7 +159,7 @@ The `displayName` field defines the display name text.
 
 In the web console, the display name is displayed on the introductory tile of the quick start on the **Quick Starts** page.
 
-![quick start display name in the web console](/openshift-docs-markdown/_assets/images/quick-start-display-name.png)
+![quick start display name in the web console](/openshift-docs-markdown/images/quick-start-display-name.png)
 
 #### The `durationMinutes` element {#duration-minutes-quick-start-element_creating-quick-start-tutorials}
 
@@ -178,7 +178,7 @@ The `durationMinutes` field defines, in minutes, how long the quick start should
 
 In the web console, the duration minutes element is displayed on the introductory tile of the quick start on the **Quick Starts** page.
 
-![quick start durationMinutes element in the web console](/openshift-docs-markdown/_assets/images/quick-start-duration.png)
+![quick start durationMinutes element in the web console](/openshift-docs-markdown/images/quick-start-duration.png)
 
 #### Icon element {#icon-quick-start-element_creating-quick-start-tutorials}
 
@@ -197,7 +197,7 @@ The `icon` field defines the icon as a base64 value.
 
 In the web console, the icon is displayed on the introductory tile of the quick start on the **Quick Starts** page.
 
-![quick start icon element in the web console](/openshift-docs-markdown/_assets/images/quick-start-icon.png)
+![quick start icon element in the web console](/openshift-docs-markdown/images/quick-start-icon.png)
 
 #### Introduction element {#introduction-quick-start-element_creating-quick-start-tutorials}
 
@@ -230,7 +230,7 @@ The `introduction` field introduces the quick start and lists the tasks within i
 
 In the web console, after you click a quick start card, a side panel slides in that introduces the quick start and lists the tasks within it.
 
-![quick start introduction element in the web console](/openshift-docs-markdown/_assets/images/quick-start-introduction.png)
+![quick start introduction element in the web console](/openshift-docs-markdown/images/quick-start-introduction.png)
 
 ### Adding a custom icon to a quick start {#adding-custom-icon-to-quick-start_creating-quick-start-tutorials}
 

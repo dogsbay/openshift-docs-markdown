@@ -45,7 +45,7 @@ The OpenShift Container Platform installation program uses a set of targets and 
 
 **Figure 1. OpenShift Container Platform installation targets and dependencies**
 
-![OpenShift Container Platform installation targets and dependencies](/openshift-docs-markdown/_assets/images/targets-and-dependencies.png)
+![OpenShift Container Platform installation targets and dependencies](/openshift-docs-markdown/images/targets-and-dependencies.png)
 
 ### Red Hat Enterprise Linux CoreOS (RHCOS) {#about-rhcos_architecture-installation}
 
@@ -178,7 +178,7 @@ The temporary bootstrap machine boots by using an Ignition config file that desc
 
 **Figure 2. Creating the bootstrap, control plane, and compute machines**
 
-![Creating bootstrap](/openshift-docs-markdown/_assets/images/create-nodes.png)
+![Creating bootstrap](/openshift-docs-markdown/images/create-nodes.png)
 
 > [!IMPORTANT]
 > While planning to deploy your cluster, review the recommended practices for performance and scalability, particularly the requirements for input/output (I/O) latency for etcd storage and the requirements for the recommended control plane node sizing. For more information, see “Recommended etcd practices” and “Control plane node sizing”.

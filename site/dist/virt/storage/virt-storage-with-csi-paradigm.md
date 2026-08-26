@@ -15,4 +15,4 @@ Storage classes define storage capabilities such as performance tiers and types.
 > [!IMPORTANT]
 > A VM can start even if its PVC is already mounted by another pod. This behavior follows Kubernetes PVC access semantics and can lead to data corruption if multiple writers access the same volume.
 
-![title="Virtual machine disks and the CSI paradigm"](/openshift-docs-markdown/_assets/images/virt-storage-csi-paradigm.png)
+![virt-storage-csi-paradigm](/openshift-docs-markdown/images/virt-storage-csi-paradigm.png "Virtual machine disks and the CSI paradigm")

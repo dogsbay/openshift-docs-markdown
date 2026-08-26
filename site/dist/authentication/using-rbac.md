@@ -63,7 +63,7 @@ Be mindful of the difference between local and cluster bindings. For example, if
 
 The relationships between cluster roles, local roles, cluster role bindings, local role bindings, users, groups and service accounts are illustrated below.
 
-![OpenShift Container Platform RBAC](/openshift-docs-markdown/_assets/images/rbac.png)
+![OpenShift Container Platform RBAC](/openshift-docs-markdown/images/rbac.png)
 
 > [!WARNING]
 > The `get pods/exec`, `get pods/*`, and `get *` rules grant execution privileges when they are applied to a role. Apply the principle of least privilege and assign only the minimal RBAC rights required for users and agents. For more information, see "RBAC rules allow execution privileges".

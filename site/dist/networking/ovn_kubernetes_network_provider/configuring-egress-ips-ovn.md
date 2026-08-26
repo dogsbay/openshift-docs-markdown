@@ -189,7 +189,7 @@ To better understand egress IP address configuration, reference the architectura
 
 The following diagram shows an egress IP address configuration. The diagram describes four pods in two different namespaces running on three nodes in a cluster. The nodes are assigned IP addresses from the `192.168.126.0/18` CIDR block on the host network.
 
-![Architectural diagram for the egress IP feature](/openshift-docs-markdown/_assets/images/nw-egress-ips-diagram.svg)
+![Architectural diagram for the egress IP feature](/openshift-docs-markdown/images/nw-egress-ips-diagram.svg)
 
 Both Node 1 and Node 3 are labeled with `k8s.ovn.org/egress-assignable: ""` and thus available for the assignment of egress IP addresses.
 

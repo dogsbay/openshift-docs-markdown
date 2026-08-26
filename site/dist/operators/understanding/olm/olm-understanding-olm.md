@@ -12,7 +12,7 @@ Operator Lifecycle Manager (OLM) Classic helps users install, update, and manage
 
 **Figure 1. OLM (Classic) workflow**
 
-![olm-workflow](/openshift-docs-markdown/_assets/images/olm-workflow.png)
+![olm-workflow](/openshift-docs-markdown/images/olm-workflow.png)
 
 OLM runs by default in OpenShift Container Platform 4.22, which aids cluster administrators
 

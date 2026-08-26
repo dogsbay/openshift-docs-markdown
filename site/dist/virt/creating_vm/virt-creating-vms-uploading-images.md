@@ -143,7 +143,7 @@ You can create a Windows virtual machine (VM) by uploading a Windows image to a 
    1. Clear **Start this VirtualMachine after creation** so that the VM does not start immediately.
    2. Click **Create VirtualMachine**.
    3. On the **YAML** tab, replace `running:false` with `runStrategy: RerunOnFailure` and click **Save**.
-5. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") and select **Control** → **Start**.
+5. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") and select **Control** → **Start**.
 
    The VM boots from the `sysprep` disk containing the `autounattend.xml` answer file.
 
@@ -162,7 +162,7 @@ Before generalizing the VM, you must ensure the `sysprep` tool cannot detect an 
 1. In the OpenShift Container Platform console, click **Virtualization** → **VirtualMachines**.
 2. Select a Windows VM to open the **VirtualMachine details** page.
 3. Click **Configuration** → **Disks**.
-4. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") beside the `sysprep` disk and select **Detach**.
+4. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") beside the `sysprep` disk and select **Detach**.
 5. Click **Detach**.
 6. Rename `C:\Windows\Panther\unattend.xml` to avoid detection by the `sysprep` tool.
 7. Start the `sysprep` program by running the following command:

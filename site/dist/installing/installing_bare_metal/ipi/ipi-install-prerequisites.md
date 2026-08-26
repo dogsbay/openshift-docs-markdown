@@ -231,7 +231,7 @@ Installer-provisioned installation of OpenShift Container Platform involves mult
 
 **Figure 1. Installer-provisioned networking**
 
-![Installer-provisioned networking](/openshift-docs-markdown/_assets/images/210_OpenShift_Baremetal_IPI_Deployment_updates_0122_2.png)
+![Installer-provisioned networking](/openshift-docs-markdown/images/210_OpenShift_Baremetal_IPI_Deployment_updates_0122_2.png)
 
 > [!IMPORTANT]
 > Red Hat supports any valid host network configuration that meets the documented requirements, regardless of how that configuration is applied. However, Red Hat only supports the configuration application process when approved tools are used. The following list details examples of these tools:

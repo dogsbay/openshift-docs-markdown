@@ -510,17 +510,17 @@ Access restored virtual machine (VM) files through a web browser by using the fi
 
    **Figure 1. OADP VM File Restore Browser login page**
 
-   ![OADP VM File Restore Browser login page](/openshift-docs-markdown/_assets/images/oadp-vmfr-file-browser-login.png)
+   ![OADP VM File Restore Browser login page](/openshift-docs-markdown/images/oadp-vmfr-file-browser-login.png)
 4. Browse the files organized by date, backup name, and PVC name.
 
    **Figure 2. File browser listing showing backup contents**
 
-   ![File browser listing showing backup contents](/openshift-docs-markdown/_assets/images/oadp-vmfr-file-browser-listing.png)
+   ![File browser listing showing backup contents](/openshift-docs-markdown/images/oadp-vmfr-file-browser-listing.png)
 5. View the file content by selecting the file. To download a file, select the file and click **Download**. To download a directory as an archive, select the directory and click **Download**.
 
    **Figure 3. File preview in the file browser**
 
-   ![File preview in the file browser](/openshift-docs-markdown/_assets/images/oadp-vmfr-file-browser-preview.png)
+   ![File preview in the file browser](/openshift-docs-markdown/images/oadp-vmfr-file-browser-preview.png)
 
 ## Access restored files through SSH {#oadp-vmfr-accessing-files-ssh_virt-using-vm-file-restore}
 

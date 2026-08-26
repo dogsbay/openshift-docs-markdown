@@ -179,7 +179,7 @@ To split production traffic between application versions for A/B testing in Open
 **Procedure**
 
 1. Navigate to the **Networking** → **Routes** page.
-2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the route you want to edit and select **Edit Route**.
+2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the route you want to edit and select **Edit Route**.
 3. Edit the YAML file. Update the `weight` to be an integer between `0` and `256` that specifies the relative weight of the target against other target reference objects. The value `0` suppresses requests to this back end. The default is `100`. Run `oc explain routes.spec.alternateBackends` for more information about the options.
 4. Click **Save**.
 

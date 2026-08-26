@@ -29,7 +29,7 @@ Use the following procedure to remove the custom metrics autoscaler from your Op
 4. Remove the Custom Metrics Autoscaler Operator:
 
    1. Click **Ecosystem** → **Installed Operators**.
-   2. Find the **CustomMetricsAutoscaler**  Operator and click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") and select **Uninstall Operator**.
+   2. Find the **CustomMetricsAutoscaler**  Operator and click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") and select **Uninstall Operator**.
    3. Click **Uninstall**.
 5. Optional: Use the OpenShift CLI to remove the custom metrics autoscaler components:
 

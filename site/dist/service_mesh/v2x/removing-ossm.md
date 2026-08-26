@@ -20,7 +20,7 @@ You can remove the Red Hat OpenShift Service Mesh control plane by using the we
 2. Click the **Project** menu and select the project where you installed the Service Mesh control plane, for example **istio-system**.
 3. Navigate to **Ecosystem** → **Installed Operators**.
 4. Click **Service Mesh Control Plane** under **Provided APIs**.
-5. Click the `ServiceMeshControlPlane` menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu").
+5. Click the `ServiceMeshControlPlane` menu ![](/openshift-docs-markdown/images/kebab.png "Options menu").
 6. Click **Delete Service Mesh Control Plane**.
 7. Click **Delete** on the confirmation dialog window to remove the `ServiceMeshControlPlane`.
 

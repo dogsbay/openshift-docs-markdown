@@ -19,7 +19,7 @@ The following diagram shows a cluster that has an existing default network infra
 
 **Figure 1. Diagram showing namespaces with multiple secondary UDNs**
 
-![Diagram showing namespaces with multiple secondary UDNs](/openshift-docs-markdown/_assets/images/501_OpenShift_UDN_pri_sec_0925.png)
+![Diagram showing namespaces with multiple secondary UDNs](/openshift-docs-markdown/images/501_OpenShift_UDN_pri_sec_0925.png)
 
 During cluster installation, OpenShift Container Platform administrators can configure alternative default secondary pod networks by leveraging the Multus CNI plugin. With Multus, you can use multiple CNI plugins such as ipvlan, macvlan, or Network Attachment Definitions together to serve as secondary networks for pods.
 

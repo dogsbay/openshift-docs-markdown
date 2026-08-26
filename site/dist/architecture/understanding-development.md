@@ -43,7 +43,7 @@ The following diagram displays the process of building and pushing an image:
 
 **Figure 1. Create a simple containerized application and push it to a registry**
 
-![Creating and pushing a containerized application](/openshift-docs-markdown/_assets/images/create-push-app.png)
+![Creating and pushing a containerized application](/openshift-docs-markdown/images/create-push-app.png)
 
 If you use a computer that runs Red Hat Enterprise Linux (RHEL) as the operating system, the process of creating a containerized application requires the following steps:
 
@@ -90,7 +90,7 @@ S2I images are available for you to use directly from the OpenShift Container Pl
 
 **Figure 2. Choose S2I base images for apps that need specific runtimes**
 
-![OpenShift Container Platform Developer Catalog](/openshift-docs-markdown/_assets/images/developer-catalog.png)
+![OpenShift Container Platform Developer Catalog](/openshift-docs-markdown/images/developer-catalog.png)
 
 **Additional resources**
 {._additional-resources}

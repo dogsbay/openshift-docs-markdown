@@ -268,7 +268,7 @@ The following AWS instance types have been tested with OpenShift Container Platf
 > [!NOTE]
 > Use the machine types included in the following charts for your AWS instances. If you use an instance type that is not listed in the chart, ensure that the instance size you use matches the minimum resource requirements in "Minimum resource requirements for cluster installation".
 
-**Machine types based on 64-bit x86 architecture for AWS Wavelength Zones**
+See the following machine types based on 64-bit x86 architecture for AWS Wavelength Zones:
 
 - `r5.*`
 - `t3.*`

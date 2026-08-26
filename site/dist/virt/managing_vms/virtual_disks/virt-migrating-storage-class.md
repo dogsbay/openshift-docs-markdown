@@ -63,7 +63,7 @@ You can migrate one or more disks attached to a virtual machine (VM) to a differ
 **Procedure**
 
 1. Navigate to **Virtualization** → **VirtualMachines** in the web console.
-2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") beside the virtual machine and select **Migration** → **Storage**.
+2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") beside the virtual machine and select **Migration** → **Storage**.
 
    You can also access this option from the **VirtualMachine details** page by selecting **Actions** → **Migration** → **Storage**.
 

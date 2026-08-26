@@ -24,7 +24,7 @@ The reference configurations in this document are deployed using a centrally man
 
 **Figure 1. Telco RAN DU deployment architecture**
 
-![A diagram showing two distinctive network far edge deployment processes](/openshift-docs-markdown/_assets/images/474_OpenShift_OpenShift_RAN_RDS_arch_updates_1023.png)
+![A diagram showing two distinctive network far edge deployment processes](/openshift-docs-markdown/images/474_OpenShift_OpenShift_RAN_RDS_arch_updates_1023.png)
 
 ### Supported CPU architectures for RAN DU {#_supported_cpu_architectures_for_ran_du}
 
@@ -196,7 +196,7 @@ The following sections describe the various OpenShift Container Platform compone
 
 **Figure 2. Telco RAN DU reference design components**
 
-![Diagram showing telco RAN DU RDS components](/openshift-docs-markdown/_assets/images/telco-ran-du-reference-design-components.png)
+![Diagram showing telco RAN DU RDS components](/openshift-docs-markdown/images/telco-ran-du-reference-design-components.png)
 
 > [!NOTE]
 > Ensure that additional components you include that are not specified in the telco RAN DU profile do not affect the CPU resources allocated to workload applications.

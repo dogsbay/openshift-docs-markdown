@@ -24,12 +24,12 @@ You can use the web console to uninstall the Leader Worker Set Operator if you n
 4. Delete the `LeaderWorkerSetOperator` instance.
 
    1. Click **Leader Worker Set Operator** and select the **LeaderWorkerSetOperator** tab.
-   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **cluster** entry and select **Delete LeaderWorkerSetOperator**.
+   2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **cluster** entry and select **Delete LeaderWorkerSetOperator**.
    3. In the confirmation dialog, click **Delete**.
 5. Uninstall the Leader Worker Set Operator.
 
    1. Navigate to **Operators** → **Installed Operators**.
-   2. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **Leader Worker Set Operator** entry and click **Uninstall Operator**.
+   2. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **Leader Worker Set Operator** entry and click **Uninstall Operator**.
    3. In the confirmation dialog, click **Uninstall**.
 
 ## Uninstalling Leader Worker Set Operator resources {#lws-remove-resources_lws-uninstalling}
@@ -49,11 +49,11 @@ Optionally, remove custom resources (CRs) and the associated namespace after the
 
    1. Navigate to **Administration** → **CustomResourceDefinitions**.
    2. Enter `LeaderWorkerSetOperator` in the **Name** field to filter the CRDs.
-   3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **LeaderWorkerSetOperator** CRD and select **Delete CustomResourceDefinition**.
+   3. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **LeaderWorkerSetOperator** CRD and select **Delete CustomResourceDefinition**.
    4. In the confirmation dialog, click **Delete**.
 3. Delete the `openshift-lws-operator` namespace.
 
    1. Navigate to **Administration** → **Namespaces**.
    2. Enter `openshift-lws-operator` into the filter box.
-   3. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") next to the **openshift-lws-operator** entry and select **Delete Namespace**.
+   3. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") next to the **openshift-lws-operator** entry and select **Delete Namespace**.
    4. In the confirmation dialog, enter `openshift-lws-operator` and click **Delete**.

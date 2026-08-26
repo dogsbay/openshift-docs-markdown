@@ -131,7 +131,7 @@ All of the communication with Red Hat occurs over encrypted channels by using Tr
 Access to the systems that handle customer data is controlled through multi-factor authentication and strict authorization controls. Access is granted on a need-to-know basis and is limited to required operations.
 
 Telemetry and Insights Operator data flow
-:   ![Telemetry and Insights Operator data flow](/openshift-docs-markdown/_assets/images/telmetry-and-insights-operator-data-flow.png)
+:   ![Telemetry and Insights Operator data flow](/openshift-docs-markdown/images/telmetry-and-insights-operator-data-flow.png)
 
 **Additional resources**
 {._additional-resources}

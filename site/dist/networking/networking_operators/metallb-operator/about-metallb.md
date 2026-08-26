@@ -122,7 +122,7 @@ Because all traffic for a service enters through a single node in layer 2 mode, 
 
 When a node becomes unavailable, failover is automatic. The `speaker` pods on the other nodes detect that a node is unavailable and a new `speaker` pod and node take ownership of the service IP address from the failed node.
 
-![Conceptual diagram for MetalLB and layer 2 mode](/openshift-docs-markdown/_assets/images/nw-metallb-layer2.png)
+![Conceptual diagram for MetalLB and layer 2 mode](/openshift-docs-markdown/images/nw-metallb-layer2.png)
 
 The preceding graphic shows the following concepts related to MetalLB:
 
@@ -153,7 +153,7 @@ If a node becomes unavailable, the router initiates a new connection with anothe
 
 **Figure 1. MetalLB topology diagram for BGP mode**
 
-!["Speaker pods on host network 10.0.1.0/24 use BGP to advertise the load balancer IP address](/openshift-docs-markdown/_assets/images/209_OpenShift_BGP_0122.png)
+!["Speaker pods on host network 10.0.1.0/24 use BGP to advertise the load balancer IP address](/openshift-docs-markdown/images/209_OpenShift_BGP_0122.png)
 
 The preceding graphic shows the following concepts related to MetalLB:
 

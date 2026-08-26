@@ -31,7 +31,7 @@ OpenShift Container Platform installs the `chrony` Network Time Protocol (NTP) s
 
 **Figure 1. Configuring NTP for disconnected clusters**
 
-![Configuring NTP for disconnected clusters](/openshift-docs-markdown/_assets/images/152_OpenShift_Config_NTP_0421.png)
+![Configuring NTP for disconnected clusters](/openshift-docs-markdown/images/152_OpenShift_Config_NTP_0421.png)
 
 OpenShift Container Platform nodes must agree on a date and time to run properly. When compute nodes retrieve the date and time from the NTP servers on the control plane nodes, it enables the installation and operation of clusters that are not connected to a routable network and thereby do not have access to a higher stratum NTP server.
 
@@ -735,15 +735,15 @@ You can choose whether you want to configure one or all of these services for a 
 
 **Figure 2. Example network workflow that shows an Ingress Controller operating in an OpenShift Container Platform environment**
 
-![An image that shows an example network workflow of an Ingress Controller operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/_assets/images/external-load-balancer-default.png)
+![An image that shows an example network workflow of an Ingress Controller operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/images/external-load-balancer-default.png)
 
 **Figure 3. Example network workflow that shows an OpenShift API operating in an OpenShift Container Platform environment**
 
-![An image that shows an example network workflow of an OpenShift API operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/_assets/images/external-load-balancer-openshift-api.png)
+![An image that shows an example network workflow of an OpenShift API operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/images/external-load-balancer-openshift-api.png)
 
 **Figure 4. Example network workflow that shows an OpenShift `MachineConfig` API operating in an OpenShift Container Platform environment**
 
-![An image that shows an example network workflow of an OpenShift \`MachineConfig\` API operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/_assets/images/external-load-balancer-machine-config-api.png)
+![An image that shows an example network workflow of an OpenShift \`MachineConfig\` API operating in an OpenShift Container Platform environment.](/openshift-docs-markdown/images/external-load-balancer-machine-config-api.png)
 
 The following configuration options are supported for user-managed load balancers:
 
@@ -1245,7 +1245,7 @@ The BMO `HostUpdatePolicy` can enable or disable live updates to the firmware se
 
 The Bare Metal Operator uses multiple resources to provision, manage, and inspect bare-metal hosts, including the `BareMetalHost`, `HostFirmwareSettings`, `FirmwareSchema`, `HostFirmwareComponents`, and `HostUpdatePolicy` resources.
 
-![BMO architecture overview](/openshift-docs-markdown/_assets/images/715_OpenShift_Bare_Metal_Operator_updates_0624.png)
+![BMO architecture overview](/openshift-docs-markdown/images/715_OpenShift_Bare_Metal_Operator_updates_0624.png)
 
 BareMetalHost
 :   The `BareMetalHost` resource defines a physical host and its properties. When you provision a bare-metal host to the cluster, you must define a `BareMetalHost` resource for that host. For ongoing management of the host, you can inspect the information in the `BareMetalHost` resource or update this information.

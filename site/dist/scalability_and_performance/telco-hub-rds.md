@@ -48,11 +48,11 @@ The telco management hub reference design specification (RDS) and the associated
 
 **Figure 1. Hub cluster reference design components**
 
-![telco-hub-cluster-reference-design-components](/openshift-docs-markdown/_assets/images/telco-hub-cluster-reference-design-components.png)
+![telco-hub-cluster-reference-design-components](/openshift-docs-markdown/images/telco-hub-cluster-reference-design-components.png)
 
 **Figure 2. Hub cluster reference design architecture**
 
-![telco-hub-cluster-rds-architecture](/openshift-docs-markdown/_assets/images/telco-hub-cluster-rds-architecture.png)
+![telco-hub-cluster-rds-architecture](/openshift-docs-markdown/images/telco-hub-cluster-rds-architecture.png)
 
 ## Telco management hub cluster use model {#telco-hub-telco-management-cluster-use-model_telco-hub}
 

@@ -1817,19 +1817,19 @@ The following figure illustrates the holdover behavior in a T-GM clock with GNSS
 
 **Figure 1. Holdover in a T-GM clock with GNSS as the source**
 
-![Holdover in a T-GM clock with GNSS as the source](/openshift-docs-markdown/_assets/images/openshift-ptp-holdover-tgm-clock-with-gnss.png)
+![Holdover in a T-GM clock with GNSS as the source](/openshift-docs-markdown/images/openshift-ptp-holdover-tgm-clock-with-gnss.png)
 
-<img src="/_assets/images/darkcircle-1.png" alt="20" width="20"> The GNSS signal is lost, causing the T-GM clock to enter the `HOLDOVER` mode. The T-GM clock maintains time accuracy by using its internal clock.
+<img src="/images/darkcircle-1.png" alt="20" width="20"> The GNSS signal is lost, causing the T-GM clock to enter the `HOLDOVER` mode. The T-GM clock maintains time accuracy by using its internal clock.
 
-<img src="/_assets/images/darkcircle-2.png" alt="20" width="20"> The GNSS signal is restored and the T-GM clock re-enters the `LOCKED` mode. When the GNSS signal is restored, the T-GM clock re-enters the `LOCKED` mode only after all dependent components in the synchronization chain, such as `ts2phc` offset, digital phase-locked loop (DPLL) phase offset, and GNSS offset, reach a stable `LOCKED` mode.
+<img src="/images/darkcircle-2.png" alt="20" width="20"> The GNSS signal is restored and the T-GM clock re-enters the `LOCKED` mode. When the GNSS signal is restored, the T-GM clock re-enters the `LOCKED` mode only after all dependent components in the synchronization chain, such as `ts2phc` offset, digital phase-locked loop (DPLL) phase offset, and GNSS offset, reach a stable `LOCKED` mode.
 
-<img src="/_assets/images/darkcircle-3.png" alt="20" width="20"> The GNSS signal is lost again, and the T-GM clock re-enters the `HOLDOVER` mode. The time error begins to increase.
+<img src="/images/darkcircle-3.png" alt="20" width="20"> The GNSS signal is lost again, and the T-GM clock re-enters the `HOLDOVER` mode. The time error begins to increase.
 
-<img src="/_assets/images/darkcircle-4.png" alt="20" width="20"> The time error exceeds the `MaxInSpecOffset` threshold due to prolonged loss of traceability.
+<img src="/images/darkcircle-4.png" alt="20" width="20"> The time error exceeds the `MaxInSpecOffset` threshold due to prolonged loss of traceability.
 
-<img src="/_assets/images/darkcircle-5.png" alt="20" width="20"> The GNSS signal is restored, and the T-GM clock resumes synchronization. The time error starts to decrease.
+<img src="/images/darkcircle-5.png" alt="20" width="20"> The GNSS signal is restored, and the T-GM clock resumes synchronization. The time error starts to decrease.
 
-<img src="/_assets/images/darkcircle-6.png" alt="20" width="20"> The time error decreases and falls back within the `MaxInSpecOffset` threshold.
+<img src="/images/darkcircle-6.png" alt="20" width="20"> The time error decreases and falls back within the `MaxInSpecOffset` threshold.
 
 ## Applying unassisted holdover for boundary clocks and time synchronous clocks {#nw-ptp-t-bc-t-tsc-holdover_configuring-ptp}
 

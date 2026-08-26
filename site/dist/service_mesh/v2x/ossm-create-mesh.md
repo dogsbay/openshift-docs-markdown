@@ -105,7 +105,7 @@ You can add a project to the `ServiceMeshMemberRoll` from the command line.
 
 Using the `ServiceMeshMemberRoll` resource is the simplest way to add a project to a service mesh. To add a project, specify the project name in the `spec.members` field of the `ServiceMeshMemberRoll` resource. The `ServiceMeshMemberRoll` resource specifies which projects are controlled by the `ServiceMeshControlPlane` resource.
 
-![Adding project using \`ServiceMeshMemberRoll\` resource image](/openshift-docs-markdown/_assets/images/ossm-adding-project-using-smmr.png)
+![Adding project using \`ServiceMeshMemberRoll\` resource image](/openshift-docs-markdown/images/ossm-adding-project-using-smmr.png)
 
 > [!NOTE]
 > Adding projects using this method requires the user to have the `update servicemeshmemberrolls` and the `update pods` privileges in the project that is being added.
@@ -197,7 +197,7 @@ The `ServiceMeshMemberRoll` resource is deleted when its corresponding `ServiceM
 
 A `ServiceMeshMember` resource provides a way to add a project to a service mesh without modifying the `ServiceMeshMemberRoll` resource. To add a project, create a `ServiceMeshMember` resource in the project that you want to add to the service mesh. When the Service Mesh Operator processes the `ServiceMeshMember` object, the project appears in the `status.members` list of the `ServiceMeshMemberRoll` resource. Then, the services that reside in the project are made available to the mesh.
 
-![Adding project using \`ServiceMeshMember\` resource image](/openshift-docs-markdown/_assets/images/ossm-adding-project-using-smm.png)
+![Adding project using \`ServiceMeshMember\` resource image](/openshift-docs-markdown/images/ossm-adding-project-using-smm.png)
 
 The mesh administrator must grant each mesh user permission to reference the `ServiceMeshControlPlane` resource in the `ServiceMeshMember` resource. With this permission in place, a mesh user can add a project to a mesh even when that user does not have direct access rights for the service mesh project or the `ServiceMeshMemberRoll` resource. For more information, see Creating the Red Hat OpenShift Service Mesh members.
 
@@ -307,7 +307,7 @@ You can add one or more projects to the mesh using the `ServiceMeshMember` resou
 
 For cluster-wide deployments, you can use label selectors to add projects to the mesh. Label selectors specified in the `ServiceMeshMemberRoll` resource enable the Service Mesh Operator to add or remove namespaces to or from the mesh based on namespace labels. Unlike other standard OpenShift Container Platform resources that you can use to specify a single label selector, you can use the `ServiceMeshMemberRoll` resource to specify multiple label selectors.
 
-![Adding project using label selector image](/openshift-docs-markdown/_assets/images/ossm-adding-project-using-label-selector.png)
+![Adding project using label selector image](/openshift-docs-markdown/images/ossm-adding-project-using-label-selector.png)
 
 If the labels for a namespace match any of the selectors specified in the `ServiceMeshMemberRoll` resource, then the namespace is included in the mesh.
 
@@ -588,7 +588,7 @@ To confirm that the sample Bookinfo application was successfully deployed, perfo
 3. Select bookinfo from the **Namespace** list, and App graph from the **Graph Type** list.
 4. Click **Display idle nodes** from the **Display** menu.
 
-   This displays nodes that are defined but have not received or sent requests. It can confirm that an application is properly defined, but that no request traffic has been reported. ![Kiali displaying bookinfo application](/openshift-docs-markdown/_assets/images/ossm-kiali-graph-bookinfo.png)
+   This displays nodes that are defined but have not received or sent requests. It can confirm that an application is properly defined, but that no request traffic has been reported. ![Kiali displaying bookinfo application](/openshift-docs-markdown/images/ossm-kiali-graph-bookinfo.png)
 
    - Use the **Duration** menu to increase the time period to help ensure older traffic is captured.
    - Use the **Refresh Rate** menu to refresh traffic more or less often, or not at all.
@@ -610,7 +610,7 @@ Follow these steps to remove the Bookinfo application.
 
 1. Log in to the OpenShift Container Platform web console.
 2. Click to **Home** → **Projects**.
-3. Click the `bookinfo` menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu"), and then click **Delete Project**.
+3. Click the `bookinfo` menu ![](/openshift-docs-markdown/images/kebab.png "Options menu"), and then click **Delete Project**.
 4. Type `bookinfo` in the confirmation dialog box, and then click **Delete**.
 
    - Alternatively, you can run this command using the CLI to create the `bookinfo` project.
@@ -627,7 +627,7 @@ Follow these steps to remove the Bookinfo application.
 2. Click **Ecosystem** → **Installed Operators**.
 3. Click the **Project** menu and choose `istio-system` from the list.
 4. Click the **Istio Service Mesh Member Roll** link under **Provided APIS** for the **Red Hat OpenShift Service Mesh** Operator.
-5. Click the `ServiceMeshMemberRoll` menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") and select **Edit Service Mesh Member Roll**.
+5. Click the `ServiceMeshMemberRoll` menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") and select **Edit Service Mesh Member Roll**.
 6. Edit the default Service Mesh Member Roll YAML and remove `bookinfo` from the **members** list.
 
    - Alternatively, you can run this command using the CLI to remove the `bookinfo` project from the `ServiceMeshMemberRoll`. In this example, `istio-system` is the name of the Service Mesh control plane project.

@@ -20,7 +20,7 @@ Telco core clusters are configured as standard with three control plane and one 
 
 **Figure 1. Telco core RDS cluster service-based architecture and networking topology**
 
-![5G core cluster showing a service-based architecture with overlaid networking topology](/openshift-docs-markdown/_assets/images/openshift-5g-core-cluster-architecture-networking.png)
+![5G core cluster showing a service-based architecture with overlaid networking topology](/openshift-docs-markdown/images/openshift-5g-core-cluster-architecture-networking.png)
 
 ## Reference design scope {#telco-ran-core-ref-design-spec_telco-core}
 
@@ -315,7 +315,7 @@ The following diagram describes the telco core reference design networking confi
 
 **Figure 2. Telco core reference design networking configuration**
 
-![Overview of the telco core reference design networking configuration](/openshift-docs-markdown/_assets/images/openshift-telco-core-rds-networking.png)
+![Overview of the telco core reference design networking configuration](/openshift-docs-markdown/images/openshift-telco-core-rds-networking.png)
 
 > [!NOTE]
 > The diagram shows the recommended network topology, where bonding uses ports from the same dual-port NIC. Bonding ports across different NICs is not recommended.
@@ -349,7 +349,7 @@ Description
 
 **Figure 3. Telco core reference design MetalLB service separation**
 
-![Telco core reference design MetalLB service separation](/openshift-docs-markdown/_assets/images/openshift-telco-core-rds-metallb-service-separation.png)
+![Telco core reference design MetalLB service separation](/openshift-docs-markdown/images/openshift-telco-core-rds-metallb-service-separation.png)
 
 **Additional resources**
 {._additional-resources}

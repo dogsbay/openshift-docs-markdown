@@ -17,7 +17,7 @@ You can change the default timeout period for the web terminal for your current 
 
 **Procedure**
 
-1. Click the web terminal icon (![title="web terminal icon"](/openshift-docs-markdown/_assets/images/odc-wto-icon.png)).
+1. Click the web terminal icon (![odc-wto-icon](/openshift-docs-markdown/images/odc-wto-icon.png "web terminal icon")).
 2. Optional: Set the web terminal timeout for the current session:
 
    1. Click Timeout.
@@ -42,7 +42,7 @@ You can use the **Administrator** perspective of the web console to set the defa
 
 1. In the **Administrator** perspective, navigate to **Administration** → **Cluster Settings**.
 2. On the **Cluster Settings** page, click the **Configuration** tab.
-3. On the **Configuration** page, click the **Console** configuration resource with the description **operator.openshift.io**. ![Image of the Configuration page showing the correct Console configuration resource to select](/openshift-docs-markdown/_assets/images/cluster-settings-console.png)
+3. On the **Configuration** page, click the **Console** configuration resource with the description **operator.openshift.io**. ![Image of the Configuration page showing the correct Console configuration resource to select](/openshift-docs-markdown/images/cluster-settings-console.png)
 4. From the **Action** drop-down list, select **Customize**, which opens the **Cluster configuration** page.
 5. Click the **Web Terminal** tab, which opens the **Web Terminal Configuration** page.
 6. Set a value for the timeout. From the drop-down list, select a time interval of **Seconds**, **Minutes**, **Hours**, or **Milliseconds**.
@@ -59,7 +59,7 @@ You can change the default image for the web terminal for your current session.
 
 **Procedure**
 
-1. Click the web terminal icon (![title="web terminal icon"](/openshift-docs-markdown/_assets/images/odc-wto-icon.png)).
+1. Click the web terminal icon (![odc-wto-icon](/openshift-docs-markdown/images/odc-wto-icon.png "web terminal icon")).
 2. Click **Image** to display advanced configuration options for the web terminal image.
 3. Enter the URL of the image that you want to use.
 4. Click **Start** to begin a terminal instance using the specified image setting.
@@ -77,7 +77,7 @@ You can use the **Administrator** perspective of the web console to set the defa
 
 1. In the **Administrator** perspective, navigate to **Administration** → **Cluster Settings**.
 2. On the **Cluster Settings** page, click the **Configuration** tab.
-3. On the **Configuration** page, click the **Console** configuration resource with the description **operator.openshift.io**. ![Image of the Configuration page showing the correct Console configuration resource to select](/openshift-docs-markdown/_assets/images/cluster-settings-console.png)
+3. On the **Configuration** page, click the **Console** configuration resource with the description **operator.openshift.io**. ![Image of the Configuration page showing the correct Console configuration resource to select](/openshift-docs-markdown/images/cluster-settings-console.png)
 4. From the **Action** drop-down list, select **Customize**, which opens the **Cluster configuration** page.
 5. Click the **Web Terminal** tab, which opens the **Web Terminal Configuration** page.
 6. Enter the URL of the image that you want to use.

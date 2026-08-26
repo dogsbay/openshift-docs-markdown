@@ -93,7 +93,7 @@ To create Helm releases from the Helm charts provided in the **Developer Catalog
 
    **Figure 1. Helm charts in developer catalog**
 
-   ![odc_helm_chart_devcatalog_new](/openshift-docs-markdown/_assets/images/odc_helm_chart_devcatalog_new.png)
+   ![odc_helm_chart_devcatalog_new](/openshift-docs-markdown/images/odc_helm_chart_devcatalog_new.png)
 4. In the **Create Helm Release** page:
 
    1. Enter a unique name for the release in the **Release Name** field.
@@ -221,7 +221,7 @@ As a cluster administrator, you can add custom Helm chart repositories to your c
 
    **Figure 2. Chart repositories filter**
 
-   ![odc_helm_chart_repo_filter](/openshift-docs-markdown/_assets/images/odc_helm_chart_repo_filter.png)
+   ![odc_helm_chart_repo_filter](/openshift-docs-markdown/images/odc_helm_chart_repo_filter.png)
 
    > [!NOTE]
    > If a cluster administrator removes all of the chart repositories, then you cannot view the Helm option in the **+Add** view, **Developer Catalog**, and left navigation panel.
@@ -285,7 +285,7 @@ As a regular user or project member with the appropriate RBAC permissions, you c
 
    **Figure 3. Chart repositories filter in your namespace**
 
-   ![odc_namespace_helm_chart_repo_filter](/openshift-docs-markdown/_assets/images/odc_namespace_helm_chart_repo_filter.png)
+   ![odc_namespace_helm_chart_repo_filter](/openshift-docs-markdown/images/odc_namespace_helm_chart_repo_filter.png)
 
    Alternatively, run:
 
@@ -392,7 +392,7 @@ You can filter Helm charts based on their certification level in the **Developer
 3. Use the filters to the left of the list of Helm charts to filter the required charts:
 
    - Use the **Chart Repositories** filter to filter charts provided by **Red Hat Certification Charts** or **OpenShift Helm Charts**.
-   - Use the **Source** filter to filter charts sourced from **Partners**, **Community**, or **Red Hat**. Certified charts are indicated with the (![title="Certified icon"](/openshift-docs-markdown/_assets/images/odc_verified_icon.png)) icon.
+   - Use the **Source** filter to filter charts sourced from **Partners**, **Community**, or **Red Hat**. Certified charts are indicated with the (![odc_verified_icon](/openshift-docs-markdown/images/odc_verified_icon.png "Certified icon")) icon.
 
    > [!NOTE]
    > The **Source** filter will not be visible when there is only one provider type.

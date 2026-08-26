@@ -36,11 +36,11 @@ The following diagrams show workflows for connected and disconnected environment
 
 **Figure 1. Workflow for using the Agent-based installer in a connected environment to install a cluster on Oracle Cloud Infrastructure (OCI)**
 
-![Image of a high-level workflow for using the Agent-based installer in a connected environment to install a cluster on OCI](/openshift-docs-markdown/_assets/images/684_OpenShift_Installing_on_OCI_0624-connected.png)
+![Image of a high-level workflow for using the Agent-based installer in a connected environment to install a cluster on OCI](/openshift-docs-markdown/images/684_OpenShift_Installing_on_OCI_0624-connected.png)
 
 **Figure 2. Workflow for using the Agent-based installer in a disconnected environment to install a cluster on OCI**
 
-![Image of a high-level workflow for using the Agent-based installer in a disconnected environment to install a cluster on OCI](/openshift-docs-markdown/_assets/images/684_OpenShift_Installing_on_OCI_0624-disconnected.png)
+![Image of a high-level workflow for using the Agent-based installer in a disconnected environment to install a cluster on OCI](/openshift-docs-markdown/images/684_OpenShift_Installing_on_OCI_0624-disconnected.png)
 
 Oracle Distributed Cloud provides services that can meet your regulatory compliance, performance, and cost-effectiveness needs. Oracle Distributed Cloud supports 64-bit `x86` instances and 64-bit `ARM` instances.
 

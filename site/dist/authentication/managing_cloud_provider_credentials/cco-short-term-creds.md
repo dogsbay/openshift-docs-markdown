@@ -58,7 +58,7 @@ The following diagram illustrates the authentication flow between AWS and the Op
 
 **Figure 1. AWS Security Token Service authentication flow**
 
-![Detailed authentication flow between AWS and the cluster when using AWS STS](/openshift-docs-markdown/_assets/images/347_OpenShift_credentials_with_STS_updates_0623_AWS.png)
+![Detailed authentication flow between AWS and the cluster when using AWS STS](/openshift-docs-markdown/images/347_OpenShift_credentials_with_STS_updates_0623_AWS.png)
 
 Requests for new and refreshed credentials are automated by using an appropriately configured AWS IAM OpenID Connect (OIDC) identity provider combined with AWS IAM roles. Service account tokens that are trusted by AWS IAM are signed by OpenShift Container Platform and can be projected into a pod and used for authentication.
 
@@ -218,7 +218,7 @@ The following diagram details the authentication flow between Google Cloud and t
 
 **Figure 2. Google Cloud Workload Identity authentication flow**
 
-![Detailed authentication flow between Google Cloud and the cluster when using Google Cloud Workload Identity](/openshift-docs-markdown/_assets/images/347_OpenShift_credentials_with_STS_updates_0623_GCP.png)
+![Detailed authentication flow between Google Cloud and the cluster when using Google Cloud Workload Identity](/openshift-docs-markdown/images/347_OpenShift_credentials_with_STS_updates_0623_GCP.png)
 
 ### Google Cloud component secret formats {#cco-short-term-creds-format-gcp_cco-short-term-creds}
 
@@ -391,7 +391,7 @@ The following diagram details the authentication flow between Microsoft Azure an
 
 **Figure 3. Workload ID authentication flow**
 
-![Detailed authentication flow between Azure and the cluster when using Workload ID](/openshift-docs-markdown/_assets/images/347_OpenShift_credentials_with_STS_updates_1023_Azure.png)
+![Detailed authentication flow between Azure and the cluster when using Workload ID](/openshift-docs-markdown/images/347_OpenShift_credentials_with_STS_updates_1023_Azure.png)
 
 ### Azure component secret formats {#cco-short-term-creds-format-azure_cco-short-term-creds}
 

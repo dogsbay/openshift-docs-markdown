@@ -158,7 +158,7 @@ You can disable specific recommendations that affect your clusters, so that they
 
    - To disable an alert:
 
-     1. Click the **Options** menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu") for that alert, and then click **Disable recommendation**.
+     1. Click the **Options** menu ![](/openshift-docs-markdown/images/kebab.png "Options menu") for that alert, and then click **Disable recommendation**.
      2. Enter a justification note and click **Save**.
    - To view the clusters affected by this alert before disabling the alert:
 
@@ -186,7 +186,7 @@ When a recommendation is disabled for all clusters, you no longer see the recomm
    2. From the **Filter by status** drop-down menu, select **Disabled**.
    3. Optional: Clear the **Clusters impacted** filter.
 3. Locate the recommendation to enable.
-4. Click the Options menu ![](/openshift-docs-markdown/_assets/images/kebab.png "Options menu"), and then click **Enable recommendation**.
+4. Click the Options menu ![](/openshift-docs-markdown/images/kebab.png "Options menu"), and then click **Enable recommendation**.
 
 ## About Red Hat Lightspeed advisor service recommendations for workloads {#about-insights-advisor-workload-recommendations_using-insights-to-identify-issues-with-your-cluster}
 

@@ -18,15 +18,15 @@ You can deploy and quickly configure one or more Tang servers using the NBDE Tan
 **Procedure**
 
 1. In the OpenShift Container Platform web console, navigate to **Ecosystem** → **Software Catalog**.
-2. Select **Project**, and click **Create Project**: ![Create Project in the web console](/openshift-docs-markdown/_assets/images/nbde-tang-server-operator-07-create-project.png)
-3. On the `Create Project` page, fill in the required information, for example: ![Example values on the Create Project page](/openshift-docs-markdown/_assets/images/nbde-tang-server-operator-09-project-values.png)
+2. Select **Project**, and click **Create Project**: ![Create Project in the web console](/openshift-docs-markdown/images/nbde-tang-server-operator-07-create-project.png)
+3. On the `Create Project` page, fill in the required information, for example: ![Example values on the Create Project page](/openshift-docs-markdown/images/nbde-tang-server-operator-09-project-values.png)
 4. Click **Create**.
-5. NBDE Tang Server replicas require a Persistent Volume Claim (PVC) for storing encryption keys. In the web console, navigate to **Storage** → **PersistentVolumeClaims**: ![PersistentVolumeClaims in the Storage menu](/openshift-docs-markdown/_assets/images/nbde-tang-server-operator-11-pvc.png)
+5. NBDE Tang Server replicas require a Persistent Volume Claim (PVC) for storing encryption keys. In the web console, navigate to **Storage** → **PersistentVolumeClaims**: ![PersistentVolumeClaims in the Storage menu](/openshift-docs-markdown/images/nbde-tang-server-operator-11-pvc.png)
 6. On the following `PersistentVolumeClaims` screen, click **Create PersistentVolumeClaim**.
-7. On the `Create PersistentVolumeClaim` page, select a storage that fits your deployment scenario. Consider how often you want to rotate the encryption keys. Name your PVC and choose the claimed storage capacity, for example: ![Create PersistentVolumeClaims page](/openshift-docs-markdown/_assets/images/nbde-tang-server-operator-13-create-pvc.png)
+7. On the `Create PersistentVolumeClaim` page, select a storage that fits your deployment scenario. Consider how often you want to rotate the encryption keys. Name your PVC and choose the claimed storage capacity, for example: ![Create PersistentVolumeClaims page](/openshift-docs-markdown/images/nbde-tang-server-operator-13-create-pvc.png)
 8. Navigate to **Ecosystem** → **Installed Operators**, and click **NBDE Tang Server**.
-9. Click **Create instance**. ![Create NBDE Tang Server instance](/openshift-docs-markdown/_assets/images/nbde-tang-server-operator-15-create-instance.png)
-10. On the `Create TangServer` page, choose the name of the Tang Server instance, amount of replicas, and specify the name of the previously created Persistent Volume Claim, for example: ![Create TangServer page](/openshift-docs-markdown/_assets/images/nbde-tang-server-operator-17-create-tangserver.png)
+9. Click **Create instance**. ![Create NBDE Tang Server instance](/openshift-docs-markdown/images/nbde-tang-server-operator-15-create-instance.png)
+10. On the `Create TangServer` page, choose the name of the Tang Server instance, amount of replicas, and specify the name of the previously created Persistent Volume Claim, for example: ![Create TangServer page](/openshift-docs-markdown/images/nbde-tang-server-operator-17-create-tangserver.png)
 11. After you enter the required values a change settings that differ from the default values in your scenario, click **Create**.
 
 ## Rotating keys using the NBDE Tang Server Operator {#rotating-keys-using-nbde-tang-server-operator_configuring-and-managing-nbde-tang-server-operator}

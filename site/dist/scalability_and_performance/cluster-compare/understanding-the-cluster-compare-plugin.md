@@ -28,7 +28,7 @@ The ability to intelligently compare a configuration from a cluster with a refer
 
 **Figure 1. Cluster-compare plugin overview**
 
-![Cluster-compare plugin overview](/openshift-docs-markdown/_assets/images/493-OpenShift-0125.png)
+![Cluster-compare plugin overview](/openshift-docs-markdown/images/493-OpenShift-0125.png)
 
 ## Understanding a reference configuration {#understanding-a-reference-config_understanding-cluster-compare}
 

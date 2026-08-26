@@ -171,7 +171,7 @@ To upgrade an application with minimal downtime in OpenShift Container Platform,
 
    **Figure 1. Rolling update**
 
-   ![odc-rolling-update](/openshift-docs-markdown/_assets/images/odc-rolling-update.png)
+   ![odc-rolling-update](/openshift-docs-markdown/images/odc-rolling-update.png)
 
 **Additional resources**
 {._additional-resources}
@@ -264,7 +264,7 @@ To switch from a rolling update to a recreate rollout in OpenShift Container Pla
 
    **Figure 2. Recreate update**
 
-![odc-recreate-update](/openshift-docs-markdown/_assets/images/odc-recreate-update.png)
+![odc-recreate-update](/openshift-docs-markdown/images/odc-recreate-update.png)
 
 **Additional resources**
 {._additional-resources}

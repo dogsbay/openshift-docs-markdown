@@ -116,7 +116,7 @@ The following procedure deploys `parksmap`, which is the front-end component of 
 
 **Procedure**
 
-1. From the **Quick create** (![title="Quick create menu"](/openshift-docs-markdown/_assets/images/fa-plus-circle.png)) menu in the upper right corner, click **Container images**.
+1. From the **Quick create** (![fa-plus-circle](/openshift-docs-markdown/images/fa-plus-circle.png "Quick create menu")) menu in the upper right corner, click **Container images**.
 2. Select **Image name from external registry** and enter `quay.io/openshiftroadshow/parksmap:latest`.
 3. Scroll to the **General** section.
 4. In the **Application name** field, enter `national-parks-app`.
@@ -162,7 +162,7 @@ The **Overview** panel enables you to access many features of the `parksmap` dep
 
    **Figure 1. Parksmap deployment**
 
-   ![Topology view of parksmap deployment](/openshift-docs-markdown/_assets/images/getting-started-examine-pod.png)
+   ![Topology view of parksmap deployment](/openshift-docs-markdown/images/getting-started-examine-pod.png)
 
    This opens an overview panel with the following tabs:
 
@@ -200,7 +200,7 @@ The following procedure scales the `parksmap` deployment to use two instances.
 
    **Figure 2. Scaling application**
 
-   ![Scaling pod to two instances](/openshift-docs-markdown/_assets/images/getting-started-scaling-pod.png)
+   ![Scaling pod to two instances](/openshift-docs-markdown/images/getting-started-scaling-pod.png)
 
    > [!TIP]
    > You can use the down arrow to scale your deployment back down to one pod instance.
@@ -222,7 +222,7 @@ The following procedure deploys `nationalparks`, which is the back-end component
 
 **Procedure**
 
-1. From the **Quick create** (![title="Quick create menu"](/openshift-docs-markdown/_assets/images/fa-plus-circle.png)) menu in the upper right corner, click **Import from Git**.
+1. From the **Quick create** (![fa-plus-circle](/openshift-docs-markdown/images/fa-plus-circle.png "Quick create menu")) menu in the upper right corner, click **Import from Git**.
 2. In the **Git Repo URL** field, enter `https://github.com/openshift-roadshow/nationalparks-py.git`.
 
    A builder image is automatically detected, but the import strategy defaults to Dockerfile instead of Python.
@@ -277,7 +277,7 @@ Deploy a MongoDB database application to contain the information that your appli
 
 **Procedure**
 
-1. From the **Quick create** (![title="Quick create menu"](/openshift-docs-markdown/_assets/images/fa-plus-circle.png)) menu in the upper right corner, click **Container images**.
+1. From the **Quick create** (![fa-plus-circle](/openshift-docs-markdown/images/fa-plus-circle.png "Quick create menu")) menu in the upper right corner, click **Container images**.
 2. Select **Image name from external registry** and enter `registry.redhat.io/rhmap47/mongodb`.
 3. In the **Runtime icon** field, search for and select `mongodb`.
 4. Scroll to the **General** section.
@@ -402,11 +402,11 @@ After you have deployed the necessary applications and loaded data into the data
 
    **Figure 3. National parks across the world**
 
-   ![Opening the URL for the parksmap deployment](/openshift-docs-markdown/_assets/images/getting-started-parksmap-url.png)
+   ![Opening the URL for the parksmap deployment](/openshift-docs-markdown/images/getting-started-parksmap-url.png)
 3. Verify that your web browser displays a map of the national parks across the world.
 
    **Figure 4. National parks across the world**
 
-   ![Map of the national parks across the world](/openshift-docs-markdown/_assets/images/getting-started-map-national-parks.png)
+   ![Map of the national parks across the world](/openshift-docs-markdown/images/getting-started-map-national-parks.png)
 
    If you allow the application to access your location, the map will center on your location.

@@ -52,7 +52,7 @@ You can use the **Administrator** perspective of the web console to disable one 
 
 1. In the **Administrator** perspective, navigate to **Administration** → **Cluster Settings**.
 2. On the **Cluster Settings** page, click the **Configuration** tab.
-3. On the **Configuration** page, click the **Console** configuration resource with the description **operator.openshift.io**. ![Image of the Configuration page showing the correct Console configuration resource to select](/openshift-docs-markdown/_assets/images/cluster-settings-console.png)
+3. On the **Configuration** page, click the **Console** configuration resource with the description **operator.openshift.io**. ![Image of the Configuration page showing the correct Console configuration resource to select](/openshift-docs-markdown/images/cluster-settings-console.png)
 4. From the **Action** drop-down list, select **Customize**, which opens the **Cluster configuration** page.
 5. On the **General** tab, in the **Quick starts** section, you can select items in either the **Enabled** or **Disabled** list, and move them from one list to the other by using the arrow buttons.
 
