@@ -18,7 +18,7 @@ You can customize a developer catalog by using the form view in the Web Console.
     **Verification**
 
     After you have customized the developer catalog, your changes are automatically saved in the system and take effect in the browser after a refresh.
-    ![Developer catalog customization options in the form view](/_assets/images/odc_customizing_developer_catalog.png)
+    ![Developer catalog customization options in the form view](/images/odc_customizing_developer_catalog.png)
 
 
     :::note

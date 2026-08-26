@@ -15,4 +15,4 @@ The following traffic flows are not encrypted when pod-to-pod IPsec is enabled:
 
 The encrypted and unencrypted flows are illustrated in the following diagram:
 
-![IPsec encrypted and unencrypted traffic flows](/_assets/images/nw-ipsec-encryption.png)
+![IPsec encrypted and unencrypted traffic flows](/images/nw-ipsec-encryption.png)

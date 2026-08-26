@@ -23,7 +23,7 @@ The following diagram illustrates the authentication flow between AWS and the {{
 
 **Figure 1. AWS Security Token Service authentication flow**
 
-![Detailed authentication flow between AWS and the cluster when using AWS STS](/_assets/images/347_OpenShift_credentials_with_STS_updates_0623_AWS.png)
+![Detailed authentication flow between AWS and the cluster when using AWS STS](/images/347_OpenShift_credentials_with_STS_updates_0623_AWS.png)
 
 Requests for new and refreshed credentials are automated by using an appropriately configured AWS IAM OpenID Connect (OIDC) identity provider combined with AWS IAM roles. Service account tokens that are trusted by AWS IAM are signed by {{ product_title }} and can be projected into a pod and used for authentication.
 

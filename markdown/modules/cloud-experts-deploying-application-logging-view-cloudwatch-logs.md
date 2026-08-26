@@ -11,17 +11,17 @@ You can verify your logs within CloudWatch on the AWS web console. {._abstract}
     *   `rosa-<cluster-name>.audit`
     *   `rosa-<cluster-name>.infrastructure`
 
-        ![cloud-experts-deploying-application-logging-cw](/_assets/images/cloud-experts-deploying-application-logging-cw.png)
+        ![cloud-experts-deploying-application-logging-cw](/images/cloud-experts-deploying-application-logging-cw.png)
 1.  Click `rosa-<cluster-name>.application`.
 1.  Click the log stream for the frontend pod.
 
-    ![cloud-experts-deploying-application-logging-logstream2](/_assets/images/cloud-experts-deploying-application-logging-logstream2.png)
+    ![cloud-experts-deploying-application-logging-logstream2](/images/cloud-experts-deploying-application-logging-logstream2.png)
 1.  Filter for `stdout` and `stderr`.
 1.  Expand the row to show the messages you entered earlier and other pertinent information.
 
-    ![cloud-experts-deploying-application-logging-stderr](/_assets/images/cloud-experts-deploying-application-logging-stderr.png)
+    ![cloud-experts-deploying-application-logging-stderr](/images/cloud-experts-deploying-application-logging-stderr.png)
 1.  Return to the log streams and select the microservice.
 1.  Enter "microservice" in the search bar to see other messages in your logs.
 1.  Expand one of the entries to see the color the frontend pod received from microservice and which pod sent that color to the frontend pod.
 
-    ![cloud-experts-deploying-application-logging-messages](/_assets/images/cloud-experts-deploying-application-logging-messages.png)
+    ![cloud-experts-deploying-application-logging-messages](/images/cloud-experts-deploying-application-logging-messages.png)

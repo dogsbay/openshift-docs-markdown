@@ -5,7 +5,7 @@ You can overcome the challenges of implementing symmetric routing by using NMSta
 
 **Figure 1. Network overview of managing symmetric routing by using VRFs with MetalLB**
 
-![Network overview of managing symmetric routing by using VRFs with MetalLB](/_assets/images/357_OpenShift_MetalLB_VRF_0823.png)
+![Network overview of managing symmetric routing by using VRFs with MetalLB](/images/357_OpenShift_MetalLB_VRF_0823.png)
 
 The configuration process involves three stages:
 

@@ -19,6 +19,6 @@ CSI drivers are typically shipped as container images. These containers are not 
 
 The following diagram provides a high-level overview about the components running in pods in the {{ product_title }} cluster.
 
-![Architecture of CSI components](/_assets/images/csi-arch-rev1.png)
+![Architecture of CSI components](/images/csi-arch-rev1.png)
 
 It is possible to run multiple CSI drivers for different storage back ends. Each driver needs its own external controllers deployment and daemon set with the driver and CSI registrar.

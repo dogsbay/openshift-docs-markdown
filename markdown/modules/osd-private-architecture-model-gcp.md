@@ -15,4 +15,4 @@ Red Hat SRE management access the cluster through a public load balancer endpoin
 
 **Figure 1. {{ product_title }} on {{ GCP }} deployed on a private network without PSC**
 
-![Architecture diagram of a private OpenShift Dedicated cluster on Google Cloud without Private Service Connect. The diagram shows a customer Google Cloud project divided into public and private networks. In the public network: developers and Red Hat management access the cluster via the Internet](/_assets/images/484_b_Openshift_osd_gcp_private_no_psc_arch_0525.png)
+![Architecture diagram of a private OpenShift Dedicated cluster on Google Cloud without Private Service Connect. The diagram shows a customer Google Cloud project divided into public and private networks. In the public network: developers and Red Hat management access the cluster via the Internet](/images/484_b_Openshift_osd_gcp_private_no_psc_arch_0525.png)

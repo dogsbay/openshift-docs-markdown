@@ -3,8 +3,8 @@
 
 The following {{ gcp_first }} 64-bit ARM instance types have been tested with {{ product_title }}.
 
-:::details{title="Machine series for 64-bit ARM machines"}
+See the following machine series for 64-bit ARM machines:
+
 * `C4A`
 * `N4A`
 * `Tau T2A`
-:::

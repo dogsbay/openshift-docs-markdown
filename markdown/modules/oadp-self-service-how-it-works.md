@@ -13,4 +13,4 @@ The diagram describes the following workflow:
 
 **Figure 1. How {{ oadp_short }} Self-Service works**
 
-![{{ oadp_short }} Self-Service](/_assets/images/oadp-self-service.svg)
+![{{ oadp_short }} Self-Service](/images/oadp-self-service.svg)

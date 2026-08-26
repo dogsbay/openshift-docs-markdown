@@ -12,7 +12,7 @@ After generating the seed image on the seed cluster, you can move through the st
 
 **Figure 1. Stages of the image-based upgrade**
 
-![Stages of the image-based upgrade](/_assets/images/696_OpenShift_Lifecycle_Agent_0624_0.png)
+![Stages of the image-based upgrade](/images/696_OpenShift_Lifecycle_Agent_0624_0.png)
 
 ## Idle stage {id="cnf-image-based-upgrade-concept-idle_{{ context }}"}
 
@@ -22,7 +22,7 @@ There is no ongoing upgrade and the cluster is ready to move to the `Prep` stage
 
 **Figure 2. Transition from Idle stage**
 
-![Transition from Idle stage](/_assets/images/696_OpenShift_Lifecycle_Agent_0624_1.png)
+![Transition from Idle stage](/images/696_OpenShift_Lifecycle_Agent_0624_1.png)
 
 You also move to the `Idle` stage to do one of the following steps:
 
@@ -34,7 +34,7 @@ Moving to the `Idle` stage ensures that the {{ lcao }} cleans up resources, so t
 
 **Figure 3. Transitions to Idle stage**
 
-![Transitions to Idle stage](/_assets/images/696_OpenShift_Lifecycle_Agent_0624_2.png)
+![Transitions to Idle stage](/images/696_OpenShift_Lifecycle_Agent_0624_2.png)
 
 
 :::important
@@ -76,7 +76,7 @@ If you cancel the upgrade, the Operator performs cleanup operations.
 
 **Figure 4. Transition from Prep stage**
 
-![Transition from Prep stage](/_assets/images/696_OpenShift_Lifecycle_Agent_0624_3.png)
+![Transition from Prep stage](/images/696_OpenShift_Lifecycle_Agent_0624_3.png)
 
 ## Upgrade stage {id="cnf-image-based-upgrade-concept-upgrade_{{ context }}"}
 
@@ -104,7 +104,7 @@ When you finalize the upgrade, you cannot roll back to the original release.
 
 **Figure 5. Transitions from Upgrade stage**
 
-![Transitions from Upgrade stage](/_assets/images/696_OpenShift_Lifecycle_Agent_0624_4.png)
+![Transitions from Upgrade stage](/images/696_OpenShift_Lifecycle_Agent_0624_4.png)
 
 If you want to cancel the upgrade, you can do so until the pre-pivot phase of the `Upgrade` stage.
 If you encounter issues after the upgrade, you can move to the `Rollback` stage for a manual rollback.
@@ -128,4 +128,4 @@ For more information about the automatic rollback, see the "Moving to the Rollba
 
 **Figure 6. Transition from Rollback stage**
 
-![Transition from Rollback stage](/_assets/images/696_OpenShift_Lifecycle_Agent_0624_4.png)
+![Transition from Rollback stage](/images/696_OpenShift_Lifecycle_Agent_0624_4.png)

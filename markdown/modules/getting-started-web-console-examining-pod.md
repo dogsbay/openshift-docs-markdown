@@ -19,7 +19,7 @@ The **Overview** panel enables you to access many features of the `parksmap` dep
 
     **Figure 1. Parksmap deployment**
 
-    ![Topology view of parksmap deployment](/_assets/images/getting-started-examine-pod.png)
+    ![Topology view of parksmap deployment](/images/getting-started-examine-pod.png)
 
     This opens an overview panel with the following tabs:
     *   **Details**: View details about your deployment, edit certain settings, and scale your deployment.

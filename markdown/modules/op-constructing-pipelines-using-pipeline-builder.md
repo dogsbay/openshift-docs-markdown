@@ -42,7 +42,7 @@ If you do not deploy any local Tekton Hub instance, by default, you can only acc
 
     **Figure 1. YAML view**
 
-    ![op-pipeline-yaml](/_assets/images/op-pipeline-yaml.png)
+    ![op-pipeline-yaml](/images/op-pipeline-yaml.png)
 1.  Configure your pipeline by using **Pipeline builder**:
     1.  In the **Name** field, enter a unique name for the pipeline.
     1.  In the **Tasks** section:
@@ -63,7 +63,7 @@ If you do not deploy any local Tekton Hub instance, by default, you can only acc
 
                     **Figure 2. Pipeline builder**
 
-                    ![op-pipeline-builder](/_assets/images/op-pipeline-builder.png)
+                    ![op-pipeline-builder](/images/op-pipeline-builder.png)
             *   To add a final task:
                 *   Click the **Add finally task** → Click **Add task**.
                 *   Search for a task using the quick search field and select the required task from the displayed list.

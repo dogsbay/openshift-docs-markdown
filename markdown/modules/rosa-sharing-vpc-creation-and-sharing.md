@@ -3,7 +3,7 @@
 
 You can share subnets within a configured VPC with another AWS user account if that account is within your current AWS organization. {._abstract}
 
-![372_OpenShift_on_AWS_persona_worflows_0923_1](/_assets/images/372_OpenShift_on_AWS_persona_worflows_0923_1.png)
+![372_OpenShift_on_AWS_persona_worflows_0923_1](/images/372_OpenShift_on_AWS_persona_worflows_0923_1.png)
 
 **Procedure**
 

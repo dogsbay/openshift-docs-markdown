@@ -5,7 +5,7 @@ You can allow AWS Identity and Access Management (IAM) roles as additional princ
 
 You can access your {{ product_title }} cluster’s API server endpoint from the public internet or the VPC private subnet interface endpoint. By default, you can privately access your {{ product_title }} API Server by using the `-kube-system-kube-controller-manager` Operator role. To access the {{ product_title }} API server from another account without using the primary account, include cross-account IAM roles as additional principals. This feature simplifies your network architecture and reduces data transfer costs. You can avoid peering or attaching cross-account VPCs to the cluster’s VPC.
 
-![Overview of AWS cross account access](/_assets/images/AWS_cross_account_access.png)
+![Overview of AWS cross account access](/images/AWS_cross_account_access.png)
 
 In this diagram, the cluster creating account is designated as Account A. This account designates that another account, Account B, should have access to the API server.
 

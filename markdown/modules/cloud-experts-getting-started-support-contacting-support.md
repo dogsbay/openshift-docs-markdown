@@ -11,12 +11,12 @@ You can contact support by using the UI or using the support page. {._abstract}
 *   Contacting Red&#160;Hat for support using the support page
     1.  Go to the [Red&#160;Hat support page](https://support.redhat.com).
     1.  Click **Open a new Case**.
-        ![obtain-support-case](/_assets/images/obtain-support-case.png)
+        ![obtain-support-case](/images/obtain-support-case.png)
     1.  Log in to your Red&#160;Hat account.
     1.  Select the reason for contacting support.
-        ![obtain-support-reason](/_assets/images/obtain-support-reason.png)
+        ![obtain-support-reason](/images/obtain-support-reason.png)
     1.  Select **Red&#160;Hat OpenShift Service on AWS**.
-        ![obtain-support-select-rosa](/_assets/images/obtain-support-select-rosa.png)
+        ![obtain-support-select-rosa](/images/obtain-support-select-rosa.png)
     1.  Click **continue**.
     1.  Enter a summary of the issue and the details of your request. Upload any files, logs, and screenshots. The more details you provide, the better Red&#160;Hat support can help your case.
 
@@ -26,7 +26,7 @@ You can contact support by using the UI or using the support page. {._abstract}
         
         :::
 
-        ![obtain-support-summary](/_assets/images/obtain-support-summary.png)
+        ![obtain-support-summary](/images/obtain-support-summary.png)
     1.  Click **Continue**. 
     1.  Answer the questions in the new fields.
     1.  Click **Continue**.
@@ -40,6 +40,6 @@ You can contact support by using the UI or using the support page. {._abstract}
         1.  **Alternate Case ID:** If you want to attach your own ID to it you can enter it here.
     1.  Click **Continue**.
     1.  On the review screen make sure you select the correct cluster ID that you are contacting support about.
-        ![obtain-support-cluster-id](/_assets/images/obtain-support-cluster-id.png)
+        ![obtain-support-cluster-id](/images/obtain-support-cluster-id.png)
     1.  Click **Submit**.
     1.  You will be contacted based on the response time committed to for the [indicated severity level](https://access.redhat.com/support/offerings/openshift/sla).

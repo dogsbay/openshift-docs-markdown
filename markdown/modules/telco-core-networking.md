@@ -5,7 +5,7 @@ The following diagram describes the telco core reference design networking confi
 
 **Figure 1. Telco core reference design networking configuration**
 
-![Overview of the telco core reference design networking configuration](/_assets/images/openshift-telco-core-rds-networking.png)
+![Overview of the telco core reference design networking configuration](/images/openshift-telco-core-rds-networking.png)
 
 
 :::note
@@ -56,4 +56,4 @@ Description
 
 **Figure 2. Telco core reference design MetalLB service separation**
 
-![Telco core reference design MetalLB service separation](/_assets/images/openshift-telco-core-rds-metallb-service-separation.png)
+![Telco core reference design MetalLB service separation](/images/openshift-telco-core-rds-metallb-service-separation.png)

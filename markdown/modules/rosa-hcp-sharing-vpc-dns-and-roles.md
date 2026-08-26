@@ -11,7 +11,7 @@ For shared VPC clusters, you can choose to create the Operator roles after the c
 :::
 
 
-![Step two of the shared VPC workflow showing DNS reservation and Operator role creation.](/_assets/images/522-shared-vpc-step-2.png)
+![Step two of the shared VPC workflow showing DNS reservation and Operator role creation.](/images/522-shared-vpc-step-2.png)
 
 **Prerequisites**
 

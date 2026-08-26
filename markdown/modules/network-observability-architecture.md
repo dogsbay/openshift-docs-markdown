@@ -9,7 +9,7 @@ The `eBPF agent` runs on each cluster node with some privileges to collect netwo
 
 If you do not use Loki, you can generate metrics with Prometheus. Those metrics and their related dashboards are accessible in the web console. For more information, see "Network Observability without Loki".
 
-![Network Observability eBPF export architecture](/_assets/images/network-observability-architecture.png)
+![Network Observability eBPF export architecture](/images/network-observability-architecture.png)
 
 There are three deployment model options for the Network Observability Operator.
 
@@ -32,4 +32,4 @@ Direct deployment model
 
 Kafka deployment model (optional)
 :   If you use the Kafka option, the `eBPF agent` sends the network flow data to Kafka. You can scale the `flowlogs-pipeline` component by using the `spec.processor.consumerReplicas` field. The `flowlogs-pipeline` component reads from the Kafka topic before sending data to Loki, as shown in the following diagram.
-    ![Network Observability using Kafka](/_assets/images/network-observability-arch-kafka-FLP.png)
+    ![Network Observability using Kafka](/images/network-observability-arch-kafka-FLP.png)

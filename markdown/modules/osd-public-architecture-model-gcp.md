@@ -5,4 +5,4 @@ With a public network configuration, your cluster API server endpoint and applic
 
 **Figure 1. {{ product_title }} on {{ GCP }} deployed on a public network**
 
-![Architecture diagram showing a customer Google Cloud project with public and private network layers. The public network contains an External API load balancer and Default Ingress load balancer](/_assets/images/484_c_Openshift_osd_gcp_public_arch_0525.png)
+![Architecture diagram showing a customer Google Cloud project with public and private network layers. The public network contains an External API load balancer and Default Ingress load balancer](/images/484_c_Openshift_osd_gcp_public_arch_0525.png)

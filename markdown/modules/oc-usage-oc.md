@@ -40,13 +40,13 @@ Non-security API changes will involve, at minimum, two minor releases (4.1 to 4.
 |     |     |     |
 | --- | --- | --- |
 |  | **X.Y** (`oc` Client) | **X.Y+N** [^versionpolicyn] (`oc` Client) |
-| **X.Y** (Server) | ![Red circle 1](/_assets/images/redcircle-1.png) | ![Red circle 3](/_assets/images/redcircle-3.png) |
-| **X.Y+N** [^versionpolicyn] (Server) | ![Red circle 2](/_assets/images/redcircle-2.png) | ![Red circle 1](/_assets/images/redcircle-1.png) |
+| **X.Y** (Server) | ![Red circle 1](/images/redcircle-1.png) | ![Red circle 3](/images/redcircle-3.png) |
+| **X.Y+N** [^versionpolicyn] (Server) | ![Red circle 2](/images/redcircle-2.png) | ![Red circle 1](/images/redcircle-1.png) |
 
-![Red circle 1](/_assets/images/redcircle-1.png) Fully compatible.
+![Red circle 1](/images/redcircle-1.png) Fully compatible.
 
-![Red circle 2](/_assets/images/redcircle-2.png) `oc` client might not be able to access server features.
+![Red circle 2](/images/redcircle-2.png) `oc` client might not be able to access server features.
 
-![Red circle 3](/_assets/images/redcircle-3.png) `oc` client might provide options and features that might not be compatible with the accessed server.
+![Red circle 3](/images/redcircle-3.png) `oc` client might provide options and features that might not be compatible with the accessed server.
 
 [^versionpolicyn]: Where **N** is a number greater than or equal to 1.

@@ -20,7 +20,7 @@ If you created a **Basic OpenShift Cluster Manager role** earlier, you will need
 **Procedure**
 
 1.  A pop up window will show you the commands to run.
-    ![cloud-experts-getting-started-rosa-deployment-detailed-ui-create-cmds](/_assets/images/cloud-experts-getting-started-rosa-deployment-detailed-ui-create-cmds.png)
+    ![cloud-experts-getting-started-rosa-deployment-detailed-ui-create-cmds](/images/cloud-experts-getting-started-rosa-deployment-detailed-ui-create-cmds.png)
 1.  Run the commands from the window in your terminal to launch interactive mode. Or, for simplicity, run the following command to create the Operator roles:
     ```terminal
     $ rosa create operator-roles --mode auto --cluster <cluster-name> --yes

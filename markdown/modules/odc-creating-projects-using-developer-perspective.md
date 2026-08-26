@@ -29,7 +29,7 @@ You can create a project using the **Developer** perspective, as follows:
 
     **Figure 1. Create project**
 
-    ![odc_create_project](/_assets/images/odc_create_project.png)
+    ![odc_create_project](/images/odc_create_project.png)
     1.  In the **Create Project** dialog box, enter a unique name, such as `myproject`, in the **Name** field.
     1.  Optional: Add the **Display name** and **Description** details for the project.
     1.  Click **Create**.

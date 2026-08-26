@@ -3,7 +3,7 @@
 
 The HCO, `hco-operator`, provides a single entry point for deploying and managing {{ VirtProductName }} and several helper operators with opinionated defaults. It also creates custom resources (CRs) for those operators. {._abstract}
 
-![hco-operator components](/_assets/images/cnv_components_hco-operator.png)
+![hco-operator components](/images/cnv_components_hco-operator.png)
 
 **HyperConverged Operator components**
 

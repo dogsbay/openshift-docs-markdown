@@ -13,4 +13,4 @@ The following image depicts how Red HAT SREs and other internal resources access
 
 **Figure 1. PSC architecture overview**
 
-![Diagram showing a customer Google Cloud project with a PSC service attachment connected to a cluster API server load balancer](/_assets/images/psc_arch_2.png)
+![Diagram showing a customer Google Cloud project with a PSC service attachment connected to a cluster API server load balancer](/images/psc_arch_2.png)

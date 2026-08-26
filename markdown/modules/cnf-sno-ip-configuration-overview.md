@@ -5,7 +5,7 @@ The {{ lcao }} uses a stage-driven workflow controlled through the `spec.stage` 
 
 **Figure 1. {{ sno }} network reconfiguration stages**
 
-![{{ sno }} network reconfiguration stages](/_assets/images/600_telco_network_sno_reconfig.png)
+![{{ sno }} network reconfiguration stages](/images/600_telco_network_sno_reconfig.png)
 
 
 Idle stage

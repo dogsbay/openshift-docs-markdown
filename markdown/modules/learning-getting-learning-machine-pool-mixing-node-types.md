@@ -22,9 +22,9 @@ You can also mix different worker node machine types in the same cluster by usin
     ```terminal
     $ rosa create machinepool -c <cluster-name> --interactive
     ```
-    ![cloud-experts-getting-started-managing-mp-interactive](/_assets/images/cloud-experts-getting-started-managing-mp-interactive.png)
+    ![cloud-experts-getting-started-managing-mp-interactive](/images/cloud-experts-getting-started-managing-mp-interactive.png)
 1.  Run the following command to list the machine pools and see the new, larger instance type:
     ```terminal
     $ rosa list machinepools -c <cluster-name>
     ```
-    ![cloud-experts-getting-started-managing-large-mp](/_assets/images/cloud-experts-getting-started-managing-large-mp.png)
+    ![cloud-experts-getting-started-managing-large-mp](/images/cloud-experts-getting-started-managing-large-mp.png)

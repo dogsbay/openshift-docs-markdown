@@ -11,7 +11,7 @@ This issue is classed as a `Warning` because by using {{ oci_distributed_no_rt }
 
 **Figure 1. Example of a `Warning` message that is under the Backend set information tab on {{ oci_distributed_no_rt }}**
 
-![Example of an warning message that is under the Backend set information tab on {{ oci_distributed_no_rt }}](/_assets/images/ingress_load_balancer_warning_message.png)
+![Example of an warning message that is under the Backend set information tab on {{ oci_distributed_no_rt }}](/images/ingress_load_balancer_warning_message.png)
 
 You do not need to modify the Ingress Load Balancer configuration. Instead, you can point the Ingress Load Balancer to specific compute nodes that operate in your cluster on {{ product_title }}. To do this, use placement mechanisms, such as annotations, on {{ product_title }} to ensure router pods only run on the compute nodes that you originally configured on the Ingress Load Balancer as backend listeners.
 

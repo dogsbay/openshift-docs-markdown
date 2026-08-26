@@ -5,7 +5,7 @@ The following diagram shows how the GPU architecture is enabled for OpenShift:
 
 **Figure 1. NVIDIA GPU enablement**
 
-![NVIDIA GPU enablement](/_assets/images/512_OpenShift_NVIDIA_GPU_enablement_1223.png)
+![NVIDIA GPU enablement](/images/512_OpenShift_NVIDIA_GPU_enablement_1223.png)
 
 
 :::note

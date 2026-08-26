@@ -17,6 +17,6 @@ In addition to the context menu, you can add services by using the sidebar or ho
 
     **Figure 1. Add resource context menu**
 
-    ![odc_context_menu](/_assets/images/odc_context_menu.png)
+    ![odc_context_menu](/images/odc_context_menu.png)
 1.  Use **Add to Application** to select a method for adding a service to the application group, such as **From Git**, **Container Image**, **From Dockerfile**, **From Devfile**, **Upload JAR file**, **Event Source**, **Channel**, or **Broker**.
 1.  Complete the form for the method you choose and click **Create**. For example, to add a service based on the source code in your Git repository, choose the **From Git** method, fill in the **Import from Git** form, and click **Create**.

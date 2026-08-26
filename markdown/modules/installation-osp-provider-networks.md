@@ -7,7 +7,7 @@ You can deploy your {{ product_title }} clusters on {{ rh_openstack_first }} wit
 
 In the following example, {{ product_title }} workloads are connected to a data center by using a provider network:
 
-![A diagram that depicts four OpenShift workloads on OpenStack. Each workload is connected by its NIC to an external data center by using a provider network.](/_assets/images/openshift-on-openstack-provider-network.png)
+![A diagram that depicts four OpenShift workloads on OpenStack. Each workload is connected by its NIC to an external data center by using a provider network.](/images/openshift-on-openstack-provider-network.png)
 
 {{ product_title }} clusters that are installed on provider networks do not require tenant networks or floating IP addresses. The installer does not create these resources during installation.
 

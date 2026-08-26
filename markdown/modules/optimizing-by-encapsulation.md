@@ -9,7 +9,7 @@ This ability to potentially achieve major CPU optimization is now available to a
 
 The following diagrams illustrate a Kubernetes installation before and after encapsulation. Both scenarios show example containers which have mount propagation settings of bidirectional, host-to-container, and none.
 
-![Before encapsulation](/_assets/images/before-k8s-mount-propagation.png)
+![Before encapsulation](/images/before-k8s-mount-propagation.png)
 
 The diagram shows systemd, host operating system processes, kubelet, and the container runtime sharing a single mount namespace.
 
@@ -20,7 +20,7 @@ The diagram shows systemd, host operating system processes, kubelet, and the con
 
 The following diagram illustrates the system state after encapsulation.
 
-![After encapsulation](/_assets/images/after-k8s-mount-propagation.png)
+![After encapsulation](/images/after-k8s-mount-propagation.png)
 
 *   The main systemd process is no longer devoted to unnecessary scanning of Kubernetes-specific mount points. It only monitors systemd-specific and host mount points.
 *   The host operating system processes can access only the systemd and host mount points.

@@ -3,7 +3,8 @@
 
 Use these tested {{ ibm_cloud_name }} instance types to ensure compatibility when selecting machine types for your {{ product_title }} cluster. {._abstract}
 
-:::details{title="Machine series"}
+See the following machine series:
+
 * `bx2-8x32`
 * `bx2d-4x16`
 * `bx3d-4x20`
@@ -21,4 +22,3 @@ Use these tested {{ ibm_cloud_name }} instance types to ensure compatibility whe
 * `ox2-8x64`
 * `ux2d-2x56`
 * `vx2d-4x56`
-:::

@@ -35,4 +35,4 @@ You can install the web terminal by using the {{ web_terminal_op }} listed in th
     
     :::
 
-1.  After the Operator is installed, refresh your page to see the command-line terminal icon (![title="web terminal icon"](/_assets/images/odc-wto-icon.png)) in the masthead of the console.
+1.  After the Operator is installed, refresh your page to see the command-line terminal icon (![odc-wto-icon](/images/odc-wto-icon.png "web terminal icon")) in the masthead of the console.

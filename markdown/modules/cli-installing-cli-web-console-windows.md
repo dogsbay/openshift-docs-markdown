@@ -11,9 +11,9 @@ To manage your cluster and deploy applications from the command line on Windows,
 
 {%- if not (openshift_rosa or openshift_dedicated) %}
 1.  From the web console, click **?**.
-    ![click-question-mark](/_assets/images/click-question-mark.png)
+    ![click-question-mark](/images/click-question-mark.png)
 1.  Click **Command Line Tools**.
-    ![CLI-list](/_assets/images/CLI-list.png)
+    ![CLI-list](/images/CLI-list.png)
 1.  Select the `oc` binary for Windows platform, and then click **Download oc for Windows for x86_64**.
 1.  Save the file.
 1.  Unzip the archive with a ZIP program.

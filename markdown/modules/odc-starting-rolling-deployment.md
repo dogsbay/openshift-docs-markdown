@@ -15,4 +15,4 @@ To upgrade an application with minimal downtime in {{ product_title }}, you can 
 
     **Figure 1. Rolling update**
 
-    ![odc-rolling-update](/_assets/images/odc-rolling-update.png)
+    ![odc-rolling-update](/images/odc-rolling-update.png)

@@ -11,4 +11,4 @@ Based on the severity level, you can prioritize vulnerabilities and fix them in 
 
 **Figure 1. Viewing image vulnerabilities**
 
-![odc_image_vulnerabilities](/_assets/images/odc_image_vulnerabilities.png)
+![odc_image_vulnerabilities](/images/odc_image_vulnerabilities.png)

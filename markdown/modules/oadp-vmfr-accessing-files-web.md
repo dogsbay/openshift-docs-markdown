@@ -29,14 +29,14 @@ Access restored virtual machine (VM) files through a web browser by using the fi
 
     **Figure 1. OADP VM File Restore Browser login page**
 
-    ![OADP VM File Restore Browser login page](/_assets/images/oadp-vmfr-file-browser-login.png)
+    ![OADP VM File Restore Browser login page](/images/oadp-vmfr-file-browser-login.png)
 1.  Browse the files organized by date, backup name, and PVC name.
 
     **Figure 2. File browser listing showing backup contents**
 
-    ![File browser listing showing backup contents](/_assets/images/oadp-vmfr-file-browser-listing.png)
+    ![File browser listing showing backup contents](/images/oadp-vmfr-file-browser-listing.png)
 1.  View the file content by selecting the file. To download a file, select the file and click **Download**. To download a directory as an archive, select the directory and click **Download**.
 
     **Figure 3. File preview in the file browser**
 
-    ![File preview in the file browser](/_assets/images/oadp-vmfr-file-browser-preview.png)
+    ![File preview in the file browser](/images/oadp-vmfr-file-browser-preview.png)

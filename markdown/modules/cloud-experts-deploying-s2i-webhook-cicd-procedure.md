@@ -41,11 +41,11 @@ This procedure guides you through setting up a GitHub webhook to automatically t
     ```
 1.  Setup the webhook URL in GitHub repository.
     1.  In your repository, click **Settings > Webhooks > Add webhook**.
-        ![Add Webhook](/_assets/images/ostoy-webhook.png)
+        ![Add Webhook](/images/ostoy-webhook.png)
     1.  Paste the GitHub webhook URL with the `Secret` included into the "Payload URL" field.
     1.  Change the "Content type" to `application/json`.
     1.  Click the **Add webhook** button.
-        ![Finish Add Webhook](/_assets/images/ostoy-webhookfinish.png)
+        ![Finish Add Webhook](/images/ostoy-webhookfinish.png)
 
         You should see a message from GitHub stating that your webhook was successfully configured. Now, whenever you push a change to your GitHub repository, a new build automatically starts, and upon a successful build, a new deployment starts.
 1.  Now, make a change in the source code. Any changes automatically trigger a build and deployment. In this example, the colors that denote the status of your OSToy app are selected randomly. To test the configuration, change the box to only display grayscale.
@@ -64,6 +64,6 @@ This procedure guides you through setting up a GitHub webhook to automatically t
     1.  Enter a message for the update, such as "changed box to grayscale colors".
     1.  Click **Commit** at the bottom to commit the changes to the main branch.
 1.  In your cluster’s web UI, click **Builds > Builds** to determine the status of the build. After this build is completed, the deployment begins. You can also check the status by running `oc status` in your terminal. 
-    ![Build Run](/_assets/images/ostoy-builddone.png)
+    ![Build Run](/images/ostoy-builddone.png)
 1.  After the deployment has finished, return to the OSToy application in your browser. Access the **Networking** menu item on the left. The box color is now limited to grayscale colors only.
-    ![Gray](/_assets/images/ostoy-gray.png)
+    ![Gray](/images/ostoy-gray.png)

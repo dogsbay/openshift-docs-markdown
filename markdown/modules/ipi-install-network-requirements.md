@@ -5,7 +5,7 @@ Installer-provisioned installation of {{ product_title }} involves multiple netw
 
 **Figure 1. Installer-provisioned networking**
 
-![Installer-provisioned networking](/_assets/images/210_OpenShift_Baremetal_IPI_Deployment_updates_0122_2.png)
+![Installer-provisioned networking](/images/210_OpenShift_Baremetal_IPI_Deployment_updates_0122_2.png)
 
 
 :::important

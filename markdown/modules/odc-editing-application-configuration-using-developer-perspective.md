@@ -21,7 +21,7 @@ Ensure that you have created an application using  the **From Git**, **Container
 
     **Figure 1. Edit application**
 
-    ![odc_edit_app](/_assets/images/odc_edit_app.png)
+    ![odc_edit_app](/images/odc_edit_app.png)
 1.  Click **Edit _application-name_** to see the **Add** workflow you used to create the application. The form is pre-populated with the values you had added while creating the application.
 1.  Edit the necessary values for the application.
 
@@ -35,4 +35,4 @@ Ensure that you have created an application using  the **From Git**, **Container
 
     **Figure 2. Edit and redeploy application**
 
-    ![odc_edit_redeploy](/_assets/images/odc_edit_redeploy.png)
+    ![odc_edit_redeploy](/images/odc_edit_redeploy.png)

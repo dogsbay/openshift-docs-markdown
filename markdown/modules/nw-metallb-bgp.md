@@ -15,7 +15,7 @@ If a node becomes unavailable, the router initiates a new connection with anothe
 
 **Figure 1. MetalLB topology diagram for BGP mode**
 
-!["Speaker pods on host network 10.0.1.0/24 use BGP to advertise the load balancer IP address](/_assets/images/209_OpenShift_BGP_0122.png)
+!["Speaker pods on host network 10.0.1.0/24 use BGP to advertise the load balancer IP address](/images/209_OpenShift_BGP_0122.png)
 
 The preceding graphic shows the following concepts related to MetalLB:
 

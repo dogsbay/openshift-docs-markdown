@@ -15,7 +15,7 @@ The {{ product_title }} update process mandates that if a fix is present in a sp
 
 **Figure 1. Bug fix backporting and the update graph**
 
-![Bug fix backporting and the update graph](/_assets/images/openshift-bug-fix-backporting-update-graph.png)
+![Bug fix backporting and the update graph](/images/openshift-bug-fix-backporting-update-graph.png)
 
 
 :::important

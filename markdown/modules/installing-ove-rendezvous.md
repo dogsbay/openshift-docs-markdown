@@ -34,4 +34,4 @@ You can also boot from a USB drive containing the ISO image.
 1.  In the **Rendezvous node IP selection** menu, select an IP address from the list to use as the rendezvous node IP address and select **Continue**.
 Make note of this address for later use.
 1.  Wait for the rendezvous node to provide a URL for finishing the installation and save the URL for later use, as shown in the following image.
-    ![The rendezvous host providing the URL of the installation console](/_assets/images/installing-ove-console.png)
+    ![The rendezvous host providing the URL of the installation console](/images/installing-ove-console.png)

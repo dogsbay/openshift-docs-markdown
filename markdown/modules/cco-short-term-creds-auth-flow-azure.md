@@ -7,4 +7,4 @@ The following diagram details the authentication flow between {{ azure_first }} 
 
 **Figure 1. {{ entra_short }} authentication flow**
 
-![Detailed authentication flow between Azure and the cluster when using {{ entra_short }}](/_assets/images/347_OpenShift_credentials_with_STS_updates_1023_Azure.png)
+![Detailed authentication flow between Azure and the cluster when using {{ entra_short }}](/images/347_OpenShift_credentials_with_STS_updates_1023_Azure.png)

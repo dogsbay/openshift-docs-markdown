@@ -7,7 +7,7 @@ Each machine pool in an {{ hcp_title }} cluster upgrades independently. Because 
 
 The following image depicts how machine pools work within ROSA and {{ product_title }} clusters:
 
-![Machine pools on ROSA classic and {{ product_title }} clusters](/_assets/images/hcp-rosa-machine-pools.png)
+![Machine pools on ROSA classic and {{ product_title }} clusters](/images/hcp-rosa-machine-pools.png)
 
 
 :::note

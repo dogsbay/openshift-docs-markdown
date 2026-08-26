@@ -3,7 +3,7 @@
 
 After the **Cluster Creator** provides the DNS domain and the IAM roles, create a private hosted zone and update the trust policy on the IAM role that was created for sharing the VPC. {._abstract}
 
-![372_OpenShift_on_AWS_persona_worflows_0923_3](/_assets/images/372_OpenShift_on_AWS_persona_worflows_0923_3.png)
+![372_OpenShift_on_AWS_persona_worflows_0923_3](/images/372_OpenShift_on_AWS_persona_worflows_0923_3.png)
 
 **Prerequisites**
 

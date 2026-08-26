@@ -13,4 +13,4 @@ The installation program recognizes and uses existing components instead of runn
 
 **Figure 1. {{ product_title }} installation targets and dependencies**
 
-![{{ product_title }} installation targets and dependencies](/_assets/images/targets-and-dependencies.png)
+![{{ product_title }} installation targets and dependencies](/images/targets-and-dependencies.png)

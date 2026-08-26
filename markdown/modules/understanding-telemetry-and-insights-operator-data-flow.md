@@ -12,4 +12,4 @@ Access to the systems that handle customer data is controlled through multi-fact
 
 Telemetry and {{ insights_operator }} data flow
 
-:   ![Telemetry and {{ insights_operator }} data flow](/_assets/images/telmetry-and-insights-operator-data-flow.png)
+:   ![Telemetry and {{ insights_operator }} data flow](/images/telmetry-and-insights-operator-data-flow.png)

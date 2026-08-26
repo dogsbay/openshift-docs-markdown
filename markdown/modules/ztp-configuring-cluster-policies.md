@@ -19,7 +19,7 @@ For scalability and to reduce the complexity of managing configurations across t
 
 The following diagram shows how the policy generator interacts with GitOps and {{ rh_rhacm }} in the configuration phase of cluster deployment.
 
-![Policy generator](/_assets/images/217_OpenShift_Zero_Touch_Provisioning_updates_1022_3.png)
+![Policy generator](/images/217_OpenShift_Zero_Touch_Provisioning_updates_1022_3.png)
 
 For large fleets of clusters, it is typical for there to be a high-level of consistency in the configuration of those clusters.
 

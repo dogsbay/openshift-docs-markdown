@@ -52,7 +52,7 @@ To confirm that the sample Bookinfo application was successfully deployed, perfo
 1.  Click **Display idle nodes** from the **Display** menu.
 
     This displays nodes that are defined but have not received or sent requests. It can confirm that an application is properly defined, but that no request traffic has been reported.
-    ![Kiali displaying bookinfo application](/_assets/images/ossm-kiali-graph-bookinfo.png)
+    ![Kiali displaying bookinfo application](/images/ossm-kiali-graph-bookinfo.png)
     *   Use the **Duration** menu to increase the time period to help ensure older traffic is captured.
     *   Use the **Refresh Rate** menu to refresh traffic more or less often, or not at all.
 1.  Click **Services**, **Workloads** or **Istio Config** to see list views of bookinfo components, and confirm that they are healthy.

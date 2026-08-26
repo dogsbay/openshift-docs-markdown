@@ -11,7 +11,7 @@ The hosted zones can be created in either the centrally-managed VPC account or i
 :::
 
 
-![Step three of the shared VPC workflow showing hosted zone creation and role updates.](/_assets/images/522-shared-vpc-step-3.png)
+![Step three of the shared VPC workflow showing hosted zone creation and role updates.](/images/522-shared-vpc-step-3.png)
 
 * The hosted zones can be created in either the centrally-managed VPC account or in the workload account in which the cluster is deployed.
 

@@ -31,8 +31,8 @@ After you have configured the application to export the metrics and the monitori
     myapp_processed_ops_total{namespace="ns1", job="helloworld-go-sm"}
     ```
 1.  Observe the visualized metrics:
-    ![Observing metrics of a service](/_assets/images/serverless-monitoring-service-example1.png)
-    ![Observing metrics of a service](/_assets/images/serverless-monitoring-service-example2.png)
+    ![Observing metrics of a service](/images/serverless-monitoring-service-example1.png)
+    ![Observing metrics of a service](/images/serverless-monitoring-service-example2.png)
 
 ## Queue proxy metrics {id="serverless-queue-proxy-metrics_{{ context }}"}
 {%- set context = "serverless-queue-proxy-metrics" %}

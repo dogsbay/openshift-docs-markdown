@@ -11,9 +11,9 @@ To manage your cluster and deploy applications from the command line on Linux, i
 
 {%- if not (openshift_rosa or openshift_dedicated) %}
 1.  From the web console, click **?**.
-    ![click-question-mark](/_assets/images/click-question-mark.png)
+    ![click-question-mark](/images/click-question-mark.png)
 1.  Click **Command Line Tools**.
-    ![CLI-list](/_assets/images/CLI-list.png)
+    ![CLI-list](/images/CLI-list.png)
 1.  Select appropriate `oc` binary for your Linux platform, and then click **Download oc for Linux**.
 1.  Save the file.
 1.  Unpack the archive.

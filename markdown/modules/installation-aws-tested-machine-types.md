@@ -33,7 +33,7 @@ Use the machine types included in the following charts for your {{ aws_short }} 
 
 
 {% if not (local_zone or wavelength_zone or secretregion) %}
-**Machine types based on 64-bit x86 architecture**
+See the following machine types based on 64-bit x86 architecture:
 
 * `c4.*`
 * `c5.*`
@@ -53,9 +53,10 @@ Use the machine types included in the following charts for your {{ aws_short }} 
 * `r6i.*`
 * `t3.*`
 * `t3a.*`
+
 {% endif %}
 {% if local_zone %}
-**Machine types based on 64-bit x86 architecture for {{ aws_short }} Local Zones**
+See the following machine types based on 64-bit x86 architecture for AWS Local Zones:
 
 *   `c5.*`
 *   `c5d.*`
@@ -63,15 +64,17 @@ Use the machine types included in the following charts for your {{ aws_short }} 
 *   `m5.*`
 *   `r5.*`
 *   `t3.*`
+
 {% endif %}
 {% if wavelength_zone %}
-**Machine types based on 64-bit x86 architecture for {{ aws_short }} Wavelength Zones**
+See the following machine types based on 64-bit x86 architecture for AWS Wavelength Zones:
 
 *   `r5.*`
 *   `t3.*`
+
 {% endif %}
 {% if secretregion %}
-**Machine types based on 64-bit x86 architecture for secret regions**
+See the following machine types based on 64-bit x86 architecture for secret regions:
 
 *   `c4.*`
 *   `c5.*`

@@ -5,7 +5,7 @@ The following components and technologies implement Network-Bound Disk Encryptio
 
 <a name="fig-NBDE-Clevis-Tang"></a>**Figure 1. NBDE scheme when using a LUKS1-encrypted volume. The luksmeta package is not used for LUKS2 volumes.**
 
-![Network-Bound Disk Encryption (NBDE)](/_assets/images/179_OpenShift_NBDE_implementation_0821_3.png)
+![Network-Bound Disk Encryption (NBDE)](/images/179_OpenShift_NBDE_implementation_0821_3.png)
 
 <a name="fig-NBDE-Clevis-Tang"></a>
 

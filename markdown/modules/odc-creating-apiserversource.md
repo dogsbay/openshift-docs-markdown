@@ -33,7 +33,7 @@ After Knative Eventing is installed on your cluster, you can create an API serve
 **Verification**
 
 *   After you have created the API server source, you will see it connected to the service it is sinked to in the **Topology** view.
-    ![ApiServerSource Topology view](/_assets/images/toplogy-odc-apiserver.png)
+    ![ApiServerSource Topology view](/images/toplogy-odc-apiserver.png)
 
 
     :::note
@@ -47,4 +47,4 @@ After Knative Eventing is installed on your cluster, you can create an API serve
 
 1.  Navigate to the **Topology** view.
 1.  Right-click the API server source and select **Delete ApiServerSource**.
-    ![Delete the ApiServerSource](/_assets/images/delete-apiserversource-odc.png)
+    ![Delete the ApiServerSource](/images/delete-apiserversource-odc.png)

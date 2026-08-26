@@ -6,32 +6,32 @@ The `cloud-event-proxy` sidecar container can access the same resources as the p
 
 **Figure 1. Overview of PTP fast events with consumer sidecar and HTTP message transport**
 
-![Overview of PTP fast events with consumer sidecar and HTTP message transport](/_assets/images/319_OpenShift_PTP_bare-metal_OCP_nodes_0323_4.13.png)
+![Overview of PTP fast events with consumer sidecar and HTTP message transport](/images/319_OpenShift_PTP_bare-metal_OCP_nodes_0323_4.13.png)
 
 
-<img src="/_assets/images/darkcircle-1.png" alt="20" width="20"> Event is generated on the cluster host
+<img src="/images/darkcircle-1.png" alt="20" width="20"> Event is generated on the cluster host
 :   `linuxptp-daemon` in the PTP Operator-managed pod runs as a Kubernetes `DaemonSet` and manages the various `linuxptp` processes (`ptp4l`, `phc2sys`, and optionally for grandmaster clocks, `ts2phc`).
     The `linuxptp-daemon` passes the event to the UNIX domain socket.
 
 
-<img src="/_assets/images/darkcircle-2.png" alt="20" width="20"> Event is passed to the cloud-event-proxy sidecar
+<img src="/images/darkcircle-2.png" alt="20" width="20"> Event is passed to the cloud-event-proxy sidecar
 :   The PTP plugin reads the event from the UNIX domain socket and passes it to the `cloud-event-proxy` sidecar in the PTP Operator-managed pod.
     `cloud-event-proxy` delivers the event from the Kubernetes infrastructure to Cloud-Native Network Functions (CNFs) with low latency.
 
 
-<img src="/_assets/images/darkcircle-3.png" alt="20" width="20"> Event is persisted
+<img src="/images/darkcircle-3.png" alt="20" width="20"> Event is persisted
 :   The `cloud-event-proxy` sidecar in the PTP Operator-managed pod processes the event and publishes the cloud-native event by using a REST API.
 
 
-<img src="/_assets/images/darkcircle-4.png" alt="20" width="20"> Message is transported
+<img src="/images/darkcircle-4.png" alt="20" width="20"> Message is transported
 :   The message transporter transports the event to the `cloud-event-proxy` sidecar in the application pod over HTTP.
 
 
-<img src="/_assets/images/darkcircle-5.png" alt="20" width="20"> Event is available from the REST API
+<img src="/images/darkcircle-5.png" alt="20" width="20"> Event is available from the REST API
 :   The `cloud-event-proxy` sidecar in the Application pod processes the event and makes it available by using the REST API.
 
 
-<img src="/_assets/images/darkcircle-6.png" alt="20" width="20"> Consumer application requests a subscription and receives the subscribed event
+<img src="/images/darkcircle-6.png" alt="20" width="20"> Consumer application requests a subscription and receives the subscribed event
 :   The consumer application sends an API request to the `cloud-event-proxy` sidecar in the application pod to create a PTP events subscription.
     The `cloud-event-proxy` sidecar creates an HTTP messaging listener protocol for the resource specified in the subscription.
 

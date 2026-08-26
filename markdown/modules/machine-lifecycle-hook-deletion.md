@@ -45,7 +45,7 @@ In {{ product_title }} {{ product_version }}, there are two lifecycle hooks for 
 
 **Figure 1. Machine deletion flow**
 
-![The sequence of events in the machine `Deleting` phase.](/_assets/images/310_OpenShift_machine_deletion_hooks_0223.png)
+![The sequence of events in the machine `Deleting` phase.](/images/310_OpenShift_machine_deletion_hooks_0223.png)
 
 The machine `Deleting` phase proceeds in the following order:
 

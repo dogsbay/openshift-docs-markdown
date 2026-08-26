@@ -13,7 +13,7 @@
 
 **Figure 1. Overview of Synchronization with GNSS and T-GM**
 
-![GNSS and T-GM system architecture](/_assets/images/319_OpenShift_PTP_bare-metal_OCP_nodes_1023_PTP.png)
+![GNSS and T-GM system architecture](/images/319_OpenShift_PTP_bare-metal_OCP_nodes_1023_PTP.png)
 
 
 Global Navigation Satellite System (GNSS)

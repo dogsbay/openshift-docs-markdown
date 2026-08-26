@@ -10,4 +10,4 @@ In the topology **Graph view** remove a service from your application using the 
 
     **Figure 1. Deleting deployment option**
 
-    ![odc_deleting_deployment](/_assets/images/odc_deleting_deployment.png)
+    ![odc_deleting_deployment](/images/odc_deleting_deployment.png)

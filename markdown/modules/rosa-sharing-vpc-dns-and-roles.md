@@ -11,7 +11,7 @@ For shared VPC clusters, you can choose to create the Operator roles after the c
 :::
 
 
-![372_OpenShift_on_AWS_persona_worflows_0923_2](/_assets/images/372_OpenShift_on_AWS_persona_worflows_0923_2.png)
+![372_OpenShift_on_AWS_persona_worflows_0923_2](/images/372_OpenShift_on_AWS_persona_worflows_0923_2.png)
 
 **Prerequisites**
 

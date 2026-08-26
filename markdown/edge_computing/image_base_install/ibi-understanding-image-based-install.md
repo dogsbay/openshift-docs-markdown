@@ -28,7 +28,7 @@ An image-based approach to installing and deploying {{ sno }} clusters at the fa
 
 **Figure 1. Overview of an image-based installation and deployment for managed {{ sno }} clusters**
 
-![Overview of an image-based installation and deployment](/_assets/images/711_OpenShift_IBI_Installation_high-level_0624.png)
+![Overview of an image-based installation and deployment](/images/711_OpenShift_IBI_Installation_high-level_0624.png)
 
 
 Imaged-based installation

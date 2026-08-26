@@ -96,5 +96,5 @@ Other key features
 
     **Figure 1. High-level {{ product_title }} overview**
 
-    ![High-level {{ product_title }} flow](/_assets/images/ocp_arch_lifecycle.png)
+    ![High-level {{ product_title }} flow](/images/ocp_arch_lifecycle.png)
 {% endif %}

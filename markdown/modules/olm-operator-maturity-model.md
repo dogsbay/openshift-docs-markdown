@@ -9,4 +9,4 @@ One can however generalize the scale of the maturity of the encapsulated operati
 
 **Figure 1. Operator maturity model**
 
-![operator-maturity-model](/_assets/images/operator-maturity-model.png)
+![operator-maturity-model](/images/operator-maturity-model.png)

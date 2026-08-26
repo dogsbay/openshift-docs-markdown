@@ -3,7 +3,7 @@
 
 You can explore the different components of the OSToy application by reviewing its architectural breakdown. Understanding this structure prepares you to successfully deploy and manage its microservices. {._abstract}
 
-![Preview of the OSToy homepage](/_assets/images/ostoy-homepage.png)
+![Preview of the OSToy homepage](/images/ostoy-homepage.png)
 
 1.  Pod name
 1.  **Home:** Application home page

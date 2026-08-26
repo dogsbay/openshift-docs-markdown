@@ -24,7 +24,7 @@ For platforms that support using the CCO in multiple modes, you must determine w
 
 **Figure 1. Credentials update requirements by platform type**
 
-![Decision tree showing the possible update paths for your cluster depending on the configured CCO credentials mode.](/_assets/images/334_OpenShift_cluster_updating_and_CCO_workflows_0523_4.11_B_AliCloud_patch.png)
+![Decision tree showing the possible update paths for your cluster depending on the configured CCO credentials mode.](/images/334_OpenShift_cluster_updating_and_CCO_workflows_0523_4.11_B_AliCloud_patch.png)
 
 
 {{ rh_openstack_first }} and VMware vSphere

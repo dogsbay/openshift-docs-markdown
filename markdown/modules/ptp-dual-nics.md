@@ -16,7 +16,7 @@ Dual NIC grandmaster clock
 
     **Figure 1. Dual NIC grandmaster clock**
 
-    ![Dual NIC PTP grandmaster clock connected to GNSS timing source and downstream PTP boundary and ordinary clocks](/_assets/images/openshift-ptp-using-dual-nic-ptp.png)
+    ![Dual NIC PTP grandmaster clock connected to GNSS timing source and downstream PTP boundary and ordinary clocks](/images/openshift-ptp-using-dual-nic-ptp.png)
 
 
     :::note

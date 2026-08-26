@@ -117,7 +117,7 @@ Configure your VPC according to the following requirements:
 
 **Figure 1. Sample VPC Architecture**
 
-![VPC Reference Architecture](/_assets/images/VPC-Diagram.png)
+![VPC Reference Architecture](/images/VPC-Diagram.png)
 {% endif %}
 
 ## Security groups {id="rosa-security-groups_{{ context }}"}

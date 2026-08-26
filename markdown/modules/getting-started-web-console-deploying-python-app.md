@@ -11,7 +11,7 @@ The following procedure deploys `nationalparks`, which is the back-end component
 
 **Procedure**
 
-1.  From the **Quick create** (![title="Quick create menu"](/_assets/images/fa-plus-circle.png)) menu in the upper right corner, click **Import from Git**.
+1.  From the **Quick create** (![fa-plus-circle](/images/fa-plus-circle.png "Quick create menu")) menu in the upper right corner, click **Import from Git**.
 1.  In the **Git Repo URL** field, enter `https://github.com/openshift-roadshow/nationalparks-py.git`.
 
     A builder image is automatically detected, but the import strategy defaults to Dockerfile instead of Python.

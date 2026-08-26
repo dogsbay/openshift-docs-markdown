@@ -10,7 +10,7 @@ Deploy a MongoDB database application to contain the information that your appli
 
 **Procedure**
 
-1.  From the **Quick create** (![title="Quick create menu"](/_assets/images/fa-plus-circle.png)) menu in the upper right corner, click **Container images**.
+1.  From the **Quick create** (![fa-plus-circle](/images/fa-plus-circle.png "Quick create menu")) menu in the upper right corner, click **Container images**.
 1.  Select **Image name from external registry** and enter `registry.redhat.io/rhmap47/mongodb`.
 1.  In the **Runtime icon** field, search for and select `mongodb`.
 1.  Scroll to the **General** section.

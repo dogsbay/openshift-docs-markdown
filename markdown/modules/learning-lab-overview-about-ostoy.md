@@ -13,4 +13,4 @@ This application has a user interface where you can:
 *   Check network connectivity, intra-cluster Domain Name System (DNS), and intra-communication with the included microservice
 *   Increase the load to view automatic scaling of the pods by using the Horizontal Pod Autoscaler (HPA)
 
-![OSToy architecture diagram](/_assets/images/ostoy-arch.png)
+![OSToy architecture diagram](/images/ostoy-arch.png)

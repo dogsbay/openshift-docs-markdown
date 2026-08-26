@@ -14,4 +14,4 @@ OSToy is a simple Node.js application that you will deploy to a ROSA cluster to 
 
 ## OSToy Application Diagram {id="_ostoy_application_diagram"}
 
-![OSToy architecture diagram](/_assets/images/ostoy-arch.png)
+![OSToy architecture diagram](/images/ostoy-arch.png)

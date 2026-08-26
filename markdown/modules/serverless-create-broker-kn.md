@@ -27,4 +27,4 @@ Brokers can be used in combination with triggers to deliver events from an event
     default   http://broker-ingress.knative-eventing.svc.cluster.local/test/default   45s   5 OK / 5     True
     ```
 1.  Optional: If you are using the {{ product_title }} web console, you can navigate to the **Topology** view in the **Developer** perspective, and observe that the broker exists:
-    ![View the broker in the web console Topology view](/_assets/images/odc-view-broker.png)
+    ![View the broker in the web console Topology view](/images/odc-view-broker.png)

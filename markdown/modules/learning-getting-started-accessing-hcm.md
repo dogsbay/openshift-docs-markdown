@@ -11,7 +11,7 @@ You can access your cluster by using the {{ hybrid_console_second }}, which serv
     $ rosa describe cluster -c <cluster-name> | grep Console
     ```
 1.  Click your IDP. For example, "rosa-github".
-    ![cloud-experts-getting-started-accessing-copy-token](/_assets/images/cloud-experts-getting-started-accessing-copy-token.png)
+    ![cloud-experts-getting-started-accessing-copy-token](/images/cloud-experts-getting-started-accessing-copy-token.png)
 1.  Enter your user credentials.
 1.  You should be logged in. If you are following the tutorials, you will be a cluster-admin and should see the {{ hybrid_console_second }} webpage with the **Administrator** panel visible.
-    ![cloud-experts-getting-started-accessing-logged](/_assets/images/cloud-experts-getting-started-accessing-logged.png)
+    ![cloud-experts-getting-started-accessing-logged](/images/cloud-experts-getting-started-accessing-logged.png)

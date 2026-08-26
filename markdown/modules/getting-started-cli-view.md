@@ -29,6 +29,6 @@ After you have deployed the necessary applications and loaded data into the data
 
     **Figure 1. National parks across the world**
 
-    ![Map of the national parks across the world](/_assets/images/getting-started-map-national-parks.png)
+    ![Map of the national parks across the world](/images/getting-started-map-national-parks.png)
 
     If you allow the application to access your location, the map will center on your location.

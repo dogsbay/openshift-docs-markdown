@@ -23,7 +23,7 @@ Rather, MetalLB implements a failover mechanism for layer 2 so that when a `spea
 When a node becomes unavailable, failover is automatic.
 The `speaker` pods on the other nodes detect that a node is unavailable and a new `speaker` pod and node take ownership of the service IP address from the failed node.
 
-![Conceptual diagram for MetalLB and layer 2 mode](/_assets/images/nw-metallb-layer2.png)
+![Conceptual diagram for MetalLB and layer 2 mode](/images/nw-metallb-layer2.png)
 
 The preceding graphic shows the following concepts related to MetalLB:
 

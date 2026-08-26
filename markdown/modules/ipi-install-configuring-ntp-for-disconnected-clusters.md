@@ -13,7 +13,7 @@ Use the following procedure to configure NTP servers on the control plane nodes 
 
 **Figure 1. Configuring NTP for disconnected clusters**
 
-![Configuring NTP for disconnected clusters](/_assets/images/152_OpenShift_Config_NTP_0421.png)
+![Configuring NTP for disconnected clusters](/images/152_OpenShift_Config_NTP_0421.png)
 
 {{ product_title }} nodes must agree on a date and time to run properly. When compute nodes retrieve the date and time from the NTP servers on the control plane nodes, it enables the installation and operation of clusters that are not connected to a routable network and thereby do not have access to a higher stratum NTP server.
 

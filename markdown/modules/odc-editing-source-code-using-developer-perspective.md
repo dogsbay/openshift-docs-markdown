@@ -15,5 +15,5 @@ You can use the **Topology** view in the **Developer** perspective to edit the s
 
 {% if not (openshift_rosa or openshift_dedicated) %}
 
-    If the **Eclipse Che** Operator is installed in your cluster, a Che workspace (![title="Che Workspace"](/_assets/images/odc_che_workspace.png)) is created and you are directed to the workspace to edit your source code. If it is not installed, you will be directed to the Git repository (![title="Git Repository"](/_assets/images/odc_git_repository.png)) your source code is hosted in.
+    If the **Eclipse Che** Operator is installed in your cluster, a Che workspace (![odc_che_workspace](/images/odc_che_workspace.png "Che Workspace")) is created and you are directed to the workspace to edit your source code. If it is not installed, you will be directed to the Git repository (![odc_git_repository](/images/odc_git_repository.png "Git Repository")) your source code is hosted in.
 {% endif %}

@@ -78,7 +78,16 @@
   & th:not(.dba-api *) { text-align: left; vertical-align: bottom; font-weight: 600; padding: 0.5rem; border-bottom: 2px solid var(--border); }
   & td:not(.dba-api *) { padding: 0.5rem; vertical-align: top; border-bottom: 1px solid var(--border); }
 
-  & img:not(.dba-api *) { max-width: 100%; border-radius: 0.5rem; }
+    /* Tailwind Preflight sets display: block on every img, which turns an
+       INLINE icon into its own line and splits the sentence around it —
+       AsciiDoc UI macros render mid-step and were breaking every procedure
+       that used one. inline-block restores the flow and leaves a standalone
+       image (the only child of its paragraph) looking exactly as before. */
+    & img:not(.dba-api *) { display: inline-block; max-width: 100%; border-radius: 0.5rem; }
+    /* A standalone image — the only child of its paragraph — keeps block
+       layout, so the vertical rhythm and the absence of baseline descender
+       space are exactly what they were before inline icons were fixed. */
+    & p > img:only-child:not(.dba-api *) { display: block; }
 
   & .heading-anchor { text-decoration: none; opacity: 0; margin-right: 0.25rem; transition: opacity 0.2s; }
   & h1:hover .heading-anchor, & h2:hover .heading-anchor, & h3:hover .heading-anchor, & h4:hover .heading-anchor { opacity: 0.4; }
@@ -179,5 +188,3 @@
     display: none;
   }
 }
-/* dogsbay:plugins:begin */
-/* dogsbay:plugins:end */

@@ -5,7 +5,7 @@ Before installation, you must configure networking settings for the provisioner 
 
 **Figure 1. Configure networking**
 
-![Configure networking](/_assets/images/210_OpenShift_Baremetal_IPI_Deployment_updates_0122_1.png)
+![Configure networking](/images/210_OpenShift_Baremetal_IPI_Deployment_updates_0122_1.png)
 
 
 :::note

@@ -50,10 +50,10 @@ You can create a machine pool with either the command-line interface (CLI) or th
         ```
 *   Create a machine pool with the UI.
     1.  Log in to the {{ cluster_manager_url }} and click your cluster.
-        ![cloud-experts-getting-started-managing-ocm-cluster](/_assets/images/cloud-experts-getting-started-managing-ocm-cluster.png)
+        ![cloud-experts-getting-started-managing-ocm-cluster](/images/cloud-experts-getting-started-managing-ocm-cluster.png)
     1.  Click **Machine pools**.
 
-        ![cloud-experts-getting-started-managing-mp-ocm](/_assets/images/cloud-experts-getting-started-managing-mp-ocm.png)
+        ![cloud-experts-getting-started-managing-mp-ocm](/images/cloud-experts-getting-started-managing-mp-ocm.png)
     1.  Click **Add machine pool**.
     1.  Enter the desired configuration.
 
@@ -63,6 +63,6 @@ You can create a machine pool with either the command-line interface (CLI) or th
         
         :::
 
-        ![cloud-experts-getting-started-managing-mp-nlt](/_assets/images/cloud-experts-getting-started-managing-mp-nlt.png)
+        ![cloud-experts-getting-started-managing-mp-nlt](/images/cloud-experts-getting-started-managing-mp-nlt.png)
     1.  You will see the new machine pool you created.
-        ![cloud-experts-getting-started-managing-mp-fromui](/_assets/images/cloud-experts-getting-started-managing-mp-fromui.png)
+        ![cloud-experts-getting-started-managing-mp-fromui](/images/cloud-experts-getting-started-managing-mp-fromui.png)

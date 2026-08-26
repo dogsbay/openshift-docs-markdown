@@ -21,4 +21,4 @@ You can verify that the broker was created by viewing broker components in the *
 
 1.  In the **Developer** perspective, navigate to **Topology**.
 1.  View the `mt-broker-ingress`, `mt-broker-filter`, and `mt-broker-controller` components.
-    ![View the broker components in the Topology view](/_assets/images/serverless-verify-broker-odc.png)
+    ![View the broker components in the Topology view](/images/serverless-verify-broker-odc.png)

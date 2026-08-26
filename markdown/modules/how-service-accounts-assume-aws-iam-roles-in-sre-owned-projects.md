@@ -18,7 +18,7 @@ The following diagram illustrates the workflow for assuming AWS IAM roles in SRE
 
 **Figure 1. Workflow for assuming AWS IAM roles in SRE-owned projects**
 
-![Workflow for assuming AWS IAM roles in Red&#160;Hat SRE-owned projects](/_assets/images/workflow-assuming-aws-iam-roles-sre-owned-projects.png)
+![Workflow for assuming AWS IAM roles in Red&#160;Hat SRE-owned projects](/images/workflow-assuming-aws-iam-roles-sre-owned-projects.png)
 
 The workflow has the following stages:
 

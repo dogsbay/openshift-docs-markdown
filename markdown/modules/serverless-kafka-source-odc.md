@@ -29,4 +29,4 @@ You can verify that the Kafka event source was created and is connected to the s
 
 1.  In the **Developer** perspective, navigate to **Topology**.
 1.  View the Kafka event source and sink.
-    ![View the Kafka source and service in the Topology view](/_assets/images/verify-kafka-ODC.png)
+    ![View the Kafka source and service in the Topology view](/images/verify-kafka-ODC.png)

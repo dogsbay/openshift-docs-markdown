@@ -3,7 +3,7 @@
 
 The Cluster Network Addons Operator, `cluster-network-addons-operator`, deploys networking components on a cluster and manages the related resources for extended network functionality. {._abstract}
 
-![cluster-network-addons-operator components](/_assets/images/cnv_components_cluster-network-addons-operator.png)
+![cluster-network-addons-operator components](/images/cnv_components_cluster-network-addons-operator.png)
 
 **Cluster Network Addons Operator components**
 

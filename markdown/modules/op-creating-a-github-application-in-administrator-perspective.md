@@ -21,7 +21,7 @@ You have installed the {{ pipelines_title }} `{{ pipelines_ver }}`{minja} operat
 
 After successful creation of the GitHub App, the {{ product_title }} web console opens and displays the details about the application.
 
-![Github-app-details](/_assets/images/Github-app-details.png)
+![Github-app-details](/images/Github-app-details.png)
 
 The details of the GitHub App are saved as a secret in the `openShift-pipelines` namespace.
 

@@ -3,7 +3,7 @@
 
 The HPP Operator, `hostpath-provisioner-operator`, deploys and manages the multi-node HPP and related resources. {._abstract}
 
-![hpp-operator components](/_assets/images/cnv_components_hpp-operator.png)
+![hpp-operator components](/images/cnv_components_hpp-operator.png)
 
 **HPP Operator components**
 

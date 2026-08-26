@@ -9,7 +9,7 @@ Follower clocks are synchronized to leader clocks, and follower clocks can thems
 
 **Figure 1. PTP nodes in the network**
 
-![Diagram showing a PTP grandmaster clock](/_assets/images/319_OpenShift_PTP_bare-metal_OCP_nodes_1123_PTP_network.png)
+![Diagram showing a PTP grandmaster clock](/images/319_OpenShift_PTP_bare-metal_OCP_nodes_1123_PTP_network.png)
 
 The three primary types of PTP clocks are described in the following sections.
 

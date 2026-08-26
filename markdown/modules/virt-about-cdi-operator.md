@@ -3,7 +3,7 @@
 
 The CDI Operator, `cdi-operator`, manages CDI and its related resources, which imports a virtual machine (VM) image into a persistent volume claim (PVC) by using a data volume. {._abstract}
 
-![cdi-operator components](/_assets/images/cnv_components_cdi-operator.png)
+![cdi-operator components](/images/cnv_components_cdi-operator.png)
 
 **CDI Operator components**
 

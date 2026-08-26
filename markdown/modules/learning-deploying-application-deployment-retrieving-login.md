@@ -13,7 +13,7 @@ Before creating a cluster, you must log in to the {{ rosa_cli_first }}. Install 
     If you are logged in to the command-line interface, skip to "Creating a new project". If you are not logged in to the command-line interface, continue this procedure.
 1.  Access your cluster with the web console.
 1.  Click the dropdown arrow next to your login name in the upper right corner, and select **Copy Login Command**.
-    ![CLI login screen](/_assets/images/4-cli-login.png)
+    ![CLI login screen](/images/4-cli-login.png)
 
     A new tab opens. 
 1.  Select your authentication method.

@@ -6,7 +6,7 @@ You can force the application that you deployed to malfunction to see how failur
 **Procedure**
 
 *   From the OSToy application, click **Toggle Health** in the **Toggle Health Status** tile. Watch **Current Health** switch to **I’m not feeling all that well**.
-    ![OSToy toggle health tile](/_assets/images/5-ostoy-togglehealth.png)
+    ![OSToy toggle health tile](/images/5-ostoy-togglehealth.png)
 
 **Verification**
 
@@ -14,7 +14,7 @@ After the previous step, the application stops responding with a `200 HTTP code`
 
 The following image shows an example of what you should see on your pod events page.
 
-![Pod events list](/_assets/images/5-ostoy-podevents2.png)
+![Pod events list](/images/5-ostoy-podevents2.png)
 
 **A.** The pod has three consecutive failures.
 **B.** Kubernetes stops the pod.

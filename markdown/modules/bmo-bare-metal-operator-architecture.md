@@ -3,7 +3,7 @@
 
 The Bare Metal Operator uses multiple resources to provision, manage, and inspect bare-metal hosts, including the `BareMetalHost`, `HostFirmwareSettings`, `FirmwareSchema`, `HostFirmwareComponents`, and `HostUpdatePolicy` resources. {._abstract}
 
-![BMO architecture overview](/_assets/images/715_OpenShift_Bare_Metal_Operator_updates_0624.png)
+![BMO architecture overview](/images/715_OpenShift_Bare_Metal_Operator_updates_0624.png)
 
 
 BareMetalHost

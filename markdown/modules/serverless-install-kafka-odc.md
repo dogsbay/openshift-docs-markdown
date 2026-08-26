@@ -76,7 +76,7 @@ The Knative broker implementation for Apache Kafka provides integration options 
 
 1.  Click on the **knative-kafka** resource in the **Knative Kafka** tab. You are automatically directed to the **Knative Kafka Overview** page.
 1.  View the list of **Conditions** for the resource and confirm that they have a status of **True**.
-    ![Kafka Knative Overview page showing Conditions](/_assets/images/knative-kafka-overview.png)
+    ![Kafka Knative Overview page showing Conditions](/images/knative-kafka-overview.png)
 
     If the conditions have a status of **Unknown** or **False**, wait a few moments to refresh the page.
 1.  Check that the Knative broker for Apache Kafka resources have been created:

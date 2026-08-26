@@ -13,7 +13,7 @@ You can use the **+Add** view to add multiple components or services to your pro
 
     **Figure 1. Application grouping**
 
-    ![odc_app_grouping_label](/_assets/images/odc_app_grouping_label.png)
+    ![odc_app_grouping_label](/images/odc_app_grouping_label.png)
 
 Alternatively, you can also add the component to an application as follows:
 

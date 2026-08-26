@@ -16,4 +16,4 @@ In support of required telco operational features, core clusters have a standard
 
 **Figure 1. Telco core RDS cluster service-based architecture and networking topology**
 
-![5G core cluster showing a service-based architecture with overlaid networking topology](/_assets/images/openshift-5g-core-cluster-architecture-networking.png)
+![5G core cluster showing a service-based architecture with overlaid networking topology](/images/openshift-5g-core-cluster-architecture-networking.png)

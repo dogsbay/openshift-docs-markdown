@@ -9,15 +9,15 @@ The worker nodes are deployed in your AWS account and run on your VPC private su
 
 **Figure 1. {{ product_title }} architecture**
 
-![{{ product_title }} architecture](/_assets/images/544_OpenShift_ROSA-HCP_architecture-model.png)
+![{{ product_title }} architecture](/images/544_OpenShift_ROSA-HCP_architecture-model.png)
 
 ## {{ product_title }} architecture on public and private networks {id="rosa-hcp-network-architecture_{{ context }}"}
 With {{ product_title }}, you can create your clusters on public or private networks. The following images depict the architecture of both public and private networks.
 
 **Figure 2. {{ product_title }} deployed on a public network**
 
-![{{ product_title }} deployed on a public network](/_assets/images/544_OpenShift_ROSA-HCP-and-ROSA-Classic-public.png)
+![{{ product_title }} deployed on a public network](/images/544_OpenShift_ROSA-HCP-and-ROSA-Classic-public.png)
 
 **Figure 3. {{ product_title }} deployed on a private network**
 
-![{{ product_title }} deployed on a private network](/_assets/images/544_OpenShift_ROSA-HCP-and-ROSA-Classic-private.png)
+![{{ product_title }} deployed on a private network](/images/544_OpenShift_ROSA-HCP-and-ROSA-Classic-private.png)

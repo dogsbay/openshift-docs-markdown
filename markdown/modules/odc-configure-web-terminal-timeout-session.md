@@ -17,7 +17,7 @@ cluster that has the {{ web_terminal_op }} installed.
 
 **Procedure**
 
-1.  Click the web terminal icon (![title="web terminal icon"](/_assets/images/odc-wto-icon.png)).
+1.  Click the web terminal icon (![odc-wto-icon](/images/odc-wto-icon.png "web terminal icon")).
 1.  Optional: Set the web terminal timeout for the current session:
     1.  Click Timeout.
     1.  In the field that is displayed, enter the timeout value.

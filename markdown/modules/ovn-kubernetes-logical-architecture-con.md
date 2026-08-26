@@ -5,7 +5,7 @@ OVN-Kubernetes is a network virtualization solution that creates logical switche
 
 **Figure 1. OVN-Kubernetes router and switch components**
 
-![OVN-Kubernetes logical architecture](/_assets/images/299_OpenShift_OVN-Kubernetes_arch_1023_2.png)
+![OVN-Kubernetes logical architecture](/images/299_OpenShift_OVN-Kubernetes_arch_1023_2.png)
 
 The key components involved in packet processing are:
 

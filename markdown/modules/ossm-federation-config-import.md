@@ -2,7 +2,7 @@
 
 Importing services lets you explicitly specify which services exported from another mesh should be accessible within your service mesh.
 
-![Service Mesh federation importing service illustration](/_assets/images/ossm-federation-import-service.png)
+![Service Mesh federation importing service illustration](/images/ossm-federation-import-service.png)
 
 You use an `ImportedServiceSet` resource to select services for import. Only services exported by a mesh peer and explicitly imported are available to the mesh. Services that you do not explicitly import are not made available within the mesh.
 

@@ -25,7 +25,7 @@ same product and, therefore, all software and features are delivered in both.
 There is only one download, {{ product_title }}. {{ oke }} uses the {{ product_title }}
 documentation and support services and bug errata for this reason.
 
-![Red Hat {{ oke }}](/_assets/images/oke-about-ocp-stack-image.png)
+![Red Hat {{ oke }}](/images/oke-about-ocp-stack-image.png)
 
 You download and install {{ oke }} the same way as {{ product_title }},
 as they are the same binary distribution, but {{ oke }} offers a subset of the

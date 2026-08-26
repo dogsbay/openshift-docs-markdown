@@ -27,7 +27,7 @@ SREs access private clusters using an encrypted HTTP connection. Connections are
 
 **Figure 1. SRE access to ROSA clusters**
 
-![267_OpenShift_on_AWS_Access_Networking_1222](/_assets/images/267_OpenShift_on_AWS_Access_Networking_1222.png)
+![267_OpenShift_on_AWS_Access_Networking_1222](/images/267_OpenShift_on_AWS_Access_Networking_1222.png)
 
 ## Privileged access controls in ROSA {id="rosa-policy-privileged-access-control_{{ context }}"}
 SRE adheres to the principle of least privilege when accessing ROSA and AWS components. There are four basic categories of manual SRE access:

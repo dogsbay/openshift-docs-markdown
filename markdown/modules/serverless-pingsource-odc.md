@@ -49,7 +49,7 @@ You can verify that the ping source was created and is connected to the sink by 
 
 1.  In the **Developer** perspective, navigate to **Topology**.
 1.  View the ping source and sink.
-    ![View the ping source and service in the Topology view](/_assets/images/verify-pingsource-ODC.png)
+    ![View the ping source and service in the Topology view](/images/verify-pingsource-ODC.png)
 
 **Deleting the ping source**
 

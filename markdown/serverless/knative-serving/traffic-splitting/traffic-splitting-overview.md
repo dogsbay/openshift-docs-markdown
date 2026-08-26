@@ -5,7 +5,7 @@
 
 In a Knative application, traffic can be managed by creating a traffic split. A traffic split is configured as part of a route, which is managed by a Knative service.
 
-![Traffic management for a Knative application](/_assets/images/knative-service-architecture.png)
+![Traffic management for a Knative application](/images/knative-service-architecture.png)
 
 Configuring a route allows requests to be sent to different revisions of a service. This routing is determined by the `traffic` spec of the `Service` object.
 

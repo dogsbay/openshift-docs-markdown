@@ -11,7 +11,7 @@ The monitoring stack uses the following components:
 
 **Figure 1. {{ product_title }} monitoring architecture**
 
-![{{ product_title }} monitoring architecture](/_assets/images/monitoring-architecture.png)
+![{{ product_title }} monitoring architecture](/images/monitoring-architecture.png)
 
 
 :::note

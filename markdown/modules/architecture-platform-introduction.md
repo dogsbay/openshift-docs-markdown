@@ -8,4 +8,4 @@ With the foundation of {{ product_title }} in Kubernetes, {{ product_title }} in
 With the {{ product_title }} implementation in open
 Red&#160;Hat technologies, you can extend your containerized applications beyond a single cloud to on-premises and multi-cloud environments.
 
-![Red Hat {{ oke }}](/_assets/images/525-OpenShift-arch-012025.png)
+![Red Hat {{ oke }}](/images/525-OpenShift-arch-012025.png)

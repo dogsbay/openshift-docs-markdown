@@ -69,7 +69,7 @@ Customers should expect to see one VPC per cluster. Additionally, the VPC needs 
 
 ## Sample VPC Architecture {id="_sample_vpc_architecture"}
 
-![VPC Reference Architecture](/_assets/images/VPC-Diagram.png)
+![VPC Reference Architecture](/images/VPC-Diagram.png)
 
 ## Security groups {id="aws-policy-security-groups_{{ context }}"}
 

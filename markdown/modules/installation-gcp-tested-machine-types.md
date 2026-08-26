@@ -13,7 +13,8 @@ Some instance types require the use of Hyperdisk storage. If you use an instance
 :::
 
 
-:::details{title="Machine series"}
+See the following machine series:
+
 * `A2`
 * `A3`
 * `C2`
@@ -28,4 +29,3 @@ Some instance types require the use of Hyperdisk storage. If you use an instance
 * `N2D`
 * `N4`
 * `Tau T2D`
-:::

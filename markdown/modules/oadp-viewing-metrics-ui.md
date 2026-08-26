@@ -13,4 +13,4 @@ Review metrics in the {{ product_title }} web console from the **Administrator**
 
         **Figure 1. OADP metrics query**
 
-        ![OADP metrics query](/_assets/images/oadp-metrics-query.png)
+        ![OADP metrics query](/images/oadp-metrics-query.png)

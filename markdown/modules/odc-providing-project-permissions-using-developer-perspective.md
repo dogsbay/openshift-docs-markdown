@@ -16,7 +16,7 @@ You can use the **Project** view in the **Developer** perspective to grant or re
 
     **Figure 1. Project permissions**
 
-    ![odc_project_permissions](/_assets/images/odc_project_permissions.png)
+    ![odc_project_permissions](/images/odc_project_permissions.png)
 1.  Enter the user name, click the **Select a role** drop-down list, and select an appropriate role.
 1.  Click **Save** to add the new permissions.
 1.  Optional: You can complete any of the following additional tasks:

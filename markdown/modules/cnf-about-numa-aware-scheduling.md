@@ -13,7 +13,7 @@ The NUMA Resources Operator deploys a custom NUMA resources secondary scheduler 
 
 **Figure 1. NUMA-aware scheduling overview**
 
-![Diagram of NUMA-aware scheduling that shows how the various components interact with each other in the cluster](/_assets/images/216_OpenShift_Topology-aware_Scheduling_0222.png)
+![Diagram of NUMA-aware scheduling that shows how the various components interact with each other in the cluster](/images/216_OpenShift_Topology-aware_Scheduling_0222.png)
 
 
 NodeResourceTopology API

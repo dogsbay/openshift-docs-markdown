@@ -27,7 +27,7 @@
 
 **Figure 1. {{ olmv0 }} workflow**
 
-![olm-workflow](/_assets/images/olm-workflow.png)
+![olm-workflow](/images/olm-workflow.png)
 
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 OLM runs by default in {{ product_title }} {{ product_version }}, which aids cluster administrators

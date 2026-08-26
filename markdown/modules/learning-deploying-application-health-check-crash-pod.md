@@ -7,7 +7,7 @@ To test the failure states for your application, you can force the pod to crash.
 
 1.  From the OSToy application web console, click **Home** in the left menu, and enter a message in the **Crash Pod** box, for example, `This is goodbye!`. 
 1.  Click **Crash Pod**.
-    ![OSToy crash pod selection](/_assets/images/5-ostoy-crashpod.png)
+    ![OSToy crash pod selection](/images/5-ostoy-crashpod.png)
 
     The pod crashes and Kubernetes restarts the pod.
-    ![OSToy pod crash message](/_assets/images/5-ostoy-crashmsg.png)
+    ![OSToy pod crash message](/images/5-ostoy-crashmsg.png)

@@ -15,7 +15,7 @@ The {{ mce_short }} is the cluster lifecycle Operator that provides cluster mana
 
 **Figure 1. Cluster life cycle and foundation**
 
-![Cluster life cycle and foundation](/_assets/images/acm-mce-intro-diagram.png)
+![Cluster life cycle and foundation](/images/acm-mce-intro-diagram.png)
 
 You can use the {{ mce_short }} with {{ product_title }} as a standalone cluster manager or as part of a {{ rh_rhacm }} hub cluster.
 
@@ -31,4 +31,4 @@ You can deploy {{ product_title }} clusters by using two different control plane
 
 **Figure 2. {{ rh_rhacm }} and the {{ mce_short }} introduction diagram**
 
-![{{ rh_rhacm }} and the {{ mce_short }} introduction diagram](/_assets/images/rhacm-flow.png)
+![{{ rh_rhacm }} and the {{ mce_short }} introduction diagram](/images/rhacm-flow.png)

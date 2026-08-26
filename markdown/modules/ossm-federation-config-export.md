@@ -2,7 +2,7 @@
 
 Exporting services allows a mesh to share one or more of its services with another member of the federated mesh.
 
-![Service Mesh federation exporting service illustration](/_assets/images/ossm-federation-export-service.png)
+![Service Mesh federation exporting service illustration](/images/ossm-federation-export-service.png)
 
 You use an `ExportedServiceSet` resource to declare the services from one mesh that you are making available to another peer in the federated mesh. You must explicitly declare each service to be shared with a peer.
 

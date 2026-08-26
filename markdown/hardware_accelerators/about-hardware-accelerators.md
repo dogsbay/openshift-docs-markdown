@@ -16,7 +16,7 @@ Red&#160;Hat {{ product_title }} provides support for cards and peripheral hardw
 *   Application-specific integrated circuits (ASICs)
 *   Data processing units (DPUs)
 
-![Supported hardware accelerators cards and peripherals](/_assets/images/OCP_HW_Accelerators_5.png)
+![Supported hardware accelerators cards and peripherals](/images/OCP_HW_Accelerators_5.png)
 
 Specialized hardware accelerators provide a rich set of benefits for AI/ML development:
 

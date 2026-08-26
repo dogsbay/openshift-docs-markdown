@@ -22,7 +22,7 @@ The following diagram illustrates the pod identity webhook workflow in user-defi
 
 **Figure 1. Pod identity webhook workflow in user-defined projects**
 
-![Pod identity webhook workflow](/_assets/images/pod-identity-webhook-workflow-in-user-defined-projects.png)
+![Pod identity webhook workflow](/images/pod-identity-webhook-workflow-in-user-defined-projects.png)
 
 The workflow has the following stages:
 

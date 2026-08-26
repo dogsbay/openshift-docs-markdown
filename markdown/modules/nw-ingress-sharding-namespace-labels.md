@@ -5,7 +5,7 @@ You can use namespace labels to configure Ingress Controller sharding so that th
 
 **Figure 1. Ingress sharding by using namespace labels**
 
-![A diagram showing multiple Ingress Controllers with different namespace selectors serving routes that belong to the namespace containing a label that matches a given namespace selector](/_assets/images/nw-sharding-namespace-labels.png)
+![A diagram showing multiple Ingress Controllers with different namespace selectors serving routes that belong to the namespace containing a label that matches a given namespace selector](/images/nw-sharding-namespace-labels.png)
 
 Ingress Controller sharding is useful when balancing incoming traffic load among
 a set of Ingress Controllers and when isolating traffic to a specific Ingress

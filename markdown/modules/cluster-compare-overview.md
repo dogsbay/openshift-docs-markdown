@@ -20,4 +20,4 @@ The ability to intelligently compare a configuration from a cluster with a refer
 
 **Figure 1. Cluster-compare plugin overview**
 
-![Cluster-compare plugin overview](/_assets/images/493-OpenShift-0125.png)
+![Cluster-compare plugin overview](/images/493-OpenShift-0125.png)

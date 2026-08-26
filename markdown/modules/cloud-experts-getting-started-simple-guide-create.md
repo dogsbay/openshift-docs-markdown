@@ -20,4 +20,4 @@ You create your required cluster creation roles using {{ rosa_cli_first }}. {._a
 1.  Use the {{ cluster_manager_url }} to select your AWS account, cluster options, and begin deployment.
 1.  {{ cluster_manager }} UI displays cluster status.
 
-    ![cloud-experts-getting-started-deployment-ui-cluster-create](/_assets/images/cloud-experts-getting-started-deployment-ui-cluster-create.png)
+    ![cloud-experts-getting-started-deployment-ui-cluster-create](/images/cloud-experts-getting-started-deployment-ui-cluster-create.png)

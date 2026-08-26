@@ -29,7 +29,7 @@ You can add both public and private GitHub repositories.
     *   Setup a webhook using **Git access token**:
         1.  Enter your personal access token.
         1.  Click **Generate** corresponding to the **Webhook secret** field to generate a new webhook secret.
-            ![Git-access-token](/_assets/images/Git-access-token.png)
+            ![Git-access-token](/images/Git-access-token.png)
 
             :::note
 
@@ -39,7 +39,7 @@ You can add both public and private GitHub repositories.
 
     *   Setup a webhook using **Git access token secret**:
         *   Select a secret in your namespace from the dropdown list. Depending on the secret you selected, a webhook secret is automatically generated.
-            ![Git-access-token-secret](/_assets/images/Git-access-token-secret.png)
+            ![Git-access-token-secret](/images/Git-access-token-secret.png)
 1.  Add the webhook secret details to your GitHub repository:
     1.  Copy the **webhook URL** and navigate to your GitHub repository settings.
     1.  Click **Webhooks** → **Add webhook**.

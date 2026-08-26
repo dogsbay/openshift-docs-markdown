@@ -12,7 +12,7 @@ Embedding applications requires a similar workflow to embedding {{ microshift_sh
 
 **Embedding {{ microshift_short }} workflow**
 
-![title="Embedding MicroShift in a RHEL for Edge image workflow."](/_assets/images/468_RHbM_install_workflow_1023_1.png)
+![468_RHbM_install_workflow_1023_1](/images/468_RHbM_install_workflow_1023_1.png "Embedding MicroShift in a RHEL for Edge image workflow.")
 
 Reviewing these steps can help you understand the steps needed to embed an application:
 
@@ -30,6 +30,6 @@ The following "Embedding applications workflow" image shows how Kubernetes appli
 
 **Embedding applications workflow**
 
-![title="Embedding applications workflow."](/_assets/images/468_RHbM_install_workflow_1023_2.png)
+![468_RHbM_install_workflow_1023_2](/images/468_RHbM_install_workflow_1023_2.png "Embedding applications workflow.")
 
 The following procedures use the `rpmbuild` tool to create a specification file and local repository. The specification file defines how the package is built, moving your application manifests to the correct location inside the RPM package for {{ microshift_short }} to pick them up. That RPM package is then embedded in the ISO.

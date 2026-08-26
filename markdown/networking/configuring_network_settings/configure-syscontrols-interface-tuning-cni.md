@@ -9,7 +9,7 @@ title: Configuring system controls and interface attributes using the tuning plu
 
 To modify kernel parameters and interface attributes at runtime in {{ product_title }}, you can use the tuning Container Network Interface (CNI) meta plugin. The plugin operates in a chain with a main CNI plugin and allows you to change sysctls and interface attributes such as promiscuous mode, all-multicast mode, MTU, and MAC address. {._abstract}
 
-![CNI plugin](/_assets/images/264_OpenShift_CNI_plugin_chain_0722.png)
+![CNI plugin](/images/264_OpenShift_CNI_plugin_chain_0722.png)
 
 {% leveloffset +1 %}{% include "./modules/nw-cfg-tuning-interface-cni.md" %}{% endleveloffset %}
 

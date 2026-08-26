@@ -8,7 +8,7 @@ To ensure your data is retained after a pod shuts down, you can verify the persi
 1.  Wait for the pod to re-create.
 1.  On the OSToy application console, click **Persistent Storage** in the left menu.
 1.  Find the file you created, and open it to view and confirm the contents.
-    ![cloud-experts-storage-ostoy-existingfile](/_assets/images/cloud-experts-storage-ostoy-existingfile.png)
+    ![cloud-experts-storage-ostoy-existingfile](/images/cloud-experts-storage-ostoy-existingfile.png)
 
 **Verification**
 

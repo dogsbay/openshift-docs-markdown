@@ -19,6 +19,6 @@ To see the pipelines created using **Pipeline builder** in the **Topology** view
 
     **Figure 1. Pipelines in Topology view**
 
-    ![Pipelines in Topology view](/_assets/images/op_pipeline_topology1.png)
+    ![Pipelines in Topology view](/images/op_pipeline_topology1.png)
 
 In the **Topology** page, hover to the left of the application to see the status of its pipeline run. After a pipeline is added, a bottom left icon indicates that there is an associated pipeline.

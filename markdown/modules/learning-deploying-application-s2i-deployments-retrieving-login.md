@@ -12,7 +12,7 @@ To create your cluster, log in to the {{ rosa_cli_first }}. If you need to authe
 
     If you are logged in to the command-line interface, skip to "Creating a new project". If you are not logged in to the command-line interface, continue this procedure.
 1.  If you are not logged in to the {{ rosa_cli }}, in {{ cluster_manager_url }}, click the dropdown arrow next to your name in the upper-right and select **Copy login command**.
-    ![CLI Login](/_assets/images/ostoy-cli-login.png)
+    ![CLI Login](/images/ostoy-cli-login.png)
 1.  A new tab opens. Enter your username and password, and select the authentication method.
 1.  Click **Display Token**
 1.  Copy the command under "Log in with this token".

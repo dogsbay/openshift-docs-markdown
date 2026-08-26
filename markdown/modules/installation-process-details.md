@@ -10,13 +10,13 @@ The temporary bootstrap machine boots by using an Ignition config file that desc
 
 **Figure 1. Creating the bootstrap, control plane, and compute machines**
 
-![Creating bootstrap](/_assets/images/create-nodes.png)
+![Creating bootstrap](/images/create-nodes.png)
 {% endif %}
 {% if openshift_origin %}
 
 **Figure 2. Creating the bootstrap, control plane, and compute machines**
 
-![Creating bootstrap](/_assets/images/150_OpenShift_VMware_on_AWS_1021_installer_FCOS.png)
+![Creating bootstrap](/images/150_OpenShift_VMware_on_AWS_1021_installer_FCOS.png)
 {% endif %}
 
 

@@ -3,7 +3,7 @@
 Radio access network (RAN) is composed of central units (CU), distributed units (DU), and radio units (RU).
 RAN from the telecommunications standard perspective is shown below:
 
-![High level RAN overview](/_assets/images/135_OpenShift_Distributed_Unit_0121.svg)
+![High level RAN overview](/images/135_OpenShift_Distributed_Unit_0121.svg)
 
 From the three components composing RAN, the CU and DU can be virtualized and implemented as cloud-native functions.
 

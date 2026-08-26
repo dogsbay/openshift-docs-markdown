@@ -86,7 +86,7 @@ Follow this procedure to configure a policy that allows external service from th
 {% if not microshift %}
 
     This policy allows traffic from all resources, including external traffic as illustrated in the following diagram:
-    ![Allow traffic from external clients](/_assets/images/292_OpenShift_Configuring_multi-network_policy_1122.png)
+    ![Allow traffic from external clients](/images/292_OpenShift_Configuring_multi-network_policy_1122.png)
 {% endif %}
 
 {% if multi %}

@@ -8,7 +8,7 @@ An Operator acts as a control loop which continuously compares the desired state
 
 **Figure 1. Kubernetes cluster overview**
 
-![247_OpenShift_Kubernetes_Overview-1](/_assets/images/247_OpenShift_Kubernetes_Overview-1.png)
+![247_OpenShift_Kubernetes_Overview-1](/images/247_OpenShift_Kubernetes_Overview-1.png)
 
 **Kubernetes Resources**
 

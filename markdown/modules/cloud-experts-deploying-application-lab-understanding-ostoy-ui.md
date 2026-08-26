@@ -3,7 +3,7 @@
 
 The following diagram explains the various parts of the OSToy application’s UI. {._abstract}
 
-![Preview of the OSToy homepage](/_assets/images/ostoy-homepage.png)
+![Preview of the OSToy homepage](/images/ostoy-homepage.png)
 
 1.  Shows the pod name that served your browser the page.
 1.  **Home:** The main page of the application where you can perform some of the functions listed which we will explore.

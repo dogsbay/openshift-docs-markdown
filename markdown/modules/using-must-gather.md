@@ -58,4 +58,4 @@ $ oc adm must-gather --image={{ must_gather_v1_5 }} -- /usr/bin/gather -h
 
     **Figure 1. Example markdown output of must-gather tool**
 
-    ![must-gather markdown output](/_assets/images/oadp-must-gather-markdown-output.png)
+    ![must-gather markdown output](/images/oadp-must-gather-markdown-output.png)

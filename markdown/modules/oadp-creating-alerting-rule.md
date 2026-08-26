@@ -48,4 +48,4 @@ The {{ product_title }} monitoring stack receives alerts configured by using ale
 
         **Figure 1. OADP backup failing alert**
 
-![OADP backup failing alert](/_assets/images/oadp-backup-failing-alert.png)
+![OADP backup failing alert](/images/oadp-backup-failing-alert.png)

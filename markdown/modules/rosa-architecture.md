@@ -17,7 +17,7 @@ The following image depicts the architecture of a {{ product_title }} cluster de
 
 **Figure 1. {{ product_title }} deployed on public and private networks**
 
-![{{ product_title }} on public and private networks](/_assets/images/156_OpenShift_ROSA_Arch_0621_private_public_classic.png)
+![{{ product_title }} on public and private networks](/images/156_OpenShift_ROSA_Arch_0621_private_public_classic.png)
 
 {{ product_title }} clusters include infrastructure nodes where OpenShift components such as the ingress controller, image registry, and monitoring are deployed. The infrastructure nodes and the OpenShift components deployed on them are managed by {{ product_title }} SREs.
 

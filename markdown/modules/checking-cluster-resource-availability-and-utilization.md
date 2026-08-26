@@ -13,7 +13,7 @@ As an administrator, you can access dashboards for core {{ product_title }} comp
 
 **Figure 1. Example compute resources dashboard**
 
-![Screenshot of the {{ product_title }} monitoring dashboard showing compute resources including CPU usage](/_assets/images/monitoring-dashboard-compute-resources.png)
+![Screenshot of the {{ product_title }} monitoring dashboard showing compute resources including CPU usage](/images/monitoring-dashboard-compute-resources.png)
 
 **Prerequisites**
 

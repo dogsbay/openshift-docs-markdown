@@ -29,7 +29,7 @@ For Knative Eventing, the `mt-broker-filter` and `mt-broker-ingress` deployments
 1.  Select the `knative-eventing` namespace.
 1.  Click **Knative Eventing** in the list of **Provided APIs** for the {{ ServerlessOperatorName }} to go to the **Knative Eventing** tab.
 1.  Click **knative-eventing**, then go to the **YAML** tab in the **knative-eventing** page.
-    ![Knative Eventing YAML](/_assets/images/eventing-YAML-HA.png)
+    ![Knative Eventing YAML](/images/eventing-YAML-HA.png)
 1.  Modify the number of replicas in the `KnativeEventing` CR:
     ```yaml title="Example YAML"
     apiVersion: operator.knative.dev/v1beta1

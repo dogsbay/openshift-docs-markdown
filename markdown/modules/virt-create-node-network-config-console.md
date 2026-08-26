@@ -37,7 +37,7 @@ You can create a policy by using either a form or YAML in the web console. When 
     1.  Optional: Enter the port number in **Port** field.
     1.  Optional: Check the checkbox **Enable STP** to enable STP.
     1.  Optional: To add an interface to the policy, click **Add another interface to the policy**.
-    1.  Optional: To remove an interface from the policy, click ![minus](/_assets/images/fa-minus-circle.svg) icon next to the interface.
+    1.  Optional: To remove an interface from the policy, click ![minus](/images/fa-minus-circle.svg) icon next to the interface.
 
 
         :::note

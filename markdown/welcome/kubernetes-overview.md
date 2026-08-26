@@ -15,7 +15,7 @@ Traditionally, applications were deployed on top of a single operating system. W
 
 **Figure 1. Evolution of container technologies for classical deployments**
 
-![247-OpenShift-Kubernetes-Overview](/_assets/images/247-OpenShift-Kubernetes-Overview.png)
+![247-OpenShift-Kubernetes-Overview](/images/247-OpenShift-Kubernetes-Overview.png)
 
 To solve this problem, you can use containerization technologies that segregate applications in a containerized environment. Similar to a VM, a container has its own filesystem, vCPU, memory, process space, dependencies, and more. Containers are decoupled from the underlying infrastructure, and are portable across clouds and OS distributions. Containers are inherently much lighter than a fully-featured OS, and are lightweight isolated processes that run on the operating system kernel. VMs are slower to boot, and are an abstraction of physical hardware. VMs run on a single machine with the help of a hypervisor.
 

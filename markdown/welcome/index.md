@@ -24,7 +24,7 @@ To learn about {{ product_title }}, interacting with {{ product_title }} by usin
 the "Introduction to ROSA" documentation.
 {%- endif %}
 
-![{{ product_title }}](/_assets/images/291_OpenShift_on_AWS_Intro_1122_docs.png)
+![{{ product_title }}](/images/291_OpenShift_on_AWS_Intro_1122_docs.png)
 {% endif %}
 
 {% if openshift_rosa %}

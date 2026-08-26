@@ -7,10 +7,10 @@ The following diagram displays a {{ product_title }} cluster without traffic rou
 
 **Figure 1. {{ product_title }} cluster without traffic routed into Local Zones**
 
-![{{ product_title }} cluster without traffic routed into Local Zones](/_assets/images/354_OpenShift_ROSA_Local_Zones_0923_1.png)
+![{{ product_title }} cluster without traffic routed into Local Zones](/images/354_OpenShift_ROSA_Local_Zones_0923_1.png)
 
 The following diagram displays a {{ product_title }} cluster with traffic routed into a Local Zone.
 
 **Figure 2. {{ product_title }} cluster with traffic routed into Local Zones**
 
-![{{ product_title }} cluster with traffic routed into Local Zones](/_assets/images/354_OpenShift_ROSA_Local_Zones_0923_2.png)
+![{{ product_title }} cluster with traffic routed into Local Zones](/images/354_OpenShift_ROSA_Local_Zones_0923_2.png)

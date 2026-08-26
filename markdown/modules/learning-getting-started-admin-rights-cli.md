@@ -32,7 +32,7 @@ Red&#160;Hat offers two types of admin privileges:
     ```
 1.  If you are currently logged into the {{ hybrid_console }}, log out of the console and log back in to the cluster to see a new perspective with the "Administrator Panel". You might need an incognito or private window.
 
-    ![cloud-experts-getting-started-admin-rights-admin-panel](/_assets/images/cloud-experts-getting-started-admin-rights-admin-panel.png)
+    ![cloud-experts-getting-started-admin-rights-admin-panel](/images/cloud-experts-getting-started-admin-rights-admin-panel.png)
 1.  You can also test that admin privileges were added to your account by running the following command. Only a `cluster-admin` users can run this command without errors.
     ```terminal
     $ oc get all -n openshift-apiserver

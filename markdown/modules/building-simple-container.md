@@ -17,7 +17,7 @@ The following diagram displays the process of building and pushing an image:
 
 **Figure 1. Create a simple containerized application and push it to a registry**
 
-![Creating and pushing a containerized application](/_assets/images/create-push-app.png)
+![Creating and pushing a containerized application](/images/create-push-app.png)
 
 If you use a computer that runs {{ op_system_base_full }} as the operating
 system, the process of creating a containerized application requires the

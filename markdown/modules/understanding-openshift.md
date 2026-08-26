@@ -17,4 +17,4 @@ You can manage applications within the cluster either manually by configuring de
 
 The Multicluster Management layer can manage multiple clusters including their deployment, configuration, compliance and distribution of workloads in a single console.
 
-![Red Hat {{ oke }}](/_assets/images/oke-about-ocp-stack-image.png)
+![Red Hat {{ oke }}](/images/oke-about-ocp-stack-image.png)

@@ -32,7 +32,7 @@ After you create applications in your project and deploy them, you can use the *
 
     **Figure 1. Monitoring metrics**
 
-    ![odc_project_metrics](/_assets/images/odc_project_metrics.png)
+    ![odc_project_metrics](/images/odc_project_metrics.png)
     1.  In the **Select Query** list, select an option to filter the required details for your project. The filtered metrics for all the application pods in your project are displayed in the graph. The pods in your project are also listed below.
     1.  From the list of pods, clear the colored square boxes to remove the metrics for specific pods to further filter your query result.
     1.  Click **Show PromQL** to see the Prometheus query. You can further modify this query with the help of prompts to customize the query and filter the metrics you want to see for that namespace.
@@ -45,7 +45,7 @@ After you create applications in your project and deploy them, you can use the *
 
     **Figure 2. Monitoring alerts**
 
-    ![odc_project_alerts](/_assets/images/odc_project_alerts.png)
+    ![odc_project_alerts](/images/odc_project_alerts.png)
 
     Use the following options to see further details:
     *   Use the **Filter** list to filter the alerts by their **Alert State** and **Severity**.
@@ -57,7 +57,7 @@ After you create applications in your project and deploy them, you can use the *
 
     **Figure 3. Monitoring events**
 
-    ![odc_project_events](/_assets/images/odc_project_events.png)
+    ![odc_project_events](/images/odc_project_events.png)
 
     You can filter the displayed events using the following options:
     *   In the **Resources** list, select a resource to see events for that resource.

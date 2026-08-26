@@ -17,7 +17,7 @@ In previous versions of {{ product_title }}, the Performance Addon Operator was 
 
 The following diagram shows the components of a DPDK test environment:
 
-![DPDK test environment](/_assets/images/261_OpenShift_DPDK_0722.png)
+![DPDK test environment](/images/261_OpenShift_DPDK_0722.png)
 
 *   **Traffic generator**: An application that can generate high-volume packet traffic.
 *   **SR-IOV-supporting NIC**: A network interface controller (NIC) compatible with SR-IOV. The card runs several virtual functions on a physical interface.

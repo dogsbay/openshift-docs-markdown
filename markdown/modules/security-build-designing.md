@@ -5,7 +5,7 @@ You can design your container image management to separate control across teams 
 
 You can design your container image management and build process to use container layers so that you can separate control.
 
-![Designing Your Build Process](/_assets/images/build_process2.png)
+![Designing Your Build Process](/images/build_process2.png)
 
 For example, an operations team manages base images, while architects manage middleware, runtimes, databases, and other solutions. Developers can then focus on application layers and focus on writing code.
 

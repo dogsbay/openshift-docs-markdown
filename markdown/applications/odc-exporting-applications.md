@@ -31,5 +31,5 @@ As a developer, you can export your application in the ZIP file format. Based on
     *   If you have started exporting an incorrect application, click  **Export application** → **Cancel Export**.
     *   If your export is already in progress and you want to start a fresh export, click  **Export application** → **Restart Export**.
     *   If you want to view logs associated with exporting an application, click  **Export application** and the **View Logs** link.
-        ![export-application-dialog-box](/_assets/images/export-application-dialog-box.png)
+        ![export-application-dialog-box](/images/export-application-dialog-box.png)
 1.  After a successful export, click **Download** in the dialog box to download application resources in ZIP format onto your machine.

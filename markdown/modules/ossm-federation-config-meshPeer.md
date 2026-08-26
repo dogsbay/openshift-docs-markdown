@@ -3,7 +3,7 @@
 
 You declare the federation between two meshes by creating a `ServiceMeshPeer` resource. The `ServiceMeshPeer` resource defines the federation between two meshes, and you use it to configure discovery for the peer mesh, access to the peer mesh, and certificates used to validate the other mesh’s clients.
 
-![Service Mesh federated mesh peers illustration](/_assets/images/ossm-federated-mesh.png)
+![Service Mesh federated mesh peers illustration](/images/ossm-federated-mesh.png)
 
 Meshes are federated on a one-to-one basis, so each pair of peers requires a pair of `ServiceMeshPeer` resources specifying the federation connection to the other service mesh. For example, federating two meshes named `red` and `green` would require two `ServiceMeshPeer` files.
 

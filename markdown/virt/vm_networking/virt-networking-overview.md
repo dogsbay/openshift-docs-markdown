@@ -16,13 +16,13 @@ The following figure illustrates the typical network setup of {{ VirtProductName
 
 **Figure 1. {{ VirtProductName }} networking overview**
 
-![{{ VirtProductName }} networking architecture](/_assets/images/318_OpenShift_Virtualization_Networking_0423.png)
+![{{ VirtProductName }} networking architecture](/images/318_OpenShift_Virtualization_Networking_0423.png)
 
-<img src="/_assets/images/darkcircle-1.png" alt="20" width="20"> Pods and VMs run on the same network infrastructure so you can easily connect your containerized and virtualized workloads.
+<img src="/images/darkcircle-1.png" alt="20" width="20"> Pods and VMs run on the same network infrastructure so you can easily connect your containerized and virtualized workloads.
 
-<img src="/_assets/images/darkcircle-2.png" alt="20" width="20"> You can connect VMs to the default pod network and to any number of secondary networks.
+<img src="/images/darkcircle-2.png" alt="20" width="20"> You can connect VMs to the default pod network and to any number of secondary networks.
 
-<img src="/_assets/images/darkcircle-3.png" alt="20" width="20"> The default pod network provides connectivity between all its members, service abstraction, IP management, micro segmentation, and other functionality.
+<img src="/images/darkcircle-3.png" alt="20" width="20"> The default pod network provides connectivity between all its members, service abstraction, IP management, micro segmentation, and other functionality.
 
 
 :::note
@@ -40,13 +40,13 @@ The layer 2 secondary network does not provide external ingress or egress routin
 :::
 
 
-<img src="/_assets/images/darkcircle-4.png" alt="20" width="20"> Multus is a "meta" CNI plugin that enables a pod or virtual machine to connect to additional network interfaces by using other compatible CNI plugins.
+<img src="/images/darkcircle-4.png" alt="20" width="20"> Multus is a "meta" CNI plugin that enables a pod or virtual machine to connect to additional network interfaces by using other compatible CNI plugins.
 
-<img src="/_assets/images/darkcircle-5.png" alt="20" width="20"> The default pod network is overlay-based, tunneled through the underlying machine network.
+<img src="/images/darkcircle-5.png" alt="20" width="20"> The default pod network is overlay-based, tunneled through the underlying machine network.
 
-<img src="/_assets/images/darkcircle-6.png" alt="20" width="20"> You can define the machine network over a selected set of network interface controllers (NICs).
+<img src="/images/darkcircle-6.png" alt="20" width="20"> You can define the machine network over a selected set of network interface controllers (NICs).
 
-<img src="/_assets/images/darkcircle-7.png" alt="20" width="20"> Secondary VM networks are typically bridged directly to a physical network, with or without VLAN encapsulation. It is also possible to create virtual overlay networks for secondary networks.
+<img src="/images/darkcircle-7.png" alt="20" width="20"> Secondary VM networks are typically bridged directly to a physical network, with or without VLAN encapsulation. It is also possible to create virtual overlay networks for secondary networks.
 
 
 :::important
@@ -60,7 +60,7 @@ The following features are not supported on {{ product_rosa }}, {{ azure_first }
 :::
 
 
-<img src="/_assets/images/darkcircle-8.png" alt="20" width="20"> Secondary VM networks can be defined on dedicated set of NICs, as shown in figure 1, or they can use the machine network.
+<img src="/images/darkcircle-8.png" alt="20" width="20"> Secondary VM networks can be defined on dedicated set of NICs, as shown in figure 1, or they can use the machine network.
 {% endif %}
 
 {% leveloffset +1 %}{% include "./modules/virt-networking-glossary.md" %}{% endleveloffset %}

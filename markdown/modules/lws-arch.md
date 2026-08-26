@@ -7,7 +7,7 @@ The following diagram describes the LeaderWorkerSet architecture:
 
 **Figure 1. Leader worker set architecture**
 
-![Leader worker set architecture](/_assets/images/587_OpenShift_lws_0925.png)
+![Leader worker set architecture](/images/587_OpenShift_lws_0925.png)
 
 The `LeaderWorkerSet` API uses a leader stateful set to manage the deployment and lifecycle of the groups of pods. For each replica defined, a leader-worker group is created.
 

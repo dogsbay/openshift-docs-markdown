@@ -61,7 +61,7 @@ As a regular user or project member with the appropriate RBAC permissions, you c
 
     **Figure 1. Chart repositories filter in your namespace**
 
-    ![odc_namespace_helm_chart_repo_filter](/_assets/images/odc_namespace_helm_chart_repo_filter.png)
+    ![odc_namespace_helm_chart_repo_filter](/images/odc_namespace_helm_chart_repo_filter.png)
 
     Alternatively, run:
     ```terminal

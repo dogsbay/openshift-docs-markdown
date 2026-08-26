@@ -9,7 +9,7 @@ The following procedure deploys `parksmap`, which is the front-end component of 
 
 **Procedure**
 
-1.  From the **Quick create** (![title="Quick create menu"](/_assets/images/fa-plus-circle.png)) menu in the upper right corner, click **Container images**.
+1.  From the **Quick create** (![fa-plus-circle](/images/fa-plus-circle.png "Quick create menu")) menu in the upper right corner, click **Container images**.
 1.  Select **Image name from external registry** and enter `quay.io/openshiftroadshow/parksmap:latest`.
 1.  Scroll to the **General** section.
 1.  In the **Application name** field, enter `national-parks-app`.

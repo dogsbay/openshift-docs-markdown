@@ -11,7 +11,7 @@ To access advanced routing services not natively provided by MetalLB, configure 
 
 FRRouting (FRR) is a free, open-source internet routing protocol suite for Linux and UNIX platforms. `FRR-K8s` is a Kubernetes-based DaemonSet that exposes a subset of the `FRR` API in a Kubernetes-compliant manner. `MetalLB` generates the `FRR-K8s` configuration corresponding to the MetalLB configuration applied.
 
-![MetalLB integration with FRR](/_assets/images/695_OpenShift_MetalLB_FRRK8s_integration_0624.png)
+![MetalLB integration with FRR](/images/695_OpenShift_MetalLB_FRRK8s_integration_0624.png)
 
 
 :::warning

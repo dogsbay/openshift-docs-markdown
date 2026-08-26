@@ -24,7 +24,7 @@ Create the IAM roles and policies for the ACK controller by using the provided s
     ```
 1.  Confirm successful setup of the ACK controller in the web console by clicking **Operators** and then **Installed operators**.
 
-    ![cloud-experts-deployment-installing-ack-oper-installed](/_assets/images/cloud-experts-deployment-installing-ack-oper-installed.png)
+    ![cloud-experts-deployment-installing-ack-oper-installed](/images/cloud-experts-deployment-installing-ack-oper-installed.png)
 1.  If you do not see a successful Operator installation and the environment variables, manually restart the deployment by running the following command:
     ```terminal
     $ oc rollout restart deployment ack-s3-controller -n ack-system

@@ -9,4 +9,4 @@ Edit a machine pool to scale the number of worker nodes in that specific machine
 1.  Click **Edit**.
 1.  Enter the desired number of nodes, and click **Save**.
 1.  Confirm that the cluster has scaled by selecting the cluster, clicking the **Overview** tab, and scrolling to **Compute listing**. The compute listing should equal the scaled nodes. For example, 3/3.
-    ![cloud-experts-getting-started-managing-ocm-nodes](/_assets/images/cloud-experts-getting-started-managing-ocm-nodes.png)
+    ![cloud-experts-getting-started-managing-ocm-nodes](/images/cloud-experts-getting-started-managing-ocm-nodes.png)

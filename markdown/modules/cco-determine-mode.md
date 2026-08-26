@@ -6,4 +6,4 @@ For platforms that support using the CCO in multiple modes, you can determine wh
 
 **Figure 1. Determining the CCO configuration**
 
-![Decision tree showing how to determine the configured CCO credentials mode for your cluster.](/_assets/images/334_OpenShift_cluster_updating_and_CCO_workflows_0923_4.11_A_AliCloud_patch.png)
+![Decision tree showing how to determine the configured CCO credentials mode for your cluster.](/images/334_OpenShift_cluster_updating_and_CCO_workflows_0923_4.11_A_AliCloud_patch.png)

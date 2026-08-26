@@ -12,4 +12,4 @@
 1.  Select the `Knative User Services (Queue Proxy metrics)` dashboard.
 1.  Select the **Namespace**, **Configuration**, and **Revision** that correspond to your application.
 1.  Observe the visualized metrics:
-    ![Observing metrics of a service using a dashboard](/_assets/images/serverless-monitoring-service-example-dashboard.png)
+    ![Observing metrics of a service using a dashboard](/images/serverless-monitoring-service-example-dashboard.png)

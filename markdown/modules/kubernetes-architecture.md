@@ -9,4 +9,4 @@ The control plane node controls and maintains the state of a cluster. You can ru
 
 **Figure 1. Architecture of Kubernetes**
 
-![247_OpenShift_Kubernetes_Overview-2](/_assets/images/247_OpenShift_Kubernetes_Overview-2.png)
+![247_OpenShift_Kubernetes_Overview-2](/images/247_OpenShift_Kubernetes_Overview-2.png)

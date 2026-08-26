@@ -24,7 +24,7 @@
 {%- set op_system_version = "35" -%}
 {% endif %}
 {%- set tsb_name = "Template Service Broker" -%}
-{%- set kebab = "![](/_assets/images/kebab.png 'Options menu')" -%}
+{%- set kebab = "![](/images/kebab.png 'Options menu')" -%}
 {%- set ai_full = "Assisted Installer" -%}
 {%- set cluster_manager_first = "Red Hat OpenShift Cluster Manager" -%}
 {%- set cluster_manager = "OpenShift Cluster Manager" -%}
@@ -74,7 +74,7 @@
 {%- set kueue_name = "Red&#160;Hat build of Kueue" -%}
 {%- set kueue_op = "Red Hat Build of Kueue Operator" -%}
 {%- set ms = "Red&#160;Hat build of MicroShift (MicroShift)" %}
-{%- set launch = "![](/_assets/images/app-launcher.png 'Application Launcher')" -%}
+{%- set launch = "![](/images/app-launcher.png 'Application Launcher')" -%}
 {%- set mtv_first = "Migration Toolkit for Virtualization (MTV)" -%}
 {%- set mtv_short = "MTV" -%}
 {%- set mtv_full = "Migration Toolkit for Virtualization" -%}
@@ -90,7 +90,7 @@
 {%- set gitops_title = "Red&#160;Hat OpenShift GitOps" -%}
 {%- set gitops_shortname = "GitOps" -%}
 {%- set gitops_ver = "1.1" -%}
-{%- set rh_app_icon = "![](/_assets/images/red-hat-applications-menu-icon.jpg 'Red Hat applications')" %}
+{%- set rh_app_icon = "![](/images/red-hat-applications-menu-icon.jpg 'Red Hat applications')" %}
 {%- set pipelines_title = "Red&#160;Hat OpenShift Pipelines" -%}
 {%- set pipelines_shortname = "OpenShift Pipelines" -%}
 {%- set pipelines_ver = "pipelines-1.18" -%}
@@ -113,7 +113,7 @@
 {%- set CNVSubscriptionSpecName = "kubevirt-hyperconverged" -%}
 {%- set IBMFusionFirst = "IBM Fusion Access for SAN" -%}
 {%- set FusionSAN = "Fusion Access for SAN" -%}
-{%- set delete = "![](/_assets/images/delete.png 'Delete')" -%}
+{%- set delete = "![](/images/delete.png 'Delete')" -%}
 {% if openshift_origin %}
 {%- set VirtProductName = "OKD Virtualization" -%}
 {%- set CNVNamespace = "kubevirt-hyperconverged" -%}

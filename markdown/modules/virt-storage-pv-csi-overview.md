@@ -13,4 +13,4 @@ A VM can start even if its PVC is already mounted by another pod. This behavior 
 :::
 
 
-![title="Virtual machine disks and the CSI paradigm"](/_assets/images/virt-storage-csi-paradigm.png)
+![virt-storage-csi-paradigm](/images/virt-storage-csi-paradigm.png "Virtual machine disks and the CSI paradigm")

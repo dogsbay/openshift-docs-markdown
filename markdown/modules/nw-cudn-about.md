@@ -7,4 +7,4 @@ The following diagram demonstrates how a cluster administrator can use the CUDN 
 
 **Figure 1. Tenant isolation using a ClusterUserDefinedNetwork CR**
 
-![The tenant isolation concept in a user-defined network (UDN)](/_assets/images/528-OpenShift-multitenant-0225.png)
+![The tenant isolation concept in a user-defined network (UDN)](/images/528-OpenShift-multitenant-0225.png)

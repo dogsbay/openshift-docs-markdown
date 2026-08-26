@@ -85,7 +85,7 @@ grants super administrator privileges for only that project to the user. That us
 The relationships between cluster roles, local roles, cluster role bindings,
 local role bindings, users, groups and service accounts are illustrated below.
 
-![{{ product_title }} RBAC](/_assets/images/rbac.png)
+![{{ product_title }} RBAC](/images/rbac.png)
 
 
 :::warning

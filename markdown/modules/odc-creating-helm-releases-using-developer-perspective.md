@@ -22,7 +22,7 @@ To create Helm releases from the Helm charts provided in the **Developer Catalog
 
     **Figure 1. Helm charts in developer catalog**
 
-    ![odc_helm_chart_devcatalog_new](/_assets/images/odc_helm_chart_devcatalog_new.png)
+    ![odc_helm_chart_devcatalog_new](/images/odc_helm_chart_devcatalog_new.png)
 1.  In the **Create Helm Release** page:
     1.  Enter a unique name for the release in the **Release Name** field.
     1.  Select the required chart version from the **Chart Version** drop-down list.

@@ -9,4 +9,4 @@ The following diagram details the authentication flow between {{ gcp_short }} an
 
 **Figure 1. {{ gcp_short }} Workload Identity authentication flow**
 
-![Detailed authentication flow between {{ gcp_short }} and the cluster when using {{ gcp_short }} Workload Identity](/_assets/images/347_OpenShift_credentials_with_STS_updates_0623_GCP.png)
+![Detailed authentication flow between {{ gcp_short }} and the cluster when using {{ gcp_short }} Workload Identity](/images/347_OpenShift_credentials_with_STS_updates_0623_GCP.png)

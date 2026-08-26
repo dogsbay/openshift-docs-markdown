@@ -3,7 +3,7 @@
 
 You can review an example of the update duration for cluster Operators to better understand the factors that affect the duration of the update. {._abstract}
 
-![A diagram displaying the periods during which cluster Operators update themselves during an OpenShift Container Platform update](/_assets/images/362_OpenShift_update_duration_0526.png)
+![A diagram displaying the periods during which cluster Operators update themselves during an OpenShift Container Platform update](/images/362_OpenShift_update_duration_0526.png)
 
 The previous diagram shows an example of the time that cluster Operators might take to update to their new versions.
 The example is based on a three-node AWS OVN cluster, which has a healthy compute `MachineConfigPool` and no workloads that take long to drain, updating from 4.13 to 4.14.

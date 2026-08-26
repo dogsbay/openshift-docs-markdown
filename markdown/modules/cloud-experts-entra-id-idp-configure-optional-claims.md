@@ -7,16 +7,16 @@ Configure the `email` and `preferred_username` optional claims in Entra ID so th
 
 1.  Click the **Token configuration** sub-blade and click **Add optional claim**.
 
-    ![Azure Portal - Add Optional Claims Page](/_assets/images/azure-portal_optional-claims-page.png)
+    ![Azure Portal - Add Optional Claims Page](/images/azure-portal_optional-claims-page.png)
 1.  Select the **ID** radio button.
 
-    ![Azure Portal - Add Optional Claims - Token Type](/_assets/images/azure-portal_add-optional-claims-page.png)
+    ![Azure Portal - Add Optional Claims - Token Type](/images/azure-portal_add-optional-claims-page.png)
 1.  Select the **email** claim checkbox.
 
-    ![Azure Portal - Add Optional Claims - email](/_assets/images/azure-portal_add-optional-email-claims-page.png)
+    ![Azure Portal - Add Optional Claims - email](/images/azure-portal_add-optional-email-claims-page.png)
 1.  Select the `preferred_username` claim checkbox. Then, click **Add** to configure the **email** and **preferred_username** claims your Entra ID application.
 
-    ![Azure Portal - Add Optional Claims - preferred_username](/_assets/images/azure-portal_add-optional-preferred_username-claims-page.png)
+    ![Azure Portal - Add Optional Claims - preferred_username](/images/azure-portal_add-optional-preferred_username-claims-page.png)
 1.  Follow the prompt in the dialog box to enable the necessary Microsoft Graph permissions.
 
-    ![Azure Portal - Add Optional Claims - Graph Permissions Prompt](/_assets/images/azure-portal_add-optional-claims-graph-permissions-prompt.png)
+    ![Azure Portal - Add Optional Claims - Graph Permissions Prompt](/images/azure-portal_add-optional-claims-graph-permissions-prompt.png)

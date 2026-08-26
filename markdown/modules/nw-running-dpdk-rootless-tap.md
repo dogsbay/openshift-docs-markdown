@@ -7,7 +7,7 @@ In {{ product_title }} version 4.14 and later, you can use non-privileged pods t
 
 **Figure 1. DPDK and TAP example configuration**
 
-![DPDK and TAP plugin](/_assets/images/348_OpenShift_rootless_DPDK_0923.png)
+![DPDK and TAP plugin](/images/348_OpenShift_rootless_DPDK_0923.png)
 
 **Prerequisites**
 

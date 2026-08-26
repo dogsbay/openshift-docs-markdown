@@ -7,7 +7,7 @@ It is also important to maintain the immutability of your containers. You should
 
 As your software moves through the stages of building, testing, and production, it is important that the tools making up your software supply chain be trusted. The following figure illustrates the process and tools that could be incorporated into a trusted software supply chain for containerized software:
 
-![trustedsupplychain](/_assets/images/trustedsupplychain.png)
+![trustedsupplychain](/images/trustedsupplychain.png)
 
 {{ product_title }} can be integrated with trusted code repositories (such as GitHub) and development platforms (such as Che) for creating and managing secure code. Unit testing frameworks can validate code quality before builds.
 

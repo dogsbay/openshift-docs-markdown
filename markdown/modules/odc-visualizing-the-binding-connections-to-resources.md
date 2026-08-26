@@ -17,7 +17,7 @@ To view the **Label Selector**, consider the following approaches:
 
     **Figure 1. ServiceBinding details page**
 
-    ![odc-label-selector-sb-details](/_assets/images/odc-label-selector-sb-details.png)
+    ![odc-label-selector-sb-details](/images/odc-label-selector-sb-details.png)
 
 
     :::note
@@ -30,7 +30,7 @@ To view the **Label Selector**, consider the following approaches:
 
     **Figure 2. Topology label selector side panel**
 
-    ![odc-label-selector-topology-side-panel](/_assets/images/odc-label-selector-topology-side-panel.png)
+    ![odc-label-selector-topology-side-panel](/images/odc-label-selector-topology-side-panel.png)
 
 
     :::note
@@ -39,7 +39,7 @@ To view the **Label Selector**, consider the following approaches:
 
     **Figure 3. Delete ServiceBinding confirmation dialog**
 
-    ![odc-delete-service-binding](/_assets/images/odc-delete-service-binding.png)
+    ![odc-delete-service-binding](/images/odc-delete-service-binding.png)
 
     
     :::

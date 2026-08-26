@@ -23,4 +23,4 @@ You can select the defaults to complete cluster installation. {._abstract}
 1.  Review the content for the cluster configuration.
 1.  Click **Create cluster**.
 1.  Stay on the current page to monitor the installation progress. It should take about 40 minutes.
-    ![cloud-experts-getting-started-rosa-deployment-detailed-ui-cluster-create](/_assets/images/cloud-experts-getting-started-rosa-deployment-detailed-ui-cluster-create.png)
+    ![cloud-experts-getting-started-rosa-deployment-detailed-ui-cluster-create](/images/cloud-experts-getting-started-rosa-deployment-detailed-ui-cluster-create.png)

@@ -17,7 +17,7 @@ cluster that has the {{ web_terminal_op }} installed.
 
 **Procedure**
 
-1.  Click the web terminal icon (![title="web terminal icon"](/_assets/images/odc-wto-icon.png)).
+1.  Click the web terminal icon (![odc-wto-icon](/images/odc-wto-icon.png "web terminal icon")).
 1.  Click **Image** to display advanced configuration options for the web terminal image.
 1.  Enter the URL of the image that you want to use.
 1.  Click **Start** to begin a terminal instance using the specified image setting.

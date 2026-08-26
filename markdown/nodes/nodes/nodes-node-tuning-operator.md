@@ -37,6 +37,8 @@ Before creating a node tuning configuration, you must create a custom tuning spe
 {% if openshift_rosa_hcp %}
 {% leveloffset +1 %}{% include "./modules/rosa-creating-node-tuning.md" %}{% endleveloffset %}
 
+{% leveloffset +1 %}{% include "./modules/rosa-node-tuning-autonode.md" %}{% endleveloffset %}
+
 {% leveloffset +1 %}{% include "./modules/rosa-modifying-node-tuning.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/rosa-deleting-node-tuning.md" %}{% endleveloffset %}

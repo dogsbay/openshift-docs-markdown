@@ -3,7 +3,8 @@
 
 There are several Microsoft Azure instance types tested with {{ product_title }}. Choose a listed instance type when you install a cluster on 64-bit x86 infrastructure. {._abstract}
 
-:::details{title="Machine types based on 64-bit x86 architecture"}
+See the following machine types based on 64-bit x86 architecture:
+
 ### General Purpose
 
 | Azure VM Series | Family Name |
@@ -134,4 +135,3 @@ There are several Microsoft Azure instance types tested with {{ product_title }}
 | HBv5-series | `standardHBv5Family` |
 | HC-series | `standardHCSFamily` |
 | HX-series | `standardHXFamily` |
-:::

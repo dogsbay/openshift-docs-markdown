@@ -11,7 +11,7 @@
 **Procedure**
 
 1.  From the navigational menu of the web UI, select **Pod Auto Scaling**.
-    ![HPA Menu](/_assets/images/deploy-scale-hpa-menu.png)
+    ![HPA Menu](/images/deploy-scale-hpa-menu.png)
 1.  Create the HPA by running the following command:
     ```terminal
     $ oc autoscale deployment/ostoy-microservice --cpu-percent=80 --min=1 --max=10
@@ -41,7 +41,7 @@
 Check your pod counts with one of the following methods:
 
 *   In the OSToy application’s web UI, see the remote pods box:
-    ![HPA Main](/_assets/images/deploy-scale-hpa-mainpage.png)
+    ![HPA Main](/images/deploy-scale-hpa-mainpage.png)
 
     Because there is only one pod, increasing the workload should trigger an increase of pods.
 *   In the CLI, run the following command:
@@ -58,10 +58,10 @@ Check your pod counts with one of the following methods:
 *   You can also verify autoscaling from the {{ cluster_manager }}
     1.  In the OpenShift web console navigational menu, click **Observe > Dashboards**.
     1.  In the dashboard, select **Kubernetes / Compute Resources / Namespace (Pods)** and your namespace **ostoy**.
-        ![Select metrics](/_assets/images/deploy-scale-hpa-metrics.png)
+        ![Select metrics](/images/deploy-scale-hpa-metrics.png)
     1.  A graph appears showing your resource usage across CPU and memory. The top graph shows recent CPU consumption per pod and the lower graph indicates memory usage. The following lists the callouts in the graph:
         1.  The load increased (A).
         1.  Two new pods were created (B and C).
         1.  The thickness of each graph represents the CPU consumption and indicates which pods handled more load.
         1.  The load decreased (D), and the pods were deleted.
-            ![Select metrics](/_assets/images/deploy-scale-metrics.png)
+            ![Select metrics](/images/deploy-scale-metrics.png)

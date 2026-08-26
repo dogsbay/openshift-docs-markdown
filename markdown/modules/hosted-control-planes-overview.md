@@ -31,7 +31,7 @@ The standalone control plane is hosted by a dedicated group of nodes, which can 
 
 Although the standalone model works well, some situations require an architecture where the control plane and data plane are decoupled. In those cases, the data plane is on a separate network domain with a dedicated physical hosting environment. The control plane is hosted by using high-level primitives such as deployments and stateful sets that are native to Kubernetes. The control plane is treated as any other workload.
 
-![Diagram that compares the hosted control plane model against OpenShift with a coupled control plane and workers](/_assets/images/hosted-control-planes-diagram.png)
+![Diagram that compares the hosted control plane model against OpenShift with a coupled control plane and workers](/images/hosted-control-planes-diagram.png)
 
 ## Benefits of {{ hcp }} {id="hosted-control-planes-benefits_{{ context }}"}
 

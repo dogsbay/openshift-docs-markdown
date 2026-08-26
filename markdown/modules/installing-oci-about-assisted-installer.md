@@ -37,7 +37,7 @@ Instance sizing recommendations
 
 **Figure 1. High-level workflow for using the Assisted Installer in a connected environment to install a cluster on {{ oci_distributed_no_rt }}**
 
-![High-level workflow for using the Assisted Installer in a connected environment to install a cluster on {{ oci_distributed_no_rt }}](/_assets/images/569_OpenShift_ai_install_oci_0725.png)
+![High-level workflow for using the Assisted Installer in a connected environment to install a cluster on {{ oci_distributed_no_rt }}](/images/569_OpenShift_ai_install_oci_0725.png)
 
 The procedure for using the {{ ai_full }} in a connected environment to install a cluster on {{ oci_distributed_no_rt }} is outlined below:
 

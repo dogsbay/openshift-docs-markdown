@@ -42,10 +42,10 @@ After you install the {{ ServerlessOperatorName }}, install Knative Serving by u
 
 1.  Click on `knative-serving` custom resource in the **Knative Serving** tab.
 1.  You will be automatically directed to the **Knative Serving Overview** page.
-    ![Installed Operators page](/_assets/images/serving-overview.png)
+    ![Installed Operators page](/images/serving-overview.png)
 1.  Scroll down to look at the list of **Conditions**.
 1.  You should see a list of conditions with a status of **True**, as shown in the example image.
-    ![Conditions](/_assets/images/serving-conditions-true.png)
+    ![Conditions](/images/serving-conditions-true.png)
 
     :::note
 

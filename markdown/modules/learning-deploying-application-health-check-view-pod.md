@@ -6,11 +6,11 @@ You can check the status of your revived pod within {{ cluster_manager_url }}. C
 **Procedure**
 
 *   From the {{ ocp_short }} web console, quickly switch to the **Deployments** screen. You will see that the pod turns yellow, which means it is down. It should quickly revive and turn blue. The revival process happens quickly.
-    ![Deployment details page](/_assets/images/5-ostoy-podcrash.gif)
+    ![Deployment details page](/images/5-ostoy-podcrash.gif)
 
 **Verification**
 
 1.  From the web console, click  **Pods > ostoy-frontend-xxxxxxx-xxxx** to change to the pods screen.
-    ![Pod overview page](/_assets/images/5-ostoy-events.png)
+    ![Pod overview page](/images/5-ostoy-events.png)
 1.  Click the **Events** subtab, and verify that the container crashed and restarted.
-    ![Pod events list](/_assets/images/5-ostoy-podevents.png)
+    ![Pod events list](/images/5-ostoy-podevents.png)

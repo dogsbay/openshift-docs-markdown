@@ -27,15 +27,15 @@ You can choose whether you want to configure one or all of these services for a 
 
 **Figure 1. Example network workflow that shows an Ingress Controller operating in an {{ product_title }} environment**
 
-![An image that shows an example network workflow of an Ingress Controller operating in an {{ product_title }} environment.](/_assets/images/external-load-balancer-default.png)
+![An image that shows an example network workflow of an Ingress Controller operating in an {{ product_title }} environment.](/images/external-load-balancer-default.png)
 
 **Figure 2. Example network workflow that shows an OpenShift API operating in an {{ product_title }} environment**
 
-![An image that shows an example network workflow of an OpenShift API operating in an {{ product_title }} environment.](/_assets/images/external-load-balancer-openshift-api.png)
+![An image that shows an example network workflow of an OpenShift API operating in an {{ product_title }} environment.](/images/external-load-balancer-openshift-api.png)
 
 **Figure 3. Example network workflow that shows an OpenShift `MachineConfig` API operating in an {{ product_title }} environment**
 
-![An image that shows an example network workflow of an OpenShift `MachineConfig` API operating in an {{ product_title }} environment.](/_assets/images/external-load-balancer-machine-config-api.png)
+![An image that shows an example network workflow of an OpenShift `MachineConfig` API operating in an {{ product_title }} environment.](/images/external-load-balancer-machine-config-api.png)
 
 The following configuration options are supported for user-managed load balancers:
 

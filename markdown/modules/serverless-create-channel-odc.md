@@ -18,4 +18,4 @@ Using the {{ product_title }} web console provides a streamlined and intuitive u
 **Verification**
 
 *   Confirm that the channel now exists by navigating to the **Topology** page.
-    ![View the channel in the Topology view](/_assets/images/verify-channel-odc.png)
+    ![View the channel in the Topology view](/images/verify-channel-odc.png)

@@ -19,7 +19,7 @@ To see the alerts for your workload:
 
     **Figure 1. Monitoring application metrics**
 
-    ![odc_app_metrics](/_assets/images/odc_app_metrics.png)
+    ![odc_app_metrics](/images/odc_app_metrics.png)
     1.  Click the alert listed in the right panel to see the alert details in the **Alert Details** page.
     1.  Click any of the charts to go to the **Metrics** tab to see the detailed metrics for the application.
     1.  Click **View monitoring dashboard** to see the monitoring dashboard for that application.

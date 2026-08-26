@@ -18,7 +18,7 @@ The reference configurations in this document are deployed using a centrally man
 
 **Figure 1. Telco RAN DU deployment architecture**
 
-![A diagram showing two distinctive network far edge deployment processes](/_assets/images/474_OpenShift_OpenShift_RAN_RDS_arch_updates_1023.png)
+![A diagram showing two distinctive network far edge deployment processes](/images/474_OpenShift_OpenShift_RAN_RDS_arch_updates_1023.png)
 
 ## Supported CPU architectures for RAN DU {id="_supported_cpu_architectures_for_ran_du"}
 

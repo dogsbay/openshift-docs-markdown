@@ -7,4 +7,4 @@ The following diagram shows four cluster namespaces, where each namespace has a 
 
 **Figure 1. Namespace isolation using a UserDefinedNetwork CR**
 
-![The namespace isolation concept in a user-defined network (UDN)](/_assets/images/527-OpenShift-UDN-isolation-012025.png)
+![The namespace isolation concept in a user-defined network (UDN)](/images/527-OpenShift-UDN-isolation-012025.png)

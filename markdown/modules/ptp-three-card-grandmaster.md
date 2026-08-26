@@ -16,7 +16,7 @@
 
     **Figure 1. 3-card Intel E810 PTP grandmaster clock**
 
-    ![3-card PTP grandmaster clock connected to GNSS timing source and downstream PTP boundary and ordinary clocks](/_assets/images/openshift-ptp-3-card-grandmaster.png)
+    ![3-card PTP grandmaster clock connected to GNSS timing source and downstream PTP boundary and ordinary clocks](/images/openshift-ptp-3-card-grandmaster.png)
 
 
     :::note

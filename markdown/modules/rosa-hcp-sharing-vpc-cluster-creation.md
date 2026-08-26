@@ -11,7 +11,7 @@ Installing a cluster in a shared VPC is supported only for OpenShift 4.17.9 and 
 :::
 
 
-![Step four of the shared VPC persona workflow showing Cluster Creator actions.](/_assets/images/372_OpenShift_on_AWS_persona_worflows_0923_4.png)
+![Step four of the shared VPC persona workflow showing Cluster Creator actions.](/images/372_OpenShift_on_AWS_persona_worflows_0923_4.png)
 
 **Prerequisites**
 

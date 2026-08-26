@@ -11,8 +11,8 @@ When a node starts, it attempts to contact a predefined set of Tang servers by p
 
 The following figure illustrates the deployment model for NBDE.
 
-![NBDE deployment model](/_assets/images/179_OpenShift_NBDE_implementation_0821_1.png)
+![NBDE deployment model](/images/179_OpenShift_NBDE_implementation_0821_1.png)
 
 The following figure illustrates NBDE behavior during a reboot.
 
-![NBDE reboot behavior](/_assets/images/179_OpenShift_NBDE_implementation_0821_2.png)
+![NBDE reboot behavior](/images/179_OpenShift_NBDE_implementation_0821_2.png)

@@ -18,4 +18,4 @@ To switch from a rolling update to a recreate rollout in {{ product_title }}, yo
 
     **Figure 1. Recreate update**
 
-![odc-recreate-update](/_assets/images/odc-recreate-update.png)
+![odc-recreate-update](/images/odc-recreate-update.png)

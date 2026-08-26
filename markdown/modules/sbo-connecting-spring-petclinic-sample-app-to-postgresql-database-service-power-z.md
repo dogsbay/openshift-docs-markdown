@@ -48,7 +48,7 @@ To connect the sample application to the database service, you must create a `Se
 
     **Figure 1. Connecting spring-petclinic to a sample database**
 
-    ![img_power](/_assets/images/img_power.png)
+    ![img_power](/images/img_power.png)
 1.  Set up the port forwarding from the application port to access the sample application from your local environment:
     ```terminal
     $ oc port-forward --address 0.0.0.0 svc/spring-petclinic 8080:80 -n my-petclinic

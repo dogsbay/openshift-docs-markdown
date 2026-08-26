@@ -18,7 +18,7 @@ This workshop starts by using only one pod for the microservice. By defining a r
 
 1.  In the OSToy app, click the **Networking** tab in the navigational menu.
 1.  In the "Intra-cluster Communication" section, locate the box that randomly changes colors. Inside the box, you see the microservice’s pod name. There is only one box in this example because there is only one microservice pod.
-    ![HPA Menu](/_assets/images/deploy-scale-network.png)
+    ![HPA Menu](/images/deploy-scale-network.png)
 1.  Confirm that there is only one pod running for the microservice by running the following command:
     ```terminal
     $ oc get pods
@@ -73,7 +73,7 @@ This workshop starts by using only one pod for the microservice. By defining a r
     *   From the navigational menu of the OpenShift web console UI, click **Workloads > Deployments > ostoy-microservice**.
     *   Locate the blue circle with a "3 Pod" label in the middle.
     *   Selecting the arrows next to the circle scales the number of pods. Select the down arrow to `2`.
-        ![UI Scale](/_assets/images/deploy-scale-uiscale.png)
+        ![UI Scale](/images/deploy-scale-uiscale.png)
 
 **Verification**
 
@@ -92,6 +92,6 @@ Check your pod counts by using the CLI, the web UI, or the OSToy application:
     ostoy-microservice-6666dcf455-tqzmn   1/1     Running   0          75m
     ```
 1.  In the web UI, select **Workloads > Deployments > ostoy-microservice**.
-    ![Verify the workload pods](/_assets/images/deploy-scale-verify-workload.png)
+    ![Verify the workload pods](/images/deploy-scale-verify-workload.png)
 1.  You can also confirm that there are two pods by selecting **Networking** in the navigation menu of the OSToy application. There should be two colored boxes for the two pods.
-    ![UI Scale](/_assets/images/deploy-scale-colorspods.png)
+    ![UI Scale](/images/deploy-scale-colorspods.png)

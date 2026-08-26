@@ -21,7 +21,7 @@ To specify three minimum replicas for the eligible deployment resources, set the
 1.  Select the `knative-serving` namespace.
 1.  Click **Knative Serving** in the list of **Provided APIs** for the {{ ServerlessOperatorName }} to go to the **Knative Serving** tab.
 1.  Click **knative-serving**, then go to the **YAML** tab in the **knative-serving** page.
-    ![Knative Serving YAML](/_assets/images/serving-YAML-HA.png)
+    ![Knative Serving YAML](/images/serving-YAML-HA.png)
 1.  Modify the number of replicas in the `KnativeServing` CR:
     ```yaml title="Example YAML"
     apiVersion: operator.knative.dev/v1beta1

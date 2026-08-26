@@ -17,7 +17,7 @@ As a developer, you can create an event sink to receive events from a particular
 1.  Search for `KafkaSink` in the catalog items and click it.
 1.  Click **Create Event Sink**.
 1.  In the form view, type the URL of the bootstrap server, which is a combination of host name and port.
-    ![create-event-sink](/_assets/images/create-event-sink.png)
+    ![create-event-sink](/images/create-event-sink.png)
 1.  Type the name of the topic to send event data.
 1.  Type the name of the event sink.
 1.  Click **Create**.

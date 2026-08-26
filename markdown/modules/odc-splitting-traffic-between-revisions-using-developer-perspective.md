@@ -15,7 +15,7 @@ To split traffic between multiple revisions of an application in the **Topology*
 
     **Figure 1. Serverless application**
 
-    ![odc-serverless-app](/_assets/images/odc-serverless-app.png)
+    ![odc-serverless-app](/images/odc-serverless-app.png)
 1.  Click the service, indicated by the **S** icon at the top of the side panel, to see an overview of the service details.
 1.  Click the **YAML** tab and modify the service configuration in the YAML editor, and click **Save**. For example, change the `timeoutseconds` from 300 to 301 . This change in the configuration triggers a new revision. In the **Topology** view, the latest revision is displayed and the **Resources** tab for the service now displays the two revisions.
 1.  In the **Resources** tab, click **[Set Traffic Distribution]** to see the traffic distribution dialog box:
@@ -25,4 +25,4 @@ To split traffic between multiple revisions of an application in the **Topology*
 
         **Figure 2. Serverless application revisions**
 
-        ![odc-serverless-revisions](/_assets/images/odc-serverless-revisions.png)
+        ![odc-serverless-revisions](/images/odc-serverless-revisions.png)

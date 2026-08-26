@@ -41,7 +41,7 @@ Once the nodes are rebooted, the rendezvous host reboots and joins the cluster. 
 
 **Figure 1. Node installation workflow**
 
-![Agent-based installer workflow](/_assets/images/agent-based-installer-workflow.png)
+![Agent-based installer workflow](/images/agent-based-installer-workflow.png)
 
 You can install a disconnected {{ product_title }} cluster through the `openshift-install agent create image` subcommand for the following topologies:
 

@@ -20,7 +20,7 @@ The following procedure creates an HPA in the web console.
 
     **Figure 1. Add HorizontalPodAutoscaler**
 
-    ![Add HorizontalPodAutoscaler form](/_assets/images/node-add-hpa-action.png)
+    ![Add HorizontalPodAutoscaler form](/images/node-add-hpa-action.png)
 1.  From the **Add HorizontalPodAutoscaler** form, define the name, minimum and maximum pod limits, the CPU and memory usage, and click **Save**.
 
     :::note

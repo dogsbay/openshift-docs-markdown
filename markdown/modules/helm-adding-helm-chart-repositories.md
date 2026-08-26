@@ -38,7 +38,7 @@ As a cluster administrator, you can add custom Helm chart repositories to your c
 
     **Figure 1. Chart repositories filter**
 
-    ![odc_helm_chart_repo_filter](/_assets/images/odc_helm_chart_repo_filter.png)
+    ![odc_helm_chart_repo_filter](/images/odc_helm_chart_repo_filter.png)
 
     :::note
 

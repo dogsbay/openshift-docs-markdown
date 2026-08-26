@@ -5,7 +5,7 @@ The OVN-Kubernetes architecture comprises specialized databases and daemons that
 
 **Figure 1. OVN-Kubernetes architecture**
 
-![OVN-Kubernetes architecture](/_assets/images/299_OpenShift_OVN_Kubernetes_arch_1_0725.png)
+![OVN-Kubernetes architecture](/images/299_OpenShift_OVN_Kubernetes_arch_1_0725.png)
 
 The key components are:
 

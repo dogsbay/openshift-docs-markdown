@@ -12,7 +12,7 @@ In this configuration, the Ingress Controller deployment uses container networki
 
 **Figure 1. Diagram of NodePortService**
 
-![{{ product_title }} Ingress NodePort endpoint publishing strategy](/_assets/images/202_OpenShift_Ingress_0222_node_port.png)
+![{{ product_title }} Ingress NodePort endpoint publishing strategy](/images/202_OpenShift_Ingress_0222_node_port.png)
 
 The preceding graphic shows the following concepts pertaining to {{ product_title }} Ingress NodePort endpoint publishing strategy:
 

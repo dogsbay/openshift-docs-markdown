@@ -19,7 +19,7 @@ You can create a binding connection with Operator-backed components, as demonstr
 
     **Figure 1. Service Binding dialog**
 
-    ![odc-sbc-modal](/_assets/images/odc-sbc-modal.png)
+    ![odc-sbc-modal](/images/odc-sbc-modal.png)
 1.  Optional: If there is difficulty in making a binding connection using the Topology view, go to **+Add** → **YAML** → **Import YAML**.
 1.  Optional: In the YAML editor, add the `ServiceBinding` resource:
     ```YAML
@@ -45,7 +45,7 @@ You can create a binding connection with Operator-backed components, as demonstr
 
     **Figure 2. Binding connector**
 
-    ![odc-binding-connector](/_assets/images/odc-binding-connector.png)
+    ![odc-binding-connector](/images/odc-binding-connector.png)
 
     :::tip
 
@@ -53,7 +53,7 @@ You can create a binding connection with Operator-backed components, as demonstr
 
     **Figure 3. Context menu to create binding connection**
 
-    ![odc_context_operator](/_assets/images/odc_context_operator.png)
+    ![odc_context_operator](/images/odc_context_operator.png)
     
     :::
 

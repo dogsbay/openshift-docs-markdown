@@ -26,4 +26,4 @@ S2I images are available for you to use directly from the {{ product_title }} we
 
 **Figure 1. Choose S2I base images for apps that need specific runtimes**
 
-![{{ product_title }} Developer Catalog](/_assets/images/developer-catalog.png)
+![{{ product_title }} Developer Catalog](/images/developer-catalog.png)

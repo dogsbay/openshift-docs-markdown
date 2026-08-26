@@ -7,7 +7,7 @@
 
 Red Hat {{ VirtProductName }} enables you to bring traditional virtual machines (VMs) into {{ product_title }} where they run alongside containers, and are managed as native Kubernetes objects.
 
-{{ VirtProductName }} is represented by the <img src="/_assets/images/Operator_Icon-OpenShift_Virtualization-5.png" alt="{{ VirtProductName }}" width="40" height="40"> logo.
+{{ VirtProductName }} is represented by the <img src="/images/Operator_Icon-OpenShift_Virtualization-5.png" alt="{{ VirtProductName }}" width="40" height="40"> logo.
 
 You can use {{ VirtProductName }} with either the [OVN-Kubernetes](/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes) or the [OpenShiftSDN](/networking/openshift_sdn/about-openshift-sdn#about-openshift-sdn) default Container Network Interface (CNI) network provider.
 

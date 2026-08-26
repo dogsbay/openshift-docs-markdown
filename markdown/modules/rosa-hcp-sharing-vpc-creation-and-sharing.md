@@ -3,7 +3,7 @@
 
 You can share subnets within a VPC with another AWS account in your AWS organization. {._abstract}
 
-![Step one of the shared VPC workflow showing VPC creation and sharing.](/_assets/images/522-shared-vpc-step-1.png)
+![Step one of the shared VPC workflow showing VPC creation and sharing.](/images/522-shared-vpc-step-1.png)
 
 **Procedure**
 

@@ -25,15 +25,15 @@ Register an application in Entra ID using your cluster OAuth callback URL to gen
 
 1.  Create the Entra ID application by logging in to the Azure portal, and select the [App registrations blade](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade). Then, select **New registration** to create a new application.
 
-    ![Azure Portal - App registrations blade](/_assets/images/azure-portal_app-registrations-blade.png)
+    ![Azure Portal - App registrations blade](/images/azure-portal_app-registrations-blade.png)
 1.  Name the application, for example `openshift-auth`.
 1.  Select **Web** from the _Redirect URI_ dropdown and enter the value of the OAuth callback URL you retrieved in the previous step.
 1.  After providing the required information, click **Register** to create the application.
 
-    ![Azure Portal - Register an application page](/_assets/images/azure-portal_register-an-application-page.png)
+    ![Azure Portal - Register an application page](/images/azure-portal_register-an-application-page.png)
 1.  Select the **Certificates & secrets** sub-blade and select **New client secret**.
 
-    ![Azure Portal - Certificates and secrets page](/_assets/images/azure-portal_certificates-secrets-page.png)
+    ![Azure Portal - Certificates and secrets page](/images/azure-portal_certificates-secrets-page.png)
 1.  Complete the requested details and store the generated client secret value. This secret is required later in this process.
 
     :::important
@@ -43,7 +43,7 @@ Register an application in Entra ID using your cluster OAuth callback URL to gen
     :::
 
 
-    ![Azure Portal - Add a Client Secret page](/_assets/images/azure-portal_add-a-client-secret-page.png)
+    ![Azure Portal - Add a Client Secret page](/images/azure-portal_add-a-client-secret-page.png)
 1.  Select the **Overview** sub-blade and note the `Application (client) ID` and `Directory (tenant) ID`. You will need these values in a future step.
 
-    ![Azure Portal - Copy Client Secret page](/_assets/images/azure-portal_copy-client-secret-page.png)
+    ![Azure Portal - Copy Client Secret page](/images/azure-portal_copy-client-secret-page.png)

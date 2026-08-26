@@ -39,6 +39,6 @@ OVN-Kubernetes evaluates connections against network policy objects in the follo
 
 <a name="img-ovn-kubernetes-network-policy-evaluation"></a>**Figure 1. Evaluation of network policies by OVN-Kubernetes**
 
-![OVN-Kubernetes Access Control List (ACL)](/_assets/images/615_OpenShift_OVN-K_ACLs_0324.png)
+![OVN-Kubernetes Access Control List (ACL)](/images/615_OpenShift_OVN-K_ACLs_0324.png)
 
 {% leveloffset +1 %}{% include "./modules/nw-anp-np-reference.md" %}{% endleveloffset %}

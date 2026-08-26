@@ -32,7 +32,7 @@ Projects starting with `openshift-` and `kube-` are considered critical by {{ pr
 
         **Figure 1. Create project**
 
-        ![Web console image showing the Create project option](/_assets/images/odc_create_project.png)
+        ![Web console image showing the Create project option](/images/odc_create_project.png)
         1.  In the **Create Project** dialog box, enter a unique name, such as `myproject`, in the **Name** field.
         1.  Optional: Add the **Display name** and **Description** details for the project.
         1.  Click **Create**.

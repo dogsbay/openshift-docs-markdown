@@ -13,7 +13,7 @@ Enclave support has the following benefits:
 
 ## Enclave mirroring workflow {id="oc-mirror-enclave-how-to_{{ context }}"}
 
-![Enclave Support](/_assets/images/445_OpenShift_Enclave_support_0724.png)
+![Enclave Support](/images/445_OpenShift_Enclave_support_0724.png)
 
 The previous image outlines the flow for using the oc-mirror plugin in different environments, including environments with and without an internet connection.
 

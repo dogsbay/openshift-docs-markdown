@@ -5,11 +5,11 @@ The user creates the required account-wide roles. During role creation, a trust 
 
 After both the account-wide operator roles and policies are created, the user can create a cluster. These operator roles are assigned to the corresponding permission policies that were created earlier and a trust policy with an OIDC provider. The operator roles differ from the account-wide roles in that they ultimately represent the in-cluster pods that need access to AWS resources. Because a user cannot attach IAM roles to pods, they must create a trust policy with an OIDC provider so that the Operator, and therefore the pods, can access the roles they need.
 
-![{{ product_title }} cluster creation flow diagram](/_assets/images/cloud-experts-sts-explained_creation_flow_hcp.png)
+![{{ product_title }} cluster creation flow diagram](/images/cloud-experts-sts-explained_creation_flow_hcp.png)
 
 When a new role is needed, the workload currently using the Red&#160;Hat role will assume the role in the AWS account, obtain temporary credentials from AWS STS, and begin performing the actions by using API calls within the user’s AWS account as permitted by the assumed role’s permissions policy. The credentials are temporary and have a maximum duration of one hour.
 
-![High-level AWS STS workflow for {{ product_title }}](/_assets/images/cloud-experts-sts-explained_highlevel.png)
+![High-level AWS STS workflow for {{ product_title }}](/images/cloud-experts-sts-explained_highlevel.png)
 
 Operators use the following process to obtain the requisite credentials to perform their tasks. 
 
@@ -21,4 +21,4 @@ Operators use the following process to obtain the requisite credentials to perfo
 
 For a visual representation, see the following diagram:
 
-![OIDC provider and operator roles workflow diagram](/_assets/images/cloud-experts-sts-explained_oidc_op_roles_hcp.png)
+![OIDC provider and operator roles workflow diagram](/images/cloud-experts-sts-explained_oidc_op_roles_hcp.png)

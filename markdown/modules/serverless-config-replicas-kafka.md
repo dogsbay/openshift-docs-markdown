@@ -21,7 +21,7 @@ High availability (HA) is available by default for the Knative broker implementa
 1.  Select the `knative-eventing` namespace.
 1.  Click **Knative Kafka** in the list of **Provided APIs** for the {{ ServerlessOperatorName }} to go to the **Knative Kafka** tab.
 1.  Click **knative-kafka**, then go to the **YAML** tab in the **knative-kafka** page.
-    ![Knative Kafka YAML](/_assets/images/kafka-YAML-HA.png)
+    ![Knative Kafka YAML](/images/kafka-YAML-HA.png)
 1.  Modify the number of replicas in the `KnativeKafka` CR:
     ```yaml title="Example YAML"
     apiVersion: operator.serverless.openshift.io/v1alpha1

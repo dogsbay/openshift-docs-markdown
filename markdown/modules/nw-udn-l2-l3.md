@@ -7,7 +7,7 @@ In a flat layer 2 topology, virtual machines and pods connect to the virtual swi
 
 **Figure 1. A flat layer 2 topology that uses a virtual switch for component communication**
 
-![A flat layer 2 topology with a virtual switch so that virtual machines in node-1 to node-2 can communicate with each other](/_assets/images/504_OpenShift_UDN_L2_0325.png)
+![A flat layer 2 topology with a virtual switch so that virtual machines in node-1 to node-2 can communicate with each other](/images/504_OpenShift_UDN_L2_0325.png)
 
 If you decide not to specify a layer 2 subnet, then you must manually configure IP addresses for each pod in your cluster. When you do not specify a layer 2 subnet, port security is limited to preventing Media Access Control (MAC) spoofing only, and does not include IP spoofing. A layer 2 topology creates a single broadcast domain that can be challenging in large network environments, where the topology might cause a broadcast storm that can degrade network performance.
 
@@ -20,6 +20,6 @@ An external switch connects these two interfaces, while the gateway or router ha
 
 **Figure 2. A user-defined network (UDN) that uses a layer 2 topology**
 
-![A UDN that uses a layer 2 topology for migrating a VM from node-1 to node-2](/_assets/images/503_OpenShift_UDN_L2_0425.png)
+![A UDN that uses a layer 2 topology for migrating a VM from node-1 to node-2](/images/503_OpenShift_UDN_L2_0425.png)
 
 A layer 3 topology creates a unique layer 2 segment for each node in a cluster. The layer 3 routing mechanism interconnects these segments so that virtual machines and pods that are hosted on different nodes can communicate with each other. A layer 3 topology can effectively manage large broadcast domains by assigning each domain to a specific node, so that broadcast traffic has a reduced scope. To configure a layer 3 topology, you must configure `cidr` and `hostSubnet` parameters.

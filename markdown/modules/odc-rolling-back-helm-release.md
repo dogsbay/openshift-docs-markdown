@@ -15,5 +15,5 @@ To rollback a release using the **Helm** view:
 
     **Figure 1. Helm revision history**
 
-    ![odc_helm_revision_history](/_assets/images/odc_helm_revision_history.png)
+    ![odc_helm_revision_history](/images/odc_helm_revision_history.png)
 1.  If required, you can further use the Options menu {{ kebab }} adjoining a particular revision and select the revision to rollback to.

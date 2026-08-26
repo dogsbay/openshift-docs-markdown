@@ -20,7 +20,7 @@ To optimize your deployments, use {{ microshift_short }} with a compatible opera
 
 **Figure 1. {{ product_title }} as part of {{ op_system_bundle }}.**
 
-![<{{ product_title }} is tasked with only the Kubernetes node services networking](/_assets/images/311_RHDevice_Edge_Overview_0223_1.png)
+![<{{ product_title }} is tasked with only the Kubernetes node services networking](/images/311_RHDevice_Edge_Overview_0223_1.png)
 
 The following operational differences from {{ oke }} can help you understand where you can deploy {{ microshift_short }}:
 
@@ -34,7 +34,7 @@ The following operational differences from {{ oke }} can help you understand whe
 
 **Figure 2. {{ product_title }} differences from {{ oke }}.**
 
-![<{{ microshift_short }} is tasked with only the Kubernetes node capabilities of networking](/_assets/images/311_RHDevice_Edge_Overview_0223_2.png)
+![<{{ microshift_short }} is tasked with only the Kubernetes node capabilities of networking](/images/311_RHDevice_Edge_Overview_0223_2.png)
 
 The figure "{{ product_title }} differences from {{ oke }}" shows that {{ oke }} has the same cluster capabilities as a {{ product_title }} node, and adds the following information:
 

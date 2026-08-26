@@ -17,11 +17,11 @@ After you have deployed the necessary applications and loaded data into the data
 
     **Figure 1. National parks across the world**
 
-    ![Opening the URL for the parksmap deployment](/_assets/images/getting-started-parksmap-url.png)
+    ![Opening the URL for the parksmap deployment](/images/getting-started-parksmap-url.png)
 1.  Verify that your web browser displays a map of the national parks across the world.
 
     **Figure 2. National parks across the world**
 
-    ![Map of the national parks across the world](/_assets/images/getting-started-map-national-parks.png)
+    ![Map of the national parks across the world](/images/getting-started-map-national-parks.png)
 
     If you allow the application to access your location, the map will center on your location.

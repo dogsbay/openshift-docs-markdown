@@ -17,4 +17,4 @@ You start the {{ ztp }} workflow by creating declarative site definition and con
 
 The following diagram shows how {{ ztp }} works within the far edge framework.
 
-![{{ ztp }} at the network far edge](/_assets/images/217_OpenShift_Zero_Touch_Provisioning_updates_1022_1.png)
+![{{ ztp }} at the network far edge](/images/217_OpenShift_Zero_Touch_Provisioning_updates_1022_1.png)

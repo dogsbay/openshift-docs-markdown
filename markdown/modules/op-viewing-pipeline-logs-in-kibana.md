@@ -40,7 +40,7 @@ To view pipeline logs in the Kibana web console:
 
             **Figure 1. Example of filtering using the drop-down fields**
 
-            ![Not place-tools](/_assets/images/not-placetools.png)
+            ![Not place-tools](/images/not-placetools.png)
         1.  Filter `pipelinerun` in labels for highlighting:
             ```json title="Example query to filter pipelinerun in labels for highlighting"
             {
@@ -76,4 +76,4 @@ To view pipeline logs in the Kibana web console:
 
         **Figure 2. Filtered messages**
 
-        ![Filtered messages](/_assets/images/filtered-messages.png)
+        ![Filtered messages](/images/filtered-messages.png)

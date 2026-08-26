@@ -21,19 +21,19 @@ After the account-wide roles and policies are created, the user can create a clu
 
 Once the user assigns the roles to the corresponding policy permissions, the final step is creating the OIDC provider.
 
-![cloud-experts-sts-explained_creation_flow](/_assets/images/cloud-experts-sts-explained_creation_flow.png)
+![cloud-experts-sts-explained_creation_flow](/images/cloud-experts-sts-explained_creation_flow.png)
 
 When a new role is needed, the workload currently using the Red&#160;Hat role will assume the role in the AWS account, obtain temporary credentials from AWS STS, and begin performing the actions using API calls within the customer’s AWS account as permitted by the assumed role’s permissions policy. The credentials are temporary and have a maximum duration of one hour.
 
-![cloud-experts-sts-explained_highlevel](/_assets/images/cloud-experts-sts-explained_highlevel.png)
+![cloud-experts-sts-explained_highlevel](/images/cloud-experts-sts-explained_highlevel.png)
 
 The entire workflow is depicted in the following graphic:
 
-![cloud-experts-sts-explained_entire_flow](/_assets/images/cloud-experts-sts-explained_entire_flow.png)
+![cloud-experts-sts-explained_entire_flow](/images/cloud-experts-sts-explained_entire_flow.png)
 
 Operators use the following process to obtain the requisite credentials to perform their tasks. Each Operator is assigned an Operator role, a permissions policy, and a trust policy with an OIDC provider. The Operator will assume the role by passing a JSON web token that contains the role and a token file (`web_identity_token_file`) to the OIDC provider, which then authenticates the signed key with a public key. The public key is created during cluster creation and stored in an S3 bucket. The Operator then confirms that the subject in the signed token file matches the role in the role trust policy which ensures that the OIDC provider can only obtain the allowed role. The OIDC provider then returns the temporary credentials to the Operator so that the Operator can make AWS API calls. For a visual representation, see below:
 
-![cloud-experts-sts-explained_oidc_op_roles](/_assets/images/cloud-experts-sts-explained_oidc_op_roles.png)
+![cloud-experts-sts-explained_oidc_op_roles](/images/cloud-experts-sts-explained_oidc_op_roles.png)
 
 ## {{ product_title }} with STS use cases {id="cloud-experts-sts-use-cases_{{ context }}"}
 

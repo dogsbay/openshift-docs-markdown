@@ -57,4 +57,4 @@ You can:
 
         **Figure 1. Pipeline run details**
 
-        ![Pipeline run details](/_assets/images/op_pipeline_run2.png)
+        ![Pipeline run details](/images/op_pipeline_run2.png)

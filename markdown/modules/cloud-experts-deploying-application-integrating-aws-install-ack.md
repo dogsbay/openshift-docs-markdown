@@ -11,7 +11,7 @@ We will use an Operator to make it easy. The Operator installation will also cre
 1.  On the left menu, click **Ecosystem**, then **Software Catalog**.
 1.  In the filter box, enter "S3" and select **AWS Controller for Kubernetes - Amazon S3**.
 
-    ![cloud-experts-deploying-integrating-ack-operator](/_assets/images/cloud-experts-deploying-integrating-ack-operator.png)
+    ![cloud-experts-deploying-integrating-ack-operator](/images/cloud-experts-deploying-integrating-ack-operator.png)
 1.  If a pop-up about community operators appears, click **Continue**.
 1.  Click **Install**.
 1.  Select **All namespaces on the cluster** under "Installation mode".
@@ -28,6 +28,6 @@ We will use an Operator to make it easy. The Operator installation will also cre
 
     The settings should look like the below image.
 
-    ![cloud-experts-deployment-integrating-ack-install](/_assets/images/cloud-experts-deployment-integrating-ack-install.png)
+    ![cloud-experts-deployment-integrating-ack-install](/images/cloud-experts-deployment-integrating-ack-install.png)
 1.  Click **Approve**.
 1.  The installation begins but will not complete until you have created an IAM role and policy for the ACK controller.

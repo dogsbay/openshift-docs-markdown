@@ -3,7 +3,7 @@
 
 Using the `ServiceMeshMemberRoll` resource is the simplest way to add a project to a service mesh. To add a project, specify the project name in the `spec.members` field of the `ServiceMeshMemberRoll` resource. The `ServiceMeshMemberRoll` resource specifies which projects are controlled by the `ServiceMeshControlPlane` resource.
 
-![Adding project using `ServiceMeshMemberRoll` resource image](/_assets/images/ossm-adding-project-using-smmr.png)
+![Adding project using `ServiceMeshMemberRoll` resource image](/images/ossm-adding-project-using-smmr.png)
 
 
 :::note

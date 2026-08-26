@@ -6,7 +6,7 @@ The following sections describe the various {{ product_title }} components and c
 
 **Figure 1. Telco RAN DU reference design components**
 
-![Diagram showing telco RAN DU RDS components](/_assets/images/telco-ran-du-reference-design-components.png)
+![Diagram showing telco RAN DU RDS components](/images/telco-ran-du-reference-design-components.png)
 
 
 :::note

@@ -6,4 +6,4 @@ Red Hat SRE management access the cluster over the {{ gcp_short }} PSC-enabled p
 
 **Figure 1. {{ product_title }} on {{ GCP }} deployed on a private network with PSC**
 
-![Architecture diagram showing Developer and Red Hat Management connecting through Google Cloud Private Service Connect to a customer Google Cloud project private network. The network contains an Internal API load balancer and Default Ingress load balancer routing traffic to three node groups distributed across availability zones: Control plane nodes (x3) running apiserver](/_assets/images/484_a_OpenShift_osd_gcp_private_psc_arch_0525.png)
+![Architecture diagram showing Developer and Red Hat Management connecting through Google Cloud Private Service Connect to a customer Google Cloud project private network. The network contains an Internal API load balancer and Default Ingress load balancer routing traffic to three node groups distributed across availability zones: Control plane nodes (x3) running apiserver](/images/484_a_OpenShift_osd_gcp_private_psc_arch_0525.png)

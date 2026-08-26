@@ -10,4 +10,4 @@ When deploying {{ product_title }} clusters, verify that end users select the AW
     *   This can be the same AWS account as the billing AWS account.
     *   AWS resources are deployed into this account and all the billing associated with those resources is processed accordingly.
     *   If different AWS accounts are selected as the infrastructure and billing accounts, an informative note is displayed.
-        ![rosa-infrastructure-and-billing-aws-account-selection-during-rosa-with-hcp-cluster-deployment](/_assets/images/rosa-infrastructure-and-billing-aws-account-selection-during-rosa-with-hcp-cluster-deployment.png)
+        ![rosa-infrastructure-and-billing-aws-account-selection-during-rosa-with-hcp-cluster-deployment](/images/rosa-infrastructure-and-billing-aws-account-selection-during-rosa-with-hcp-cluster-deployment.png)

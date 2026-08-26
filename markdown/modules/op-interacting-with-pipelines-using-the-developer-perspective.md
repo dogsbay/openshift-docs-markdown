@@ -23,7 +23,7 @@ The **Pipelines** view in the **Developer** perspective lists all the pipelines 
 
         **Figure 1. Pipeline details**
 
-        ![Pipeline details](/_assets/images/op-pipeline-details1.png)
+        ![Pipeline details](/images/op-pipeline-details1.png)
 1.  Optional: On the **Pipeline details** page, click the **Metrics** tab to see the following information about pipelines:
     *   **Pipeline Success Ratio**
     *   **Number of Pipeline Runs**

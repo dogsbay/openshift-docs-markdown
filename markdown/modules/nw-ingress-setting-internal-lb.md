@@ -25,7 +25,7 @@ If you want to change the `scope` for an `IngressController`, you can change the
 
 **Figure 1. Diagram of LoadBalancer**
 
-![{{ product_title }} Ingress LoadBalancerService endpoint publishing strategy](/_assets/images/202_OpenShift_Ingress_0222_load_balancer.png)
+![{{ product_title }} Ingress LoadBalancerService endpoint publishing strategy](/images/202_OpenShift_Ingress_0222_load_balancer.png)
 
 The preceding graphic shows the following concepts pertaining to {{ product_title }} Ingress LoadBalancerService endpoint publishing strategy:
 

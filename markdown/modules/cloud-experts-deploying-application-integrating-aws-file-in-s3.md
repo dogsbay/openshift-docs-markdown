@@ -11,11 +11,11 @@ Use OStoy to create a file and upload it to the S3 bucket. While S3 can accept a
 1.  Enter content for your file.
 1.  Click **Create file**.
 
-    ![cloud-expert-deploying-integrating-ack-creates3obj](/_assets/images/cloud-expert-deploying-integrating-ack-creates3obj.png)
+    ![cloud-expert-deploying-integrating-ack-creates3obj](/images/cloud-expert-deploying-integrating-ack-creates3obj.png)
 1.  Scroll to the top section for existing files and confirm that the file you just created is there.
 1.  Click the file name to view the file.
 
-    ![cloud-experts-deploying-integrating-ack-viewobj](/_assets/images/cloud-experts-deploying-integrating-ack-viewobj.png)
+    ![cloud-experts-deploying-integrating-ack-viewobj](/images/cloud-experts-deploying-integrating-ack-viewobj.png)
 1.  Confirm with the AWS CLI by running the following command to list the contents of your bucket:
     ```terminal
     $ aws s3 ls s3://${OSTOY_NAMESPACE}-bucket

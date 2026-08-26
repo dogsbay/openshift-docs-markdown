@@ -7,7 +7,7 @@ To deploy your application, you need to get the CLI login command. {._abstract}
 
 1.  If you are not logged in to the CLI, access your cluster with the web console.
 1.  Click the dropdown arrow next to your login name in the upper right, and select **Copy Login Command**.
-    ![CLI login screen](/_assets/images/4-cli-login.png)
+    ![CLI login screen](/images/4-cli-login.png)
 
     A new tab opens. 
 1.  Select your authentication method.

@@ -3,7 +3,7 @@
 
 For cluster-wide deployments, you can use label selectors to add projects to the mesh. Label selectors specified in the `ServiceMeshMemberRoll` resource enable the {{ SMProductShortName }} Operator to add or remove namespaces to or from the mesh based on namespace labels. Unlike other standard {{ product_title }} resources that you can use to specify a single label selector, you can use the `ServiceMeshMemberRoll` resource to specify multiple label selectors.
 
-![Adding project using label selector image](/_assets/images/ossm-adding-project-using-label-selector.png)
+![Adding project using label selector image](/images/ossm-adding-project-using-label-selector.png)
 
 If the labels for a namespace match any of the selectors specified in the `ServiceMeshMemberRoll` resource, then the namespace is included in the mesh.
 

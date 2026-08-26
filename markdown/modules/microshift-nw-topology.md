@@ -17,7 +17,7 @@ The MTU value of the OVN overlay networking in {{ microshift_short }} must be 10
 
 OVS runs as a systemd service on the {{ microshift_short }} node. The OVS RPM package is installed as a dependency to the `microshift-networking` RPM package. OVS starts immediately when the `microshift-networking` RPM is installed.
 
-![title="{{ microshift_short }} uses an overlay-based networking implementation](/_assets/images/317_RHbM_OVN_topology_0923.png)
+![317_RHbM_OVN_topology_0923](/images/317_RHbM_OVN_topology_0923.png "{{ microshift_short }} uses an overlay-based networking implementation, details follow.")
 
 ## Description of the OVN logical components of the virtualized network {id="microshift-description-ovn-logical-components_{{ context }}"}
 

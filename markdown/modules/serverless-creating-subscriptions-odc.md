@@ -15,7 +15,7 @@ After you have created a channel and an event sink, you can create a subscriptio
 1.  In the **Developer** perspective, navigate to the **Topology** page.
 1.  Create a subscription using one of the following methods:
     1.  Hover over the channel that you want to create a subscription for, and drag the arrow. The **Add Subscription** option is displayed.
-        ![Create a subscription for the channel](/_assets/images/create-sub-ODC.png)
+        ![Create a subscription for the channel](/images/create-sub-ODC.png)
         1.  Select your sink in the **Subscriber** list.
         1.  Click **Add**.
     1.  If the service is available in the **Topology** view under the same namespace or project as the channel, click on the channel that you want to create a subscription for, and drag the arrow directly to a service to immediately create a subscription from the channel to that service.
@@ -23,4 +23,4 @@ After you have created a channel and an event sink, you can create a subscriptio
 **Verification**
 
 *   After the subscription has been created, you can see it represented as a line that connects the channel to the service in the **Topology** view:
-    ![Subscription in the Topology view](/_assets/images/verify-subscription-odc.png)
+    ![Subscription in the Topology view](/images/verify-subscription-odc.png)

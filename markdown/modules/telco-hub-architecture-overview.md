@@ -28,8 +28,8 @@ The reference configuration includes the installation and configuration of the h
 
 **Figure 1. Hub cluster reference design components**
 
-![telco-hub-cluster-reference-design-components](/_assets/images/telco-hub-cluster-reference-design-components.png)
+![telco-hub-cluster-reference-design-components](/images/telco-hub-cluster-reference-design-components.png)
 
 **Figure 2. Hub cluster reference design architecture**
 
-![telco-hub-cluster-rds-architecture](/_assets/images/telco-hub-cluster-rds-architecture.png)
+![telco-hub-cluster-rds-architecture](/images/telco-hub-cluster-rds-architecture.png)

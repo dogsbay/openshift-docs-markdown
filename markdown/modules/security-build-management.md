@@ -11,7 +11,7 @@ When developers commit code with Git for an application by using build images, {
 *   Automatically deploy the newly built image for testing. 
 *   Promote the tested image to production where it can be automatically deployed using a CI process.
 
-![Source-to-Image Builds](/_assets/images/build_process1.png)
+![Source-to-Image Builds](/images/build_process1.png)
 
 You can use the integrated OpenShift Container Registry to manage access to final images. Both S2I and native build images are automatically pushed to your OpenShift Container Registry.
 

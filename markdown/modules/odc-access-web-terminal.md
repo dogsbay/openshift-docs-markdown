@@ -19,7 +19,7 @@ cluster and are logged into the web console.
 
 **Procedure**
 
-1.  To launch the web terminal, click the command-line terminal icon (![title="wto icon"](/_assets/images/odc-wto-icon.png)) in the masthead of the console. A web terminal instance is displayed in the **Command line terminal** pane. This instance is automatically logged in with your credentials.
+1.  To launch the web terminal, click the command-line terminal icon (![odc-wto-icon](/images/odc-wto-icon.png "wto icon")) in the masthead of the console. A web terminal instance is displayed in the **Command line terminal** pane. This instance is automatically logged in with your credentials.
 1.  If a project has not been selected in the current session, select the project where the `DevWorkspace` CR must be created from the **Project** drop-down list. By default, the current project is selected.
 
     :::note

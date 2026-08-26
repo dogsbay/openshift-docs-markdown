@@ -30,7 +30,8 @@ Create the IAM policy and role that the {{ autonode }} requires to provision Ama
 1.  Create the IAM role:
     ```terminal
     $ aws iam create-role --role-name rosa-karpenter-controller-role-${CLUSTER_NAME} \
-      --assume-role-policy-document file://trust-policy.json
+      --assume-role-policy-document file://trust-policy.json \
+      --tags Key=red-hat-managed,Value=true
     ```
 1.  Attach the AWS managed IAM policy:
     ```terminal

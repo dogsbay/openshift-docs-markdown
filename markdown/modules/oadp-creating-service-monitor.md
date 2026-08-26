@@ -51,4 +51,4 @@ Create a `ServiceMonitor` resource to scrape Velero metrics from the {{ oadp_sho
 
         **Figure 1. OADP metrics targets**
 
-![OADP metrics targets](/_assets/images/oadp-metrics-targets.png)
+![OADP metrics targets](/images/oadp-metrics-targets.png)

@@ -15,7 +15,7 @@ Configuring group claims is an optional step.
 
 1.  From the **Token configuration** sub-blade, click **Add groups claim**.
 
-    ![Azure Portal - Add Groups Claim Page](/_assets/images/azure-portal_optional-group-claims-page.png)
+    ![Azure Portal - Add Groups Claim Page](/images/azure-portal_optional-group-claims-page.png)
 1.  To configure group claims for your Entra ID application, select **Security groups** and then click **Add**.
 
     :::note
@@ -25,4 +25,4 @@ Configuring group claims is an optional step.
     :::
 
 
-    ![Azure Portal - Edit Groups Claim Page](/_assets/images/azure-portal_edit-group-claims-page.png)
+    ![Azure Portal - Edit Groups Claim Page](/images/azure-portal_edit-group-claims-page.png)

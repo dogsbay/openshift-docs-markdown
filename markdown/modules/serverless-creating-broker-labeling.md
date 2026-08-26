@@ -44,4 +44,4 @@ You can verify that the broker has been created successfully by using the `oc` C
     default   True                http://broker-ingress.knative-eventing.svc.cluster.local/test/default   3m56s
     ```
 1.  Optional: If you are using the {{ product_title }} web console, you can navigate to the **Topology** view in the **Developer** perspective, and observe that the broker exists:
-    ![View the broker in the web console Topology view](/_assets/images/odc-view-broker.png)
+    ![View the broker in the web console Topology view](/images/odc-view-broker.png)

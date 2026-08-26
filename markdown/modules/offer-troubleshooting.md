@@ -6,7 +6,7 @@ Review solutions for the most frequent issues associated with private offer acce
 ## Accessing a private offer using a different AWS account {id="accessing-private-offer-different-aws-account_{{ context }}"}
 
 *   If you try accessing the private offer when logged in under an AWS account ID that is not defined in the offer, and see the "Page not found" message, then verify that you are logged in as the desired AWS billing account.
-    ![rosa-http-404-error-when-using-the-private-offer-url](/_assets/images/rosa-http-404-error-when-using-the-private-offer-url.png)
+    ![rosa-http-404-error-when-using-the-private-offer-url](/images/rosa-http-404-error-when-using-the-private-offer-url.png)
     *   Contact the seller if you need the private offer to be extended to another AWS account.
 
 ## The private offer cannot be accepted because of an active subscription {id="private-offer-cannot-be-accepted_{{ context }}"}
@@ -14,12 +14,12 @@ Review solutions for the most frequent issues associated with private offer acce
 *   If you try accessing a private offer that was created for the first-time {{ product_title }} activation, while you already have {{ product_title }} activated using another public or private offer, and see the following notice, then contact the seller who provided you with the offer.
 
     The seller can provide you with a new offer that will seamlessly replace your current agreement, without a need to cancel your previous subscription.
-    ![rosa-existing-subscription-preventing-private-offer-acceptance](/_assets/images/rosa-existing-subscription-preventing-private-offer-acceptance.png)
+    ![rosa-existing-subscription-preventing-private-offer-acceptance](/images/rosa-existing-subscription-preventing-private-offer-acceptance.png)
 
 ## The AWS account is already linked to a different Red&#160;Hat account {id="aws-account-linked-to-different-rh-account_{{ context }}"}
 
 *   If you see the error message "AWS account is already linked to a different Red&#160;Hat account" when you try to connect the AWS account that accepted the private offer with a presently logged-in Red&#160;Hat user, then the AWS account is already connected to another Red&#160;Hat user.
-    ![rosa-aws-account-is-already-linked-to-a-different-red-hat-account](/_assets/images/rosa-aws-account-is-already-linked-to-a-different-red-hat-account.png)
+    ![rosa-aws-account-is-already-linked-to-a-different-red-hat-account](/images/rosa-aws-account-is-already-linked-to-a-different-red-hat-account.png)
 *   You can either log in using another Red&#160;Hat account or another AWS account.
     *   However, since this guide pertains to private offers, the assumption is that you are logged in with the AWS account that was specified as the buyer and already accepted the private offer so it is intended to be used as the billing account. Logging in as another AWS account is not expected after a private offer was accepted.
 *   You can still log in with another Red&#160;Hat user which is already connected to the AWS account that accepted the private offer. Other Red&#160;Hat users belonging to the same Red&#160;Hat organization are able to use the linked AWS account as the {{ product_title }} AWS billing account when creating clusters.

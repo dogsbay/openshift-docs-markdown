@@ -25,4 +25,4 @@ Components for monitoring user-defined projects
 
     You can see these components in the **User** section in the following diagram.
 
-![{{ product_title }} monitoring architecture](/_assets/images/monitoring-architecture.png)
+![{{ product_title }} monitoring architecture](/images/monitoring-architecture.png)

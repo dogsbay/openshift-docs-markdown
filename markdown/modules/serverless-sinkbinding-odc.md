@@ -104,6 +104,6 @@ You can verify that the sink binding, sink, and cron job have been created and a
 
 1.  In the **Developer** perspective, navigate to **Topology**.
 1.  View the sink binding, sink, and heartbeats cron job.
-    ![View the sink binding and service in the Topology view](/_assets/images/verify-sinkbinding-odc.png)
+    ![View the sink binding and service in the Topology view](/images/verify-sinkbinding-odc.png)
 1.  Observe that successful jobs are being registered by the cron job once the sink binding is added. This means that the sink binding is successfully reconfiguring the jobs created by the cron job.
 1.  Browse the logs of the `event-display` service pod to see events produced by the heartbeats cron job.

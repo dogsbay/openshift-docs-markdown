@@ -9,13 +9,13 @@ The following diagram shows a multi-tenancy environment where two namespaces exi
 
 **Figure 1. BGP advertisement without a VPN**
 
-![Image of BGP advertisement without a VPN](/_assets/images/513_1_OpenShift_bgp_advertisement_0426.png)
+![Image of BGP advertisement without a VPN](/images/513_1_OpenShift_bgp_advertisement_0426.png)
 
 The following diagram shows multiple VRF BGP instances that use VRF lite. This architecture supports only local gateway mode. VRF lite provides network virtualization by using UDNs to isolate pod traffic without incurring the heavy encapsulation typical of Multi-Protocol Label Switching (MPLS) or Ethernet Virtual Private Network (EVPN) protocols. Separate L3 links get mapped to specific VRFs, so independent BGP peering sessions route traffic to the next-hop router. Further, you can deploy this L3 mechanism to multi-cloud deployments to allow specific namespaces to exist over the network. 
 
 **Figure 2. Multiple VRF BGP instances that use VRF lite**
 
-![Image of multiple VRF BGP instances that use VRF lite](/_assets/images/513_2_OpenShift_bgp_vrf_lite_0426.png)
+![Image of multiple VRF BGP instances that use VRF lite](/images/513_2_OpenShift_bgp_vrf_lite_0426.png)
 
 ## Supported platforms {id="supported-platforms_{{ context }}"}
 

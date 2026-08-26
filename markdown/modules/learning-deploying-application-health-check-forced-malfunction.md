@@ -6,7 +6,7 @@ You can test your application’s failure responses by purposefully causing the 
 **Procedure**
 
 *   From the OSToy application, click **Toggle Health** in the **Toggle Health Status** tile. Watch **Current Health** switch to **I’m not feeling all that well**.
-    ![OSToy toggle health tile](/_assets/images/5-ostoy-togglehealth.png)
+    ![OSToy toggle health tile](/images/5-ostoy-togglehealth.png)
 
 **Verification**
 
@@ -16,7 +16,7 @@ After you make the application malfunction, the application stops responding wit
 
 The following image shows an example of what you will see on your pod events page.
 
-![Pod events list](/_assets/images/5-ostoy-podevents2.png)
+![Pod events list](/images/5-ostoy-podevents2.png)
 
 **A.** The pod has three consecutive failures.
 

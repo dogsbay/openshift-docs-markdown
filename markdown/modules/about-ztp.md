@@ -13,4 +13,4 @@ A high-level overview of using {{ ztp }} to provision and maintain bare-metal ho
 
 Installing and deploying the clusters is a two-stage process, involving an initial installation phase, and a subsequent configuration and deployment phase. The following diagram illustrates this workflow:
 
-![Using GitOps and {{ ztp }} to install and deploy managed clusters](/_assets/images/474_OpenShift_OpenShift_RAN_RDS_arch_updates_1023.png)
+![Using GitOps and {{ ztp }} to install and deploy managed clusters](/images/474_OpenShift_OpenShift_RAN_RDS_arch_updates_1023.png)

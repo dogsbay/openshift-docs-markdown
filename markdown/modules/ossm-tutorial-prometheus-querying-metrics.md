@@ -30,9 +30,9 @@ After you have verified the Bookinfo application has deployed, you will need to 
     $ export PROMETHEUS_URL=$(oc get route -n istio-system prometheus -o jsonpath='{.spec.host}')
     ```
 1.  Launch a browser and navigate to  `http://<PROMETHEUS_URL>`. You will see the Prometheus home screen, similar to the following figure:
-    ![ossm-prometheus-home-screen](/_assets/images/ossm-prometheus-home-screen.png)
+    ![ossm-prometheus-home-screen](/images/ossm-prometheus-home-screen.png)
 1.  In the **Expression** field, enter `istio_request_duration_seconds_count`, and click `Execute`. You will see a screen similar to the following figure:
-    ![ossm-prometheus-metrics](/_assets/images/ossm-prometheus-metrics.png)
+    ![ossm-prometheus-metrics](/images/ossm-prometheus-metrics.png)
 1.  You can narrow down queries by using selectors. For example `istio_request_duration_seconds_count{destination_workload="reviews-v2"}`  shows only counters with the matching **destination_workload** label. For more information about using queries, see the [Prometheus documentation](https://prometheus.io/docs/prometheus/latest/querying/basics/#instant-vector-selectors).
 1.  To list all available Prometheus metrics, run the following command:
     ```terminal

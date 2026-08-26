@@ -37,10 +37,10 @@ After you install the {{ ServerlessOperatorName }}, install Knative Eventing by 
 
 1.  Click on the `knative-eventing` custom resource in the **Knative Eventing** tab.
 1.  You are automatically directed to the **Knative Eventing Overview** page.
-    ![Knative Eventing Overview page](/_assets/images/eventing-overview.png)
+    ![Knative Eventing Overview page](/images/eventing-overview.png)
 1.  Scroll down to look at the list of **Conditions**.
 1.  You should see a list of conditions with a status of **True**, as shown in the example image.
-    ![Conditions](/_assets/images/eventing-conditions-true.png)
+    ![Conditions](/images/eventing-conditions-true.png)
 
     :::note
 

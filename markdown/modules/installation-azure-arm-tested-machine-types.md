@@ -3,7 +3,8 @@
 
 There are several Microsoft Azure ARM64 instance types tested with {{ product_title }}. Choose a listed instance type when you install a cluster on 64-bit ARM infrastructure. {._abstract}
 
-:::details{title="Machine types based on 64-bit ARM architecture"}
+See the following machine types based on 64-bit ARM architecture:
+
 ### General Purpose (ARM64)
 
 | Azure VM Series | Family Name |
@@ -26,5 +27,3 @@ There are several Microsoft Azure ARM64 instance types tested with {{ product_ti
 | Epsv5-series | `standardEPSv5Family` |
 | Epdsv6-series | `StandardEpdsv6Family` |
 | Epsv6-series | `StandardEpsv6Family` |
-
-:::

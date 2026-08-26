@@ -15,7 +15,7 @@ The following diagram shows network connectivity of a PrivateLink cluster.
 
 **Figure 1. Multi-AZ AWS PrivateLink cluster deployed on private subnets**
 
-![Multi-AZ AWS PrivateLink cluster deployed on private subnets](/_assets/images/156_OpenShift_ROSA_Arch_1221_privatelink.png)
+![Multi-AZ AWS PrivateLink cluster deployed on private subnets](/images/156_OpenShift_ROSA_Arch_1221_privatelink.png)
 
 ## AWS reference architectures {id="osd-aws-reference-architecture_{{ context }}"}
 

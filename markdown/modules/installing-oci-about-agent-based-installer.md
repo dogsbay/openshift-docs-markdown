@@ -9,11 +9,11 @@ The following diagrams show workflows for connected and disconnected environment
 
 **Figure 1. Workflow for using the Agent-based installer in a connected environment to install a cluster on {{ oci_first_no_rt }}**
 
-![Image of a high-level workflow for using the Agent-based installer in a connected environment to install a cluster on {{ oci }}](/_assets/images/684_OpenShift_Installing_on_OCI_0624-connected.png)
+![Image of a high-level workflow for using the Agent-based installer in a connected environment to install a cluster on {{ oci }}](/images/684_OpenShift_Installing_on_OCI_0624-connected.png)
 
 **Figure 2. Workflow for using the Agent-based installer in a disconnected environment to install a cluster on {{ oci }}**
 
-![Image of a high-level workflow for using the Agent-based installer in a disconnected environment to install a cluster on {{ oci }}](/_assets/images/684_OpenShift_Installing_on_OCI_0624-disconnected.png)
+![Image of a high-level workflow for using the Agent-based installer in a disconnected environment to install a cluster on {{ oci }}](/images/684_OpenShift_Installing_on_OCI_0624-disconnected.png)
 
 {{ oci_distributed_no_rt }} provides services that can meet your regulatory compliance, performance, and cost-effectiveness needs. {{ oci_distributed_no_rt }} supports 64-bit `x86` instances and 64-bit `ARM` instances.
 

@@ -3,7 +3,7 @@
 
 The {{ VirtProductName }} Operator, `virt-operator`, deploys, upgrades, and manages {{ VirtProductName }} without disrupting current virtual machine (VM) workloads. In addition, the {{ VirtProductName }} Operator deploys the common instance types and common preferences. {._abstract}
 
-![virt-operator components](/_assets/images/cnv_components_virt-operator.png)
+![virt-operator components](/images/cnv_components_virt-operator.png)
 
 **virt-operator components**
 

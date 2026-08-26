@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the `CloudFormation` stack for compute machines {id="installation-aws-creating-cloudformation-stack_{{ context }}"}
+# Creating the CloudFormation stack for compute machines {id="installation-aws-creating-cloudformation-stack_{{ context }}"}
 
 You can create a stack of {{ aws_first }} resources for the compute machines by using the provided `CloudFormation` template. {._abstract}
 

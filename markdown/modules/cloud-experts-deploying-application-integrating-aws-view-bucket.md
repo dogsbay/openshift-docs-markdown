@@ -20,4 +20,4 @@ Use your app to view the contents of your S3 bucket. {._abstract}
 1.  Click **ACK S3** in the left menu in OSToy.
 1.  Because it is a new bucket, the bucket should be empty.
 
-    ![cloud-expert-deploying-integrating-ack-views3contents](/_assets/images/cloud-expert-deploying-integrating-ack-views3contents.png)
+    ![cloud-expert-deploying-integrating-ack-views3contents](/images/cloud-expert-deploying-integrating-ack-views3contents.png)

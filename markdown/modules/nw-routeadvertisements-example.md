@@ -90,7 +90,7 @@ With this `FRRConfiguration` object, routes will be imported from neighbor `172.
 
 The CUDNs are advertised over the default VRF as illustrated in the following diagram:
 
-![Advertising pod IPs from a cluster user-defined network over BGP](/_assets/images/524-openshift-bgp-ovn-k8s-no-vpn-0325.png)
+![Advertising pod IPs from a cluster user-defined network over BGP](/images/524-openshift-bgp-ovn-k8s-no-vpn-0325.png)
 
 
 Red CUDN
@@ -179,7 +179,7 @@ This scenario does not support the use of EgressIPs.
 
 The following diagram illustrates this configuration:
 
-![Advertising pod IPs from a cluster user-defined network over BGP with VPN](/_assets/images/524-openshift-bgp-ovn-k8s-vrf-lite-0325.png)
+![Advertising pod IPs from a cluster user-defined network over BGP with VPN](/images/524-openshift-bgp-ovn-k8s-vrf-lite-0325.png)
 
 
 Red CUDN

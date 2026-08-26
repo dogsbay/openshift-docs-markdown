@@ -10,10 +10,10 @@ Output your data to the streams and logs in the OSToy application. {._abstract}
     1.  Write a message to output to the `stdout` stream, for example "All is well!".
     1.  Click **Send Message**.
 
-        ![cloud-experts-deploying-application-logging-ostoy-stdout](/_assets/images/cloud-experts-deploying-application-logging-ostoy-stdout.png)
+        ![cloud-experts-deploying-application-logging-ostoy-stdout](/images/cloud-experts-deploying-application-logging-ostoy-stdout.png)
 1.  Output a message to `stderr`.
     1.  Click the message box for **Log Message (stderr)**.
     1.  Write a message to output to the `stderr` stream, for example "Oh no! Error!".
     1.  Click **Send Message**.
 
-        ![cloud-experts-deploying-application-logging-ostoy-stderr](/_assets/images/cloud-experts-deploying-application-logging-ostoy-stderr.png)
+        ![cloud-experts-deploying-application-logging-ostoy-stderr](/images/cloud-experts-deploying-application-logging-ostoy-stderr.png)

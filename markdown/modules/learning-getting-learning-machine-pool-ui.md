@@ -6,10 +6,10 @@ You can create your machine pools by using {{ cluster_manager }}. {._abstract}
 **Procedure**
 
 1.  Log in to the {{ cluster_manager_url }} and click your cluster.
-    ![cloud-experts-getting-started-managing-ocm-cluster](/_assets/images/cloud-experts-getting-started-managing-ocm-cluster.png)
+    ![cloud-experts-getting-started-managing-ocm-cluster](/images/cloud-experts-getting-started-managing-ocm-cluster.png)
 1.  Click the **Machine pools** tab.
 
-    ![cloud-experts-getting-started-managing-mp-ocm](/_assets/images/cloud-experts-getting-started-managing-mp-ocm.png)
+    ![cloud-experts-getting-started-managing-mp-ocm](/images/cloud-experts-getting-started-managing-mp-ocm.png)
 1.  Click **Add machine pool**.
 1.  Enter the desired configuration.
 
@@ -19,7 +19,7 @@ You can create your machine pools by using {{ cluster_manager }}. {._abstract}
     
     :::
 
-    ![cloud-experts-getting-started-managing-mp-nlt](/_assets/images/cloud-experts-getting-started-managing-mp-nlt.png)
+    ![cloud-experts-getting-started-managing-mp-nlt](/images/cloud-experts-getting-started-managing-mp-nlt.png)
 1.  Click the **Add machine pool** button to save.
 1.  You will see the new machine pool you created.
-    ![cloud-experts-getting-started-managing-mp-fromui](/_assets/images/cloud-experts-getting-started-managing-mp-fromui.png)
+    ![cloud-experts-getting-started-managing-mp-fromui](/images/cloud-experts-getting-started-managing-mp-fromui.png)

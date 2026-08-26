@@ -8,9 +8,9 @@ To access the cluster using the command line interface (CLI), you must have the 
 1.  Log in to the {{ cluster_manager_url }}.
 1.  Click your username in the top right corner.
 1.  Click **Copy Login Command**.
-    ![cloud-experts-getting-started-accessing-copy-login](/_assets/images/cloud-experts-getting-started-accessing-copy-login.png)
+    ![cloud-experts-getting-started-accessing-copy-login](/images/cloud-experts-getting-started-accessing-copy-login.png)
 1.  This opens a new tab with a choice of identity providers (IDPs). Click the IDP you want to use. For example, "rosa-github".
-    ![cloud-experts-getting-started-accessing-copy-token](/_assets/images/cloud-experts-getting-started-accessing-copy-token.png)
+    ![cloud-experts-getting-started-accessing-copy-token](/images/cloud-experts-getting-started-accessing-copy-token.png)
 1.  A new tab opens. Click **Display token**.
 1.  Run the following command in your terminal:
     ```terminal

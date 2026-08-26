@@ -11,4 +11,4 @@ You use the Developer Catalog to deploy applications and services based on Opera
 
     **Figure 1. MariaDB in Topology**
 
-    ![odc_devcatalog_toplogy](/_assets/images/odc_devcatalog_toplogy.png)
+    ![odc_devcatalog_toplogy](/images/odc_devcatalog_toplogy.png)

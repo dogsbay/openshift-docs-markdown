@@ -5,7 +5,7 @@ By using the horizontal pod autoscaler (HPA) you can create and manage a group o
 
 **Figure 1. High level workflow of the HPA**
 
-![workflow](/_assets/images/HPAflow.png)
+![workflow](/images/HPAflow.png)
 
 The HPA is an API resource in the Kubernetes autoscaling API group. The autoscaler works as a control loop with a default of 15 seconds for the sync period. During this period, the controller manager queries the CPU, memory utilization, or both, against what is defined in the YAML file for the HPA.
 The controller manager obtains the utilization metrics from the resource metrics API for per-pod resource metrics like CPU or memory, for each pod that is targeted by the HPA.

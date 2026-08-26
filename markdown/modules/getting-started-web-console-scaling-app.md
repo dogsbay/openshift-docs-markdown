@@ -21,7 +21,7 @@ The following procedure scales the `parksmap` deployment to use two instances.
 
     **Figure 1. Scaling application**
 
-    ![Scaling pod to two instances](/_assets/images/getting-started-scaling-pod.png)
+    ![Scaling pod to two instances](/images/getting-started-scaling-pod.png)
 
     :::tip
 

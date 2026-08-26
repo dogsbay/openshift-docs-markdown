@@ -86,7 +86,7 @@ If the `etcd` service does not run correctly, successful operation of the whole 
     ```
 1.  In the Web interface, log in as the user belonging to the `cluster-monitoring-view` role.
 1.  Click **Status**, then **Targets**. If you see an `etcd` entry, `etcd` is being monitored.
-    ![etcd-no-certificate](/_assets/images/etcd-no-certificate.png)
+    ![etcd-no-certificate](/images/etcd-no-certificate.png)
 
 While `etcd` is being monitored, Prometheus is not yet able to authenticate against `etcd`, and so cannot gather metrics. To configure Prometheus authentication against `etcd`:
 
@@ -141,4 +141,4 @@ While `etcd` is being monitored, Prometheus is not yet able to authenticate agai
 $ oc apply -f etcd-cert-secret.yaml
 ```
 1.  Visit the "Targets" page of the Web interface again. Verify that `etcd` is now being correctly monitored. It might take several minutes for changes to take effect.
-    ![etcd-monitoring-working](/_assets/images/etcd-monitoring-working.png)
+    ![etcd-monitoring-working](/images/etcd-monitoring-working.png)

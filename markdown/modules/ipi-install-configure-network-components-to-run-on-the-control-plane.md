@@ -29,10 +29,10 @@ When deploying remote nodes in separate subnets, you must place the `ingressVIP`
 
 
 {% if bare %}
-![Installer-provisioned networking](/_assets/images/161_OpenShift_Baremetal_IPI_Deployment_updates_0521.png)
+![Installer-provisioned networking](/images/161_OpenShift_Baremetal_IPI_Deployment_updates_0521.png)
 {% endif %}
 {% if vSphere %}
-![Installer-provisioned networking](/_assets/images/325_OpenShift_vSphere_Deployment_updates_0323.png)
+![Installer-provisioned networking](/images/325_OpenShift_vSphere_Deployment_updates_0323.png)
 {% endif %}
 
 **Procedure**

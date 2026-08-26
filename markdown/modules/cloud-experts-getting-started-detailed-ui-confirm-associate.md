@@ -9,5 +9,5 @@ You should now see your AWS account in the **Associated AWS infrastructure accou
 1.  If you see your account, account association was successful.
 1.  Select the account.
 1.  You will see the account role ARNs populated below.
-    ![cloud-experts-getting-started-rosa-deployment-detailed-ui-account-roles](/_assets/images/cloud-experts-getting-started-rosa-deployment-detailed-ui-account-roles.png)
+    ![cloud-experts-getting-started-rosa-deployment-detailed-ui-account-roles](/images/cloud-experts-getting-started-rosa-deployment-detailed-ui-account-roles.png)
 1.  Click **Next**.

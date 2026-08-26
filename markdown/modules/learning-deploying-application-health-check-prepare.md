@@ -6,4 +6,4 @@ To prepare your desktop for the health check procedures, access your OSToy appli
 **Procedure**
 
 *   From the {{ ocp_short }} web console, select **Workloads > Deployments > ostoy-frontend** to view the OSToy deployment. 
-    ![The web console deployments page](/_assets/images/5-ostoy-deployview.png)
+    ![The web console deployments page](/images/5-ostoy-deployview.png)
