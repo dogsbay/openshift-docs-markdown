@@ -125,11 +125,23 @@ jobs:
       - name: Runner capacity before the build
         run: |
           set -euo pipefail
-          echo "── disk ──";   df -h /
-          echo "── memory ──"; free -m
-          echo "── checkout ──"
-          du -sh markdown site 2>/dev/null || true
-          du -sh site/dist site/public site/src 2>/dev/null || true
+          # To the STEP SUMMARY, not just stdout: when the runner dies of a
+          # full disk it cannot upload logs at all (every fetch returns
+          # BlobNotFound), and the summary is stored separately, so this is
+          # the only channel that survives the failure we are chasing.
+          {
+            echo '### Runner capacity before the build'
+            echo '```'
+            df -h /
+            echo
+            free -m
+            echo
+            du -sh markdown site .git 2>/dev/null || true
+            echo
+            echo "symlinks in markdown/: $(find markdown -type l | wc -l)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          df -h /
 
       # `dogsbay.config.yml` already points sources at ./markdown and output
       # at ./site, so the build needs no arguments beyond the root.
