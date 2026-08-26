@@ -59,6 +59,17 @@ jobs:
         with:
           ref: ${{ github.event.inputs.branch }}
 
+      # `enablement: true` turns Pages on if it is off, which is what a FORK
+      # needs: deploy-pages alone fails on a repository where nobody has been
+      # into Settings → Pages, and the error names the deploy rather than the
+      # missing setting. site.url is derived from GITHUB_REPOSITORY_OWNER in
+      # workflow 1, so a fork already builds its own correct base path — this
+      # is the only remaining manual step, and it does not need to be manual.
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - name: Verify the branch carries converted markdown
         run: |
           set -euo pipefail
