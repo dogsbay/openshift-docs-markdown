@@ -99,10 +99,33 @@ jobs:
       - name: Clear the previous page tree
         run: rm -rf site/src/pages
 
+      # Diagnostics. Two runs died mid-`site build` at ~2m55s with NO logs
+      # uploaded (GitHub returns BlobNotFound), which is what an abruptly
+      # killed runner looks like rather than a step that failed. The same
+      # build succeeds locally in 49s at 1.5 GB peak RSS, so the difference
+      # is the environment, not the code — measure it rather than guess.
+      - name: Runner capacity before the build
+        run: |
+          set -euo pipefail
+          echo "── disk ──";   df -h /
+          echo "── memory ──"; free -m
+          echo "── checkout ──"
+          du -sh markdown site 2>/dev/null || true
+          du -sh site/dist site/public site/src 2>/dev/null || true
+
       # `dogsbay.config.yml` already points sources at ./markdown and output
       # at ./site, so the build needs no arguments beyond the root.
       - name: Generate the Astro project
+        env:
+          NODE_OPTIONS: --max-old-space-size=6144
         run: dogsbay site build .
+
+      - name: Runner capacity after the build
+        if: always()
+        run: |
+          df -h / || true
+          free -m || true
+          du -sh site 2>/dev/null || true
 
       - name: Refuse an implausibly small site
         id: count
