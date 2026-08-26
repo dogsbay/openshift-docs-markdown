@@ -74,10 +74,7 @@ A hosted cluster supports only one infrastructure platform. For example, you can
 The following table indicates which OpenShift Container Platform versions are supported for each platform of hosted control planes.
 
 > [!IMPORTANT]
-> For IBM Power and IBM Z:
->
-> - You must run the control plane on machine types that are based on 64-bit x86 architecture or s390x architecture
-> - You must run node pools on IBM Power or IBM Z
+> For hosted control planes on IBM Power or IBM Z, the control plane must run on either 64_bit x86 architecture or s390x architecture. Node pools must run on either IBM Power or IBM Z. No other combinations are supported.
 
 In the following table, the management cluster version is the OpenShift Container Platform version where the multicluster engine Operator is enabled:
 
@@ -108,9 +105,7 @@ The following tables indicate the supported architectures for hosted control pla
 | AWS | ARM64 | 64-bit x86 | 4.18 - 4.22 |
 | Bare metal (Agent platform) | 64-bit x86 | 64-bit x86 | 4.14, 4.16, 4.18 - 4.22 |
 | Bare metal (Agent platform) | 64-bit x86 | ARM64 | 4.21 - 4.22 |
-| IBM Power | 64-bit x86 | 64-bit x86 | 4.19 - 4.22 |
 | IBM Power | 64-bit x86 | ppc64le | 4.18 - 4.22 |
-| IBM Z | 64-bit x86 | 64-bit x86 | 4.18 - 4.22 |
 | IBM Z | 64-bit x86 | s390x | 4.18 - 4.22 |
 | IBM Z | s390x | s390x | 4.20 - 4.22 |
 | Non-bare-metal Agent machines (Technology Preview) | 64-bit x86 | 64-bit x86 | 4.16, 4.18 - 4.22 |

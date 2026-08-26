@@ -405,9 +405,9 @@ The infrastructure name is also used to locate the appropriate AWS resources dur
 
 ## Creating a VPC in AWS {#installation-creating-aws-vpc_installing-aws-user-infra}
 
-You must create a Virtual Private Cloud (VPC) in Amazon Web Services (AWS) for your OpenShift Container Platform cluster to use. You can customize the VPC to meet your requirements, including VPN and route tables.
+To provide the network foundation for your OpenShift Container Platform cluster, create a Virtual Private Cloud (VPC) in Amazon Web Services (AWS) by using the provided CloudFormation template.
 
-You can use the provided CloudFormation template and a custom parameter file to create a stack of AWS resources that represent the VPC.
+You can customize the VPC to meet your requirements, including VPN and route tables. You can use the provided CloudFormation template and a custom parameter file to create a stack of AWS resources that represent the VPC.
 
 > [!NOTE]
 > If you do not use the provided CloudFormation template to create your AWS infrastructure, you must review the provided information and manually create the infrastructure. If your cluster does not initialize correctly, you might have to contact Red Hat support with your installation logs.
@@ -423,26 +423,30 @@ You can use the provided CloudFormation template and a custom parameter file to 
    ```json
    [
      {
-       "ParameterKey": "VpcCidr", (1)
-       "ParameterValue": "10.0.0.0/16" (2)
+       "ParameterKey": "VpcCidr",
+       "ParameterValue": "10.0.0.0/16"
      },
      {
-       "ParameterKey": "AvailabilityZoneCount", (3)
-       "ParameterValue": "1" (4)
+       "ParameterKey": "AvailabilityZoneCount",
+       "ParameterValue": "1"
      },
      {
-       "ParameterKey": "SubnetBits", (5)
-       "ParameterValue": "12" (6)
+       "ParameterKey": "SubnetBits",
+       "ParameterValue": "12"
      }
    ]
    ```
 
-   1. The CIDR block for the VPC.
-   2. Specify a CIDR block in the format `x.x.x.x/16-24`.
-   3. The number of availability zones to deploy the VPC in.
-   4. Specify an integer between `1` and `3`.
-   5. The size of each subnet in each availability zone.
-   6. Specify an integer between  `5` and `13`, where `5` is `/27` and `13` is `/19`.
+   where:
+
+   `VpcCidr`
+   :   Specifies the CIDR block for the VPC in the format `x.x.x.x/16-24`.
+
+   `AvailabilityZoneCount`
+   :   Specifies the number of availability zones to deploy the VPC in. Set the value to an integer between `1` and `3`.
+
+   `SubnetBits`
+   :   Specifies the size of each subnet in each availability zone. Set the value to an integer between `5` and `13`, where `5` is `/27` and `13` is `/19`.
 2. Copy the template from the **CloudFormation template for the VPC** section of this topic and save it as a YAML file on your computer. This template describes the VPC that your cluster requires.
 3. Launch the CloudFormation template to create a stack of AWS resources that represent the VPC:
 
@@ -450,14 +454,21 @@ You can use the provided CloudFormation template and a custom parameter file to 
    > You must enter the command on a single line.
 
    ```terminal
-   $ aws cloudformation create-stack --stack-name <name> (1)
-        --template-body file://<template>.yaml (2)
-        --parameters file://<parameters>.json (3)
+   $ aws cloudformation create-stack --stack-name <name> \
+        --template-body file://<template>.yaml \
+        --parameters file://<parameters>.json
    ```
 
-   1. `<name>` is the name for the CloudFormation stack, such as `cluster-vpc`. You need the name of this stack if you remove the cluster.
-   2. `<template>` is the relative path to and name of the CloudFormation template YAML file that you saved.
-   3. `<parameters>` is the relative path to and name of the CloudFormation parameters JSON file.
+   where:
+
+   `<name>`
+   :   Specifies the name for the CloudFormation stack, such as `cluster-vpc`. You need the name of this stack if you remove the cluster.
+
+   `<template>`
+   :   Specifies the relative path to and name of the CloudFormation template YAML file that you saved.
+
+   `<parameters>`
+   :   Specifies the relative path to and name of the CloudFormation parameters JSON file.
 
    ```terminal {title="Example output"}
    arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-vpc/dbedae40-2fd3-11eb-820e-12a48460849f
@@ -3536,7 +3547,7 @@ Outputs:
 
 ## Creating the worker nodes in AWS {#installation-creating-aws-worker_installing-aws-user-infra}
 
-Create worker nodes in Amazon Web Services (AWS) for your cluster by using the provided `CloudFormation` template and a custom parameter file.
+To run application workloads on your OpenShift Container Platform cluster, create worker nodes in Amazon Web Services (AWS) by using the provided CloudFormation template.
 
 > [!NOTE]
 > If you are installing a three-node cluster, skip this step. A three-node cluster consists of three control plane machines, which also act as compute machines.
@@ -3560,57 +3571,66 @@ You can use the provided CloudFormation template and a custom parameter file to 
    ```json
    [
      {
-       "ParameterKey": "InfrastructureName", (1)
-       "ParameterValue": "mycluster-<random_string>" (2)
+       "ParameterKey": "InfrastructureName",
+       "ParameterValue": "mycluster-<random_string>"
      },
      {
-       "ParameterKey": "RhcosAmi", (3)
-       "ParameterValue": "ami-<random_string>" (4)
+       "ParameterKey": "RhcosAmi",
+       "ParameterValue": "ami-<random_string>"
      },
      {
-       "ParameterKey": "Subnet", (5)
-       "ParameterValue": "subnet-<random_string>" (6)
+       "ParameterKey": "Subnet",
+       "ParameterValue": "subnet-<random_string>"
      },
      {
-       "ParameterKey": "WorkerSecurityGroupId", (7)
-       "ParameterValue": "sg-<random_string>" (8)
+       "ParameterKey": "WorkerSecurityGroupId",
+       "ParameterValue": "sg-<random_string>"
      },
      {
-       "ParameterKey": "IgnitionLocation", (9)
-       "ParameterValue": "https://api-int.<cluster_name>.<domain_name>:22623/config/worker" (10)
+       "ParameterKey": "IgnitionLocation",
+       "ParameterValue": "https://api-int.<cluster_name>.<domain_name>:22623/config/worker"
      },
      {
-       "ParameterKey": "CertificateAuthorities", (11)
-       "ParameterValue": "data:text/plain;charset=utf-8;base64,ABC...xYz==" (12)
+       "ParameterKey": "CertificateAuthorities",
+       "ParameterValue": "data:text/plain;charset=utf-8;base64,ABC...xYz=="
      },
      {
-       "ParameterKey": "WorkerInstanceProfileName", (13)
-       "ParameterValue": "<roles_stack>-WorkerInstanceProfile-<random_string>" (14)
+       "ParameterKey": "WorkerInstanceProfileName",
+       "ParameterValue": "<roles_stack>-WorkerInstanceProfile-<random_string>"
      },
      {
-       "ParameterKey": "WorkerInstanceType", (15)
-       "ParameterValue": "" (16)
+       "ParameterKey": "WorkerInstanceType",
+       "ParameterValue": ""
      }
    ]
    ```
 
-   1. The name for your cluster infrastructure that is encoded in your Ignition config files for the cluster.
-   2. Specify the infrastructure name that you extracted from the Ignition config file metadata, which has the format `<cluster-name>-<random-string>`.
-   3. Current Red Hat Enterprise Linux CoreOS (RHCOS) AMI to use for the worker nodes based on your selected architecture.
-   4. Specify an `AWS::EC2::Image::Id` value.
-   5. A subnet, preferably private, to start the worker nodes on.
-   6. Specify a subnet from the `PrivateSubnets` value from the output of the CloudFormation template for DNS and load balancing.
-   7. The worker security group ID to associate with worker nodes.
-   8. Specify the `WorkerSecurityGroupId` value from the output of the CloudFormation template for the security group and roles.
-   9. The location to fetch the bootstrap Ignition config file from.
-   10. Specify the generated Ignition config location, `https://api-int.<cluster_name>.<domain_name>:22623/config/worker`.
-   11. Base64 encoded certificate authority string to use.
-   12. Specify the value from the `worker.ign` file that is in the installation directory. This value is the long string with the format `data:text/plain;charset=utf-8;base64,ABC...xYz==`.
-   13. The IAM profile to associate with worker nodes.
-   14. Specify the `WorkerInstanceProfile` parameter value from the output of the CloudFormation template for the security group and roles.
-   15. The type of AWS instance to use for the compute machines based on your selected architecture.
-   16. The instance type value corresponds to the minimum resource requirements for compute machines. For example `m6i.large` is a type for AMD64 and `m6g.large` is a type for ARM64.
-2. Copy the template from the **CloudFormation template for worker machines** section of this topic and save it as a YAML file on your computer. This template describes the networking objects and load balancers that your cluster requires.
+   where:
+
+   `InfrastructureName`
+   :   Specifies the name for your cluster infrastructure that is encoded in your Ignition config files for the cluster. Set the value to the infrastructure name that you extracted from the Ignition config file metadata, which has the format `<cluster-name>-<random-string>`.
+
+   `RhcosAmi`
+   :   Specifies the current Red Hat Enterprise Linux CoreOS (RHCOS) AMI to use for the worker nodes based on your selected architecture. Set the value to a valid `AWS::EC2::Image::Id` value.
+
+   `Subnet`
+   :   Specifies a subnet, preferably private, to start the worker nodes on. Set the value to a subnet from the `PrivateSubnets` value from the output of the CloudFormation template for DNS and load balancing.
+
+   `WorkerSecurityGroupId`
+   :   Specifies the worker security group ID to associate with worker nodes. Set the value to the `WorkerSecurityGroupId` value from the output of the CloudFormation template for the security group and roles.
+
+   `IgnitionLocation`
+   :   Specifies the location to fetch the bootstrap Ignition config file from. Set the value to the generated Ignition config location, `https://api-int.<cluster_name>.<domain_name>:22623/config/worker`.
+
+   `CertificateAuthorities`
+   :   Specifies the base64 encoded certificate authority string to use. Set the value to the value from the `worker.ign` file that is in the installation directory. This value is the long string with the format `data:text/plain;charset=utf-8;base64,ABC...xYz==`.
+
+   `WorkerInstanceProfileName`
+   :   Specifies the IAM profile to associate with worker nodes. Set the value to the `WorkerInstanceProfile` parameter value from the output of the CloudFormation template for the security group and roles.
+
+   `WorkerInstanceType`
+   :   Specifies the type of AWS instance to use for the compute machines based on your selected architecture. The instance type value corresponds to the minimum resource requirements for compute machines. For example `m6i.large` is a type for AMD64 and `m6g.large` is a type for ARM64.
+2. Copy the template from the **CloudFormation template for compute machines** section of this topic and save it as a YAML file on your computer. This template describes the compute machines that your cluster requires.
 3. Optional: If you specified an `m5` instance type as the value for `WorkerInstanceType`, add that instance type to the `WorkerInstanceType.AllowedValues` parameter in the CloudFormation template.
 4. Optional: If you are deploying with an AWS Marketplace image, update the `Worker0.type.properties.ImageID` parameter with the AMI ID that you obtained from your subscription.
 5. Use the CloudFormation template to create a stack of AWS resources that represent a worker node:
@@ -3619,14 +3639,21 @@ You can use the provided CloudFormation template and a custom parameter file to 
    > You must enter the command on a single line.
 
    ```terminal
-   $ aws cloudformation create-stack --stack-name <name> (1)
-        --template-body file://<template>.yaml \ (2)
-        --parameters file://<parameters>.json (3)
+   $ aws cloudformation create-stack --stack-name <name> \
+        --template-body file://<template>.yaml \
+        --parameters file://<parameters>.json
    ```
 
-   1. `<name>` is the name for the CloudFormation stack, such as `cluster-worker-1`. You need the name of this stack if you remove the cluster.
-   2. `<template>` is the relative path to and name of the CloudFormation template YAML file that you saved.
-   3. `<parameters>` is the relative path to and name of the CloudFormation parameters JSON file.
+   where:
+
+   `<name>`
+   :   Specifies the name for the CloudFormation stack, such as `cluster-worker-1`. You need the name of this stack if you remove the cluster.
+
+   `<template>`
+   :   Specifies the relative path to and name of the CloudFormation template YAML file that you saved.
+
+   `<parameters>`
+   :   Specifies the relative path to and name of the CloudFormation parameters JSON file.
 
    ```terminal {title="Example output"}
    arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-worker-1/729ee301-1c2a-11eb-348f-sd9888c65b59

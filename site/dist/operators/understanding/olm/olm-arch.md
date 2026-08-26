@@ -6,7 +6,7 @@ title: Operator Lifecycle Manager architecture
 
 You can learn how Operator Lifecycle Manager (OLM) components interact to manage Operators in OpenShift Container Platform. The architecture includes the OLM Operator, Catalog Operator, and Catalog Registry.
 
-## Component responsibilities {#olm-architecture_olm-arch}
+## CRDs {#olm-architecture_olm-arch}
 
 Operator Lifecycle Manager (OLM) and the Catalog Operator manage the following custom resource definitions (CRDs) that form the basis of the Operator Framework.
 

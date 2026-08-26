@@ -4,14 +4,22 @@ title: Cluster Operators reference
 
 # Cluster Operators reference {#operator-reference}
 
-This reference guide indexes the *cluster Operators* shipped by Red Hat that serve as the architectural foundation for OpenShift Container Platform. Cluster Operators are installed by default, unless otherwise noted, and are managed by the Cluster Version Operator (CVO). For more details on the control plane architecture, see [Operators in OpenShift Container Platform](/openshift-docs-markdown/architecture/control-plane#operators-overview_control-plane).
+Cluster Operators are the architectural foundation for OpenShift Container Platform and are installed and managed by default by the Cluster Version Operator (CVO).
 
 Cluster administrators can view cluster Operators in the OpenShift Container Platform web console from the **Administration** → **Cluster Settings** page.
 
 > [!NOTE]
-> Cluster Operators are not managed by Operator Lifecycle Manager (OLM) and the software catalog. OLM and the software catalog are part of the [Operator Framework](https://operatorframework.io/) used in OpenShift Container Platform for installing and running optional [add-on Operators](/openshift-docs-markdown/architecture/control-plane#olm-operators_control-plane).
+> Cluster Operators are not managed by Operator Lifecycle Manager (OLM) and the software catalog. OLM and the software catalog are part of the Operator Framework used in OpenShift Container Platform for installing and running optional add-on Operators.
 
-Some of the following cluster Operators can be disabled prior to installation. For more information see [cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities).
+Some of the following cluster Operators can be disabled before installation. For more information see cluster capabilities.
+
+**Additional resources**
+{._additional-resources}
+
+- [Operators in OpenShift Container Platform](/openshift-docs-markdown/architecture/control-plane#operators-overview_control-plane)
+- [Operator Framework](https://operatorframework.io/)
+- [add-on Operators](/openshift-docs-markdown/architecture/control-plane#olm-operators_control-plane)
+- [cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)
 
 ## Cluster Baremetal Operator {#cluster-bare-metal-operator_operator-reference}
 
@@ -21,22 +29,17 @@ For more information about optional cluster capabilities, see "Cluster capabilit
 
 The Cluster Baremetal Operator (CBO) deploys all the components necessary to take a bare-metal server to a fully functioning worker node ready to run OpenShift Container Platform compute nodes. The CBO ensures that the metal3 deployment, which consists of the Bare Metal Operator (BMO) and Ironic containers, runs on one of the control plane nodes within the OpenShift Container Platform cluster. The CBO also listens for OpenShift Container Platform updates to resources that it watches and takes appropriate action.
 
-Project
-:   [cluster-baremetal-operator](https://github.com/openshift/cluster-baremetal-operator)
-
 **Additional resources**
 {._additional-resources}
 
 - [Bare-metal capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-bare-metal-operator_cluster-capabilities)
+- [cluster-baremetal-operator](https://github.com/openshift/cluster-baremetal-operator)
 
 ## Cloud Credential Operator {#cloud-credential-operator_operator-reference}
 
 The Cloud Credential Operator (CCO) manages cloud provider credentials as Kubernetes custom resource definitions (CRDs). The CCO syncs on `CredentialsRequest` custom resources (CRs) to allow OpenShift Container Platform components to request cloud provider credentials with the specific permissions that are required for the cluster to run.
 
 By setting different values for the `credentialsMode` parameter in the `install-config.yaml` file, the CCO can be configured to operate in several different modes. If no mode is specified, or the `credentialsMode` parameter is set to an empty string (`""`), the CCO operates in its default mode.
-
-Project
-:   See "openshift-cloud-credential-operator" in the *Additional resources* section.
 
 CRDs
 :   - `credentialsrequests.cloudcredential.openshift.io`
@@ -53,31 +56,34 @@ Configuration objects
 
 - [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)
 - [`CredentialsRequest` custom resource](/openshift-docs-markdown/rest_api/security_apis/credentialsrequest-cloudcredential-openshift-io-v1#credentialsrequest-cloudcredential-openshift-io-v1)
+- [openshift-cloud-credential-operator](https://github.com/openshift/cloud-credential-operator)
 
 ## Cluster Authentication Operator {#cluster-authentication-operator_operator-reference}
 
-The Cluster Authentication Operator installs and maintains the `Authentication` custom resource in a cluster and can be viewed with:
+The Cluster Authentication Operator installs and maintains the `Authentication` custom resource in a cluster.
 
 ```terminal
 $ oc get clusteroperator authentication -o yaml
 ```
 
-### Project {#_project}
+**Additional resources**
+{._additional-resources}
 
-[cluster-authentication-operator](https://github.com/openshift/cluster-authentication-operator)
+- [`cluster-authentication-operator`](https://github.com/openshift/cluster-authentication-operator)
 
 ## Cluster Autoscaler Operator {#cluster-autoscaler-operator_operator-reference}
 
 The Cluster Autoscaler Operator manages deployments of the OpenShift Cluster Autoscaler using the `cluster-api` provider.
 
-### Project {#_project}
-
-[cluster-autoscaler-operator](https://github.com/openshift/cluster-autoscaler-operator)
-
 ### CRDs {#_crds}
 
 - `ClusterAutoscaler`: This is a singleton resource, which controls the configuration autoscaler instance for the cluster. The Operator only responds to the `ClusterAutoscaler` resource named `default` in the managed namespace, the value of the `WATCH_NAMESPACE` environment variable.
 - `MachineAutoscaler`: This resource targets a node group and manages the annotations to enable and configure autoscaling for that group, the `min` and `max` size. Currently only `MachineSet` objects can be targeted.
+
+**Additional resources**
+{._additional-resources}
+
+- [cluster-autoscaler-operator](https://github.com/openshift/cluster-autoscaler-operator)
 
 ## Cloud Controller Manager Operator {#cluster-cloud-controller-manager-operator_operator-reference}
 
@@ -95,8 +101,10 @@ The Cloud Controller Manager Operator includes the following components:
 
 By default, the Operator exposes Prometheus metrics through the `metrics` service.
 
-Project
-:   See "cluster-cloud-controller-manager-operator" in the *Additional resources* section.
+**Additional resources**
+{._additional-resources}
+
+- [cluster-cloud-controller-manager-operator](https://github.com/openshift/cluster-cloud-controller-manager-operator)
 
 ## Cluster CAPI Operator {#cluster-capi-operator_operator-reference}
 
@@ -104,10 +112,6 @@ The Cluster CAPI Operator maintains the lifecycle of Cluster API resources. This
 
 > [!NOTE]
 > This Operator is available as a [Technology Preview](https://access.redhat.com/support/offerings/techpreview) for Amazon Web Services (AWS), Google Cloud, Microsoft Azure, Red Hat OpenStack Platform (RHOSP), and VMware vSphere clusters.
-
-### Project {#_project}
-
-[cluster-capi-operator](https://github.com/openshift/cluster-capi-operator)
 
 ### CRDs {#_crds}
 
@@ -160,17 +164,19 @@ The Cluster CAPI Operator maintains the lifecycle of Cluster API resources. This
   - Scope: Namespaced
   - CR: `metal3machinetemplate`
 
+**Additional resources**
+{._additional-resources}
+
+- [cluster-capi-operator](https://github.com/openshift/cluster-capi-operator)
+
 ## Cluster Config Operator {#cluster-config-operator_operator-reference}
 
-The Cluster Config Operator performs the following tasks related to `config.openshift.io`:
+The Cluster Config Operator creates custom resource definitions (CRDs), renders initial custom resources (CRs), and handles migrations for the `config.openshift.io` API group.
 
-- Creates CRDs.
-- Renders the initial custom resources.
-- Handles migrations.
+**Additional resources**
+{._additional-resources}
 
-### Project {#_project}
-
-[cluster-config-operator](https://github.com/openshift/cluster-config-operator)
+- [cluster-config-operator](https://github.com/openshift/cluster-config-operator)
 
 ## Cluster CSI Snapshot Controller Operator {#cluster-csi-snapshot-controller-operator_operator-reference}
 
@@ -178,13 +184,11 @@ The Cluster CSI Snapshot Controller Operator is an optional cluster capability t
 
 The Cluster CSI Snapshot Controller Operator installs and maintains the CSI Snapshot Controller. The CSI Snapshot Controller is responsible for watching the `VolumeSnapshot` CRD objects and manages the creation and deletion lifecycle of volume snapshots.
 
-Project
-:   `cluster-csi-snapshot-controller-operator`
-
 **Additional resources**
 {._additional-resources}
 
 - [CSI snapshot controller capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-csi-snapshot-controller-operator_cluster-capabilities)
+- [cluster-csi-snapshot-controller-operator](https://github.com/openshift/cluster-csi-snapshot-controller-operator)
 
 ## Cluster Image Registry Operator {#cluster-image-registry-operator_operator-reference}
 
@@ -196,8 +200,10 @@ If insufficient information is available to define a complete `image-registry` r
 
 The Cluster Image Registry Operator runs in the `openshift-image-registry` namespace and it also manages the registry instance in that location. All configuration and workload resources for the registry reside in that namespace.
 
-Project
-:   See "cluster-image-registry-operator".
+**Additional resources**
+{._additional-resources}
+
+- [cluster-image-registry-operator](https://github.com/openshift/cluster-image-registry-operator)
 
 ## Cluster Machine Approver Operator {#cluster-machine-approver-operator_operator-reference}
 
@@ -206,46 +212,46 @@ The Cluster Machine Approver Operator automatically approves the CSRs requested 
 > [!NOTE]
 > For the control plane node, the `approve-csr` service on the bootstrap node automatically approves all CSRs during the cluster bootstrapping phase.
 
-### Project {#_project}
+**Additional resources**
+{._additional-resources}
 
-[cluster-machine-approver-operator](https://github.com/openshift/cluster-machine-approver)
+- [cluster-machine-approver-operator](https://github.com/openshift/cluster-machine-approver)
 
 ## Cluster Monitoring Operator {#cluster-monitoring-operator_operator-reference}
 
 The Cluster Monitoring Operator (CMO) manages and updates the Prometheus-based cluster monitoring stack deployed on top of OpenShift Container Platform.
 
-### Project {#_project}
+CRDs
+:   - `alertmanagers.monitoring.coreos.com`
 
-[openshift-monitoring](https://github.com/openshift/cluster-monitoring-operator)
+      - Scope: Namespaced
+      - CR: `alertmanager`
+      - Validation: Yes
+    - `prometheuses.monitoring.coreos.com`
 
-### CRDs {#_crds}
+      - Scope: Namespaced
+      - CR: `prometheus`
+      - Validation: Yes
+    - `prometheusrules.monitoring.coreos.com`
 
-- `alertmanagers.monitoring.coreos.com`
+      - Scope: Namespaced
+      - CR: `prometheusrule`
+      - Validation: Yes
+    - `servicemonitors.monitoring.coreos.com`
 
-  - Scope: Namespaced
-  - CR: `alertmanager`
-  - Validation: Yes
-- `prometheuses.monitoring.coreos.com`
+      - Scope: Namespaced
+      - CR: `servicemonitor`
+      - Validation: Yes
 
-  - Scope: Namespaced
-  - CR: `prometheus`
-  - Validation: Yes
-- `prometheusrules.monitoring.coreos.com`
+Configuration objects
+:   ```terminal
+    $ oc -n openshift-monitoring edit cm cluster-monitoring-config
+    ```
 
-  - Scope: Namespaced
-  - CR: `prometheusrule`
-  - Validation: Yes
-- `servicemonitors.monitoring.coreos.com`
+**Additional resources**
+{._additional-resources}
 
-  - Scope: Namespaced
-  - CR: `servicemonitor`
-  - Validation: Yes
-
-### Configuration objects {#_configuration_objects}
-
-```terminal
-$ oc -n openshift-monitoring edit cm cluster-monitoring-config
-```
+- [openshift-monitoring](https://github.com/openshift/cluster-monitoring-operator)
 
 ## Cluster Network Operator {#cluster-network-operator_operator-reference}
 
@@ -278,13 +284,11 @@ The samples resource includes a finalizer, which cleans up the following upon it
 
 Upon deletion of the samples resource, the Cluster Samples Operator recreates the resource using the default configuration.
 
-Project
-:   `cluster-samples-operator`
-
 **Additional resources**
 {._additional-resources}
 
 - [OpenShift samples capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-samples-operator_cluster-capabilities)
+- [cluster-samples-operator](https://github.com/openshift/cluster-samples-operator)
 
 ## Cluster Storage Operator {#cluster-storage-operator_operator-reference}
 
@@ -294,19 +298,17 @@ For more information about optional cluster capabilities, see "Cluster capabilit
 
 The Cluster Storage Operator sets OpenShift Container Platform cluster-wide storage defaults. It ensures a default `storageclass` exists for OpenShift Container Platform clusters. It also installs Container Storage Interface (CSI) drivers which enable your cluster to use various storage backends.
 
-Project
-:   See "cluster-storage-operator".
-
 Configuration
 :   No configuration is required.
 
 Notes
-:   The storage class that the Operator creates can be made non-default by editing its annotation, but this storage class cannot be deleted as long as the Operator runs.
+:   The storage class that the Operator creates can be made non-default by editing its annotation, but this storage class cannot be deleted if the Operator runs.
 
 **Additional resources**
 {._additional-resources}
 
 - [Storage capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-storage-operator_cluster-capabilities)
+- [cluster-storage-operator](https://github.com/openshift/cluster-storage-operator)
 
 ## Cluster Version Operator {#cluster-version-operator_operator-reference}
 
@@ -316,14 +318,11 @@ The CVO also checks with the OpenShift Update Service to see the valid updates a
 
 For more information regarding cluster version condition types, see "Understanding cluster version condition types".
 
-### Project {#_project}
-
-[cluster-version-operator](https://github.com/openshift/cluster-version-operator)
-
 **Additional resources**
 {._additional-resources}
 
 - [Understanding cluster version condition types](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding-clusterversion-conditiontypes_understanding-openshift-updates)
+- [cluster-version-operator](https://github.com/openshift/cluster-version-operator)
 
 ## Console Operator {#console-operator_operator-reference}
 
@@ -333,13 +332,11 @@ For more information about optional cluster capabilities, see "Cluster capabilit
 
 The Console Operator installs and maintains the OpenShift Container Platform web console on a cluster. The Console Operator is installed by default and automatically maintains a console.
 
-Project
-:   See "console-operator".
-
 **Additional resources**
 {._additional-resources}
 
 - [Web console capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#console-operator_cluster-capabilities)
+- [console-operator](https://github.com/openshift/console-operator)
 
 ## Control Plane Machine Set Operator {#control-plane-machine-set-operator_operator-reference}
 
@@ -347,10 +344,6 @@ The Control Plane Machine Set Operator automates the management of control plane
 
 > [!NOTE]
 > This Operator is available for Amazon Web Services (AWS), Google Cloud, Microsoft Azure, Nutanix, and VMware vSphere.
-
-### Project {#_project}
-
-[cluster-control-plane-machine-set-operator](https://github.com/openshift/cluster-control-plane-machine-set-operator)
 
 ### CRDs {#_crds}
 
@@ -365,6 +358,7 @@ The Control Plane Machine Set Operator automates the management of control plane
 
 - [About control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-about#cpmso-about)
 - [`ControlPlaneMachineSet` custom resource](/openshift-docs-markdown/rest_api/machine_apis/controlplanemachineset-machine-openshift-io-v1#controlplanemachineset-machine-openshift-io-v1)
+- [cluster-control-plane-machine-set-operator](https://github.com/openshift/cluster-control-plane-machine-set-operator)
 
 ## DNS Operator {#dns-operator_operator-reference}
 
@@ -377,17 +371,14 @@ The Operator creates a working default deployment based on the cluster’s confi
 
 The DNS Operator manages CoreDNS as a Kubernetes daemon set exposed as a service with a static IP. CoreDNS runs on all nodes in the cluster.
 
-### Project {#_project}
+**Additional resources**
+{._additional-resources}
 
-[cluster-dns-operator](https://github.com/openshift/cluster-dns-operator)
+- [cluster-dns-operator](https://github.com/openshift/cluster-dns-operator)
 
 ## etcd cluster Operator {#etcd-cluster-operator_operator-reference}
 
 The etcd cluster Operator automates etcd cluster scaling, enables etcd monitoring and metrics, and simplifies disaster recovery procedures.
-
-### Project {#_project}
-
-[cluster-etcd-operator](https://github.com/openshift/cluster-etcd-operator/)
 
 ### CRDs {#_crds}
 
@@ -403,12 +394,14 @@ The etcd cluster Operator automates etcd cluster scaling, enables etcd monitorin
 $ oc edit etcd cluster
 ```
 
+**Additional resources**
+{._additional-resources}
+
+- [cluster-etcd-operator](https://github.com/openshift/cluster-etcd-operator/)
+
 ## Ingress Operator {#ingress-operator_operator-reference}
 
 The Ingress Operator configures and manages the OpenShift Container Platform router.
-
-Project
-:   `openshift-ingress-operator`
 
 CRDs
 :   - `clusteringresses.ingress.openshift.io`
@@ -447,14 +440,16 @@ Notes
     map[cidr:10.128.0.0/14 hostPrefix:23]
     ```
 
+**Additional resources**
+{._additional-resources}
+
+- [openshift-ingress-operator](https://github.com/openshift/cluster-ingress-operator)
+
 ## Insights Operator {#insights-operator_operator-reference}
 
 The Insights Operator is an optional cluster capability that can be disabled by cluster administrators during installation. For more information about optional cluster capabilities, see "Cluster capabilities" in *Installing*.
 
 The Insights Operator gathers OpenShift Container Platform configuration data and sends it to Red Hat. The data is used to produce proactive insights recommendations about potential issues that a cluster might be exposed to. These insights are communicated to cluster administrators through the Red Hat Lightspeed advisor service on [console.redhat.com](https://console.redhat.com/).
-
-Project
-:   `insights-operator`
 
 Configuration
 :   No configuration is required.
@@ -467,14 +462,11 @@ Notes
 
 - [Insights capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#insights-operator_cluster-capabilities)
 - [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
+- [insights-operator](https://github.com/openshift/insights-operator)
 
 ## Kubernetes API Server Operator {#kube-apiserver-operator_operator-reference}
 
 The Kubernetes API Server Operator manages and updates the Kubernetes API server deployed on top of OpenShift Container Platform. The Operator is based on the OpenShift Container Platform `library-go` framework and it is installed using the Cluster Version Operator (CVO).
-
-### Project {#_project}
-
-[openshift-kube-apiserver-operator](https://github.com/openshift/cluster-kube-apiserver-operator)
 
 ### CRDs {#_crds}
 
@@ -490,6 +482,11 @@ The Kubernetes API Server Operator manages and updates the Kubernetes API server
 $ oc edit kubeapiserver
 ```
 
+**Additional resources**
+{._additional-resources}
+
+- [`openshift-kube-apiserver-operator`](https://github.com/openshift/cluster-kube-apiserver-operator)
+
 ## Kubernetes Controller Manager Operator {#kube-controller-manager-operator_operator-reference}
 
 The Kubernetes Controller Manager Operator manages and updates the Kubernetes Controller Manager deployed on top of OpenShift Container Platform. The Operator is based on OpenShift Container Platform `library-go` framework and it is installed via the Cluster Version Operator (CVO).
@@ -503,9 +500,10 @@ It contains the following components:
 
 By default, the Operator exposes Prometheus metrics through the `metrics` service.
 
-### Project {#_project}
+**Additional resources**
+{._additional-resources}
 
-[cluster-kube-controller-manager-operator](https://github.com/openshift/cluster-kube-controller-manager-operator)
+- [`cluster-kube-controller-manager-operator`](https://github.com/openshift/cluster-kube-controller-manager-operator)
 
 ## Kubernetes Scheduler Operator {#cluster-kube-scheduler-operator_operator-reference}
 
@@ -520,10 +518,6 @@ The Kubernetes Scheduler Operator contains the following components:
 
 By default, the Operator exposes Prometheus metrics through the metrics service.
 
-### Project {#_project}
-
-[cluster-kube-scheduler-operator](https://github.com/openshift/cluster-kube-scheduler-operator)
-
 ### Configuration {#_configuration}
 
 The configuration for the Kubernetes Scheduler is the result of merging:
@@ -533,27 +527,34 @@ The configuration for the Kubernetes Scheduler is the result of merging:
 
 All of these are sparse configurations, invalidated JSON snippets which are merged to form a valid configuration at the end.
 
+**Additional resources**
+{._additional-resources}
+
+- [cluster-kube-scheduler-operator](https://github.com/openshift/cluster-kube-scheduler-operator)
+
 ## Kubernetes Storage Version Migrator Operator {#cluster-kube-storage-version-migrator-operator_operator-reference}
 
 The Kubernetes Storage Version Migrator Operator detects changes of the default storage version, creates migration requests for resource types when the storage version changes, and processes migration requests.
 
-### Project {#_project}
+**Additional resources**
+{._additional-resources}
 
-[cluster-kube-storage-version-migrator-operator](https://github.com/openshift/cluster-kube-storage-version-migrator-operator)
+- [cluster-kube-storage-version-migrator-operator](https://github.com/openshift/cluster-kube-storage-version-migrator-operator)
 
 ## Machine API Operator {#machine-api-operator_operator-reference}
 
-The Machine API Operator manages the lifecycle of specific purpose custom resource definitions (CRD), controllers, and RBAC objects that extend the Kubernetes API. This declares the desired state of machines in a cluster.
-
-### Project {#_project}
-
-[machine-api-operator](https://github.com/openshift/machine-api-operator)
+The Machine API Operator manages the lifecycle of specific purpose custom resource definitions (CRD), controllers, and role based access control (RBAC) objects that extend the Kubernetes API and declare the desired state of machines in a cluster.
 
 ### CRDs {#_crds}
 
 - `MachineSet`
 - `Machine`
 - `MachineHealthCheck`
+
+**Additional resources**
+{._additional-resources}
+
+- [machine-api-operator](https://github.com/openshift/machine-api-operator)
 
 ## Machine Config Operator {#machine-config-operator_operator-reference}
 
@@ -571,9 +572,10 @@ There are four components:
 >
 > To ensure that the machine config server endpoints, ports 22623 and 22624, are secured in bare metal scenarios, customers must configure proper network policies.
 
-### Project {#_project}
+**Additional resources**
+{._additional-resources}
 
-[openshift-machine-config-operator](https://github.com/openshift/machine-config-operator)
+- [openshift-machine-config-operator](https://github.com/openshift/machine-config-operator)
 
 ## Marketplace Operator {#marketplace-operator_operator-reference}
 
@@ -581,13 +583,11 @@ The Marketplace Operator is an optional cluster capability that can be disabled 
 
 The Marketplace Operator simplifies the process for bringing off-cluster Operators to your cluster by using a set of default Operator Lifecycle Manager (OLM) catalogs on the cluster. When the Marketplace Operator is installed, it creates the `openshift-marketplace` namespace. OLM ensures catalog sources installed in the `openshift-marketplace` namespace are available for all namespaces on the cluster.
 
-Project
-:   `operator-marketplace`
-
 **Additional resources**
 {._additional-resources}
 
 - [Marketplace capability](/openshift-docs-markdown/installing/overview/cluster-capabilities#marketplace-operator_cluster-capabilities)
+- [operator-marketplace](https://github.com/operator-framework/operator-marketplace)
 
 ## Node Tuning Operator {#about-node-tuning-operator_operator-reference}
 
@@ -610,21 +610,15 @@ The Node Tuning Operator is part of a standard OpenShift Container Platform inst
 > [!NOTE]
 > In earlier versions of OpenShift Container Platform, the Performance Addon Operator was used to implement automatic tuning to achieve low latency performance for OpenShift applications. In OpenShift Container Platform 4.11 and later, this functionality is part of the Node Tuning Operator.
 
-Project
-:   `cluster-node-tuning-operator`
-
 **Additional resources**
 {._additional-resources}
 
 - [About low latency](/openshift-docs-markdown/scalability_and_performance/cnf-understanding-low-latency#cnf-understanding-low-latency_cnf-understanding-low-latency)
+- [cluster-node-tuning-operator](https://github.com/openshift/cluster-node-tuning-operator)
 
 ## OpenShift API Server Operator {#openshift-apiserver-operator_operator-reference}
 
 The OpenShift API Server Operator installs and maintains the `openshift-apiserver` on a cluster.
-
-### Project {#_project}
-
-[openshift-apiserver-operator](https://github.com/openshift/cluster-openshift-apiserver-operator)
 
 ### CRDs {#_crds}
 
@@ -634,9 +628,14 @@ The OpenShift API Server Operator installs and maintains the `openshift-apiserve
   - CR: `openshiftapiserver`
   - Validation: Yes
 
+**Additional resources**
+{._additional-resources}
+
+- [openshift-apiserver-operator](https://github.com/openshift/cluster-openshift-apiserver-operator)
+
 ## OpenShift Controller Manager Operator {#cluster-openshift-controller-manager-operator_operator-reference}
 
-The OpenShift Controller Manager Operator installs and maintains the `OpenShiftControllerManager` custom resource in a cluster and can be viewed with:
+The OpenShift Controller Manager Operator installs and maintains the `OpenShiftControllerManager` custom resource in a cluster.
 
 ```terminal
 $ oc get clusteroperator openshift-controller-manager -o yaml
@@ -648,14 +647,16 @@ The custom resource definition (CRD) `openshiftcontrollermanagers.operator.opens
 $ oc get crd openshiftcontrollermanagers.operator.openshift.io -o yaml
 ```
 
-### Project {#_project}
+**Additional resources**
+{._additional-resources}
 
-[cluster-openshift-controller-manager-operator](https://github.com/openshift/cluster-openshift-controller-manager-operator)
+- [cluster-openshift-controller-manager-operator](https://github.com/openshift/cluster-openshift-controller-manager-operator)
 
-## Operator Lifecycle Manager (OLM) Classic Operators {#cluster-operators-ref-olm}
+## Operator Lifecycle Manager (OLM) Classic Operators {#cluster-operators-ref-olm_operator-reference}
 
-> [!NOTE]
-> The following sections pertain to Operator Lifecycle Manager (OLM) Classic that has been included with OpenShift Container Platform 4 since its initial release. For OLM v1, see [Operator Lifecycle Manager (OLM) v1 Operators](/openshift-docs-markdown/operators/operator-reference#cluster-operators-ref-olmv1_operator-reference).
+Operator Lifecycle Manager (OLM) Classic has been included with OpenShift Container Platform 4 since its initial release and manages the lifecycle of cluster Operators and add-on Operators.
+
+### About Operator Lifecycle Manager (OLM) Classic {#olm-overview_operator-reference}
 
 Operator Lifecycle Manager (OLM) Classic helps users install, update, and manage the lifecycle of Kubernetes native applications (Operators) and their associated services running across their OpenShift Container Platform clusters. Operator Lifecycle Manager (OLM) Classic forms part of the Operator Framework, an open source toolkit designed to manage Operators in an effective, automated, and scalable way.
 
@@ -706,7 +707,7 @@ The Catalog Registry stores cluster service versions (CSVs), custom resource def
 
 A *package manifest* is an entry in the Catalog Registry that associates a package identity with sets of CSVs. Within a package, channels point to a particular CSV. Because CSVs explicitly reference the CSV that they replace, a package manifest provides the Catalog Operator with all of the information that is required to update a CSV to the latest version in a channel, stepping through each intermediate version.
 
-### CRDs {#_crds}
+### CRDs {#olm-architecture_operator-reference}
 
 Operator Lifecycle Manager (OLM) and the Catalog Operator manage the following custom resource definitions (CRDs) that form the basis of the Operator Framework.
 
@@ -790,9 +791,9 @@ Each of these Operators is also responsible for creating the following resources
 </tbody>
 </table>
 
-### Cluster Operators {#_cluster_operators}
+### Cluster Operators {#cluster-operators-ref-olm-list_operator-reference}
 
-In OpenShift Container Platform, OLM functionality is provided across a set of cluster Operators:
+Operator Lifecycle Manager (OLM) Classic functionality in OpenShift Container Platform is provided by a set of cluster Operators.
 
 `operator-lifecycle-manager`
 :   Provides the OLM Operator. Also informs cluster administrators if there are any installed Operators blocking cluster upgrade, based on their `olm.maxOpenShiftVersion` properties. For more information, see "Controlling Operator compatibility with OpenShift Container Platform versions".
@@ -848,9 +849,10 @@ Operator Lifecycle Manager (OLM) v1 comprises the following component projects:
 
 The OpenShift Service CA Operator mints and manages serving certificates for Kubernetes services.
 
-### Project {#_project}
+**Additional resources**
+{._additional-resources}
 
-[openshift-service-ca-operator](https://github.com/openshift/service-ca-operator)
+- [openshift-service-ca-operator](https://github.com/openshift/service-ca-operator)
 
 ## vSphere Problem Detector Operator {#vsphere-problem-detector-operator_operator-reference}
 
