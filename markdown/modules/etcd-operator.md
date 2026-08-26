@@ -1,11 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # etcd cluster Operator {id="etcd-cluster-operator_{{ context }}"}
 
-The etcd cluster Operator automates etcd cluster scaling, enables etcd monitoring and metrics, and simplifies disaster recovery procedures.
-
-## Project {id="_project"}
-
-[cluster-etcd-operator](https://github.com/openshift/cluster-etcd-operator/)
+The etcd cluster Operator automates etcd cluster scaling, enables etcd monitoring and metrics, and simplifies disaster recovery procedures. {._abstract}
 
 ## CRDs {id="_crds"}
 

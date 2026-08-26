@@ -6,16 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{% if not operators %}
-{% if not cluster_caps %}
-# What is {{ olmv0_first }}? {id="olm-overview_{{ context }}"}
-
-{% endif %}
-{% endif %}
-{% if cluster_caps %}
-# {{ olmv0_first }} capability {id="_olmv0_first_capability"}
-
-{% endif %}
+# About {{ olmv0_first }} {id="olm-overview_{{ context }}"}
 
 {% if cluster_caps %}
 {{ olmv0 }} provides the features for the `OperatorLifecycleManager` capability. {._abstract}

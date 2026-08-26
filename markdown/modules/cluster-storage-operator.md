@@ -7,12 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "REFERENCE" %}
-{% if operator_ref %}
 # Cluster Storage Operator {id="cluster-storage-operator_{{ context }}"}
-{% endif %}
-{% if cluster_caps %}
-# Cluster storage capability {id="_cluster_storage_capability"}
-{% endif %}
 
 {% if operator_ref %}
 
@@ -40,10 +35,6 @@ If the cluster storage capability is disabled, the cluster will not have a defau
 {% if operator_ref %}
 
 
-Project
-:   See "cluster-storage-operator".
-
-
 Configuration
 :   No configuration is required.
 
@@ -51,7 +42,7 @@ Configuration
 
 
 Notes
-:   The storage class that the Operator creates can be made non-default by editing its annotation, but this storage class cannot be deleted as long as the Operator runs.
+:   The storage class that the Operator creates can be made non-default by editing its annotation, but this storage class cannot be deleted if the Operator runs.
 
 {% if context == "operator-reference" %}
 {%- set operator_ref = "" -%}

@@ -1,11 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Kubernetes API Server Operator {id="kube-apiserver-operator_{{ context }}"}
 
-The Kubernetes API Server Operator manages and updates the Kubernetes API server deployed on top of {{ product_title }}. The Operator is based on the {{ product_title }} `library-go` framework and it is installed using the Cluster Version Operator (CVO).
-
-## Project {id="_project"}
-
-[openshift-kube-apiserver-operator](https://github.com/openshift/cluster-kube-apiserver-operator)
+The Kubernetes API Server Operator manages and updates the Kubernetes API server deployed on top of {{ product_title }}. The Operator is based on the {{ product_title }} `library-go` framework and it is installed using the Cluster Version Operator (CVO). {._abstract}
 
 ## CRDs {id="_crds"}
 

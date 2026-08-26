@@ -1,12 +1,12 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring machine pool AutoRepair using the ROSA CLI {id="rosa-autorepair-cli_{{ context }}"}
+# Configuring machine pool AutoRepair using the {{ rosa_cli }} {id="rosa-autorepair-cli_{{ context }}"}
 
-You can configure machine pool AutoRepair for your {{ product_title }} cluster by using the {{ rosa_cli_first }}.
+You can configure machine pool AutoRepair for your {{ product_title }} cluster by using the {{ rosa_cli_first }}. {._abstract}
 
 **Prerequisites**
 
-*   You installed and configured the latest AWS (`aws`) and ROSA (`rosa`) CLIs on your workstation.
-*   You logged in to your Red&#160;Hat account by using the `rosa` CLI.
+*   You installed and configured the latest AWS (`aws`) CLI and {{ rosa_cli_first }} on your workstation.
+*   You logged in to your Red&#160;Hat account by using the {{ rosa_cli }}.
 *   You created a {{ product_title }} cluster.
 *   You have an existing machine pool.
 

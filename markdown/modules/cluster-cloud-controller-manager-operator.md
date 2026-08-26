@@ -6,12 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{% if operators %}
 # Cloud Controller Manager Operator {id="cluster-cloud-controller-manager-operator_{{ context }}"}
-{% endif %}
-{% if cluster_caps %}
-# Cloud controller manager capability {id="_cloud_controller_manager_capability"}
-{% endif %}
 
 {% if cluster_caps %}
 The Cloud Controller Manager Operator provides features for the `CloudControllerManager` capability. {._abstract}
@@ -59,14 +54,6 @@ The Cloud Controller Manager Operator includes the following components:
 *   Cloud configuration observer
 
 By default, the Operator exposes Prometheus metrics through the `metrics` service.
-
-{% if operators %}
-
-
-Project
-
-:   See "cluster-cloud-controller-manager-operator" in the _Additional resources_ section.
-{% endif %}
 
 {% if context == "operator-reference" %}
 {%- set operators = "" -%}

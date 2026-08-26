@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting up your environment {id="cloud-experts-update-component-routes-environment-setup_{{ context }}"}
+# Set up your environment {id="cloud-experts-update-component-routes-environment-setup_{{ context }}"}
 
-You can use environment variables to ensure consistency across the commands within this lab. {._abstract}
+Set environment variables to ensure consistency across the commands within this tutorial. {._abstract}
 
 **Procedure**
 

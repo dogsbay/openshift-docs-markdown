@@ -1,11 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Cluster Autoscaler Operator {id="cluster-autoscaler-operator_{{ context }}"}
 
-The Cluster Autoscaler Operator manages deployments of the OpenShift Cluster Autoscaler using the `cluster-api` provider.
-
-## Project {id="_project"}
-
-[cluster-autoscaler-operator](https://github.com/openshift/cluster-autoscaler-operator)
+The Cluster Autoscaler Operator manages deployments of the OpenShift Cluster Autoscaler using the `cluster-api` provider. {._abstract}
 
 ## CRDs {id="_crds"}
 

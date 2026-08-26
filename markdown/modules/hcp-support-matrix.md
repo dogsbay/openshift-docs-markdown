@@ -74,10 +74,7 @@ The following table indicates which {{ product_title }} versions are supported f
 
 :::important
 
-For {{ ibm_power_title }} and {{ ibm_z_title }}:
-
-*   You must run the control plane on machine types that are based on 64-bit x86 architecture or s390x architecture
-*   You must run node pools on {{ ibm_power_title }} or {{ ibm_z_title }}
+For {{ hcp }} on {{ ibm_power_title }} or {{ ibm_z_title }}, the control plane must run on either 64_bit x86 architecture or s390x architecture. Node pools must run on either {{ ibm_power_title }} or {{ ibm_z_title }}. No other combinations are supported.
 
 :::
 
@@ -111,9 +108,7 @@ The following tables indicate the supported architectures for {{ hcp }}, organiz
 | {{ aws_short }} | ARM64 | 64-bit x86 | 4.18 - 4.22 |
 | Bare metal (Agent platform) | 64-bit x86 | 64-bit x86 | 4.14, 4.16, 4.18 - 4.22 |
 | Bare metal (Agent platform) | 64-bit x86 | ARM64 | 4.21 - 4.22 |
-| {{ ibm_power_title }} | 64-bit x86 | 64-bit x86 | 4.19 - 4.22 |
 | {{ ibm_power_title }} | 64-bit x86 | ppc64le | 4.18 - 4.22 |
-| {{ ibm_z_title }} | 64-bit x86 | 64-bit x86 | 4.18 - 4.22 |
 | {{ ibm_z_title }} | 64-bit x86 | s390x | 4.18 - 4.22 |
 | {{ ibm_z_title }} | s390x | s390x | 4.20 - 4.22 |
 | Non-bare-metal Agent machines (Technology Preview) | 64-bit x86 | 64-bit x86 | 4.16, 4.18 - 4.22 |

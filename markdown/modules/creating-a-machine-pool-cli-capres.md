@@ -31,50 +31,41 @@ Currently, autoscaling is not supported on machine pools with Capacity Reservati
                               --instance-type=<instance_type> \
                               --subnet <subnet_id>
     ```
+    where:
 
-where:
 
+    `<machine_pool_id>`
+    :   Specifies the name of the machine pool.
 
-**&lt;machine_pool_id>**
-:   Specifies the name of the machine pool.
+    `<replica_count>`
+    :   Specifies the number of provisioned compute nodes. If you deploy {{ product_title }} using a single AZ, this defines the number of compute nodes provisioned to the machine pool for the AZ. If you deploy your cluster using multiple AZs, this defines the total number of compute nodes provisioned across all AZs. For multi-zone clusters, the compute node count must be a multiple of 3. The `--replicas` argument is required when autoscaling is not configured.
 
-**&lt;replica_count>**
-:   Specifies the number of provisioned compute nodes. If you deploy {{ product_title }} using a single AZ, this defines the number of compute nodes provisioned to the machine pool for the AZ. If you deploy your cluster using multiple AZs, this defines the total number of compute nodes provisioned across all AZs. For multi-zone clusters, the compute node count must be a multiple of 3. The `--replicas` argument is required when autoscaling is not configured.
+    `<capacity_reservation_preference>`
+    :   Specifies the Capacity Reservation behavior. Valid preferences include `none` (the instance does not use a Capacity Reservation and runs as an EC2 On-Demand instance), `open` (the instance can run in any `open` Capacity Reservation that has matching attributes such as the instance type, platform, AZ, or tenancy), or `capacity-reservations-only` (the instance can only run in a Capacity Reservation; if capacity is not available, the instance fails to launch).
 
-**&lt;capacity_reservation_preference>**
-:   Specifies the Capacity Reservation behaviour. Valid preferences include:
+    `cr-<capacity_reservation_id>`
+    :   Specifies the reservation ID. You get an ID in the `cr-<capacity_reservation_id>` format when you purchase a Capacity Reservation from AWS. The ID can be for both On-Demand Capacity Reservations or Capacity Blocks for ML, you do not need to specify the reservation type.
 
-    *   `none`: The instance does not use a Capacity Reservation even if one is available. The instance runs as an EC2 On-Demand instance. Choose this option when you want to avoid consuming purchased reserved capacity and use it for other workloads.
-    *   `open`: The instance can run in any `open` Capacity Reservation that has matching attributes such as the instance type, platform, AZ, or tenancy. Choose this option for flexibility; if a reservation is not available, the instance can use regular unreserved EC2 capacity.
-    *   `capacity-reservations-only`: The instance can only run in a Capacity Reservation. If capacity is not available, the instance fails to launch.
+    `<instance_type>`
+    :   Optional: Specifies the instance type for the compute nodes in your machine pool. The instance type defines the vCPU and memory allocation for each compute node in the pool. Replace `<instance_type>` with an instance type. The default is `m5.xlarge`. You cannot change the instance type for a machine pool after the pool is created.
 
-**cr-&lt;capacity_reservation_id>**
-:   Specifies the reservation ID. You get an ID in the `cr-<capacity_reservation_id>` format when you purchase a Capacity Reservation from AWS. The ID can be for both On-Demand Capacity Reservations or Capacity Blocks for ML, you do not need to specify the reservation type.
+    `<subnet_id>`
+    :   Optional: Specifies the subnet ID. For Bring Your Own Virtual Private Cloud (BYO VPC) clusters, you can select a subnet to create a single-AZ machine pool. If you select a subnet that was not specified during the initial cluster creation, you must tag the subnet with the `kubernetes.io/cluster/<infra_id>` key and `shared` value. Customers can obtain the Infra ID by running the following command:
+        ```terminal
+        $ rosa describe cluster --cluster <cluster_name>|grep "Infra ID:"
+        ```
+        ```terminal title="Example output"
+        Infra ID:                   mycluster-xqvj7
+        ```
 
-**&lt;instance_type>**
-:   **Optional**: Specifies the instance type for the compute nodes in your machine pool. The instance type defines the vCPU and memory allocation for each compute node in the pool. Replace `<instance_type>` with an instance type. The default is `m5.xlarge`. You cannot change the instance type for a machine pool after the pool is created.
-
-**&lt;subnet_id>**
-:   **Optional**: Specifies the subnet ID. For Bring Your Own Virtual Private Cloud (BYO VPC) clusters, you can select a subnet to create a single-AZ machine pool. If you select a subnet that was not specified during the initial cluster creation, you must tag the subnet with the `kubernetes.io/cluster/<infra_id>` key and `shared` value. Customers can obtain the Infra ID by running the following command:
+    The following example creates a machine pool called `mymachinepool` that uses the `c5.xlarge` instance type, has one compute node replica, and uses a Capacity Reservation ID:
     ```terminal
-    $ rosa describe cluster --cluster <cluster_name>|grep "Infra ID:"
+    $ rosa create machinepool --cluster=mycluster --name=mymachinepool --replicas 1 --capacity-reservation-id <capacity_reservation_id> --subnet <subnet_id> --instance-type c5.xlarge
     ```
-    ```terminal title="Example output"
-    Infra ID:                   mycluster-xqvj7
+    ```terminal
+    I: Checking available instance types for machine pool 'mymachinepool'
+    I: Machine pool 'mymachinepool' created successfully on hosted cluster 'mycluster'
     ```
-
-**Example**
-
-The following example creates a machine pool called `mymachinepool` that uses the `c5.xlarge` instance type and has 1 compute node replica. The example also adds a Capacity Reservation ID. Example input and output:
-
-```terminal
-$ rosa create machinepool --cluster=mycluster --name=mymachinepool --replicas 1 --capacity-reservation-id <capacity_reservation_id> --subnet <subnet_id> --instance-type c5.xlarge
-```
-
-```terminal
-I: Checking available instance types for machine pool 'mymachinepool'
-I: Machine pool 'mymachinepool' created successfully on hosted cluster 'mycluster'
-```
 
 **Verification**
 

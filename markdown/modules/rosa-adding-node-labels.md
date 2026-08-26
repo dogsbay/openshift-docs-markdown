@@ -25,20 +25,21 @@ Add or edit labels for compute nodes at any time to manage the nodes in a manner
     ```
 
     **Example output**
-{% if openshift_rosa %}
+
+{%- if openshift_rosa %}
     ```terminal
     ID           AUTOSCALING  REPLICAS  INSTANCE TYPE  LABELS    TAINTS    AVAILABILITY ZONES    SPOT INSTANCES
     Default      No           2         m7i.xlarge                          us-east-1a            N/A
     db-nodes-mp  No           2         m7i.xlarge                          us-east-1a            No
     ```
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
     ```terminal
     ID           AUTOSCALING  REPLICAS  INSTANCE TYPE  LABELS    TAINTS    AVAILABILITY ZONE  SUBNET                    VERSION  AUTOREPAIR
     workers      No           2/2       m7i.xlarge                          us-east-2a         subnet-0df2ec3377847164f  4.16.6   Yes
     db-nodes-mp  No           2/2       m7i.xlarge                          us-east-2a         subnet-0df2ec3377847164f  4.16.6   Yes
     ```
-{% endif %}
+{%- endif %}
 1.  Add or update the node labels for a machine pool:
     *   To add or update node labels for a machine pool that does not use autoscaling, run the following command:
         ```terminal
@@ -53,9 +54,7 @@ Add or edit labels for compute nodes at any time to manage the nodes in a manner
         ```terminal
         $ rosa edit machinepool --cluster=mycluster --replicas=2 --labels=app=db,tier=backend db-nodes-mp
         ```
-
-        **Example output**
-        ```terminal
+        ```terminal title="Example output"
         I: Updated machine pool 'db-nodes-mp' on cluster 'mycluster'
         ```
 1.  Describe the details of the machine pool with the new labels:
@@ -64,7 +63,8 @@ Add or edit labels for compute nodes at any time to manage the nodes in a manner
     ```
 
     **Example output**
-{% if openshift_rosa %}
+
+{%- if openshift_rosa %}
     ```terminal
     ID:                         db-nodes-mp
     Cluster ID:                 <ID_of_cluster>
@@ -79,8 +79,8 @@ Add or edit labels for compute nodes at any time to manage the nodes in a manner
     Disk size:                  300 GiB
     Security Group IDs:
     ```
-{% endif %}
-{% if openshift_rosa_hcp %}
+{%- endif %}
+{%- if openshift_rosa_hcp %}
     ```terminal
     ID:                            db-nodes-mp
     Cluster ID:                    <ID_of_cluster>
@@ -107,7 +107,7 @@ Add or edit labels for compute nodes at any time to manage the nodes in a manner
      - Max unavailable:            0
     Message:
     ```
-{% endif %}
+{%- endif %}
 1.  Verify that the labels are included for your machine pool in the output.
 {%- endif %}
 {%- if openshift_dedicated %}

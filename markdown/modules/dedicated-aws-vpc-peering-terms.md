@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # VPC peering terms {id="dedicated-aws-vpc-peering-terms"}
 
-When setting up a VPC peering connection between two VPCs on two separate AWS
-accounts, the following terms are used:
+When setting up a Virtual Private Cloud (VPC) peering connection between two VPCs on two separate AWS accounts, the following terms are used:
 
 
 {{ product_title }} AWS Account
@@ -12,10 +11,10 @@ accounts, the following terms are used:
 :   The VPC that contains the {{ product_title }} cluster.
 
 Customer AWS Account
-:   Your non-{{ product_title }} AWS Account that you would like to peer with.
+:   Your non-{{ product_title }} AWS Account that you want to peer with.
 
 Customer VPC
-:   The VPC in your AWS Account that you would like to peer with.
+:   The VPC in your AWS Account that you want to peer with.
 
 Customer VPC Region
 :   The region where the customer’s VPC resides.

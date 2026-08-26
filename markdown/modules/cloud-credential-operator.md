@@ -6,12 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "REFERENCE" %}
-{% if operators %}
 # Cloud Credential Operator {id="cloud-credential-operator_{{ context }}"}
-{% endif %}
-{% if cluster_caps %}
-# Cloud credential capability {id="_cloud_credential_capability"}
-{% endif %}
 
 {% if cluster_caps %}
 The Cloud Credential Operator provides features for the `CloudCredential` capability. {._abstract}
@@ -30,11 +25,6 @@ The Cloud Credential Operator (CCO) manages cloud provider credentials as Kubern
 By setting different values for the `credentialsMode` parameter in the `install-config.yaml` file, the CCO can be configured to operate in several different modes. If no mode is specified, or the `credentialsMode` parameter is set to an empty string (`""`), the CCO operates in its default mode.
 
 {% if operators %}
-
-Project
-
-:   See "openshift-cloud-credential-operator" in the _Additional resources_ section.
-
 
 CRDs
 

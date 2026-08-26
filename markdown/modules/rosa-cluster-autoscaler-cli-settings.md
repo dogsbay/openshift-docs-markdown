@@ -1,9 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Cluster autoscaling parameters using the ROSA CLI {id="rosa-cluster-cli-autoscale-parameters_{{ context }}"}
 
-You can add the following parameters to the cluster creation command to configure autoscaler parameters when using the ROSA CLI (`rosa`).
+You can add the following parameters to the cluster creation command to configure autoscaler parameters when using the {{ rosa_cli_first }}. {._abstract}
 
-**Configurable autoscaler parameters available with the ROSA CLI (`rosa`)**
+**Configurable autoscaler parameters available with the {{ rosa_cli }}**
 
 <table>
 <thead>

@@ -5,7 +5,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating the worker nodes in AWS {id="installation-creating-aws-worker_{{ context }}"}
 
-Create worker nodes in {{ aws_first }} for your cluster by using the provided `CloudFormation` template and a custom parameter file. {._abstract}
+To run application workloads on your {{ product_title }} cluster, create worker nodes in {{ aws_first }} by using the provided CloudFormation template. {._abstract}
 
 {% if three_node_cluster %}
 
@@ -17,7 +17,7 @@ If you are installing a three-node cluster, skip this step. A three-node cluster
 
 {% endif %}
 
-You can use the provided CloudFormation template and a custom parameter file to create a stack of AWS resources that represent a worker node.
+You can use the provided CloudFormation template and a custom parameter file to create a stack of {{ aws_short }} resources that represent a worker node.
 
 
 :::important
@@ -31,10 +31,7 @@ You must create a stack for each worker node.
 
 :::note
 
-If you do not use the provided CloudFormation template to create your worker
-nodes, you must review the provided information and manually create
-the infrastructure. If your cluster does not initialize correctly, you might
-have to contact Red Hat support with your installation logs.
+If you do not use the provided CloudFormation template to create your worker nodes, you must review the provided information and manually create the infrastructure. If your cluster does not initialize correctly, you might have to contact Red Hat support with your installation logs.
 
 :::
 
@@ -45,78 +42,76 @@ have to contact Red Hat support with your installation logs.
 
 **Procedure**
 
-1.  Create a JSON file that contains the parameter values that the CloudFormation
-template requires:
+1.  Create a JSON file that contains the parameter values that the CloudFormation template requires:
     ```json
     [
       {
-        "ParameterKey": "InfrastructureName", (1)
-        "ParameterValue": "mycluster-<random_string>" (2)
+        "ParameterKey": "InfrastructureName",
+        "ParameterValue": "mycluster-<random_string>"
       },
       {
-        "ParameterKey": "RhcosAmi", (3)
-        "ParameterValue": "ami-<random_string>" (4)
+        "ParameterKey": "RhcosAmi",
+        "ParameterValue": "ami-<random_string>"
       },
       {
-        "ParameterKey": "Subnet", (5)
-        "ParameterValue": "subnet-<random_string>" (6)
+        "ParameterKey": "Subnet",
+        "ParameterValue": "subnet-<random_string>"
       },
       {
-        "ParameterKey": "WorkerSecurityGroupId", (7)
-        "ParameterValue": "sg-<random_string>" (8)
+        "ParameterKey": "WorkerSecurityGroupId",
+        "ParameterValue": "sg-<random_string>"
       },
       {
-        "ParameterKey": "IgnitionLocation", (9)
-        "ParameterValue": "https://api-int.<cluster_name>.<domain_name>:22623/config/worker" (10)
+        "ParameterKey": "IgnitionLocation",
+        "ParameterValue": "https://api-int.<cluster_name>.<domain_name>:22623/config/worker"
       },
       {
-        "ParameterKey": "CertificateAuthorities", (11)
-        "ParameterValue": "data:text/plain;charset=utf-8;base64,ABC...xYz==" (12)
+        "ParameterKey": "CertificateAuthorities",
+        "ParameterValue": "data:text/plain;charset=utf-8;base64,ABC...xYz=="
       },
       {
-        "ParameterKey": "WorkerInstanceProfileName", (13)
-        "ParameterValue": "<roles_stack>-WorkerInstanceProfile-<random_string>" (14)
+        "ParameterKey": "WorkerInstanceProfileName",
+        "ParameterValue": "<roles_stack>-WorkerInstanceProfile-<random_string>"
       },
       {
-        "ParameterKey": "WorkerInstanceType", (15)
-        "ParameterValue": "" (16)
+        "ParameterKey": "WorkerInstanceType",
+        "ParameterValue": ""
       }
     ]
     ```
-    1.  The name for your cluster infrastructure that is encoded in your Ignition
-    config files for the cluster.
-    1.  Specify the infrastructure name that you extracted from the Ignition config
-    file metadata, which has the format `<cluster-name>-<random-string>`.
-    1.  Current {{ op_system_first }} AMI to use for the worker nodes based on your selected architecture.
-    1.  Specify an `AWS::EC2::Image::Id` value.
-    1.  A subnet, preferably private, to start the worker nodes on.
-    1.  Specify a subnet from the `PrivateSubnets` value from the output of the
-    CloudFormation template for DNS and load balancing.
-    1.  The worker security group ID to associate with worker nodes.
-    1.  Specify the `WorkerSecurityGroupId` value from the output of the
-    CloudFormation template for the security group and roles.
-    1.  The location to fetch the bootstrap Ignition config file from.
-    1.  Specify the generated Ignition config location,
-    `https://api-int.<cluster_name>.<domain_name>:22623/config/worker`.
-    1.  Base64 encoded certificate authority string to use.
-    1.  Specify the value from the `worker.ign` file that is in the installation
-    directory. This value is the long string with the format
-    `data:text/plain;charset=utf-8;base64,ABC...xYz==`.
-    1.  The IAM profile to associate with worker nodes.
-    1.  Specify the `WorkerInstanceProfile` parameter value from the output of
-    the CloudFormation template for the security group and roles.
-    1.  The type of AWS instance to use for the compute machines based on your selected architecture.
-    1.  The instance type value corresponds to the minimum resource requirements
-    for compute machines. For example `m6i.large` is a type for AMD64
+
+    where:
+
+    `InfrastructureName`
+    :   Specifies the name for your cluster infrastructure that is encoded in your Ignition config files for the cluster. Set the value to the infrastructure name that you extracted from the Ignition config file metadata, which has the format `<cluster-name>-<random-string>`.
+
+    `RhcosAmi`
+    :   Specifies the current {{ op_system_first }} AMI to use for the worker nodes based on your selected architecture. Set the value to a valid `AWS::EC2::Image::Id` value.
+
+    `Subnet`
+    :   Specifies a subnet, preferably private, to start the worker nodes on. Set the value to a subnet from the `PrivateSubnets` value from the output of the CloudFormation template for DNS and load balancing.
+
+    `WorkerSecurityGroupId`
+    :   Specifies the worker security group ID to associate with worker nodes. Set the value to the `WorkerSecurityGroupId` value from the output of the CloudFormation template for the security group and roles.
+
+    `IgnitionLocation`
+    :   Specifies the location to fetch the bootstrap Ignition config file from. Set the value to the generated Ignition config location, `https://api-int.<cluster_name>.<domain_name>:22623/config/worker`.
+
+    `CertificateAuthorities`
+    :   Specifies the base64 encoded certificate authority string to use. Set the value to the value from the `worker.ign` file that is in the installation directory. This value is the long string with the format `data:text/plain;charset=utf-8;base64,ABC...xYz==`.
+
+    `WorkerInstanceProfileName`
+    :   Specifies the IAM profile to associate with worker nodes. Set the value to the `WorkerInstanceProfile` parameter value from the output of the CloudFormation template for the security group and roles.
+
+    `WorkerInstanceType`
+    :   Specifies the type of {{ aws_short }} instance to use for the compute machines based on your selected architecture. The instance type value corresponds to the minimum resource requirements for compute machines. For example `m6i.large` is a type for AMD64
 {%- if not openshift_origin %}
-     and `m6g.large` is a type for ARM64.
+        and `m6g.large` is a type for ARM64.
 {%- endif %}
-1.  Copy the template from the **CloudFormation template for worker machines**
-section of this topic and save it as a YAML file on your computer. This template
-describes the networking objects and load balancers that your cluster requires.
+1.  Copy the template from the **CloudFormation template for compute machines** section of this topic and save it as a YAML file on your computer. This template describes the compute machines that your cluster requires.
 1.  Optional: If you specified an `m5` instance type as the value for `WorkerInstanceType`, add that instance type to the `WorkerInstanceType.AllowedValues` parameter in the CloudFormation template.
 1.  Optional: If you are deploying with an AWS Marketplace image, update the `Worker0.type.properties.ImageID` parameter with the AMI ID that you obtained from your subscription.
-1.  Use the CloudFormation template to create a stack of AWS resources that represent a worker node:
+1.  Use the CloudFormation template to create a stack of {{ aws_short }} resources that represent a worker node:
 
     :::important
 
@@ -125,16 +120,21 @@ describes the networking objects and load balancers that your cluster requires.
     :::
 
     ```terminal
-    $ aws cloudformation create-stack --stack-name <name> (1)
-         --template-body file://<template>.yaml \ (2)
-         --parameters file://<parameters>.json (3)
+    $ aws cloudformation create-stack --stack-name <name> \
+         --template-body file://<template>.yaml \
+         --parameters file://<parameters>.json
     ```
-    1.  `<name>` is the name for the CloudFormation stack, such as `cluster-worker-1`.
-    You need the name of this stack if you remove the cluster.
-    1.  `<template>` is the relative path to and name of the CloudFormation template
-    YAML file that you saved.
-    1.  `<parameters>` is the relative path to and name of the CloudFormation
-    parameters JSON file.
+
+    where:
+
+    `<name>`
+    :   Specifies the name for the CloudFormation stack, such as `cluster-worker-1`. You need the name of this stack if you remove the cluster.
+
+    `<template>`
+    :   Specifies the relative path to and name of the CloudFormation template YAML file that you saved.
+
+    `<parameters>`
+    :   Specifies the relative path to and name of the CloudFormation parameters JSON file.
     ```terminal title="Example output"
     arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-worker-1/729ee301-1c2a-11eb-348f-sd9888c65b59
     ```
@@ -153,8 +153,7 @@ describes the networking objects and load balancers that your cluster requires.
 
     :::important
 
-    You must create at least two worker machines, so you must create at least
-    two stacks that use this CloudFormation template.
+    You must create at least two worker machines, so you must create at least two stacks that use this CloudFormation template.
     
     :::
 

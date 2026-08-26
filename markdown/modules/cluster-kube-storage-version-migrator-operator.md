@@ -2,7 +2,3 @@
 # Kubernetes Storage Version Migrator Operator {id="cluster-kube-storage-version-migrator-operator_{{ context }}"}
 
 The Kubernetes Storage Version Migrator Operator detects changes of the default storage version, creates migration requests for resource types when the storage version changes, and processes migration requests.
-
-## Project {id="_project"}
-
-[cluster-kube-storage-version-migrator-operator](https://github.com/openshift/cluster-kube-storage-version-migrator-operator)

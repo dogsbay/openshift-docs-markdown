@@ -7,14 +7,7 @@
 
 {%- set _mod_docs_content_type = "CONCEPT" %}
 
-{% if operators %}
 # {{ olmv1_first }} Operator {id="cluster-operators-ref-olmv1_{{ context }}"}
-
-{% endif %}
-{% if cluster_caps %}
-# {{ olmv1_first }} capability {id="_olmv1_first_capability"}
-
-{% endif %}
 
 {% if cluster_caps %}
 {{ olmv1 }} provides the features for the `OperatorLifecycleManagerV1` capability. {._abstract}

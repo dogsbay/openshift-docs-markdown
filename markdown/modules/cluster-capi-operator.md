@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # {{ cluster_capi_operator }} {id="cluster-capi-operator_{{ context }}"}
 
-The {{ cluster_capi_operator }} maintains the lifecycle of Cluster API resources. This Operator is responsible for all administrative tasks related to deploying the Cluster API project within an {{ product_title }} cluster.
+The {{ cluster_capi_operator }} maintains the lifecycle of Cluster API resources. This Operator is responsible for all administrative tasks related to deploying the Cluster API project within an {{ product_title }} cluster. {._abstract}
 
 
 :::note
@@ -10,10 +10,6 @@ This Operator is available as a [Technology Preview](https://access.redhat.com/s
 
 :::
 
-
-## Project {id="_project"}
-
-[cluster-capi-operator](https://github.com/openshift/cluster-capi-operator)
 
 ## CRDs {id="_crds"}
 

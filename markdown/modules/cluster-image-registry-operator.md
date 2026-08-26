@@ -7,12 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "REFERENCE" %}
-{% if operator_ref %}
 # Cluster Image Registry Operator {id="cluster-image-registry-operator_{{ context }}"}
-{% endif %}
-{% if cluster_caps %}
-# Cluster Image Registry capability {id="_cluster_image_registry_capability"}
-{% endif %}
 
 {% if cluster_caps %}
 The Cluster Image Registry Operator provides features for the `ImageRegistry` capability. {._abstract}
@@ -39,10 +34,6 @@ If you disable the `ImageRegistry` capability or if you disable the integrated {
 
 If you disable the `ImageRegistry` capability, you can reduce the overall resource footprint of {{ product_title }} in Telco environments. Depending on your deployment, you can disable this component if you do not need it.
 {% endif %}
-
-
-Project
-:   See "cluster-image-registry-operator".
 
 {% if context == "operator-reference" %}
 {%- set operator_ref = "" -%}

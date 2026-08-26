@@ -7,12 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "REFERENCE" %}
-{% if operator_ref %}
 # Cluster Samples Operator {id="cluster-samples-operator_{{ context }}"}
-{% endif %}
-{% if cluster_caps %}
-# OpenShift samples capability {id="_openshift_samples_capability"}
-{% endif %}
 
 {% if operator_ref %}
 The Cluster Samples Operator is an optional cluster capability that can be disabled by cluster administrators during installation. {._abstract}
@@ -49,10 +44,6 @@ The samples resource includes a finalizer, which cleans up the following upon it
 *   Cluster status resources
 
 Upon deletion of the samples resource, the Cluster Samples Operator recreates the resource using the default configuration.
-
-
-Project
-:   `cluster-samples-operator`
 {% endif %}
 
 {% if context == "operator-reference" %}

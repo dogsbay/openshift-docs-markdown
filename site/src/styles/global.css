@@ -118,25 +118,43 @@
     border-radius: 0.25rem;
     background: color-mix(in oklab, var(--info) 8%, transparent);
   }
+  /* The LABEL blends the accent toward the foreground; the border and the
+     tint keep the accent at full strength, so the callout still reads as
+     its colour while the text stays legible.
+  
+     Measured from painted pixels on a real page, light mode, 13px/600 —
+     the accent used raw is a genuine AA failure, not one of axe's oklch
+     misreads:
+  
+       --info        raw 2.18:1   mixed 5.66:1
+       --warning     raw 2.25:1   mixed 5.74:1
+       --destructive raw 5.97:1   mixed 10.98:1
+  
+     Mixed with var(--foreground), not black, on purpose. Black fixes
+     light and BREAKS dark: 70% black measures 5.21:1 light but 3.25:1
+     dark, because the tint it sits on is dark too. --foreground is
+     near-black in light and near-white in dark, so one rule serves both
+     (dark measures 10.96 / 10.87 / 9.79). A fixed colour used in both
+     themes is a bug waiting. */
   & dl.db-admonition > dt {
     margin-top: 0;
     font-weight: 600;
     font-size: 0.8125rem;
     text-transform: uppercase;
     letter-spacing: 0.03em;
-    color: var(--info);
+    color: color-mix(in oklab, var(--info) 60%, var(--foreground));
   }
   & dl.db-admonition > dd { margin-left: 0; margin-top: 0.25rem; color: var(--foreground); }
   & dl.db-admonition-warning, & dl.db-admonition-caution {
     border-left-color: var(--warning);
     background: color-mix(in oklab, var(--warning) 8%, transparent);
   }
-  & dl.db-admonition-warning > dt, & dl.db-admonition-caution > dt { color: var(--warning); }
+  & dl.db-admonition-warning > dt, & dl.db-admonition-caution > dt { color: color-mix(in oklab, var(--warning) 60%, var(--foreground)); }
   & dl.db-admonition-important {
     border-left-color: var(--destructive);
     background: color-mix(in oklab, var(--destructive) 8%, transparent);
   }
-  & dl.db-admonition-important > dt { color: var(--destructive); }
+  & dl.db-admonition-important > dt { color: color-mix(in oklab, var(--destructive) 60%, var(--foreground)); }
 
   /* Granularity book-view affordances (plans/granularity-views.md):
      "Read as single page →" on topics, "Open as page ↗" on book sections.
@@ -188,5 +206,3 @@
     display: none;
   }
 }
-/* dogsbay:plugins:begin */
-/* dogsbay:plugins:end */

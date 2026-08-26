@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring machine pools in Local Zones {id="rosa-nodes-machine-pools-local-zones_{{ context }}"}
 
-Use the following steps to configure machine pools in Local Zones.
+Use the following steps to configure machine pools in Local Zones. {._abstract}
 
 
 :::important
@@ -42,25 +42,39 @@ AWS Local Zones are supported on {{ product_title }} 4.12. See the [Red&#160;Hat
     ```
 1.  Add the subnet and instance type for the machine pool in the ROSA CLI. After several minutes, the cluster will provision the nodes.
     ```terminal
-    I: Enabling interactive mode (1)
-    ? Machine pool name: xx-lz-xx (2)
-    ? Create multi-AZ machine pool: No (3)
-    ? Select subnet for a single AZ machine pool (optional): Yes (4)
-    ? Subnet ID: subnet-<a> (region-info) (5)
-    ? Enable autoscaling (optional): No (6)
-    ? Replicas: 2 (7)
-    I: Fetching instance types (8)
-    ? disk-size (optional): (9)
+    I: Enabling interactive mode
+    ? Machine pool name: xx-lz-xx
+    ? Create multi-AZ machine pool: No
+    ? Select subnet for a single AZ machine pool (optional): Yes
+    ? Subnet ID: subnet-<a> (region-info)
+    ? Enable autoscaling (optional): No
+    ? Replicas: 2
+    I: Fetching instance types
+    ? disk-size (optional):
     ```
-    1.  Enables interactive mode.
-    1.  Names the machine pool. This is limited to alphanumeric and a maximum length of 30 characters.
-    1.  Set this option to no.
-    1.  Set this option to yes.
-    1.  Selects a subnet ID from the list.
-    1.  Select yes to enable autoscaling or no to disable autoscaling.
-    1.  Selects the number of machines for the machine pool. This number can be anywhere from 1 - 180.
-    1.  Selects an instance type from the list. Only instance types that are supported in the selected Local Zone will appear.
-    1.  Optional: Specifies the worker node disk size. The value can be in GB, GiB, TB, or TiB. Set a numeric value and unit, for example '200GiB'. You cannot separate the digit and the unit. No spaces are allowed.
-1.  Provide the subnet ID to provision the machine pool in the Local Zone.
 
-See the [AWS Local Zones locations](https://aws.amazon.com/about-aws/global-infrastructure/localzones/locations/) list on AWS for generally available and announced AWS Local Zone locations.
+where:
+
+
+`Machine pool name`
+:   Specifies the name of the machine pool. This is limited to alphanumeric characters and a maximum length of 30 characters.
+
+`Create multi-AZ machine pool`
+:   Set this option to `No`.
+
+`Select subnet for a single AZ machine pool`
+:   Set this option to `Yes`.
+
+`Subnet ID`
+:   Specifies a subnet ID from the list.
+
+`Enable autoscaling`
+:   Select `Yes` to enable autoscaling or `No` to disable autoscaling.
+
+`Replicas`
+:   Specifies the number of machines for the machine pool. This number can be anywhere from 1 to 180.
+
+`disk-size`
+:   Optional: Specifies the worker node disk size. The value can be in GB, GiB, TB, or TiB. Set a numeric value and unit, for example `200GiB`. You cannot separate the digit and the unit. No spaces are allowed.
+
+1.  Provide the subnet ID to provision the machine pool in the Local Zone.

@@ -7,12 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "REFERENCE" %}
-{% if operator_ref %}
 # Cluster Baremetal Operator {id="cluster-bare-metal-operator_{{ context }}"}
-{% endif %}
-{% if cluster_caps %}
-# Bare-metal capability {id="_bare-metal_capability"}
-{% endif %}
 
 {% if operator_ref %}
 The Cluster Baremetal Operator is an optional cluster capability that can be disabled by cluster administrators during installation. {._abstract}
@@ -43,13 +38,6 @@ Red&#160;Hat recommends that cluster administrators only disable the bare-metal 
 
 :::
 
-{% endif %}
-
-{% if operator_ref %}
-
-Project
-
-:   [cluster-baremetal-operator](https://github.com/openshift/cluster-baremetal-operator)
 {% endif %}
 
 {% if context == "operator-reference" %}

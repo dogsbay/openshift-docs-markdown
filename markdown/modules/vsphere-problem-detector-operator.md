@@ -1,8 +1,9 @@
-{%- set operator_name = "vSphere Problem Detector Operator" %}
+{%- set operator_name = "vSphere Problem Detector Operator" -%}
 
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # {{ operator_name }} {id="vsphere-problem-detector-operator_{{ context }}"}
 
-The {{ operator_name }} checks clusters that are deployed on vSphere for common installation and misconfiguration issues that are related to storage.
+The {{ operator_name }} checks clusters that are deployed on vSphere for common installation and misconfiguration issues that are related to storage. {._abstract}
 
 
 :::note

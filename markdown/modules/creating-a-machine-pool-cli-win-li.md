@@ -47,8 +47,7 @@ Enabling AWS Windows LI on a machine pool applies the associated licensing fees 
     ```terminal
     $ rosa create machinepool --cluster=mycluster --name=mymachinepool --type=Windows --instance-type=m5zn.metal --replicas=1
     ```
-    **Example output**
-    ```terminal
+    ```terminal title="Example output"
     I: Machine pool 'mymachinepool' created successfully on cluster 'mycluster'
     I: To view all machine pools, run 'rosa list machinepools -c mycluster'
     ```
@@ -65,9 +64,7 @@ Enabling AWS Windows LI on a machine pool applies the associated licensing fees 
     ```
 
     The output has the image type set to `Windows` as shown in the following example:
-
-    **Example output**
-    ```terminal
+    ```terminal title="Example output"
     ID:                         mymachinepool
     Cluster ID:                 mycluster
     Autoscaling:                No
@@ -89,4 +86,4 @@ Enabling AWS Windows LI on a machine pool applies the associated licensing fees 
     Additional security group IDs:
     Node drain grace period:
     ```
-1.  For more information about running virtualized Windows workloads after you have set up a Windows LI enabled machine pool, see [Creating a Windows VM compliant to AWS EC2 Windows License Included](https://access.redhat.com/solutions/7135149).
+1.  For more information about running virtualized Windows workloads after you have set up a Windows LI enabled machine pool, see _Additional resources_.

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Configuring machine pool disk volume {id="configuring-machine-pool-disk-volume_{{ context }}"}
 
-Machine pool disk volume size can be configured for additional flexibility. The default disk size is 300 GiB.
+Machine pool disk volume size can be configured for additional flexibility. The default disk size is 300 GiB. {._abstract}
 
 {% if openshift_rosa %}
 For {{ product_title }} clusters version 4.13 or earlier, the disk size can be configured from a minimum of 128 GiB to a maximum of 1 TiB. For version 4.14 and later, the disk size can be configured to a minimum of 128 GiB to a maximum of 16 TiB.

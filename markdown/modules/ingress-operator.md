@@ -7,12 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "REFERENCE" %}
-{% if operator_ref %}
 # Ingress Operator {id="ingress-operator_{{ context }}"}
-{% endif %}
-{% if cluster_caps %}
-# Ingress Capability {id="_ingress_capability"}
-{% endif %}
 
 {% if cluster_caps %}
 
@@ -20,10 +15,6 @@ The Ingress Operator provides the features for the `Ingress` capability. {._abst
 
 {%- endif %}
 The Ingress Operator configures and manages the {{ product_title }} router.
-
-
-Project
-:   `openshift-ingress-operator`
 
 
 CRDs

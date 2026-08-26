@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding taints to a machine pool using the ROSA CLI {id="rosa-adding-taints-cli_{{ context }}"}
+# Adding taints to a machine pool using the {{ rosa_cli }} {id="rosa-adding-taints-cli_{{ context }}"}
 
-You can add taints to a machine pool for your {{ product_title }} cluster by using the {{ rosa_cli_first }}.
+You can add taints to a machine pool for your {{ product_title }} cluster by using the {{ rosa_cli_first }}. {._abstract}
 
 
 :::note
@@ -57,12 +57,15 @@ There must be at least one machine pool without any taints and with at least two
     *   To add or update taints for a machine pool that does not use autoscaling, run the following command:
         ```terminal
         $ rosa edit machinepool --cluster=<cluster_name> \
-                                --taints=<key>=<value>:<effect>,<key>=<value>:<effect> \ (1)
+                                --taints=<key>=<value>:<effect>,<key>=<value>:<effect> \
                                 <machine_pool_id>
         ```
-        1.  Replace `<key>=<value>:<effect>,<key>=<value>:<effect>` with a key, value, and effect for each taint, for example `--taints=key1=value1:NoSchedule,key2=value2:NoExecute`. Available effects include `NoSchedule`, `PreferNoSchedule`, and `NoExecute`.This list overwrites any modifications made to node taints on an ongoing basis.
 
-            The following example adds taints to the `db-nodes-mp` machine pool:
+        where:
+
+        `<key>=<value>:<effect>,<key>=<value>:<effect>`
+        :   Specifies a key, value, and effect for each taint, for example `--taints=key1=value1:NoSchedule,key2=value2:NoExecute`. Available effects include `NoSchedule`, `PreferNoSchedule`, and `NoExecute`. This list overwrites any modifications made to node taints on an ongoing basis.
+        The following example adds taints to the `db-nodes-mp` machine pool:
         ```terminal
         $ rosa edit machinepool --cluster=mycluster --replicas 2 --taints=key1=value1:NoSchedule,key2=value2:NoExecute db-nodes-mp
         ```

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enable autoscaling after cluster creation by using the interactive mode with the ROSA CLI {id="rosa-enable-cluster-autoscale-cli-interactive_after_{{ context }}"}
+# Enable autoscaling after cluster creation by using the interactive mode with the {{ rosa_cli }} {id="rosa-enable-cluster-autoscale-cli-interactive_after_{{ context }}"}
 
-You can use the interactive mode of your terminal, if available, to set cluster-wide autoscaling behavior after cluster creation.
+You can use the interactive mode of your terminal, if available, to set cluster-wide autoscaling behavior after cluster creation. {._abstract}
 
 **Procedure**
 

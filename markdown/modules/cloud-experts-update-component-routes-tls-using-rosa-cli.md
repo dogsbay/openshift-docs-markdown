@@ -1,26 +1,21 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Update the component routes and TLS secret using the {{ rosa_cli }} {id="cloud-experts-update-component-routes-tls-using-rosa-cli_{{ context }}"}
 
-When your DNS records have been updated, you can use the {{ rosa_cli }} to change the component routes. {._abstract}
+When your Domain Name System (DNS) records have been updated, change the component routes and Transport Layer Security (TLS) secret references to ensure your cluster traffic is routed correctly through your custom domain and protected with updated TLS certificates. {._abstract}
 
 **Procedure**
 
-1.  Use the `rosa edit ingress` command to update your default ingress route with the new base domain and the secret reference associated with it, taking care to update the hostnames for each component route.
-    ```bash
+1.  Update your default ingress route with the new base domain and the secret reference associated with it, and update the hostnames for each component route:
+    ```terminal
     $ rosa edit ingress -c ${CLUSTER_NAME} ${INGRESS_ID} --component-routes 'console: hostname=console.my-new-domain.dev;tlsSecretRef=console-tls,downloads: hostname=downloads.my-new-domain.dev;tlsSecretRef=downloads-tls,oauth: hostname=oauth.my-new-domain.dev;tlsSecretRef=oauth-tls'
     ```
 
-    :::note
-
-    You can also edit only a subset of the component routes by leaving the component routes you do not want to change set to an empty string. For example, if you only want to change the Console and OAuth server hostnames and TLS certificates, you would run the following command:
-    ```bash
+    Alternatively, you can edit only a subset of the component routes by leaving the component routes you do not want to change set to an empty string. For example, to change only the Console and OAuth server hostnames and TLS certificates, run the following command:
+    ```terminal
     $ rosa edit ingress -c ${CLUSTER_NAME} ${INGRESS_ID} --component-routes 'console: hostname=console.my-new-domain.dev;tlsSecretRef=console-tls,downloads: hostname="";tlsSecretRef="", oauth: hostname=oauth.my-new-domain.dev;tlsSecretRef=oauth-tls'
     ```
-    
-    :::
-
-1.  Run the `rosa list ingress` command to verify that your changes were successfully made:
-    ```bash
+1.  Verify that your changes were successfully made:
+    ```terminal
     $ rosa list ingress -c ${CLUSTER_NAME} -ojson | jq ".[] | select(.id == \"${INGRESS_ID}\") | .component_routes"
     ```
     ```text title="Example output"
@@ -42,4 +37,5 @@ When your DNS records have been updated, you can use the {{ rosa_cli }} to chang
       }
     }
     ```
-1.  Add your certificate to the truststore on your local system, then confirm that you can access your components at their new routes using your local web browser.
+1.  Add your certificate to the truststore on your local system.
+1.  Confirm that you can access your components at their new routes by using your local web browser.

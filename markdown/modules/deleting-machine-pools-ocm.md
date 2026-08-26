@@ -8,7 +8,7 @@
 
 {% endif %}
 
-You can delete a machine pool for your {{ product_title }} cluster by using {{ cluster_manager_first }}.
+You can delete a machine pool for your {{ product_title }} cluster by using {{ cluster_manager_first }}. {._abstract}
 
 **Prerequisites**
 

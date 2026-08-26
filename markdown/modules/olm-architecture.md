@@ -1,12 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-{% if context != "operator-reference" %}
-# Component responsibilities {id="olm-architecture_{{ context }}"}
-
-{% endif %}
-{% if context == "operator-reference" %}
-# CRDs {id="_crds"}
-
-{% endif %}
+# CRDs {id="olm-architecture_{{ context }}"}
 
 Operator Lifecycle Manager (OLM) and the Catalog Operator manage the following custom resource definitions (CRDs) that form the basis of the Operator Framework. {._abstract}
 

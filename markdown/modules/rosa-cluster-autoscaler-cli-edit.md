@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Edit autoscaling after cluster creation with the ROSA CLI {id="rosa-edit-cluster-autoscale-cli_{{ context }}"}
 
-You can edit any specific parameters of the cluster autoscaler after creating the autoscaler.
+You can edit any specific parameters of the cluster autoscaler after creating the autoscaler. {._abstract}
 
 **Procedure**
 

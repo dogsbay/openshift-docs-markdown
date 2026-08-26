@@ -10,3 +10,13 @@ Enable autoscaling for worker nodes in the machine pool definition from {{ clust
 1.  Click the Options menu {{ kebab }} at the end of the machine pool that you want to enable autoscaling for and select **Edit**.
 1.  On the **Edit machine pool** dialog, select the **Enable autoscaling** checkbox.
 1.  Select **Save** to save these changes and enable autoscaling for the machine pool.
+{% if openshift_rosa %}
+
+    :::note
+
+    Additionally, you can configure autoscaling on the default machine pool when you create the cluster.
+    
+    :::
+
+
+{% endif %}

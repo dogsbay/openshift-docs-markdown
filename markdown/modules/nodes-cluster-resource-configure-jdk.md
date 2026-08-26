@@ -5,7 +5,7 @@ You can review the following concepts to learn about how to deploy OpenJDK appli
 
 The default OpenJDK settings do not work well with containerized environments. As a result, some additional Java memory settings must always be provided whenever running the OpenJDK in a container.
 
-The JVM memory layout is complex, version dependent, and describing it in detail is beyond the scope of this documentation. However, as a starting point for running OpenJDK in a container, at least the following three memory-related tasks are key:
+The Java Virtual Machine (JVM) memory layout is complex, version dependent, and describing it in detail is beyond the scope of this documentation. However, as a starting point for running OpenJDK in a container, at least the following three memory-related tasks are key:
 
 
 Overriding the JVM maximum heap size
@@ -31,7 +31,7 @@ Encouraging the JVM to release unused memory to the operating system, if appropr
     -XX:AdaptiveSizePolicyWeight=90
     ```
 
-    These arguments are intended to return heap memory to the operating system whenever allocated memory exceeds 110% of in-use memory (`-XX:MaxHeapFreeRatio`), spending up to 20% of CPU time in the garbage collector (`-XX:GCTimeRatio`). At no time will the application heap allocation be less than the initial heap allocation (overridden by `-XX:InitialHeapSize` / `-Xms`). Detailed additional information is available [Tuning Java’s footprint in OpenShift (Part 1)](https://developers.redhat.com/blog/2014/07/15/dude-wheres-my-paas-memory-tuning-javas-footprint-in-openshift-part-1/), [Tuning Java’s footprint in OpenShift (Part 2)](https://developers.redhat.com/blog/2014/07/22/dude-wheres-my-paas-memory-tuning-javas-footprint-in-openshift-part-2/), and at [OpenJDK and Containers](https://developers.redhat.com/blog/2017/04/04/openjdk-and-containers/).
+    These arguments are intended to return heap memory to the operating system whenever allocated memory exceeds 110% of in-use memory (`-XX:MaxHeapFreeRatio`), spending up to 20% of CPU time in the garbage collector (`-XX:GCTimeRatio`). At no time will the application heap allocation be less than the initial heap allocation (overridden by `-XX:InitialHeapSize` / `-Xms`). For more information, see _Additional resources_.
 
 
 Ensuring all JVM processes within a container are appropriately configured

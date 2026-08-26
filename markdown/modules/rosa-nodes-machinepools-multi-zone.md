@@ -1,0 +1,16 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Machine pools in multiple zone clusters {id="rosa-nodes-machinepools-multi-zone_{{ context }}"}
+
+In a multi-AZ cluster, you can create machine pools across all three Availability Zones or a single AZ. The default machine pool spans all three AZs and scales in multiples of three. {._abstract}
+
+If you create a new Multi-AZ cluster, the machine pools are replicated to those zones automatically. By default, if you add a machine pool to an existing Multi-AZ cluster, the new machine pool is automatically created in all of the zones.
+
+
+:::note
+
+You can override this default setting and create a machine pool in a Single-AZ of your choice.
+
+:::
+
+
+Similarly, deleting a machine pool deletes it from all zones. Due to this multiplicative effect, using machine pools in a Multi-AZ cluster can consume more of your project’s quota for a specific region when creating machine pools.

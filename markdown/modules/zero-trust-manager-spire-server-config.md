@@ -75,7 +75,7 @@ Deploy the SPIRE Server by configuring the `SpireServer` custom resource (CR). T
 :   Specifies thedefault validity period (TTL) for JWT SVIDs issued to workloads. This value is used if a specific TTL is not configured for a registration entry.
 
 
-`spec.wtKeyType`
+`spec.jwtKeyType`
 :   Specifies the key type used for JWT signing. The valid options are `rsa-2048`, `rsa-4096`, `ec-p256`, and `ec-p384`. This field is optional.
 
 

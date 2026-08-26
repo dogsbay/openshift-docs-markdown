@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Setting a higher process ID limit on an existing {{ product_title }} cluster {id="setting-higher-pid-limit-on-existing-cluster_{{ context }}"}
 
-You can set a higher `podPidsLimit` on an existing {{ product_title }} cluster by creating or editing a `KubeletConfig` object that changes the `--pod-pids-limit` parameter.
+You can set a higher `podPidsLimit` on an existing {{ product_title }} cluster by creating or editing a `KubeletConfig` object that changes the `--pod-pids-limit` parameter. {._abstract}
 
 
 :::important
@@ -28,7 +28,7 @@ Changing the `podPidsLimit` on an existing cluster will trigger non-control plan
 
         :::note
 
-        The `--name` parameter is optional on ROSA Classic clusters, because only one `KubeletConfig` object is supported per ROSA Classic cluster.
+        The `--name` parameter is optional on {{ rosa_classic_title }} clusters, because only one `KubeletConfig` object is supported per {{ rosa_classic_title }} cluster.
         
         :::
 

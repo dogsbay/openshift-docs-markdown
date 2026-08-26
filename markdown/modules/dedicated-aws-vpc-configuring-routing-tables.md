@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring the routing tables {id="dedicated-aws-vpc-configuring-routing-tables"}
 
-After you accept the VPC peering request, both VPCs must configure their routes
-to communicate across the peering connection.
+After you accept the Virtual Private Cloud (VPC) peering request, both VPCs must configure their routes to communicate across the peering connection.
 
 **Prerequisites**
 
@@ -16,8 +15,7 @@ to communicate across the peering connection.
 
     :::note
 
-    On some clusters, there may be more than one route table for a particular VPC.
-    Select the private one that has a number of explicitly associated subnets.
+    On some clusters, there may be more than one route table for a particular VPC. Select the private one that has several explicitly associated subnets.
     
     :::
 
@@ -32,6 +30,3 @@ to communicate across the peering connection.
     1.  Enter the {{ product_title }} Cluster VPC CIDR block in the **Destination** text box.
     1.  Enter the Peering Connection ID in the **Target** text box.
     1.  Click **Save changes**.
-
-The VPC peering connection is now complete. Follow the verification procedure to
-ensure connectivity across the peering connection is working.

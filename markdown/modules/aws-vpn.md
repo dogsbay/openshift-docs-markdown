@@ -33,9 +33,3 @@ Routing all traffic, for example `0.0.0.0/0`, through a private connection is no
     Note the VPC subnet information, which you must add to your configuration as the remote network.
     
     :::
-
-
-**Additional resources**
-{._additional-resources}
-
-*   [AWS VPN guide](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html)

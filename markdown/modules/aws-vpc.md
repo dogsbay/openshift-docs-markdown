@@ -33,8 +33,3 @@ AWS supports inter-region VPC peering between all commercial regions excluding C
 1.  [Initiate the VPC peering request](https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html#create-vpc-peering-connection-local).
 1.  [Accept the VPC peering request](https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html#accept-vpc-peering-connection).
 1.  [Update your Route tables for the VPC peering connection](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-routing.html).
-
-**Additional resources**
-{._additional-resources}
-
-*   [AWS VPC guide](https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html)

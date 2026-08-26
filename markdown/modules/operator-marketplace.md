@@ -7,12 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "REFERENCE" %}
-{% if operator_ref %}
 # Marketplace Operator {id="marketplace-operator_{{ context }}"}
-{% endif %}
-{% if cluster_caps %}
-# Marketplace capability {id="_marketplace_capability"}
-{% endif %}
 
 {% if operator_ref %}
 The Marketplace Operator is an optional cluster capability that can be disabled by cluster administrators if it is not needed. For more information about optional cluster capabilities, see "Cluster capabilities" in _Installing_. {._abstract}
@@ -28,12 +23,6 @@ The Marketplace Operator simplifies the process for bringing off-cluster Operato
 If you disable the `marketplace` capability, the Marketplace Operator does not create the `openshift-marketplace` namespace. Catalog sources can still be configured and managed on the cluster manually, but OLM depends on the `openshift-marketplace` namespace in order to make catalogs available to all namespaces on the cluster. Users with elevated permissions to create namespaces prefixed with `openshift-`, such as system or cluster administrators, can manually create the `openshift-marketplace` namespace.
 
 If you enable the `marketplace` capability, you can enable and disable individual catalogs by configuring the Marketplace Operator.
-{% endif %}
-
-{% if operator_ref %}
-
-Project
-:   `operator-marketplace`
 {% endif %}
 
 {% if context == "operator-reference" %}

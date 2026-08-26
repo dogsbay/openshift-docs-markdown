@@ -4,7 +4,7 @@
 
 {% endif %}
 {% if openshift_rosa or openshift_rosa_hcp %}
-# Creating a machine pool using OpenShift Cluster Manager {id="_creating_a_machine_pool_using_openshift_cluster_manager"}
+# Creating a machine pool using {{ cluster_manager }} {id="_creating_a_machine_pool_using_cluster_manager"}
 
 {% endif %}
 
@@ -19,14 +19,7 @@ You can create additional machine pools for your {{ product_title }} cluster by 
 
 :::important
 
-The compute, also known as worker, node instance types, autoscaling options, and node counts that are available depend on your
-{%- if openshift_rosa or openshift_rosa_hcp %}
-{{ product_title }}
-{%- endif %}
-{%- if not (openshift_rosa or openshift_rosa_hcp) %}
-{{ product_title }}
-{%- endif %}
-subscriptions, resource quotas and deployment scenario. For more information, contact your sales representative or Red&#160;Hat support.
+The compute, also known as worker, node instance types, autoscaling options, and node counts that are available depend on your {{ product_title }} subscriptions, resource quotas and deployment scenario. For more information, contact your sales representative or Red&#160;Hat support.
 
 :::
 
@@ -61,7 +54,7 @@ subscriptions, resource quotas and deployment scenario. For more information, co
 
     :::important
 
-    Enabling AWS Windows LI on a machine pool applies the associated licensing fees on that specific machine pool. This includes billing for the full vCPU allocation of each AWS Windows LI enabled host in your {{ product_title }} cluster. Windows LI enabled machine pools will also deny vCPU over-allocation on {{ VirtProductName }} VMs. For more information, see [Microsoft Licensing on AWS](https://aws.amazon.com/windows/resources/licensing//) and the [{{ product_title }} instance types](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/introduction_to_rosa/policies-and-service-definition#rosa-hcp-instance-types).
+    Enabling AWS Windows LI on a machine pool applies the associated licensing fees on that specific machine pool. This includes billing for the full vCPU allocation of each AWS Windows LI enabled host in your {{ product_title }} cluster. Windows LI enabled machine pools will also deny vCPU over-allocation on {{ VirtProductName }} VMs.
     
     :::
 
@@ -127,10 +120,10 @@ subscriptions, resource quotas and deployment scenario. For more information, co
 
 {% endif %}
 {% if openshift_dedicated %}
-        *   **Amazon EC2 Spot Instances**: If you deployed {{ product_title }} on AWS using the Customer Cloud Subscription (CCS) model and want to configure your machine pool to deploy machines as non-guaranteed AWS Spot Instances, select **Use Amazon EC2 Spot Instances**. Leave **Use On-Demand instance price** selected to use the on-demand instance price, or select **Set maximum price** to define a maximum hourly price for a Spot Instance. For more information about Amazon EC2 Spot Instances, see the [AWS documentation](https://aws.amazon.com/ec2/spot/).
+        *   **Amazon EC2 Spot Instances**: If you deployed {{ product_title }} on AWS using the Customer Cloud Subscription (CCS) model and want to configure your machine pool to deploy machines as non-guaranteed AWS Spot Instances, select **Use Amazon EC2 Spot Instances**. Leave **Use On-Demand instance price** selected to use the on-demand instance price, or select **Set maximum price** to define a maximum hourly price for a Spot Instance.
 {% endif %}
 {% if openshift_rosa %}
-        *   **Amazon EC2 Spot Instances**: To configure your machine pool to deploy machines as non-guaranteed AWS Spot Instances, select **Use Amazon EC2 Spot Instances**. Leave **Use On-Demand instance price** selected to use the on-demand instance price, or select **Set maximum price** to define a maximum hourly price for a Spot Instance. For more information about Amazon EC2 Spot Instances, see the [AWS documentation](https://aws.amazon.com/ec2/spot/).
+        *   **Amazon EC2 Spot Instances**: To configure your machine pool to deploy machines as non-guaranteed AWS Spot Instances, select **Use Amazon EC2 Spot Instances**. Leave **Use On-Demand instance price** selected to use the on-demand instance price, or select **Set maximum price** to define a maximum hourly price for a Spot Instance.
 {%- if not openshift_rosa_hcp %}
 
             :::important
@@ -147,16 +140,16 @@ subscriptions, resource quotas and deployment scenario. For more information, co
             :::
 
 {%- endif %}
+{% endif %}
+{% if openshift_dedicated %}
         *   **Shielded VMs** ({{ GCP }} only): By default, {{ product_title }} on {{ GCP }} instances in the machine pools inherit the Shielded VM settings at the cluster level. You can override the cluster level Shielded VM settings at the machine pool level by selecting or clearing the **Enable Secure Boot support for Shielded VMs** checkbox.
 
             :::important
 
-            Once a machine pool is created, the **Enable Secure Boot support for Shielded VMs** setting cannot be changed. This setting is not supported for {{ product_title }} on {{ GCP }} clusters created using bare-metal instance types. For more information, see [Limitations](https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#limitations) in the {{ GCP }} documentation.
+            Once a machine pool is created, the **Enable Secure Boot support for Shielded VMs** setting cannot be changed. This setting is not supported for {{ product_title }} on {{ GCP }} clusters created using bare-metal instance types.
             
             :::
 
-{% endif %}
-{% if openshift_dedicated %}
 1.  Click **Add machine pool** to create the machine pool.
 
 **Verification**

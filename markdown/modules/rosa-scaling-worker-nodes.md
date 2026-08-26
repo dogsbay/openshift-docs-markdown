@@ -23,9 +23,7 @@ If you have not enabled autoscaling for your machine pool, you can manually scal
     ```terminal
     $ rosa list machinepools --cluster=<cluster_name>
     ```
-
-    **Example output**
-    ```terminal
+    ```terminal title="Example output"
     ID        AUTOSCALING   REPLICAS    INSTANCE TYPE  LABELS    TAINTS   AVAILABILITY ZONES    DISK SIZE   SG IDs
     default   No            2           m7i.xlarge                         us-east-1a            300GiB      sg-0e375ff0ec4a6cfa2
     mp1       No            2           m7i.xlarge                         us-east-1a            300GiB      sg-0e375ff0ec4a6cfa2
@@ -51,9 +49,7 @@ If you have not enabled autoscaling for your machine pool, you can manually scal
     ```terminal
     $ rosa list machinepools --cluster=<cluster_name>
     ```
-
-    **Example output**
-    ```terminal
+    ```terminal title="Example output"
     ID        AUTOSCALING   REPLICAS    INSTANCE TYPE  LABELS    TAINTS   AVAILABILITY ZONES    DISK SIZE   SG IDs
     default   No            2           m7i.xlarge                         us-east-1a            300GiB      sg-0e375ff0ec4a6cfa2
     mp1       No            3           m7i.xlarge                         us-east-1a            300GiB      sg-0e375ff0ec4a6cfa2

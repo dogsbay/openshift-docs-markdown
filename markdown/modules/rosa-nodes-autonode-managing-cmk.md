@@ -58,7 +58,7 @@ You cannot modify the `blockDeviceMappings` field on an existing `OpenshiftEC2No
 
 **Verification**
 
-1.  Verify that the `OpenshiftEC2NodeClass` resource is ready:
+*   Verify that the `OpenshiftEC2NodeClass` resource is ready:
     ```terminal
     $ oc get openshiftec2nodeclass cmk-nodeclass
     ```

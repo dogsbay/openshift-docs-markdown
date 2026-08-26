@@ -1,12 +1,12 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Adding node tuning to a machine pool {id="rosa-adding-tuning_{{ context }}"}
 
-You can add tunings for compute, also called worker, nodes in a machine pool to control their configuration on {{ product_title }} clusters.
+You can add tunings for compute, also called worker, nodes in a machine pool to control their configuration on {{ product_title }} clusters. {._abstract}
 
 **Prerequisites**
 
 *   You installed and configured the latest {{ rosa_cli_first }} on your workstation.
-*   You logged in to your Red&#160;Hat account by using 'rosa'.
+*   You logged in to your Red&#160;Hat account by using the {{ rosa_cli }}.
 *   You created a {{ product_title }} cluster.
 *   You have an existing machine pool.
 *   You have an existing tuning configuration.

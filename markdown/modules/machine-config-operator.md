@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Machine Config Operator {id="machine-config-operator_{{ context }}"}
 
-The Machine Config Operator manages and applies configuration and updates of the base operating system and container runtime, including everything between the kernel and kubelet.
+The Machine Config Operator manages and applies configuration and updates of the base operating system and container runtime, including everything between the kernel and kubelet. {._abstract}
 
 There are four components:
 
@@ -11,7 +11,3 @@ There are four components:
 *   `machine-config`: Provides a complete source of machine configuration at installation, first start up, and updates for a machine.
 
 {% include "./snippets/mcs-endpoint-limitation.md" %}
-
-## Project {id="_project"}
-
-[openshift-machine-config-operator](https://github.com/openshift/machine-config-operator)

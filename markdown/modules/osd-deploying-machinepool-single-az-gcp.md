@@ -9,8 +9,7 @@ Deploy a single machine pool to a specific availability zone that is part of a M
 
     :::important
 
-    {{ cluster_manager }} API command-line interface (`ocm`) is a Developer Preview feature only.
-    For more information about the support scope of Red Hat Developer Preview features, see [Developer Preview Support Scope](https://access.redhat.com/support/offerings/devpreview/).
+    {{ cluster_manager }} API command-line interface (`ocm`) is a Developer Preview feature only. For more information about the support scope of Red Hat Developer Preview features, see [Developer Preview Support Scope](https://access.redhat.com/support/offerings/devpreview/).
     
     :::
 

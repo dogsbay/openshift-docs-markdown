@@ -9,17 +9,8 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{% if operators %}
 # Node Tuning Operator {id="about-node-tuning-operator_{{ context }}"}
 
-{% endif %}
-{% if perf %}
-# About the Node Tuning Operator {id="_about_the_node_tuning_operator"}
-
-{% endif %}
-{% if cluster_caps %}
-# Node Tuning capability {id="_node_tuning_capability"}
-{% endif %}
 {% if cluster_caps %}
 The Node Tuning Operator provides features for the `NodeTuning` capability. {._abstract}
 {% endif %}
@@ -52,10 +43,4 @@ In earlier versions of {{ product_title }}, the Performance Addon Operator was u
 
 :::
 
-{% endif %}
-
-{% if operators %}
-
-Project
-:   `cluster-node-tuning-operator`
 {% endif %}

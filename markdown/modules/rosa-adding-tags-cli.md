@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding tags to a machine pool using the ROSA CLI {id="rosa-adding-tags-cli_{{ context }}"}
+# Adding tags to a machine pool by using the {{ rosa_cli }} {id="rosa-adding-tags-cli_{{ context }}"}
 
-You can add tags to a machine pool for your {{ product_title }} cluster by using the {{ rosa_cli_first }}. You can not edit the tags after after you create the machine pool.
+You cannot not edit the tags after after you create the machine pool. {._abstract}
 
 
 :::important
@@ -13,7 +13,7 @@ You must ensure that your tag keys are not `aws`, `red-hat-managed`, `red-hat-cl
 
 **Prerequisites**
 
-*   You installed and configured the latest AWS (`aws`), ROSA (`rosa`), and OpenShift (`oc`) CLIs on your workstation.
+*   You installed and configured the latest AWS (`aws`), {{ rosa_cli_first }}, and OpenShift (`oc`) CLIs on your workstation.
 *   You logged in to your Red&#160;Hat account by using the {{ rosa_cli }}.
 *   You created a {{ product_title }} cluster.
 
@@ -21,12 +21,17 @@ You must ensure that your tag keys are not `aws`, `red-hat-managed`, `red-hat-cl
 
 *   Create a machine pool with a custom tag by running the following command:
     ```terminal
-    $ rosa create machinepools --cluster=<name> --replicas=<replica_count> \
-         --name <mp_name> --tags='<key> <value>,<key> <value>' (1)
+    $ rosa create machinepool --cluster=<name> --replicas=<replica_count> \
+         --name <mp_name> --tags='<key> <value>,<key> <value>'
     ```
-    1.  Replace `<key> <value>,<key> <value>` with a key and value for each tag.
+
+    where:
+
+
+    `<key> <value>,<key> <value>`
+    :   Specifies a key and value for each tag, separated by commas.
     ```terminal title="Example output"
-    $ rosa create machinepools --cluster=mycluster --replicas 2 --tags='tagkey1 tagvalue1,tagkey2 tagvaluev2'
+    $ rosa create machinepool --cluster=mycluster --replicas 2 --tags='tagkey1 tagvalue1,tagkey2 tagvaluev2'
 
     I: Checking available instance types for machine pool 'mp-1'
     I: Machine pool 'mp-1' created successfully on cluster 'mycluster'
