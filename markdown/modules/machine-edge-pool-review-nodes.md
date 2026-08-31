@@ -39,7 +39,7 @@ After you install a cluster that uses AWS {{ zone_type }} infrastructure, check 
     $ oc get machines -n openshift-machine-api
     ```
 {% if local_zone %}
-    ```text title="Example output"
+    ```terminal title="Example output"
     NAME                                        PHASE     TYPE          REGION      ZONE               AGE
     cluster-7xw5g-edge-us-east-1-nyc-1a-wbclh   Running   c5d.2xlarge   us-east-1   us-east-1-nyc-1a   3h
     cluster-7xw5g-master-0                      Running   m6i.xlarge    us-east-1   us-east-1a         3h4m
@@ -51,7 +51,7 @@ After you install a cluster that uses AWS {{ zone_type }} infrastructure, check 
     ```
 {% endif %}
 {% if wavelength_zone %}
-    ```text title="Example output"
+    ```terminal title="Example output"
     NAME                                        PHASE     TYPE          REGION      ZONE               AGE
     cluster-7xw5g-edge-us-east-1-wl1-nyc-wlz-1-wbclh  Running   c5d.2xlarge   us-east-1   us-east-1-wl1-nyc-wlz-1  3h
     cluster-7xw5g-master-0                            Running   m6i.xlarge    us-east-1   us-east-1a               3h4m

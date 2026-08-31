@@ -139,7 +139,7 @@ Deploy the SPIRE Server by configuring the `SpireServer` custom resource (CR). T
 
 *   Verify that the stateful set of SPIRE Server is ready and available by running the following command:
     ```terminal
-    $ oc get statefulset -l app.kubernetes.io/name=server -n zero-trust-workload-identity-manager
+    $ oc get statefulset -l app.kubernetes.io/name=spire-server -n zero-trust-workload-identity-manager
     ```
     ```terminal title="Example output"
     NAME            READY   AGE
@@ -147,7 +147,7 @@ Deploy the SPIRE Server by configuring the `SpireServer` custom resource (CR). T
     ```
 *   Verify that the status of the SPIRE Server pod is `Running` by running the following command:
     ```terminal
-    $ oc get po -l app.kubernetes.io/name=server -n zero-trust-workload-identity-manager
+    $ oc get po -l app.kubernetes.io/name=spire-server -n zero-trust-workload-identity-manager
     ```
     ```terminal title="Example output"
     NAME               READY   STATUS    RESTARTS        AGE
@@ -155,7 +155,7 @@ Deploy the SPIRE Server by configuring the `SpireServer` custom resource (CR). T
     ```
 *   Verify that the persistent volume claim (PVC) is bound, by running the following command:
     ```terminal
-    $ oc get pvc -l app.kubernetes.io/name=server -n zero-trust-workload-identity-manager
+    $ oc get pvc -l app.kubernetes.io/name=spire-server -n zero-trust-workload-identity-manager
     ```
     ```terminal title="Example output"
     NAME                        STATUS    VOLUME                                     CAPACITY   ACCESS MODES  STORAGECLASS  VOLUMEATTRIBUTECLASS  AGE

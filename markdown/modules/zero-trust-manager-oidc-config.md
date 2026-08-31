@@ -14,7 +14,7 @@ Deploy the SPIRE OpenID Connect (OIDC) Discovery Provider by configuring the `Sp
 1.  Create the `SpireOIDCDiscoveryProvider` CR:
     1.  Create a YAML file that defines the `SpireOIDCDiscoveryProvider` CR, for example, `SpireOIDCDiscoveryProvider.yaml`:
         ```yaml title="Example SpireOIDCDiscoveryProvider YAML"
-        aapiVersion: operator.openshift.io/v1alpha1
+        apiVersion: operator.openshift.io/v1alpha1
         kind: SpireOIDCDiscoveryProvider
         metadata:
          name: cluster

@@ -36,8 +36,8 @@ If you do not use the provided CloudFormation template to create your {{ aws_fir
         ParameterKey=PrivateRouteTableId,ParameterValue="${ROUTE_TABLE_PVT}" \
         ParameterKey=PrivateSubnetCidr,ParameterValue="${SUBNET_CIDR_PVT}"
     ```
-
     where:
+
 
     `<stack_name>`
     :   Specifies the name for the CloudFormation stack, such as `cluster-wl-<wavelength_zone_shortname>`. You need the name of this stack if you remove the cluster.
@@ -65,10 +65,9 @@ If you do not use the provided CloudFormation template to create your {{ aws_fir
 
     `${{ SUBNET_CIDR_PVT }}`{minja}
     :   Specifies a valid CIDR block that is used to create the private subnet. This block must be part of the VPC CIDR block `VpcCidr`.
-
-```terminal title="Example output"
-arn:aws:cloudformation:us-east-1:123456789012:stack/<stack_name>/dbedae40-820e-11eb-2fd3-12a48460849f
-```
+    ```terminal title="Example output"
+    arn:aws:cloudformation:us-east-1:123456789012:stack/<stack_name>/dbedae40-820e-11eb-2fd3-12a48460849f
+    ```
 
 **Verification**
 

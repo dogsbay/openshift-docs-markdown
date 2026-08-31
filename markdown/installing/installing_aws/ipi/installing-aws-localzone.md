@@ -10,7 +10,7 @@ title: Installing a cluster with compute nodes on AWS Local Zones
 
 You can quickly install an {{ product_title }} cluster on Amazon Web Services (AWS) {{ zone_type }} by setting the zone names in the edge compute pool of the `install-config.yaml` file, or install a cluster in an existing Amazon Virtual Private Cloud (VPC) with Local Zone subnets. {._abstract}
 
-AWS {{ zone_type }} is an infrastructure that place Cloud Resources close to metropolitan regions. For more information, see the [AWS Local Zones Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-local-zones).
+AWS {{ zone_type }} is an infrastructure that place Cloud Resources close to metropolitan regions. For more information, see "AWS Local Zones Documentation".
 
 {% leveloffset +1 %}{% include "./modules/installing-aws-localzone-prereqs.md" %}{% endleveloffset %}
 
@@ -108,5 +108,6 @@ AWS {{ zone_type }} is an infrastructure that place Cloud Resources close to met
 
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
+*   [AWS Local Zones Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-local-zones)
 *   [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
 *   [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About GitLab authentication {id="identity-provider-gitlab-about_{{ context }}"}
 
-Configuring GitLab authentication allows users to log in to {{ product_title }} with their GitLab credentials.
+Review GitLab authentication options for {{ product_title }}. Use this integration when you want users to log in with GitLab account credentials through OAuth or OpenID Connect. {._abstract}
 
-If you use GitLab version 7.7.0 to 11.0, you connect using the [OAuth integration](https://docs.gitlab.com/ce/integration/oauth_provider.html). If you use GitLab version 11.1 or later, you can use [OpenID Connect](https://docs.gitlab.com/ce/integration/openid_connect_provider.html) (OIDC) to connect instead of OAuth.
+If you use GitLab version 7.7.0 to 11.0, you connect using OAuth integration. If you use GitLab version 11.1 or later, you can use OpenID Connect (OIDC) to connect instead of OAuth.

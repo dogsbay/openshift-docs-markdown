@@ -58,6 +58,8 @@ The {{ ibm_power_name }} release on {{ product_title }} {{ product_version }} ad
     *   Installer-provisioned infrastructure for {{ ibm_power_vc_name }} is now generally available.
     *   Enforce RSA key format for Installer-provisioned infrastructure on {{ ibm_power_server_name }}.
     *   Harden the destroy logic for Installer-provisioned infrastructure on {{ ibm_power_server_name }} to simplify removing a cluster.
+    *   Add DAL14 region to the Installer-provisioned infrastructure on {{ ibm_power_server_name }}.
+    *   Add S1122 system type to DAL14 region in the Installer-provisioned infrastructure on {{ ibm_power_server_name }}.
 
 ## IBM Z and IBM LinuxONE {id="ocp-release-notes-ibm-z-linux-one_{{ context }}"}
 

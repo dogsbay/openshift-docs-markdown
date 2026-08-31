@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Initializing the bootstrap sequence on {{ aws_first }} with user-provisioned infrastructure {id="installation-aws-user-infra-bootstrap_{{ context }}"}
+# Initializing the bootstrap sequence on {{ aws_short }} with user-provisioned infrastructure {id="installation-aws-user-infra-bootstrap_{{ context }}"}
 
 After creating all required infrastructure in {{ aws_short }}, you can start the bootstrap sequence that initializes the {{ product_title }} control plane. Run the installation program to monitor the bootstrap process until the control plane is ready. {._abstract}
 
@@ -11,7 +11,7 @@ After creating all required infrastructure in {{ aws_short }}, you can start the
 
 1.  Change to the directory that has the installation program and start the bootstrap process that initializes the {{ product_title }} control plane:
     ```terminal
-    $ ./openshift-install wait-for bootstrap-complete --dir <installation_directory>
+    $ ./openshift-install wait-for bootstrap-complete --dir <installation_directory> \
         --log-level=info
     ```
     *   For `<installation_directory>`, specify the path to the directory that you stored the installation files in.

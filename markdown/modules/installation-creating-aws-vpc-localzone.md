@@ -62,8 +62,8 @@ If you do not use the provided CloudFormation template to create your {{ aws_sho
     :::
 
     ```terminal
-    $ aws cloudformation create-stack --stack-name <name> \//
-         --template-body file://<template>.yaml \//
+    $ aws cloudformation create-stack --stack-name <name> \
+         --template-body file://<template>.yaml \
          --parameters file://<parameters>.json
     ```
 

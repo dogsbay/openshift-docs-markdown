@@ -6,7 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Completing an {{ aws_first }} installation on user-provisioned infrastructure {id="installation-aws-user-infra-installation_{{ context }}"}
+# Completing an {{ aws_short }} installation on user-provisioned infrastructure {id="installation-aws-user-infra-installation_{{ context }}"}
 
 To finish installing {{ product_title }} on user-provisioned {{ aws_short }} infrastructure, monitor the deployment until it completes successfully. {._abstract}
 

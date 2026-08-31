@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uploading a custom {{ op_system }} AMI in {{ aws_first }} {id="installation-aws-upload-custom-rhcos-ami_{{ context }}"}
+# Uploading a custom {{ op_system }} AMI in {{ aws_short }} {id="installation-aws-upload-custom-rhcos-ami_{{ context }}"}
 
 If you are deploying to a custom {{ aws_short }} region, you must
 upload a custom {{ op_system_first }} Amazon Machine Image (AMI) that belongs to

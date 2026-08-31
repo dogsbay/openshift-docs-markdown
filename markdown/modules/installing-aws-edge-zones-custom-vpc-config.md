@@ -24,8 +24,8 @@ Modify your `install-config.yaml` file to include {{ zone_type }} subnets. {._ab
 
 **Procedure**
 
-*   Modify the `install-config.yaml` configuration file by specifying {{ zone_type }} subnets in the `platform.aws.subnets` parameter.
 {% if local_zone %}
+*   Modify the `install-config.yaml` configuration file by specifying {{ zone_type }} subnets in the `platform.aws.subnets` parameter.
     ```yaml title="Example installation configuration file with {{ zone_type }} subnets"
     # ...
     platform:
@@ -45,6 +45,8 @@ Modify your `install-config.yaml` file to include {{ zone_type }} subnets. {._ab
     `platform.aws.subnets` specifies the list of subnet IDs created in the zones: Availability and {{ zone_type }}.
 {% endif %}
 {% if wavelength_zone %}
+    * Modify the `install-config.yaml` configuration file by specifying {{ zone_type }} subnets in the `platform.aws.subnets` parameter.
+   \
     .Example installation configuration file with {{ zone_type }} subnets
     ```yaml
     # ...
@@ -61,7 +63,7 @@ Modify your `install-config.yaml` file to include {{ zone_type }} subnets. {._ab
         - publicOrPrivateSubnetID-Wavelength-1
     # ...
     ```
-
+   \
     `platform.aws.subnets` specifies the list of subnet IDs created in the zones: Availability and {{ zone_type }}.
 {% endif %}
 

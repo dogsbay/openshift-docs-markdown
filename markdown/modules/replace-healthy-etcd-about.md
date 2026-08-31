@@ -1,0 +1,13 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# About replacing a healthy etcd member {id="replace-healthy-etcd-about_{{ context }}"}
+
+To replace a control plane node without disrupting etcd, remove a healthy member and add a replacement while the cluster remains operational. The procedure you follow depends on how your cluster was installed and whether it uses the Machine API and a control plane machine set. {._abstract}
+
+
+:::note
+
+If the etcd member is unhealthy because the machine is not running, the node is not ready, or the etcd pod is crashlooping, see "Replacing an unhealthy etcd member".
+
+If you have lost the majority of your control plane hosts, see "Restoring to an earlier cluster state".
+
+:::

@@ -7,7 +7,7 @@ title: Configuring a GitLab identity provider
 # Configuring a GitLab identity provider {id="configuring-gitlab-identity-provider"}
 {%- set context = "configuring-gitlab-identity-provider" %}
 
-Configure the `gitlab` identity provider using [GitLab.com](https://gitlab.com/) or any other GitLab instance as an identity provider.
+Configure the `gitlab` identity provider so users can log in to {{ product_title }} with GitLab account credentials through OAuth. {._abstract}
 
 {% if openshift_origin or openshift_enterprise or openshift_webscale %}
 {% leveloffset +1 %}{% include "./modules/identity-provider-overview.md" %}{% endleveloffset %}
@@ -15,6 +15,12 @@ Configure the `gitlab` identity provider using [GitLab.com](https://gitlab.com/)
 {% endif %}
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-gitlab-about.md" %}{% endleveloffset %}
+
+**Additional resources**
+{._additional-resources}
+
+*   [OAuth integration](https://docs.gitlab.com/ce/integration/oauth_provider.html)
+*   [OpenID Connect](https://docs.gitlab.com/ce/integration/openid_connect_provider.html)
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-secret.md" %}{% endleveloffset %}
 
@@ -25,6 +31,10 @@ Configure the `gitlab` identity provider using [GitLab.com](https://gitlab.com/)
 **Additional resources**
 {._additional-resources}
 
-*   See [Identity provider parameters](/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider) for information on parameters, such as `mappingMethod`, that are common to all identity providers.
+*   [Identity provider parameters](/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-add.md" %}{% endleveloffset %}
+
+## Additional resources {id="_additional_resources" ._additional-resources}
+
+*   [GitLab.com](https://gitlab.com/)

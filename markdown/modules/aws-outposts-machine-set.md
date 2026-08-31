@@ -65,7 +65,6 @@ To deploy edge compute machines on {{ aws_first }} Outposts, you must create a c
 
         where:
 
-
         `machine.openshift.io/cluster-api-cluster`
         :   Specifies the cluster infrastructure ID.
 
@@ -74,6 +73,7 @@ To deploy edge compute machines on {{ aws_first }} Outposts, you must create a c
 
         `spec.providerSpec`
         :   Specifies the `providerSpec` section, which is omitted here but includes values that must be configured for your Outpost.
+
 1.  Configure the new compute machine set to create edge compute machines in the Outpost by editing the `<new_machine_set_name_1>.yaml` file:
     ```yaml title="Example compute machine set for AWS Outposts"
     apiVersion: machine.openshift.io/v1beta1
@@ -139,7 +139,6 @@ To deploy edge compute machines on {{ aws_first }} Outposts, you must create a c
 
     where:
 
-
     `machine.openshift.io/cluster-api-cluster`
     :   Specifies the cluster infrastructure ID.
 
@@ -163,6 +162,7 @@ To deploy edge compute machines on {{ aws_first }} Outposts, you must create a c
 
     `spec.template.spec.taints`
     :   Specifies a taint to prevent workloads from being scheduled on nodes that have the `node-role.kubernetes.io/outposts` label. To schedule user workloads in the Outpost, you must specify a corresponding toleration in the `Deployment` resource for your application.
+
 1.  Save your changes.
 1.  Create a compute machine set CR by running the following command:
     ```terminal
