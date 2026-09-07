@@ -90,6 +90,8 @@ The IBM Power(R) release on OpenShift Container Platform 4.22 adds improvements 
     - Installer-provisioned infrastructure for IBM PowerVC is now generally available.
     - Enforce RSA key format for Installer-provisioned infrastructure on IBM Power(R) Virtual Server.
     - Harden the destroy logic for Installer-provisioned infrastructure on IBM Power(R) Virtual Server to simplify removing a cluster.
+    - Add DAL14 region to the Installer-provisioned infrastructure on IBM Power(R) Virtual Server.
+    - Add S1122 system type to DAL14 region in the Installer-provisioned infrastructure on IBM Power(R) Virtual Server.
 
 ### IBM Z and IBM LinuxONE {#ocp-release-notes-ibm-z-linux-one_release-notes}
 

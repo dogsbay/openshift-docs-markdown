@@ -6,7 +6,7 @@ title: Installing a cluster with compute nodes on AWS Local Zones
 
 You can quickly install an OpenShift Container Platform cluster on Amazon Web Services (AWS) Local Zones by setting the zone names in the edge compute pool of the `install-config.yaml` file, or install a cluster in an existing Amazon Virtual Private Cloud (VPC) with Local Zone subnets.
 
-AWS Local Zones is an infrastructure that place Cloud Resources close to metropolitan regions. For more information, see the [AWS Local Zones Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-local-zones).
+AWS Local Zones is an infrastructure that place Cloud Resources close to metropolitan regions. For more information, see "AWS Local Zones Documentation".
 
 ## Infrastructure prerequisites {#aws-zones-prerequisites_installing-aws-localzone}
 
@@ -577,8 +577,8 @@ You can use the provided CloudFormation template and a custom parameter file to 
    > You must enter the command on a single line.
 
    ```terminal
-   $ aws cloudformation create-stack --stack-name <name> \//
-        --template-body file://<template>.yaml \//
+   $ aws cloudformation create-stack --stack-name <name> \
+        --template-body file://<template>.yaml \
         --parameters file://<parameters>.json
    ```
 
@@ -961,16 +961,16 @@ You can use the provided CloudFormation template and create a CloudFormation sta
 2. Run the following command to deploy the CloudFormation template, which creates a stack of AWS resources that represent the VPC:
 
    ```terminal
-   $ aws cloudformation create-stack --stack-name <stack_name> \//
+   $ aws cloudformation create-stack --stack-name <stack_name> \
      --region ${CLUSTER_REGION} \
-     --template-body file://<template>.yaml \//
+     --template-body file://<template>.yaml \
      --parameters \
-       ParameterKey=VpcId,ParameterValue="${VPC_ID}" \//
-       ParameterKey=ClusterName,ParameterValue="${CLUSTER_NAME}" \//
-       ParameterKey=ZoneName,ParameterValue="${ZONE_NAME}" \//
-       ParameterKey=PublicRouteTableId,ParameterValue="${ROUTE_TABLE_PUB}" \//
-       ParameterKey=PublicSubnetCidr,ParameterValue="${SUBNET_CIDR_PUB}" \//
-       ParameterKey=PrivateRouteTableId,ParameterValue="${ROUTE_TABLE_PVT}" \//
+       ParameterKey=VpcId,ParameterValue="${VPC_ID}" \
+       ParameterKey=ClusterName,ParameterValue="${CLUSTER_NAME}" \
+       ParameterKey=ZoneName,ParameterValue="${ZONE_NAME}" \
+       ParameterKey=PublicRouteTableId,ParameterValue="${ROUTE_TABLE_PUB}" \
+       ParameterKey=PublicSubnetCidr,ParameterValue="${SUBNET_CIDR_PUB}" \
+       ParameterKey=PrivateRouteTableId,ParameterValue="${ROUTE_TABLE_PVT}" \
        ParameterKey=PrivateSubnetCidr,ParameterValue="${SUBNET_CIDR_PVT}"
    ```
 
@@ -1003,9 +1003,9 @@ You can use the provided CloudFormation template and create a CloudFormation sta
    `${SUBNET_CIDR_PVT}`
    :   Specifies a valid CIDR block that is used to create the private subnet. This block must be part of the VPC CIDR block `VpcCidr`.
 
-```terminal {title="Example output"}
-arn:aws:cloudformation:us-east-1:123456789012:stack/<stack_name>/dbedae40-820e-11eb-2fd3-12a48460849f
-```
+   ```terminal {title="Example output"}
+   arn:aws:cloudformation:us-east-1:123456789012:stack/<stack_name>/dbedae40-820e-11eb-2fd3-12a48460849f
+   ```
 
 **Verification**
 
@@ -1381,7 +1381,7 @@ After you install a cluster that uses AWS Local Zones infrastructure, check the 
    $ oc get machines -n openshift-machine-api
    ```
 
-   ```text {title="Example output"}
+   ```terminal {title="Example output"}
    NAME                                        PHASE     TYPE          REGION      ZONE               AGE
    cluster-7xw5g-edge-us-east-1-nyc-1a-wbclh   Running   c5d.2xlarge   us-east-1   us-east-1-nyc-1a   3h
    cluster-7xw5g-master-0                      Running   m6i.xlarge    us-east-1   us-east-1a         3h4m
@@ -1405,5 +1405,6 @@ After you install a cluster that uses AWS Local Zones infrastructure, check the 
 **Additional resources**
 {._additional-resources}
 
+- [AWS Local Zones Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-local-zones)
 - [Validating an installation](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
 - [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)

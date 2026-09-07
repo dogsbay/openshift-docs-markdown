@@ -242,7 +242,7 @@ If too few hosts are shut down, the other etcd members might still form a quorum
 
    > [!IMPORTANT]
    > If you do not complete this step, you cannot access the control plane hosts to complete the restore procedure, and you cannot recover your cluster from this state.
-3. Using SSH, connect to each control plane node to disbale etcd by running the following command:
+3. Using SSH, connect to each control plane node to disable etcd by running the following command:
 
    ```terminal
    $ sudo -E /usr/local/bin/disable-etcd.sh

@@ -2514,7 +2514,7 @@ If you are deploying to a region not supported by the AWS SDK and you do not spe
 
 A region without native support for an RHCOS AMI is not available to select from the terminal during cluster creation because it is not published. However, you can install to this region by configuring the custom AMI in the `install-config.yaml` file.
 
-### Uploading a custom RHCOS AMI in Amazon Web Services (AWS) {#installation-aws-upload-custom-rhcos-ami_installing-aws-user-infra}
+### Uploading a custom RHCOS AMI in AWS {#installation-aws-upload-custom-rhcos-ami_installing-aws-user-infra}
 
 If you are deploying to a custom AWS region, you must upload a custom Red Hat Enterprise Linux CoreOS (RHCOS) Amazon Machine Image (AMI) that belongs to that region.
 
@@ -3821,7 +3821,7 @@ You can create a stack of Amazon Web Services (AWS) resources for the compute ma
   arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-worker-1/729ee301-1c2a-11eb-348f-sd9888c65b59
   ```
 
-## Initializing the bootstrap sequence on Amazon Web Services (AWS) with user-provisioned infrastructure {#installation-aws-user-infra-bootstrap_installing-aws-user-infra}
+## Initializing the bootstrap sequence on AWS with user-provisioned infrastructure {#installation-aws-user-infra-bootstrap_installing-aws-user-infra}
 
 After creating all required infrastructure in AWS, you can start the bootstrap sequence that initializes the OpenShift Container Platform control plane. Run the installation program to monitor the bootstrap process until the control plane is ready.
 
@@ -3834,7 +3834,7 @@ After creating all required infrastructure in AWS, you can start the bootstrap s
 1. Change to the directory that has the installation program and start the bootstrap process that initializes the OpenShift Container Platform control plane:
 
    ```terminal
-   $ ./openshift-install wait-for bootstrap-complete --dir <installation_directory>
+   $ ./openshift-install wait-for bootstrap-complete --dir <installation_directory> \
        --log-level=info
    ```
 
@@ -4297,7 +4297,7 @@ You can create either a wildcard record or specific records. While the following
    `<external_ip>`
    :   Specifies the value of the external IP address of the Ingress Operator load balancer. Ensure that you include the trailing period (`.`) in this parameter value.
 
-## Completing an Amazon Web Services (AWS) installation on user-provisioned infrastructure {#installation-aws-user-infra-installation_installing-aws-user-infra}
+## Completing an AWS installation on user-provisioned infrastructure {#installation-aws-user-infra-installation_installing-aws-user-infra}
 
 To finish installing OpenShift Container Platform on user-provisioned AWS infrastructure, monitor the deployment until it completes successfully.
 

@@ -516,8 +516,8 @@ You can use the provided CloudFormation template and a custom parameter file to 
    > You must enter the command on a single line.
 
    ```terminal
-   $ aws cloudformation create-stack --stack-name <name> \//
-        --template-body file://<template>.yaml \//
+   $ aws cloudformation create-stack --stack-name <name> \
+        --template-body file://<template>.yaml \
         --parameters file://<parameters>.json
    ```
 
@@ -1099,9 +1099,9 @@ You can use the provided CloudFormation template and create a CloudFormation sta
    `${SUBNET_CIDR_PVT}`
    :   Specifies a valid CIDR block that is used to create the private subnet. This block must be part of the VPC CIDR block `VpcCidr`.
 
-```terminal {title="Example output"}
-arn:aws:cloudformation:us-east-1:123456789012:stack/<stack_name>/dbedae40-820e-11eb-2fd3-12a48460849f
-```
+   ```terminal {title="Example output"}
+   arn:aws:cloudformation:us-east-1:123456789012:stack/<stack_name>/dbedae40-820e-11eb-2fd3-12a48460849f
+   ```
 
 **Verification**
 
@@ -1222,27 +1222,13 @@ Modify your `install-config.yaml` file to include Wavelength Zones subnets.
 
 **Procedure**
 
-- Modify the `install-config.yaml` configuration file by specifying Wavelength Zones subnets in the `platform.aws.subnets` parameter.
+```
+* Modify the `install-config.yaml` configuration file by specifying Wavelength Zones subnets in the `platform.aws.subnets` parameter.
+```
 
-  .Example installation configuration file with Wavelength Zones subnets
 
-  ```yaml
-  # ...
-  platform:
-    aws:
-      region: us-west-2
-      subnets:
-      - publicSubnetId-1
-      - publicSubnetId-2
-      - publicSubnetId-3
-      - privateSubnetId-1
-      - privateSubnetId-2
-      - privateSubnetId-3
-      - publicOrPrivateSubnetID-Wavelength-1
-  # ...
-  ```
-
-  `platform.aws.subnets` specifies the list of subnet IDs created in the zones: Availability and Wavelength Zones.
+.Example installation configuration file with Wavelength Zones subnets `yaml     # ...     platform:       aws:         region: us-west-2         subnets:         - publicSubnetId-1         - publicSubnetId-2         - publicSubnetId-3         - privateSubnetId-1         - privateSubnetId-2         - privateSubnetId-3         - publicOrPrivateSubnetID-Wavelength-1     # ...     `
+`platform.aws.subnets` specifies the list of subnet IDs created in the zones: Availability and Wavelength Zones.
 
 **Additional resources**
 {._additional-resources}
@@ -1455,7 +1441,7 @@ After you install a cluster that uses AWS Wavelength Zones infrastructure, check
    $ oc get machines -n openshift-machine-api
    ```
 
-   ```text {title="Example output"}
+   ```terminal {title="Example output"}
    NAME                                        PHASE     TYPE          REGION      ZONE               AGE
    cluster-7xw5g-edge-us-east-1-wl1-nyc-wlz-1-wbclh  Running   c5d.2xlarge   us-east-1   us-east-1-wl1-nyc-wlz-1  3h
    cluster-7xw5g-master-0                            Running   m6i.xlarge    us-east-1   us-east-1a               3h4m

@@ -511,6 +511,9 @@
     <loc>https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-3-expired-certs/</loc>
   </url>
   <url>
+    <loc>https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/replacing-healthy-etcd-member/</loc>
+  </url>
+  <url>
     <loc>https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/replacing-unhealthy-etcd-member/</loc>
   </url>
   <url>
@@ -824,6 +827,9 @@
   </url>
   <url>
     <loc>https://dogsbay.github.io/openshift-docs-markdown/etcd/etcd-backup-restore/etcd-disaster-recovery/</loc>
+  </url>
+  <url>
+    <loc>https://dogsbay.github.io/openshift-docs-markdown/etcd/etcd-backup-restore/replace-healthy-etcd-member/</loc>
   </url>
   <url>
     <loc>https://dogsbay.github.io/openshift-docs-markdown/etcd/etcd-backup-restore/replace-unhealthy-etcd-member/</loc>

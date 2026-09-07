@@ -169,7 +169,7 @@ Deploy the SPIRE Server by configuring the `SpireServer` custom resource (CR). T
 - Verify that the stateful set of SPIRE Server is ready and available by running the following command:
 
   ```terminal
-  $ oc get statefulset -l app.kubernetes.io/name=server -n zero-trust-workload-identity-manager
+  $ oc get statefulset -l app.kubernetes.io/name=spire-server -n zero-trust-workload-identity-manager
   ```
 
   ```terminal {title="Example output"}
@@ -179,7 +179,7 @@ Deploy the SPIRE Server by configuring the `SpireServer` custom resource (CR). T
 - Verify that the status of the SPIRE Server pod is `Running` by running the following command:
 
   ```terminal
-  $ oc get po -l app.kubernetes.io/name=server -n zero-trust-workload-identity-manager
+  $ oc get po -l app.kubernetes.io/name=spire-server -n zero-trust-workload-identity-manager
   ```
 
   ```terminal {title="Example output"}
@@ -189,7 +189,7 @@ Deploy the SPIRE Server by configuring the `SpireServer` custom resource (CR). T
 - Verify that the persistent volume claim (PVC) is bound, by running the following command:
 
   ```terminal
-  $ oc get pvc -l app.kubernetes.io/name=server -n zero-trust-workload-identity-manager
+  $ oc get pvc -l app.kubernetes.io/name=spire-server -n zero-trust-workload-identity-manager
   ```
 
   ```terminal {title="Example output"}
@@ -384,7 +384,7 @@ Deploy the SPIRE OpenID Connect (OIDC) Discovery Provider by configuring the `Sp
    1. Create a YAML file that defines the `SpireOIDCDiscoveryProvider` CR, for example, `SpireOIDCDiscoveryProvider.yaml`:
 
       ```yaml {title="Example SpireOIDCDiscoveryProvider YAML"}
-      aapiVersion: operator.openshift.io/v1alpha1
+      apiVersion: operator.openshift.io/v1alpha1
       kind: SpireOIDCDiscoveryProvider
       metadata:
        name: cluster

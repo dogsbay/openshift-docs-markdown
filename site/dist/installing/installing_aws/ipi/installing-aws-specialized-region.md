@@ -350,7 +350,7 @@ For more information, see "Applying existing AWS security groups to the cluster"
 >
 > You must increase the quota of security groups per network interface to a number greater than or equal to `3 + (number of control plane custom security groups OR number of default machine platform custom security groups)`, or `2 + (number of compute custom security groups OR number of default machine platform custom security groups)`, whichever is higher. If you do not specify a sufficient quota, the installation will succeed, but it will generate `SecurityGroupsPerInterfaceLimitExceeded` errors in the installation log, and the additional security groups will not be applied. The maximum allowed quota is 16 and the maximum number of user-specified security groups is 10.
 
-## Uploading a custom RHCOS AMI in Amazon Web Services (AWS) {#installation-aws-upload-custom-rhcos-ami_installing-aws-specialized-region}
+## Uploading a custom RHCOS AMI in AWS {#installation-aws-upload-custom-rhcos-ami_installing-aws-specialized-region}
 
 If you are deploying to a custom AWS region, you must upload a custom Red Hat Enterprise Linux CoreOS (RHCOS) Amazon Machine Image (AMI) that belongs to that region.
 

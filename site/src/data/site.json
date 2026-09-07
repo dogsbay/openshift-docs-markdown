@@ -1,4 +1,5 @@
 {
   "siteName": "OpenShift Container Platform",
-  "repoUrl": ""
+  "repoUrl": "",
+  "siteUrl": "https://dogsbay.github.io/openshift-docs-markdown"
 }

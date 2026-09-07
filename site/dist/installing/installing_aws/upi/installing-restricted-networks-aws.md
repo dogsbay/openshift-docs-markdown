@@ -3725,7 +3725,7 @@ You can create a stack of Amazon Web Services (AWS) resources for the compute ma
   arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-worker-1/729ee301-1c2a-11eb-348f-sd9888c65b59
   ```
 
-## Initializing the bootstrap sequence on Amazon Web Services (AWS) with user-provisioned infrastructure {#installation-aws-user-infra-bootstrap_installing-restricted-networks-aws}
+## Initializing the bootstrap sequence on AWS with user-provisioned infrastructure {#installation-aws-user-infra-bootstrap_installing-restricted-networks-aws}
 
 After creating all required infrastructure in AWS, you can start the bootstrap sequence that initializes the OpenShift Container Platform control plane. Run the installation program to monitor the bootstrap process until the control plane is ready.
 
@@ -3738,7 +3738,7 @@ After creating all required infrastructure in AWS, you can start the bootstrap s
 1. Change to the directory that has the installation program and start the bootstrap process that initializes the OpenShift Container Platform control plane:
 
    ```terminal
-   $ ./openshift-install wait-for bootstrap-complete --dir <installation_directory>
+   $ ./openshift-install wait-for bootstrap-complete --dir <installation_directory> \
        --log-level=info
    ```
 
@@ -4173,7 +4173,7 @@ You can create either a wildcard record or specific records. While the following
    `<external_ip>`
    :   Specifies the value of the external IP address of the Ingress Operator load balancer. Ensure that you include the trailing period (`.`) in this parameter value.
 
-## Completing an Amazon Web Services (AWS) installation on user-provisioned infrastructure {#installation-aws-user-infra-installation_installing-restricted-networks-aws}
+## Completing an AWS installation on user-provisioned infrastructure {#installation-aws-user-infra-installation_installing-restricted-networks-aws}
 
 To finish installing OpenShift Container Platform on user-provisioned AWS infrastructure, monitor the deployment until it completes successfully.
 
