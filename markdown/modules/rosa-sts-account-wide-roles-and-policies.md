@@ -1710,6 +1710,7 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
         "elasticloadbalancing:ModifyTargetGroup",
         "elasticloadbalancing:DeleteTargetGroup",
         "elasticloadbalancing:ApplySecurityGroupsToLoadBalancer",
+        "elasticloadbalancing:SetSecurityGroups",
         "elasticloadbalancing:CreateLoadBalancerListeners",
         "elasticloadbalancing:DeleteLoadBalancerListeners",
         "elasticloadbalancing:AttachLoadBalancerToSubnets",

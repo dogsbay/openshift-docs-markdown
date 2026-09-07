@@ -19,10 +19,10 @@ You can install an {{ product_title }} cluster by using mirrored installation re
 
 ## Prerequisites {id="prerequisites_installing-restricted-networks-gcp-installer-provisioned"}
 
-*   You reviewed details about the [{{ product_title }} installation and update](/architecture/architecture-installation#architecture-installation) processes.
-*   You read the documentation on [selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing).
-*   You [configured a {{ gcp_short }} project](/installing/installing_gcp/installing-gcp-account#installing-gcp-account) to host the cluster.
-*   You [mirrored the images for a disconnected installation](/disconnected/installing-mirroring-installation-images#installation-about-mirror-registry_installing-mirroring-installation-images) to your registry and obtained the `imageContentSources` data for your version of {{ product_title }}.
+*   You reviewed details about the {{ product_title }} installation and update processes. For more information, see "Installation and update".
+*   You read the documentation on selecting a cluster installation method and preparing it for users. For more information, see "Selecting a cluster installation method and preparing it for users".
+*   You configured a {{ gcp_short }} project to host the cluster. For more information, see "Configuring a {{ gcp_short }} project".
+*   You mirrored the images for a disconnected installation to your registry and obtained the `imageContentSources` data for your version of {{ product_title }}. For more information, see "Mirroring images for a disconnected installation".
 
     :::important
 
@@ -30,11 +30,22 @@ You can install an {{ product_title }} cluster by using mirrored installation re
     
     :::
 
-*   You have an existing VPC in {{ gcp_short }}. While installing a cluster in a restricted network that uses installer-provisioned infrastructure, you cannot use the installer-provisioned VPC. You must use a user-provisioned VPC that satisfies one of the following requirements:
+*   You have an existing VPC in {{ gcp_short }}. When you install a cluster in a restricted network by using installer-provisioned infrastructure, you cannot use the VPC that the installation program creates. You must use a user-provisioned VPC that satisfies one of the following requirements:
     *   Contains the mirror registry
     *   Has firewall rules or a peering connection to access the mirror registry hosted elsewhere
-*   If you use a firewall, you [configured it to allow the sites](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall) that your cluster requires access to. While you might need to grant access to more sites, you must grant access to `*.googleapis.com` and `accounts.google.com`.
-*   If you are installing using a [Private Service Connect (PSC) endpoint](https://cloud.google.com/vpc/docs/private-service-connect), you must configure the endpoint in the same Virtual Private Cloud (VPC) where you install the cluster, specified in the `install-config.yaml` file, as described in [Installing a cluster on {{ gcp_short }} into an existing VPC](/installing/installing_gcp/installing-gcp-vpc#installing-gcp-vpc).
+*   If you use a firewall, you configured it to allow the sites that your cluster requires access to. You might need to grant access to more sites, but you must grant access to `*.googleapis.com` and `accounts.google.com`. For more information, see "Configuring your firewall for {{ product_title }}".
+*   If you are installing by using a Private Service Connect (PSC) endpoint, you must configure the endpoint in the same VPC where you install the cluster, as specified in the `install-config.yaml` file. For more information, see "Installing a cluster on {{ gcp_short }} into an existing VPC".
+
+**Additional resources**
+{._additional-resources}
+
+*   [Installation and update](/architecture/architecture-installation#architecture-installation)
+*   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
+*   [Configuring a {{ gcp_short }} project](/installing/installing_gcp/installing-gcp-account#installing-gcp-account)
+*   [Mirroring images for a disconnected installation](/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)
+*   [Configuring your firewall for {{ product_title }}](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
+*   [Private Service Connect](https://cloud.google.com/vpc/docs/private-service-connect)
+*   [Installing a cluster on {{ gcp_short }} into an existing VPC](/installing/installing_gcp/installing-gcp-vpc#installing-gcp-vpc)
 
 {% leveloffset +1 %}{% include "./modules/installation-about-restricted-network.md" %}{% endleveloffset %}
 
@@ -95,18 +106,11 @@ You can install an {{ product_title }} cluster by using mirrored installation re
 
 {% leveloffset +1 %}{% include "./modules/cli-installing-cli-macos.md" %}{% endleveloffset %}
 
-## Alternatives to storing administrator-level secrets in the kube-system project {id="installing-gcp-manual-modes_{{ context }}" ._additional-resources}
-
-By default, administrator secrets are stored in the `kube-system` project. If you configured the `credentialsMode` parameter in the `install-config.yaml` file to `Manual`, you must use one of the following alternatives:
-
-*   To manage long-term cloud credentials manually, follow the procedure in [Manually creating long-term credentials](/installing/installing_gcp/installing-restricted-networks-gcp-installer-provisioned#manually-create-iam_installing-restricted-networks-gcp-installer-provisioned).
-*   To implement short-term credentials that are managed outside the cluster for individual components, follow the procedures in [Configuring a {{ gcp_short }} cluster to use short-term credentials](/installing/installing_gcp/installing-restricted-networks-gcp-installer-provisioned#installing-gcp-with-short-term-creds_installing-restricted-networks-gcp-installer-provisioned).
+{% leveloffset +1 %}{% include "./modules/installing-gcp-manual-modes.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/manually-create-identity-access-management.md" %}{% endleveloffset %}
 
-### Configuring a {{ gcp_short }} cluster to use short-term credentials {id="installing-gcp-with-short-term-creds_{{ context }}"}
-
-To install a cluster that is configured to use {{ gcp_short }} Workload Identity, you must configure the CCO utility and create the required {{ gcp_short }} resources for your cluster.
+{% leveloffset +2 %}{% include "./modules/installing-gcp-short-term-creds.md" %}{% endleveloffset %}
 
 {% leveloffset +3 %}{% include "./modules/cco-ccoctl-configuring.md" %}{% endleveloffset %}
 
@@ -131,17 +135,13 @@ To install a cluster that is configured to use {{ gcp_short }} Workload Identity
 
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
-**Additional resources**
-{._additional-resources}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
-*   See [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring) for more information about the Telemetry service
-
-## Next steps {id="next-steps_installing-restricted-networks-gcp-installer-provisioned" ._additional-resources}
-
-*   [Validate an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation).
-*   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations).
-*   [Configure image streams](/post_installation_configuration/cluster-tasks#post-install-must-gather-disconnected) for the Cluster Samples Operator and the `must-gather` tool.
-*   Learn how to [use Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks).
-*   If the mirror registry that you used to install your cluster has a trusted CA, add it to the cluster by [configuring additional trust stores](/openshift_images/image-configuration#images-configuration-cas_image-configuration).
-*   If necessary, you can [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting).
-*   If necessary, see [Registering your disconnected cluster](/support/remote_health_monitoring/remote-health-reporting#insights-operator-register-disconnected-cluster_remote-health-reporting)
+*   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
+*   [Validating an installation](/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
+*   [Customizing your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+*   [Configuring image streams for a disconnected cluster](/post_installation_configuration/cluster-tasks#post-install-must-gather-disconnected)
+*   [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
+*   [Configuring additional trust stores](/openshift_images/image-configuration#images-configuration-cas_image-configuration)
+*   [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+*   [Registering your disconnected cluster](/support/remote_health_monitoring/remote-health-reporting#insights-operator-register-disconnected-cluster_remote-health-reporting)

@@ -68,7 +68,7 @@ You can share subnets within a VPC with another AWS account in your AWS organiza
     1.  Create the IAM role for the AWS managed policy [`ROSASharedVPCEndpointPolicy`](https://docs.aws.amazon.com/rosa/latest/userguide/security-iam-awsmanpol.html#security-iam-awsmanpol-rosasharedvpcendpointpolicy):
         ```terminal
         $ aws iam create-role --role-name <role_name> \
-            --assume-role-policy-document file:///tmp/vpce-role.json
+            --assume-role-policy-document file:///tmp/shared-vpc-role.json
         ```
     1.  Attach the AWS managed policy `ROSASharedVPCEndpointPolicy` to allow for necessary shared VPC permissions.
         ```terminal

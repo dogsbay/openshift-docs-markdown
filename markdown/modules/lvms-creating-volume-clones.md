@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating volume clones {id="lvms-creating-volume-clones_{{ context }}"}
 
-To create a clone of a persistent volume claim (PVC), you must create a `PersistentVolumeClaim` object in the namespace where you created the source PVC.
+Create volume clones to duplicate persistent volume claim (PVC) data for testing, development, or creating independent writable copies by creating a `PersistentVolumeClaim` object that references the source PVC. {._abstract}
+
+You must create a `PersistentVolumeClaim` object in the namespace where you created the source PVC.
 
 
 :::important
@@ -27,19 +29,19 @@ The cloned PVC has write access.
     spec:
       accessModes:
       - ReadWriteOnce
-      storageClassName: lvms-vg1 (1)
-      volumeMode: Filesystem (2)
+      storageClassName: lvms-vg1
+      volumeMode: Filesystem
       dataSource:
         kind: PersistentVolumeClaim
-        name: lvm-pvc (3)
+        name: lvm-pvc
       resources:
         requests:
-          storage: 1Gi (4)
+          storage: 1Gi
     ```
-    1.  Set this field to the value of the `storageClassName` field in the source PVC.
-    1.  Set this field to the `volumeMode` field in the source PVC.
-    1.  Specify the name of the source PVC.
-    1.  Specify the storage size for the cloned PVC. The storage size of the cloned PVC must be greater than or equal to the storage size of the source PVC.
+    *   `spec.storageClassName`: Set this field to the value of the `storageClassName` field in the source PVC.
+    *   `spec.volumeMode`: Set this field to the `volumeMode` field in the source PVC.
+    *   `spec.dataSource.name`: Specifies the name of the source PVC.
+    *   `spec.resources.requests.storage`: Specifies the storage size for the cloned PVC. The storage size of the cloned PVC must be greater than or equal to the storage size of the source PVC.
 1.  Create the PVC in the namespace where you created the source PVC by running the following command:
     ```terminal
     $ oc create -f <file_name> -n <namespace>

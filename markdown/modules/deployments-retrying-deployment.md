@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Retrying a deployment {id="deployments-retrying-deployment_{{ context }}"}
 
-If the current revision of your `DeploymentConfig` object failed to deploy, you can restart the deployment process.
+To restart a failed rollout of a `DeploymentConfig` object in {{ product_title }}, you can retry the deployment. Use the `oc rollout retry` command to restart the same revision without creating a new deployment revision. {._abstract}
 
 **Procedure**
 

@@ -13,7 +13,7 @@ Getting your AI model ready
 Setting up the deployment environment
 
 :   *   Configure your {{ op_system_bundle }} for the specific hardware your deployment runs on, including driver and device plugins.
-    *   To enable GPU or other hardware accelerators for {{ microshift_short }}, follow the guidance specific for your edge device about what you need to install. For example, to use an NVIDIA GPU accelerator, begin by reading the following NVIDIA documentation: [Running a GPU-Accelerated Workload on Red Hat Device Edge](https://docs.nvidia.com/datacenter/cloud-native/edge/latest/nvidia-gpu-with-device-edge.html#running-a-gpu-accelerated-workload-on-red-hat-device-edge) (NVIDIA documentation).
+    *   To enable GPU or other hardware accelerators for {{ microshift_short }}, follow the guidance specific for your edge device about what you need to install. For example, to use an NVIDIA GPU accelerator, begin by reading NVIDIA documentation.
     *   For troubleshooting, consult the device documentation or product support.
 
     :::tip
@@ -40,3 +40,8 @@ Getting ready to deploy
 Using your model
 
 :   *   Make requests against the model server. For example, another pod running in your {{ microshift_short }} deployment that is attached to a camera can stream an image back to the model-serving runtime. The model-serving runtime prepares that image as data for model inferencing. If the model was trained in the binary identification of a bee, the AI model outputs the likelihood that the image data is a bee.
+
+**Additional resources**
+{._additional-resources}
+
+*   [Running a GPU-Accelerated Workload on Red Hat Device Edge (NVIDIA documentation)](https://docs.nvidia.com/datacenter/cloud-native/edge/latest/nvidia-gpu-with-device-edge.html#running-a-gpu-accelerated-workload-on-red-hat-device-edge)

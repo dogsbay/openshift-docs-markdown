@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Tested instance types for {{ gcp_short }} {id="installation-gcp-tested-machine-types_{{ context }}"}
 
-The following {{ gcp_full }} instance types have been tested with {{ product_title }}.
+{{ product_title }} supports specific {{ gcp_full }} instance types that have been validated for cluster deployment. {._abstract}
 
 
 :::note

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Rolling back a deployment {id="deployments-rolling-back_{{ context }}"}
 
-Rollbacks revert an application back to a previous revision and can be performed using the REST API, the CLI, or the web console.
+To revert an application to a previous revision, you can perform a roll back by using the REST API, the CLI, or the web console. {._abstract}
 
 **Procedure**
 

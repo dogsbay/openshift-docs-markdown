@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Criteria for user-defined labels and tags {id="installing-gcp-cluster-label-tag-reference_{{ context }}"}
 
-Before configuring user-defined labels and tags for {{ gcp_full }}, consider the importance of meeting the requirements for these tag and labels to ensure proper resource governance.
+User-defined labels and tags for {{ gcp_full }} in {{ product_title }} must meet specific formatting and quantity requirements for proper resource governance. {._abstract}
 
 The following list details the requirements for user-defined labels:
 

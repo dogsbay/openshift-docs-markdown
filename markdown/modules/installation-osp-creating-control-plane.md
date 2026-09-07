@@ -24,10 +24,12 @@ Create three control plane machines by using the Ignition config files that you 
     $ openshift-install wait-for bootstrap-complete
     ```
 
-    You will see messages that confirm that the control plane machines are running and have joined the cluster:
+    You will see messages that confirm that the control plane machines are running and have joined the cluster.
     ```terminal
     INFO API v1.35.4 up
     INFO Waiting up to 45m0s for bootstrapping to complete...
     ...
     INFO It is now safe to remove the bootstrap resources
     ```
+
+    The bootstrapping completion wait time varies per platform.

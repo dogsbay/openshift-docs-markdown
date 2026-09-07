@@ -45,6 +45,8 @@ In {{ product_title }} 4.18 or later, the default container runtime for worker n
 *   [Creating machine configs with Butane](/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)
 *   [Creating a host inventory by using the command line interface](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html-single/clusters/index#create-host-inventory-cli)
 
+{% leveloffset +1 %}{% include "./modules/scale-down-data-plane.md" %}{% endleveloffset %}
+
 {% leveloffset +1 %}{% include "./modules/scale-up-down-autoscaler-hcp.md" %}{% endleveloffset %}
 
 **Additional resources**
@@ -55,6 +57,14 @@ In {{ product_title }} 4.18 or later, the default container runtime for worker n
 *   [Scaling a node pool ({{ VirtProductName }})](/hosted_control_planes/hcp-deploy/hcp-deploy-virt#hcp-virt-scale-nodpool_hcp-deploy-virt)
 
 {% leveloffset +1 %}{% include "./modules/scale-up-autoscaler-hcp.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/hcp-autoscaling-to-from-zero.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/hcp-autoscaling-to-from-zero-configure.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/hcp-autoscaling-nodepool-reference.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/hcp-nodepool-api-reference.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/priority-expander-autoscaler-hcp.md" %}{% endleveloffset %}
 

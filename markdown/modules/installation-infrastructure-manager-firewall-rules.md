@@ -1,9 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Infrastructure Manager template for firewall rules and IAM roles {id="installation-infrastructure-manager-firewall-rules_{{ context }}"}
 
-You can use the following Infrastructure Manager template to deploy the firewall rules and IAM roles that you need for your {{ product_title }} cluster: {._abstract}
+You can use the following `03_security.tf` Infrastructure Manager template to deploy the firewall rules and IAM roles that you need for your {{ product_title }} cluster: {._abstract}
 
-:::details{title="`03_security.tf` Infrastructure Manager template"}
 ```terraform
 terraform {
   # Infra manager supports specific Terraform versions; ensure compatibility
@@ -235,4 +234,3 @@ resource "google_service_account" "worker_node_sa" {
   display_name = "${var.infra_id}-worker-node"
 }
 ```
-:::

@@ -1,9 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating automated etcd backups {id="creating-automated-etcd-backups_{{ context }}"}
 
-Enable automated etcd backups so your cluster can create single and recurring backups through the Backup API. {._abstract}
-
-The automated backup feature for etcd supports both recurring and single backups. Recurring backups create a cron job that starts a single backup each time the job triggers.
+You can enable automated etcd backups for your cluster by applying a `FeatureGate` and backup custom resources (CRs). {._abstract}
 
 {%- set FeatureName = "Automating etcd backups" %}
 {% include "./snippets/technology-preview.md" %}
@@ -19,7 +17,7 @@ Enabling the `TechPreviewNoUpgrade` feature set on your cluster prevents minor v
 **Prerequisites**
 
 *   You have access to the cluster as a user with the `cluster-admin` role.
-*   You have access to the OpenShift CLI (`oc`).
+*   You have access to the {{ oc_first }}.
 
 **Procedure**
 
@@ -32,11 +30,13 @@ Enabling the `TechPreviewNoUpgrade` feature set on your cluster prevents minor v
     spec:
       featureSet: TechPreviewNoUpgrade
     ```
-1.  Apply the CR and enable automated backups:
+1.  Apply the CR by running the following command:
     ```terminal
     $ oc apply -f enable-tech-preview-no-upgrade.yaml
     ```
-1.  It takes time to enable the related APIs. Verify the creation of the custom resource definition (CRD) by running the following command:
+
+    Applying the `FeatureGate` enables the automated backup APIs. It takes time for the related APIs to become available.
+1.  Verify that the custom resource definition (CRD) was created by running the following command:
     ```terminal
     $ oc get crd | grep backup
     ```

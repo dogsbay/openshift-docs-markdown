@@ -23,4 +23,9 @@ Required
     *   Restart the host.
 
 Optional
-:   *   If you are using the x86_64 architecture, you can install [Red Hat Enterprise Linux for Real Time 9](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_for_real_time/9).
+:   *   If you are using the x86_64 architecture, you can install Red Hat Enterprise Linux for Real Time 9.
+
+**Additional resources**
+{._additional-resources}
+
+*   [Red Hat Enterprise Linux for Real Time 9](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux_for_real_time/9)

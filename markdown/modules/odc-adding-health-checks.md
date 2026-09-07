@@ -11,13 +11,16 @@ You can use the **Topology** view to add health checks to your deployed applicat
 **Procedure**
 
 1.  In the **Topology** view, click the application node to see the side panel. If the container does not have health checks added, a **Health Checks** notification is displayed with a link to add health checks.
-1.  In the displayed notification, click the **Add Health Checks** link.
-1.  Alternatively, you can also click the **Actions** list and select **Add Health Checks**. Note that if the container already has health checks, you will see the **Edit Health Checks** option instead of the add option.
+1.  In the displayed notification, click **Add Health Checks** by using one of the following methods:
+    *   Click the **Add Health Checks** link in the notification. 
+    *   Click the **Actions** list and select **Add Health Checks**. 
+
+        If the container already has health checks, you see the **Edit Health Checks** option instead of the add option.
 1.  In the **Add Health Checks** form, if you have deployed multiple containers, use the **Container** list to ensure that the appropriate container is selected.
 1.  Click the required health probe links to add them to the container. Default data for the health checks is pre-populated. You can add the probes with the default data or further customize the values and then add them. For example, to add a Readiness probe that checks if your container is ready to handle requests:
     1.  Click **Add Readiness Probe**, to see a form containing the parameters for the probe.
-    1.  Click the **Type** list to select the request type you want to add. For example, in this case, select **Container Command** to select the command that will be executed inside the container.
-    1.  In the **Command** field, add an argument `cat`, similarly, you can add multiple arguments for the check, for example, add another argument `/tmp/healthy`.
+    1.  Click the **Type** list to select the request type you want to add. For example, select **Container Command** to specify the command that runs inside the container.
+    1.  In the **Command** field, add an argument `cat`. Similarly, you can add multiple arguments for the check. For example, add another argument `/tmp/healthy`.
     1.  Retain or modify the default values for the other parameters as required.
 
         :::note

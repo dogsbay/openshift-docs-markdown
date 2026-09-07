@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Setting deployment triggers {id="deployments-setting-triggers_{{ context }}"}
 
+To automatically start a new rollout when an image changes in {{ product_title }}, you can set deployment triggers on a `DeploymentConfig` object. Use the `oc set triggers` command to configure an image change trigger for a container. {._abstract}
+
 **Procedure**
 
 1.  You can set deployment triggers for a `DeploymentConfig` object using the `oc set triggers` command. For example, to set a image change trigger, use the following command:

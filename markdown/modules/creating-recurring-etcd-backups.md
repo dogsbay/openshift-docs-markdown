@@ -1,14 +1,14 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating recurring automated etcd backups {id="creating-recurring-etcd-backups_{{ context }}"}
 
-Create a scheduled `Backup` custom resource with a persistent volume claim to automate recurring etcd backups and retain them by count or size for disaster recovery. {._abstract}
+You can create recurring automated etcd backups by applying a custom resource (CR) that defines a backup schedule and retention policy. Backup data is stored on either dynamically-provisioned or local storage. {._abstract}
 
 Use dynamically-provisioned storage to keep the created etcd backup data in a safe, external location if possible. If dynamically-provisioned storage is not available, consider storing the backup data on an NFS share to make backup recovery more accessible.
 
 **Prerequisites**
 
 *   You have access to the cluster as a user with the `cluster-admin` role.
-*   You have access to the OpenShift CLI (`oc`).
+*   You have access to the {{ oc_first }}.
 
 **Procedure**
 
@@ -30,11 +30,14 @@ Use dynamically-provisioned storage to keep the created etcd backup data in a sa
           storageClassName: etcd-backup-local-storage
         ```
 
-        The `spec.resources.requests.storage` field defines the amount of storage available to the PVC. Adjust this value for your requirements.
+        where:
+
+        `spec.resources.requests.storage`
+        :   Specifies the amount of storage available to the PVC. Adjust this value for your requirements.
 
         :::note
 
-        Each of the following providers require changes to the `accessModes` and `storageClassName` keys:
+        Each of the following providers requires changes to the `accessModes` and `storageClassName` keys:
 
         | Provider | `accessModes` value | `storageClassName` value |
         | --- | --- | --- |
@@ -45,11 +48,12 @@ Use dynamically-provisioned storage to keep the created etcd backup data in a sa
         
         :::
 
+
     1.  Apply the PVC by running the following command:
         ```terminal
         $ oc apply -f etcd-backup-pvc.yaml
         ```
-    1.  Verify the creation of the PVC by running the following command:
+    1.  Verify that the PVC was created by running the following command:
         ```terminal
         $ oc get pvc
         ```
@@ -108,22 +112,29 @@ Use dynamically-provisioned storage to keep the created etcd backup data in a sa
                 - key: kubernetes.io/hostname
                   operator: In
                   values:
-                  - <example_master_node>
+                  - <example_control_plane_node>
         ```
-        *   The `spec.capacity.storage` field defines the amount of storage available to the PV. Adjust this value for your requirements.
-        *   Replace `<example_master_node>` with the master node to attach this PV to.
 
-            :::tip
+        where:
 
-            Run the following command to list the available nodes:
+        `spec.capacity.storage`
+        :   Specifies the amount of storage available to the PV. Adjust this value for your requirements.
 
-            ```terminal
-            $ oc get nodes
-            ```
-            
-            :::
+        `spec.nodeAffinity.required.nodeSelectorTerms.matchExpressions.values`
+        :   Specifies the control plane node to attach this PV to. Replace with the actual node name.
 
-    1.  Verify the creation of the PV by running the following command:
+        :::tip
+
+        List the available nodes by running the following command:
+
+        ```terminal
+        $ oc get nodes
+        ```
+        
+        :::
+
+
+    1.  Verify that the PV was created by running the following command:
         ```terminal
         $ oc get pv
         ```
@@ -147,12 +158,16 @@ Use dynamically-provisioned storage to keep the created etcd backup data in a sa
           storageClassName: etcd-backup-local-storage
         ```
 
-        The `spec.resources.requests.storage` field defines the amount of storage available to the PVC. Adjust this value for your requirements.
+        where:
+
+        `spec.resources.requests.storage`
+        :   Specifies the amount of storage available to the PVC. Adjust this value for your requirements.
+
     1.  Apply the PVC by running the following command:
         ```terminal
         $ oc apply -f etcd-backup-pvc.yaml
         ```
-1.  Create a custom resource definition (CRD) file named `etcd-recurring-backups.yaml`. The contents of the created CRD define the schedule and retention type of automated backups.
+1.  Create a CR file named `etcd-recurring-backups.yaml`. The contents of the CR define the schedule and retention type of automated backups.
     *   For the default retention type of `RetentionNumber` with 15 retained backups, use contents such as the following example:
         ```yaml
         apiVersion: config.openshift.io/v1alpha1
@@ -166,42 +181,55 @@ Use dynamically-provisioned storage to keep the created etcd backup data in a sa
             pvcName: etcd-backup-pvc
         ```
 
-        The `spec.etcd.schedule` field is a `CronTab` schedule for recurring backups. Adjust this value for your needs.
-    *   To use retention based on the maximum number of backups, add the following key-value pairs to the `etcd` key:
-        ```yaml
-        spec:
-          etcd:
-            retentionPolicy:
-              retentionType: RetentionNumber
-              retentionNumber:
-                maxNumberOfBackups: 5
-        ```
-        *   The `spec.etcd.retentionPolicy.retentionType` field defines the retention type. Defaults to `RetentionNumber` if unspecified.
-        *   The `spec.etcd.retentionNumber.maxNumberOfBackups` field defines the maximum number of backups to retain. Adjust this value for your needs. Defaults to 15 backups if unspecified.
+        where:
 
-            :::warning
+        `spec.etcd.schedule`
+        :   Specifies the `CronTab` schedule for recurring backups. Adjust this value for your needs.
+1.  To use retention based on the maximum number of backups, add the following key-value pairs to the `etcd` key:
+    ```yaml
+    spec:
+      etcd:
+        retentionPolicy:
+          retentionType: RetentionNumber
+          retentionNumber:
+            maxNumberOfBackups: 5
+    ```
 
-            A known issue causes the number of retained backups to be one greater than the configured value.
-            
-            :::
+    where:
 
-    *   For retention based on the file size of backups, use the following:
-        ```yaml
-        spec:
-          etcd:
-            retentionPolicy:
-              retentionType: RetentionSize
-              retentionSize:
-                maxSizeOfBackupsGb: 20
-        ```
+    `spec.etcd.retentionPolicy.retentionType`
+    :   Specifies the retention type. Defaults to `RetentionNumber` if unspecified.
 
-        The `spec.etcd.retentionPolicy.retentionSize.maxSizeOfBackupsGb` field defines the maximum file size of the retained backups in gigabytes. Adjust this value for your needs. Defaults to 10 GB if unspecified.
+    `spec.etcd.retentionPolicy.retentionNumber.maxNumberOfBackups`
+    :   Specifies the maximum number of backups to retain. Adjust this value for your needs. Defaults to 15 backups if unspecified.
 
-        :::warning
+    :::warning
 
-        A known issue causes the maximum size of retained backups to be up to 10 GB greater than the configured value.
-        
-        :::
+    A known issue causes the number of retained backups to be one greater than the configured value.
+    
+    :::
+
+1.  For retention based on the file size of backups, use the following:
+    ```yaml
+    spec:
+      etcd:
+        retentionPolicy:
+          retentionType: RetentionSize
+          retentionSize:
+            maxSizeOfBackupsGb: 20
+    ```
+
+    where:
+
+    `spec.etcd.retentionPolicy.retentionSize.maxSizeOfBackupsGb`
+    :   Specifies the maximum file size of the retained backups in gigabytes. Adjust this value for your needs. Defaults to 10 GB if unspecified.
+
+    :::warning
+
+    A known issue causes the maximum size of retained backups to be up to 10 GB greater than the configured value.
+    
+    :::
+
 
 1.  Create the cron job defined by the CRD by running the following command:
     ```terminal

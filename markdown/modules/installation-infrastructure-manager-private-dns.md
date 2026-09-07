@@ -1,9 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Infrastructure Manager template for the private DNS {id="installation-infrastructure-manager-private-dns_{{ context }}"}
 
-You can use the following Infrastructure Manager template to deploy the private DNS that you need for your {{ product_title }} cluster: {._abstract}
+You can use the following `02_dns.tf` Infrastructure Manager template to deploy the private DNS that you need for your {{ product_title }} cluster: {._abstract}
 
-:::details{title="`02_dns.tf` Infrastructure Manager template"}
 ```terraform
 terraform {
   # Infra manager supports specific Terraform versions; ensure compatibility
@@ -67,4 +66,3 @@ resource "google_dns_managed_zone" "private_zone" {
   force_destroy = false
 }
 ```
-:::

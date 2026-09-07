@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating cluster-wide firewall rules for a shared VPC in {{ gcp_short }} {id="installation-creating-gcp-shared-vpc-cluster-wide-firewall-rules_{{ context }}"}
 
-You can create cluster-wide firewall rules to allow the access that the {{ product_title }} cluster requires.
+You can create cluster-wide firewall rules to allow the access that the {{ product_title }} cluster requires. {._abstract}
 
 
 :::warning

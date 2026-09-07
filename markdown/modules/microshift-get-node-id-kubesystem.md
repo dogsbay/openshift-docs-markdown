@@ -9,13 +9,17 @@ Retrieving the node ID enables you to uniquely identify a device within your dep
     ```terminal
     $ oc get namespaces kube-system -o jsonpath={.metadata.uid}
     ```
-    ```terminal title="Example output"
+
+    Example output:
+    ```terminal
     7cf13853-68f4-454e-8f5c-1af748cbfb1a
     ```
 *   Get the ID of a running node by retrieving it from the `cluster-id` file by entering the following command:
     ```terminal
     $ sudo cat /var/lib/microshift/cluster-id
     ```
-    ```terminal title="Example output"
+
+    Example output:
+    ```terminal
     7cf13853-68f4-454e-8f5c-1af748cbfb1a
     ```

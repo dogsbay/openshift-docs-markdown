@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating a {{ gcp_short }} project {id="installation-gcp-project_{{ context }}"}
 
-To install {{ product_title }}, you must create a project in your {{ gcp_first }} account to host the cluster.
+To install {{ product_title }}, you must create a project in your {{ gcp_first }} account to host the cluster. {._abstract}
 
 **Procedure**
 

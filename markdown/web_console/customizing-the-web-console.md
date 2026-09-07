@@ -57,8 +57,8 @@ This is especially helpful if you need to tailor the web console to meet specifi
 
 {% leveloffset +2 %}{% include "./modules/odc_customizing-a-developer-catalog-or-its-sub-catalogs-using-the-yaml-view.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/odc_customizing-a-developer-catalog-or-its-sub-catalogs-using-the-form-view.md" %}{% endleveloffset %}
-
 {% leveloffset +3 %}{% include "./modules/odc_con_example-yaml-file-changes.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/odc_customizing-a-developer-catalog-or-its-sub-catalogs-using-the-form-view.md" %}{% endleveloffset %}
 
 {% endif %}

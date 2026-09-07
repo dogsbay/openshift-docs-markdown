@@ -7,7 +7,7 @@ title: Configuring an OpenID Connect identity provider
 # Configuring an OpenID Connect identity provider {id="configuring-oidc-identity-provider"}
 {%- set context = "configuring-oidc-identity-provider" %}
 
-Configure the `oidc` identity provider to integrate with an OpenID Connect identity provider using an [Authorization Code Flow](http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth).
+To integrate {{ product_title }} with an external OpenID Connect (OIDC) identity provider, configure the `oidc` identity provider by using the Authorization Code Flow. Use this integration when your organization already uses OIDC for single sign-on. {._abstract}
 
 {% if openshift_origin or openshift_enterprise or openshift_webscale %}
 {% leveloffset +1 %}{% include "./modules/identity-provider-overview.md" %}{% endleveloffset %}
@@ -15,6 +15,12 @@ Configure the `oidc` identity provider to integrate with an OpenID Connect ident
 {% endif %}
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-oidc-about.md" %}{% endleveloffset %}
+
+**Additional resources**
+{._additional-resources}
+
+*   [OpenID Connect Discovery (OpenID documentation)](https://openid.net/specs/openid-connect-discovery-1_0.html)
+*   [OpenID claims documentation](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims)
 
 {% if openshift_enterprise %}
 {% leveloffset +1 %}{% include "./modules/identity-provider-oidc-supported.md" %}{% endleveloffset %}
@@ -31,10 +37,15 @@ Configure the `oidc` identity provider to integrate with an OpenID Connect ident
 **Additional resources**
 {._additional-resources}
 
-*   See [Identity provider parameters](/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider) for information on parameters, such as `mappingMethod`, that are common to all identity providers.
+*   [Identity provider parameters](/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-add.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-configuring-using-web-console.md" %}{% endleveloffset %}
+
+## Additional resources {id="_additional_resources" ._additional-resources}
+
+*   [Authorization Code Flow](https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth)
+*   [Issuer Identifier](https://openid.net/specs/openid-connect-core-1_0.html#IssuerIdentifier)
 
 {% endif %}

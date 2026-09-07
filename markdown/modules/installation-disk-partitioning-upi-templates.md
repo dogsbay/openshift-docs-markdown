@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Optional: Creating a separate `/var` partition {id="installation-disk-partitioning-upi-templates_{{ context }}"}
+# Creating a separate `/var` partition {id="installation-disk-partitioning-upi-templates_{{ context }}"}
 
 To isolate growing storage for containers, etcd, or logs, you can optionally create a separate `/var` partition on worker nodes before you generate Ignition configs. {._abstract}
 

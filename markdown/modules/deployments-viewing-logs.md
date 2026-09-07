@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Viewing deployment logs {id="deployments-viewing-logs_{{ context }}"}
 
+To troubleshoot a rollout in {{ product_title }}, you can view deployment logs for a `DeploymentConfig` object. Use the `oc logs` command to stream logs from the latest revision or from an older failed deployment process. {._abstract}
+
 **Procedure**
 
 1.  To stream the logs of the latest revision for a given `DeploymentConfig` object:

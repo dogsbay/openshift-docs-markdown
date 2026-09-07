@@ -36,7 +36,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Incorporating the Cloud Credential Operator utility manifests {id="cco-ccoctl-install-creating-manifests_{{ context }}"}
 
-To implement short-term security credentials managed outside the cluster for individual components, you must move the manifest files that the Cloud Credential Operator utility (`ccoctl`) created to the correct directories for the installation program. {._abstract}
+To implement short-term security credentials managed outside the cluster for individual {{ product_title }} components, you must move the manifest files that the Cloud Credential Operator utility (`ccoctl`) created to the correct directories for the installation program. {._abstract}
 
 **Prerequisites**
 

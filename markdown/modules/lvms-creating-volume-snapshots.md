@@ -1,7 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating volume snapshots {id="lvms-creating-volume-snapshots_{{ context }}"}
 
-You can create volume snapshots based on the available capacity of the thin pool and the over-provisioning limits.
+Create volume snapshots to capture point-in-time copies of persistent volume claims (PVCs) for data backup or recovery purposes by creating a `VolumeSnapshot` object, based on the available thin pool capacity and over-provisioning limits. {._abstract}
+
 To create a volume snapshot, you must create a `VolumeSnapshotClass` object.
 
 **Prerequisites**
@@ -18,24 +19,24 @@ To create a volume snapshot, you must create a `VolumeSnapshotClass` object.
     apiVersion: snapshot.storage.k8s.io/v1
     kind: VolumeSnapshot
     metadata:
-      name: lvm-block-1-snap (1)
+      name: lvm-block-1-snap
     spec:
       source:
-        persistentVolumeClaimName: lvm-block-1 (2)
-      volumeSnapshotClassName: lvms-vg1 (3)
+        persistentVolumeClaimName: lvm-block-1
+      volumeSnapshotClassName: lvms-vg1
     ```
-    1.  Specify a name for the volume snapshot.
-    1.  Specify the name of the source PVC. {{ lvms }} creates a snapshot of this PVC.
-    1.  Set this field to the name of a volume snapshot class.
+    *   `metadata.name`: Specifies a name for the volume snapshot.
+    *   `spec.source.persistentVolumeClaimName`: Specifies the name of the source PVC. {{ lvms }} creates a snapshot of this PVC.
+    *   `spec.volumeSnapshotClassName`: Specifies the name of a volume snapshot class.
 
-    :::note
+        :::note
 
-    To get the list of available volume snapshot classes, run the following command: 
-    ```terminal
-    $ oc get volumesnapshotclass
-    ```
-    
-    :::
+        To get the list of available volume snapshot classes, run the following command: 
+        ```terminal
+        $ oc get volumesnapshotclass
+        ```
+        
+        :::
 
 1.  Create the volume snapshot in the namespace where you created the source PVC by running the following command:
     ```terminal

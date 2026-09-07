@@ -18,13 +18,17 @@ This simple installation type uses a basic command to install {{ microshift_shor
 Image-based installation types involve creating an `rpm-ostree`-based, immutable version of {{ op_system_base }} that is optimized for edge deployment.
 
 *   {{ op_system_ostree }} can be deployed to the edge in production environments. You can use this installation type where network connections are present, restricted, or completely offline, depending on the local environment.
-*   Image mode for {{ op_system_base }} is based on OCI container images and bootable containers. See the following link for an introduction to bootc technology:
-    *   [bootc: Getting started with bootable containers](https://developers.redhat.com/articles/2024/09/24/bootc-getting-started-bootable-containers)
+*   Image mode for {{ op_system_base }} is based on OCI container images and bootable containers.
 
 When choosing an image-based installation, consider whether the installation target is intended to be in an offline or networked state, where you plan to build system images, and how you plan to load your {{ op_system_bundle }}. Use the following scenarios as general guidance:
 
 *   If you build either a fully self-contained {{ op_system_ostree }} or an image mode for {{ op_system_base }} ISO outside a disconnected environment, and then install the ISO locally on your edge devices, you likely do not need an RPM repository or a mirror registry.
 *   If you build an ISO outside a disconnected environment that does not include the container images, but consists of only the RPMs, you need a mirror registry inside your disconnected environment. You use your mirror registry to pull container images.
-*   If you build images inside a disconnected environment, or use package-based installations, you need both a mirror registry and a local RPM mirror repository. You can use either the {{ op_system_base }} reposync utility or Red&#160;Hat Satellite for advanced use cases. See the following links for more information:
-    *   [Creating a local mirror of the latest update for {{ op_system_base }} without using Satellite Server](https://access.redhat.com/solutions/7019225)
-    *   [Red&#160;Hat Satellite](https://www.redhat.com/en/technologies/management/satellite)
+*   If you build images inside a disconnected environment, or use package-based installations, you need both a mirror registry and a local RPM mirror repository. You can use either the {{ op_system_base }} reposync utility or Red&#160;Hat Satellite for advanced use cases.
+
+**Additional resources**
+{._additional-resources}
+
+*   [bootc: Getting started with bootable containers](https://developers.redhat.com/articles/2024/09/24/bootc-getting-started-bootable-containers)
+*   [Creating a local mirror of the latest update for {{ op_system_base }} without using Satellite Server](https://access.redhat.com/solutions/7019225)
+*   [Red&#160;Hat Satellite](https://www.redhat.com/en/technologies/management/satellite)

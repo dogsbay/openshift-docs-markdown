@@ -30,7 +30,7 @@ Use the following procedure to install {{ microshift_short }} from an RPM packag
     ```terminal
     $ sudo dnf install -y microshift
     ```
-1.  Download your installation pull secret from the [Red Hat Hybrid Cloud Console](https://console.redhat.com/openshift/install/pull-secret) to a temporary folder, for example, `$HOME/openshift-pull-secret`. This pull secret allows you to authenticate with the container registries that serve the container images used by {{ product_title }}.
+1.  Download your installation pull secret to a temporary folder, for example, `$HOME/openshift-pull-secret`. This pull secret allows you to authenticate with the container registries that serve the container images used by {{ product_title }}.
 1.  To copy the pull secret to the `/etc/crio` folder of your {{ op_system_base }} machine, run the following command:
     ```terminal
     $ sudo cp $HOME/openshift-pull-secret /etc/crio/openshift-pull-secret

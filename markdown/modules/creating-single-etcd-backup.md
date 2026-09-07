@@ -1,16 +1,16 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating a single automated etcd backup {id="creating-single-etcd-backup_{{ context }}"}
 
-Follow these steps to create a single etcd backup by creating and applying a custom resource (CR). {._abstract}
+You can create a single automated etcd backup by applying an `EtcdBackup` custom resource (CR). Backup data is stored on either dynamically-provisioned or local storage. {._abstract}
 
 **Prerequisites**
 
 *   You have access to the cluster as a user with the `cluster-admin` role.
-*   You have access to the OpenShift CLI (`oc`).
+*   You have access to the {{ oc_first }}.
 
 **Procedure**
 
-*   If dynamically-provisioned storage is available, complete the following steps to create a single automated etcd backup:
+1.  If dynamically-provisioned storage is available, complete the following steps to create a single automated etcd backup:
     1.  Create a persistent volume claim (PVC) named `etcd-backup-pvc.yaml` with contents such as the following example:
         ```yaml
         kind: PersistentVolumeClaim
@@ -31,11 +31,12 @@ Follow these steps to create a single etcd backup by creating and applying a cus
 
         `<storage_amount>`
         :   Specifies the amount of storage available to the PVC. Adjust this value for your requirements, such as `200Gi`.
+
     1.  Apply the PVC by running the following command:
         ```terminal
         $ oc apply -f etcd-backup-pvc.yaml
         ```
-    1.  Verify the creation of the PVC by running the following command:
+    1.  Verify that the PVC was created by running the following command:
         ```terminal
         $ oc get pvc
         ```
@@ -65,11 +66,12 @@ Follow these steps to create a single etcd backup by creating and applying a cus
 
         `<pvc_name>`
         :   Specifies the name of the PVC to save the backup to. Adjust this value according to your environment, such as `etcd-backup-pvc`.
-    1.  Apply the CR to start a single backup:
+
+    1.  Apply the CR to start a single backup by running the following command:
         ```terminal
         $ oc apply -f etcd-single-backup.yaml
         ```
-*   If dynamically-provisioned storage is not available, complete the following steps to create a single automated etcd backup:
+1.  If dynamically-provisioned storage is not available, complete the following steps to create a single automated etcd backup:
     1.  Create a `StorageClass` CR file named `etcd-backup-local-storage.yaml` with the following contents:
         ```yaml
         apiVersion: storage.k8s.io/v1
@@ -115,8 +117,9 @@ Follow these steps to create a single etcd backup by creating and applying a cus
         :   Specifies the amount of storage available to the PV. Adjust this value for your requirements, such as `100Gi`.
 
         `<node_name>`
-        :   Specifies the node to attach this PV to. Replace with the actual node name, such as `master-0`.
-    1.  Verify the creation of the PV by running the following command:
+        :   Specifies the control plane node to attach this PV to. Replace with the actual node name.
+
+    1.  Verify that the PV was created by running the following command:
         ```terminal
         $ oc get pv
         ```
@@ -162,8 +165,8 @@ Follow these steps to create a single etcd backup by creating and applying a cus
         where:
 
         `<pvc_name>`
-        :   Specifies the name of the persistent volume claim (PVC) to save the backup to. Adjust this value according to your environment, such as `etcd-backup-pvc`.
-    1.  Apply the CR to start a single backup:
+        :   Specifies the name of the PVC to save the backup to. Adjust this value according to your environment, such as `etcd-backup-pvc`.
+    1.  Apply the CR to start a single backup by running the following command:
         ```terminal
         $ oc apply -f etcd-single-backup.yaml
         ```

@@ -25,5 +25,5 @@ Installing a cluster in a shared VPC is supported only for OpenShift 4.17.9 and 
 
 *   In a terminal, enter the following command to create the shared VPC:
     ```terminal
-    $ rosa create cluster --cluster-name <cluster_name> --sts --operator-roles-prefix <prefix> --oidc-config-id <oidc_config_id> --region us-east-1 --subnet-ids <subnet_ids> --hcp-internal-communication-hosted-zone-id <local_hosted_zone_ID> --ingress-private-hosted-zone-id <private_hosted_zone_ID> --route53-role-arn <route_53_role_arn> vpc-endpoint-role-arn <vpc_endpoint_role_arn> --base-domain <dns-domain> --additional-allowed-principals <route53-role-arn>,<vpc-endpoint-role-arn> --hosted-cp
+    $ rosa create cluster --cluster-name <cluster_name> --sts --operator-roles-prefix <prefix> --oidc-config-id <oidc_config_id> --region us-east-1 --subnet-ids <subnet_ids> --hcp-internal-communication-hosted-zone-id <local_hosted_zone_ID> --ingress-private-hosted-zone-id <private_hosted_zone_ID> --route53-role-arn <route_53_role_arn> --vpc-endpoint-role-arn <vpc_endpoint_role_arn> --base-domain <dns-domain> --additional-allowed-principals <route53-role-arn>,<vpc-endpoint-role-arn> --hosted-cp --role-arn <installer-role-arn> --support-role-arn <support-role-arn> --worker-iam-role <worker-role-arn>
     ```

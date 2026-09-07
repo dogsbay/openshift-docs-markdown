@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Scaling manually {id="deployments-scaling-manually_{{ context }}"}
 
-In addition to rollbacks, you can exercise fine-grained control over the number of replicas by manually scaling them.
+To control how many pod replicas run for a `DeploymentConfig` object in {{ product_title }}, you can scale manually. Use the `oc scale` command to set the desired number of replicas. {._abstract}
 
 
 :::note

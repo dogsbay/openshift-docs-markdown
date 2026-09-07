@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # {{ oadp_short }} backup and restore guidelines {id="ztp-image-based-upgrade-backup-guide_{{ context }}"}
 
-Use the {{ oadp_short }} Operator to back up and restore applications during the image-based upgrade by creating `Backup` and `Restore` CRs wrapped in `ConfigMap` objects. {._abstract}
+Use the {{ oadp_short }} Operator to back up and restore applications during the image-based upgrade by creating `Backup` and `Restore` custom resources (CRs) wrapped in `ConfigMap` objects. {._abstract}
 
 With the {{ oadp_short }} Operator, you can back up and restore your applications on your target clusters by using `Backup` and `Restore` CRs wrapped in `ConfigMap` objects.
 The application must work on the current and the target {{ product_title }} versions so that they can be restored after the upgrade.
@@ -21,7 +21,11 @@ There are two local storage implementations for {{ sno }}:
 
 
 Local Storage Operator (LSO)
-:   The {{ lcao }} automatically backs up and restores the required artifacts, including `localvolume` resources and their associated `StorageClass` resources. You must exclude the `persistentvolumes` resource in the application `Backup` CR.
+:   The {{ lcao }} automatically backs up and restores the required artifacts, including `LocalVolume` resources and their associated `StorageClass` resources.
+    You must exclude the `persistentvolumes` resource in the application `Backup` CR.
+    The image-based upgrade does not support the `LocalVolumeSet` and `LocalVolumeDiscovery` CRs.
+    If you use these CRs, the {{ lcao }} does not restore them.
+    Only persistent volumes that a `LocalVolume` CR created are preserved and available after the upgrade.
 
 
 {{ lvms }}

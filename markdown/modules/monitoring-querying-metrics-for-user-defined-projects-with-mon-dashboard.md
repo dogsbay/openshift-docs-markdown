@@ -3,7 +3,7 @@
 
 Monitor user-defined workloads by using the {{ product_title }} metrics query browser. The query browser uses Prometheus Query Language (PromQL) queries to examine metrics visualized on a plot. {._abstract}
 
-As a developer, you must specify a project name when querying metrics. You must have the required privileges to view metrics for the selected project.
+To query metrics in the **Developer** perspective, you must specify a project name that represents the namespace. You must have the required privileges to view metrics for the selected project.
 
 {% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 

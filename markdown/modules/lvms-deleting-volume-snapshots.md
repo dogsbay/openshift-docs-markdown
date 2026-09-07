@@ -1,7 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deleting volume snapshots {id="lvms-deleting-volume-snapshots_{{ context }}"}
 
-You can delete the volume snapshots of the persistent volume claims (PVCs).
+Delete volume snapshots when they are no longer needed to free up storage resources and prevent orphaned snapshots, since {{ lvms }} does not automatically delete snapshots when you delete the source persistent volume claim (PVC). {._abstract}
+
 
 :::important
 
@@ -13,7 +14,7 @@ When you delete a persistent volume claim (PVC), {{ lvms }} deletes only the PVC
 **Prerequisites**
 
 *   You have access to {{ product_title }} as a user with `cluster-admin` permissions.
-*   You have ensured that the volume snpashot that you want to delete is not in use.
+*   You have ensured that the volume snapshot that you want to delete is not in use.
 
 **Procedure**
 

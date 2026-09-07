@@ -24,6 +24,8 @@ After creating all required infrastructure in {{ aws_short }}, you can start the
         INFO Time elapsed: 1s
         ```
 
+        The bootstrapping completion wait time varies per platform.
+
         If the command exits without a `FATAL` warning, your {{ product_title }} control plane has initialized.
 
         :::note

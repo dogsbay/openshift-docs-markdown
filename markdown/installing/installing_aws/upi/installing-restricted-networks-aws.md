@@ -18,13 +18,13 @@ While you can install an {{ product_title }} cluster by using mirrored installat
 :::
 
 
-One way to create this infrastructure is to use the provided CloudFormation templates. You can modify the templates to customize your
+One way to create this infrastructure is to use the provided CloudFormation templates. You can change the templates to customize your
 infrastructure or use the information that they contain to create {{ aws_short }} objects according to your company’s policies.
 
 
 :::important
 
-The steps for performing a user-provisioned infrastructure installation are provided as an example only. Installing a cluster with infrastructure you provide requires knowledge of the cloud provider and the installation process of {{ product_title }}. Several CloudFormation templates are provided to assist in completing these steps or to help model your own. You are also free to create the required resources through other methods; the templates are just an example.
+The steps for performing a user-provisioned infrastructure installation are an example only. Installing a cluster with infrastructure you provide requires knowledge of the cloud provider and the installation process of {{ product_title }}. Several CloudFormation templates help you complete these steps or model your own. You are also free to create the required resources through other methods; the templates are just an example.
 
 :::
 

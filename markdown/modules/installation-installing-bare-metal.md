@@ -53,6 +53,7 @@ The {{ product_title }} bootstrap process begins after the cluster nodes first b
     INFO Waiting up to 1h0m0s for bootstrapping to complete...
     INFO It is now safe to remove the bootstrap resources
     ```
+    The bootstrapping completion wait time varies per platform.
     The command succeeds when the Kubernetes API server signals that it has been
     bootstrapped on the control plane machines.
 

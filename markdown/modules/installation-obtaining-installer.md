@@ -20,21 +20,20 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Obtaining the installation program {id="installation-obtaining-installer_{{ context }}"}
 
-Before you install {{ product_title }}, download the installation file on
-{%- if restricted %}
-the mirror host, so that installation assets exist for deployment in your environment.
-{%- endif %}
-{%- if not restricted %}
-{% if ibm_z %}
- your provisioning machine.
+{% if restricted %}
+Before you install {{ product_title }}, download the installation file on the mirror host, so that installation assets exist for deployment in your environment.
 {% endif %}
-{% if not (ibm_z or private) %}
- the host you are using for installation.
+{% if not restricted %}
+{% if ibm_z %}
+Before you install {{ product_title }}, download the installation file on your provisioning machine, so that installation assets exist for deployment in your environment.
 {% endif %}
 {% if private %}
-a bastion host on your cloud network or a machine that has access to the to the network through a VPN. This ensures that installation assets exist for deployment in your environment. {._abstract}
+Before you install {{ product_title }}, download the installation file on a bastion host on your cloud network or a machine that has access to the network through a VPN. This ensures that installation assets exist for deployment in your environment. {._abstract}
 
 For more information about private cluster installation requirements, see "Private clusters".
+{% endif %}
+{% if not (ibm_z or private) %}
+Before you install {{ product_title }}, download the installation file on the host you are using for installation, so that installation assets exist for deployment in your environment.
 {% endif %}
 {%- endif %}
 

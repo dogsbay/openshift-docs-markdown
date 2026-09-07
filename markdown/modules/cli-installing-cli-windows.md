@@ -50,7 +50,7 @@ If you are updating a cluster in a disconnected environment, install the `oc` ve
 1.  Extract the archive with a ZIP program.
 1.  Move the `oc` binary to a directory that is on your `PATH` variable.
 
-    To check your `PATH` variable, open the command prompt and execute the following command:
+    To check your `PATH` variable, open the Command Prompt and run the following command:
     ```terminal
     C:\> path
     ```

@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Assigning pods to specific nodes {id="deployments-assigning-pods-to-nodes_{{ context }}"}
 
-You can use node selectors in conjunction with labeled nodes to control pod
-placement.
+To control which nodes run your application pods in {{ product_title }}, you can set a node selector on a `Pod` configuration or pod template. Combine your selector with labels on nodes, including any default project selectors set by a cluster administrator. {._abstract}
 
 Cluster administrators can set the default node selector for a project in order
 to restrict pod placement to specific nodes. As a developer, you can set a node

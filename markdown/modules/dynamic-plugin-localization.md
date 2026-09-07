@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Translating messages with react-i18next {id="dynamic-plugin-api_{{ context }}"}
 
-The [plugin template](https://github.com/openshift/console-plugin-template) demonstrates how you can translate messages with [react-i18next](https://www.i18next.com/). {._abstract}
+The `console-plugin-template` plugin template demonstrates how you can translate messages with react-i18next. {._abstract}
 
 **Prerequisites**
 
@@ -55,7 +55,7 @@ The [plugin template](https://github.com/openshift/console-plugin-template) demo
         }
       }
     ```
-1.  Include a comment in a TypeScript file for [i18next-parser](https://github.com/i18next/i18next-parser) to add the message from `console-extensions.json` to your message catalog. For example:
+1.  Include a comment in a TypeScript file for the `i18next-parser` tool to add the message from `console-extensions.json` to your message catalog. For example:
     ```tsx
     // t('plugin__console-demo-plugin~Demo Plugin')
     ```
@@ -63,3 +63,8 @@ The [plugin template](https://github.com/openshift/console-plugin-template) demo
     ```terminal
     $ yarn i18n
     ```
+
+**Additional resources**
+{._additional-resources}
+
+*   [react-i18next](https://www.i18next.com/)

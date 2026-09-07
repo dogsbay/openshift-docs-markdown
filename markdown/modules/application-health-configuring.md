@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring health checks using the CLI {id="application-health-configuring_{{ context }}"}
 
-To configure readiness, liveness, and startup probes, add one or more probes to the specification for the pod that contains the container which you want to perform the health checks
+To configure readiness, liveness, and startup probes, add one or more probes to the specification for the pod that contains the container on which you want to perform the health checks. Probes let the cluster detect unhealthy containers and respond before failures affect application availability. {._abstract}
 
 
 :::note
@@ -13,9 +13,7 @@ If you want to add or edit health checks in an existing pod, you must edit the p
 
 **Procedure**
 
-To add probes for a container:
-
-1.  Create a `Pod` object to add one or more probes:
+1.  Create a YAML file that defines a `Pod` object with one or more probes:
     ```yaml
     apiVersion: v1
     kind: Pod
@@ -25,63 +23,111 @@ To add probes for a container:
       name: my-application
     spec:
       containers:
-      - name: my-container (1)
+      - name: my-container
         args:
-        image: registry.k8s.io/goproxy:0.1 (2)
-        livenessProbe: (3)
-          tcpSocket:  (4)
-            port: 8080 (5)
-          initialDelaySeconds: 15 (6)
-          periodSeconds: 20 (7)
-          timeoutSeconds: 10 (8)
-        readinessProbe: (9)
-          httpGet: (10)
-            host: my-host (11)
-            scheme: HTTPS (12)
+        image: registry.k8s.io/goproxy:0.1
+        livenessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 20
+          timeoutSeconds: 10
+        readinessProbe:
+          httpGet:
+            host: my-host
+            scheme: HTTPS
             path: /healthz
-            port: 8080 (13)
-        startupProbe: (14)
-          exec: (15)
-            command: (16)
+            port: 8080
+        startupProbe:
+          exec:
+            command:
             - cat
             - /tmp/healthy
-          failureThreshold: 30 (17)
-          periodSeconds: 20 (18)
-          timeoutSeconds: 10 (19)
+          failureThreshold: 30
+          periodSeconds: 20
+          timeoutSeconds: 10
     ```
-    1.  Specify the container name.
-    1.  Specify the container image to deploy.
-    1.  Optional: Create a Liveness probe.
-    1.  Specify a test to perform, here a TCP Socket test.
-    1.  Specify the port on which the container is listening.
-    1.  Specify the time, in seconds, after the container starts before the probe can be scheduled.
-    1.  Specify the number of seconds to perform the probe. The default is `10`. This value must be greater than `timeoutSeconds`.
-    1.  Specify the number of seconds of inactivity after which the probe is assumed to have failed. The default is `1`. This value must be lower than `periodSeconds`.
-    1.  Optional: Create a Readiness probe.
-    1.  Specify the type of test to perform, here an HTTP test.
-    1.  Specify a host IP address. When `host` is not defined, the `PodIP` is used.
-    1.  Specify `HTTP` or `HTTPS`. When `scheme` is not defined, the `HTTP` scheme is used.
-    1.  Specify the port on which the container is listening.
-    1.  Optional: Create a Startup probe.
-    1.  Specify the type of test to perform, here an Container Execution probe.
-    1.  Specify the commands to execute on the container.
-    1.  Specify the number of times to try the probe after a failure.
-    1.  Specify the number of seconds to perform the probe. The default is `10`. This value must be greater than `timeoutSeconds`.
-    1.  Specify the number of seconds of inactivity after which the probe is assumed to have failed. The default is `1`. This value must be lower than `periodSeconds`.
 
     :::note
 
-    If the `initialDelaySeconds` value is lower than the `periodSeconds` value, the first Readiness probe occurs at some point between the two periods due to an issue with timers.
+    Include only the probe types your application needs. The example shows liveness, readiness, and startup probes together for reference.
+    
+    :::
+
+
+    where:
+
+    `spec.containers.name`
+    :   Specifies the container name.
+
+    `spec.containers.image`
+    :   Specifies the container image to deploy.
+
+    `spec.containers.livenessProbe`
+    :   Specifies a liveness probe. This value is optional.
+
+    `spec.containers.livenessProbe.tcpSocket`
+    :   Specifies a test to perform, here a Transmission Control Protocol (TCP) socket test.
+
+    `spec.containers.livenessProbe.tcpSocket.port`
+    :   Specifies the port on which the container is listening.
+
+    `spec.containers.livenessProbe.initialDelaySeconds`
+    :   Specifies the time, in seconds, after the container starts before the probe can be scheduled.
+
+    `spec.containers.livenessProbe.periodSeconds`
+    :   Specifies the number of seconds to perform the probe. The default is `10`. This value must be greater than `timeoutSeconds`.
+
+    `spec.containers.livenessProbe.timeoutSeconds`
+    :   Specifies the number of seconds of inactivity after which the probe is assumed to have failed. The default is `1`. This value must be lower than `periodSeconds`.
+
+    `spec.containers.readinessProbe`
+    :   Specifies a readiness probe. This value is optional.
+
+    `spec.containers.readinessProbe.httpGet`
+    :   Specifies the type of test to perform, here an HTTP test.
+
+    `spec.containers.readinessProbe.httpGet.host`
+    :   Specifies a host IP address. When `host` is not defined, the `PodIP` is used.
+
+    `spec.containers.readinessProbe.httpGet.scheme`
+    :   Specifies `HTTP` or `HTTPS`. When `scheme` is not defined, the `HTTP` scheme is used.
+
+    `spec.containers.readinessProbe.httpGet.port`
+    :   Specifies the port on which the container is listening.
+
+    `spec.containers.startupProbe`
+    :   Specifies a startup probe. This value is optional.
+
+    `spec.containers.startupProbe.exec`
+    :   Specifies the type of test to perform, here a container execution probe.
+
+    `spec.containers.startupProbe.exec.command`
+    :   Specifies the commands to execute on the container.
+
+    `spec.containers.startupProbe.failureThreshold`
+    :   Specifies the number of times to try the probe after a failure.
+
+    `spec.containers.startupProbe.periodSeconds`
+    :   Specifies the number of seconds to perform the probe. The default is `10`. This value must be greater than `timeoutSeconds`.
+
+    `spec.containers.startupProbe.timeoutSeconds`
+    :   Specifies the number of seconds of inactivity after which the probe is assumed to have failed. The default is `1`. This value must be lower than `periodSeconds`.
+
+    :::note
+
+    If the `initialDelaySeconds` value is lower than the `periodSeconds` value, the first readiness probe occurs at some point between the two periods due to an issue with timers.
 
     The `timeoutSeconds` value must be lower than the `periodSeconds` value.
     
     :::
 
-1.  Create the `Pod` object:
+
+1.  Apply the YAML file by running the following command:
     ```terminal
     $ oc create -f <file-name>.yaml
     ```
-1.  Verify the state of the health check pod:
+1.  Verify the state of the health check pod by running the following command:
     ```terminal
     $ oc describe pod my-application
     ```
@@ -96,11 +142,8 @@ To add probes for a container:
       Normal  Started    1s    kubelet, ip-10-0-143-40.ec2.internal  Started container
     ```
 
-    The following is the output of a failed probe that restarted a container:
-    ```terminal title="Sample Liveness check output with unhealthy container"
-    $ oc describe pod pod1
-    ```
-    ```terminal title="Example output"
+    The following example shows output when a liveness probe fails and the container is restarted:
+    ```terminal
     ....
 
     Events:

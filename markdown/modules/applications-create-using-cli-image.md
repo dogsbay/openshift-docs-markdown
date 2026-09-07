@@ -1,9 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating an application from an image {id="applications-create-using-cli-image_{{ context }}"}
 
-You can deploy an application from an existing image. Images can come from image streams in the {{ product_title }} server, images in a specific registry, or images in the local Docker server.
+You can use the `oc new-app` command to create an application from a container image in Docker Hub, a private registry, or an image stream on your cluster. Use this procedure when you know the container image name or image stream you want to deploy. {._abstract}
 
-The `new-app` command attempts to determine the type of image specified in the arguments passed to it. However, you can explicitly tell `new-app` whether the image is a container image using the `--docker-image` argument or an image stream using the `-i|--image-stream` argument.
+Use the command that matches where your container image is stored.
 
 
 :::note
@@ -13,26 +13,22 @@ If you specify an image from your local Docker repository, you must ensure that 
 :::
 
 
-## Docker Hub MySQL image {id="_docker_hub_mysql_image"}
+**Prerequisites**
 
-Create an application from the Docker Hub MySQL image, for example:
+*   You have installed the {{ oc_first }} and logged in to your cluster.
+*   You know the container image name or image stream you want to deploy.
 
-```terminal
-$ oc new-app mysql
-```
+**Procedure**
 
-## Image in a private registry {id="_image_in_a_private_registry"}
-
-Create an application using an image in a private registry, specify the full container image specification:
-
-```terminal
-$ oc new-app myregistry:5000/example/myimage
-```
-
-## Existing image stream and optional image stream tag {id="_existing_image_stream_and_optional_image_stream_tag"}
-
-Create an application from an existing image stream and optional image stream tag:
-
-```terminal
-$ oc new-app my-stream:v1
-```
+*   Create an application from the Docker Hub MySQL image by running the following command:
+    ```terminal
+    $ oc new-app mysql
+    ```
+*   Create an application from an image in a private registry by specifying the full image path in the following command:
+    ```terminal
+    $ oc new-app myregistry:5000/example/myimage
+    ```
+*   Create an application from an existing image stream and optional image stream tag by running the following command:
+    ```terminal
+    $ oc new-app my-stream:v1
+    ```

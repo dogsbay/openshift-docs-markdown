@@ -14,10 +14,10 @@
 {%- set ipi = true -%}
 {% endif %}
 
-{%- set _mod_docs_content_type = "PROCEDURE" %}
+{%- set _mod_docs_content_type = "CONCEPT" %}
 # Using custom machine types {id="installation-custom-machine-types_{{ context }}"}
 
-Using a custom machine type to install a {{ product_title }} cluster is supported.
+If the predefined {{ gcp_short }} machine types do not meet your workload requirements, you can configure a custom machine type in the `install-config.yaml` file during {{ product_title }} installation. {._abstract}
 
 Consider the following when using a custom machine type:
 

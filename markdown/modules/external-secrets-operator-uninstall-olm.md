@@ -1,12 +1,12 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling an Operator Lifecylce Manager installed community {{ external_secrets_operator_short }} {id="external-secrets-operator-uninstall-olm_{{ context }}"}
+# Uninstalling an Operator Lifecycle Manager installed community {{ external_secrets_operator_short }} {id="external-secrets-operator-uninstall-olm_{{ context }}"}
 
 Remove the community {{ external_secrets_operator_short }} that was installed by an Operator Lifecycle Manager (OLM) subscription. This helps you free up resources and maintain a clean environment for your cluster. {._abstract}
 
 **Prerequisites**
 
 *   You must be logged in as a user with the `cluster-admin` role.
-*   You must have deleted the `operatorconfig` CR.
+*   You must have deleted the `operatorconfig` custom resource (CR).
 
 **Procedure**
 

@@ -2,7 +2,7 @@
 // Tracks site.url + derived Astro base + build behaviour from
 // dogsbay.config.yml. Edit dogsbay.config.yml and rebuild;
 // edits to this file will be overwritten on the next build.
-export const dogsbaySite = "https://dogsbay.github.io";
-export const dogsbayBase = "/openshift-docs-markdown";
+export const dogsbaySite = undefined;
+export const dogsbayBase = undefined;
 export const dogsbayInlineStylesheets = "auto";
 export const dogsbayOutDir = undefined;

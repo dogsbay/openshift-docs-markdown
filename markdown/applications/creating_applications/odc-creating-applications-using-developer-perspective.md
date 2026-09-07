@@ -7,6 +7,8 @@ title: Creating applications by using the Developer perspective
 # Creating applications by using the Developer perspective {id="odc-creating-applications-using-developer-perspective"}
 {%- set context = "odc-creating-applications-using-developer-perspective" %}
 
+Create and deploy applications on {{ product_title }} by using the **Developer** perspective in the web console. {._abstract}
+
 The **Developer** perspective in the web console provides you the following options from the **+Add** view to create applications and associated services and deploy them on {{ product_title }}:
 
 {% if not (openshift_enterprise or openshift_webscale) %}
@@ -17,7 +19,7 @@ The **Developer** perspective in the web console provides you the following opti
     *   **Creating applications using samples**: Use existing code samples to get started with creating applications on the {{ product_title }}.
     *   **Build with guided documentation**: Follow the guided documentation to build applications and familiarize yourself with key concepts and terminologies.
     *   **Explore new developer features**: Explore the new features and resources within the **Developer** perspective.
-*   **Developer catalog**: Explore the Developer Catalog to select the required applications, services, or source to image builders, and then add it to your project.
+*   **Developer catalog**: Explore the Developer Catalog to select the required applications, services, or Source-to-Image (S2I) builders, and then add it to your project.
     *   **All Services**: Browse the catalog to discover services across {{ product_title }}.
     *   **Database**: Select the required database service and add it to your application.
     *   **Operator Backed**: Select and deploy the required Operator-managed service.
@@ -43,22 +45,22 @@ The **Developer** perspective in the web console provides you the following opti
     *   **Upload JAR file**: Upload a JAR file to build and deploy Java applications.
 *   **Share my Project**: Use this option to add or remove users to a project and provide accessibility options to them.
 *   **Helm Chart repositories**: Use this option to add Helm Chart repositories in a namespace.
-*   **Re-ordering of resources**: Use these resources to re-order pinned resources added to your navigation pane. The drag-and-drop icon is displayed on the left side of the pinned resource when you hover over it in the navigation pane. The dragged resource can be dropped only in the section where it resides.
+*   **Re-ordering of resources**: Use these resources to re-order pinned resources added to your navigation pane. The drag-and-drop icon is displayed on the left side of the pinned resource when you hover over it in the navigation pane. The dragged resource can be dropped only in the section where it is located.
 
 {% if openshift_enterprise or openshift_webscale %}
-Note that certain options, such as **Pipelines**, **Event Source**, and **Import Virtual Machines**, are displayed only when the [OpenShift Pipelines Operator](https://docs.openshift.com/pipelines/latest/install_config/installing-pipelines.html#op-installing-pipelines-operator-in-web-console_installing-pipelines), [{{ ServerlessOperatorName }}](https://docs.openshift.com/serverless/1.28/install/install-serverless-operator.html#serverless-install-web-console_install-serverless-operator), and [OpenShift Virtualization Operator](/virt/install/installing-virt#virt-subscribing-cli_installing-virt) are installed, respectively.
+Note that certain options, such as **Pipelines**, **Event Source**, and **Import Virtual Machines**, are displayed only when the {{ pipelines_shortname }} Operator, {{ ServerlessOperatorName }}, and {{ CNVOperatorDisplayName }} are installed.
 {%- endif %}
 {%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
-Note that the **Pipelines** option is displayed only when the OpenShift Pipelines Operator is installed.
+Note that the **Pipelines** option is displayed only when the {{ pipelines_shortname }} Operator is installed.
 {%- endif %}
 
 ## Prerequisites {id="prerequisites_odc-creating-applications-using-developer-perspective"}
 
-To create applications using the **Developer** perspective ensure that:
+To create applications by using the **Developer** perspective, ensure that the following requirements are met:
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
-*   You have [logged in to the web console](/web_console/web-console#web-console).
-*   You have created a project or have access to a project with the appropriate [roles and permissions](/authentication/using-rbac#default-roles_using-rbac) to create applications and other workloads in {{ product_title }}.
+*   You have logged in to the OpenShift web console.
+*   You have created a project or have access to a project with the appropriate roles and permissions to create applications and other workloads in {{ product_title }}.
 {% endif %}
 {% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 *   You have logged in to the web console.
@@ -68,8 +70,8 @@ To create applications using the **Developer** perspective ensure that:
 
 To create serverless applications, in addition to the preceding prerequisites, ensure that:
 
-*   You have [installed the {{ ServerlessOperatorName }}](https://docs.openshift.com/serverless/1.28/install/install-serverless-operator.html#install-serverless-operator).
-*   You have [created a `KnativeServing` resource in the `knative-serving` namespace](https://docs.openshift.com/serverless/1.28/install/installing-knative-serving.html#installing-knative-serving).
+*   You have installed the {{ ServerlessOperatorName }}.
+*   You have created a `KnativeServing` resource in the `knative-serving` namespace.
 
 {% endif %}
 
@@ -89,8 +91,17 @@ To create serverless applications, in addition to the preceding prerequisites, e
 
 ## Additional resources {id="additional-resources_odc-creating-applications-using-developer-perspective" ._additional-resources}
 
-*   For more information about Knative routing settings for {{ ServerlessProductName }}, see [Routing](https://docs.openshift.com/serverless/1.28/knative-serving/external-ingress-routing/routing-overview.html#routing-overview).
-*   For more information about domain mapping settings for {{ ServerlessProductName }}, see [Configuring a custom domain for a Knative service](https://docs.openshift.com/serverless/1.28/knative-serving/config-custom-domains/serverless-custom-domains.html#serverless-custom-domains).
-*   For more information about Knative autoscaling settings for {{ ServerlessProductName }}, see [Autoscaling](https://docs.openshift.com/serverless/1.28/knative-serving/autoscaling/serverless-autoscaling-developer.html#serverless-autoscaling-developer).
-*   For more information about adding a new user to a project, see [Working with projects](/applications/projects/working-with-projects#odc-providing-project-permissions-using-developer-perspective_projects).
-*   For more information about creating a Helm Chart repository, see [Creating Helm Chart repositories](/applications/working_with_helm_charts/configuring-custom-helm-chart-repositories#odc-creating-helm-releases-using-developer-perspective_configuring-custom-helm-chart-repositories).
+*   [Enabling the Developer perspective in the web console](/web_console/web-console-overview#enabling-developer-perspective_web-console)
+*   [Accessing the web console](/web_console/web-console#web-console)
+*   [Default cluster roles](/authentication/using-rbac#default-roles_using-rbac)
+*   [Monitoring stack for Red Hat OpenShift](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/4.22)
+*   [Installing the {{ pipelines_shortname }} Operator](https://docs.openshift.com/pipelines/latest/install_config/installing-pipelines.html#op-installing-pipelines-operator-in-web-console_installing-pipelines)
+*   [Installing the {{ ServerlessOperatorName }}](https://docs.openshift.com/serverless/1.28/install/install-serverless-operator.html#serverless-install-web-console_install-serverless-operator)
+*   [Installing the {{ ServerlessOperatorName }}](https://docs.openshift.com/serverless/1.28/install/install-serverless-operator.html#install-serverless-operator)
+*   [Creating a KnativeServing resource](https://docs.openshift.com/serverless/1.28/install/installing-knative-serving.html#installing-knative-serving)
+*   [Installing the {{ CNVOperatorDisplayName }}](/virt/install/installing-virt#virt-subscribing-cli_installing-virt)
+*   [Knative routing settings for {{ ServerlessProductName }}](https://docs.openshift.com/serverless/1.28/knative-serving/external-ingress-routing/routing-overview.html#routing-overview)
+*   [Configuring a custom domain for a Knative service](https://docs.openshift.com/serverless/1.28/knative-serving/config-custom-domains/serverless-custom-domains.html#serverless-custom-domains)
+*   [Knative autoscaling settings for {{ ServerlessProductName }}](https://docs.openshift.com/serverless/1.28/knative-serving/autoscaling/serverless-autoscaling-developer.html#serverless-autoscaling-developer)
+*   [Working with projects](/applications/projects/working-with-projects#odc-providing-project-permissions-using-developer-perspective_projects)
+*   [Creating Helm Chart repositories](/applications/working_with_helm_charts/configuring-custom-helm-chart-repositories#odc-creating-helm-releases-using-developer-perspective_configuring-custom-helm-chart-repositories)

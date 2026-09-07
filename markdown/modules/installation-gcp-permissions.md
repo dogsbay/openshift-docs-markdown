@@ -11,9 +11,11 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Required {{ gcp_short }} roles {id="installation-gcp-permissions_{{ context }}"}
 
+Your {{ gcp_first }} service account requires specific roles to install and manage an {{ product_title }} cluster, which you can scope based on your organization’s security requirements. {._abstract}
+
 When you attach the `Owner` role to the service account that you create, you grant that service account all permissions, including those that are required to install {{ product_title }}. If your organization’s security policies require a more restrictive set of permissions, you can create a service account with the following permissions. If you deploy your cluster into an existing virtual private cloud (VPC), the service account does not require certain networking permissions, which are noted in the following lists:
 
-**Required roles for the installation program**
+The installation program requires the following roles:
 
 *   Compute Admin
 *   Role Administrator
@@ -23,18 +25,17 @@ When you attach the `Owner` role to the service account that you create, you gra
 *   Service Account User
 *   Storage Admin
 
-**Required roles for creating network resources during installation**
+Creating network resources during installation requires the following role:
 
 *   DNS Administrator
 
-**Required roles for using the Cloud Credential Operator in passthrough mode**
+Using the Cloud Credential Operator in passthrough mode requires the following roles:
 
 *   Compute Load Balancer Admin
 *   Tag User
 
 {% if template %}
-
-**Required roles for user-provisioned {{ gcp_short }} infrastructure**
+User-provisioned {{ gcp_short }} infrastructure requires the following role:
 
 *   Cloud Infrastructure Manager Admin
 {% endif %}

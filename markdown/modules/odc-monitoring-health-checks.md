@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Monitoring health check failures using the Developer perspective {id="odc-monitoring-health-checks"}
+# Monitoring health check failures using the Developer perspective {id="odc-monitoring-health-checks_{{ context }}"}
 
-In case an application health check fails, you can use the **Topology** view to monitor these health check violations.
+You can monitor health check failures for a deployed application from the **Topology** view in the **Developer** perspective. Use the **Observe** tab to view events that report probe failures and show when containers need attention before users are affected. {._abstract}
 
 **Prerequisites**
 
@@ -11,6 +11,6 @@ In case an application health check fails, you can use the **Topology** view to 
 
 **Procedure**
 
-1.  In the **Topology** view, click on the application node to see the side panel.
-1.  Click the **Observe** tab to see the health check failures in the **Events (Warning)** section.
+1.  In the **Topology** view, click the application node to see the side panel.
+1.  Click the **Observe** tab to see health check failure events in the **Events (Warning)** section.
 1.  Click the down arrow adjoining **Events (Warning)** to see the details of the health check failure.

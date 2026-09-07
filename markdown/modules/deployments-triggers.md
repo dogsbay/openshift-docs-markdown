@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Deployment triggers {id="deployments-triggers_{{ context }}"}
 
-A `DeploymentConfig` object can contain triggers, which drive the creation of new deployment processes in response to events inside the cluster.
+A deployment trigger on a `DeploymentConfig` object in {{ product_title }} starts a new deployment process when cluster events occur. Use config change or image change triggers to roll out automatically, or leave triggers empty if you want to start deployments manually. {._abstract}
 
 
 :::warning
@@ -50,7 +50,7 @@ spec:
   triggers:
     - type: "ImageChange"
       imageChangeParams:
-        automatic: true (1)
+        automatic: true
         from:
           kind: "ImageStreamTag"
           name: "origin-ruby-sample:latest"
@@ -58,7 +58,7 @@ spec:
         containerNames:
           - "helloworld"
 ```
-1.  If the `imageChangeParams.automatic` field is set to `false`, the trigger is disabled.
+If the `spec.triggers.imageChangeParams.automatic` field is set to `true`, the trigger is enabled. If `false`, the trigger is disabled.
 
 With the above example, when the `latest` tag value of the `origin-ruby-sample` image stream changes and the new image value differs from the current image specified in the `DeploymentConfig` object’s `helloworld` container, a new replication controller is created using the new image for the `helloworld` container.
 

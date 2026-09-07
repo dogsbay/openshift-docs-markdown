@@ -1,0 +1,52 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# DPF component placement {id="nw-dpf-component-placement_{{ context }}"}
+
+The software components and Operators run on the management cluster and the DPU hosted cluster to separate workload management from infrastructure acceleration. {._abstract}
+
+## Management cluster components {id="_management_cluster_components"}
+
+The following Operators and services run within the management cluster:
+
+
+NVIDIA DPF Operator
+:   The core Operator that manages DPU services and configurations within the hosted cluster, including DPU provisioning, networking acceleration, and DOCA service orchestration.
+
+
+DPF HCP Provisioner Operator
+:   Automates the hosted control plane’s cluster lifecycle for the DPU nodes.
+
+
+MultiCluster Engine (MCE) and hosted control planes
+:   Provide the control plane and management framework for the DPU hosted cluster.
+
+
+Node Feature Discovery (NFD) Operator
+:   Discovers and labels hardware features on the nodes, including the presence of DPUs.
+
+
+MetalLB Operator
+:   Provides load balancing services for the management cluster.
+
+
+GitOps Operator
+:   Facilitates ArgoCD-based deployment of applications and configurations.
+
+
+cert-manager Operator
+:   Automates the management, issuance, and renewal of TLS certificates within the cluster.
+
+
+NVIDIA Maintenance Operator
+:   Assists in performing maintenance tasks and gracefully draining DPU worker nodes.
+
+
+{{ lvms }}
+:   Provides persistent ReadWriteMany (RWX) storage required for various components, such as the etcd database of the hosted cluster.
+
+
+`NodeSRIOVDevicePluginConfig`
+:   A DPF-managed CRD that configures SR-IOV device plugin pods on worker nodes. It defines VF allocation ranges for management and workload traffic.
+
+
+Bare Metal Operator
+:   Provisions and adds worker nodes with DPUs to the management cluster.

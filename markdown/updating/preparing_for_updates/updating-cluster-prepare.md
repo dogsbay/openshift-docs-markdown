@@ -45,13 +45,6 @@ There are no Kubernetes API removals in this release.
 
 {% leveloffset +2 %}{% include "./modules/oc-adm-upgrade-recommend-accept.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/nw-ingress-gateway-api-manage-succession.md" %}{% endleveloffset %}
-
-**Additional resources**
-{._additional-resources}
-
-*   [Gateway API implementation for {{ product_title }}](/networking/ingress_load_balancing/configuring_gateway_api/understand-gateway-api#gateway-api-implementation-specifics_understand-gateway-api)
-
 {% leveloffset +1 %}{% include "./modules/update-best-practices.md" %}{% endleveloffset %}
 
 **Additional resources**

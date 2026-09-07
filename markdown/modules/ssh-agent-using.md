@@ -152,7 +152,7 @@ As a result, newly provisioned {{ product_title }} nodes are not accessible usin
     $ ssh-add <path>/<file_name>
     ```
 
-    Specifies the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`
+    Specify the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`.
     ```terminal title="Example output"
     Identity added: /home/<you>/<path>/<file_name> (<computer_name>)
     ```

@@ -14,11 +14,13 @@ The following features are available in the {{ op_system_ostree }} update path:
 *   You can update an application without updating {{ microshift_short }} using this update type.
 *   The image you build can contain other updates as needed.
 
-To begin a {{ microshift_short }} update by embedding the new version in a {{ op_system_ostree }} image, use the procedures in the following documentation:
+To begin a {{ microshift_short }} update by embedding the new version in a {{ op_system_ostree }} image, use the procedures in "Applying updates on a RHEL for Edge system".
+
+To understand more about greenboot, see "The greenboot health check framework".
+
+**Additional resources**
+{._additional-resources}
 
 *   [Applying updates on a RHEL for Edge system](https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/{{ ocp_version }}/html/updating/microshift-update-rpms-ostree#microshift-updates-rpms-ostree_microshift-update-rpms-ostree)
-
-To understand more about greenboot, see the following documentation:
-
 *   [The greenboot health check framework](https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/{{ ocp_version }}/html/getting_ready_to_install_microshift/microshift-greenboot)
 *   [Using greenboot for application and workload health checks](https://docs.redhat.com/en/documentation/red_hat_build_of_microshift/{{ ocp_version }}/html/running_applications/microshift-greenboot-workload-health-checks)

@@ -27,12 +27,15 @@ The following steps illustrate the workflow for customizing the API server certi
 
     :::important
 
-    Custom server certificates must be validated against CA data configured in the trust root of the host operating system. For more information, read the following documentation:
-
-    *   [The system-wide truststore](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/securing_networks/using-shared-system-certificates_securing-networks#the-system-wide-trust-store_using-shared-system-certificates)
+    Custom server certificates must be validated against CA data configured in the trust root of the host operating system. For more information, see "The system-wide truststore".
     
     :::
 
 1.  The certificates and keys are read from the specified file location on the host. You can test and validate configuration from the client.
     *   If any validation fails, {{ microshift_short }} skips the custom configuration and uses the default certificate to start. The priority is to continue the service uninterrupted. {{ microshift_short }} logs errors when the service starts. Common errors include expired certificates, missing files, or wrong IP addresses.
 1.  External server certificates are not automatically renewed. You must manually rotate your external certificates.
+
+**Additional resources**
+{._additional-resources}
+
+*   [The system-wide truststore](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/securing_networks/using-shared-system-certificates_securing-networks#the-system-wide-trust-store_using-shared-system-certificates)

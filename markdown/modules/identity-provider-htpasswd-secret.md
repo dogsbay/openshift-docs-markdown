@@ -1,20 +1,20 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating the htpasswd secret {id="identity-provider-creating-htpasswd-secret_{{ context }}"}
 
-To use the htpasswd identity provider, you must define a secret that
-contains the htpasswd user file.
+Create an {{ product_title }} secret from your `htpasswd` file so the `htpasswd` identity provider can read user credentials for cluster login. {._abstract}
 
 **Prerequisites**
 
-*   Create an htpasswd file.
+*   You created an `htpasswd` file.
 
 **Procedure**
 
-*   Create a `Secret` object that contains the htpasswd users file:
+*   Create a `Secret` object that contains the `htpasswd` users file by running the following command:
     ```terminal
-    $ oc create secret generic htpass-secret --from-file=htpasswd=<path_to_users.htpasswd> -n openshift-config (1)
+    $ oc create secret generic htpass-secret --from-file=htpasswd=<path_to_users.htpasswd> -n openshift-config
     ```
-    1.  The secret key containing the users file for the `--from-file` argument must be named `htpasswd`, as shown in the above command.
+
+    The `--from-file` key must be named `htpasswd`.
 
     :::tip
 

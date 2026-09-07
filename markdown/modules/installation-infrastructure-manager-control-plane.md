@@ -1,9 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Infrastructure Manager template for control plane machines {id="installation-infrastructure-manager-control-plane_{{ context }}"}
 
-You can use the following Infrastructure Manager template to deploy the control plane machines that you need for your {{ product_title }} cluster: {._abstract}
+You can use the following `05_control_plane.tf` Infrastructure Manager template to deploy the control plane machines that you need for your {{ product_title }} cluster: {._abstract}
 
-:::details{title="`05_control_plane.tf` Infrastructure Manager template"}
 ```terraform
 terraform {
   # Infra manager supports specific Terraform versions; ensure compatibility
@@ -189,4 +188,3 @@ resource "google_compute_instance" "master_2" {
   }
 }
 ```
-:::

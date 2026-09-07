@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Running a pod with a different service account {id="deployments-running-pod-svc-acct_{{ context }}"}
 
-You can run a pod with a service account other than the default.
+To run pods under a non-default identity in {{ product_title }}, you can assign a different service account to a `DeploymentConfig` object. Edit the object and set the `serviceAccount` and `serviceAccountName` fields to the account you want to use. {._abstract}
 
 **Procedure**
 

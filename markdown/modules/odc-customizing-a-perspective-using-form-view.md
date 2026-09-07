@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Customizing a perspective using form view {id="odc-customizing-a-perspective-using-form-view_{{ context }}"}
 
-You can customize the visibility of a perspective in the web console by using the form view. {._abstract}
+You can customize a perspective by using the form view of the console resource. {._abstract}
 
 **Prerequisites**
 

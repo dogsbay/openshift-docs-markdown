@@ -7,7 +7,7 @@ title: Configuring a request header identity provider
 # Configuring a request header identity provider {id="configuring-request-header-identity-provider"}
 {%- set context = "configuring-request-header-identity-provider" %}
 
-Configure the `request-header` identity provider to identify users from request header values, such as `X-Remote-User`. It is typically used in combination with an authenticating proxy, which sets the request header value.
+Configure the `request-header` identity provider to identify users from request header values, such as `X-Remote-User`. Use this provider when an authenticating proxy validates users and sets those headers for {{ product_title }}. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-overview.md" %}{% endleveloffset %}
 
@@ -20,15 +20,16 @@ Configure the `request-header` identity provider to identify users from request 
 **Additional resources**
 {._additional-resources}
 
-*   See [Identity provider parameters](/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider) for information on parameters, such as `mappingMethod`, that are common to all identity providers.
+*   [Identity provider parameters](/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-add.md" %}{% endleveloffset %}
 
-## Example Apache authentication configuration using request header {id="example-apache-auth-config-using-request-header" ._additional-resources}
+{% leveloffset +1 %}{% include "./modules/identity-provider-apache-custom-proxy-configuration.md" %}{% endleveloffset %}
 
-This example configures an Apache authentication proxy for the {{ product_title }}
-using the request header identity provider.
+{% leveloffset +1 %}{% include "./modules/identity-provider-proxy-custom-configuration.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/identity-provider-apache-custom-proxy-configuration.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/identity-provider-configuring-apache-request-header.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/identity-provider-configuring-apache-request-header.md" %}{% endleveloffset %}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
+
+*   [Optional channel](https://access.redhat.com/solutions/392003)

@@ -1,0 +1,10 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# User-provisioned infrastructure installation methods {id="installing-gcp-upi-methods_{{ context }}"}
+
+You can choose from several methods to install a cluster on {{ gcp_short }} by using infrastructure that you provision, depending on your network requirements and environment constraints. {._abstract}
+
+You can install a cluster on {{ gcp_short }} infrastructure that you provision, by using one of the following methods:
+
+*   **[Installing a cluster on {{ gcp_short }} with user-provisioned infrastructure](/installing/installing_gcp/installing-gcp-user-infra#installing-gcp-user-infra)**: You can install {{ product_title }} on {{ gcp_short }} infrastructure that you provide. You can use the provided Infrastructure Manager templates to assist with the installation.
+*   **[Installing a cluster with shared VPC on user-provisioned infrastructure in {{ gcp_short }}](/installing/installing_gcp/installing-gcp-user-infra-vpc#installing-gcp-user-infra-vpc)**: You can use the provided Infrastructure Manager templates to create {{ gcp_short }} resources in a shared VPC infrastructure.
+*   **[Installing a cluster on {{ gcp_short }} in a restricted network with user-provisioned infrastructure](/installing/installing_gcp/installing-restricted-networks-gcp#installing-restricted-networks-gcp)**: You can install {{ product_title }} on {{ gcp_short }} in a restricted network with user-provisioned infrastructure. By creating an internal mirror of the installation release content, you can install a cluster that does not require an active internet connection to obtain the software components. You can also use this installation method to ensure that your clusters only use container images that satisfy your organizational controls on external content.

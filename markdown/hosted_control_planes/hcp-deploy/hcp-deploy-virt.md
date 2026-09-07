@@ -117,6 +117,6 @@ You can use the hosted control plane command-line interface, `hcp`, to create an
 **Additional resources**
 {._additional-resources}
 
-*   [Scaling down the data plane to zero](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.15/html/hosted_control_planes/troubleshooting-hosted-control-planes#scale-down-data-plane_hcp-troubleshooting)
+*   [Scaling down the data plane to zero](/hosted_control_planes/hcp-machine-config#scale-down-data-plane_hcp-machine-config)
 
 {% leveloffset +1 %}{% include "./modules/hcp-virt-verify-hc.md" %}{% endleveloffset %}

@@ -6,8 +6,9 @@ You can determine why user-defined project metrics are unavailable by checking m
 **Procedure**
 
 1.  Query the metric name and verify that the project is correct:
-    1.  In the **Developer** perspective of the web console, click **Observe** and go to the **Metrics** tab.
-    1.  Select the project that you want to view metrics for in the **Project:** list.
+    1.  In the **Developer** perspective of the web console, click **Observe**.
+    1.  Select the project that you want to view metrics for in the **Project** list. After you select a project, the monitoring tabs are displayed.
+    1.  Click the **Metrics** tab.
     1.  Select an existing query from the **Select query** list, or run a custom query by adding a PromQL query to the **Expression** field.
 
         The metrics are displayed in a chart.

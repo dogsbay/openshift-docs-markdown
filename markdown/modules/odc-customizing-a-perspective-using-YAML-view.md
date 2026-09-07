@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Customizing a perspective using YAML view {id="odc-customizing-a-perspective-using-YAML-view_{{ context }}"}
 
-You can customize the visibility of a perspective in the web console by using the YAML view. {._abstract}
+You can customize a perspective by editing the console resource YAML content. {._abstract}
 
 **Prerequisites**
 

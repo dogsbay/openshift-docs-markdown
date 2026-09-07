@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Sample customized `install-config.yaml` file for {{ gcp_short }} {id="installation-gcp-user-infra-shared-vpc-config-yaml_{{ context }}"}
 
-You can customize the `install-config.yaml` file to specify more details about your {{ product_title }} cluster’s platform or modify the values of the required parameters.
+You can customize the `install-config.yaml` file to specify more details about your {{ product_title }} cluster’s platform or modify the values of the required parameters. {._abstract}
 
 
 :::important
@@ -13,9 +13,9 @@ This sample YAML file is provided for reference only. You must obtain your `inst
 
 ```yaml {minja}
 apiVersion: v1
-baseDomain: example.com (1)
-controlPlane: (2)
-  hyperthreading: Enabled (3) (4)
+baseDomain: example.com
+controlPlane:
+  hyperthreading: Enabled
   name: master
   platform:
     gcp:
@@ -23,12 +23,12 @@ controlPlane: (2)
       zones:
       - us-central1-a
       - us-central1-c
-      tags: (5)
+      tags:
       - control-plane-tag1
       - control-plane-tag2
   replicas: 3
-compute: (2)
-- hyperthreading: Enabled (3)
+compute:
+- hyperthreading: Enabled
   name: worker
   platform:
     gcp:
@@ -36,7 +36,7 @@ compute: (2)
       zones:
       - us-central1-a
       - us-central1-c
-      tags: (5)
+      tags:
       - compute-tag1
       - compute-tag2
   replicas: 0
@@ -48,63 +48,91 @@ networking:
     hostPrefix: 23
   machineNetwork:
   - cidr: 10.0.0.0/16
-  networkType: OVNKubernetes (6)
+  networkType: OVNKubernetes
   serviceNetwork:
   - 172.30.0.0/16
 platform:
   gcp:
     defaultMachinePlatform:
-      tags: (5)
+      tags:
       - global-tag1
       - global-tag2
-    projectID: openshift-production (7)
-    region: us-central1 (8)
+    projectID: openshift-production
+    region: us-central1
 pullSecret: '{"auths": ...}'
 {%- if not openshift_origin %}
-fips: false (9)
-sshKey: ssh-ed25519 AAAA... (10)
-publish: Internal (11)
+fips: false
+sshKey: ssh-ed25519 AAAA...
+publish: Internal
 {%- endif %}
 {%- if openshift_origin %}
-sshKey: ssh-ed25519 AAAA... (9)
-publish: Internal (10)
+sshKey: ssh-ed25519 AAAA...
+publish: Internal
 {%- endif %}
 ```
-1.  Specify the public DNS on the host project.
-1.  If you do not provide these parameters and values, the installation program provides the default value.
-1.  The `controlPlane` section is a single mapping, but the compute section is a sequence of mappings. To meet the requirements of the different data structures, the first line of the `compute` section must begin with a hyphen, `-`, and the first line of the `controlPlane` section must not. Although both sections currently define a single machine pool, it is possible that future versions of {{ product_title }} will support defining multiple compute pools during installation. Only one control plane pool is used.
-1.  Whether to enable or disable simultaneous multithreading, or `hyperthreading`. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores. You can disable it by setting the parameter value to `Disabled`. If you disable simultaneous multithreading in some cluster machines, you must disable it in all cluster machines.
+where:
+
+
+`baseDomain`
+:   Specifies the public DNS on the host project.
+
+`controlPlane`
+:   Specifies the parameters that apply to control plane machines. The `controlPlane` section is a single mapping. To meet the requirements of the different data structures, the first line of the `compute` section must begin with a hyphen, `-`, and the first line of the `controlPlane` section must not. Only one control plane pool is used. If you do not provide these parameters and values, the installation program provides the default value.
+
+`compute`
+:   Specifies the parameters that apply to compute machines. The `compute` section is a sequence of mappings. To meet the requirements of the different data structures, the first line of the `compute` section must begin with a hyphen, `-`, and the first line of the `controlPlane` section must not. Although both sections currently define a single machine pool, it is possible that future versions of {{ product_title }} will support defining multiple compute pools during installation. If you do not provide these parameters and values, the installation program provides the default value.
+
+`hyperthreading`
+:   Specifies whether to enable or disable simultaneous multithreading, or `hyperthreading`. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores. You can disable it by setting the parameter value to `Disabled`. If you disable simultaneous multithreading in some cluster machines, you must disable it in all cluster machines.
 
     :::important
+
 
     If you disable simultaneous multithreading, ensure that your capacity planning accounts for the dramatically decreased machine performance. Use larger machine types, such as `n1-standard-8`, for your machines if you disable simultaneous multithreading.
     
     :::
 
-1.  Optional: A set of network tags to apply to the control plane or compute machine sets. The `platform.gcp.defaultMachinePlatform.tags` parameter applies to both control plane and compute machines. If the `compute.platform.gcp.tags` or `controlPlane.platform.gcp.tags` parameters are set, they override the `platform.gcp.defaultMachinePlatform.tags` parameter.
-1.  The cluster network plugin to install. The default value `OVNKubernetes` is the only supported value.
-1.  Specify the main project where the VM instances reside.
-1.  Specify the region that your VPC network is in.
+
+`tags`
+:   Specifies a set of network tags to apply to the control plane or compute machine sets. The `platform.gcp.defaultMachinePlatform.tags` parameter applies to both control plane and compute machines. If the `compute.platform.gcp.tags` or `controlPlane.platform.gcp.tags` parameters are set, they override the `platform.gcp.defaultMachinePlatform.tags` parameter. This parameter is optional.
+
+`networkType`
+:   Specifies the cluster network plugin to install. The default value `OVNKubernetes` is the only supported value.
+
+`projectID`
+:   Specifies the main project where the VM instances reside.
+
+`region`
+:   Specifies the region that your VPC network is in.
 {%- if not openshift_origin %}
-1.  Whether to enable or disable FIPS mode. By default, FIPS mode is not enabled. If FIPS mode is enabled, the {{ op_system_first }} machines that {{ product_title }} runs on bypass the default Kubernetes cryptography suite and use the cryptography modules that are provided with {{ op_system }} instead.
+
+`fips`
+:   Specifies whether to enable or disable FIPS mode. By default, FIPS mode is not enabled. If FIPS mode is enabled, the {{ op_system_first }} machines that {{ product_title }} runs on bypass the default Kubernetes cryptography suite and use the cryptography modules that are provided with {{ op_system }} instead.
     {% include "./snippets/fips-snippet.md" %}
-1.  You can optionally provide the `sshKey` value that you use to access the machines in your cluster.
+
+`sshKey`
+:   Specifies the `sshKey` value that you use to access the machines in your cluster. This parameter is optional.
 {%- endif %}
 {%- if openshift_origin %}
-1.  You can optionally provide the `sshKey` value that you use to access the machines in your cluster.
+
+`sshKey`
+:   Specifies the `sshKey` value that you use to access the machines in your cluster. This parameter is optional.
 {%- endif %}
 
     :::note
+
 
     For production {{ product_title }} clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
     
     :::
 
 {% if not openshift_origin %}
-1.  How to publish the user-facing endpoints of your cluster. Set `publish` to `Internal` to deploy a private cluster, which cannot be accessed from the internet. The default value is `External`.
-To use a shared VPC in a cluster that uses infrastructure that you provision, you must set `publish` to `Internal`. The installation program will no longer be able to access the public DNS zone for the base domain in the host project.
+
+`publish`
+:   Specifies how to publish the user-facing endpoints of your cluster. Set `publish` to `Internal` to deploy a private cluster, which cannot be accessed from the internet. The default value is `External`. To use a shared VPC in a cluster that uses infrastructure that you provision, you must set `publish` to `Internal`. The installation program can no longer access the public DNS zone for the base domain in the host project.
 {% endif %}
 {% if openshift_origin %}
-1.  How to publish the user-facing endpoints of your cluster. Set `publish` to `Internal` to deploy a private cluster, which cannot be accessed from the internet. The default value is `External`.
-To use a shared VPC in a cluster that uses infrastructure that you provision, you must set `publish` to `Internal`. The installation program will no longer be able to access the public DNS zone for the base domain in the host project.
+
+`publish`
+:   Specifies how to publish the user-facing endpoints of your cluster. Set `publish` to `Internal` to deploy a private cluster, which cannot be accessed from the internet. The default value is `External`. To use a shared VPC in a cluster that uses infrastructure that you provision, you must set `publish` to `Internal`. The installation program can no longer access the public DNS zone for the base domain in the host project.
 {% endif %}

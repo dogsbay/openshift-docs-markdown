@@ -1,11 +1,12 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Required {{ gcp_short }} permissions for user-provisioned infrastructure {id="minimum-required-permissions-upi-gcp_{{ context }}"}
 
-When you attach the `Owner` role to the service account that you create, you grant that service account all permissions, including those that are required to install {{ product_title }}.
+Your {{ gcp_short }} service account requires permissions to create and manage user-provisioned {{ product_title }} infrastructure. You can attach the `Owner` role to grant all permissions, or create a custom role with only the minimum permissions your organization’s security policies require. {._abstract}
 
 If your organization’s security policies require a more restrictive set of permissions, you can create [custom roles](https://cloud.google.com/iam/docs/creating-custom-roles) with the necessary permissions. The following permissions are required for the user-provisioned infrastructure for creating and deleting the {{ product_title }} cluster.
 
-:::details{title="Required permissions for creating network resources"}
+The following permissions are required for creating network resources:
+
 *   `compute.addresses.create`
 *   `compute.addresses.createInternal`
 *   `compute.addresses.delete`
@@ -42,9 +43,9 @@ If your organization’s security policies require a more restrictive set of per
 *   `compute.subnetworks.list`
 *   `compute.subnetworks.use`
 *   `compute.subnetworks.useExternalIp`
-:::
 
-:::details{title="Required permissions for creating load balancer resources"}
+The following permissions are required for creating load balancer resources:
+
 *   `compute.backendServices.create`
 *   `compute.backendServices.get`
 *   `compute.backendServices.list`
@@ -64,9 +65,9 @@ If your organization’s security policies require a more restrictive set of per
 *   `compute.targetTcpProxies.create`
 *   `compute.targetTcpProxies.get`
 *   `compute.targetTcpProxies.use`
-:::
 
-:::details{title="Required permissions for creating DNS resources"}
+The following permissions are required for creating DNS resources:
+
 *   `dns.changes.create`
 *   `dns.changes.get`
 *   `dns.managedZones.create`
@@ -76,9 +77,9 @@ If your organization’s security policies require a more restrictive set of per
 *   `dns.resourceRecordSets.create`
 *   `dns.resourceRecordSets.list`
 *   `dns.resourceRecordSets.update`
-:::
 
-:::details{title="Required permissions for creating Service Account resources"}
+The following permissions are required for creating Service Account resources:
+
 *   `iam.serviceAccountKeys.create`
 *   `iam.serviceAccountKeys.delete`
 *   `iam.serviceAccountKeys.get`
@@ -91,9 +92,9 @@ If your organization’s security policies require a more restrictive set of per
 *   `resourcemanager.projects.get`
 *   `resourcemanager.projects.getIamPolicy`
 *   `resourcemanager.projects.setIamPolicy`
-:::
 
-:::details{title="Required permissions for creating compute resources"}
+The following permissions are required for creating compute resources:
+
 *   `compute.disks.create`
 *   `compute.disks.get`
 *   `compute.disks.list`
@@ -114,9 +115,9 @@ If your organization’s security policies require a more restrictive set of per
 *   `compute.instances.use`
 *   `compute.machineTypes.get`
 *   `compute.machineTypes.list`
-:::
 
-:::details{title="Required for creating storage resources"}
+The following permissions are required for creating storage resources:
+
 *   `storage.buckets.create`
 *   `storage.buckets.delete`
 *   `storage.buckets.get`
@@ -125,9 +126,9 @@ If your organization’s security policies require a more restrictive set of per
 *   `storage.objects.delete`
 *   `storage.objects.get`
 *   `storage.objects.list`
-:::
 
-:::details{title="Required permissions for creating health check resources"}
+The following permissions are required for creating health check resources:
+
 *   `compute.healthChecks.create`
 *   `compute.healthChecks.get`
 *   `compute.healthChecks.list`
@@ -139,9 +140,9 @@ If your organization’s security policies require a more restrictive set of per
 *   `compute.regionHealthChecks.create`
 *   `compute.regionHealthChecks.get`
 *   `compute.regionHealthChecks.useReadOnly`
-:::
 
-:::details{title="Required permissions to get {{ gcp_short }} zone and region related information"}
+The following permissions are required to get {{ gcp_short }} zone and region related information:
+
 *   `compute.globalOperations.get`
 *   `compute.regionOperations.get`
 *   `compute.regions.get`
@@ -149,38 +150,38 @@ If your organization’s security policies require a more restrictive set of per
 *   `compute.zoneOperations.get`
 *   `compute.zones.get`
 *   `compute.zones.list`
-:::
 
-:::details{title="Required permissions for checking services and quotas"}
+The following permissions are required for checking services and quotas:
+
 *   `monitoring.timeSeries.list`
 *   `serviceusage.quotas.get`
 *   `serviceusage.services.list`
-:::
 
-:::details{title="Required IAM permissions for installation"}
+The following IAM permission is required for installation:
+
 *   `iam.roles.get`
-:::
 
-:::details{title="Required permissions when authenticating without a service account key"}
+The following permission is required when authenticating without a service account key:
+
 *   `iam.serviceAccounts.signBlob`
-:::
 
-:::details{title="Required permissions when providing Key Management Service (KMS) key rings"}
+The following permission is required when providing Key Management Service (KMS) key rings:
+
 *   `cloudkms.keyRings.list`
-:::
 
-:::details{title="Required Images permissions for installation"}
+The following Images permissions are required for installation:
+
 *   `compute.images.create`
 *   `compute.images.delete`
 *   `compute.images.get`
 *   `compute.images.list`
-:::
 
-:::details{title="Optional permission for running gather bootstrap"}
+The following permission is optional for running gather bootstrap:
+
 *   `compute.instances.getSerialPortOutput`
-:::
 
-:::details{title="Required permissions for deleting network resources"}
+The following permissions are required for deleting network resources:
+
 *   `compute.addresses.delete`
 *   `compute.addresses.deleteInternal`
 *   `compute.addresses.list`
@@ -201,9 +202,9 @@ If your organization’s security policies require a more restrictive set of per
 *   `compute.routes.list`
 *   `compute.subnetworks.delete`
 *   `compute.subnetworks.list`
-:::
 
-:::details{title="Required permissions for deleting load balancer resources"}
+The following permissions are required for deleting load balancer resources:
+
 *   `compute.backendServices.delete`
 *   `compute.backendServices.list`
 *   `compute.regionBackendServices.delete`
@@ -212,26 +213,26 @@ If your organization’s security policies require a more restrictive set of per
 *   `compute.targetPools.list`
 *   `compute.targetTcpProxies.delete`
 *   `compute.targetTcpProxies.list`
-:::
 
-:::details{title="Required permissions for deleting DNS resources"}
+The following permissions are required for deleting DNS resources:
+
 *   `dns.changes.create`
 *   `dns.managedZones.delete`
 *   `dns.managedZones.get`
 *   `dns.managedZones.list`
 *   `dns.resourceRecordSets.delete`
 *   `dns.resourceRecordSets.list`
-:::
 
-:::details{title="Required permissions for deleting Service Account resources"}
+The following permissions are required for deleting Service Account resources:
+
 *   `iam.serviceAccounts.delete`
 *   `iam.serviceAccounts.get`
 *   `iam.serviceAccounts.list`
 *   `resourcemanager.projects.getIamPolicy`
 *   `resourcemanager.projects.setIamPolicy`
-:::
 
-:::details{title="Required permissions for deleting compute resources"}
+The following permissions are required for deleting compute resources:
+
 *   `compute.disks.delete`
 *   `compute.disks.list`
 *   `compute.instanceGroups.delete`
@@ -240,35 +241,35 @@ If your organization’s security policies require a more restrictive set of per
 *   `compute.instances.list`
 *   `compute.instances.stop`
 *   `compute.machineTypes.list`
-:::
 
-:::details{title="Required for deleting storage resources"}
+The following permissions are required for deleting storage resources:
+
 *   `storage.buckets.delete`
 *   `storage.buckets.getIamPolicy`
 *   `storage.buckets.list`
 *   `storage.objects.delete`
 *   `storage.objects.list`
-:::
 
-:::details{title="Required permissions for deleting health check resources"}
+The following permissions are required for deleting health check resources:
+
 *   `compute.healthChecks.delete`
 *   `compute.healthChecks.list`
 *   `compute.httpHealthChecks.delete`
 *   `compute.httpHealthChecks.list`
 *   `compute.regionHealthChecks.delete`
 *   `compute.regionHealthChecks.list`
-:::
 
-:::details{title="Required Images permissions for deletion"}
+The following Images permissions are required for deletion:
+
 *   `compute.images.delete`
 *   `compute.images.list`
-:::
 
-:::details{title="Required permissions to get Region related information"}
+The following permission is required to get Region related information:
+
 *   `compute.regions.get`
-:::
 
-:::details{title="Required Deployment Manager permissions"}
+The following Deployment Manager permissions are required:
+
 *   config.deployments.create
 *   config.deployments.delete
 *   config.deployments.get
@@ -277,4 +278,3 @@ If your organization’s security policies require a more restrictive set of per
 *   config.resources.list
 *   cloudbuild.builds.create
 *   cloudbuild.builds.get
-:::

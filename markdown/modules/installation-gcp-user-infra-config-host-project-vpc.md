@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring the {{ gcp_short }} project that hosts your shared VPC network {id="installation-gcp-user-infra-config-host-project-vpc_{{ context }}"}
 
-If you use a shared Virtual Private Cloud (VPC) to host your {{ product_title }} cluster in {{ gcp_first }}, you must configure the project that hosts it.
+If you use a shared Virtual Private Cloud (VPC) to host your {{ product_title }} cluster in {{ gcp_first }}, you must configure the host project with the service account and permissions that are required to install a cluster into the shared VPC network. {._abstract}
 
 
 :::note

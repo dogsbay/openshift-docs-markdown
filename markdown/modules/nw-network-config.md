@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Network configuration phases {id="nw-network-config_{{ context }}"}
 
-There are two phases prior to {{ product_title }} installation where you can customize the network configuration. Customize settings in the `install-config.yaml` file and in the Cluster Network Operator manifest across two configuration phases. {._abstract}
+You can customize your {{ product_title }} network plugin configuration, such as cluster network CIDR and service network ranges, during two phases before installation to integrate with your existing network environment. {._abstract}
 
 
 Phase 1

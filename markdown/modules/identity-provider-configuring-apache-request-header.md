@@ -1,30 +1,28 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Apache authentication using request header {id="identity-provider-configuring-apache-request-header_{{ context }}"}
+# Configuring Apache authentication using the request header {id="identity-provider-configuring-apache-request-header_{{ context }}"}
 
-This example uses the `mod_auth_gssapi` module to configure an Apache
-authentication proxy using the request header identity provider.
+Configure an Apache authentication proxy with the `mod_auth_gssapi` module for the request header identity provider. Use this example to set up a proxy that validates users and forwards trusted identity headers to {{ product_title }}. {._abstract}
+
+This proxy uses a client certificate to connect to the OAuth server, which is configured to trust the `X-Remote-User` header.
 
 **Prerequisites**
 
-*   Obtain the `mod_auth_gssapi` module from the
-[Optional channel](https://access.redhat.com/solutions/392003).
-You must have the following packages installed on your local machine:
+*   Obtain the `mod_auth_gssapi` module from the optional channel. For more information, see "Optional channel".
+*   The following packages are installed on your local machine:
     *   `httpd`
     *   `mod_ssl`
     *   `mod_session`
     *   `apr-util-openssl`
     *   `mod_auth_gssapi`
-*   Generate a CA for validating requests that submit the trusted header. Define
-an {{ product_title }} `ConfigMap` object containing the CA. This is done by running:
+
+**Procedure**
+
+1.  Generate a CA for validating requests that submit the trusted header.
+1.  Create an {{ product_title }} `ConfigMap` object containing the CA by running the following command:
     ```terminal
-    $ oc create configmap ca-config-map --from-file=ca.crt=/path/to/ca -n openshift-config (1)
+    $ oc create configmap ca-config-map --from-file=ca.crt=/path/to/ca -n openshift-config
     ```
-    1.  The CA must be stored in the `ca.crt` key of the `ConfigMap` object.
-
-    :::tip
-
-    You can alternatively apply the following YAML to create the config map:
-
+1.  Optional: Apply the following YAML to create the config map. For example:
     ```yaml
     apiVersion: v1
     kind: ConfigMap
@@ -35,34 +33,24 @@ an {{ product_title }} `ConfigMap` object containing the CA. This is done by run
       ca.crt: |
         <CA_certificate_PEM>
     ```
-    
-    :::
 
-*   Generate a client certificate for the proxy. You can generate this certificate
-by using any x509 certificate tooling. The client certificate must be signed by
-the CA you generated for validating requests that submit the trusted header.
-*   Create the custom resource (CR) for your identity providers.
+    The certificate authority must be stored in the `ca.crt` key of the `ConfigMap` object.
+1.  Generate a client certificate for the proxy.
 
-**Procedure**
+    You can generate this certificate by using any x509 certificate tooling. The client certificate must be signed by the CA you generated for validating requests that submit the trusted header.
+1.  Create the custom resource (CR) for your identity providers.
+1.  Create the certificate for the Apache configuration.
 
-This proxy uses a client certificate to connect to the OAuth server, which
-is configured to trust the `X-Remote-User` header.
-
-1.  Create the certificate for the Apache configuration. The certificate that you
-specify as the `SSLProxyMachineCertificateFile` parameter value is the proxy’s
-client certificate that is used to authenticate the proxy to the server. It must
-use `TLS Web Client Authentication` as the extended key type.
-1.  Create the Apache configuration. Use the following template to provide your
-required settings and values:
+    The certificate that you specify as the `SSLProxyMachineCertificateFile` parameter value is the client certificate for the proxy that authenticates the proxy to the server. It must use `TLS Web Client Authentication` as the extended key type.
+1.  Create the Apache configuration. Use the following template to provide your required settings and values:
 
     :::important
 
-    Carefully review the template and customize its contents to fit your
-    environment.
+    Carefully review the template and customize the template contents to fit your environment.
     
     :::
 
-    ```
+    ```terminal
     LoadModule request_module modules/mod_request.so
     LoadModule auth_gssapi_module modules/mod_auth_gssapi.so
     # Some Apache configurations might require these modules.
@@ -146,12 +134,11 @@ required settings and values:
 
     :::note
 
-    The `https://<namespace_route>` address is the route to the OAuth server and
-    can be obtained by running `oc get route -n openshift-authentication`.
+    The `https://<namespace_route>` address is the route to the OAuth server and can be obtained by running `oc get route -n openshift-authentication`.
     
     :::
 
-1.  Update the `identityProviders` stanza in the custom resource (CR):
+1.  Update the `identityProviders` section of the custom resource (CR):
     ```yaml
     identityProviders:
       - name: requestheaderidp
@@ -161,65 +148,62 @@ required settings and values:
           loginURL: "https://<namespace_route>/login-proxy/oauth/authorize?${query}"
           ca:
             name: ca-config-map
-            clientCommonNames:
-            - my-auth-proxy
-            headers:
-            - X-Remote-User
+          clientCommonNames:
+          - my-auth-proxy
+          headers:
+          - X-Remote-User
     ```
-1.  Verify the configuration.
-    1.  Confirm that you can bypass the proxy by requesting a token by supplying the
-    correct client certificate and header:
-        ```terminal
-        # curl -L -k -H "X-Remote-User: joe" \
-           --cert /etc/pki/tls/certs/authproxy.pem \
-           https://<namespace_route>/oauth/token/request
-        ```
-    1.  Confirm that requests that do not supply the client certificate fail by
-    requesting a token without the certificate:
-        ```terminal
-        # curl -L -k -H "X-Remote-User: joe" \
-           https://<namespace_route>/oauth/token/request
-        ```
-    1.  Confirm that the `challengeURL` redirect is active:
-        ```terminal
-        # curl -k -v -H 'X-Csrf-Token: 1' \
-           https://<namespace_route>/oauth/authorize?client_id=openshift-challenging-client&response_type=token
-        ```
 
-        Copy the `challengeURL` redirect to use in the next step.
-    1.  Run this command to show a `401` response with a `WWW-Authenticate` basic
-    challenge, a negotiate challenge, or both challenges:
-        ```terminal
-        # curl -k -v -H 'X-Csrf-Token: 1' \
-           <challengeURL_redirect + query>
-        ```
-    1.  Test logging in to the OpenShift CLI (`oc`) with and without using a Kerberos
-    ticket:
-        1.  If you generated a Kerberos ticket by using `kinit`, destroy it:
-            ```terminal
-            # kdestroy -c cache_name (1)
-            ```
-            1.  Make sure to provide the name of your Kerberos cache.
-        1.  Log in to the `oc` tool by using your Kerberos credentials:
-            ```terminal
-            # oc login -u <username>
-            ```
+**Verification**
 
-            Enter your Kerberos password at the prompt.
-        1.  Log out of the `oc` tool:
-            ```terminal
-            # oc logout
-            ```
-        1.  Use your Kerberos credentials to get a ticket:
-            ```terminal
-            # kinit
-            ```
+1.  Confirm that you can bypass the proxy when you supply the correct client certificate and header by running the following command:
+    ```terminal
+    $ curl -L -k -H "X-Remote-User: joe" \
+       --cert /etc/pki/tls/certs/authproxy.pem \
+       https://<namespace_route>/oauth/token/request
+    ```
+1.  Confirm that requests that do not supply the client certificate fail by running the following command:
+    ```terminal
+    $ curl -L -k -H "X-Remote-User: joe" \
+       https://<namespace_route>/oauth/token/request
+    ```
+1.  Confirm that the `challengeURL` redirect is active by running the following command:
+    ```terminal
+    $ curl -k -v -H 'X-Csrf-Token: 1' \
+       https://<namespace_route>/oauth/authorize?client_id=openshift-challenging-client&response_type=token
+    ```
 
-            Enter your Kerberos user name and password at the prompt.
-        1.  Confirm that you can log in to the `oc` tool:
-            ```terminal
-            # oc login
-            ```
+    Copy the `challengeURL` redirect to use in the next step.
+1.  Show a `401` response with a `WWW-Authenticate` basic challenge, a negotiate challenge, or both challenges by running the following command:
+    ```terminal
+    $ curl -k -v -H 'X-Csrf-Token: 1' \
+       <challengeURL_redirect + query>
+    ```
+1.  If you generated a Kerberos ticket by using `kinit`, destroy it by running the following command:
+    ```terminal
+    $ kdestroy -c <cache_name>
+    ```
 
-            If your configuration is correct, you are logged in without entering separate
-            credentials.
+    Replace `<cache_name>` with the name of your Kerberos cache.
+1.  Log in to the OpenShift CLI (`oc`) with your Kerberos credentials by running the following command:
+    ```terminal
+    $ oc login -u <username>
+    ```
+
+    Enter your Kerberos username and password at the prompt.
+1.  Log out of the `oc` tool by running the following command:
+    ```terminal
+    $ oc logout
+    ```
+1.  Use your Kerberos credentials to get a ticket by running the following command:
+    ```terminal
+    $ kinit
+    ```
+
+    Enter your Kerberos username and password at the prompt.
+1.  Confirm that you can log in to the `oc` tool by running the following command:
+    ```terminal
+    $ oc login
+    ```
+
+    If your configuration is correct, you are logged in without entering separate credentials.

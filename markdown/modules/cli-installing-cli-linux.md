@@ -55,7 +55,7 @@ If you are updating a cluster in a disconnected environment, install the `oc` ve
     ```
 1.  Place the `oc` binary in a directory that is on your `PATH`.
 
-    To check your `PATH`, execute the following command:
+    To check your `PATH`, run the following command:
     ```terminal
     $ echo $PATH
     ```

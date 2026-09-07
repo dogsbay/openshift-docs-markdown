@@ -66,4 +66,13 @@ spec:
       # ... 
 ```
 
-*   `spec.autoScaling.min` must be greater than or equal to `1`. Scaling from zero (`autoScaling.min: 0`) is not supported on {{ azure_short }}.
+*   `spec.autoScaling.min` must be greater than or equal to `1` on platforms that do not support scale-from-zero.
+
+    On {{ aws_first }} and {{ azure_short }} hosted clusters running {{ product_title }} 4.18 or later, you can set `spec.autoScaling.min` to `0` for eligible tainted workload pools. For more information, see "Configuring autoscaling to and from zero on {{ hcp }} node pools".
+
+    :::note
+
+    Earlier versions of this example stated that scaling from zero (`autoScaling.min: 0`) is not supported on {{ azure_short }}.
+    {{ product_title }} 4.18 and later support `min: 0` on {{ aws_first }} and {{ azure_short }} when the HyperShift Operator backport is available.
+    
+    :::

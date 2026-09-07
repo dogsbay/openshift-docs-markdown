@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Starting a deployment {id="deployments-starting-a-deployment_{{ context }}"}
 
-You can start a rollout to begin the deployment process of your application.
+To begin a new rollout of your application in {{ product_title }}, you can start a deployment from an existing `DeploymentConfig` object. Use the `oc rollout latest` command to create a new replication controller and run the deployment process. {._abstract}
 
 **Procedure**
 

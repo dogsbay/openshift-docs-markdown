@@ -15,7 +15,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Specifying advanced network configuration {id="modifying-nwoperator-config-startup_{{ context }}"}
 
-To integrate your {{ product_title }} cluster with your existing network environment, you can specify advanced network configuration in a manifest before you install the cluster. Advanced network configuration can be configured only during cluster installation. {._abstract}
+You can use advanced network configuration for your {{ product_title }} network plugin to integrate your cluster into your existing network environment. {._abstract}
+
+You can specify advanced network configuration only before you install the cluster.
 
 
 :::important
@@ -36,7 +38,7 @@ Customizing your network configuration by modifying the {{ product_title }} mani
     $ ./openshift-install create manifests --dir <installation_directory>
     ```
 
-    The `<installation_directory>` specifies the name of the directory that contains the `install-config.yaml` file for your cluster.
+    where `<installation_directory>` specifies the name of the directory that contains the `install-config.yaml` file for your cluster.
 1.  Create a stub manifest file for the advanced network configuration that is named `cluster-network-03-config.yml` in the `<installation_directory>/manifests/` directory:
     ```yaml
     apiVersion: operator.openshift.io/v1
@@ -46,7 +48,9 @@ Customizing your network configuration by modifying the {{ product_title }} mani
     spec:
     ```
 1.  Specify the advanced network configuration for your cluster in the `cluster-network-03-config.yml` file, such as in the following example:
-    ```yaml title="Enable IPsec for the OVN-Kubernetes network provider"
+    The following example enables IPsec for the OVN-Kubernetes network provider:
+
+    ```yaml
     apiVersion: operator.openshift.io/v1
     kind: Network
     metadata:
@@ -57,9 +61,7 @@ Customizing your network configuration by modifying the {{ product_title }} mani
           ipsecConfig:
             mode: Full
     ```
-1.  Optional: Back up the `manifests/cluster-network-03-config.yml` file. The
-installation program consumes the `manifests/` directory when you create the
-Ignition config files.
+1.  Optional: Back up the `manifests/cluster-network-03-config.yml` file. The installation program consumes the `manifests/` directory when you create the Ignition config files.
 
 {% if not vsphere_ipi %}
 1.  Remove the Kubernetes manifest files that define the control plane machines and compute `MachineSets`:
@@ -67,8 +69,7 @@ Ignition config files.
     $ rm -f openshift/99_openshift-cluster-api_master-machines-*.yaml openshift/99_openshift-cluster-api_worker-machineset-*.yaml
     ```
 
-    Because you create and manage these resources yourself, you do not have
-    to initialize them.
+    Because you create and manage these resources yourself, you do not have to initialize them.
     *   You can preserve the `MachineSet` files to create compute machines by using the machine API, but you must update references to them to match your environment.
 {% endif %}
 

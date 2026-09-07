@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create an Ingress Controller with global access on {{ gcp_short }} {id="nw-gcp-global-access-configuration_{{ context }}"}
 
-You can create an Ingress Controller that has global access to a {{ gcp_first }} cluster. Global access is only available to Ingress Controllers using internal load balancers.
+You can create an Ingress Controller that has global access to a {{ gcp_first }} cluster, which allows clients from any region to reach your cluster’s internal load balancer. Global access is available only to Ingress Controllers that use internal load balancers. {._abstract}
 
 **Prerequisites**
 
@@ -9,23 +9,20 @@ You can create an Ingress Controller that has global access to a {{ gcp_first }}
 
 **Procedure**
 
-Create an Ingress Controller with global access on a new {{ gcp_short }} cluster.
-
 1.  Change to the directory that contains the installation program and create a manifest file:
     ```terminal
-    $ ./openshift-install create manifests --dir <installation_directory> (1)
+    $ ./openshift-install create manifests --dir <installation_directory>
     ```
-    1.  For `<installation_directory>`, specify the name of the directory that
-    contains the `install-config.yaml` file for your cluster.
+
+    For `_<installation_directory>_`, specify the name of the directory that contains the `install-config.yaml` file for your cluster.
 1.  Create a file that is named `cluster-ingress-default-ingresscontroller.yaml` in the `<installation_directory>/manifests/` directory:
     ```terminal
-    $ touch <installation_directory>/manifests/cluster-ingress-default-ingresscontroller.yaml (1)
+    $ touch <installation_directory>/manifests/cluster-ingress-default-ingresscontroller.yaml
     ```
-    1.  For `<installation_directory>`, specify the directory name that contains the
-    `manifests/` directory for your cluster.
 
-        After creating the file, several network configuration files are in the
-        `manifests/` directory, as shown:
+    For `_<installation_directory>_`, specify the directory name that contains the `manifests/` directory for your cluster.
+
+    After creating the file, several network configuration files are in the `manifests/` directory, as shown:
     ```terminal
     $ ls <installation_directory>/manifests/cluster-ingress-default-ingresscontroller.yaml
     ```
@@ -44,10 +41,10 @@ Create an Ingress Controller with global access on a new {{ gcp_short }} cluster
           loadBalancer:
             providerParameters:
               gcp:
-                clientAccess: Global (1)
+                clientAccess: Global
               type: GCP
-            scope: Internal          (2)
+            scope: Internal
           type: LoadBalancerService
     ```
-    1.  Set `gcp.clientAccess` to `Global`.
-    1.  Global access is only available to Ingress Controllers using internal load balancers.
+    *   `gcp.clientAccess` is set to `Global` to provide global access for the Ingress Controller.
+    *   `scope` is set to `Internal` because global access is available only to Ingress Controllers that use internal load balancers.

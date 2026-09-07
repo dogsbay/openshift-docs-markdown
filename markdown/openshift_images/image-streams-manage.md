@@ -39,7 +39,8 @@ To create and update container images and track version changes in {{ product_ti
 
 {% leveloffset +2 %}{% include "./modules/images-imagestream-remove-tag.md" %}{% endleveloffset %}
 
-## Additional resources {id="additional-resources-remove-tag_{{ context }}" ._additional-resources}
+**Additional resources**
+{._additional-resources}
 
 *   [Removing deprecated image stream tags from the Cluster Samples Operator](/openshift_images/configuring-samples-operator#images-samples-operator-deprecated-image-stream_configuring-samples-operator)
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Replacing an unhealthy etcd member whose machine is not running or whose node is not ready {id="restore-replace-stopped-etcd-member_{{ context }}"}
 
-Replace an etcd member whose machine is not running or whose node is not ready by removing it from the cluster and provisioning a replacement control plane machine. {._abstract}
+Replace an unhealthy etcd member when the member machine is stopped or the node is not ready. Restoring the member returns the control plane to a healthy state. {._abstract}
 
 
 :::note
@@ -13,21 +13,15 @@ If your cluster uses a control plane machine set, see "Recovering a degraded etc
 
 **Prerequisites**
 
-*   You have identified the unhealthy etcd member.
-*   You have verified that either the machine is not running or the node is not ready.
+*   You identified the unhealthy etcd member.
+*   You verified that either the machine is not running or the node is not ready.
+*   Do not power on other control plane nodes until the unhealthy etcd member replacement is complete.
+*   You confirmed access to the cluster as a user with the `cluster-admin` role.
+*   You created an etcd backup before replacing the unhealthy etcd member.
 
     :::important
 
-    You must wait if you power off other control plane nodes. The control plane nodes must remain powered off until the replacement of an unhealthy etcd member is complete.
-    
-    :::
-
-*   You have access to the cluster as a user with the `cluster-admin` role.
-*   You have taken an etcd backup.
-
-    :::important
-
-    Before you perform this procedure, take an etcd backup so that you can restore your cluster if you experience any issues.
+    Without a recent etcd backup, you might not be able to restore the cluster if replacement fails.
     
     :::
 
@@ -35,9 +29,7 @@ If your cluster uses a control plane machine set, see "Recovering a degraded etc
 **Procedure**
 
 1.  Remove the unhealthy member.
-    1.  Choose a pod that is not on the affected node:
-
-        In a terminal that has access to the cluster as a `cluster-admin` user, run the following command:
+    1.  List etcd pods and choose one that is not on the affected node by running the following command:
         ```terminal
         $ oc -n openshift-etcd get pods -l k8s-app=etcd
         ```
@@ -46,13 +38,13 @@ If your cluster uses a control plane machine set, see "Recovering a degraded etc
         etcd-ip-10-0-164-97.ec2.internal                 3/3     Running     0          123m
         etcd-ip-10-0-154-204.ec2.internal                3/3     Running     0          124m
         ```
-    1.  Connect to the running etcd container, passing in the name of a pod that is not on the affected node:
 
-        In a terminal that has access to the cluster as a `cluster-admin` user, run the following command:
+        From the output, note a pod that is not on the affected node. In this example, the unhealthy member is `ip-10-0-131-183.ec2.internal`, so you could use `etcd-ip-10-0-154-204.ec2.internal`.
+    1.  Connect to the running etcd container on the pod you chose by running the following command:
         ```terminal
         $ oc rsh -n openshift-etcd etcd-ip-10-0-154-204.ec2.internal
         ```
-    1.  View the member list:
+    1.  View the member list by running the following command:
         ```terminal
         sh-4.2# etcdctl member list -w table
         ```
@@ -66,15 +58,15 @@ If your cluster uses a control plane machine set, see "Recovering a degraded etc
         +------------------+---------+------------------------------+---------------------------+---------------------------+
         ```
 
-        Take note of the ID and the name of the unhealthy etcd member because these values are needed later in the procedure. The `$ etcdctl endpoint health` command will list the removed member until the procedure of replacement is finished and a new member is added.
-    1.  Remove the unhealthy etcd member by providing the ID to the `etcdctl member remove` command:
+        Take note of the ID and the name of the unhealthy etcd member because you need these values later in the procedure. The `etcdctl endpoint health` command continues to list the removed member until replacement is complete and a new member is added.
+    1.  Remove the unhealthy etcd member by providing the ID to the `etcdctl member remove` command by running the following command:
         ```terminal
         sh-4.2# etcdctl member remove <etcd_member_id>
         ```
         ```terminal title="Example output"
         Member 6fc1e7c9db35841d removed from cluster ead669ce1fbfb346
         ```
-    1.  View the member list again and verify that the member was removed:
+    1.  View the member list again and verify that the member was removed by running the following command:
         ```terminal
         sh-4.2# etcdctl member list -w table
         ```
@@ -88,7 +80,7 @@ If your cluster uses a control plane machine set, see "Recovering a degraded etc
         ```
 
         You can now exit the node shell.
-1.  Turn off the quorum guard by entering the following command:
+1.  Turn off the quorum guard by running the following command:
     ```terminal
     $ oc patch etcd/cluster --type=merge -p '{"spec": {"unsupportedConfigOverrides": {"useUnsupportedUnsafeNonHANonProductionUnstableEtcd": true}}}'
     ```
@@ -97,7 +89,7 @@ If your cluster uses a control plane machine set, see "Recovering a degraded etc
 
     :::important
 
-    After you turn off the quorum guard, the cluster might be unreachable for a short time while the remaining etcd instances reboot to reflect the configuration change.
+    After you turn off the quorum guard, the cluster might be unreachable for a short period of time while the remaining etcd instances reboot to reflect the configuration change.
     
     :::
 
@@ -116,12 +108,12 @@ If your cluster uses a control plane machine set, see "Recovering a degraded etc
     $ oc delete node ip-10-0-131-183.ec2.internal
     ```
 1.  Remove the old secrets for the unhealthy etcd member that was removed.
-    1.  List the secrets for the unhealthy etcd member that was removed.
+    1.  List the secrets for the unhealthy etcd member that was removed by running the following command:
         ```terminal
-        $ oc get secrets -n openshift-etcd | grep <unhealthy_node>
+        $ oc get secrets -n openshift-etcd | grep ip-10-0-131-183.ec2.internal
         ```
 
-        Replace `<unhealthy_node>` with the name of the unhealthy etcd member that you took note of earlier in this procedure. The examples throughout this procedure use `ip-10-0-131-183.ec2.interal` as the name of the unhealthy etcd member.
+        Replace `ip-10-0-131-183.ec2.internal` in the command with the name of the unhealthy etcd member that you noted earlier in this procedure.
 
         There is a peer, serving, and metrics secret as shown in the following output:
         ```terminal title="Example output"
@@ -129,195 +121,192 @@ If your cluster uses a control plane machine set, see "Recovering a degraded etc
         etcd-serving-ip-10-0-131-183.ec2.internal           kubernetes.io/tls                     2      47m
         etcd-serving-metrics-ip-10-0-131-183.ec2.internal   kubernetes.io/tls                     2      47m
         ```
-    1.  Delete the secrets for the unhealthy etcd member that was removed.
-        1.  Delete the peer secret:
-            ```terminal
-            $ oc delete secret -n openshift-etcd etcd-peer-ip-10-0-131-183.ec2.internal
-            ```
-        1.  Delete the serving secret:
-            ```terminal
-            $ oc delete secret -n openshift-etcd etcd-serving-ip-10-0-131-183.ec2.internal
-            ```
-        1.  Delete the metrics secret:
-            ```terminal
-            $ oc delete secret -n openshift-etcd etcd-serving-metrics-ip-10-0-131-183.ec2.internal
-            ```
-1.  Check whether a control plane machine set exists by entering the following command:
+    1.  Delete the peer secret by running the following command:
+        ```terminal
+        $ oc delete secret -n openshift-etcd etcd-peer-ip-10-0-131-183.ec2.internal
+        ```
+    1.  Delete the serving secret by running the following command:
+        ```terminal
+        $ oc delete secret -n openshift-etcd etcd-serving-ip-10-0-131-183.ec2.internal
+        ```
+    1.  Delete the metrics secret by running the following command:
+        ```terminal
+        $ oc delete secret -n openshift-etcd etcd-serving-metrics-ip-10-0-131-183.ec2.internal
+        ```
+1.  Check whether a control plane machine set exists by running the following command:
     ```terminal
     $ oc -n openshift-machine-api get controlplanemachineset
     ```
-    *   If the control plane machine set exists, delete and re-create the control plane machine. After this machine is re-created, a new revision is forced and etcd scales up automatically. For more information, see "Replacing an unhealthy etcd member whose machine is not running or whose node is not ready".
+
+    If the control plane machine set exists, delete and re-create the control plane machine. After this machine is re-created, a new revision is forced and etcd scales up automatically. For more information, see "Replacing an unhealthy etcd member whose machine is not running or whose node is not ready".
+
+    If you are running installer-provisioned infrastructure, or you used the Machine API to create your machines, follow these steps. Otherwise, you must create the new control plane by using the same method that was used to originally create it.
+    1.  Obtain the machine for the unhealthy member by running the following command.
+        ```terminal
+        $ oc get machines -n openshift-machine-api -o wide
+        ```
+        ```terminal title="Example output"
+        NAME                                        PHASE     TYPE        REGION      ZONE         AGE     NODE                           PROVIDERID                              STATE
+        clustername-8qw5l-master-0                  Running   m4.xlarge   us-east-1   us-east-1a   3h37m   ip-10-0-131-183.ec2.internal   aws:///us-east-1a/i-0ec2782f8287dfb7e   stopped
+        clustername-8qw5l-master-1                  Running   m4.xlarge   us-east-1   us-east-1b   3h37m   ip-10-0-154-204.ec2.internal   aws:///us-east-1b/i-096c349b700a19631   running
+        clustername-8qw5l-master-2                  Running   m4.xlarge   us-east-1   us-east-1c   3h37m   ip-10-0-164-97.ec2.internal    aws:///us-east-1c/i-02626f1dba9ed5bba   running
+        clustername-8qw5l-worker-us-east-1a-wbtgd   Running   m4.large    us-east-1   us-east-1a   3h28m   ip-10-0-129-226.ec2.internal   aws:///us-east-1a/i-010ef6279b4662ced   running
+        clustername-8qw5l-worker-us-east-1b-lrdxb   Running   m4.large    us-east-1   us-east-1b   3h28m   ip-10-0-144-248.ec2.internal   aws:///us-east-1b/i-0cb45ac45a166173b   running
+        clustername-8qw5l-worker-us-east-1c-pkg26   Running   m4.large    us-east-1   us-east-1c   3h28m   ip-10-0-170-181.ec2.internal   aws:///us-east-1c/i-06861c00007751b0a   running
+        ```
+
+        In the example output, `clustername-8qw5l-master-0` is the control plane machine for the unhealthy node `ip-10-0-131-183.ec2.internal`. Its `STATE` is `stopped`.
+    1.  Delete the machine of the unhealthy member by running the following command:
+        ```terminal
+        $ oc delete machine -n openshift-machine-api clustername-8qw5l-master-0
+        ```
+
+        Replace `clustername-8qw5l-master-0` with the name of the control plane machine for the unhealthy node.
+
+        A new machine is automatically provisioned after deleting the machine of the unhealthy member.
+    1.  Verify that a new machine was created by running the following command:
+        ```terminal
+        $ oc get machines -n openshift-machine-api -o wide
+        ```
+        ```terminal title="Example output"
+        NAME                                        PHASE          TYPE        REGION      ZONE         AGE     NODE                           PROVIDERID                              STATE
+        clustername-8qw5l-master-1                  Running        m4.xlarge   us-east-1   us-east-1b   3h37m   ip-10-0-154-204.ec2.internal   aws:///us-east-1b/i-096c349b700a19631   running
+        clustername-8qw5l-master-2                  Running        m4.xlarge   us-east-1   us-east-1c   3h37m   ip-10-0-164-97.ec2.internal    aws:///us-east-1c/i-02626f1dba9ed5bba   running
+        clustername-8qw5l-master-3                  Provisioning   m4.xlarge   us-east-1   us-east-1a   85s     ip-10-0-133-53.ec2.internal    aws:///us-east-1a/i-015b0888fe17bc2c8   running
+        clustername-8qw5l-worker-us-east-1a-wbtgd   Running        m4.large    us-east-1   us-east-1a   3h28m   ip-10-0-129-226.ec2.internal   aws:///us-east-1a/i-010ef6279b4662ced   running
+        clustername-8qw5l-worker-us-east-1b-lrdxb   Running        m4.large    us-east-1   us-east-1b   3h28m   ip-10-0-144-248.ec2.internal   aws:///us-east-1b/i-0cb45ac45a166173b   running
+        clustername-8qw5l-worker-us-east-1c-pkg26   Running        m4.large    us-east-1   us-east-1c   3h28m   ip-10-0-170-181.ec2.internal   aws:///us-east-1c/i-06861c00007751b0a   running
+        ```
+
+        In the example output, `clustername-8qw5l-master-3` is the new control plane machine. The machine is ready when the `PHASE` changes from `Provisioning` to `Running`.
+
+        It might take a few minutes for the new machine to be created. The etcd cluster Operator automatically syncs when the machine or node returns to a healthy state.
+
+        :::note
+
+        Verify the subnet IDs that you are using for your machine sets to ensure that they end up in the correct availability zone.
+        
+        :::
+
+
+        If the control plane machine set does not exist, delete and re-create the control plane machine. After this machine is re-created, a new revision is forced and etcd scales up automatically.
 
         If you are running installer-provisioned infrastructure, or you used the Machine API to create your machines, follow these steps. Otherwise, you must create the new control plane by using the same method that was used to originally create it.
-        1.  Obtain the machine for the unhealthy member.
+    1.  Obtain the machine for the unhealthy member by running the following command:
+        ```terminal
+        $ oc get machines -n openshift-machine-api -o wide
+        ```
+        ```terminal title="Example output"
+        NAME                                        PHASE     TYPE        REGION      ZONE         AGE     NODE                           PROVIDERID                              STATE
+        clustername-8qw5l-master-0                  Running   m4.xlarge   us-east-1   us-east-1a   3h37m   ip-10-0-131-183.ec2.internal   aws:///us-east-1a/i-0ec2782f8287dfb7e   stopped
+        clustername-8qw5l-master-1                  Running   m4.xlarge   us-east-1   us-east-1b   3h37m   ip-10-0-154-204.ec2.internal   aws:///us-east-1b/i-096c349b700a19631   running
+        clustername-8qw5l-master-2                  Running   m4.xlarge   us-east-1   us-east-1c   3h37m   ip-10-0-164-97.ec2.internal    aws:///us-east-1c/i-02626f1dba9ed5bba   running
+        clustername-8qw5l-worker-us-east-1a-wbtgd   Running   m4.large    us-east-1   us-east-1a   3h28m   ip-10-0-129-226.ec2.internal   aws:///us-east-1a/i-010ef6279b4662ced   running
+        clustername-8qw5l-worker-us-east-1b-lrdxb   Running   m4.large    us-east-1   us-east-1b   3h28m   ip-10-0-144-248.ec2.internal   aws:///us-east-1b/i-0cb45ac45a166173b   running
+        clustername-8qw5l-worker-us-east-1c-pkg26   Running   m4.large    us-east-1   us-east-1c   3h28m   ip-10-0-170-181.ec2.internal   aws:///us-east-1c/i-06861c00007751b0a   running
+        ```
 
-            In a terminal that has access to the cluster as a `cluster-admin` user, run the following command:
-            ```terminal
-            $ oc get machines -n openshift-machine-api -o wide
-            ```
-            ```terminal title="Example output"
-            NAME                                        PHASE     TYPE        REGION      ZONE         AGE     NODE                           PROVIDERID                              STATE
-            clustername-8qw5l-master-0                  Running   m4.xlarge   us-east-1   us-east-1a   3h37m   ip-10-0-131-183.ec2.internal   aws:///us-east-1a/i-0ec2782f8287dfb7e   stopped
-            clustername-8qw5l-master-1                  Running   m4.xlarge   us-east-1   us-east-1b   3h37m   ip-10-0-154-204.ec2.internal   aws:///us-east-1b/i-096c349b700a19631   running
-            clustername-8qw5l-master-2                  Running   m4.xlarge   us-east-1   us-east-1c   3h37m   ip-10-0-164-97.ec2.internal    aws:///us-east-1c/i-02626f1dba9ed5bba   running
-            clustername-8qw5l-worker-us-east-1a-wbtgd   Running   m4.large    us-east-1   us-east-1a   3h28m   ip-10-0-129-226.ec2.internal   aws:///us-east-1a/i-010ef6279b4662ced   running
-            clustername-8qw5l-worker-us-east-1b-lrdxb   Running   m4.large    us-east-1   us-east-1b   3h28m   ip-10-0-144-248.ec2.internal   aws:///us-east-1b/i-0cb45ac45a166173b   running
-            clustername-8qw5l-worker-us-east-1c-pkg26   Running   m4.large    us-east-1   us-east-1c   3h28m   ip-10-0-170-181.ec2.internal   aws:///us-east-1c/i-06861c00007751b0a   running
-            ```
+        In the example output, `clustername-8qw5l-master-0` is the control plane machine for the unhealthy node `ip-10-0-131-183.ec2.internal`. Its `STATE` is `stopped`.
+    1.  Save the machine configuration to a file on your file system by running the following command:
+        ```terminal
+        $ oc get machine clustername-8qw5l-master-0 \
+            -n openshift-machine-api \
+            -o yaml \
+            > new-master-machine.yaml
+        ```
 
-            `clustername-8qw5l-master-0` is the control plane machine for the unhealthy node, `ip-10-0-131-183.ec2.internal`.
-        1.  Delete the machine of the unhealthy member:
-            ```terminal
-            $ oc delete machine -n openshift-machine-api clustername-8qw5l-master-0
-            ```
+        Replace `clustername-8qw5l-master-0` with the name of the control plane machine for the unhealthy node.
+1.  Edit the `new-master-machine.yaml` file that was created in the previous step to assign a new name and remove unnecessary fields:
+    1.  Remove the entire `status` section:
+        ```yaml
+        status:
+          addresses:
+          - address: 10.0.131.183
+            type: InternalIP
+          - address: ip-10-0-131-183.ec2.internal
+            type: InternalDNS
+          - address: ip-10-0-131-183.ec2.internal
+            type: Hostname
+          lastUpdated: "2020-04-20T17:44:29Z"
+          nodeRef:
+            kind: Node
+            name: ip-10-0-131-183.ec2.internal
+            uid: acca4411-af0d-4387-b73e-52b2484295ad
+          phase: Running
+          providerStatus:
+            apiVersion: awsproviderconfig.openshift.io/v1beta1
+            conditions:
+            - lastProbeTime: "2020-04-20T16:53:50Z"
+              lastTransitionTime: "2020-04-20T16:53:50Z"
+              message: machine successfully created
+              reason: MachineCreationSucceeded
+              status: "True"
+              type: MachineCreation
+            instanceId: i-0fdb85790d76d0c3f
+            instanceState: stopped
+            kind: AWSMachineProviderStatus
+        ```
+    1.  Change the `metadata.name` field to a new name.
 
-            Replace `clustername-8qw5l-master-0` with the name of the control plane machine for the unhealthy node.
+        For example:
+        ```yaml
+        apiVersion: machine.openshift.io/v1beta1
+        kind: Machine
+        metadata:
+          ...
+          name: clustername-8qw5l-master-3
+          ...
+        ```
 
-            A new machine is automatically provisioned after deleting the machine of the unhealthy member.
-        1.  Verify that a new machine was created:
-            ```terminal
-            $ oc get machines -n openshift-machine-api -o wide
-            ```
-            ```terminal title="Example output"
-            NAME                                        PHASE          TYPE        REGION      ZONE         AGE     NODE                           PROVIDERID                              STATE
-            clustername-8qw5l-master-1                  Running        m4.xlarge   us-east-1   us-east-1b   3h37m   ip-10-0-154-204.ec2.internal   aws:///us-east-1b/i-096c349b700a19631   running
-            clustername-8qw5l-master-2                  Running        m4.xlarge   us-east-1   us-east-1c   3h37m   ip-10-0-164-97.ec2.internal    aws:///us-east-1c/i-02626f1dba9ed5bba   running
-            clustername-8qw5l-master-3                  Provisioning   m4.xlarge   us-east-1   us-east-1a   85s     ip-10-0-133-53.ec2.internal    aws:///us-east-1a/i-015b0888fe17bc2c8   running
-            clustername-8qw5l-worker-us-east-1a-wbtgd   Running        m4.large    us-east-1   us-east-1a   3h28m   ip-10-0-129-226.ec2.internal   aws:///us-east-1a/i-010ef6279b4662ced   running
-            clustername-8qw5l-worker-us-east-1b-lrdxb   Running        m4.large    us-east-1   us-east-1b   3h28m   ip-10-0-144-248.ec2.internal   aws:///us-east-1b/i-0cb45ac45a166173b   running
-            clustername-8qw5l-worker-us-east-1c-pkg26   Running        m4.large    us-east-1   us-east-1c   3h28m   ip-10-0-170-181.ec2.internal   aws:///us-east-1c/i-06861c00007751b0a   running
-            ```
+        Keep the same base name as the old machine and change the ending number to the next available number. In this example, `clustername-8qw5l-master-0` is changed to `clustername-8qw5l-master-3`
+    1.  Remove the `spec.providerID` field:
+        ```yaml
+          providerID: aws:///us-east-1a/i-0fdb85790d76d0c3f
+        ```
+1.  Delete the machine of the unhealthy member by running the following command:
+    ```terminal
+    $ oc delete machine -n openshift-machine-api clustername-8qw5l-master-0
+    ```
 
-            The new machine, `clustername-8qw5l-master-3`, is being created and is ready once the phase changes from `Provisioning` to `Running`.
+    In the command, replace `clustername-8qw5l-master-0` with the control plane machine name for the unhealthy node that you identified in the example output above.
+1.  Verify that the machine was deleted by running the following command:
+    ```terminal
+    $ oc get machines -n openshift-machine-api -o wide
+    ```
+    ```terminal title="Example output"
+    NAME                                        PHASE     TYPE        REGION      ZONE         AGE     NODE                           PROVIDERID                              STATE
+    clustername-8qw5l-master-1                  Running   m4.xlarge   us-east-1   us-east-1b   3h37m   ip-10-0-154-204.ec2.internal   aws:///us-east-1b/i-096c349b700a19631   running
+    clustername-8qw5l-master-2                  Running   m4.xlarge   us-east-1   us-east-1c   3h37m   ip-10-0-164-97.ec2.internal    aws:///us-east-1c/i-02626f1dba9ed5bba   running
+    clustername-8qw5l-worker-us-east-1a-wbtgd   Running   m4.large    us-east-1   us-east-1a   3h28m   ip-10-0-129-226.ec2.internal   aws:///us-east-1a/i-010ef6279b4662ced   running
+    clustername-8qw5l-worker-us-east-1b-lrdxb   Running   m4.large    us-east-1   us-east-1b   3h28m   ip-10-0-144-248.ec2.internal   aws:///us-east-1b/i-0cb45ac45a166173b   running
+    clustername-8qw5l-worker-us-east-1c-pkg26   Running   m4.large    us-east-1   us-east-1c   3h28m   ip-10-0-170-181.ec2.internal   aws:///us-east-1c/i-06861c00007751b0a   running
+    ```
+1.  Create the new machine by using the `new-master-machine.yaml` file by running the following command:
+    ```terminal
+    $ oc apply -f new-master-machine.yaml
+    ```
+1.  Verify that the new machine was created by running the following command:
+    ```terminal
+    $ oc get machines -n openshift-machine-api -o wide
+    ```
+    ```terminal title="Example output"
+    NAME                                        PHASE          TYPE        REGION      ZONE         AGE     NODE                           PROVIDERID                              STATE
+    clustername-8qw5l-master-1                  Running        m4.xlarge   us-east-1   us-east-1b   3h37m   ip-10-0-154-204.ec2.internal   aws:///us-east-1b/i-096c349b700a19631   running
+    clustername-8qw5l-master-2                  Running        m4.xlarge   us-east-1   us-east-1c   3h37m   ip-10-0-164-97.ec2.internal    aws:///us-east-1c/i-02626f1dba9ed5bba   running
+    clustername-8qw5l-master-3                  Provisioning   m4.xlarge   us-east-1   us-east-1a   85s     ip-10-0-133-53.ec2.internal    aws:///us-east-1a/i-015b0888fe17bc2c8   running
+    clustername-8qw5l-worker-us-east-1a-wbtgd   Running        m4.large    us-east-1   us-east-1a   3h28m   ip-10-0-129-226.ec2.internal   aws:///us-east-1a/i-010ef6279b4662ced   running
+    clustername-8qw5l-worker-us-east-1b-lrdxb   Running        m4.large    us-east-1   us-east-1b   3h28m   ip-10-0-144-248.ec2.internal   aws:///us-east-1b/i-0cb45ac45a166173b   running
+    clustername-8qw5l-worker-us-east-1c-pkg26   Running        m4.large    us-east-1   us-east-1c   3h28m   ip-10-0-170-181.ec2.internal   aws:///us-east-1c/i-06861c00007751b0a   running
+    ```
 
-            It might take a few minutes for the new machine to be created. The etcd cluster Operator automatically syncs when the machine or node returns to a healthy state.
+    In the example output, `clustername-8qw5l-master-3` is the new control plane machine. The machine is ready when the `PHASE` changes from `Provisioning` to `Running`.
 
-            :::note
-
-            Verify the subnet IDs that you are using for your machine sets to ensure that they end up in the correct availability zone.
-            
-            :::
-
-    *   If the control plane machine set does not exist, delete and re-create the control plane machine. After this machine is re-created, a new revision is forced and etcd scales up automatically.
-
-        If you are running installer-provisioned infrastructure, or you used the Machine API to create your machines, follow these steps. Otherwise, you must create the new control plane by using the same method that was used to originally create it.
-        1.  Obtain the machine for the unhealthy member.
-
-            In a terminal that has access to the cluster as a `cluster-admin` user, run the following command:
-            ```terminal
-            $ oc get machines -n openshift-machine-api -o wide
-            ```
-            ```terminal title="Example output"
-            NAME                                        PHASE     TYPE        REGION      ZONE         AGE     NODE                           PROVIDERID                              STATE
-            clustername-8qw5l-master-0                  Running   m4.xlarge   us-east-1   us-east-1a   3h37m   ip-10-0-131-183.ec2.internal   aws:///us-east-1a/i-0ec2782f8287dfb7e   stopped
-            clustername-8qw5l-master-1                  Running   m4.xlarge   us-east-1   us-east-1b   3h37m   ip-10-0-154-204.ec2.internal   aws:///us-east-1b/i-096c349b700a19631   running
-            clustername-8qw5l-master-2                  Running   m4.xlarge   us-east-1   us-east-1c   3h37m   ip-10-0-164-97.ec2.internal    aws:///us-east-1c/i-02626f1dba9ed5bba   running
-            clustername-8qw5l-worker-us-east-1a-wbtgd   Running   m4.large    us-east-1   us-east-1a   3h28m   ip-10-0-129-226.ec2.internal   aws:///us-east-1a/i-010ef6279b4662ced   running
-            clustername-8qw5l-worker-us-east-1b-lrdxb   Running   m4.large    us-east-1   us-east-1b   3h28m   ip-10-0-144-248.ec2.internal   aws:///us-east-1b/i-0cb45ac45a166173b   running
-            clustername-8qw5l-worker-us-east-1c-pkg26   Running   m4.large    us-east-1   us-east-1c   3h28m   ip-10-0-170-181.ec2.internal   aws:///us-east-1c/i-06861c00007751b0a   running
-            ```
-
-            `clustername-8qw5l-master-0` is the control plane machine for the unhealthy node, `ip-10-0-131-183.ec2.internal`.
-        1.  Save the machine configuration to a file on your file system:
-            ```terminal
-            $ oc get machine clustername-8qw5l-master-0 \
-                -n openshift-machine-api \
-                -o yaml \
-                > new-master-machine.yaml
-            ```
-
-            Replace `clustername-8qw5l-master-0` with the name of the control plane machine for the unhealthy node.
-        1.  Edit the `new-master-machine.yaml` file that was created in the previous step to assign a new name and remove unnecessary fields.
-            1.  Remove the entire `status` section:
-                ```yaml
-                status:
-                  addresses:
-                  - address: 10.0.131.183
-                    type: InternalIP
-                  - address: ip-10-0-131-183.ec2.internal
-                    type: InternalDNS
-                  - address: ip-10-0-131-183.ec2.internal
-                    type: Hostname
-                  lastUpdated: "2020-04-20T17:44:29Z"
-                  nodeRef:
-                    kind: Node
-                    name: ip-10-0-131-183.ec2.internal
-                    uid: acca4411-af0d-4387-b73e-52b2484295ad
-                  phase: Running
-                  providerStatus:
-                    apiVersion: awsproviderconfig.openshift.io/v1beta1
-                    conditions:
-                    - lastProbeTime: "2020-04-20T16:53:50Z"
-                      lastTransitionTime: "2020-04-20T16:53:50Z"
-                      message: machine successfully created
-                      reason: MachineCreationSucceeded
-                      status: "True"
-                      type: MachineCreation
-                    instanceId: i-0fdb85790d76d0c3f
-                    instanceState: stopped
-                    kind: AWSMachineProviderStatus
-                ```
-            1.  Change the `metadata.name` field to a new name.
-
-                Keep the same base name as the old machine and change the ending number to the next available number. In this example, `clustername-8qw5l-master-0` is changed to `clustername-8qw5l-master-3`.
-
-                For example:
-                ```yaml
-                apiVersion: machine.openshift.io/v1beta1
-                kind: Machine
-                metadata:
-                  ...
-                  name: clustername-8qw5l-master-3
-                  ...
-                ```
-            1.  Remove the `spec.providerID` field:
-                ```yaml
-                  providerID: aws:///us-east-1a/i-0fdb85790d76d0c3f
-                ```
-        1.  Delete the machine of the unhealthy member:
-            ```terminal
-            $ oc delete machine -n openshift-machine-api clustername-8qw5l-master-0
-            ```
-
-            Replace `clustername-8qw5l-master-0` with the name of the control plane machine for the unhealthy node.
-        1.  Verify that the machine was deleted:
-            ```terminal
-            $ oc get machines -n openshift-machine-api -o wide
-            ```
-            ```terminal title="Example output"
-            NAME                                        PHASE     TYPE        REGION      ZONE         AGE     NODE                           PROVIDERID                              STATE
-            clustername-8qw5l-master-1                  Running   m4.xlarge   us-east-1   us-east-1b   3h37m   ip-10-0-154-204.ec2.internal   aws:///us-east-1b/i-096c349b700a19631   running
-            clustername-8qw5l-master-2                  Running   m4.xlarge   us-east-1   us-east-1c   3h37m   ip-10-0-164-97.ec2.internal    aws:///us-east-1c/i-02626f1dba9ed5bba   running
-            clustername-8qw5l-worker-us-east-1a-wbtgd   Running   m4.large    us-east-1   us-east-1a   3h28m   ip-10-0-129-226.ec2.internal   aws:///us-east-1a/i-010ef6279b4662ced   running
-            clustername-8qw5l-worker-us-east-1b-lrdxb   Running   m4.large    us-east-1   us-east-1b   3h28m   ip-10-0-144-248.ec2.internal   aws:///us-east-1b/i-0cb45ac45a166173b   running
-            clustername-8qw5l-worker-us-east-1c-pkg26   Running   m4.large    us-east-1   us-east-1c   3h28m   ip-10-0-170-181.ec2.internal   aws:///us-east-1c/i-06861c00007751b0a   running
-            ```
-        1.  Create the new machine by using the `new-master-machine.yaml` file:
-            ```terminal
-            $ oc apply -f new-master-machine.yaml
-            ```
-        1.  Verify that the new machine was created:
-            ```terminal
-            $ oc get machines -n openshift-machine-api -o wide
-            ```
-            ```terminal title="Example output"
-            NAME                                        PHASE          TYPE        REGION      ZONE         AGE     NODE                           PROVIDERID                              STATE
-            clustername-8qw5l-master-1                  Running        m4.xlarge   us-east-1   us-east-1b   3h37m   ip-10-0-154-204.ec2.internal   aws:///us-east-1b/i-096c349b700a19631   running
-            clustername-8qw5l-master-2                  Running        m4.xlarge   us-east-1   us-east-1c   3h37m   ip-10-0-164-97.ec2.internal    aws:///us-east-1c/i-02626f1dba9ed5bba   running
-            clustername-8qw5l-master-3                  Provisioning   m4.xlarge   us-east-1   us-east-1a   85s     ip-10-0-133-53.ec2.internal    aws:///us-east-1a/i-015b0888fe17bc2c8   running
-            clustername-8qw5l-worker-us-east-1a-wbtgd   Running        m4.large    us-east-1   us-east-1a   3h28m   ip-10-0-129-226.ec2.internal   aws:///us-east-1a/i-010ef6279b4662ced   running
-            clustername-8qw5l-worker-us-east-1b-lrdxb   Running        m4.large    us-east-1   us-east-1b   3h28m   ip-10-0-144-248.ec2.internal   aws:///us-east-1b/i-0cb45ac45a166173b   running
-            clustername-8qw5l-worker-us-east-1c-pkg26   Running        m4.large    us-east-1   us-east-1c   3h28m   ip-10-0-170-181.ec2.internal   aws:///us-east-1c/i-06861c00007751b0a   running
-            ```
-
-            The new machine, `clustername-8qw5l-master-3`, is being created and is ready once the phase changes from `Provisioning` to `Running`.
-
-            It might take a few minutes for the new machine to be created. The etcd cluster Operator automatically syncs when the machine or node returns to a healthy state.
-1.  Turn the quorum guard back on by entering the following command:
+    It might take a few minutes for the new machine to be created. The etcd cluster Operator automatically syncs when the machine or node returns to a healthy state.
+1.  Turn the quorum guard back on by running the following command:
     ```terminal
     $ oc patch etcd/cluster --type=merge -p '{"spec": {"unsupportedConfigOverrides": null}}'
     ```
-1.  You can verify that the `unsupportedConfigOverrides` section is removed from the object by entering this command:
+1.  You can verify that the `unsupportedConfigOverrides` section is removed from the object by running the following command:
     ```terminal
     $ oc get etcd/cluster -oyaml
     ```
@@ -328,9 +317,7 @@ If your cluster uses a control plane machine set, see "Recovering a degraded etc
 
 **Verification**
 
-1.  Verify that all etcd pods are running properly.
-
-    In a terminal that has access to the cluster as a `cluster-admin` user, run the following command:
+1.  Verify that all etcd pods are running properly by running the following command:
     ```terminal
     $ oc -n openshift-etcd get pods -l k8s-app=etcd
     ```
@@ -339,21 +326,18 @@ If your cluster uses a control plane machine set, see "Recovering a degraded etc
     etcd-ip-10-0-164-97.ec2.internal                 3/3     Running     0          123m
     etcd-ip-10-0-154-204.ec2.internal                3/3     Running     0          124m
     ```
-
-    If the output from the previous command only lists two pods, you can manually force an etcd redeployment. In a terminal that has access to the cluster as a `cluster-admin` user, run the following command:
+1.  If the output from the previous command lists only two pods, force an etcd redeployment by running the following command:
     ```terminal
     $ oc patch etcd cluster -p='{"spec": {"forceRedeploymentReason": "recovery-'"$( date --rfc-3339=ns )"'"}}' --type=merge
     ```
 
-    The `forceRedeploymentReason` value must be unique, which is why a timestamp is appended.
+    The `forceRedeploymentReason` value must be unique, which is why a timestamp is appended in the example.
 1.  Verify that there are exactly three etcd members.
-    1.  Connect to the running etcd container, passing in the name of a pod that was not on the affected node:
-
-        In a terminal that has access to the cluster as a `cluster-admin` user, run the following command:
+    1.  Connect to the running etcd container, passing in the name of a pod that was not on the affected node by running the following command:
         ```terminal
         $ oc rsh -n openshift-etcd etcd-ip-10-0-154-204.ec2.internal
         ```
-    1.  View the member list:
+    1.  View the member list by running the following command:
         ```terminal
         sh-4.2# etcdctl member list -w table
         ```

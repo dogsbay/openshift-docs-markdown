@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Enable workload partitioning {id="microshift-enabling-workload-partitioning_{{ context }}"}
 
-To enable workload partitioning on {{ microshift_short }}, make the following configuration changes:
+To enable workload partitioning on {{ microshift_short }}, make the following configuration changes: {._abstract}
 
 *   Update the {{ microshift_short }} `config.yaml` file to include the kubelet configuration file.
 *   Create the CRI-O systemd and configuration files.
@@ -15,25 +15,36 @@ To enable workload partitioning on {{ microshift_short }}, make the following co
         # ...
         {
           "management": {
-            "cpuset": "0,6,7" (1)
+            "cpuset": "0,6,7"
           }
         }
         # ...
         ```
-        1.  The `cpuset` applies to a machine with 8 VCPUs (4 cores) and is valid throughout the document.
+
+        where:
+
+        `cpuset`
+        :   The `cpuset` applies to a machine with 8 VCPUs (4 cores) and is valid throughout the document.
     *   Update the {{ microshift_short }} config.yaml file in the path `/etc/microshift/config.yaml`. Embed the kubelet configuration in the {{ microshift_short }} `config.yaml` file to enable and configure CPU Manager for the workloads.
         ```yaml title="{{ microshift_short }} config.yaml example"
         # ...
         kubelet:
-          reservedSystemCPUs: 0,6,7 (1)
+          reservedSystemCPUs: 0,6,7
           cpuManagerPolicy: static
           cpuManagerPolicyOptions:
-            full-pcpus-only: "true" (2)
+            full-pcpus-only: "true"
           cpuManagerReconcilePeriod: 5s
         # ...
         ```
-        1.  Exclusive cpuset for the system daemons and the interrupts/timers.
-        1.  kubelet configuration sets the `CPUManagerPolicyOptions` option to `full-pcpus-only` to ensure allocation of whole cores to the containers workload.
+
+        where:
+
+        `reservedSystemCPUs`
+        :   Exclusive cpuset for the system daemons and the interrupts/timers.
+
+        `full-pcpus-only`
+        :   The kubelet configuration sets the `CPUManagerPolicyOptions` option to `full-pcpus-only` to ensure allocation of whole cores to the containers workload.
+
 1.  Create the CRI-O systemd and configuration files:
     *   Create the CRI-O configuration file in the path `/etc/crio/crio.conf.d/20-microshift-workload-partition.conf` which overrides the default configuration that already exists in the `11-microshift-ovn.conf` file.
         ```yaml title="CRI-O configuration example"

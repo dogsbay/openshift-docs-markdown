@@ -11,10 +11,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # {{ gcp_short }} account limits {id="installation-gcp-limits_{{ context }}"}
 
-The {{ product_title }} cluster uses a number of {{ gcp_first }}
-components, but the default
-[Quotas](https://cloud.google.com/docs/quota)
-do not affect your ability to install a default {{ product_title }} cluster.
+A default {{ product_title }} cluster consumes specific {{ gcp_first }} resource quotas that you might need to increase before installation, depending on your region and cluster size. {._abstract}
 
 A default cluster, which contains three compute and three control plane machines,
 uses the following resources. Note that some resources are required only during
@@ -228,7 +225,13 @@ If you plan to deploy your cluster in one of the following regions, you will exc
 *   `southamerica-east1`
 *   `us-west2`
 
-You can increase resource quotas from the [{{ gcp_short }} console](https://console.cloud.google.com/iam-admin/quotas), but you might need to file a support ticket. Be sure to plan your cluster size early so that you can allow time to resolve the support ticket before you install your {{ product_title }} cluster.
+You can increase resource quotas from the {{ gcp_short }} console, but you might need to file a support ticket. Be sure to plan your cluster size early so that you can allow time to resolve the support ticket before you install your {{ product_title }} cluster.
+
+**Additional resources**
+{._additional-resources}
+
+*   [Manage your quotas using the console ({{ gcp_short }} documentation)](https://cloud.google.com/docs/quota)
+*   [{{ gcp_short }} console](https://console.cloud.google.com/iam-admin/quotas)
 
 {% if context == "installing-gcp-user-infra" %}
 {%- set template = "" -%}

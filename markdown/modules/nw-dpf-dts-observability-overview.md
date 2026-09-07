@@ -1,0 +1,56 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# DPU telemetry observability with DOCA Telemetry Service {id="nw-dpf-dts-observability-overview_{{ context }}"}
+
+The DOCA Telemetry Service (DTS) exposes DPU hardware telemetry as Prometheus metrics that you can view using the {{ product_title }} web console or a Grafana dashboard. {._abstract}
+
+
+:::note
+
+In a standard DPF installation, the DTS deployment objects are applied automatically during the postinstallation step.
+Apply them manually only when you are adding DTS to an existing cluster.
+
+:::
+
+
+
+:::note
+
+Neither the DPF Operator nor the DTS `DPUService` installs Grafana on {{ product_title }}.
+Red&#160;Hat does not offer a certified Grafana Operator. The community Grafana Operator from OperatorHub is the standard way to run Grafana on {{ product_title }}.
+
+:::
+
+
+DTS runs on every DPU in the hosted cluster and collects counters from sysfs and ethtool providers.
+{{ product_title }} includes a built-in Prometheus instance, so you do not need to deploy a separate monitoring stack to scrape DTS metrics.
+
+## How DPF exposes DTS metrics to the management cluster {id="_how_dpf_exposes_dts_metrics_to_the_management_cluster"}
+
+DTS runs on the DPU hosted cluster, but Prometheus runs on the management cluster.
+DPF bridges this gap with a built-in port-mirroring mechanism.
+
+When a `DPUService` resource declares a port in its `configPorts` field, DPF performs the following actions:
+
+*   Publishes the service port as a `NodePort` on the DPU hosted cluster.
+*   Creates a mirror `Service` on the management cluster, labeled with `dpu.nvidia.com/exposed-port-for-dpucluster`.
+
+The management-cluster Prometheus then scrapes the mirror service.
+This mechanism requires no additional configuration beyond the standard DTS deployment objects.
+
+## DTS deployment objects {id="_dts_deployment_objects"}
+
+DTS is deployed through three standard DPF resources:
+
+
+`DPUServiceTemplate`
+:   Defines the Helm chart for the DOCA Telemetry Service, the DTS container image, and the metrics port. The `configMapData.prometheus.port` field is set to `9189`.
+
+
+`DPUServiceConfiguration`
+:   Declares the service port `httpserverport: 9189` under `configPorts`.
+    This declaration triggers the management-cluster port-mirroring mechanism described previously.
+
+
+`DPUDeployment`
+:   References the template and configuration so that DTS is rolled out to the DPUs as a `DaemonSet` on the DPU hosted cluster.
+    DTS defaults to the `sysfs` and `ethtool` providers.

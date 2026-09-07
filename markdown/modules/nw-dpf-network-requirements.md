@@ -1,0 +1,32 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# DPF network infrastructure requirements {id="nw-dpf-network-requirements_{{ context }}"}
+
+A DPF deployment requires a management switch, a high-speed DPU switch, routable management and VTEP networks with reserved service IPs and a VIP, and a consistent MTU across all network components. {._abstract}
+
+## Switches {id="_switches"}
+
+
+Management switch
+:   Provides 1GbE connectivity for the control plane and worker node management interfaces.
+
+
+High-speed switch
+:   An NVIDIA SN3700 or similar switch providing 2x 200GbE connectivity per DPU.
+
+## Connectivity {id="_connectivity"}
+
+*   All nodes must have full internet access, both from the host out-of-band and DPU high-speed interfaces.
+*   The management network and the high-speed DPU network, which is the VTEP CIDR, must be routable to each other in **both** directions. Verify reachability in each direction before you begin the installation, because connectivity that works in only one direction allows the deployment to proceed partway and then fail.
+*   A dedicated IP address range, which is the VTEP Classless Inter-Domain Routing (CIDR), must be allocated from the high-speed DPU network for DPU service IPs used by HBN and OVN tunnels.
+*   A Virtual IP (VIP) from the management subnet must be reserved for the hosted DPU cluster control-plane services. The VIP must have a DNS A record.
+
+## MTU configuration {id="_mtu_configuration"}
+
+The deployment supports any maximum transmission unit (MTU) value, provided it is consistent across all network components, including switches, interfaces, and bridges. Common values are 1500 for standard frames and 9000 for jumbo frames. Whichever value you choose must be supported end-to-end by every component in the network path.
+
+
+:::important
+
+The MTU value is set during deployment and cannot be changed later. Ensure consistency across all environment components. When using VMs for control plane nodes, ensure the hypervisor bridge MTU matches the chosen value.
+
+:::

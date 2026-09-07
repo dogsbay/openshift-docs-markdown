@@ -12,7 +12,7 @@ To restore etcd quorum when a single member is unhealthy, identify the member an
 
 :::note
 
-If you have lost the majority of your control plane hosts, follow the steps in "Restoring to an earlier cluster state" instead of this procedure..
+If you have lost the majority of your control plane hosts, follow the steps in "Restoring to an earlier cluster state" instead of this procedure.
 
 If the control plane certificates are not valid on the member being replaced, then you must follow the steps in "Recovering from expired control plane certificates" instead of this procedure.
 
@@ -21,9 +21,13 @@ If a control plane node is lost and a new one is created, the etcd cluster Opera
 :::
 
 
+Take an etcd backup before replacing an unhealthy etcd member. For more information see, "Backing up etcd data".
+
 {% leveloffset +1 %}{% include "./modules/restore-identify-unhealthy-etcd-member.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/restore-determine-state-etcd-member.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/restore-replace-unhealthy-etcd-member.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/restore-replace-stopped-etcd-member.md" %}{% endleveloffset %}
 
@@ -31,15 +35,13 @@ If a control plane node is lost and a new one is created, the etcd cluster Opera
 {._additional-resources}
 
 *   [Recovering a degraded etcd Operator](/machine_management/control_plane_machine_management/cpmso-troubleshooting#cpmso-ts-etcd-degraded_cpmso-troubleshooting)
-*   [Replacing a control plane node on an unhealthy cluster](https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2026/html/installing_openshift_container_platform_with_the_assisted_installer/expanding-the-cluster#installing-control-plane-node-unhealthy-cluster_expanding-the-cluster)
 
 {% leveloffset +2 %}{% include "./modules/restore-replace-crashlooping-etcd-member.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/restore-replace-stopped-baremetal-etcd-member.md" %}{% endleveloffset %}
 
-**Additional resources**
-{._additional-resources}
-
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Restoring to an earlier cluster state](/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)
 *   [Recovering from expired control plane certificates](/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-3-expired-certs#dr-recovering-expired-certs)
+*   [etcd backup](/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd-data_backup-etcd) 
 *   [Quorum protection with machine lifecycle hooks](/machine_management/deleting-machine#machine-lifecycle-hook-deletion-etcd_deleting-machine)

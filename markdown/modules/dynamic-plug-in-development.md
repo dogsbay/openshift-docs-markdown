@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Dynamic plugin development {id="dynamic-plugin-development_{{ context }}"}
 
-You can run the plugin using a local development environment. The {{ product_title }} web console runs in a container connected to the cluster you have logged into. {._abstract}
+You can run the plugin by using a local development environment. The {{ product_title }} web console runs in a container connected to the cluster you have logged into. {._abstract}
 
 **Prerequisites**
 

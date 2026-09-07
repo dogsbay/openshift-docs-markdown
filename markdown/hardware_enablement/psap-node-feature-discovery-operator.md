@@ -27,6 +27,8 @@ You can use the Node Feature Discovery (NFD) Operator to detect and expose hardw
 
 {% leveloffset +1 %}{% include "./modules/nfd-configuring-sources.md" %}{% endleveloffset %}
 
+{% leveloffset +1 %}{% include "./modules/configuring-nfd-worker-master-pod-scheduling.md" %}{% endleveloffset %}
+
 {% leveloffset +1 %}{% include "./modules/nfd-rules-about.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/nfd-rules-using.md" %}{% endleveloffset %}

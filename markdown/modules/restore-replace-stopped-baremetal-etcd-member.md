@@ -1,16 +1,16 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Replacing an unhealthy bare metal etcd member whose machine is not running or whose node is not ready {id="restore-replace-stopped-baremetal-etcd-member_{{ context }}"}
 
-Replace a bare metal etcd member whose machine is not running or whose node is not ready by removing it from the cluster and provisioning a replacement control plane machine. {._abstract}
+Replace an unhealthy bare metal etcd member when the machine is not running or the node is not ready. Restoring the member returns the control plane to a healthy state. {._abstract}
 
 If you are running installer-provisioned infrastructure or you used the Machine API to create your machines, follow these steps. Otherwise you must create the new control plane node using the same method that was used to originally create it.
 
 **Prerequisites**
 
-*   You have identified the unhealthy bare metal etcd member.
-*   You have verified that either the machine is not running or the node is not ready.
-*   You have access to the cluster as a user with the `cluster-admin` role.
-*   You have taken an etcd backup.
+*   You identified the unhealthy bare metal etcd member.
+*   You verified that either the machine is not running or the node is not ready.
+*   You confirmed access to the cluster as a user with the `cluster-admin` role.
+*   You created an etcd backup.
 
     :::important
 
@@ -22,9 +22,7 @@ If you are running installer-provisioned infrastructure or you used the Machine 
 **Procedure**
 
 1.  Verify and remove the unhealthy member.
-    1.  Choose a pod that is _not_ on the affected node:
-
-        In a terminal that has access to the cluster as a `cluster-admin` user, run the following command:
+    1.  Choose a pod that is not on the affected node by running the following command:
         ```terminal
         $ oc -n openshift-etcd get pods -l k8s-app=etcd -o wide
         ```
@@ -33,13 +31,11 @@ If you are running installer-provisioned infrastructure or you used the Machine 
         etcd-openshift-control-plane-1   5/5   Running   0    3h54m   192.168.10.10   openshift-control-plane-1   <none>           <none>
         etcd-openshift-control-plane-2   5/5   Running   0    3h58m   192.168.10.11   openshift-control-plane-2   <none>           <none>
         ```
-    1.  Connect to the running etcd container, passing in the name of a pod that is not on the affected node:
-
-        In a terminal that has access to the cluster as a `cluster-admin` user, run the following command:
+    1.  Connect to the running etcd container, passing in the name of a pod that is not on the affected node by running the following command:
         ```terminal
         $ oc rsh -n openshift-etcd etcd-openshift-control-plane-0
         ```
-    1.  View the member list:
+    1.  View the member list by running the following command:
         ```terminal
         sh-4.2# etcdctl member list -w table
         ```
@@ -53,22 +49,22 @@ If you are running installer-provisioned infrastructure or you used the Machine 
         +------------------+---------+--------------------+---------------------------+---------------------------+---------------------+
         ```
 
-        Take note of the ID and the name of the unhealthy etcd member, because these values are required later in the procedure. The `etcdctl endpoint health` command will list the removed member until the replacement procedure is completed and the new member is added.
-    1.  Remove the unhealthy etcd member by providing the ID to the `etcdctl member remove` command:
+        Take note of the ID and the name of the unhealthy etcd member, because these values are required later in the procedure. The `etcdctl endpoint health` command lists the removed member until the replacement procedure is completed and the new member is added.
 
         :::warning
 
-        Be sure to remove the correct etcd member; removing a good etcd member might lead to quorum loss.
+        Be sure to remove the correct etcd member. Removing a good etcd member might lead to quorum loss.
         
         :::
 
+    1.  Remove the unhealthy etcd member by providing the ID to the `etcdctl member remove` command:
         ```terminal
         sh-4.2# etcdctl member remove 7a8197040a5126c8
         ```
         ```terminal title="Example output"
         Member 7a8197040a5126c8 removed from cluster b23536c33f2cdd1b
         ```
-    1.  View the member list again and verify that the member was removed:
+    1.  View the member list again and verify that the member was removed by running the following command:
         ```terminal
         sh-4.2# etcdctl member list -w table
         ```
@@ -89,14 +85,14 @@ If you are running installer-provisioned infrastructure or you used the Machine 
         
         :::
 
-1.  Turn off the quorum guard by entering the following command:
+1.  Turn off the quorum guard by running the following command:
     ```terminal
     $ oc patch etcd/cluster --type=merge -p '{"spec": {"unsupportedConfigOverrides": {"useUnsupportedUnsafeNonHANonProductionUnstableEtcd": true}}}'
     ```
 
     This command ensures that you can successfully re-create secrets and roll out the static pods.
-1.  Remove the old secrets for the unhealthy etcd member that was removed by running the following commands.
-    1.  List the secrets for the unhealthy etcd member that was removed.
+1.  Remove the old secrets for the unhealthy etcd member that was removed.
+    1.  List the secrets for the unhealthy etcd member that was removed by running the following command:
         ```terminal
         $ oc get secrets -n openshift-etcd | grep openshift-control-plane-2
         ```
@@ -109,31 +105,28 @@ If you are running installer-provisioned infrastructure or you used the Machine 
         etcd-serving-metrics-openshift-control-plane-2  kubernetes.io/tls   2   134m
         etcd-serving-openshift-control-plane-2          kubernetes.io/tls   2   134m
         ```
-    1.  Delete the secrets for the unhealthy etcd member that was removed.
-        1.  Delete the peer secret:
-            ```terminal
-            $ oc delete secret etcd-peer-openshift-control-plane-2 -n openshift-etcd
-            ```
-            ```terminal title="Example output"
-            secret "etcd-peer-openshift-control-plane-2" deleted
-            ```
-        1.  Delete the serving secret:
-            ```terminal
-            $ oc delete secret etcd-serving-metrics-openshift-control-plane-2 -n openshift-etcd
-            ```
-            ```terminal title="Example output"
-            secret "etcd-serving-metrics-openshift-control-plane-2" deleted
-            ```
-        1.  Delete the metrics secret:
-            ```terminal
-            $ oc delete secret etcd-serving-openshift-control-plane-2 -n openshift-etcd
-            ```
-            ```terminal title="Example output"
-            secret "etcd-serving-openshift-control-plane-2" deleted
-            ```
-1.  Obtain the machine for the unhealthy member.
-
-    In a terminal that has access to the cluster as a `cluster-admin` user, run the following command:
+    1.  Delete the secrets for the unhealthy etcd member by running the following command:
+        ```terminal
+        $ oc delete secret etcd-peer-openshift-control-plane-2 -n openshift-etcd
+        ```
+        ```terminal title="Example output"
+        secret "etcd-peer-openshift-control-plane-2" deleted
+        ```
+    1.  Delete the serving secret by running the following command:
+        ```terminal
+        $ oc delete secret etcd-serving-metrics-openshift-control-plane-2 -n openshift-etcd
+        ```
+        ```terminal title="Example output"
+        secret "etcd-serving-metrics-openshift-control-plane-2" deleted
+        ```
+    1.  Delete the metrics secret by running the following command:
+        ```terminal
+        $ oc delete secret etcd-serving-openshift-control-plane-2 -n openshift-etcd
+        ```
+        ```terminal title="Example output"
+        secret "etcd-serving-openshift-control-plane-2" deleted
+        ```
+1.  Obtain the machine for the unhealthy member by running the following command:
     ```terminal
     $ oc get machines -n openshift-machine-api -o wide
     ```
@@ -146,7 +139,7 @@ If you are running installer-provisioned infrastructure or you used the Machine 
     examplecluster-compute-1          Running                          165m    openshift-compute-1         baremetalhost:///openshift-machine-api/openshift-compute-1/0fdae6eb-2066-4241-91dc-e7ea72ab13b9         provisioned
     ```
 
-    `examplecluster-control-plane-0` is the control plane machine for the unhealthy node, `examplecluster-control-plane-2`.
+    `examplecluster-control-plane-2` is the control plane machine for the unhealthy node `openshift-control-plane-2`.
 1.  Ensure that the Bare Metal Operator is available by running the following command:
     ```terminal
     $ oc get clusteroperator baremetal
@@ -213,8 +206,7 @@ If you are running installer-provisioned infrastructure or you used the Machine 
     openshift-compute-0       Ready worker 176m v1.35.4
     openshift-compute-1       Ready worker 176m v1.35.4
     ```
-1.  Create the new `BareMetalHost` object and the secret to store the BMC credentials:
-
+1.  Create the new `BareMetalHost` object and the secret to store the Baseboard Management Controller (BMC) credentials by running the following command:
     ```terminal
     $ cat <<EOF | oc apply -f -
     apiVersion: v1
@@ -252,7 +244,7 @@ If you are running installer-provisioned infrastructure or you used the Machine 
 
     :::note
 
-    The username and password can be found from the other bare metal host’s secrets. The protocol to use in `bmc:address` can be taken from other bmh objects.
+    The username and password can be found from the secrets of the other bare-metal host. The protocol to use in `bmc:address` can be taken from other bmh objects.
     
     :::
 
@@ -267,7 +259,7 @@ If you are running installer-provisioned infrastructure or you used the Machine 
 
 
     After the inspection is complete, the `BareMetalHost` object is created and available to be provisioned.
-1.  Verify the creation process using available `BareMetalHost` objects:
+1.  Verify the creation process using available `BareMetalHost` objects by running the following command:
     ```terminal
     $ oc get bmh -n openshift-machine-api
     ```
@@ -279,7 +271,7 @@ If you are running installer-provisioned infrastructure or you used the Machine 
     openshift-compute-0       provisioned            examplecluster-compute-0       true         4h48m
     openshift-compute-1       provisioned            examplecluster-compute-1       true         4h48m
     ```
-    1.  Verify that a new machine has been created:
+    1.  Verify that a new machine has been created by running the following command:
         ```terminal
         $ oc get machines -n openshift-machine-api -o wide
         ```
@@ -292,9 +284,9 @@ If you are running installer-provisioned infrastructure or you used the Machine 
         examplecluster-compute-1               Running                          165m    openshift-compute-1         baremetalhost:///openshift-machine-api/openshift-compute-1/0fdae6eb-2066-4241-91dc-e7ea72ab13b9         provisioned
         ```
 
-        The new machine is being created and is ready after the phase changes from `Provisioning` to `Running`.
+        The new machine is ready when the phase changes from `Provisioning` to `Running`.
 
-        It should take a few minutes for the new machine to be created. The etcd cluster Operator will automatically sync when the machine or node returns to a healthy state.
+        It should take a few minutes for the new machine to be created. The etcd cluster Operator automatically syncs when the machine or node returns to a healthy state.
     1.  Verify that the bare metal host becomes provisioned and no error reported by running the following command:
         ```terminal
         $ oc get bmh -n openshift-machine-api
@@ -307,7 +299,7 @@ If you are running installer-provisioned infrastructure or you used the Machine 
         openshift-compute-0       provisioned            examplecluster-compute-0       true         4h48m
         openshift-compute-1       provisioned            examplecluster-compute-1       true         4h48m
         ```
-    1.  Verify that the new node is added and in a ready state by running this command:
+    1.  Verify that the new node is added and in a ready state by running the following command:
         ```terminal
         $ oc get nodes
         ```
@@ -319,11 +311,11 @@ If you are running installer-provisioned infrastructure or you used the Machine 
         openshift-compute-0       Ready worker 3h58m v1.35.4
         openshift-compute-1       Ready worker 3h58m v1.35.4
         ```
-1.  Turn the quorum guard back on by entering the following command:
+1.  Turn the quorum guard back on by running the following command:
     ```terminal
     $ oc patch etcd/cluster --type=merge -p '{"spec": {"unsupportedConfigOverrides": null}}'
     ```
-1.  You can verify that the `unsupportedConfigOverrides` section is removed from the object by entering this command:
+1.  You can verify that the `unsupportedConfigOverrides` section is removed from the object by running the following command:
     ```terminal
     $ oc get etcd/cluster -oyaml
     ```
@@ -334,9 +326,7 @@ If you are running installer-provisioned infrastructure or you used the Machine 
 
 **Verification**
 
-1.  Verify that all etcd pods are running properly.
-
-    In a terminal that has access to the cluster as a `cluster-admin` user, run the following command:
+1.  Verify that all etcd pods are running properly by running the following command:
     ```terminal
     $ oc -n openshift-etcd get pods -l k8s-app=etcd
     ```
@@ -357,7 +347,7 @@ If you are running installer-provisioned infrastructure or you used the Machine 
     ```terminal
     $ oc rsh -n openshift-etcd etcd-openshift-control-plane-0
     ```
-1.  View the member list:
+1.  View the member list by running the following command:
     ```terminal
     sh-4.2# etcdctl member list -w table
     ```

@@ -51,14 +51,15 @@ You can use any machine that meets these access requirements and follows your co
 
 :::note
 
-AWS China does not support a VPN connection between the VPC and your network. For more information about the Amazon VPC service in the Beijing and Ningxia regions, see "Amazon Virtual Private Cloud" in the AWS China documentation.
+AWS China does not support a VPN connection between the VPC and your network.
 
 :::
 
 
 **Additional resources**
+{._additional-resources}
 
-*   [Amazon Virtual Private Cloud](https://docs.amazonaws.cn/en_us/aws/latest/userguide/vpc.html) {._additional-resource}
+*   [Amazon Virtual Private Cloud (AWS China documentation)](https://docs.amazonaws.cn/en_us/aws/latest/userguide/vpc.html) {._additional-resources}
 {% endif %}
 
 {% if context == "installing-aws-specialized-region" %}

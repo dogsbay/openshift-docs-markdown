@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Supported {{ gcp_short }} regions {id="installation-gcp-regions_{{ context }}"}
 
-You can deploy an {{ product_title }} cluster to the following {{ gcp_first }}
-regions:
+You can deploy an {{ product_title }} cluster to specific {{ gcp_first }} regions, which determine the physical location and available machine types for your cluster infrastructure. {._abstract}
+
+You can deploy to the following {{ gcp_first }} regions:
 
 *   `africa-south1` (Johannesburg, South Africa)
 *   `asia-east1` (Changhua County, Taiwan)

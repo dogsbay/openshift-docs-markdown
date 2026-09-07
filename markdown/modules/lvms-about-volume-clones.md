@@ -1,10 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About volume clones {id="lvms-about-volume-clones_{{ context }}"}
 
-A volume clone is a duplicate of an existing persistent volume claim (PVC). You can create a volume clone to make a point-in-time copy of the data.
+A volume clone is a duplicate of an existing persistent volume claim (PVC) that creates a point-in-time copy of data more efficiently than snapshots, useful for testing, development, or creating independent copies of application data. {._abstract}
 
-## Limitations for creating volume clones in multi-node topology {id="_limitations_for_creating_volume_clones_in_multi-node_topology"}
-
+## Limitations for creating volume clones in multi-node topology {id="lvms-about-volume-clones-limits_{{ context }}"}
 {{ lvms }} has the following limitations for creating volume clones in multi-node topology:
 
 *   Creating volume clones is based on the LVM thin pool capabilities.

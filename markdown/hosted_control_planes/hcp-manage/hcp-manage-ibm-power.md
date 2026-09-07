@@ -19,4 +19,4 @@ After you deploy {{ hcp }} on {{ ibm_power_title }}, you can manage a hosted clu
 {._additional-resources}
 
 *   [Initial Operator configuration](/installing/installing_ibm_power/installing-ibm-power#installation-operators-config)
-*   [Scaling down the data plane to zero](/hosted_control_planes/hcp-troubleshooting#scale-down-data-plane_hcp-troubleshooting)
+*   [Scaling down the data plane to zero](/hosted_control_planes/hcp-machine-config#scale-down-data-plane_hcp-machine-config)

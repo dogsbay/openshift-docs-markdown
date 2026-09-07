@@ -1,7 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deleting volume clones {id="lvms-deleting-cloned-volumes_{{ context }}"}
 
-You can delete volume clones.
+Delete volume clones when they are no longer needed to free up storage resources, since {{ lvms }} does not automatically delete clones when you delete the source persistent volume claim (PVC). {._abstract}
+
 
 :::important
 
@@ -19,7 +20,7 @@ When you delete a persistent volume claim (PVC), {{ lvms }} deletes only the sou
 1.  Log in to the OpenShift CLI (`oc`).
 1.  Delete the cloned PVC by running the following command:
     ```terminal
-    # oc delete pvc <clone_pvc_name> -n <namespace>
+    $ oc delete pvc <clone_pvc_name> -n <namespace>
     ```
 
 **Verification**

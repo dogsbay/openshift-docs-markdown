@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Supported OIDC providers {id="identity-provider-oidc-supported_{{ context }}"}
+# Supported OpenID Connect providers {id="identity-provider-oidc-supported_{{ context }}"}
 
-Red Hat tests and supports specific OpenID Connect (OIDC) providers with {{ product_title }}. The following OpenID Connect (OIDC) providers are tested and supported with {{ product_title }}. Using an OIDC provider that is not on the following list might work with {{ product_title }}, but the provider was not tested by Red Hat and therefore is not supported by Red Hat.
+Review the OpenID Connect (OIDC) providers that Red&#160;Hat tests and supports with {{ product_title }}. Choose a provider from this list if you need a Red&#160;Hat-tested OIDC integration with {{ product_title }}. {._abstract}
+
+The following OIDC providers are tested and supported with {{ product_title }}. Using an OIDC provider that is not on the following list might work with {{ product_title }}, but the provider was not tested by Red&#160;Hat and therefore is not supported by Red&#160;Hat.
 
 *   Active Directory Federation Services for Windows Server
 

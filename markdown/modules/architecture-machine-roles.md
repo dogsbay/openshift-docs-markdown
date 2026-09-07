@@ -85,30 +85,37 @@ Cluster control planes
     Control planes are managed with control plane machine sets.
 {%- endif %}
     Extra controls apply to control plane machines to prevent you from deleting all of the control plane machines and making the cluster inoperable.
+{%- if not (openshift_dedicated or openshift_rosa) %}
+    Exactly three control plane nodes must be used for all production deployments.
 
-    :::note
 
-{% if not (openshift_dedicated or openshift_rosa) %}
+:::note
 
-    Exactly three control plane nodes must be used for all production deployments. However, on bare metal platforms, clusters can be scaled up to five control plane nodes.
+On a bare-metal platform, you can scale a cluster to three, four, or five control plane nodes.
+For best results, use odd size control plane nodes, such as three or five, on a cluster.
+A four-node control plane has the same etcd one failure tolerance as three nodes. 
+Only a five-node control plane can tolerate two simultaneous failures.
+
+Adding a fourth control plane node means etcd needs three healthy members instead of two.
+Until the fourth node is healthy, losing one of the original nodes breaks quorum and takes the cluster down.
+
+:::
+
+
 {% endif %}
 {% if openshift_dedicated or openshift_rosa %}
-    Single availability zone clusters and multiple availability zone clusters require a minimum of three control plane nodes.
+Single availability zone clusters and multiple availability zone clusters require a minimum of three control plane nodes.
 {% endif %}
-    
-    :::
 
+Services that fall under the Kubernetes category on the control plane include the Kubernetes API server, etcd, the Kubernetes controller manager, and the Kubernetes scheduler.
 
-    Services that fall under the Kubernetes category on the control plane include the Kubernetes API server, etcd, the Kubernetes controller manager, and the Kubernetes scheduler.
-
-    **Kubernetes services that run on the control plane**
-
-    | Component | Description |
-    | --- | --- |
-    | Kubernetes API server | The Kubernetes API server validates and configures the data for pods, services, and replication controllers. It also provides a focal point for the shared state of the cluster. |
-    | etcd | etcd stores the persistent control plane state while other components watch etcd for changes to bring themselves into the specified state. |
-    | Kubernetes controller manager | The Kubernetes controller manager watches etcd for changes to objects such as replication, namespace, and service account controller objects, and then uses the API to enforce the specified state. Several such processes create a cluster with one active leader at a time. |
-    | Kubernetes scheduler | The Kubernetes scheduler watches for newly created pods without an assigned node and selects the best node to host the pod. |
+.Kubernetes services that run on the control plane
+| Component | Description |
+| --- | --- |
+| Kubernetes API server | The Kubernetes API server validates and configures the data for pods, services, and replication controllers. It also provides a focal point for the shared state of the cluster. |
+| etcd | etcd stores the persistent control plane state while other components watch etcd for changes to bring themselves into the specified state. |
+| Kubernetes controller manager | The Kubernetes controller manager watches etcd for changes to objects such as replication, namespace, and service account controller objects, and then uses the API to enforce the specified state. Several such processes create a cluster with one active leader at a time. |
+| Kubernetes scheduler | The Kubernetes scheduler watches for newly created pods without an assigned node and selects the best node to host the pod. |
 
 
 There are also OpenShift services that run on the control plane, which include the OpenShift API server, OpenShift controller manager, OpenShift OAuth API server, and OpenShift OAuth server.

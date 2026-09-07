@@ -22,7 +22,7 @@ After you deploy {{ hcp }} on bare metal, you can manage a hosted cluster. {._ab
 **Additional resources**
 {._additional-resources}
 
-*   [Scaling down the data plane to zero](/hosted_control_planes/hcp-troubleshooting#scale-down-data-plane_hcp-troubleshooting)
+*   [Scaling down the data plane to zero](/hosted_control_planes/hcp-machine-config#scale-down-data-plane_hcp-machine-config)
 *   [Scaling up and down workloads in a hosted cluster](/hosted_control_planes/hcp-machine-config#scale-up-down-autoscaler-hcp_hcp-machine-config)
 
 {% leveloffset +1 %}{% include "./modules/hcp-bm-ingress.md" %}{% endleveloffset %}

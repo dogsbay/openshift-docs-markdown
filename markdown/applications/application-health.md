@@ -7,6 +7,8 @@ title: Monitoring application health by using health checks
 {% include "./_attributes/common-attributes.md" %}
 # Monitoring application health by using health checks {id="application-health"}
 
+You can monitor application health on your {{ product_title }} cluster by configuring readiness, liveness, and startup probes for your application containers. You can also observe probe failure events so you can address issues before they affect users. {._abstract}
+
 In software systems, components can become unhealthy due to transient issues such as temporary connectivity loss, configuration errors, or problems with external dependencies. {{ product_title }} applications have a number of options to detect and handle unhealthy containers.
 
 {% leveloffset +1 %}{% include "./modules/application-health-about.md" %}{% endleveloffset %}
@@ -28,6 +30,6 @@ In software systems, components can become unhealthy due to transient issues suc
 {._additional-resources}
 
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
-*   For details on switching to the **Developer** perspective in the web console, see [About the **Developer** perspective](/web_console/web-console-overview#about-developer-perspective_web-console-overview).
+*   [Enabling the Developer perspective in the web console](/web_console/web-console-overview#enabling-developer-perspective_web-console_web-console-overview)
 {%- endif %}
-*   For details on adding health checks while creating and deploying an application, see **Advanced Options** in the [Creating applications using the Developer perspective](/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective) section.
+*   [Creating applications using the Developer perspective](/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective)

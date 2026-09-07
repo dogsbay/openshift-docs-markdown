@@ -1,9 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Infrastructure Manager template for the bootstrap machine {id="installation-infrastructure-manager-bootstrap_{{ context }}"}
 
-You can use the following Infrastructure Manager template to deploy the bootstrap machine that you need for your {{ product_title }} cluster: {._abstract}
+You can use the following `04_bootstrap.tf` Infrastructure Manager template to deploy the bootstrap machine that you need for your {{ product_title }} cluster: {._abstract}
 
-:::details{title="`04_bootstrap.tf` Infrastructure Manager template"}
 ```terraform
 terraform {
   # Infra manager supports specific Terraform versions; ensure compatibility
@@ -141,4 +140,3 @@ resource "google_compute_instance_group" "bootstrap_ig" {
   }
 }
 ```
-:::

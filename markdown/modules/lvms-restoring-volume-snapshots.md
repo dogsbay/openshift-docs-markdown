@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Restoring volume snapshots {id="lvms-restoring-volume-snapshots_{{ context }}"}
 
+Restore volume snapshots to recover data from a previous point in time by creating a persistent volume claim (PVC) that references the snapshot, producing an independent copy separate from the original snapshot and source PVC. {._abstract}
+
 To restore a volume snapshot, you must create a persistent volume claim (PVC) with the `dataSource.name` field set to the name of the volume snapshot.
 
 The restored PVC is independent of the volume snapshot and the source PVC.
@@ -25,16 +27,16 @@ The restored PVC is independent of the volume snapshot and the source PVC.
       volumeMode: Block
       Resources:
         Requests:
-          storage: 2Gi (1)
-      storageClassName: lvms-vg1 (2)
+          storage: 2Gi
+      storageClassName: lvms-vg1
       dataSource:
-        name: lvm-block-1-snap (3)
+        name: lvm-block-1-snap
         kind: VolumeSnapshot
         apiGroup: snapshot.storage.k8s.io
     ```
-    1.  Specify the storage size of the restored PVC. The storage size of the requested PVC must be greater than or equal to the stoage size of the volume snapshot that you want to restore. If a larger PVC is required, you can also resize the PVC after restoring the volume snapshot.
-    1.  Set this field to the value of the `storageClassName` field in the source PVC of the volume snapshot that you want to restore.
-    1.  Set this field to the name of the volume snapshot that you want to restore.
+    *   `spec.Resources.Requests.storage`: Specifies the storage size of the restored PVC. The storage size of the requested PVC must be greater than or equal to the storage size of the volume snapshot that you want to restore. If a larger PVC is required, you can also resize the PVC after restoring the volume snapshot.
+    *   `spec.storageClassName`: Set this field to the value of the `storageClassName` field in the source PVC of the volume snapshot that you want to restore.
+    *   `spec.dataSource.name`: Set this field to the name of the volume snapshot that you want to restore.
 1.  Create the PVC in the namespace where you created the volume snapshot by running the following command:
     ```terminal
     $ oc create -f <file_name> -n <namespace>

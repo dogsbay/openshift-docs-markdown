@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Viewing a deployment {id="deployments-viewing-a-deployment_{{ context }}"}
 
-You can view a deployment to get basic information about all the available revisions of your application.
+To review the rollout history of your application in {{ product_title }}, you can view a deployment. Use the `oc rollout history` and `oc describe` commands to inspect revisions of a `DeploymentConfig` object. {._abstract}
 
 **Procedure**
 

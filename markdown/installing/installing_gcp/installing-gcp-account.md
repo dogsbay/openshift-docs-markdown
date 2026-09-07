@@ -38,9 +38,7 @@ Before you can install {{ product_title }}, you must configure a {{ gcp_first }}
 
 {% leveloffset +1 %}{% include "./modules/installation-gcp-regions.md" %}{% endleveloffset %}
 
-## Next steps {id="_next_steps" ._additional-resources}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
-*   Install an {{ product_title }} cluster on {{ gcp_short }}. You can
-[install a customized cluster](/installing/installing_gcp/installing-gcp-customizations#installing-gcp-customizations)
-or [quickly install a cluster](/installing/installing_gcp/installing-gcp-default#installing-gcp-default)
-with default options.
+*   [Installing a cluster on {{ gcp_short }} with customizations](/installing/installing_gcp/installing-gcp-customizations#installing-gcp-customizations)
+*   [Installing a cluster quickly on {{ gcp_short }}](/installing/installing_gcp/installing-gcp-default#installing-gcp-default)

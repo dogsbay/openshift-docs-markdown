@@ -2,7 +2,7 @@
 
 # Example YAML file changes {id="con_example-yaml-file-changes_{{ context }}"}
 
-You can dynamically add the following snippets in the YAML editor for customizing a developer catalog. {._abstract}
+You can customize a developer catalog by dynamically editing YAML content in the YAML editor. {._abstract}
 
 Use the following snippet to display all the sub-catalogs by setting the _state_ type to **Enabled**.
 ```yaml

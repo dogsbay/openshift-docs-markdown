@@ -42,14 +42,12 @@
 {% if not openshift_origin %}
 # Internet access for {{ product_title }} {id="cluster-entitlements_{{ context }}"}
 
-In {{ product_title }} {{ product_version }}, you require access to the internet to
-{%- if not restricted %}
-install
-{%- endif %}
-{%- if restricted %}
-obtain the images that are necessary to install
-{%- endif %}
-your cluster. {._abstract}
+{% if not restricted %}
+In {{ product_title }} {{ product_version }}, you require access to the internet to install your cluster.
+{% endif %}
+{% if restricted %}
+In {{ product_title }} {{ product_version }}, you require access to the internet to obtain the images that are necessary to install your cluster. {._abstract}
+{% endif %}
 
 You must have internet access to perform the following actions:
 

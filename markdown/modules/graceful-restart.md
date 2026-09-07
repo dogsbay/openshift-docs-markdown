@@ -129,35 +129,59 @@ If your cluster fails to recover, follow the steps in "Restoring to an earlier c
     ```terminal
     $ for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do echo ${node} ; oc adm uncordon ${node} ; done
     ```
-1.  Verify that the cluster started properly.
-    1.  Check that there are no degraded cluster Operators by running the following command:
-        ```terminal
-        $ oc get clusteroperators
-        ```
-        ```terminal title="Example output" {minja}
-        NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
-        authentication                             {{ product_version }}.0    True        False         False      59m
-        cloud-credential                           {{ product_version }}.0    True        False         False      85m
-        cluster-autoscaler                         {{ product_version }}.0    True        False         False      73m
-        config-operator                            {{ product_version }}.0    True        False         False      73m
-        console                                    {{ product_version }}.0    True        False         False      62m
-        csi-snapshot-controller                    {{ product_version }}.0    True        False         False      66m
-        dns                                        {{ product_version }}.0    True        False         False      76m
-        etcd                                       {{ product_version }}.0    True        False         False      76m
-        ...
-        ```
-    1.  Check that all nodes are in the `Ready` state by running the following command:
-        ```terminal
-        $ oc get nodes
-        ```
-        ```terminal title="Example output"
-        NAME                           STATUS   ROLES                  AGE   VERSION
-        ip-10-0-168-251.ec2.internal   Ready    control-plane,master   82m   v1.35.0
-        ip-10-0-170-223.ec2.internal   Ready    control-plane,master   82m   v1.35.0
-        ip-10-0-179-95.ec2.internal    Ready    worker                 70m   v1.35.0
-        ip-10-0-182-134.ec2.internal   Ready    worker                 70m   v1.35.0
-        ip-10-0-211-16.ec2.internal    Ready    control-plane,master   82m   v1.35.0
-        ip-10-0-250-100.ec2.internal   Ready    worker                 69m   v1.35.0
-        ```
 
-        If the cluster did not start properly, follow the steps in "Restoring to an earlier cluster state".
+**Verification**
+
+1.  Check that there are no degraded cluster Operators by running the following command:
+    ```terminal
+    $ oc get clusteroperators
+    ```
+    ```terminal title="Example output" {minja}
+    NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE
+    authentication                             {{ product_version }}.0    True        False         False      59m
+    cloud-credential                           {{ product_version }}.0    True        False         False      85m
+    cluster-autoscaler                         {{ product_version }}.0    True        False         False      73m
+    config-operator                            {{ product_version }}.0    True        False         False      73m
+    console                                    {{ product_version }}.0    True        False         False      62m
+    csi-snapshot-controller                    {{ product_version }}.0    True        False         False      66m
+    dns                                        {{ product_version }}.0    True        False         False      76m
+    etcd                                       {{ product_version }}.0    True        False         False      76m
+    ...
+    ```
+1.  Check that all nodes are in the `Ready` state by running the following command:
+    ```terminal
+    $ oc get nodes
+    ```
+    ```terminal title="Example output"
+    NAME                           STATUS   ROLES                  AGE   VERSION
+    ip-10-0-168-251.ec2.internal   Ready    control-plane,master   82m   v1.35.0
+    ip-10-0-170-223.ec2.internal   Ready    control-plane,master   82m   v1.35.0
+    ip-10-0-179-95.ec2.internal    Ready    worker                 70m   v1.35.0
+    ip-10-0-182-134.ec2.internal   Ready    worker                 70m   v1.35.0
+    ip-10-0-211-16.ec2.internal    Ready    control-plane,master   82m   v1.35.0
+    ip-10-0-250-100.ec2.internal   Ready    worker                 69m   v1.35.0
+    ```
+
+    If the cluster did not start properly, you might need to restore your cluster by using an etcd backup. For more information, see "Restoring to an earlier cluster state".
+1.  If the CSRs for new compute nodes that are trying to join the cluster are not approved, investigate the problem:
+    *   Check the Machine Approver logs by entering the following command:
+        ```terminal
+        $ oc logs -n openshift-cluster-machine-approver -l app=machine-approver
+        ```
+    *   To list all CSRs, enter the following command:
+        ```terminal
+        $ oc get csr -A
+        ```
+1.  If CSRs are pending, you can manually approve them. Manual approval is needed when certificates expired during extended downtime or after cluster recovery scenarios.
+    1.  List any pending CSR requests by entering the following command:
+        ```terminal
+        $ oc get csr | grep Pending
+        ```
+    1.  Approve pending CSRs by entering the following command:
+        ```terminal
+        $ oc adm certificate approve csrName
+        ```
+1.  To troubleshoot other errors related to CSRs, check the Kube Controller Manager logs by entering the following command:
+    ```terminal
+    $ oc logs -n openshift-kube-controller-manager -l app=kube-controller-manager
+    ```

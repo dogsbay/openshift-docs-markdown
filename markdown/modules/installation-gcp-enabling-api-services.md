@@ -11,8 +11,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Enabling API services in {{ gcp_short }} {id="installation-gcp-enabling-api-services_{{ context }}"}
 
-Your {{ gcp_first }} project requires access to several API services
-to complete {{ product_title }} installation.
+You must enable several API services in your {{ gcp_first }} project to complete {{ product_title }} installation. {._abstract}
 
 **Prerequisites**
 
@@ -20,10 +19,7 @@ to complete {{ product_title }} installation.
 
 **Procedure**
 
-*   Enable the following required API services in the project that hosts your
-cluster. You may also enable optional API services which are not required for installation. See
-[Enabling services](https://cloud.google.com/service-usage/docs/enable-disable#enabling)
-in the {{ gcp_short }} documentation.
+*   Enable the following required API services in the project that hosts your cluster. You can also enable optional API services which are not required for installation. See [Enabling services](https://cloud.google.com/service-usage/docs/enable-disable#enabling) in the {{ gcp_short }} documentation.
 
     **Required API services**
 

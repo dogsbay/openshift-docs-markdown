@@ -96,7 +96,7 @@ In the following table, the management cluster version is the {{ product_title }
 
 ## Multi-architecture support {id="hcp-matrix-multiarch_{{ context }}"}
 
-The following tables indicate the supported architectures for {{ hcp }}, organized by platform. If an architecture is not listed, it is not yet fully supported.
+The following table indicates the supported architectures for {{ hcp }}, organized by platform. If an architecture is not listed, it is not yet fully supported.
 
 **Multi-architecture support for {{ hcp }}**
 

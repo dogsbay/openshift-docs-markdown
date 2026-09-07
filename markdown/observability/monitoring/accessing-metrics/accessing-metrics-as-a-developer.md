@@ -27,4 +27,4 @@ You can access metrics to monitor the performance of your cluster workloads.
 {._additional-resources}
 
 *   [About monitoring dashboards](/observability/monitoring/about-ocp-monitoring/key-concepts#about-monitoring-dashboards_key-concepts)
-*   [Monitoring project and application metrics using the Developer perspective](/applications/odc-monitoring-project-and-application-metrics-using-developer-perspective#monitoring-project-and-application-metrics-using-developer-perspective)
+*   [Monitoring project and application metrics by using the Developer perspective](/applications/odc-monitoring-project-and-application-metrics-using-developer-perspective#odc-monitoring-project-and-application-metrics-using-developer-perspective_odc-monitoring-project-and-application-metrics-using-developer-perspective)

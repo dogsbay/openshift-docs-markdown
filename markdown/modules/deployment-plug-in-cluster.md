@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deploy your plugin on a cluster {id="deploy-on-cluster_{{ context }}"}
 
-After pushing an image with your changes to a registry, you can deploy the plugin to a cluster using a Helm chart. {._abstract}
+After pushing an image with your changes to a registry, you can deploy the plugin to a cluster by using a Helm chart. {._abstract}
 
 **Prerequisites**
 

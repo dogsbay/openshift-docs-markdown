@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Reviewing monitoring dashboards as a cluster administrator {id="reviewing-monitoring-dashboards-admin_{{ context }}"}
 
-As an administrator, you can view dashboards relating to core {{ product_title }} cluster components.
+View pre-built dashboards for core {{ product_title }} cluster components to monitor system health and performance. {._abstract}
 
 {% include "./snippets/snip-unified-perspective-web-console.md" %}
 

@@ -36,3 +36,4 @@
 {%- set rhde_version = "4" -%}
 {%- set rhoai = "Red&#160;Hat OpenShift AI Self-Managed" -%}
 {%- set VirtProductName = "OpenShift Virtualization" -%}
+{%- set cert_manager_operator = "cert-manager Operator for Red Hat OpenShift" -%}

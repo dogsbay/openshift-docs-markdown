@@ -7,8 +7,10 @@ title: Update VirtIO drivers
 # Update VirtIO drivers {id="virt-update-virtio-drivers"}
 {%- set context = "virt-update-virtio-drivers" %}
 
-Update VirtIO drivers in guest operating systems. Using the latest VirtIO drivers increases performance and stability. {._abstract}
+Update VirtIO drivers and the QEMU guest agent in guest operating systems. Using the latest VirtIO drivers increases performance and stability. {._abstract}
 
+{% leveloffset +1 %}{% include "./modules/virt-downloading-virtio-win-iso.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/virt-updating-virtio-drivers-guest-agent-windows.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/virt-updating-red-hat-virtio-drivers-windows.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/virt-updating-virtio-drivers-windows.md" %}{% endleveloffset %}
 

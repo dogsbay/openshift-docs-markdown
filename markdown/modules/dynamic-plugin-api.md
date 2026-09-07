@@ -72,7 +72,7 @@ Component for displaying a triangle exclamation icon.
 
 ## `BlueInfoCircleIcon` {id="_blueinfocircleicon"}
 
-Component for displaying a blue info circle icon.
+Component for displaying the `BlueInfoCircleIcon` info icon.
 
 **Example**
 ```tsx
@@ -195,7 +195,7 @@ const [navItemExtensions, navItemsResolved] = useResolvedExtensions<NavItem>(isN
 |     |     |
 | --- | --- |
 | Parameter Name | Description |
-| `typeGuards` | A list of callbacks that each accept a dynamic plugin extension as an argument and return a boolean flag indicating whether or not the extension meets desired type constraints |
+| `typeGuards` | A list of callbacks that each accept a dynamic plugin extension as an argument and return a boolean flag indicating whether or not the extension meets required type constraints |
 
 ## `HorizontalNav` {id="_horizontalnav"}
 
@@ -390,7 +390,7 @@ const exampleList: React.FC<MyProps> = () => {
 | --- | --- |
 | Parameter Name | Description |
 | `items` | key:ReactNode pairs of items to display in dropdown component |
-| `onClick` | callback function for click on dropdown items |
+| `onClick` | callback function for clicking dropdown items |
 | `createAccessReview` | (optional) object with namespace and kind used to determine access |
 | `children` | (optional) children for the dropdown toggle |
 
@@ -509,11 +509,11 @@ const Component: React.FC = () => {
 |     |     |
 | --- | --- |
 | Parameter Name | Description |
-| `initResources` | Resources must be watched as key-value pair, wherein key is unique to resource and value is options needed to watch for the respective resource. |
+| `initResources` | Resources must be watched as key-value pair, wherein key is unique to resource and value is options needed to watch for that resource. |
 
 ## `consoleFetch` {id="_consolefetch"}
 
-A custom wrapper around `fetch` that adds console specific headers and allows for retries and timeouts.It also validates the response status code and throws appropriate error or logs out the user if required. It returns a promise that resolves to the response.
+A custom wrapper around `fetch` that adds console specific headers and allows for retries and timeouts. It also validates the response status code and throws appropriate error or logs out the user if required. It returns a promise that resolves to the response.
 
 |     |     |
 | --- | --- |
@@ -549,7 +549,7 @@ A custom wrapper around `fetch` that adds console specific headers and allows fo
 
 ## `getConsoleRequestHeaders` {id="_getconsolerequestheaders"}
 
-A function that creates impersonation and multicluster related headers for API requests using current redux state. It returns an object containing the appropriate impersonation and cluster request headers, based on redux state.
+A function that creates impersonation and multicluster related headers for API requests by using current redux state. It returns an object containing the appropriate impersonation and cluster request headers, based on redux state.
 
 |     |     |
 | --- | --- |
@@ -558,8 +558,7 @@ A function that creates impersonation and multicluster related headers for API r
 
 ## `k8sGetResource` {id="_k8sgetresource"}
 
-It fetches a resource from the cluster, based on the provided options. If the name is provided it returns one resource else it returns all the resources matching the model. It returns a promise that resolves to the response as JSON object with a resource if the name is provided else it returns all the resources matching the
-model. In case of failure, the promise gets rejected with HTTP error response.
+It fetches a resource from the cluster, based on the provided options. If the name is provided it returns one resource, otherwise it returns all the resources matching the model. It returns a promise that resolves to the response as JSON object with a resource if the name is provided, otherwise it returns all the resources matching the model. In case of failure, the promise gets rejected with HTTP error response.
 
 |     |     |
 | --- | --- |
@@ -570,7 +569,7 @@ model. In case of failure, the promise gets rejected with HTTP error response.
 | `options.ns` | The namespace to look into, should not be specified for cluster-scoped resources. |
 | `options.path` | Appends as subpath if provided |
 | `options.queryParams` | The query parameters to be included in the URL. |
-| `options.requestInit` | The fetch init object to use. This can have request headers, method, redirect, etc.  |
+| `options.requestInit` | The fetch init object to use. This can have request headers, method, redirect, and so on. |
 
 ## `k8sCreateResource` {id="_k8screateresource"}
 
@@ -630,7 +629,7 @@ It deletes resources from the cluster, based on the provided model, resource. Th
 | `options.resource` | The resource to be deleted. |
 | `options.path` | Appends as subpath if provided |
 | `options.queryParams` | The query parameters to be included in the URL. |
-| `options.requestInit` | The fetch init object to use. This can have request headers, method, redirect, etc. See [Interface RequestInit]({{ power_bi_url }}) for more. |
+| `options.requestInit` | The fetch init object to use. This can have request headers, method, redirect, and so on. See [Interface RequestInit]({{ power_bi_url }}) for more. |
 | `options.json` | Can control garbage collection of resources explicitly if provided or else it defaults to the model’s "propagationPolicy". |
 
 ## `k8sListResource` {id="_k8slistresource"}
@@ -643,7 +642,7 @@ Lists the resources as an array in the cluster, based on provided options. It re
 | `options` | Which are passed as key-value pairs in the map |
 | `options.model` | k8s model |
 | `options.queryParams` | The query parameters to be included in the URL and can pass label selector’s as well with key "labelSelector". |
-| `options.requestInit` | The fetch init object to use. This can have request headers, method, redirect, etc. See [Interface RequestInit]({{ power_bi_url }}) for more. |
+| `options.requestInit` | The fetch init object to use. This can have request headers, method, redirect, and so on. See [Interface RequestInit]({{ power_bi_url }}) for more. |
 
 ## `k8sListResourceItems` {id="_k8slistresourceitems"}
 
@@ -678,7 +677,7 @@ Provides a group, version, and kind for a k8s model. This returns the group, ver
 
 ## `StatusPopupSection` {id="_statuspopupsection"}
 
-Component that shows the status in a popup window. Helpful component for building `console.dashboards/overview/health/resource` extensions.
+Component that shows the status in a pop-up. Helpful component for building `console.dashboards/overview/health/resource` extensions.
 
 **Example**
 ```tsx
@@ -698,13 +697,13 @@ Component that shows the status in a popup window. Helpful component for buildin
 |     |     |
 | --- | --- |
 | Parameter Name | Description |
-| `firstColumn` | values for first column of popup |
-| `secondColumn` | (optional) values for second column of popup |
-| `children` | (optional) children for the popup |
+| `firstColumn` | values for first column of pop-up |
+| `secondColumn` | (optional) values for second column of pop-up |
+| `children` | (optional) children for the pop-up |
 
 ## `StatusPopupItem` {id="_statuspopupitem"}
 
-Status element used in status popup; used in `StatusPopupSection`.
+Status element used in status pop-up; used in `StatusPopupSection`.
 
 **Example**
 ```text
@@ -886,9 +885,9 @@ A basic lazy loaded Code editor with hover help and completion.
 |     |     |
 | --- | --- |
 | Parameter Name | Description |
-| `value` | String representing the yaml code to render. |
+| `value` | String representing the YAML code to render. |
 | `language` | String representing the language of the editor. |
-| `options` | Monaco editor options. For more details, please, visit [Interface IStandAloneEditorConstructionOptions](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneEditorConstructionOptions.html). |
+| `options` | Monaco editor options. For more details, see [Interface IStandAloneEditorConstructionOptions](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneEditorConstructionOptions.html). |
 | `minHeight` | Minimum editor height in valid CSS height values. |
 | `showShortcuts` | Boolean to show shortcuts on top of the editor. |
 | `toolbarLinks` | Array of ReactNode rendered on the toolbar links section on top of the editor. |
@@ -898,7 +897,7 @@ A basic lazy loaded Code editor with hover help and completion.
 
 ## `ResourceYAMLEditor` {id="_resourceyamleditor"}
 
-A lazy loaded YAML editor for Kubernetes resources with hover help and completion. The component use the YAMLEditor and add on top of it more functionality like resource update handling, alerts, save, cancel and reload buttons, accessibility and more. Unless `onSave` callback is provided, the resource update is automatically handled. It should be wrapped in a `React.Suspense` component.
+A lazy loaded YAML editor for Kubernetes resources with hover help and completion. The component use the YAMLEditor and add on top of it more functionality such as resource update handling, alerts, save, cancel and reload buttons, accessibility and more. Unless `onSave` callback is provided, the resource update is automatically handled. It should be wrapped in a `React.Suspense` component.
 
 ```text title="Example"
 <React.Suspense fallback={<LoadingBox />}>
@@ -1044,7 +1043,7 @@ A component that renders a horizontal toolbar with a namespace dropdown menu in 
 
 ## `ErrorBoundaryFallbackPage` {id="_errorboundaryfallbackpage"}
 
-Creates full page ErrorBoundaryFallbackPage component to display the "Oh no! Something went wrong." message along with the stack trace and other helpful debugging information. This is to be used inconjunction with an component.
+Creates full page ErrorBoundaryFallbackPage component to display the "Oh no! Something went wrong." message along with the stack trace and other helpful debugging information. This is to be used in conjunction with an component.
 
 ```tsx title="Example"
 //in ErrorBoundary component
@@ -1374,7 +1373,7 @@ Deprecated: Use `CodeEditor` instead. A basic lazy loaded YAML editor with hover
 |     |     |
 | --- | --- |
 | Parameter Name | Description |
-| `value` | String representing the yaml code to render. |
+| `value` | String representing the YAML code to render. |
 | `options` | Monaco editor options. |
 | `minHeight` | Minimum editor height in valid CSS height values. |
 | `showShortcuts` | Boolean to show shortcuts on top of the editor. |

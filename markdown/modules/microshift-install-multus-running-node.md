@@ -1,4 +1,4 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
+{%- set _mod_docs_content_type = "PROCEDURE" %}
 # Install the Multus CNI plugin on a running node {id="microshift-multus-installing-on-running-node_{{ context }}"}
 
 If you want to attach additional networks to a pod for high-performance network configurations, you can install the {{ microshift_short }} Multus RPM package. After installation, a host restart is required to re-create all the pods with the Multus annotation. {._abstract}

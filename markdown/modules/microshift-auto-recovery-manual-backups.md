@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Modify backup and restore commands to automate data recovery {id="microshift-auto-recovery-manual-backups_{{ context }}"}
+# Automate data recovery {id="microshift-auto-recovery-manual-backups_{{ context }}"}
 
 The `--auto-recovery` option stores {{ product_title }} backups in one directory and selects the latest backup when you restore. You add the option to your `backup` and `restore` commands for automatic recovery. {._abstract}
 

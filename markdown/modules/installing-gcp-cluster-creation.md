@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring user-defined labels and tags for {{ gcp_short }} {id="installing-gcp-cluster-creation_{{ context }}"}
 
-Configuring user-defined labels and tags for {{ gcp_full }} means that you can apply key-value pairs to your cloud resources for the purposes of organizing, managing, and automating your infrastructure.
+You can apply key-value pairs as labels and tags to your {{ gcp_full }} resources to organize, manage, and automate your {{ product_title }} infrastructure. {._abstract}
 
 **Prerequisites**
 
@@ -17,23 +17,27 @@ Configuring user-defined labels and tags for {{ gcp_full }} means that you can a
     
     :::
 
-    ```yaml title="Sample install-config.yaml file"
+
+    The following sample `install-config.yaml` file defines user labels and tags:
+    ```yaml
     apiVersion: v1
-    credentialsMode: Passthrough (1)
+    credentialsMode: Passthrough
     platform:
      gcp:
-       userLabels: (2)
-       - key: <label_key><3>
-         value: <label_value><4>
-       userTags: (5)
-       - parentID: <OrganizationID/ProjectID><6>
+       userLabels:
+       - key: <label_key>
+         value: <label_value>
+       userTags:
+       - parentID: <OrganizationID/ProjectID>
          key: <tag_key_short_name>
          value: <tag_value_short_name>
     # ...
     ```
-    1.  In passthrough mode, the Cloud Credential Operator (CCO) passes the provided cloud credential to the components that request cloud credentials. 
-    1.  Adds keys and values as labels to the resources created on {{ gcp_short }}.
-    1.  Defines the label name.
-    1.  Defines the label content.
-    1.  Adds keys and values as tags to the resources created on {{ gcp_short }}.
-    1.  The ID of the hierarchical resource where you defined the tags at the organization or the project level.
+
+    where:
+*   `credentialsMode`: In passthrough mode, the Cloud Credential Operator (CCO) passes the provided cloud credential to the components that request cloud credentials.
+*   `userLabels`: Adds keys and values as labels to the resources created on {{ gcp_short }}.
+*   `<label_key>`: Specifies the label name.
+*   `<label_value>`: Specifies the label content.
+*   `userTags`: Adds keys and values as tags to the resources created on {{ gcp_short }}.
+*   `<OrganizationID/ProjectID>`: Specifies the ID of the hierarchical resource where you defined the tags at the organization or the project level.

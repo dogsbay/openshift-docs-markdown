@@ -1,0 +1,55 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Create the NodeSRIOVDevicePluginConfig custom resource {id="nw-dpf-creating-sriov-config_{{ context }}"}
+
+You can create a `NodeSRIOVDevicePluginConfig` custom resource to define how SR-IOV virtual functions on the management cluster worker nodes are allocated to DPF components. {._abstract}
+
+**Prerequisites**
+
+*   You have installed the DPF Operator.
+*   You have created the `DPFOperatorConfig` resource.
+
+**Procedure**
+
+1.  Create a file named `nodesriovdevicepluginconfig.yaml` with the following content:
+    ```yaml
+    apiVersion: noderesources.dpu.nvidia.com/v1alpha1
+    kind: NodeSRIOVDevicePluginConfig
+    metadata:
+      name: bf3-vfs
+      namespace: dpf-operator-system
+    spec:
+      devicePluginResources:
+        - name: bf3-p0-vfs-mgmt
+          type: vf
+          ranges:
+            - pfIndex: 0
+              start: 1
+              end: 1
+        - name: bf3_vfs
+          type: vf
+          options:
+            isRdma: true
+          ranges:
+            - pfIndex: 0
+              start: 2
+              end: 45
+            - pfIndex: 1
+              start: 0
+              end: 45
+    ```
+
+    In the example, the `devicePluginResources` named `bf3-p0-vfs-mgmt` reserves VF index 1 on PF0 for DPU management connectivity. The `devicePluginResources` named `bf3_vfs` allocates VF indices 2-45 on PF0 and VF indices `0-45` on PF1 for workload traffic with RDMA enabled. The  examples `pfIndex` values refer to the first (`0`) and second (`1`) physical functions of the BlueField-3 DPU.
+1.  Apply the resource file:
+    ```terminal
+    $ oc apply -f nodesriovdevicepluginconfig.yaml
+    ```
+
+**Verification**
+
+*   Verify that the `NodeSRIOVDevicePluginConfig` resource is created:
+    ```terminal
+    $ oc get nodesriovdevicepluginconfig -n dpf-operator-system
+    ```
+    ```terminal title="Example output"
+    bf3-vfs    30s
+    ```

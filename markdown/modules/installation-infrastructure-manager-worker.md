@@ -1,9 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Infrastructure Manager template for worker machines {id="installation-infrastructure-manager-worker_{{ context }}"}
 
-You can use the following Infrastructure Manager template to deploy the worker machines that you need for your {{ product_title }} cluster: {._abstract}
+You can use the following `06_worker.tf` Infrastructure Manager template to deploy the worker machines that you need for your {{ product_title }} cluster: {._abstract}
 
-:::details{title="`06_worker.tf` Infrastructure Manager template"}
 ```terraform
 terraform {
   # Infra manager supports specific Terraform versions; ensure compatibility
@@ -148,4 +147,3 @@ resource "google_compute_instance" "worker_1" {
   }
 }
 ```
-:::

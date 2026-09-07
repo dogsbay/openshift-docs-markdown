@@ -77,8 +77,6 @@ If you encounter an issue with {{ hcp }}, you can gather information about the h
 
 {% leveloffset +1 %}{% include "./modules/hosted-control-planes-pause-reconciliation.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/scale-down-data-plane.md" %}{% endleveloffset %}
-
 {% leveloffset +1 %}{% include "./modules/agent-service-failure.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/hcp-ts-internal-subnets.md" %}{% endleveloffset %}

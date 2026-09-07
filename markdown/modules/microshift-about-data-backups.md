@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About backing up and restoring {{ microshift_short }} data {id="microshift-about-data-backups_{{ context }}"}
+# Back up and restore {{ microshift_short }} data {id="microshift-about-data-backups_{{ context }}"}
 
 Backing up and restoring {{ microshift_short }} data applies to the database only, and not to any application data. Before you can create a manual backup, greenboot health checks must finish running and you must stop the {{ microshift_short }} service. {._abstract}
 

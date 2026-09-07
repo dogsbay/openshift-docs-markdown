@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About monitoring dashboards {id="about-monitoring-dashboards_{{ context }}"}
 
-{{ product_title }} provides a set of monitoring dashboards that help you understand the state of cluster components and user-defined workloads.
+{{ product_title }} provides a set of monitoring dashboards that help you understand the state of cluster components and user-defined workloads. {._abstract}
 
 {% include "./snippets/snip-unified-perspective-web-console.md" %}
 

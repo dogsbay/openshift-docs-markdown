@@ -1,0 +1,18 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Adding ingress firewall rules {id="installation-gcp-user-infra-vpc-adding-firewall-rules_{{ context }}"}
+
+The cluster requires several firewall rules. If you do not use a shared VPC, the Ingress Controller creates these rules by using the {{ gcp_short }} cloud provider. When you use a shared VPC, you must create the rules yourself so that traffic can reach the cluster services. {._abstract}
+
+You can either create cluster-wide firewall rules for all services now or create each rule based on events, when the cluster requests access. By creating each rule when the cluster requests access, you know exactly which firewall rules are required. By creating cluster-wide firewall rules, you can apply the same rule set across multiple clusters.
+
+If you choose to create each rule based on events, you must create firewall rules after you provision the cluster and during the life of the cluster when the console notifies you that rules are missing. Events that are similar to the following event are displayed, and you must add the firewall rules that are required:
+
+```terminal
+$ oc get events -n openshift-ingress --field-selector="reason=LoadBalancerManualChange"
+```
+
+```terminal title="Example output"
+Firewall change required by security admin: `gcloud compute firewall-rules create k8s-fw-a26e631036a3f46cba28f8df67266d55 --network example-network --description "{\"kubernetes.io/service-name\":\"openshift-ingress/router-default\", \"kubernetes.io/service-ip\":\"35.237.236.234\"}\" --allow tcp:443,tcp:80 --source-ranges 0.0.0.0/0 --target-tags exampl-fqzq7-master,exampl-fqzq7-worker --project example-project`
+```
+
+If you encounter issues when creating these rule-based events, you can configure the cluster-wide firewall rules while your cluster is running.

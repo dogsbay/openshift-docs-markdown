@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# The multicast DNS protocol {id="microshift-mDNS_{{ context }}"}
+# The multicast DNS protocol {id="microshift-mdns_{{ context }}"}
 
 To allow name resolution and service discovery within a Local Area Network (LAN) using multicast exposed on the `5353/UDP` port, you can use the multicast DNS protocol (mDNS). {._abstract}
 

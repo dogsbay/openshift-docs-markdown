@@ -11,6 +11,8 @@ The {{ zero_trust_full }} leverages Secure Production Identity Framework for Eve
 
 These release notes track the development of {{ zero_trust_full }}.
 
+{% leveloffset +1 %}{% include "./modules/zero-trust-manager-release-notes-1-1-1.md" %}{% endleveloffset %}
+
 {% leveloffset +1 %}{% include "./modules/zero-trust-manager-release-notes-1-1-0.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/zero-trust-manager-release-notes-1-0-1.md" %}{% endleveloffset %}

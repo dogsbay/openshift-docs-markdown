@@ -11,7 +11,9 @@ title: Managing deployment processes
 
 {% include "./snippets/deployment-config-deprecated.md" %}
 
-`DeploymentConfig` objects can be managed from the {{ product_title }} web console’s **Workloads** page or using the `oc` CLI. The following procedures show CLI usage unless otherwise stated.
+You can manage `DeploymentConfig` objects from the {{ product_title }} web console’s **Workloads** page or by using the `oc` CLI, depending on your preference.  {._abstract}
+
+The following procedures show CLI usage unless otherwise stated.
 
 {% leveloffset +2 %}{% include "./modules/deployments-starting-deployment.md" %}{% endleveloffset %}
 
@@ -31,13 +33,13 @@ title: Managing deployment processes
 
 {% leveloffset +2 %}{% include "./modules/deployments-setting-resources.md" %}{% endleveloffset %}
 
-{%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 
 **Additional resources**
 {._additional-resources}
 
-*   For more information about resource limits and requests, see [Understanding managing application memory](/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-about_nodes-cluster-resource-configure).
-{%- endif %}
+*   [Understanding managing application memory](/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-about_nodes-cluster-resource-configure)
+{% endif %}
 
 {% leveloffset +2 %}{% include "./modules/deployments-scaling-manually.md" %}{% endleveloffset %}
 

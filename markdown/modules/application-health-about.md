@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding health checks {id="application-health-about_{{ context }}"}
+# Health checks {id="application-health-about_{{ context }}"}
 
-A health check periodically performs diagnostics on a
-running container using any combination of the readiness, liveness, and startup health checks.
+You can configure health checks by understanding the differences between readiness, liveness, and startup probes. {._abstract}
+
+A health check periodically performs diagnostics on a running container using any combination of the readiness, liveness, and startup health checks.
 
 You can include one or more probes in the specification for the pod that contains the container which you want to perform the health checks.
 
@@ -25,7 +26,7 @@ Readiness probe
 Liveness health check
 :   A _liveness probe_ determines if a container is still
     running. If the liveness probe fails due to a condition such as a deadlock, the kubelet kills the container. The pod then
-    responds based on its restart policy.
+    responds based on the pod restart policy.
 
     For example, a liveness probe on a pod with a `restartPolicy` of `Always` or `OnFailure`
     kills and restarts the container.
@@ -36,17 +37,15 @@ Startup probe
 
     Some applications can require additional startup time on their first initialization. You can use a startup probe with a liveness or readiness probe to delay that probe long enough to handle lengthy start-up time using the `failureThreshold` and `periodSeconds` parameters.
 
-    For example, you can add a startup probe, with a `failureThreshold` of 30 failures and a `periodSeconds` of 10 seconds (30 * 10s = 300s) for a maximum of 5 minutes, to a liveness probe. After the startup probe succeeds the first time, the liveness probe takes over.
+    For example, you can add a startup probe to a liveness probe. Use a `failureThreshold` of 30 failures and a `periodSeconds` of 10 seconds. This combination (30 × 10s = 300s) gives a maximum startup window of 5 minutes. After the startup probe succeeds the first time, the liveness probe takes over.
 
 You can configure liveness, readiness, and startup probes with any of the following types of tests:
 
-*   HTTP `GET`: When using an HTTP `GET` test, the test determines the healthiness of the container by using a web hook. The test is successful if the HTTP response code is between `200` and `399`.
+*   HTTP `GET`: When using an HTTP `GET` test, the test determines the healthiness of the container by using a webhook. The test is successful if the HTTP response code is between `200` and `399`.
 
     You can use an HTTP `GET` test with applications that return HTTP status codes when completely initialized.
 *   Container Command: When using a container command test, the probe executes a command inside the container. The probe is successful if the test exits with a `0` status.
-*   TCP socket: When using a TCP socket test, the probe attempts to open a socket to the container. The container is only
-considered healthy if the probe can establish a connection. You can use a TCP socket test with applications that do not start listening until
-initialization is complete.
+*   Transmission Control Protocol (TCP) socket: When using a TCP socket test, the probe attempts to open a socket to the container. The container is considered healthy only if the probe can establish a connection. You can use a TCP socket test with applications that do not start listening until initialization is complete.
 
 You can configure several fields to control the behavior of a probe:
 
@@ -54,14 +53,14 @@ You can configure several fields to control the behavior of a probe:
 *   `periodSeconds`: The delay, in seconds, between performing probes. The default is `10`. This value must be greater than `timeoutSeconds`.
 *   `timeoutSeconds`: The number of seconds of inactivity after which the probe times out and the container is assumed to have failed. The default is `1`. This value must be lower than `periodSeconds`.
 *   `successThreshold`: The number of times that the probe must report success after a failure to reset the container status to successful. The value must be `1` for a liveness probe. The default is `1`.
-*   `failureThreshold`: The number of times that the probe is allowed to fail. The default is 3. After the specified attempts:
+*   `failureThreshold`: The number of times that the probe is allowed to fail. The default is 3. When the threshold is reached:
     *   for a liveness probe, the container is restarted
     *   for a readiness probe, the pod is marked `Unready`
-    *   for a startup probe, the container is killed and is subject to the pod’s `restartPolicy`
+    *   for a startup probe, the container is killed and is subject to the `restartPolicy` of the pod
 
-## Example probes {id="application-health-examples"}
+## Example probes {id="application-health-examples_{{ context }}"}
 
-The following are samples of different probes as they would appear in an object specification.
+The following are samples of different probes as they appear in an object specification.
 
 ```yaml title="Sample readiness probe with a container command readiness probe in a pod spec"
 apiVersion: v1
@@ -73,22 +72,33 @@ metadata:
 # ...
 spec:
   containers:
-  - name: goproxy-app (1)
+  - name: goproxy-app
     args:
-    image: registry.k8s.io/goproxy:0.1 (2)
-    readinessProbe: (3)
-      exec: (4)
-        command: (5)
+    image: registry.k8s.io/goproxy:0.1
+    readinessProbe:
+      exec:
+        command:
         - cat
         - /tmp/healthy
 # ...
 ```
+where:
 
-1.  The container name.
-1.  The container image to deploy.
-1.  A readiness probe.
-1.  A container command test.
-1.  The commands to execute on the container.
+
+`spec.containers.name`
+:   Specifies the container name.
+
+`spec.containers.image`
+:   Specifies the container image to deploy.
+
+`spec.containers.readinessProbe`
+:   Specifies a readiness probe.
+
+`spec.containers.readinessProbe.exec`
+:   Specifies a container command test.
+
+`spec.containers.readinessProbe.exec.command`
+:   Specifies the commands to execute on the container.
 
 ```yaml title="Sample container command startup probe and liveness probe with container command tests in a pod spec"
 apiVersion: v1
@@ -100,36 +110,60 @@ metadata:
 # ...
 spec:
   containers:
-  - name: goproxy-app (1)
+  - name: goproxy-app
     args:
-    image: registry.k8s.io/goproxy:0.1 (2)
-    livenessProbe: (3)
-      httpGet: (4)
-        scheme: HTTPS (5)
+    image: registry.k8s.io/goproxy:0.1
+    livenessProbe:
+      httpGet:
+        scheme: HTTPS
         path: /healthz
-        port: 8080 (6)
+        port: 8080
         httpHeaders:
         - name: X-Custom-Header
           value: Awesome
-    startupProbe: (7)
-      httpGet: (8)
+    startupProbe:
+      httpGet:
         path: /healthz
-        port: 8080 (9)
-      failureThreshold: 30 (10)
-      periodSeconds: 10 (11)
+        port: 8080
+      failureThreshold: 30
+      periodSeconds: 10
 # ...
 ```
-1.  The container name.
-1.  Specify the container image to deploy.
-1.  A liveness probe.
-1.  An HTTP `GET` test.
-1.  The internet scheme: `HTTP` or `HTTPS`. The default value is `HTTP`.
-1.  The port on which the container is listening.
-1.  A startup probe.
-1.  An HTTP `GET` test.
-1.  The port on which the container is listening.
-1.  The number of times to try the probe after a failure.
-1.  The number of seconds to perform the probe.
+where:
+
+
+`spec.containers.name`
+:   Specifies the container name.
+
+`spec.containers.image`
+:   Specifies the container image to deploy.
+
+`spec.containers.livenessProbe`
+:   Specifies a liveness probe.
+
+`spec.containers.livenessProbe.httpGet`
+:   Specifies an HTTP `GET` test.
+
+`spec.containers.livenessProbe.httpGet.scheme`
+:   Specifies the internet scheme: `HTTP` or `HTTPS`. The default value is `HTTP`.
+
+`spec.containers.livenessProbe.httpGet.port`
+:   Specifies the port on which the container is listening.
+
+`spec.containers.startupProbe`
+:   Specifies a startup probe.
+
+`spec.containers.startupProbe.httpGet`
+:   Specifies an HTTP `GET` test.
+
+`spec.containers.startupProbe.httpGet.port`
+:   Specifies the port on which the container is listening.
+
+`spec.containers.startupProbe.failureThreshold`
+:   Specifies the number of times to try the probe after a failure.
+
+`spec.containers.startupProbe.periodSeconds`
+:   Specifies the number of seconds to perform the probe.
 
 ```yaml title="Sample liveness probe with a container command test that uses a timeout in a pod spec"
 apiVersion: v1
@@ -141,28 +175,46 @@ metadata:
 # ...
 spec:
   containers:
-  - name: goproxy-app (1)
+  - name: goproxy-app
     args:
-    image: registry.k8s.io/goproxy:0.1 (2)
-    livenessProbe: (3)
-      exec: (4)
-        command: (5)
+    image: registry.k8s.io/goproxy:0.1
+    livenessProbe:
+      exec:
+        command:
         - /bin/bash
         - '-c'
         - timeout 60 /opt/eap/bin/livenessProbe.sh
-      periodSeconds: 10 (6)
-      successThreshold: 1 (7)
-      failureThreshold: 3 (8)
+      periodSeconds: 10
+      successThreshold: 1
+      failureThreshold: 3
 # ...
 ```
-1.  The container name.
-1.  Specify the container image to deploy.
-1.  The liveness probe.
-1.  The type of probe, here a container command probe.
-1.  The command line to execute inside the container.
-1.  How often in seconds to perform the probe.
-1.  The number of consecutive successes needed to show success after a failure.
-1.  The number of times to try the probe after a failure.
+where:
+
+
+`spec.containers.name`
+:   Specifies the container name.
+
+`spec.containers.image`
+:   Specifies the container image to deploy.
+
+`spec.containers.livenessProbe`
+:   Specifies the liveness probe.
+
+`spec.containers.livenessProbe.exec`
+:   Specifies the type of probe, here a container command probe.
+
+`spec.containers.livenessProbe.exec.command`
+:   Specifies the command line to execute inside the container.
+
+`spec.containers.livenessProbe.periodSeconds`
+:   Specifies how often in seconds to perform the probe.
+
+`spec.containers.livenessProbe.successThreshold`
+:   Specifies the number of consecutive successes needed to show success after a failure.
+
+`spec.containers.livenessProbe.failureThreshold`
+:   Specifies the number of times to try the probe after a failure.
 
 ```yaml title="Sample readiness probe and liveness probe with a TCP socket test in a deployment"
 kind: Deployment
@@ -177,7 +229,7 @@ spec:
     spec:
       containers:
         - resources: {}
-          readinessProbe: (1)
+          readinessProbe:
             tcpSocket:
               port: 8080
             timeoutSeconds: 1
@@ -186,7 +238,7 @@ spec:
             failureThreshold: 3
           terminationMessagePath: /dev/termination-log
           name: ruby-ex
-          livenessProbe: (2)
+          livenessProbe:
             tcpSocket:
               port: 8080
             initialDelaySeconds: 15
@@ -196,5 +248,11 @@ spec:
             failureThreshold: 3
 # ...
 ```
-1.  The readiness probe.
-1.  The liveness probe.
+where:
+
+
+`spec.template.spec.containers.readinessProbe`
+:   Specifies the readiness probe.
+
+`spec.template.spec.containers.livenessProbe`
+:   Specifies the liveness probe.

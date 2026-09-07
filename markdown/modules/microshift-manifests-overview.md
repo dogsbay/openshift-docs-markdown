@@ -16,7 +16,7 @@ At each system start, {{ microshift_short }} deletes the manifests found in the 
 :::
 
 
-## How {{ microshift_short }} uses manifests {id="how-microshift-uses-manifests"}
+## How {{ microshift_short }} uses manifests {id="how-microshift-uses-manifests_{{ context }}"}
 At every start, {{ microshift_short }} searches the following manifest directories for Kustomize manifest files:
 
 *   `/etc/microshift/manifests`
@@ -36,7 +36,7 @@ This automatic loading from multiple directories means you can manage {{ microsh
 
 | Location | Intent |
 | --- | --- |
-| `/etc/microshift/manifests` | Read-write location for configuration management systems or development. |
-| `/etc/microshift/manifests.d/*` | Read-write location for configuration management systems or development. |
+| `/etc/microshift/manifests` | Read/write location for configuration management systems or development. |
+| `/etc/microshift/manifests.d/*` | Read/write location for configuration management systems or development. |
 | `/usr/lib/microshift/manifests` | Read-only location for embedding configuration manifests on OSTree-based systems. |
 | `/usr/lib/microshift/manifestsd./*` | Read-only location for embedding configuration manifests on OSTree-based systems. |

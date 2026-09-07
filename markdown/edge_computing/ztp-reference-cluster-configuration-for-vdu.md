@@ -51,6 +51,11 @@ Use the following reference information to understand the {{ sno }} configuratio
 
 {% leveloffset +2 %}{% include "./modules/ztp-sno-du-enabling-kdump.md" %}{% endleveloffset %}
 
+**Additional resources**
+{._additional-resources}
+
+*   [Extracting reference and example CRs from the ztp-site-generate container](/edge_computing/ztp-manual-install#ztp-generating-install-and-config-crs-manually_ztp-manual-install)
+
 {% leveloffset +2 %}{% include "./modules/ztp-sno-du-disabling-crio-wipe.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/ztp-sno-du-configuring-crun-container-runtime.md" %}{% endleveloffset %}

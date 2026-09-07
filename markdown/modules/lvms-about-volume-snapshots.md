@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About volume snapshots {id="lvms-about-volume-snapshots_{{ context }}"}
 
-You can create snapshots of persistent volume claims (PVCs) that are provisioned by {{ lvms }}.
+You can create volume snapshots of persistent volume claims (PVCs) provisioned by {{ lvms }} to back up application data or revert to a previous state, providing data protection and recovery capabilities. {._abstract}
 
 You can perform the following actions using the volume snapshots:
 
@@ -23,8 +23,7 @@ You can also create volume snapshots of the volume clones.
 :::
 
 
-## Limitations for creating volume snapshots in multi-node topology {id="_limitations_for_creating_volume_snapshots_in_multi-node_topology"}
-
+## Limitations for creating volume snapshots in multi-node topology {id="lvms-about-volume-snapshots-limits_{{ context }}"}
 {{ lvms }} has the following limitations for creating volume snapshots in multi-node topology:
 
 *   Creating volume snapshots is based on the LVM thin pool capabilities.

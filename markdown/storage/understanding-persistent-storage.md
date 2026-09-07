@@ -51,7 +51,7 @@ Persistent storage decouples data from pod lifecycles, allowing stateful applica
 
 {% leveloffset +2 %}{% include "./modules/storage-persistent-storage-block-volume-examples.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/storage-persistent-storage-fsGroup.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/storage-persistent-storage-fsgroup.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/storage-persistent-storage-fsGroup-namespace.md" %}{% endleveloffset %}
 

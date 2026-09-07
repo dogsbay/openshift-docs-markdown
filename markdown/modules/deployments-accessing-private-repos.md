@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Accessing private repositories from DeploymentConfig objects {id="deployments-accessing-private-repos_{{ context }}"}
 
-You can add a secret to your `DeploymentConfig` object so that it can access images from a private repository. This procedure shows the {{ product_title }} web console method.
+To pull container images from a private repository into a `DeploymentConfig` object in {{ product_title }}, you can add a pull secret to the object. Create the secret in the web console, then set it as the pull secret in the `DeploymentConfig` object. {._abstract}
 
 **Procedure**
 

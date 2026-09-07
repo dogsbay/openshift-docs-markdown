@@ -110,12 +110,12 @@
 
 {% endif %}
 
-{% if cco_multi_mode %}
-The Cloud Credential Operator (CCO) can be put into manual mode prior to installation in environments where the cloud identity and access management (IAM) APIs are not reachable, or the administrator prefers not to store an administrator-level credential secret in the cluster `kube-system` namespace. {._abstract}
-{% endif %}
+{%- if cco_multi_mode %}
+You can put the Cloud Credential Operator (CCO) into manual mode before {{ product_title }} installation if the cloud identity and access management (IAM) APIs are not reachable, or if you prefer not to store an administrator-level credential secret in the cluster `kube-system` namespace. {._abstract}
+{%- endif %}
 
 {%- if cco_manual_mode %}
-The Cloud Credential Operator (CCO) only supports your cloud provider in manual mode. As a result, you must specify the identity and access management (IAM) secrets for your cloud provider.
+You must manually create and configure the identity and access management (IAM) secrets for your {{ product_title }} cluster because the Cloud Credential Operator (CCO) only supports manual mode for your cloud provider. {._abstract}
 {%- endif %}
 
 **Procedure**

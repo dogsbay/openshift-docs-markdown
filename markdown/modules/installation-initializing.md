@@ -242,9 +242,7 @@ For a restricted network installation, these files are on your mirror host.
 
 {% if aws %}
         1.  Select **AWS** as the platform to target.
-        1.  If you do not have an Amazon Web Services (AWS) profile stored on your computer, enter the AWS
-        access key ID and secret access key for the user that you configured to run the
-        installation program.
+        1.  If you do not have an Amazon Web Services (AWS) profile stored on your computer, enter the AWS access key ID and secret access key for the user that you configured to run the installation program.
         1.  Select the AWS region to deploy the cluster to.
         1.  Select the base domain for the Route 53 service that you configured for your cluster.
 {% endif %}
@@ -269,27 +267,21 @@ For a restricted network installation, these files are on your mirror host.
 {% endif %}
 {% if gcp %}
         1.  Select **gcp** as the platform to target.
-        1.  If you have not configured the service account key for your {{ gcp_short }} account on
-        your computer, you must obtain it from {{ gcp_short }} and paste the contents of the file
-        or enter the absolute path to the file.
-        1.  Select the project ID to provision the cluster in. The default value is
-        specified by the service account that you configured.
+        1.  If you have not configured the service account key for your {{ gcp_short }} account on your computer, you must obtain it from {{ gcp_short }} and paste the contents of the file or enter the absolute path to the file.
+        1.  Select the project ID to provision the cluster in. The default value is specified by the service account that you configured.
         1.  Select the region to deploy the cluster to.
-        1.  Select the base domain to deploy the cluster to. The base domain corresponds
-        to the public DNS zone that you created for your cluster.
+        1.  Select the base domain to deploy the cluster to. The base domain corresponds to the public DNS zone that you created for your cluster.
 {% endif %}
 {% if ibm_cloud %}
         1.  Select **ibmcloud** as the platform to target.
         1.  Select the region to deploy the cluster to.
-        1.  Select the base domain to deploy the cluster to. The base domain corresponds
-        to the public DNS zone that you created for your cluster.
+        1.  Select the base domain to deploy the cluster to. The base domain corresponds to the public DNS zone that you created for your cluster.
 {% endif %}
 {% if ibm_power_vs %}
         1.  Select **powervs** as the platform to target.
         1.  Select the region to deploy the cluster to.
         1.  Select the zone to deploy the cluster to.
-        1.  Select the base domain to deploy the cluster to. The base domain corresponds
-        to the public DNS zone that you created for your cluster.
+        1.  Select the base domain to deploy the cluster to. The base domain corresponds to the public DNS zone that you created for your cluster.
 {% endif %}
 {% if osp %}
         1.  Select **openstack** as the platform to target.
@@ -465,10 +457,7 @@ For a restricted network installation, these files are on your mirror host.
         pullSecret: '{"auths":{"<mirror_host_name>:5000": {"auth": "<credentials>","email": "you@example.com"}}}'
         ```
 
-        For `<mirror_host_name>`, specify the registry domain name
-        that you specified in the certificate for your mirror registry, and for
-        `<credentials>`, specify the base64-encoded user name and password for
-        your mirror registry.
+        For `<mirror_host_name>`, specify the registry domain name that you specified in the certificate for your mirror registry, and for `<credentials>`, specify the base64-encoded user name and password for your mirror registry.
     1.  Add the `additionalTrustBundle` parameter and value.
         ```yaml
         additionalTrustBundle: |
@@ -644,8 +633,7 @@ it to install multiple clusters.
 
     :::important
 
-    The `install-config.yaml` file is consumed during the installation process. If
-    you want to reuse the file, you must back it up now.
+    The `install-config.yaml` file is consumed during the installation process. If you want to reuse the file, you must back it up now.
     
     :::
 

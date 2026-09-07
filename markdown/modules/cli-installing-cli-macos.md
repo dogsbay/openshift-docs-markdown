@@ -56,10 +56,10 @@ If you are updating a cluster in a disconnected environment, install the `oc` ve
 1.  Click **Download Now** next to the **OpenShift v{{ product_version }} macOS Clients** entry and save the file.
 
 {%- endif %}
-1.  Unpack and unzip the archive.
+1.  Extract the archive.
 1.  Move the `oc` binary to a directory on your `PATH` variable.
 
-    To check your `PATH` variable, open a terminal and execute the following command:
+    To check your `PATH` variable, open a terminal and run the following command:
     ```terminal
     $ echo $PATH
     ```

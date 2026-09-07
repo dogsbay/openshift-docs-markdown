@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Disabling your plugin in the browser {id="disabling-your-plugin-browser_{{ context }}"}
 
-Console users can use the `disable-plugins` query parameter to disable specific or all dynamic plugins that would normally get loaded at run-time. {._abstract}
+Console users can use the `disable-plugins` query parameter to disable specific or all dynamic plugins that would normally get loaded at runtime. {._abstract}
 
 **Procedure**
 
