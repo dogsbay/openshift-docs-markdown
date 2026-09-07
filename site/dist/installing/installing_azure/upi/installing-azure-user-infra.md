@@ -1019,9 +1019,7 @@ To deploy an OpenShift Container Platform cluster using the Azure Marketplace of
 
 ## Obtaining the installation program {#installation-obtaining-installer_installing-azure-user-infra}
 
-Before you install OpenShift Container Platform, download the installation file on
-
-the host you are using for installation.
+Before you install OpenShift Container Platform, download the installation file on the host you are using for installation, so that installation assets exist for deployment in your environment.
 
 **Prerequisites**
 
@@ -1110,7 +1108,7 @@ If you want to SSH in to your cluster nodes to perform installation debugging or
    $ ssh-add <path>/<file_name>
    ```
 
-   Specifies the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`
+   Specify the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`.
 
    ```terminal {title="Example output"}
    Identity added: /home/<you>/<path>/<file_name> (<computer_name>)
@@ -1126,7 +1124,7 @@ To install OpenShift Container Platform on Microsoft Azure by using user-provisi
 
 You generate and customize the `install-config.yaml` file, Kubernetes manifests, and Ignition config files. You also have the option to first set up a separate `var` partition during the preparation phases of installation.
 
-### Optional: Creating a separate `/var` partition {#installation-disk-partitioning-upi-templates_installing-azure-user-infra}
+### Creating a separate `/var` partition {#installation-disk-partitioning-upi-templates_installing-azure-user-infra}
 
 To isolate growing storage for containers, etcd, or logs, you can optionally create a separate `/var` partition on worker nodes before you generate Ignition configs.
 
@@ -3292,7 +3290,7 @@ To manage your cluster and deploy applications from the command line on Linux, i
    ```
 6. Place the `oc` binary in a directory that is on your `PATH`.
 
-   To check your `PATH`, execute the following command:
+   To check your `PATH`, run the following command:
 
    ```terminal
    $ echo $PATH
@@ -3323,7 +3321,7 @@ To manage your cluster and deploy applications from the command line on Windows,
 4. Extract the archive with a ZIP program.
 5. Move the `oc` binary to a directory that is on your `PATH` variable.
 
-   To check your `PATH` variable, open the command prompt and execute the following command:
+   To check your `PATH` variable, open the Command Prompt and run the following command:
 
    ```terminal
    C:\> path
@@ -3355,10 +3353,10 @@ To manage your cluster and deploy applications from the command line on macOS, i
 
    > [!NOTE]
    > For macOS arm64, choose the **OpenShift v4.22 macOS arm64 Client** entry.
-5. Unpack and unzip the archive.
+5. Extract the archive.
 6. Move the `oc` binary to a directory on your `PATH` variable.
 
-   To check your `PATH` variable, open a terminal and execute the following command:
+   To check your `PATH` variable, open a terminal and run the following command:
 
    ```terminal
    $ echo $PATH

@@ -4,18 +4,28 @@ title: Installing a cluster on Google Cloud with customizations
 
 # Installing a cluster on Google Cloud with customizations {#installing-gcp-customizations}
 
-In OpenShift Container Platform version 4.22, you can install a cluster on Google Cloud by using installer-provisioned infrastructure with customizations, including network configuration options. In each, you modify parameters in the `install-config.yaml` file before you install the cluster.
+In OpenShift Container Platform version 4.22, you can install a cluster on Google Cloud with customizations by using installer-provisioned infrastructure. You customize the cluster to match your environment by modifying parameters in the `install-config.yaml` file before installation.
 
 By customizing your network configuration, your cluster can coexist with existing IP address allocations in your environment and integrate with existing MTU and VXLAN configurations.
 
 You must set most of the network configuration parameters during installation, and you can modify only `kubeProxy` configuration parameters in a running cluster.
 
-## Prerequisites {#_prerequisites}
+## Prerequisites {#installing-gcp-customizations-prerequisites_installing-gcp-customizations}
 
-- You reviewed details about the [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation) processes.
-- You read the documentation on [selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing).
-- You [configured a Google Cloud project](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-account#installing-gcp-account) to host the cluster.
-- If you use a firewall, you [configured it to allow the sites](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall) that your cluster requires access to.
+Your environment must meet specific infrastructure and access requirements before you install an OpenShift Container Platform cluster on Google Cloud with customizations.
+
+- You reviewed details about the OpenShift Container Platform installation and update processes. For more information, see "Installation and update".
+- You selected a cluster installation method and prepared it for users. For more information, see "Selecting a cluster installation method and preparing it for users".
+- You configured a Google Cloud project to host the cluster. For more information, see "Configuring a Google Cloud project".
+- If you use a firewall, you configured it to allow the sites that your cluster requires access to. For more information, see "Configuring your firewall for OpenShift Container Platform".
+
+**Additional resources**
+{._additional-resources}
+
+- [Installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
+- [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
+- [Configuring a Google Cloud project](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-account#installing-gcp-account)
+- [Configuring your firewall for OpenShift Container Platform](/openshift-docs-markdown/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
 
 ## Internet access for OpenShift Container Platform {#cluster-entitlements_installing-gcp-customizations}
 
@@ -90,7 +100,7 @@ If you want to SSH in to your cluster nodes to perform installation debugging or
    $ ssh-add <path>/<file_name>
    ```
 
-   Specifies the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`
+   Specify the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`.
 
    ```terminal {title="Example output"}
    Identity added: /home/<you>/<path>/<file_name> (<computer_name>)
@@ -102,9 +112,7 @@ If you want to SSH in to your cluster nodes to perform installation debugging or
 
 ## Obtaining the installation program {#installation-obtaining-installer_installing-gcp-customizations}
 
-Before you install OpenShift Container Platform, download the installation file on
-
-the host you are using for installation.
+Before you install OpenShift Container Platform, download the installation file on the host you are using for installation, so that installation assets exist for deployment in your environment.
 
 **Prerequisites**
 
@@ -251,7 +259,7 @@ If an instance type for your platform meets the minimum requirements for cluster
 
 ### Tested instance types for Google Cloud {#installation-gcp-tested-machine-types_installing-gcp-customizations}
 
-The following Google Cloud instance types have been tested with OpenShift Container Platform.
+OpenShift Container Platform supports specific Google Cloud instance types that have been validated for cluster deployment.
 
 > [!NOTE]
 > Not all instance types are available in all regions and zones. For a detailed breakdown of which instance types are available in which zones, see [regions and zones](https://cloud.google.com/compute/docs/regions-zones#available) (Google documentation).
@@ -277,7 +285,7 @@ See the following machine series:
 
 ### Tested instance types for Google Cloud on 64-bit ARM infrastructures {#installation-gcp-tested-machine-types-arm_installing-gcp-customizations}
 
-The following Google Cloud 64-bit ARM instance types have been tested with OpenShift Container Platform.
+OpenShift Container Platform supports specific Google Cloud 64-bit ARM instance types that have been validated for cluster deployment.
 
 See the following machine series for 64-bit ARM machines:
 
@@ -287,7 +295,7 @@ See the following machine series for 64-bit ARM machines:
 
 ### Using custom machine types {#installation-custom-machine-types_installing-gcp-customizations}
 
-Using a custom machine type to install a OpenShift Container Platform cluster is supported.
+If the predefined Google Cloud machine types do not meet your workload requirements, you can configure a custom machine type in the `install-config.yaml` file during OpenShift Container Platform installation.
 
 Consider the following when using a custom machine type:
 
@@ -319,14 +327,16 @@ controlPlane:
 
 ### Enabling Shielded VMs {#installation-gcp-enabling-shielded-vms_installing-gcp-customizations}
 
-You can use Shielded VMs when installing your cluster. Shielded VMs have extra security features including secure boot, firmware and integrity monitoring, and rootkit detection. For more information, see Google’s documentation on [Shielded VMs](https://cloud.google.com/shielded-vm).
+You can use Shielded VMs when installing your OpenShift Container Platform cluster. Shielded VMs have extra security features including secure boot, firmware and integrity monitoring, and rootkit detection.
+
+For more information, see Google’s documentation on [Shielded VMs](https://cloud.google.com/shielded-vm).
 
 > [!NOTE]
 > Shielded VMs are currently not supported on clusters with 64-bit ARM infrastructures.
 
 **Procedure**
 
-- Use a text editor to edit the `install-config.yaml` file prior to deploying your cluster and add one of the following stanzas:
+- Use a text editor to edit the `install-config.yaml` file before deploying your cluster and add one of the following stanzas:
 
   1. To use shielded VMs for only control plane machines:
 
@@ -355,14 +365,16 @@ You can use Shielded VMs when installing your cluster. Shielded VMs have extra s
 
 ### Enabling Confidential VMs {#installation-gcp-enabling-confidential-vms_installing-gcp-customizations}
 
-You can use Confidential VMs when installing your cluster. Confidential VMs encrypt data while it is being processed. For more information, see Google’s documentation on [Confidential Computing](https://cloud.google.com/confidential-computing). You can enable Confidential VMs and Shielded VMs at the same time, although they are not dependent on each other.
+You can use Confidential VMs when installing your OpenShift Container Platform cluster. Confidential VMs encrypt data during processing.
+
+For more information, see Google’s documentation on [Confidential Computing](https://cloud.google.com/confidential-computing). You can enable Confidential VMs and Shielded VMs at the same time, although they are not dependent on each other.
 
 > [!NOTE]
 > Confidential VMs are currently not supported on 64-bit ARM architectures.
 
 **Procedure**
 
-- Use a text editor to edit the `install-config.yaml` file prior to deploying your cluster and add one of the following stanzas:
+- Use a text editor to edit the `install-config.yaml` file before deploying your cluster and add one of the following stanzas:
 
   1. To use confidential VMs for only control plane machines:
 
@@ -370,14 +382,21 @@ You can use Confidential VMs when installing your cluster. Confidential VMs encr
      controlPlane:
        platform:
          gcp:
-            confidentialCompute: AMDEncryptedVirtualizationNestedPaging (1)
-            type: n2d-standard-8 (2)
-            onHostMaintenance: Terminate (3)
+            confidentialCompute: AMDEncryptedVirtualizationNestedPaging
+            type: n2d-standard-8
+            onHostMaintenance: Terminate
      ```
 
-     1. Enable confidential VMs with AMD Secure Encrypted Virtualization Secure Nested Paging (AMD SEV-SNP). For more information about available options, see "Additional Google Cloud configuration parameters".
-     2. Specify a machine type that supports Confidential VMs. Confidential VMs require the N2D, C2D, C3D, or C3 series of machine types. For more information on supported machine types, see [Supported operating systems and machine types](https://cloud.google.com/compute/confidential-vm/docs/os-and-machine-type#machine-type).
-     3. Specify the behavior of the VM during a host maintenance event, such as a hardware or software update. For a machine that uses Confidential VM, this value must be set to `Terminate`, which stops the VM. Confidential VMs do not support live VM migration.
+     where:
+
+     `confidentialCompute`
+     :   Enables confidential VMs with AMD Secure Encrypted Virtualization Secure Nested Paging (AMD SEV-SNP). For more information about available options, see "Additional Google Cloud configuration parameters".
+
+     `type`
+     :   Specifies a machine type that supports Confidential VMs. Confidential VMs require the N2D, C2D, C3D, or C3 series of machine types. For more information on supported machine types, see [Supported operating systems and machine types](https://cloud.google.com/compute/confidential-vm/docs/os-and-machine-type#machine-type).
+
+     `onHostMaintenance`
+     :   Specifies the behavior of the VM during a host maintenance event, such as a hardware or software update. For a machine that uses Confidential VM, this value must be set to `Terminate`, which stops the VM. Confidential VMs do not support live VM migration.
   2. To use confidential VMs for only compute machines:
 
      ```yaml
@@ -412,6 +431,8 @@ For example, your organization’s security policies might not allow the use of 
 
 If you enable user-managed DNS during installation, the installation program provisions DNS records for the API and Ingress services only within the cluster. To ensure access from outside the cluster, you must provision the DNS records in an external DNS service of your choice for the API and Ingress services after installation.
 
+For information about provisioning your DNS records for the API server and the Ingress services, see "Provisioning your own DNS records".
+
 **Prerequisites**
 
 - You installed the `jq` package.
@@ -432,8 +453,6 @@ If you enable user-managed DNS during installation, the installation program pro
 
     `Enabled`
     :   Enables user-provisioned DNS management.
-
-For information about provisioning your DNS records for the API server and the Ingress services, see "Provisioning your own DNS records".
 
 **Additional resources**
 {._additional-resources}
@@ -563,7 +582,7 @@ Production environments can deny direct access to the internet and instead have 
 
 ## Managing user-defined labels and tags for Google Cloud {#installing-gcp-user-defined-labels-and-tags_installing-gcp-customizations}
 
-Google Cloud provides labels and tags that help to identify and organize the resources created for a specific OpenShift Container Platform cluster, making them easier to manage.
+You can use Google Cloud labels and tags to identify and organize the resources created for a specific OpenShift Container Platform cluster.
 
 You can define labels and tags for each Google Cloud resource only during OpenShift Container Platform cluster installation.
 
@@ -573,11 +592,9 @@ You can define labels and tags for each Google Cloud resource only during OpenSh
 > [!NOTE]
 > You cannot update the tags that are already added. Also, a new tag-supported resource creation fails if the configured tag keys or tag values are deleted.
 
-**User-defined labels**
+User-defined labels and OpenShift Container Platform specific labels are applied only to resources created by the OpenShift Container Platform installation program and its core components, such as the following:
 
-User-defined labels and OpenShift Container Platform specific labels are applied only to resources created by OpenShift Container Platform installation program and its core components such as:
-
-- Google Cloud filestore CSI Driver Operator
+- Google Cloud FileStore CSI Driver Operator
 - Google Cloud PD CSI Driver Operator
 - Image Registry Operator
 - Machine API provider for Google Cloud
@@ -595,13 +612,11 @@ User-defined labels and OpenShift Container Platform labels are available on the
 - Filestore instance
 - Storage bucket
 
-**Limitations to user-defined labels**
+User-defined labels have the following limitations:
 
 - Labels for `ComputeAddress` are supported in the Google Cloud beta version. OpenShift Container Platform does not add labels to the resource.
 
-**User-defined tags**
-
-User-defined tags are applied only to resources created by OpenShift Container Platform installation program and its core components, such as the following resources:
+User-defined tags are applied only to resources created by the OpenShift Container Platform installation program and its core components, such as the following:
 
 - Google Cloud FileStore CSI Driver Operator
 - Google Cloud PD CSI Driver Operator
@@ -618,7 +633,7 @@ User-defined tags are available on the following Google Cloud resources:
 - Filestore instance
 - Storage bucket
 
-**Limitations to the user-defined tags**
+User-defined tags have the following limitations:
 
 - Tags must not be restricted to particular service accounts, because Operators create and use service accounts with minimal roles.
 - OpenShift Container Platform does not create any key and value resources of the tag.
@@ -627,14 +642,14 @@ User-defined tags are available on the following Google Cloud resources:
 **Additional resources**
 {._additional-resources}
 
-- For more information about identifying the `OrganizationID`, see: [OrganizationID](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id)
-- For more information about identifying the `ProjectID`, see: [ProjectID](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects)
-- For more information about labels, see [Labels Overview](https://cloud.google.com/resource-manager/docs/labels-overview).
-- For more information about tags, see [Tags Overview](https://cloud.google.com/resource-manager/docs/tags/tags-overview).
+- [Retrieving your organization ID](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id)
+- [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects)
+- [Labels overview](https://cloud.google.com/resource-manager/docs/labels-overview)
+- [Tags overview](https://cloud.google.com/resource-manager/docs/tags/tags-overview)
 
 ### Criteria for user-defined labels and tags {#installing-gcp-cluster-label-tag-reference_installing-gcp-customizations}
 
-Before configuring user-defined labels and tags for Google Cloud, consider the importance of meeting the requirements for these tag and labels to ensure proper resource governance.
+User-defined labels and tags for Google Cloud in OpenShift Container Platform must meet specific formatting and quantity requirements for proper resource governance.
 
 The following list details the requirements for user-defined labels:
 
@@ -679,7 +694,7 @@ The following list details the requirements for user-defined tags:
 
 ### Configuring user-defined labels and tags for Google Cloud {#installing-gcp-cluster-creation_installing-gcp-customizations}
 
-Configuring user-defined labels and tags for Google Cloud means that you can apply key-value pairs to your cloud resources for the purposes of organizing, managing, and automating your infrastructure.
+You can apply key-value pairs as labels and tags to your Google Cloud resources to organize, manage, and automate your OpenShift Container Platform infrastructure.
 
 **Prerequisites**
 
@@ -692,31 +707,34 @@ Configuring user-defined labels and tags for Google Cloud means that you can app
   > [!NOTE]
   > If you set labels and tags during creation of the `install-config.yaml` configuration file, you cannot create new or update existing labels and tags after creation of the cluster.
 
-  ```yaml {title="Sample install-config.yaml file"}
+  The following sample `install-config.yaml` file defines user labels and tags:
+
+  ```yaml
   apiVersion: v1
-  credentialsMode: Passthrough (1)
+  credentialsMode: Passthrough
   platform:
    gcp:
-     userLabels: (2)
-     - key: <label_key><3>
-       value: <label_value><4>
-     userTags: (5)
-     - parentID: <OrganizationID/ProjectID><6>
+     userLabels:
+     - key: <label_key>
+       value: <label_value>
+     userTags:
+     - parentID: <OrganizationID/ProjectID>
        key: <tag_key_short_name>
        value: <tag_value_short_name>
   # ...
   ```
 
-  1. In passthrough mode, the Cloud Credential Operator (CCO) passes the provided cloud credential to the components that request cloud credentials.
-  2. Adds keys and values as labels to the resources created on Google Cloud.
-  3. Defines the label name.
-  4. Defines the label content.
-  5. Adds keys and values as tags to the resources created on Google Cloud.
-  6. The ID of the hierarchical resource where you defined the tags at the organization or the project level.
+  where:
+- `credentialsMode`: In passthrough mode, the Cloud Credential Operator (CCO) passes the provided cloud credential to the components that request cloud credentials.
+- `userLabels`: Adds keys and values as labels to the resources created on Google Cloud.
+- `<label_key>`: Specifies the label name.
+- `<label_value>`: Specifies the label content.
+- `userTags`: Adds keys and values as tags to the resources created on Google Cloud.
+- `<OrganizationID/ProjectID>`: Specifies the ID of the hierarchical resource where you defined the tags at the organization or the project level.
 
 ### Querying user-defined labels and tags for Google Cloud {#installing-gcp-querying-labels-tags-gcp_installing-gcp-customizations}
 
-After creating the OpenShift Container Platform cluster, you can access the list of the labels and tags defined for the Google Cloud resources  in the `infrastructures.config.openshift.io/cluster` object as shown in the following sample `infrastructure.yaml` file.
+After creating the OpenShift Container Platform cluster, you can query the labels and tags defined for Google Cloud resources in the `infrastructures.config.openshift.io/cluster` object to verify your labeling configuration or reference tag values during troubleshooting.
 
 ```yaml {title="Sample infrastructure.yaml file"}
 apiVersion: config.openshift.io/v1
@@ -727,7 +745,7 @@ spec:
  platformSpec:
    type: GCP
 status:
- infrastructureName: <cluster_id><1>
+ infrastructureName: <cluster_id>
  platform: GCP
  platformStatus:
    gcp:
@@ -741,7 +759,7 @@ status:
    type: GCP
 ```
 
-1. The cluster ID that is generated during cluster installation.
+Where `<cluster_id>` is the cluster ID that is generated during cluster installation.
 
 Along with the user-defined labels, resources have a label defined by the OpenShift Container Platform. The format of the OpenShift Container Platform labels is `kubernetes-io-cluster-<cluster_id>:owned`.
 
@@ -767,7 +785,7 @@ To manage your cluster and deploy applications from the command line on Linux, i
    ```
 6. Place the `oc` binary in a directory that is on your `PATH`.
 
-   To check your `PATH`, execute the following command:
+   To check your `PATH`, run the following command:
 
    ```terminal
    $ echo $PATH
@@ -798,7 +816,7 @@ To manage your cluster and deploy applications from the command line on Windows,
 4. Extract the archive with a ZIP program.
 5. Move the `oc` binary to a directory that is on your `PATH` variable.
 
-   To check your `PATH` variable, open the command prompt and execute the following command:
+   To check your `PATH` variable, open the Command Prompt and run the following command:
 
    ```terminal
    C:\> path
@@ -830,10 +848,10 @@ To manage your cluster and deploy applications from the command line on macOS, i
 
    > [!NOTE]
    > For macOS arm64, choose the **OpenShift v4.22 macOS arm64 Client** entry.
-5. Unpack and unzip the archive.
+5. Extract the archive.
 6. Move the `oc` binary to a directory on your `PATH` variable.
 
-   To check your `PATH` variable, open a terminal and execute the following command:
+   To check your `PATH` variable, open a terminal and run the following command:
 
    ```terminal
    $ echo $PATH
@@ -847,16 +865,16 @@ To manage your cluster and deploy applications from the command line on macOS, i
   $ oc <command>
   ```
 
-## Alternatives to storing administrator-level secrets in the kube-system project {#installing-gcp-manual-modes_installing-gcp-customizations ._additional-resources}
+## Alternatives to storing administrator-level secrets in the kube-system project {#installing-gcp-manual-modes_installing-gcp-customizations}
 
-By default, administrator secrets are stored in the `kube-system` project. If you configured the `credentialsMode` parameter in the `install-config.yaml` file to `Manual`, you must use one of the following alternatives:
+By default, OpenShift Container Platform stores administrator secrets in the `kube-system` project. If you configured the `credentialsMode` parameter in the `install-config.yaml` file to `Manual`, you must configure an alternative credential management strategy by using either long-term manual credentials or short-term credentials that are managed outside the cluster.
 
-- To manage long-term cloud credentials manually, follow the procedure in [Manually creating long-term credentials](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#manually-create-iam_installing-gcp-customizations).
-- To implement short-term credentials that are managed outside the cluster for individual components, follow the procedures in [Configuring a Google Cloud cluster to use short-term credentials](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installing-gcp-with-short-term-creds_installing-gcp-customizations).
+- To manage long-term cloud credentials manually, follow the procedure in "Manually creating long-term credentials".
+- To implement short-term credentials that are managed outside the cluster for individual components, follow the procedures in "Short-term credential configuration for a Google Cloud cluster".
 
 ### Manually creating long-term credentials {#manually-create-iam_installing-gcp-customizations}
 
-The Cloud Credential Operator (CCO) can be put into manual mode prior to installation in environments where the cloud identity and access management (IAM) APIs are not reachable, or the administrator prefers not to store an administrator-level credential secret in the cluster `kube-system` namespace.
+You can put the Cloud Credential Operator (CCO) into manual mode before OpenShift Container Platform installation if the cloud identity and access management (IAM) APIs are not reachable, or if you prefer not to store an administrator-level credential secret in the cluster `kube-system` namespace.
 
 **Procedure**
 
@@ -966,9 +984,11 @@ The Cloud Credential Operator (CCO) can be put into manual mode prior to install
    > [!IMPORTANT]
    > Before upgrading a cluster that uses manually maintained credentials, you must ensure that the CCO is in an upgradeable state.
 
-### Configuring a Google Cloud cluster to use short-term credentials {#installing-gcp-with-short-term-creds_installing-gcp-customizations}
+### Short-term credential configuration for a Google Cloud cluster {#installing-gcp-with-short-term-creds_installing-gcp-customizations}
 
-To install a cluster that is configured to use Google Cloud Workload Identity, you must configure the Cloud Credential Operator (CCO) utility and create the required Google Cloud resources for your cluster. Cluster Operators use the credentials created by the CCO. The installation program does not use these credentials.
+To install an OpenShift Container Platform cluster that is configured to use Google Cloud Workload Identity, you must configure the Cloud Credential Operator (CCO) utility and create the required Google Cloud resources for your cluster.
+
+Cluster Operators use the credentials created by the CCO. The installation program does not use these credentials.
 
 #### Configuring the Cloud Credential Operator utility {#cco-ccoctl-configuring_installing-gcp-customizations}
 
@@ -1326,7 +1346,7 @@ When the `ccoctl` utility assigns custom and Google Cloud predefined roles to Op
 
 #### Incorporating the Cloud Credential Operator utility manifests {#cco-ccoctl-install-creating-manifests_installing-gcp-customizations}
 
-To implement short-term security credentials managed outside the cluster for individual components, you must move the manifest files that the Cloud Credential Operator utility (`ccoctl`) created to the correct directories for the installation program.
+To implement short-term security credentials managed outside the cluster for individual OpenShift Container Platform components, you must move the manifest files that the Cloud Credential Operator utility (`ccoctl`) created to the correct directories for the installation program.
 
 **Prerequisites**
 
@@ -1379,9 +1399,9 @@ To implement short-term security credentials managed outside the cluster for ind
 
 ## Using the Google Cloud Marketplace offering {#installation-gcp-marketplace_installing-gcp-customizations}
 
-Using the Google Cloud Marketplace offering lets you deploy an OpenShift Container Platform cluster, which is billed on pay-per-use basis (hourly, per core) through Google Cloud, while still being supported directly by Red Hat.
+You can deploy an OpenShift Container Platform cluster through the Google Cloud Marketplace offering, which is billed on a pay-per-use basis (hourly, per core) through Google Cloud. Red Hat still provides direct support for these clusters.
 
-By default, the installation program downloads and installs the Red Hat Enterprise Linux CoreOS (RHCOS) image that is used to deploy compute machines. To deploy an OpenShift Container Platform cluster using an RHCOS image from the Google Cloud Marketplace, override the default behavior by modifying the `install-config.yaml` file to reference the location of Google Cloud Marketplace offer.
+By default, the installation program downloads and installs the Red Hat Enterprise Linux CoreOS (RHCOS) image that is used to deploy compute machines. To deploy an OpenShift Container Platform cluster by using an RHCOS image from the Google Cloud Marketplace, override the default behavior by modifying the `install-config.yaml` file to reference the location of the Google Cloud Marketplace offer.
 
 > [!NOTE]
 > You should only modify the RHCOS image for compute machines to use a Google Cloud Marketplace image. Control plane machines and infrastructure nodes do not require an OpenShift Container Platform subscription and use the public RHCOS default image by default, which does not incur subscription costs on your Google Cloud bill. Therefore, you should not modify the cluster default boot image or the control plane boot images. Applying the Google Cloud Marketplace image to them will incur additional licensing costs that cannot be recovered.
@@ -1406,23 +1426,25 @@ By default, the installation program downloads and installs the Red Hat Enterpr
    OpenShift Kubernetes Engine
    :   `redhat-coreos-oke-413-x86-64-202305021736` 1.  Save the file and reference it when deploying the cluster.
 
-```yaml {title="Sample install-config.yaml file that specifies a Google Cloud Marketplace image for compute machines"}
-apiVersion: v1
-baseDomain: example.com
-controlPlane:
-# ...
-compute:
-  platform:
-    gcp:
-      osImage:
-        project: redhat-marketplace-public
-        name: redhat-coreos-ocp-413-x86-64-202305021736
-# ...
-```
+   The following sample `install-config.yaml` file specifies a Google Cloud Marketplace image for compute machines:
+
+   ```yaml
+   apiVersion: v1
+   baseDomain: example.com
+   controlPlane:
+   # ...
+   compute:
+     platform:
+       gcp:
+         osImage:
+           project: redhat-marketplace-public
+           name: redhat-coreos-ocp-413-x86-64-202305021736
+   # ...
+   ```
 
 ## Network configuration phases {#nw-network-config_installing-gcp-customizations}
 
-There are two phases prior to OpenShift Container Platform installation where you can customize the network configuration. Customize settings in the `install-config.yaml` file and in the Cluster Network Operator manifest across two configuration phases.
+You can customize your OpenShift Container Platform network plugin configuration, such as cluster network CIDR and service network ranges, during two phases before installation to integrate with your existing network environment.
 
 Phase 1
 :   You can customize the following network-related fields in the `install-config.yaml` file before you create the manifest files:
@@ -1448,7 +1470,9 @@ During phase 2, you cannot override the values that you specified in phase 1 in 
 
 ## Specifying advanced network configuration {#modifying-nwoperator-config-startup_installing-gcp-customizations}
 
-To integrate your OpenShift Container Platform cluster with your existing network environment, you can specify advanced network configuration in a manifest before you install the cluster. Advanced network configuration can be configured only during cluster installation.
+You can use advanced network configuration for your OpenShift Container Platform network plugin to integrate your cluster into your existing network environment.
+
+You can specify advanced network configuration only before you install the cluster.
 
 > [!IMPORTANT]
 > Customizing your network configuration by modifying the OpenShift Container Platform manifest files created by the installation program is not supported. Applying a manifest file that you create, as in the following procedure, is supported.
@@ -1465,7 +1489,7 @@ To integrate your OpenShift Container Platform cluster with your existing networ
    $ ./openshift-install create manifests --dir <installation_directory>
    ```
 
-   The `<installation_directory>` specifies the name of the directory that contains the `install-config.yaml` file for your cluster.
+   where `<installation_directory>` specifies the name of the directory that contains the `install-config.yaml` file for your cluster.
 2. Create a stub manifest file for the advanced network configuration that is named `cluster-network-03-config.yml` in the `<installation_directory>/manifests/` directory:
 
    ```yaml
@@ -1475,9 +1499,9 @@ To integrate your OpenShift Container Platform cluster with your existing networ
      name: cluster
    spec:
    ```
-3. Specify the advanced network configuration for your cluster in the `cluster-network-03-config.yml` file, such as in the following example:
+3. Specify the advanced network configuration for your cluster in the `cluster-network-03-config.yml` file, such as in the following example: The following example enables IPsec for the OVN-Kubernetes network provider:
 
-   ```yaml {title="Enable IPsec for the OVN-Kubernetes network provider"}
+   ```yaml
    apiVersion: operator.openshift.io/v1
    kind: Network
    metadata:
@@ -1725,7 +1749,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>destination</code></td>
   <td>string</td>
-  <td>One of the following additional audit log targets:<br><br><dl><dt><code>libc</code></dt><dd>The libc <code>syslog()</code> function of the journald process on the host.</dd><dt><code>udp:&lt;host&gt;:&lt;port&gt;</code></dt><dd>A syslog server. Replace <code>&lt;host&gt;:&lt;port&gt;</code> with the host and port of the syslog server.</dd><dt><code>unix:&lt;file&gt;</code></dt><dd>A Unix Domain Socket file specified by <code>&lt;file&gt;</code>.</dd><dt><code>null</code></dt><dd>Do not send the audit logs to any additional target.</dd></dl></td>
+  <td>One of the following additional audit log targets:<br><br><dl><dt><code>libc</code></dt><dd>The libc <code>syslog()</code> function of the journald process on the host.</dd><dt><code>udp:&lt;host&gt;:&lt;port&gt;</code></dt><dd>A syslog server. Replace <code>&lt;host&gt;:&lt;port&gt;</code> with the host and port of the syslog server.</dd><dt><code>unix:&lt;file&gt;</code></dt><dd>A UNIX Domain Socket file specified by <code>&lt;file&gt;</code>.</dd><dt><code>null</code></dt><dd>Do not send the audit logs to any additional target.</dd></dl></td>
 </tr>
 <tr>
   <td><code>syslogFacility</code></td>
@@ -1787,7 +1811,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>internalMasqueradeSubnet</code></td>
   <td><code>string</code></td>
-  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
+  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses and the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
 </tr>
 </tbody>
 </table>
@@ -1808,7 +1832,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>internalMasqueradeSubnet</code></td>
   <td><code>string</code></td>
-  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
+  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses and the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
 </tr>
 </tbody>
 </table>
@@ -1834,7 +1858,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 </tbody>
 </table>
 
-```yaml {title="Example OVN-Kubernetes configuration with IPSec enabled"}
+```yaml {title="Example OVN-Kubernetes configuration with IPsec enabled"}
 defaultNetwork:
   type: OVNKubernetes
   ovnKubernetesConfig:
@@ -1846,7 +1870,7 @@ defaultNetwork:
 
 ## Deploying the cluster {#installation-launching-installer_installing-gcp-customizations}
 
-To deploy your OpenShift Container Platform cluster, you can initialize installation by running the `openshift-install create cluster` command from the directory that contains the installation program. The installation program provisions infrastructure and completes cluster setup.
+To deploy your OpenShift Container Platform cluster, you initialize installation by running the `openshift-install create cluster` command from the directory that contains the installation program. The installation program provisions the required infrastructure and completes the cluster setup.
 
 > [!IMPORTANT]
 > You can run the `create cluster` command of the installation program only once, during initial installation.
@@ -1871,12 +1895,15 @@ $ ./openshift-install create cluster --dir <installation_directory> \
     --log-level=info
 ```
 
-- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
-- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
+where:
 
-  1. Optional: You can reduce the number of permissions for the service account that you used to install the cluster.
-- If you assigned the `Owner` role to your service account, you can remove that role and replace it with the `Viewer` role.
-- If you included the `Service Account Key Admin` role, you can remove it.
+- `<installation_directory>`: Specifies the location of your customized `./install-config.yaml` file.
+- `--log-level`: Specifies the log level. To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
+
+1. Optional: You can reduce the number of permissions for the service account that you used to install the cluster.
+
+   - If you assigned the `Owner` role to your service account, you can remove that role and replace it with the `Viewer` role.
+   - If you included the `Service Account Key Admin` role, you can remove it.
 
 **Verification**
 
@@ -1888,7 +1915,9 @@ When the cluster deployment completes successfully:
   > [!IMPORTANT]
   > Do not delete the installation program or the files that the installation program creates. Both are required to delete the cluster.
 
-  ```terminal {title="Example output"}
+  The following example shows the expected output:
+
+  ```terminal
   ...
   INFO Install complete!
   INFO To access the cluster as the system:admin user when using 'oc', run 'export KUBECONFIG=/home/myuser/install_dir/auth/kubeconfig'
@@ -2029,7 +2058,7 @@ The `kubeconfig` file is specific to a cluster and OpenShift Container Platform 
 **Additional resources**
 {._additional-resources}
 
-- See [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console) for more details about accessing and understanding the OpenShift Container Platform web console.
+- [Accessing the web console](/openshift-docs-markdown/web_console/web-console#web-console)
 
 ## Telemetry access for OpenShift Container Platform {#cluster-telemetry_installing-gcp-customizations}
 
@@ -2040,10 +2069,6 @@ After you confirm that your [OpenShift Cluster Manager](https://console.redhat.c
 **Additional resources**
 {._additional-resources}
 
-- See [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring) for more information about the Telemetry service
-
-**Next steps**
-{._additional-resources}
-
-- [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations).
-- If necessary, you can [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting).
+- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
+- [Customizing your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)

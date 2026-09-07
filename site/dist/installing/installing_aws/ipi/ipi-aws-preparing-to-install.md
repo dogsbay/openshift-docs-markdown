@@ -38,9 +38,7 @@ You must have internet access to perform the following actions:
 
 ## Obtaining the installation program {#installation-obtaining-installer_ipi-aws-preparing-to-install}
 
-Before you install OpenShift Container Platform, download the installation file on
-
-the host you are using for installation.
+Before you install OpenShift Container Platform, download the installation file on the host you are using for installation, so that installation assets exist for deployment in your environment.
 
 **Prerequisites**
 
@@ -91,7 +89,7 @@ To manage your cluster and deploy applications from the command line on Linux, i
    ```
 6. Place the `oc` binary in a directory that is on your `PATH`.
 
-   To check your `PATH`, execute the following command:
+   To check your `PATH`, run the following command:
 
    ```terminal
    $ echo $PATH
@@ -122,7 +120,7 @@ To manage your cluster and deploy applications from the command line on Windows,
 4. Extract the archive with a ZIP program.
 5. Move the `oc` binary to a directory that is on your `PATH` variable.
 
-   To check your `PATH` variable, open the command prompt and execute the following command:
+   To check your `PATH` variable, open the Command Prompt and run the following command:
 
    ```terminal
    C:\> path
@@ -154,10 +152,10 @@ To manage your cluster and deploy applications from the command line on macOS, i
 
    > [!NOTE]
    > For macOS arm64, choose the **OpenShift v4.22 macOS arm64 Client** entry.
-5. Unpack and unzip the archive.
+5. Extract the archive.
 6. Move the `oc` binary to a directory on your `PATH` variable.
 
-   To check your `PATH` variable, open a terminal and execute the following command:
+   To check your `PATH` variable, open a terminal and run the following command:
 
    ```terminal
    $ echo $PATH
@@ -231,7 +229,7 @@ If you want to SSH in to your cluster nodes to perform installation debugging or
    $ ssh-add <path>/<file_name>
    ```
 
-   Specifies the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`
+   Specify the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`.
 
    ```terminal {title="Example output"}
    Identity added: /home/<you>/<path>/<file_name> (<computer_name>)

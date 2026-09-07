@@ -1126,7 +1126,7 @@ If you want to SSH in to your cluster nodes to perform installation debugging or
    $ ssh-add <path>/<file_name>
    ```
 
-   Specifies the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`
+   Specify the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`.
 
    ```terminal {title="Example output"}
    Identity added: /home/<you>/<path>/<file_name> (<computer_name>)
@@ -1143,9 +1143,7 @@ If you want to SSH in to your cluster nodes to perform installation debugging or
 
 ## Obtaining the installation program {#installation-obtaining-installer_installing-bare-metal-network-customizations}
 
-Before you install OpenShift Container Platform, download the installation file on
-
-the host you are using for installation.
+Before you install OpenShift Container Platform, download the installation file on the host you are using for installation, so that installation assets exist for deployment in your environment.
 
 **Prerequisites**
 
@@ -1196,7 +1194,7 @@ To manage your cluster and deploy applications from the command line on Linux, i
    ```
 6. Place the `oc` binary in a directory that is on your `PATH`.
 
-   To check your `PATH`, execute the following command:
+   To check your `PATH`, run the following command:
 
    ```terminal
    $ echo $PATH
@@ -1227,7 +1225,7 @@ To manage your cluster and deploy applications from the command line on Windows,
 4. Extract the archive with a ZIP program.
 5. Move the `oc` binary to a directory that is on your `PATH` variable.
 
-   To check your `PATH` variable, open the command prompt and execute the following command:
+   To check your `PATH` variable, open the Command Prompt and run the following command:
 
    ```terminal
    C:\> path
@@ -1259,10 +1257,10 @@ To manage your cluster and deploy applications from the command line on macOS, i
 
    > [!NOTE]
    > For macOS arm64, choose the **OpenShift v4.22 macOS arm64 Client** entry.
-5. Unpack and unzip the archive.
+5. Extract the archive.
 6. Move the `oc` binary to a directory on your `PATH` variable.
 
-   To check your `PATH` variable, open a terminal and execute the following command:
+   To check your `PATH` variable, open a terminal and run the following command:
 
    ```terminal
    $ echo $PATH
@@ -1421,7 +1419,7 @@ where:
 
 ## Network configuration phases {#nw-network-config_installing-bare-metal-network-customizations}
 
-There are two phases prior to OpenShift Container Platform installation where you can customize the network configuration. Customize settings in the `install-config.yaml` file and in the Cluster Network Operator manifest across two configuration phases.
+You can customize your OpenShift Container Platform network plugin configuration, such as cluster network CIDR and service network ranges, during two phases before installation to integrate with your existing network environment.
 
 Phase 1
 :   You can customize the following network-related fields in the `install-config.yaml` file before you create the manifest files:
@@ -1447,7 +1445,9 @@ During phase 2, you cannot override the values that you specified in phase 1 in 
 
 ## Specifying advanced network configuration {#modifying-nwoperator-config-startup_installing-bare-metal-network-customizations}
 
-To integrate your OpenShift Container Platform cluster with your existing network environment, you can specify advanced network configuration in a manifest before you install the cluster. Advanced network configuration can be configured only during cluster installation.
+You can use advanced network configuration for your OpenShift Container Platform network plugin to integrate your cluster into your existing network environment.
+
+You can specify advanced network configuration only before you install the cluster.
 
 > [!IMPORTANT]
 > Customizing your network configuration by modifying the OpenShift Container Platform manifest files created by the installation program is not supported. Applying a manifest file that you create, as in the following procedure, is supported.
@@ -1464,7 +1464,7 @@ To integrate your OpenShift Container Platform cluster with your existing networ
    $ ./openshift-install create manifests --dir <installation_directory>
    ```
 
-   The `<installation_directory>` specifies the name of the directory that contains the `install-config.yaml` file for your cluster.
+   where `<installation_directory>` specifies the name of the directory that contains the `install-config.yaml` file for your cluster.
 2. Create a stub manifest file for the advanced network configuration that is named `cluster-network-03-config.yml` in the `<installation_directory>/manifests/` directory:
 
    ```yaml
@@ -1474,9 +1474,9 @@ To integrate your OpenShift Container Platform cluster with your existing networ
      name: cluster
    spec:
    ```
-3. Specify the advanced network configuration for your cluster in the `cluster-network-03-config.yml` file, such as in the following example:
+3. Specify the advanced network configuration for your cluster in the `cluster-network-03-config.yml` file, such as in the following example: The following example enables IPsec for the OVN-Kubernetes network provider:
 
-   ```yaml {title="Enable IPsec for the OVN-Kubernetes network provider"}
+   ```yaml
    apiVersion: operator.openshift.io/v1
    kind: Network
    metadata:
@@ -1724,7 +1724,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>destination</code></td>
   <td>string</td>
-  <td>One of the following additional audit log targets:<br><br><dl><dt><code>libc</code></dt><dd>The libc <code>syslog()</code> function of the journald process on the host.</dd><dt><code>udp:&lt;host&gt;:&lt;port&gt;</code></dt><dd>A syslog server. Replace <code>&lt;host&gt;:&lt;port&gt;</code> with the host and port of the syslog server.</dd><dt><code>unix:&lt;file&gt;</code></dt><dd>A Unix Domain Socket file specified by <code>&lt;file&gt;</code>.</dd><dt><code>null</code></dt><dd>Do not send the audit logs to any additional target.</dd></dl></td>
+  <td>One of the following additional audit log targets:<br><br><dl><dt><code>libc</code></dt><dd>The libc <code>syslog()</code> function of the journald process on the host.</dd><dt><code>udp:&lt;host&gt;:&lt;port&gt;</code></dt><dd>A syslog server. Replace <code>&lt;host&gt;:&lt;port&gt;</code> with the host and port of the syslog server.</dd><dt><code>unix:&lt;file&gt;</code></dt><dd>A UNIX Domain Socket file specified by <code>&lt;file&gt;</code>.</dd><dt><code>null</code></dt><dd>Do not send the audit logs to any additional target.</dd></dl></td>
 </tr>
 <tr>
   <td><code>syslogFacility</code></td>
@@ -1786,7 +1786,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>internalMasqueradeSubnet</code></td>
   <td><code>string</code></td>
-  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
+  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses and the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
 </tr>
 </tbody>
 </table>
@@ -1807,7 +1807,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>internalMasqueradeSubnet</code></td>
   <td><code>string</code></td>
-  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
+  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses and the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>For OpenShift Container Platform 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</dd></dl></td>
 </tr>
 </tbody>
 </table>
@@ -1833,7 +1833,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 </tbody>
 </table>
 
-```yaml {title="Example OVN-Kubernetes configuration with IPSec enabled"}
+```yaml {title="Example OVN-Kubernetes configuration with IPsec enabled"}
 defaultNetwork:
   type: OVNKubernetes
   ovnKubernetesConfig:
@@ -3860,7 +3860,7 @@ The OpenShift Container Platform bootstrap process begins after the cluster node
    INFO It is now safe to remove the bootstrap resources
    ```
 
-   The command succeeds when the Kubernetes API server signals that it has been bootstrapped on the control plane machines.
+   The bootstrapping completion wait time varies per platform. The command succeeds when the Kubernetes API server signals that it has been bootstrapped on the control plane machines.
 2. After the bootstrap process is complete, remove the bootstrap machine from the load balancer.
 
    > [!IMPORTANT]

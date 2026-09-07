@@ -191,4 +191,4 @@ The `NodePool` object is created when you create a hosted cluster. By scaling th
 {._additional-resources}
 
 - [Initial Operator configuration](/openshift-docs-markdown/installing/installing_ibm_power/installing-ibm-power#installation-operators-config)
-- [Scaling down the data plane to zero](/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#scale-down-data-plane_hcp-troubleshooting)
+- [Scaling down the data plane to zero](/openshift-docs-markdown/hosted_control_planes/hcp-machine-config#scale-down-data-plane_hcp-machine-config)

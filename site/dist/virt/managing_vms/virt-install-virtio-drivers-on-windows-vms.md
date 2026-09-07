@@ -4,7 +4,7 @@ title: Install VirtIO drivers on Windows VMs
 
 # Install VirtIO drivers on Windows VMs {#virt-install-virtio-drivers-on-windows-vms}
 
-VirtIO drivers are paravirtualized device drivers required for Microsoft Windows virtual machines (VMs) to run in OpenShift Virtualization. The drivers are shipped with the rest of the images and do not require a separate download.
+VirtIO drivers are paravirtualized device drivers required for Microsoft Windows virtual machines (VMs) to run in OpenShift Virtualization. The drivers are shipped with the rest of the images. You can also download the `virtio-win` ISO file from the web console to install or update drivers on Windows VMs.
 
 The `container-native-virtualization/virtio-win` container disk must be attached to the VM as a SATA CD drive to enable driver installation. You can install VirtIO drivers during Windows installation or add them to an existing Windows installation.
 
@@ -17,6 +17,21 @@ After the drivers are installed, the `container-native-virtualization/virtio-win
 | **viostor** | VEN_1AF4&DEV_1001, VEN_1AF4&DEV_1042 | The block driver. Sometimes labeled as an **SCSI Controller** in the **Other devices** group. |
 | **viorng** | VEN_1AF4&DEV_1005, VEN_1AF4&DEV_1044 | The entropy source driver. Sometimes labeled as a **PCI Device** in the **Other devices** group. |
 | **NetKVM** | VEN_1AF4&DEV_1000, VEN_1AF4&DEV_1041 | The network driver. Sometimes labeled as an **Ethernet Controller** in the **Other devices** group. Available only if a VirtIO NIC is configured. |
+
+## Downloading the VirtIO drivers ISO from the web console {#virt-downloading-virtio-win-iso_virt-install-virtio-drivers-on-windows-vms}
+
+You can download the `virtio-win` ISO file from the OpenShift Container Platform web console. The ISO file includes the VirtIO drivers and the QEMU guest agent installer for Microsoft Windows virtual machines (VMs).
+
+> [!NOTE]
+> If your cluster has Windows VMs, a notification on the **Virtualization** → **VirtualMachines** page provides a link to the **Downloads** tab where you can download the ISO file.
+
+**Procedure**
+
+1. In the OpenShift Container Platform web console, navigate to **Virtualization** → **Settings**.
+2. Click the **Downloads** tab.
+3. In the **Windows drivers** section, click **Download ISO**.
+
+   The `virtio-win` ISO file downloads to your local machine.
 
 ## Attaching VirtIO container disk to Windows VMs during installation {#virt-attaching-virtio-disk-to-windows_virt-install-virtio-drivers-on-windows-vms}
 
@@ -51,6 +66,8 @@ You can install VirtIO drivers from a container disk that you add to a Windows v
 
 > [!TIP]
 > You do not need to download the `container-native-virtualization/virtio-win-rhel9` container disk. If the container disk is not present, the cluster downloads it from the Red Hat registry. However, to reduce the installation time, you can download the container disk in advance from the [Red Hat Ecosystem Catalog](https://catalog.redhat.com/en/software/containers/container-native-virtualization/virtio-win-rhel9/633ffae83be061d37b2770f6).
+>
+> You can also download the `virtio-win` ISO file from the OpenShift Container Platform web console by navigating to **Virtualization** → **Settings** → **Downloads**.
 
 **Prerequisites**
 
@@ -148,3 +165,8 @@ You can install the VirtIO drivers from a SATA CD drive on an existing Windows v
 7. Repeat this process for all the necessary VirtIO drivers.
 8. After the driver installs, click **Close** to close the window.
 9. Reboot the VM to complete the driver installation.
+
+**Additional resources**
+{._additional-resources}
+
+- [Update VirtIO drivers](/openshift-docs-markdown/virt/managing_vms/virt-update-virtio-drivers#virt-update-virtio-drivers)

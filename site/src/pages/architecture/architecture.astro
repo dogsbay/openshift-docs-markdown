@@ -84,6 +84,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   autoLede={false}
   llmActions={llmActionsProps}
   linkIcons={siteConfig.linkIcons}
+  poweredBy={siteConfig.poweredBy !== false}
   multiSource={null ?? undefined}
   switcherMap={switcherMapData}
   basePath={"/openshift-docs-markdown"}
@@ -175,7 +176,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </dd>
       </dl>
       <h3 id="cluster-entitlements_architecture" class="group scroll-mt-20">Internet access for OpenShift Container Platform<a href="#cluster-entitlements_architecture" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
-      <p class="_abstract">In OpenShift Container Platform 4.22, you require access to the internet to install your cluster.</p>
+      <p>In OpenShift Container Platform 4.22, you require access to the internet to install your cluster.</p>
       <p>You must have internet access to perform the following actions:</p>
       <ul>
       <li>Access Red Hat Hybrid Cloud Console to download the installation program and perform subscription management. If the cluster has internet access and you do not disable Telemetry, that service automatically entitles your cluster.</li>

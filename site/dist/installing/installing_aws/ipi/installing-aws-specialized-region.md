@@ -111,11 +111,12 @@ To deploy a private cluster, you must:
 You can use any machine that meets these access requirements and follows your company’s guidelines. For example, this machine can be a bastion host on your cloud network.
 
 > [!NOTE]
-> AWS China does not support a VPN connection between the VPC and your network. For more information about the Amazon VPC service in the Beijing and Ningxia regions, see "Amazon Virtual Private Cloud" in the AWS China documentation.
+> AWS China does not support a VPN connection between the VPC and your network.
 
 **Additional resources**
+{._additional-resources}
 
-- [Amazon Virtual Private Cloud](https://docs.amazonaws.cn/en_us/aws/latest/userguide/vpc.html)
+- [Amazon Virtual Private Cloud (AWS China documentation)](https://docs.amazonaws.cn/en_us/aws/latest/userguide/vpc.html)
 
 ### Private clusters in AWS {#private-clusters-about-aws_installing-aws-specialized-region}
 
@@ -805,7 +806,7 @@ If you configured the `credentialsMode` parameter in the `install-config.yaml` f
 
 ### Manually creating long-term credentials {#manually-create-iam_installing-aws-specialized-region}
 
-The Cloud Credential Operator (CCO) can be put into manual mode prior to installation in environments where the cloud identity and access management (IAM) APIs are not reachable, or the administrator prefers not to store an administrator-level credential secret in the cluster `kube-system` namespace.
+You can put the Cloud Credential Operator (CCO) into manual mode before OpenShift Container Platform installation if the cloud identity and access management (IAM) APIs are not reachable, or if you prefer not to store an administrator-level credential secret in the cluster `kube-system` namespace.
 
 **Procedure**
 
@@ -1282,7 +1283,7 @@ Otherwise, you can use the `ccoctl aws create-all` command to create the AWS res
 
 #### Incorporating the Cloud Credential Operator utility manifests {#cco-ccoctl-install-creating-manifests_installing-aws-specialized-region}
 
-To implement short-term security credentials managed outside the cluster for individual components, you must move the manifest files that the Cloud Credential Operator utility (`ccoctl`) created to the correct directories for the installation program.
+To implement short-term security credentials managed outside the cluster for individual OpenShift Container Platform components, you must move the manifest files that the Cloud Credential Operator utility (`ccoctl`) created to the correct directories for the installation program.
 
 **Prerequisites**
 
@@ -1320,7 +1321,7 @@ To implement short-term security credentials managed outside the cluster for ind
 
 ## Deploying the cluster {#installation-launching-installer_installing-aws-specialized-region}
 
-To deploy your OpenShift Container Platform cluster, you can initialize installation by running the `openshift-install create cluster` command from the directory that contains the installation program. The installation program provisions infrastructure and completes cluster setup.
+To deploy your OpenShift Container Platform cluster, you initialize installation by running the `openshift-install create cluster` command from the directory that contains the installation program. The installation program provisions the required infrastructure and completes the cluster setup.
 
 > [!IMPORTANT]
 > You can run the `create cluster` command of the installation program only once, during initial installation.
@@ -1340,13 +1341,15 @@ $ ./openshift-install create cluster --dir <installation_directory> \
     --log-level=info
 ```
 
-- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
-- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
+where:
 
-  1. Optional: Remove or disable the `AdministratorAccess` policy from the IAM account that you used to install the cluster.
+- `<installation_directory>`: Specifies the location of your customized `./install-config.yaml` file.
+- `--log-level`: Specifies the log level. To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
-     > [!NOTE]
-     > The elevated permissions provided by the `AdministratorAccess` policy are required only during installation.
+1. Optional: Remove or disable the `AdministratorAccess` policy from the IAM account that you used to install the cluster.
+
+   > [!NOTE]
+   > The elevated permissions provided by the `AdministratorAccess` policy are required only during installation.
 
 **Verification**
 
@@ -1358,7 +1361,9 @@ When the cluster deployment completes successfully:
   > [!IMPORTANT]
   > Do not delete the installation program or the files that the installation program creates. Both are required to delete the cluster.
 
-  ```terminal {title="Example output"}
+  The following example shows the expected output:
+
+  ```terminal
   ...
   INFO Install complete!
   INFO To access the cluster as the system:admin user when using 'oc', run 'export KUBECONFIG=/home/myuser/install_dir/auth/kubeconfig'

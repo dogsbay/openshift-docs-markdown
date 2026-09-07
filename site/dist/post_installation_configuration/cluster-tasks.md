@@ -2562,7 +2562,7 @@ Disable etcd encryption when you no longer need to encrypt sensitive cluster res
 
 ### Backing up etcd data {#backing-up-etcd-data_post-install-cluster-tasks}
 
-Follow these steps to back up etcd data by creating an etcd snapshot and backing up the resources for the static pods. This backup can be saved and used at a later time if you need to restore etcd.
+You can back up etcd data by creating an etcd snapshot and saving the static pod resources on a control plane host. This backup preserves the cluster state and provides the resources required to restore etcd at a later time.
 
 > [!IMPORTANT]
 > Only save a backup from a single control plane host. Do not take a backup from each control plane host in the cluster.
@@ -2572,7 +2572,7 @@ For a Two-Node with Fencing (TNF) setup, follow the steps to back up etcd data o
 **Prerequisites**
 
 - You have access to the cluster as a user with the `cluster-admin` role.
-- You have checked whether the cluster-wide proxy is enabled.
+- You have verified whether the cluster-wide proxy is enabled.
 
   > [!TIP]
   > You can check whether the proxy is enabled by reviewing the output of `oc get proxy cluster -o yaml`. The proxy is enabled if the `httpProxy`, `httpsProxy`, and `noProxy` fields have values set.
@@ -2602,7 +2602,7 @@ For a Two-Node with Fencing (TNF) setup, follow the steps to back up etcd data o
    ```terminal
    $ export NO_PROXY=<example.com>
    ```
-4. Run the `cluster-backup.sh` script in the debug shell and pass in the location to save the backup to.
+4. Run the `cluster-backup.sh` script with the path to the directory where you want to save the backup:
 
    > [!TIP]
    > The `cluster-backup.sh` script is maintained as a component of the etcd Cluster Operator and is a wrapper around the `etcdctl snapshot save` command.
@@ -2632,7 +2632,7 @@ For a Two-Node with Fencing (TNF) setup, follow the steps to back up etcd data o
 
    In this example, two files are created in the `/home/core/assets/backup/` directory on the control plane host:
 
-   - `snapshot_<datetimestamp>.db`: This file is the etcd snapshot. The `cluster-backup.sh` script confirms its validity.
+   - `snapshot_<datetimestamp>.db`: This file is the etcd snapshot. The `cluster-backup.sh` script confirms the validity of the snapshot.
    - `static_kuberesources_<datetimestamp>.tar.gz`: This file contains the resources for the static pods. If etcd encryption is enabled, it also contains the encryption keys for the etcd snapshot.
 
      > [!NOTE]

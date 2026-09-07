@@ -96,14 +96,14 @@ Remove the community External Secrets Operator that was installed using Helm. Th
    > [!NOTE]
    > Using `helm delete` might delete all Custom Resource Definitions (CRDs) and CRs. It is recommended to install the downstream Operator first if the namespace `external-secrets-operator` is empty.
 
-### Uninstalling an Operator Lifecylce Manager installed community External Secrets Operator {#external-secrets-operator-uninstall-olm_external-secrets-operator-migrate-downstream-upstream}
+### Uninstalling an Operator Lifecycle Manager installed community External Secrets Operator {#external-secrets-operator-uninstall-olm_external-secrets-operator-migrate-downstream-upstream}
 
 Remove the community External Secrets Operator that was installed by an Operator Lifecycle Manager (OLM) subscription. This helps you free up resources and maintain a clean environment for your cluster.
 
 **Prerequisites**
 
 - You must be logged in as a user with the `cluster-admin` role.
-- You must have deleted the `operatorconfig` CR.
+- You must have deleted the `operatorconfig` custom resource (CR).
 
 **Procedure**
 
