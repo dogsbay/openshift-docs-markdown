@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating a cluster with customizations using the CLI {id="rosa-sts-creating-cluster-customizations-cli_{{ context }}"}
 
-When you create a {{ product_title }} (ROSA) cluster that uses the AWS Security Token Service (STS), you can customize your installation interactively. {._abstract}
+When you create a {{ product_title }} cluster that uses the AWS Security Token Service (STS), you can customize your installation interactively. {._abstract}
 
 When you run the `rosa create cluster --interactive` command at cluster creation time, you are presented with a series of interactive prompts that enable you to customize your deployment. For more information, see _Interactive cluster creation mode reference_.
 
@@ -19,15 +19,15 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
 
 *   You have completed the AWS prerequisites for ROSA with STS.
 *   You have available AWS service quotas.
-*   You have enabled the ROSA service in the AWS Console.
-*   You have installed and configured the latest ROSA CLI, `rosa`, on your installation host. Run `rosa version` to see your currently installed version of the ROSA CLI. If a newer version is available, the CLI provides a link to download this upgrade.
-*   If you want to use a customer managed AWS Key Management Service (KMS) key for encryption, you must create a symmetric KMS key. You must provide the Amazon Resource Name (ARN) when creating your cluster. To create a customer managed KMS key, follow the procedure for [Creating symmetric encryption KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk).
+*   You have enabled the {{ product_title }} service in the AWS Console.
+*   You have installed and configured the latest {{ rosa_cli_first }} on your installation host. Run `rosa version` to see your currently installed version of the {{ rosa_cli }}. If a newer version is available, the CLI provides a link to download this upgrade.
+*   If you want to use a customer-managed AWS Key Management Service (KMS) key for encryption, you must create a symmetric KMS key. You must provide the Amazon Resource Name (ARN) when creating your cluster. To create a customer-managed KMS key, follow the procedure for [Creating symmetric encryption KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk).
 
     :::important
 
     The EBS Operator role is required in addition to the account roles to successfully create your cluster.
 
-    This role must be attached with the `ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credentials` policy, an IAM policy required by ROSA to manage back-end storage through the Container Storage Interface (CSI).
+    This role must be attached with the `ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credentials` policy, an IAM policy required by {{ product_title }} to manage back-end storage through the Container Storage Interface (CSI).
 
     For more information about the policies and permissions that the cluster Operators require, see _Methods of account-wide role creation_.
 
@@ -52,9 +52,7 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
         *   The `--interactive` option enables you to specify configuration options at the interactive prompts. For more information, see _Interactive cluster creation mode reference_.
         *   The `--mode manual` option generates the `aws` CLI commands and JSON files needed to create the account-wide roles and policies. After review, you must run the commands manually to create the resources.
 
-        The following example shows sample output:
-
-        ```terminal {minja}
+        ```terminal title="Example output" {minja}
         I: Logged in as '<red_hat_username>' on 'https://api.openshift.com'
         I: Validating AWS credentials...
         I: AWS credentials are valid!
@@ -101,16 +99,16 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
         :   Specify a custom ARN path for your account-wide roles. The path must contain alphanumeric characters only and start and end with `/`, for example `/test/path/dev/`. For more information, see _ARN path customization for IAM roles and policies_.
 
         `Role creation mode`
-        :   Select the role creation mode. You can use `auto` mode to automatically create the account wide roles and policies. In `manual` mode, the `rosa` CLI generates the `aws` commands needed to create the roles and policies. In `manual` mode, the corresponding policy JSON files are also saved to the current directory. `manual` mode enables you to review the details before running the `aws` commands manually.
+        :   Select the role creation mode. You can use `auto` mode to automatically create the account-wide roles and policies. In `manual` mode, the {{ rosa_cli }} generates the `aws` commands needed to create the roles and policies. In `manual` mode, the corresponding policy JSON files are also saved to the current directory. `manual` mode enables you to review the details before running the `aws` commands manually.
 
 
-            After specifying the configuration options, the account-wide installer, control plane, worker and support roles and corresponding IAM policies are created. For more information, see _Account-wide IAM role and policy reference_.
+            After you specify the configuration options, the account-wide installer, control plane, worker, and support roles and corresponding IAM policies are created. For more information, see _Account-wide IAM role and policy reference_.
 
 
             :::note
 
 
-            In this step, the ROSA CLI also automatically creates the account-wide Operator IAM policies that are used by the cluster-specific Operator policies to permit the ROSA cluster Operators to run core OpenShift functionality. For more information, see _Account-wide IAM role and policy reference_.
+            In this step, the {{ rosa_cli }} also automatically creates the account-wide Operator IAM policies that are used by the cluster-specific Operator policies to permit the {{ product_title }} cluster Operators to run core {{ OCP_short }} functionality. For more information, see _Account-wide IAM role and policy reference_.
             
             :::
 
@@ -207,9 +205,9 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
 
     :::warning
 
-    You cannot install a ROSA cluster into an existing VPC that was created by the OpenShift installer. These VPCs are created during the cluster deployment process and must only be associated with a single cluster to ensure that cluster provisioning and deletion operations work correctly.
+    You cannot install a {{ product_title }} cluster into an existing VPC that was created by the {{ OCP_short }} installer. These VPCs are created during the cluster deployment process and must only be associated with a single cluster to ensure that cluster provisioning and deletion operations work correctly.
 
-    To verify whether a VPC was created by the OpenShift installer, check for the `owned` value on the `kubernetes.io/cluster/<infra-id>` tag. For example, when viewing the tags for the VPC named `mycluster-12abc-34def`, the `kubernetes.io/cluster/mycluster-12abc-34def` tag has a value of `owned`. Therefore, the VPC was created by the installer and must not be modified by the administrator.
+    To verify whether a VPC was created by the {{ OCP_short }} installer, check for the `owned` value on the `kubernetes.io/cluster/<infra-id>` tag. For example, when viewing the tags for the VPC named `mycluster-12abc-34def`, the `kubernetes.io/cluster/mycluster-12abc-34def` tag has a value of `owned`. Therefore, the VPC was created by the installer and must not be modified by the administrator.
     
     :::
 
@@ -257,6 +255,7 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
     ? Enable FIPS support: No
     ? Encrypt etcd data: No
     ? Disable Workload monitoring (optional): No
+    ? Enable cluster deletion protection (optional): No
     I: Creating cluster '<cluster_name>'
     I: To create this cluster again in the future, you can run:
        rosa create cluster --cluster-name <cluster_name> --role-arn arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-Installer-Role --support-role-arn arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-Support-Role --master-iam-role arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-ControlPlane-Role --worker-iam-role arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-Worker-Role --operator-roles-prefix <cluster_name>-<random_string> --region us-east-1 --version 4.22.0 --additional-compute-security-group-ids sg-0e375ff0ec4a6cfa2 --additional-infra-security-group-ids sg-0e375ff0ec4a6cfa2 --additional-control-plane-security-group-ids sg-0e375ff0ec4a6cfa2 --replicas 2 --machine-cidr 10.0.0.0/16 --service-cidr 172.30.0.0/16 --pod-cidr 10.128.0.0/14 --host-prefix 23
@@ -301,7 +300,7 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
 
         The EBS Operator role is required in addition to the account roles to successfully create your cluster.
 
-        This role must be attached with the `ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credentials` policy, an IAM policy required by ROSA to manage back-end storage through the Container Storage Interface (CSI).
+        This role must be attached with the `ManagedOpenShift-openshift-cluster-csi-drivers-ebs-cloud-credentials` policy, an IAM policy required by {{ product_title }} to manage back-end storage through the Container Storage Interface (CSI).
 
         For more information about the policies and permissions that the cluster Operators require, see _Methods of account-wide role creation_.
 

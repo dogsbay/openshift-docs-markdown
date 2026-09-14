@@ -1,7 +1,10 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Create the DPUServiceNAD resources {id="nw-dpf-creating-service-nads_{{ context }}"}
+# Create the DPUServiceNAD resource {id="nw-dpf-creating-service-nads_{{ context }}"}
 
-Create `DPUServiceNAD` custom resources to define the network attachments available to DPU services on the hosted cluster. {._abstract}
+Create a `DPUServiceNAD` custom resource to define the network attachment available to DPU services on the hosted cluster.
+The `DPUServiceNAD` resource maps to an Open vSwitch (OVS) bridge on the DPU and specifies the resource type, IP address management (IPAM) mode, and maximum transmission unit (MTU) configuration: {._abstract}
+
+*   `mybrhbn` maps to the `br-hbn` bridge, used by the HBN service. IPAM is disabled because IP allocation is handled by `DPUServiceIPAM`.
 
 **Prerequisites**
 
@@ -23,17 +26,6 @@ Create `DPUServiceNAD` custom resources to define the network attachments availa
       ipam: false
       bridge: "br-hbn"
       serviceMTU: $NODES_MTU
-    ---
-    apiVersion: svc.dpu.nvidia.com/v1alpha1
-    kind: DPUServiceNAD
-    metadata:
-      name: mybrsfc
-      namespace: dpf-operator-system
-    spec:
-      resourceType: sf
-      ipam: true
-      bridge: "br-sfc"
-      serviceMTU: $NODES_MTU
     ```
 1.  Apply the resource file:
     ```terminal
@@ -42,12 +34,11 @@ Create `DPUServiceNAD` custom resources to define the network attachments availa
 
 **Verification**
 
-*   Verify that the `DPUServiceNAD` resources are created:
+*   Verify that the `DPUServiceNAD` resource is created:
     ```terminal
-    $ oc get dpuservicenad -n dpf-operator-system
+    $ oc get dpuservicenad mybrhbn -n dpf-operator-system
     ```
     ```terminal title="Example output"
     NAME       READY   AGE
     mybrhbn    True    2m
-    mybrsfc    True    2m
     ```

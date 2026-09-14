@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Using custom settings {id="microshift-yaml-custom_{{ context }}"}
 
-To create custom configurations, make a copy of the `config.yaml.default` file that is given in the `/etc/microshift/` directory, renaming it `config.yaml`. Keep this file in the `/etc/microshift/` directory, and then you can change supported settings that override the defaults before starting or restarting {{ microshift_short }}. {._abstract}
+To create custom configurations, make a copy of the `config.yaml.default` file in the `/etc/microshift/` directory, renaming it `config.yaml`. Keep this file in the `/etc/microshift/` directory, and then change supported settings that override the defaults before starting or restarting {{ microshift_short }}. {._abstract}
 
 If you have just a few changes to make to the default settings, consider using configuration drop-in snippets as an alternative method.
 

@@ -7,21 +7,17 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{% if not shared_vpc %}
-# Optional: Adding the ingress DNS records {id="installation-gcp-user-infra-adding-ingress_{{ context }}"}
-
-{% endif %}
-{% if shared_vpc %}
-# Adding the ingress DNS records {id="_adding_the_ingress_dns_records"}
-
-{% endif %}
+# Adding the ingress DNS records {id="installation-gcp-user-infra-adding-ingress_{{ context }}"}
 
 {% if not shared_vpc %}
-If you removed the DNS zone configuration when creating Kubernetes manifests and generating Ignition configs, you must manually create DNS records that point at the ingress load balancer. You can create either a wildcard `*.apps.{{ baseDomain }}.`{minja} or specific records. You can use A, CNAME, and other records per your requirements.
+If you removed the DNS zone configuration when creating Kubernetes manifests and generating Ignition configs, you must manually create DNS records that point at the ingress load balancer so that external clients can reach the applications that run on your cluster. {._abstract}
+
+You can create either a wildcard `*.apps.{{ baseDomain }}.`{minja} or specific records. You can use A, CNAME, and other records per your requirements.
 {% endif %}
 {% if shared_vpc %}
-DNS zone configuration is removed when creating Kubernetes manifests and generating Ignition configs. You must manually create DNS records that point at the ingress load balancer. You can create either a wildcard
-`*.apps.{{ baseDomain }}.`{minja} or specific records. You can use A, CNAME, and other records per your requirements.
+DNS zone configuration is removed when creating Kubernetes manifests and generating Ignition configs. You must manually create DNS records that point at the ingress load balancer so that external clients can reach the applications that run on your cluster.
+
+You can create either a wildcard `*.apps.{{ baseDomain }}.`{minja} or specific records. You can use A, CNAME, and other records per your requirements.
 {% endif %}
 
 **Prerequisites**

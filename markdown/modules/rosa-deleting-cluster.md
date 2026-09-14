@@ -8,7 +8,7 @@
 
 {% endif %}
 {% if sts %}
-# Deleting a ROSA cluster and the cluster-specific IAM resources {id="_deleting_a_rosa_cluster_and_the_cluster-specific_iam_resources"}
+# Deleting a cluster and the cluster-specific IAM resources {id="_deleting_a_cluster_and_the_cluster-specific_iam_resources"}
 
 {% endif %}
 
@@ -17,9 +17,9 @@ You can delete a {{ product_title }} (ROSA) cluster using the ROSA CLI (`rosa`).
 {% endif %}
 
 {% if sts %}
-You can delete a {{ product_title }} (ROSA) with AWS Security Token Service (STS) cluster by using the ROSA CLI (`rosa`) or {{ cluster_manager_first }}. {._abstract}
+You can delete a {{ product_title }} cluster with AWS Security Token Service (STS) by using the {{ rosa_cli_first }} or {{ cluster_manager_first }}. {._abstract}
 
-After deleting the cluster, you can clean up the cluster-specific Identity and Access Management (IAM) resources in your AWS account by using the ROSA CLI (`rosa`). The cluster-specific resources include the Operator roles and the OpenID Connect (OIDC) provider.
+After deleting the cluster, you can clean up the cluster-specific Identity and Access Management (IAM) resources in your AWS account by using the {{ rosa_cli }}. The cluster-specific resources include the Operator roles and the OpenID Connect (OIDC) provider.
 
 
 :::note
@@ -42,8 +42,8 @@ If the cluster that created the VPC during the installation is deleted, the asso
 
 **Prerequisites**
 
-*   You have installed a ROSA cluster.
-*   You have installed and configured the latest ROSA CLI (`rosa`) on your installation host.
+*   You have installed a {{ product_title }} cluster.
+*   You have installed and configured the latest {{ rosa_cli }} on your installation host.
 
 **Procedure**
 
@@ -75,19 +75,23 @@ If the cluster that created the VPC during the installation is deleted, the asso
 
     :::important
 
-    You require the cluster ID to delete the cluster-specific STS resources using the ROSA CLI (`rosa`) after the cluster is deleted.
+    You require the cluster ID to delete the cluster-specific STS resources using the {{ rosa_cli }} after the cluster is deleted.
     
     :::
 
 {% endif %}
 
 {% if sts %}
+1.  Optional: If deletion protection is enabled on the cluster, disable it by running the following command:
+    ```terminal
+    $ rosa edit cluster -c <cluster_name> --enable-delete-protection=false
+    ```
 1.  Delete the cluster:
     *   To delete the cluster by using {{ cluster_manager_first }}:
         1.  Navigate to {{ cluster_manager_url }}.
         1.  Click the Options menu {{ kebab }} next to your cluster and select **Delete cluster**.
-        1.  Type the name of your cluster at the prompt and click **Delete**.
-    *   To delete the cluster using the ROSA CLI (`rosa`):
+        1.  Enter the name of your cluster at the prompt and click **Delete**.
+    *   To delete the cluster using the {{ rosa_cli }}:
         1.  Enter the following command to delete the cluster and watch the logs, replacing `<cluster_name>` with the name or ID of your cluster:
 {% endif %}
 {% if not sts %}
@@ -102,7 +106,7 @@ If the cluster that created the VPC during the installation is deleted, the asso
 
         :::important
 
-        You must wait for the cluster deletion to complete before you remove the Operator roles and the OIDC provider. The cluster-specific Operator roles are required to clean-up the resources created by the OpenShift Operators. The Operators use the OIDC provider to authenticate.
+        You must wait for the cluster deletion to complete before you remove the Operator roles and the OIDC provider. The cluster-specific Operator roles are required to clean up the resources created by the {{ OCP_short }} Operators. The Operators use the OIDC provider to authenticate.
         
         :::
 
@@ -131,7 +135,7 @@ If the cluster that created the VPC during the installation is deleted, the asso
 
     :::important
 
-    The account-wide IAM roles can be used by other ROSA clusters in the same AWS account. Only remove the roles if they are not required by other clusters.
+    The account-wide IAM roles can be used by other {{ product_title }} clusters in the same AWS account. Only remove the roles if they are not required by other clusters.
     
     :::
 

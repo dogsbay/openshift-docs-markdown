@@ -20,9 +20,9 @@ Successful autoscaling is dependent on having the correct AWS resource quotas in
 {% endif %}
 {% if openshift_rosa_hcp %}
     ```terminal title="Example"
-    ID       AUTOSCALING  REPLICAS  INSTANCE TYPE  LABELS    TAINTS    AVAILABILITY ZONE  SUBNET                    VERSION  AUTOREPAIR  
-    workers  No           2/2       m7i.xlarge                          us-east-2a         subnet-03c2998b482bf3b20  4.16.6   Yes
-    mp1      No           2/2       m7i.xlarge                          us-east-2a         subnet-03c2998b482bf3b20  4.16.6   Yes
+    ID       AUTOSCALING  REPLICAS  INSTANCE TYPE  LABELS    TAINTS    AVAILABILITY ZONE  SUBNET                      SPOT INSTANCES  VERSION  AUTOREPAIR  
+    workers  No           2/2       m7i.xlarge                          us-east-2a         subnet-03c2998b482bf3b20    No              4.16.6   Yes
+    mp1      No           2/2       m7i.xlarge                          us-east-2a         subnet-03c2998b482bf3b20    No              4.16.6   Yes
     ```
 {% endif %}
 1.  Get the ID of the machine pools that you want to configure.

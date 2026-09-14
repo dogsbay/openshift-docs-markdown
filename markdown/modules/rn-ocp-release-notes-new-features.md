@@ -194,6 +194,14 @@ Boot image update documentation
 ## Machine management {id="ocp-release-notes-machine-management_{{ context }}"}
 
 
+Bare-metal nodes on {{ vmw_full }} clusters is generally available
+:   You can add bare-metal compute machines to an existing {{ product_title }} cluster on {{ vmw_short }}. With this capability, you can migrate workloads to physical hardware without reinstalling the cluster.
+
+    Bare-metal nodes on {{ vmw_short }} clusters was introduced in {{ product_title }} 4.21 with Technology Preview status. Beginning in {{ product_title }} 4.22.13, it is now generally available.
+
+    For more information, see [Adding bare-metal compute machines to a vSphere cluster](/machine_management/user_infra/adding-bare-metal-compute-vsphere-user-infra#adding-bare-metal-compute-vsphere-user-infra).
+
+
 {{ aws_short }} Dedicated Host support (Technology Preview)
 :   You can now place compute machines on {{ aws_first }} Dedicated Hosts. Dedicated Hosts are physical servers that are fully dedicated to your use. With Dedicated Hosts, you can use your existing per-socket, per-core, or per-VM software licenses and comply with corporate policies that require physical CPU assignment.
 
@@ -454,6 +462,16 @@ Custom image configuration for the {{ support_log_gather }}
 :   With this update, you can collect diagnostic data by using custom images in the {{ support_log_gather }}. By pointing the `spec.imageStreamRef` field to an approved `ImageStream` tag, you can override the default image. The cluster administrators are responsible for creating and maintaining the list of allowed custom images by managing `ImageStream` resources in the Operator namespace. Each custom image requires its own `MustGather` custom resource and a service account with permissions to access the `ImageStream`. For more information, see [Configuring a {{ support_log_gather }} instance](/support/gathering-cluster-data#support-log-gather-config-cli_gathering-cluster-data).
 
 ## Storage {id="ocp-release-notes-storage_{{ context }}"}
+
+
+Adding bare-metals nodes on {{ vmw_full }} is generally available
+:   {{ product_title }} 4.21 added the ability to add bare-metal nodes to an {{ product_title }} cluster on {{ vmw_short }} as a Technology Preview feature. Beginning in {{ product_title }} 4.22.13, this feature is generally available.
+
+    However, if you add bare-metal nodes, you must remove the {{ vmw_short }} Container Storage Interface (CSI) Driver, otherwise the cluster is marked as degraded.
+
+    For information about how to add bare-metal nodes, see [Adding bare-metal nodes](/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere-adding-bm-nodes_persistent-storage-csi-vsphere).
+
+    For information about how to remove the {{ vmw_short }} CSI Driver, see [Disabling and enabling storage on vSphere](/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere-disable-storage-overview_persistent-storage-csi-vsphere).
 
 
 New VolumeSnapshotClass csi-gce-pd-vsc-images is generally available

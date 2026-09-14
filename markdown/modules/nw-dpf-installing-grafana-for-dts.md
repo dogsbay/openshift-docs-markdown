@@ -31,6 +31,51 @@ You can install the Grafana Operator and a Grafana instance to provide enhanced 
     REVISION: 2
     TEST SUITE: None
     ```
+1.  Grant OpenShift Route permissions to the Grafana Operator:
+
+    The community Grafana Operator requires additional RBAC permissions to manage {{ product_title }} routes. Create a file named `grafana-operator-route-rbac.yaml` with the following content:
+    ```yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      name: grafana-operator-route-manager
+    rules:
+    - apiGroups:
+      - route.openshift.io
+      resources:
+      - routes
+      - routes/custom-host
+      verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+      name: grafana-operator-route-manager
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: grafana-operator-route-manager
+    subjects:
+    - kind: ServiceAccount
+      name: grafana-operator
+      namespace: grafana-operator
+    ```
+
+    Apply the file:
+    ```terminal
+    $ oc apply -f grafana-operator-route-rbac.yaml
+    ```
+    ```terminal title="Example output"
+    clusterrole.rbac.authorization.k8s.io/grafana-operator-route-manager created
+    clusterrolebinding.rbac.authorization.k8s.io/grafana-operator-route-manager created
+    ```
 1.  Create Grafana RBAC for Prometheus access:
 
     Create a `ServiceAccount` with a long-lived token and bind it to the `cluster-monitoring-view` `ClusterRole` so Grafana can query the platform Prometheus:
@@ -535,7 +580,7 @@ You can install the Grafana Operator and a Grafana instance to provide enhanced 
     ```
 
     Open the returned URL in a web browser. Use anonymous access (read-only) or sign in with the default credentials (`admin`/`admin`) for editing capabilities.
-1.  Open the DTS dashboard:
+1.  Navigate to the DTS dashboard:
     1.  In Grafana, go to **Dashboards** and open **DOCA DPU Telemetry (DTS)**.
     1.  Use the **DPU (source)** dropdown menu to focus on a specific DPU or select **All**.
     1.  Adjust the time range by using the **time-range** control on the dashboard toolbar. The dashboard refreshes every 30 seconds.

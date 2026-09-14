@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Installing and configuring CLI tools for {{ gcp_short }} {id="installation-gcp-install-cli_{{ context }}"}
 
-To install {{ product_title }} on {{ gcp_first }} using user-provisioned
-infrastructure, you must install and configure the CLI tools for {{ gcp_short }}.
+Before you deploy {{ product_title }} on {{ gcp_first }} with user-provisioned infrastructure, you must set up the required CLI tools to create and manage your cloud resources. {._abstract}
 
 **Prerequisites**
 

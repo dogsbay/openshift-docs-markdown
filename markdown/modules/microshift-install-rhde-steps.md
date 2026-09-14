@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # {{ op_system_bundle }} installation steps {id="microshift-install-rhde-steps_{{ context }}"}
 
-Before proceeding with your specific installation method, you must prepare your environment for installation. To ensure a successful deployment, you must follow the general prerequisites such as obtaining your pull secret, planning your storage strategy, and defining your network topology, before you begin. {._abstract}
+Before proceeding with your specific installation method, you must prepare your environment for installation. {._abstract}
+
+To ensure a successful deployment, you must follow the general prerequisites such as obtaining your pull secret, planning your storage strategy, and defining your network topology, before you begin.
 
 For most installation types, you must also take the following steps:
 

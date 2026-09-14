@@ -13,6 +13,10 @@ You must create a `ClusterRoleBinding` on the hosted cluster that grants the `pr
 
 **Procedure**
 
+1.  Get the hosted cluster kubeconfig:
+    ```terminal
+    $ oc get secret $HOSTED_CLUSTER_NAME-admin-kubeconfig -n $CLUSTERS_NAMESPACE -o jsonpath='{.data.kubeconfig}' | base64 -d > $HOSTED_CLUSTER_NAME.kubeconfig
+    ```
 1.  Switch to the hosted cluster context:
     ```terminal
     $ export KUBECONFIG=$HOSTED_CLUSTER_NAME.kubeconfig

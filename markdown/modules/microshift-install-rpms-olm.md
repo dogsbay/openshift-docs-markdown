@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Install the Operator Lifecycle Manager (OLM) from an RPM package {id="microshift-installing-with-olm-from-rpm-package_{{ context }}"}
 
-When you install {{ microshift_short }}, the Operator Lifecycle Manager (OLM) package is not installed by default. You can install the OLM on your {{ microshift_short }} instance by using an RPM package. OLM helps you install, update, and manage the lifecycle of Kubernetes native applications (Operators) and their associated services running in each {{ microshift_short }} node. {._abstract}
+When you install {{ microshift_short }}, the Operator Lifecycle Manager (OLM) package is not installed by default. You can install the OLM on your {{ microshift_short }} instance by using an RPM package. {._abstract}
+
+OLM helps you install, update, and manage the lifecycle of Kubernetes native applications (Operators) and their associated services running in each {{ microshift_short }} node.
 
 **Procedure**
 

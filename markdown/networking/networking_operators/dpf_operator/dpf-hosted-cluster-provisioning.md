@@ -1,3 +1,7 @@
+---
+title: Provision the DPU hosted cluster
+---
+
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
 # Provision the DPU hosted cluster {id="dpf-hosted-cluster-provisioning"}
@@ -19,3 +23,5 @@ The DPF HCP Provisioner Operator automates the creation and lifecycle management
 {% leveloffset +1 %}{% include "./modules/nw-dpf-creating-dpfhcpprovisioner.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/nw-dpf-verifying-hosted-cluster.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/nw-dpf-verifying-dpu-services.md" %}{% endleveloffset %}

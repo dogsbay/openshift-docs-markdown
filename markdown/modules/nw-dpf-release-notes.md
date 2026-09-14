@@ -3,7 +3,7 @@
 
 The NVIDIA DPF Operator on {{ product_title }} has known limitations for uninstall, secrets, MTU, secure boot, multi-DPU hosts, and HBN, unsupported OVN-Kubernetes features, and issues that can affect Grafana and DTS metrics. {._abstract}
 
-## DPF Operator v26.4.1-beta.1 {id="dpf-26-4-1-beta-1_{{ context }}"}
+## DPF Operator v{{ dpf_version }} {id="dpf-26-4-1_{{ context }}"}
 
 **New features and enhancements**
 
@@ -37,11 +37,6 @@ Enhanced worker node detection
 Networking stability improvements
 :   Fixed OVN-Kubernetes integration issues that could cause worker nodes to remain in `NotReady` state.
 
-**Technology Preview features**
-
-{%- set FeatureName = "The NVIDIA DPF Operator" %}
-{% include "./snippets/technology-preview.md" %}
-
 **Known issues and limitations**
 
 
@@ -63,6 +58,10 @@ Secondary pod interfaces are not supported
 
 MTU changes are not supported after deployment
 :   You cannot change the MTU value after deployment.
+
+
+`controlPlaneMTU` and `highSpeedMTU` must use the same value
+:   In the `DPFOperatorConfig` custom resource, you must set `controlPlaneMTU` and `highSpeedMTU` to the same value, either `1500` or `9000`.
 
 
 Secure boot firmware requirement
@@ -115,7 +114,7 @@ The SR-IOV device plugin can report fewer virtual functions than configured
 
 **OVN-Kubernetes feature support**
 
-The following table lists the support and hardware offload status of OVN-Kubernetes features in this Technology Preview.
+The following table lists the support and hardware offload status of OVN-Kubernetes features in this release.
 
 **OVN-Kubernetes feature support and offload status**
 

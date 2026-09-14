@@ -13,6 +13,8 @@ The {{ descheduler_operator }} allows you to evict pods so that they can be resc
 
 For more information, see [About the descheduler](/nodes/scheduling/descheduler/index#nodes-descheduler-about_nodes-descheduler-about).
 
+{% leveloffset +1 %}{% include "./modules/nodes-descheduler-rn-5-4-3.md" %}{% endleveloffset %}
+
 {% leveloffset +1 %}{% include "./modules/nodes-descheduler-rn-5.4.2.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/nodes-descheduler-rn-5.4.1.md" %}{% endleveloffset %}

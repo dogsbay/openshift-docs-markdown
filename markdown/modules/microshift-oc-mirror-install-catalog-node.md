@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Install a custom catalog created with the oc-mirror plugin {id="microshift-oc-mirror-install-catalog-in-node_{{ context }}"}
 
-After you mirror your image set to the mirror registry, you must apply the generated `CatalogSource` custom resource (CR) into the node. Operator Lifecycle Manager (OLM) uses the `CatalogSource` CR to retrieve information about the available Operators in the mirror registry. You must then create and apply a subscription CR to subscribe to your custom catalog. {._abstract}
+After you mirror your image set to the mirror registry, you must apply the generated `CatalogSource` custom resource (CR) into the node. Operator Lifecycle Manager (OLM) uses the `CatalogSource` CR to retrieve information about the available Operators in the mirror registry. {._abstract}
+
+You must then create and apply a subscription CR to subscribe to your custom catalog.
 
 **Prerequisites**
 

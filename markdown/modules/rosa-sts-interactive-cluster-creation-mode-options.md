@@ -152,6 +152,10 @@ The following table describes the interactive cluster creation mode options:
   <td>Disable monitoring for user-defined projects. Monitoring for user-defined projects is enabled by default.</td>
 </tr>
 <tr>
+  <td><code>Enable cluster deletion protection (optional)</code></td>
+  <td>Enable cluster deletion protection to prevent accidental deletion. By default, clusters are created with deletion protection disabled.<br><br>When deletion protection is enabled, attempts to delete the cluster using <code>rosa delete cluster</code> fail immediately before prompting for deletion confirmation. To delete a cluster, disable the protection first by running <code>rosa edit cluster -c &lt;cluster_name&gt; --enable-delete-protection=false</code>.<br><br>Deletion protection only blocks deletion requests made through the {{ rosa_cli }}. It does not set any AWS-level resource protections, and you can still delete cluster resources directly in AWS, risking data loss or cluster outage.</td>
+</tr>
+<tr>
   <td><code>Route Selector for ingress (optional)</code></td>
   <td>Specify the route selector for your ingress. The format should be a comma-separated list of key-value pairs. If you do not specify a label, all routes will be exposed on both routers. For legacy ingress support, these labels are inclusion labels; otherwise, they are treated as exclusion labels.</td>
 </tr>

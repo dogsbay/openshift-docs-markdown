@@ -23,9 +23,7 @@ device-classes:
     spare-gb: 0 (5)
     default: (6)
 ```
-
 where:
-
 
 `socket-name`
 :   Specifies the UNIX domain socket endpoint of gRPC. Defaults to `/run/lvmd/lvmd.socket`. Takes a string value.

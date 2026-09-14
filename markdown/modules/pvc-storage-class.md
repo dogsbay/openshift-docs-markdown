@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Storage classes {id="pvc-storage-class_{{ context }}"}
 
-To request specific storage capabilities, define the `StorageClass` name in the `storageClassName` attribute of your `PersistentVolumeClaim` (PVC). This setting ensures the claim binds only to matching `PersistentVolumes` (PVs) or triggers dynamic provisioning if the cluster administrator has configured on-demand creation. {._abstract}
+To request specific storage capabilities, define the `StorageClass` name in the `storageClassName` attribute of your `PersistentVolumeClaim` (PVC). {._abstract}
+
+This setting ensures the claim binds only to matching `PersistentVolumes` (PVs) or triggers dynamic provisioning if the cluster administrator has configured on-demand creation.
 
 {% if not (microshift or openshift_rosa or openshift_rosa_hcp) %}
 

@@ -29,8 +29,9 @@ You can create a {{ product_title }} cluster quickly by using the {{ rosa_cli_fi
             --mode=auto --hosted-cp [--private] \
             --operator-roles-prefix <operator-role-prefix> \
             --external-id <external-id> \
-            --oidc-config-id <id-of-oidc-configuration> \ 
-            --subnet-ids=<public-subnet-id>,<private-subnet-id>
+            --oidc-config-id <id-of-oidc-configuration> \
+            --subnet-ids=<public-subnet-id>,<private-subnet-id> \
+            --enable-delete-protection
         ```
         where:
 
@@ -46,6 +47,13 @@ You can create a {{ product_title }} cluster quickly by using the {{ rosa_cli_fi
 
         `<external-id>`
         :   Optional. A unique identifier that might be required when you assume a role in another account. For more information about external ID, see _About external ID_.
+
+        `--enable-delete-protection`
+        :   Optional. Enables cluster deletion protection to prevent accidental deletion. By default, clusters are created with deletion protection disabled.
+
+            When deletion protection is enabled, attempts to delete the cluster using `rosa delete cluster` fail immediately before prompting for deletion confirmation. To delete a cluster, disable the protection first by running `rosa edit cluster -c <cluster_name> --enable-delete-protection=false`.
+
+            Deletion protection only blocks deletion requests made through the {{ rosa_cli }}. It does not set any AWS-level resource protections, and you can still delete cluster resources directly in AWS, risking data loss or cluster outage. Additionally, deletion protection does not override the Red&#160;Hat [Deletion policy](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-delete-policy_rosa-hcp-life-cycle). Red&#160;Hat reserves the right to delete clusters that violate service requirements.
 
 
             :::note
@@ -63,7 +71,7 @@ You can create a {{ product_title }} cluster quickly by using the {{ rosa_cli_fi
         ```
     *   If you set the environmental variables, create a cluster with a single, initial machine pool, a publicly available API, and a publicly available Ingress by running the following command:
         ```terminal
-        $ rosa create cluster --cluster-name=<cluster_name> --mode=auto \ 
+        $ rosa create cluster --cluster-name=<cluster_name> --mode=auto \
             --hosted-cp --operator-roles-prefix=$OPERATOR_ROLES_PREFIX \
             --oidc-config-id=$OIDC_ID --subnet-ids=$SUBNET_IDS
         ```

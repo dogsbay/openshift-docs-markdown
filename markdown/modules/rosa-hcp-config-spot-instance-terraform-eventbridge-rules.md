@@ -1,0 +1,45 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+
+# Create your EventBridge rules {id="rosa-hcp-config-spot-instance-terraform-eventbridge-rules_{{ context }}"}
+
+Use EventBridge rules to route EC2 Spot events to the queue. {._abstract}
+
+**Procedure**
+
+*   Create two EventBridge rules to capture Spot instance events and route them to the SQS queue:
+    ```text
+    # Rule 1: Spot Instance Interruption Warning
+    resource "aws_cloudwatch_event_rule" "spot_interruption" {
+      name        = "rosa-<cluster-name>-spot-interruption"
+      description = "Capture EC2 Spot Instance Interruption Warnings"
+
+      event_pattern = jsonencode({
+        source      = ["aws.ec2"]
+        detail-type = ["EC2 Spot Instance Interruption Warning"]
+      })
+    }
+
+    # Rule 2: Instance Rebalance Recommendation
+    resource "aws_cloudwatch_event_rule" "rebalance_recommendation" {
+      name        = "rosa-<cluster-name>-rebalance-recommendation"
+      description = "Capture EC2 Instance Rebalance Recommendations"
+
+      event_pattern = jsonencode({
+        source      = ["aws.ec2"]
+        detail-type = ["EC2 Instance Rebalance Recommendation"]
+      })
+    }
+
+    # Route both rules to the SQS queue
+    resource "aws_cloudwatch_event_target" "spot_interruption_target" {
+      rule      = aws_cloudwatch_event_rule.spot_interruption.name
+      target_id = "SendToSQS"
+      arn       = aws_sqs_queue.spot_termination.arn
+    }
+
+    resource "aws_cloudwatch_event_target" "rebalance_recommendation_target" {
+      rule      = aws_cloudwatch_event_rule.rebalance_recommendation.name
+      target_id = "SendToSQS"
+      arn       = aws_sqs_queue.spot_termination.arn
+    }
+    ```

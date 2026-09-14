@@ -22,17 +22,15 @@ To add a pre-purchased Capacity Reservation to a machine pool, see [Creating a m
 **Procedure**
 
 *   To add a machine pool that does not use autoscaling, create the machine pool and define the instance type, compute (also known as worker) node count, and node labels:
-    ```terminal {minja}
+    ```terminal
     $ rosa create machinepool --cluster=<cluster-name> \
                               --name=<machine_pool_id> \
                               --replicas=<replica_count> \
                               --instance-type=<instance_type> \
                               --labels=<key>=<value>,<key>=<value> \
                               --taints=<key>=<value>:<effect>,<key>=<value>:<effect> \
-    {%- if openshift_rosa %}
                               --use-spot-instances \
                               --spot-max-price=<price> \
-    {%- endif %}
                               --disk-size=<disk_size> \
                               --availability-zone=<availability_zone_name> \
                               --additional-security-group-ids <sec_group_id> \
@@ -56,13 +54,13 @@ To add a pre-purchased Capacity Reservation to a machine pool, see [Creating a m
 
     `--taints=<key>=<value>:<effect>,<key>=<value>:<effect>`
     :   Optional: Defines the taints for the machine pool. Replace `<key>=<value>:<effect>,<key>=<value>:<effect>` with a key, value, and effect for each taint, for example `--taints=key1=value1:NoSchedule,key2=value2:NoExecute`. Available effects include `NoSchedule`, `PreferNoSchedule`, and `NoExecute`.
-{%- if openshift_rosa %}
 
     `--use-spot-instances`
     :   Optional: Configures your machine pool to deploy machines as non-guaranteed AWS Spot Instances. For information, see [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/) in the AWS documentation. If you select **Use Amazon EC2 Spot Instances** for a machine pool, you cannot disable the option after the machine pool is created.
 
     `--spot-max-price=<price>`
     :   Optional: If you choose to use Spot Instances, you can specify this argument to define a maximum hourly price for a Spot Instance. If this argument is not specified, the on-demand price is used.
+{%- if openshift_rosa %}
 
         :::important
 

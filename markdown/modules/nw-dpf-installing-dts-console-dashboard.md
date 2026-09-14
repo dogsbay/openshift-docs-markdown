@@ -97,17 +97,27 @@ This dashboard provides visibility of DPU telemetry metrics without requiring Gr
               "panels": [
                 {
                   "type": "graph", "title": "Uplink packets/s (rx + tx)", "span": 6,
-                  "datasource": "prometheus",
+                  "datasource": "prometheus", "nullPointMode": "null",
+                  "legend": {"show": true, "alignAsTable": true, "rightSide": true},
+                  "yaxes": [{"format": "pps", "show": true}, {"format": "pps", "show": false}],
                   "targets": [
-                    {"refId": "A", "expr": "sum by(source)(rate({__name__=~\"p[01]_eth_rx_packets\"}[5m]))", "legendFormat": "{{source}} rx"},
-                    {"refId": "B", "expr": "sum by(source)(rate({__name__=~\"p[01]_eth_tx_packets\"}[5m]))", "legendFormat": "{{source}} tx"}
+                    {"refId": "A", "format": "time_series", "intervalFactor": 2,
+                     "expr": "sum by(source)(rate({__name__=~\"p[01]_eth_rx_packets\"}[5m]))",
+                     "legendFormat": "{{source}} rx"},
+                    {"refId": "B", "format": "time_series", "intervalFactor": 2,
+                     "expr": "sum by(source)(rate({__name__=~\"p[01]_eth_tx_packets\"}[5m]))",
+                     "legendFormat": "{{source}} tx"}
                   ]
                 },
                 {
                   "type": "graph", "title": "Uplink errors & drops/s", "span": 6,
-                  "datasource": "prometheus",
+                  "datasource": "prometheus", "nullPointMode": "null",
+                  "legend": {"show": true, "alignAsTable": true, "rightSide": true},
+                  "yaxes": [{"format": "cps", "show": true}, {"format": "cps", "show": false}],
                   "targets": [
-                    {"refId": "A", "expr": "sum by(source)(rate({__name__=~\"p[01]_eth_rx_errors\"}[5m])) + sum by(source)(rate({__name__=~\"p[01]_eth_tx_errors\"}[5m])) + sum by(source)(rate({__name__=~\"p[01]_eth_rx_dropped\"}[5m])) + sum by(source)(rate({__name__=~\"p[01]_eth_tx_dropped\"}[5m]))", "legendFormat": "{{source}}"}
+                    {"refId": "A", "format": "time_series", "intervalFactor": 2,
+                     "expr": "sum by(source)(rate({__name__=~\"p[01]_eth_rx_errors\"}[5m])) + sum by(source)(rate({__name__=~\"p[01]_eth_tx_errors\"}[5m])) + sum by(source)(rate({__name__=~\"p[01]_eth_rx_dropped\"}[5m])) + sum by(source)(rate({__name__=~\"p[01]_eth_tx_dropped\"}[5m])) + sum by(source)(rate({__name__=~\"p[01]_eth_rx_crc_errors\"}[5m]))",
+                     "legendFormat": "{{source}}"}
                   ]
                 }
               ]
@@ -119,13 +129,23 @@ This dashboard provides visibility of DPU telemetry metrics without requiring Gr
               "panels": [
                 {
                   "type": "graph", "title": "NIC channel poll/s", "span": 6,
-                  "datasource": "prometheus",
-                  "targets": [{"refId": "A", "expr": "sum by(source)(rate(ch_poll[5m]))", "legendFormat": "{{source}}"}]
+                  "datasource": "prometheus", "nullPointMode": "null",
+                  "legend": {"show": true, "alignAsTable": true, "rightSide": true},
+                  "yaxes": [{"format": "cps", "show": true}, {"format": "cps", "show": false}],
+                  "targets": [
+                    {"refId": "A", "format": "time_series", "intervalFactor": 2,
+                     "expr": "sum by(source)(rate(ch_poll[5m]))", "legendFormat": "{{source}}"}
+                  ]
                 },
                 {
                   "type": "graph", "title": "NIC channel events/s", "span": 6,
-                  "datasource": "prometheus",
-                  "targets": [{"refId": "A", "expr": "sum by(source)(rate(ch_events[5m]))", "legendFormat": "{{source}}"}]
+                  "datasource": "prometheus", "nullPointMode": "null",
+                  "legend": {"show": true, "alignAsTable": true, "rightSide": true},
+                  "yaxes": [{"format": "cps", "show": true}, {"format": "cps", "show": false}],
+                  "targets": [
+                    {"refId": "A", "format": "time_series", "intervalFactor": 2,
+                     "expr": "sum by(source)(rate(ch_events[5m]))", "legendFormat": "{{source}}"}
+                  ]
                 }
               ]
             }
@@ -148,7 +168,7 @@ This dashboard provides visibility of DPU telemetry metrics without requiring Gr
     dpf-dts-console-dashboard   1      ...
     ```
 1.  Access the dashboard in the {{ product_title }} web console:
-    1.  In the {{ product_title }} web console, click **Observe** → **Dashboards**.
+    1.  Navigate to **Observe** → **Dashboards**.
     1.  In the **Dashboard** dropdown menu, select **DOCA DPU Telemetry (DTS)**.
 
         The dashboard displays PCIe link speed and width, uplink throughput, packets per second, errors and drops per second, and NIC channel activity, with each DPU as its own line.

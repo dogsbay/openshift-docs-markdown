@@ -16,10 +16,10 @@
 
 Before using {{ cluster_manager_first }} on the {{ hybrid_console_url }} to create
 {%- if openshift_rosa %}
-{{ rosa_classic_short }} 
+{{ rosa_classic_short }}
 {%- endif %}
 {%- if openshift_rosa_hcp %}
-{{ rosa_short }} 
+{{ rosa_short }}
 {%- endif %}
 clusters that use the AWS Security Token Service (STS), create an {{ cluster_manager }} IAM role and link it to your Red&#160;Hat organization. Then, create a user IAM role and link it to your Red&#160;Hat user account in the same Red&#160;Hat organization. {._abstract}
 
@@ -114,7 +114,7 @@ clusters, use the latest version of the ROSA CLI.
 
 **Verification**
 
-*   Verify that the OCM role and user role were created:
+*   Verify that the {{ cluster_manager }} role and user role were created:
     ```terminal
     $ rosa list ocm-role
     $ rosa list user-role

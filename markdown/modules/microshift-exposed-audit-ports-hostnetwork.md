@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # hostNetwork {id="microshift-exposed-audit-ports-hostnetwork_{{ context }}"}
 
-When a pod is configured with the `hostNetwork:true` setting, the pod is running in the host network namespace. This configuration can independently open host ports. {{ microshift_short }} component logs cannot be used to track this case, the ports are subject to firewalld rules. If the port opens in firewalld, you can view the port opening in the firewalld debug log. {._abstract}
+When a pod is configured with the `hostNetwork:true` setting, the pod is running in the host network namespace. This configuration can independently open host ports. {{ microshift_short }} component logs cannot be used to track this case, the ports are subject to firewalld rules. {._abstract}
+
+If the port opens in firewalld, you can view the port opening in the firewalld debug log.
 
 **Prerequisites**
 

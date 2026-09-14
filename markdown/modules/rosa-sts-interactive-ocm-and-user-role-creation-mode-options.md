@@ -1,11 +1,11 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Interactive OCM and user role creation mode options {id="rosa-sts-interactive-ocm-and-user-role-creation-mode-options_{{ context }}"}
+# Interactive {{ cluster_manager }} and user role creation mode options {id="rosa-sts-interactive-ocm-and-user-role-creation-mode-options_{{ context }}"}
 
-Before you can use {{ cluster_manager_first }} to create {{ product_title }} clusters that use the AWS Security Token Service (STS), you must associate your AWS account with your Red&#160;Hat organization by creating and linking the OCM and user roles. You can enable interactive mode by specifying the `--interactive` option when you run the `rosa create ocm-role` command or the `rosa create user-role` command. {._abstract}
+Before you can use {{ cluster_manager_first }} to create {{ product_title }} clusters that use the AWS Security Token Service (STS), you must associate your AWS account with your Red&#160;Hat organization by creating and linking the {{ cluster_manager }} and user roles. You can enable interactive mode by specifying the `--interactive` option when you run the `rosa create ocm-role` command or the `rosa create user-role` command. {._abstract}
 
-The following tables describe the interactive OCM role creation mode options:
+The following tables describe the interactive {{ cluster_manager }} role creation mode options:
 
-**`--interactive` OCM role creation mode options**
+**`--interactive` {{ cluster_manager }} role creation mode options**
 
 <table>
 <thead>
@@ -17,31 +17,31 @@ The following tables describe the interactive OCM role creation mode options:
 <tbody>
 <tr>
   <td><code>Role prefix</code></td>
-  <td>Specify the prefix to include in the OCM IAM role name. The default is <code>ManagedOpenShift</code>. You can create only one OCM role per AWS account for your Red&#160;Hat organization.</td>
+  <td>Specify the prefix to include in the {{ cluster_manager }} IAM role name. The default is <code>ManagedOpenShift</code>. You can create only one {{ cluster_manager }} role per AWS account for your Red&#160;Hat organization.</td>
 </tr>
 <tr>
-  <td><code>Enable admin capabilities for the OCM role (optional)</code></td>
-  <td>Enable the admin OCM IAM role, which is equivalent to specifying the <code>--admin</code> argument. The admin role is required if you want to use <code>auto</code> mode to automatically provision the cluster-specific Operator roles and the OIDC provider by using {{ cluster_manager }}.</td>
+  <td><code>Enable admin capabilities for the {{ cluster_manager }} role (optional)</code></td>
+  <td>Enable the admin {{ cluster_manager }} IAM role, which is equivalent to specifying the <code>--admin</code> argument. The admin role is required if you want to use <code>auto</code> mode to automatically provision the cluster-specific Operator roles and the OIDC provider by using {{ cluster_manager }}.</td>
 </tr>
 <tr>
   <td><code>Permissions boundary ARN (optional)</code></td>
-  <td>Specify a permissions boundary Amazon Resource Name (ARN) for the OCM role. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html">Permissions boundaries for IAM entities</a> in the AWS documentation.</td>
+  <td>Specify a permissions boundary Amazon Resource Name (ARN) for the {{ cluster_manager }} role. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html">Permissions boundaries for IAM entities</a> in the AWS documentation.</td>
 </tr>
 <tr>
   <td><code>Role Path (optional)</code></td>
-  <td>Specify a custom ARN path for your OCM role. The path must contain alphanumeric characters only and start and end with <code>/</code>, for example <code>/test/path/dev/</code>. For more information, see <em>ARN path customization for IAM roles and policies</em>.</td>
+  <td>Specify a custom ARN path for your {{ cluster_manager }} role. The path must contain alphanumeric characters only and start and end with <code>/</code>, for example <code>/test/path/dev/</code>. For more information, see <em>ARN path customization for IAM roles and policies</em>.</td>
 </tr>
 <tr>
   <td><code>Role creation mode</code></td>
-  <td>Select the role creation mode. You can use <code>auto</code> mode to automatically create the OCM role and link it to your Red&#160;Hat organization account. In <code>manual</code> mode, the ROSA CLI (<code>rosa</code>) generates the <code>aws</code> commands needed to create and link the role. In <code>manual</code> mode, the corresponding policy JSON files are also saved to the current directory. <code>manual</code> mode enables you to review the details before running the <code>aws</code> commands manually.</td>
+  <td>Select the role creation mode. You can use <code>auto</code> mode to automatically create the {{ cluster_manager }} role and link it to your Red&#160;Hat organization account. In <code>manual</code> mode, the ROSA CLI (<code>rosa</code>) generates the <code>aws</code> commands needed to create and link the role. In <code>manual</code> mode, the corresponding policy JSON files are also saved to the current directory. <code>manual</code> mode enables you to review the details before running the <code>aws</code> commands manually.</td>
 </tr>
 <tr>
   <td><code>Create the '&lt;ocm_role_name&gt;' role?</code></td>
-  <td>Confirm if you want to create the OCM role.</td>
+  <td>Confirm if you want to create the {{ cluster_manager }} role.</td>
 </tr>
 <tr>
   <td><code>Link the '&lt;ocm_role_arn&gt;' role with organization '&lt;red_hat_organization_id&gt;'?</code></td>
-  <td>Confirm if you want to link the OCM role with your Red&#160;Hat organization.</td>
+  <td>Confirm if you want to link the {{ cluster_manager }} role with your Red&#160;Hat organization.</td>
 </tr>
 </tbody>
 </table>

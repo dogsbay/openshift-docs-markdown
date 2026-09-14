@@ -93,6 +93,7 @@ Add or edit labels for compute nodes at any time to manage the nodes in a manner
     Taints:
     Availability zone:             us-east-2a
     Subnet:                        subnet-0df2ec3377847164f
+    Spot instances:                No
     Disk size:                     300 GiB
     Version:                       4.16.6
     EC2 Metadata Http Tokens:      optional
@@ -108,7 +109,9 @@ Add or edit labels for compute nodes at any time to manage the nodes in a manner
     Message:
     ```
 {%- endif %}
+{%- if not openshift_dedicated %}
 1.  Verify that the labels are included for your machine pool in the output.
+{%- endif %}
 {%- endif %}
 {%- if openshift_dedicated %}
 1.  Navigate to {{ cluster_manager_url }} and select your cluster.

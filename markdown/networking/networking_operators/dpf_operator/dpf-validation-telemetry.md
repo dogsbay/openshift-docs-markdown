@@ -1,3 +1,7 @@
+---
+title: Validate traffic and configure telemetry
+---
+
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
 # Validate traffic and configure telemetry {id="dpf-validation-telemetry"}

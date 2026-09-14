@@ -91,7 +91,7 @@ After you configure your [offline {{ cluster_manager_first }} token](https://con
       create_account_roles   = true
       create_operator_roles  = true
     # Optional: Configure a cluster administrator user
-    # 
+    #
     # Option 1: Default cluster-admin user
     # Create an administrator user (cluster-admin) and automatically
     # generate a password by uncommenting the following parameter:
@@ -104,12 +104,19 @@ After you configure your [offline {{ cluster_manager_first }} token](https://con
     #  admin_credentials_username = <username>
     #  admin_credentials_password = <password>
 
+    # Optional: Enable cluster deletion protection to prevent accidental deletion.
+    # To enable, uncomment the following parameter:
+    #  delete_protection = true
+    # By default, clusters are created with deletion protection disabled.
+
       depends_on = [time_sleep.wait_60_seconds]
     }
     EOF
     ```
+    *   If you want to create an administrator user during cluster creation, uncomment the appropriate parameters in the `Optional: Configure a cluster administrator user` section and edit their values.
+    *   If you want to enable deletion protection during cluster creation, uncomment the corresponding parameter in the `Optional: Enable cluster delete protection` section. When enabled, deletion protection blocks the `terraform destroy` command until you set `delete_protection = false` and apply the change by running `terraform apply`.
 
-    If you want to create an administrator user during cluster creation, uncomment the appropriate parameters in the `Optional: Configure a cluster administrator user` section and edit their values.
+        Deletion protection only blocks deletion requests made through Terraform. It does not set any AWS-level resource protections, and you can still delete cluster resources directly in AWS, risking data loss or cluster outage. Additionally, deletion protection does not override the Red&#160;Hat [Deletion policy](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-delete-policy_rosa-hcp-life-cycle). Red&#160;Hat reserves the right to delete clusters that violate service requirements.
 1.  Create the `variables.tf` file by running the following command:
 
     :::note
@@ -118,7 +125,7 @@ After you configure your [offline {{ cluster_manager_first }} token](https://con
     
     :::
 
-    ```terminal
+    ```terminal {minja}
     $ cat<<-EOF>variables.tf
     #
     # Copyright (c) 2023 Red Hat, Inc.
@@ -138,7 +145,7 @@ After you configure your [offline {{ cluster_manager_first }} token](https://con
     variable "openshift_version" {
       type        = string
       default     = "4.14.20"
-      description = "Desired version of OpenShift for the cluster, for example '4.14.20'. If version is greater than the currently running version, an upgrade will be scheduled."
+      description = "Desired version of {{ OCP_short }} for the cluster, for example '4.14.20'. If version is greater than the currently running version, an upgrade will be scheduled."
     }
 
     variable "create_vpc" {
@@ -146,11 +153,11 @@ After you configure your [offline {{ cluster_manager_first }} token](https://con
       description = "If you would like to create a new VPC, set this value to 'true'. If you do not want to create a new VPC, set this value to 'false'."
     }
 
-    # ROSA Cluster info
+    # {{ product_title }} cluster info
     variable "cluster_name" {
       default     = null
       type        = string
-      description = "The name of the ROSA cluster to create"
+      description = "The name of the {{ product_title }} cluster to create"
     }
 
     variable "additional_tags" {

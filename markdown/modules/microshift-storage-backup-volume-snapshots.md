@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Backing up a volume snapshot {id="microshift-storage-backup-volume-snapshots_{{ context }}"}
 
-Snapshots of data from applications running on a {{ microshift_short }} node are created as read-only logical volumes (LVs) located on the same devices as the original data. You must manually mount local volumes before they can be copied as persistent volumes (PVs) and used as backup copies. To use a snapshot of a {{ microshift_short }} storage volume as a backup, find it on the local host and then move it to a secure location. {._abstract}
+Snapshots of data from applications running on a {{ microshift_short }} node are created as read-only logical volumes (LVs) located on the same devices as the original data. You must manually mount local volumes before they can be copied as persistent volumes (PVs) and used as backup copies. {._abstract}
+
+To use a snapshot of a {{ microshift_short }} storage volume as a backup, find it on the local host and then move it to a secure location.
 
 **Prerequisites**
 

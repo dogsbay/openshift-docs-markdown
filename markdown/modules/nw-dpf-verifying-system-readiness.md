@@ -21,11 +21,11 @@ After the DPU provisioning process completes, you can verify that all worker nod
     ```
     ```terminal title="Example output"
     NAME               STATUS   ROLES                         AGE     VERSION
-    host-worker1       Ready    worker                        57m     v1.35
-    host-worker2       Ready    worker                        57m     v1.35
-    master-0           Ready    control-plane,master,worker   4d23h   v1.35
-    master-1           Ready    control-plane,master,worker   4d22h   v1.35
-    master-2           Ready    control-plane,master,worker   4d23h   v1.35
+    host-worker1       Ready    worker                        57m     v1.35.6
+    host-worker2       Ready    worker                        57m     v1.35.6
+    master-0           Ready    control-plane,master,worker   4d23h   v1.35.6
+    master-1           Ready    control-plane,master,worker   4d22h   v1.35.6
+    master-2           Ready    control-plane,master,worker   4d23h   v1.35.6
     ```
 1.  Verify that SR-IOV virtual functions are registered as Kubernetes node resources on the worker nodes:
     ```terminal

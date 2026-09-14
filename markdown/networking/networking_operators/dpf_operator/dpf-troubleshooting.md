@@ -1,3 +1,7 @@
+---
+title: Troubleshoot DPF
+---
+
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
 # Troubleshoot DPF {id="dpf-troubleshooting"}
@@ -18,10 +22,6 @@ These procedures complement the official NVIDIA debugging tools and guides. {._a
 {% leveloffset +1 %}{% include "./modules/nw-dpf-ts-worker-csr-approval.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/nw-dpf-ts-dpu-node-status.md" %}{% endleveloffset %}
-
-{% leveloffset +1 %}{% include "./modules/nw-dpf-troubleshooting-framework.md" %}{% endleveloffset %}
-
-{% leveloffset +1 %}{% include "./modules/nw-dpf-troubleshooting-dpu-provisioning.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/nw-dpf-troubleshooting-hosted-cluster.md" %}{% endleveloffset %}
 

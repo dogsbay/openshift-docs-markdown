@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Check journal logs after updates {id="microshift-check-journal-logs-updates_{{ context }}"}
 
-You can use journal logs to help diagnose {{ microshift_short }} update failures. The default configuration of the `systemd` journal service stores data in a volatile directory, which does not persist across restarts. To retain logs across restarts, enable log persistence and set a maximum size limit for journal data. {._abstract}
+You can use journal logs to help diagnose {{ microshift_short }} update failures. By default, the `systemd` journal service stores data in a volatile directory, which does not persist across restarts. To retain logs across restarts, enable log persistence and set a maximum size limit for journal data. {._abstract}
 
 **Procedure**
 

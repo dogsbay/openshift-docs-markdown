@@ -1,7 +1,8 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # DPU hosted cluster provisioning with the DPF HCP Provisioner Operator {id="nw-dpf-hosted-cluster-overview_{{ context }}"}
 
-The DPF HCP Provisioner Operator orchestrates the lifecycle of hosted clusters for DPU environments. {._abstract}
+The DPF HCP Provisioner Operator abstracts hosted control plane complexity for DPF by orchestrating the full lifecycle of hosted clusters for DPU environments.
+The Operator treats the hosted control plane as a black box and maintains a 1:1:1 relationship: each `DPFHCPProvisioner` custom resource maps to exactly one `DPUCluster` and one `HostedCluster`. {._abstract}
 
 The Operator provides the following capabilities:
 
@@ -18,8 +19,8 @@ BlueField {{ product_title }} layer image lookup
 :   Matches {{ product_title }} release images to corresponding BlueField container images by using container registry tag lookup.
 
 
-Kubeconfig injection
-:   Extracts the `HostedCluster` kubeconfig and injects it into the `DPUCluster` custom resource, enabling management cluster communication with the DPU hosted cluster.
+Kubeconfig provisioning
+:   Extracts the hosted cluster admin kubeconfig, stores it in a secret, and sets the `spec.kubeconfig` field of the `DPUCluster` custom resource to reference that secret, enabling the management cluster to communicate with the DPU hosted cluster.
 
 
 MetalLB configuration

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Kubeconfig files for configuring node access {id="kubeconfig-files-overview_{{ context }}"}
 
-The two categories of `kubeconfig` files used in {{ microshift_short }} are local access and remote access. Each time {{ microshift_short }} starts, it generates a set of `kubeconfig` files for accessing the API server. These files are created in the `/var/lib/microshift/resources/kubeadmin/` directory by using existing configuration information. {._abstract}
+The two categories of `kubeconfig` files used in {{ microshift_short }} are local access and remote access. Each time {{ microshift_short }} starts, it generates a set of `kubeconfig` files for accessing the API server. {._abstract}
+
+These files are created in the `/var/lib/microshift/resources/kubeadmin/` directory by using existing configuration information.
 
 Each access type requires a different authentication certificate signed by different Certificate Authorities (CAs). The generation of multiple `kubeconfig` files accommodates this need.
 

@@ -1,11 +1,11 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Billing options {id="billing_{{ context }}"}
 
-Customers have the option to purchase annual subscriptions of {{ product_title }} (OSD) or consume on-demand through cloud marketplaces. Customers can decide to bring their own cloud infrastructure account, referred to as Customer Cloud Subscription (CCS), or deploy in cloud provider accounts owned by Red Hat. The table below provides additional information regarding billing, as well as the corresponding supported deployment options.
+Customers have the option to buy annual subscriptions of {{ product_title }} or consume on-demand through cloud marketplaces. Customers can decide to bring their own cloud infrastructure account, referred to as Customer Cloud Subscription (CCS), or deploy in cloud provider accounts owned by Red Hat. The table below provides additional information regarding billing and the corresponding supported deployment options.
 <table>
 <thead>
 <tr>
-  <th>OSD Subscription-type</th>
+  <th>{{ product_title }} Subscription-type</th>
   <th>Cloud infrastructure account</th>
   <th>Billed through</th>
 </tr>
@@ -14,16 +14,16 @@ Customers have the option to purchase annual subscriptions of {{ product_title }
 <tr>
   <td rowspan="2">Annual fixed capacity subscriptions through Red Hat</td>
   <td>Red Hat cloud account</td>
-  <td>Red Hat for consumption of both OSD subscriptions and cloud infrastructure</td>
+  <td>Red Hat for consumption of both {{ product_title }} subscriptions and cloud infrastructure</td>
 </tr>
 <tr>
   <td>Customer's own cloud account</td>
-  <td>Red Hat for consumption of the OSD subscriptions<br><br>Cloud provider for consumption of cloud infrastructure</td>
+  <td>Red Hat for consumption of the {{ product_title }} subscriptions<br><br>Cloud provider for consumption of cloud infrastructure</td>
 </tr>
 <tr>
   <td>On-demand usage-based consumption through {{ gcp_full }} Marketplace</td>
   <td>Customer's own {{ gcp_full }} account</td>
-  <td>{{ gcp_full }} for both cloud infrastructure and Red Hat OSD subscriptions</td>
+  <td>{{ gcp_full }} for both cloud infrastructure and {{ product_title }} subscriptions</td>
 </tr>
 </tbody>
 </table>
@@ -31,12 +31,12 @@ Customers have the option to purchase annual subscriptions of {{ product_title }
 
 :::important
 
-Customers that use their own cloud infrastructure account, referred to as Customer Cloud Subscription (CSS), are responsible to pre-purchase or provide Reserved Instance (RI) compute instances to ensure lower cloud infrastructure costs.
+Customers that use their own cloud infrastructure account, referred to as Customer Cloud Subscription (CCS), are responsible to pre-purchase or provide Reserved Instance (RI) compute instances to ensure lower cloud infrastructure costs.
 
 :::
 
 
-Additional resources can be purchased for an OpenShift Dedicated cluster, including:
+Additional resources can be purchased for an {{ product_title }} cluster, including:
 
 *   Additional nodes (can be different types and sizes through the use of machine pools)
 *   Middleware (JBoss EAP, JBoss Fuse, and so on) - additional pricing based on specific middleware component

@@ -13,7 +13,15 @@ Use the `terraform destroy` command to remove all resources you create with the 
 
 :::note
 
-Keep your Terraform .tf files unchanged before destroying your resources. These variables are matched to resources to delete.
+Keep your Terraform `.tf` files unchanged before destroying your resources. These variables are matched to resources to delete.
+
+:::
+
+
+
+:::important
+
+If deletion protection is enabled on the cluster, disable it by setting `delete_protection = false` in the `main.tf` file, then run `terraform apply` to apply the change.
 
 :::
 
@@ -30,12 +38,12 @@ Keep your Terraform .tf files unchanged before destroying your resources. These 
     var.create_vpc
       If you would like to create a new VPC, set this value to 'true.' If you do not want to create a new VPC, set this value to 'false.'
 
-      Enter a value: 
+      Enter a value:
 
     var.private_cluster
       If you want to create a private cluster, set this value to 'true.' If you want a publicly available cluster, set this value to 'false.'
 
-      Enter a value: 
+      Enter a value:
     ```
 1.  Enter `yes` to start the role and cluster deletion:
 {%- if tf_rosa_hcp %}

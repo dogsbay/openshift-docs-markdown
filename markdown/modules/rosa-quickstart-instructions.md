@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Command quick reference list {id="rosa-quickstart-instructions"}
 
-If you have already created your first cluster and users, this list can serve as a command quick reference list when creating additional clusters and users.
+If you have already created your first cluster and users, this list can serve as a command quick reference when creating additional clusters and users. {._abstract}
 
 ```terminal
 ## Configures your AWS account and ensures everything is setup correctly

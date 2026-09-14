@@ -16,3 +16,9 @@ You can create virtual machines (VMs) by using the {{ product_title }} web conso
 **Additional resources**
 
 *   [Organize virtual machines by using the web console](/virt/managing_vms/virt-list-vms#virt-organize-vms-web_virt-list-vms)
+
+{% leveloffset +1 %}{% include "./modules/virt-cloning-vm-wizard-web.md" %}{% endleveloffset %}
+
+**Additional resources**
+
+*   [Organize virtual machines by using the web console](/virt/managing_vms/virt-list-vms#virt-organize-vms-web_virt-list-vms)

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Removing bootstrap resources in {{ gcp_short }} {id="installation-gcp-user-infra-wait-for-bootstrap_{{ context }}"}
 
-After you create all of the required infrastructure in {{ gcp_first }}, wait for the bootstrap process to complete on the machines that you provisioned by using the Ignition config files. The installation program created the Ignition config files.
+After the bootstrap process completes on your {{ gcp_first }} infrastructure, you can remove the bootstrap resources to reclaim the capacity that they consume, because the cluster no longer requires them. {._abstract}
 
 **Prerequisites**
 
@@ -13,13 +13,19 @@ After you create all of the required infrastructure in {{ gcp_first }}, wait for
 
 1.  Change to the directory that includes the installation program and run the following command:
     ```terminal
-    $ ./openshift-install wait-for bootstrap-complete --dir <installation_directory> \ (1)
-        --log-level info (2)
+    $ ./openshift-install wait-for bootstrap-complete --dir <installation_directory> \
+        --log-level info
     ```
-    1.  For `<installation_directory>`, specify the path to the directory where you stored the installation files.
-    1.  To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
-        If the command exits without a `FATAL` warning, your production control plane has initialized.
+    where:
+
+    `<installation_directory>`
+    :   Specifies the path to the directory where you stored the installation files.
+
+    `--log-level`
+    :   Specifies the log level. To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
+
+    If the command exits without a `FATAL` warning, your production control plane has initialized.
 1.  To remove the bootstrap instance group from the backend services' backends, run the following commands:
     ```terminal
     $ gcloud compute backend-services remove-backend ${INFRA_ID}-api-internal --region=${REGION} --instance-group=${INFRA_ID}-bootstrap-ig --instance-group-zone=${ZONE_0}

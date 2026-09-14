@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Amazon VPC Requirements for non-PrivateLink ROSA clusters {id="osd-aws-vpc-required-resources_{{ context }}"}
+# Amazon virtual private cloud (VPC) requirements for non-PrivateLink {{ product_title }} clusters {id="osd-aws-vpc-required-resources_{{ context }}"}
 
 To create an Amazon VPC, you must have the following: {._abstract}
 

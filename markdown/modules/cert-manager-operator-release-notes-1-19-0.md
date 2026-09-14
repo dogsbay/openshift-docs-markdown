@@ -13,7 +13,7 @@ The following advisories are available for the {{ cert_manager_operator }} for {
 *   [RHBA-2026:9025](https://access.redhat.com/errata/RHBA-2026:9025)
 *   [RHBA-2026:8956](https://access.redhat.com/errata/RHBA-2026:8956)
 
-Version `v1.19.4` of the {{ cert_manager_operator }} is based on the upstream cert-manager version `v1.19.4`. For more information, see the [cert-manager project release notes for v1.19.4](https://cert-manager.io/docs/releases/release-notes/release-notes-1.19#v1194).
+Version `1.19.0` of the {{ cert_manager_operator }} is based on the upstream cert-manager version `v1.19.4`. For more information, see the [cert-manager project release notes for v1.19.4](https://cert-manager.io/docs/releases/release-notes/release-notes-1.19#v1194).
 
 ## New features and enhancements {id="cert-manager-operator-1-19-0-features-enhancements_{{ context }}"}
 

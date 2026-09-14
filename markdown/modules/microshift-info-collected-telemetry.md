@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Information collected by the {{ microshift_short }} Telemetry API {id="microshift-info-collected-by-telemetry_{{ context }}"}
 
-The {{ microshift_short }} Telemetry API collects a lightweight set of metrics to assist with remote health monitoring and product improvement. The data payload is minimal, generally under 2KB, and is designed to have very minimal impact on node resources. The collected information is categorized into system configuration, node capacity, and usage metrics. {._abstract}
+The {{ microshift_short }} Telemetry API collects a lightweight set of metrics to assist with remote health monitoring and product improvement. The data payload is minimal, generally under 2KB, and is designed to have very minimal impact on node resources. {._abstract}
+
+The collected information is categorized into system configuration, node capacity, and usage metrics.
 
 The following information is collected by Telemetry:
 

@@ -22,10 +22,10 @@ The steps for performing a user-provisioned infrastructure installation are prov
 
 ## Prerequisites {id="_prerequisites"}
 
-*   You reviewed details about the [{{ product_title }} installation and update](/architecture/architecture-installation#architecture-installation) processes.
-*   You read the documentation on [selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing).
-*   If you use a firewall and plan to use the Telemetry service, you [configured the firewall to allow the sites](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall) that your cluster requires access to.
-*   If the cloud identity and access management (IAM) APIs are not accessible in your environment, or if you do not want to store an administrator-level credential secret in the `kube-system` namespace, you can [manually create and maintain long-term credentials](/installing/installing_gcp/installing-gcp-customizations#manually-create-iam_installing-gcp-customizations).
+*   You reviewed details about the {{ product_title }} installation and update processes. For more information, see "Installation and update".
+*   You read the documentation on selecting a cluster installation method and preparing it for users. For more information, see "Selecting a cluster installation method and preparing it for users".
+*   If you use a firewall and plan to use the Telemetry service, you configured the firewall to allow the sites that your cluster requires access to. For more information, see "Configuring your firewall for {{ product_title }}".
+*   If the cloud identity and access management (IAM) APIs are not accessible in your environment, or if you do not want to store an administrator-level credential secret in the `kube-system` namespace, you can manually create and maintain long-term credentials. For more information, see "Manually creating long-term credentials".
 
     :::note
 
@@ -34,13 +34,19 @@ The steps for performing a user-provisioned infrastructure installation are prov
     :::
 
 
+**Additional resources**
+{._additional-resources}
+
+*   [Installation and update](/architecture/architecture-installation#architecture-installation)
+*   [Selecting a cluster installation method and preparing it for users](/installing/overview/installing-preparing#installing-preparing)
+*   [Configuring your firewall for {{ product_title }}](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
+*   [Manually creating long-term credentials](/installing/installing_gcp/installing-gcp-customizations#manually-create-iam_installing-gcp-customizations)
+
 {% leveloffset +1 %}{% include "./modules/csr-management.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/cluster-entitlements.md" %}{% endleveloffset %}
 
-## Configuring your {{ gcp_short }} project {id="installation-gcp-user-infra-config-project"}
-
-Before you can install {{ product_title }}, you must configure a {{ gcp_first }} project to host it.
+{% leveloffset +1 %}{% include "./modules/installation-gcp-user-infra-config-project.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/installation-gcp-project.md" %}{% endleveloffset %}
 
@@ -65,12 +71,7 @@ Before you can install {{ product_title }}, you must configure a {{ gcp_first }}
 
 {% leveloffset +2 %}{% include "./modules/installation-gcp-install-cli.md" %}{% endleveloffset %}
 
-## Requirements for a cluster with user-provisioned infrastructure {id="installation-requirements-user-infra_{{ context }}" ._additional-resources}
-
-For a cluster that contains user-provisioned infrastructure, you must deploy all
-of the required machines.
-
-This section describes the requirements for deploying {{ product_title }} on user-provisioned infrastructure.
+{% leveloffset +1 %}{% include "./modules/installation-requirements-user-infra.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/installation-machine-requirements.md" %}{% endleveloffset %}
 
@@ -114,13 +115,11 @@ This section describes the requirements for deploying {{ product_title }} on use
 **Additional resources**
 {._additional-resources}
 
-*   [Optional: Adding the ingress DNS records](/installing/installing_gcp/installing-gcp-user-infra#installation-gcp-user-infra-adding-ingress_installing-gcp-user-infra)
+*   [Adding the ingress DNS records](/installing/installing_gcp/installing-gcp-user-infra#installation-gcp-user-infra-adding-ingress_installing-gcp-user-infra)
 
-## Exporting common variables {id="installation-gcp-user-infra-exporting-common-variables" ._additional-resources}
+{% leveloffset +1 %}{% include "./modules/installation-extracting-infraid.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/installation-extracting-infraid.md" %}{% endleveloffset %}
-
-{% leveloffset +2 %}{% include "./modules/installation-user-infra-exporting-common-variables.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/installation-user-infra-exporting-common-variables.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/installation-creating-gcp-vpc.md" %}{% endleveloffset %}
 
@@ -176,13 +175,9 @@ This section describes the requirements for deploying {{ product_title }} on use
 
 {% leveloffset +1 %}{% include "./modules/cluster-telemetry.md" %}{% endleveloffset %}
 
-**Additional resources**
-{._additional-resources}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
-*   See [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring) for more information about the Telemetry service
-
-## Next steps {id="_next_steps" ._additional-resources}
-
-*   [Customize your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
-*   If necessary, you can [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+*   [About remote health monitoring](/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
+*   [Customizing your cluster](/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+*   [Remote health reporting](/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
 *   [Configuring Global Access for an Ingress Controller on {{ gcp_short }}](/networking/networking_operators/ingress-operator#nw-ingress-controller-configuration-gcp-global-access_configuring-ingress)

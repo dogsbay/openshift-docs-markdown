@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Blocking external access to the NodePort service on a specific host interface {id="microshift-blocking-nodeport-access_{{ context }}"}
 
-OVN-Kubernetes does not restrict the host interface where a `NodePort` service can be accessed from 
-outside a {{ product_title }} node. To block the `NodePort` service on a specific host interface and restrict external access, you can insert a _drop_ rule for the port and IP on a {{ product_title }} node. {._abstract}
+OVN-Kubernetes does not restrict the host interface where a `NodePort` service can be accessed from outside a {{ product_title }} node. To block the `NodePort` service on a specific host interface and restrict external access, you can insert a _drop_ rule for the port and IP on the node. {._abstract}
 
 **Prerequisites**
 

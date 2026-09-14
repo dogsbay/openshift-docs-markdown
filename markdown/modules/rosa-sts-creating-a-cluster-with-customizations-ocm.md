@@ -47,7 +47,7 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
     1.  On the **Authenticate** page in {{ cluster_manager }}, click **Next**.
     1.  On the **OCM role** page, click the copy button next to the **Basic OCM role** or the **Admin OCM role** commands.
 
-        The basic role enables {{ cluster_manager }} to detect the AWS IAM roles and policies required by ROSA. The admin role also enables the detection of the roles and policies. In addition, the admin role enables automatic deployment of the cluster-specific Operator roles and the OpenID Connect (OIDC) provider by using {{ cluster_manager }}.
+        The basic role enables {{ cluster_manager }} to detect the AWS IAM roles and policies required by {{ product_title }}. The admin role also enables the detection of the roles and policies. In addition, the admin role enables automatic deployment of the cluster-specific Operator roles and the OpenID Connect (OIDC) provider by using {{ cluster_manager }}.
     1.  Run the copied command in the CLI and follow the prompts to create the {{ cluster_manager }} IAM role. The following example creates a basic {{ cluster_manager }} IAM role using the default options:
         ```terminal
         $ rosa create ocm-role
@@ -73,7 +73,7 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
         The prompts in this output include the following options:
 
         Role prefix
-        :   Specify the prefix to include in the OCM IAM role name. The default is `ManagedOpenShift`. You can create only one OCM role per AWS account for your Red&#160;Hat organization.
+        :   Specify the prefix to include in the {{ cluster_manager }} IAM role name. The default is `ManagedOpenShift`. You can create only one {{ cluster_manager }} role per AWS account for your Red&#160;Hat organization.
 
         Enable admin capabilities
         :   Enable the admin {{ cluster_manager }} IAM role, which is equivalent to specifying the `--admin` argument. The admin role is required if you want to use **Auto** mode to automatically provision the cluster-specific Operator roles and the OIDC provider by using {{ cluster_manager }}.
@@ -82,7 +82,7 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
         :   Optional. Specify a permissions boundary Amazon Resource Name (ARN) for the role. For more information, see [Permissions boundaries for IAM entities](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html) in the AWS documentation.
 
         Role Path
-        :   Specify a custom ARN path for your OCM role. The path must contain alphanumeric characters only and start and end with `/`, for example `/test/path/dev/`. For more information, see _ARN path customization for IAM roles and policies_.
+        :   Specify a custom ARN path for your {{ cluster_manager }} role. The path must contain alphanumeric characters only and start and end with `/`, for example `/test/path/dev/`. For more information, see _ARN path customization for IAM roles and policies_.
 
         Role creation mode
         :   Select the role creation mode. You can use `auto` mode to automatically create the {{ cluster_manager }} IAM role and link it to your Red&#160;Hat organization account. In `manual` mode, the ROSA CLI generates the `aws` commands needed to create and link the role. In `manual` mode, the corresponding policy JSON files are also saved to the current directory. `manual` mode enables you to review the details before running the `aws` commands manually.
@@ -95,7 +95,7 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
         ```
 
         Replace `<arn>` with the ARN of the {{ cluster_manager }} IAM role that is included in the output of the preceding command.
-    1.  Select **Next** on the {{ cluster_manager }} **OCM role** page.
+    1.  Select **Next** on the **OCM role** page.
     1.  On the **User role** page, click the copy button for the **User role** command and run the command in the CLI. Red&#160;Hat uses the user role to verify your AWS identity when you install a cluster and the required resources with {{ cluster_manager }}.
 
         Follow the prompts to create the user role:

@@ -4,7 +4,7 @@
 {%- set pygments_style = "emacs" -%}
 {%- set icons = "font" %}
 
-Use the `--external-auth-providers-enabled` flag in the ROSA CLI to create a cluster that uses an external authentication service. {._abstract}
+Use the `--external-auth-providers-enabled` flag in the {{ rosa_cli_first }} to create a cluster that uses an external authentication service. {._abstract}
 
 
 :::note

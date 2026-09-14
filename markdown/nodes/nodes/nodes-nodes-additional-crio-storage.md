@@ -17,7 +17,7 @@ Fields in the `ContainerRuntimeConfig` custom resource (CR) let you specify wher
 {% leveloffset +1 %}{% include "./modules/nodes-nodes-additional-crio-storage-about.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/nodes-nodes-additional-crio-storage-configuring.md" %}{% endleveloffset %}
 
-## Additional resources {id="_additional_resources"}
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Stargz Store plugin](https://github.com/containerd/stargz-snapshotter)
 *   [Install Stargz Snapshotter and Stargz Store](https://github.com/containerd/stargz-snapshotter/blob/main/docs/INSTALL.md)

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Enable the OVN-Kubernetes resource injector {id="nw-dpf-enabling-ovnk-resource-injector_{{ context }}"}
 
-You can install the OVN-Kubernetes resource injector by using Helm to deploy a mutating webhook that automatically injects SR-IOV virtual function resource requests and network attachment annotations into each pod scheduled to a worker node. {._abstract}
+You can install the OVN-Kubernetes resource injector by using Helm to deploy a mutating admission webhook that automatically injects SR-IOV virtual function resource requests and network attachment annotations into each pod scheduled to a worker node. {._abstract}
 
 
 :::note
@@ -42,12 +42,12 @@ Virtual function resource capacity on worker nodes is provided by the `NodeSRIOV
       --set commonManifests.enabled=false
     ```
     ```terminal title="Example output"
-    Release "ovn-kubernetes" does not exist. Installing it now.
     NAME: ovn-kubernetes
     LAST DEPLOYED: Sun Nov  2 17:10:29 2025
     NAMESPACE: openshift-ovn-kubernetes
     STATUS: deployed
     REVISION: 1
+    DESCRIPTION: Install complete
     TEST SUITE: None
     ```
 
@@ -58,6 +58,6 @@ Virtual function resource capacity on worker nodes is provided by the `NodeSRIOV
     $ oc get mutatingwebhookconfiguration | grep ovn
     ```
     ```terminal title="Example output"
-    NAME                                                    WEBHOOKS   AGE
-    ovn-kubernetes-resource-injector                        1          22h
+    NAME                                                WEBHOOKS   AGE
+    ovn-kubernetes-ovn-kubernetes-resource-injector     1          22h
     ```

@@ -36,7 +36,7 @@ You can quickly create a {{ product_title }} cluster by using the default instal
 </tr>
 <tr>
   {% if not (openshift_rosa_hcp or hcp) %}<td>Encryption</td>{% endif %}
-  {% if not (openshift_rosa_hcp or hcp) %}<td><ul><li>Cloud storage is encrypted at rest</li><li>Additional etcd encryption is not enabled</li><li>The default AWS Key Management Service (KMS) key is used as the encryption key for persistent data</li></ul></td>{% endif %}
+  {% if not (openshift_rosa_hcp or hcp) %}<td><ul><li>Cloud storage is encrypted at rest</li><li>Additional etcd encryption is not enabled</li><li>The default AWS Key Management Service (KMS) key is used as the encryption key for persistent data</li><li>Cluster deletion protection: Not enabled</li></ul></td>{% endif %}
 </tr>
 <tr>
   {% if openshift_rosa or tf_classic %}<td>Control plane node configuration</td>{% endif %}

@@ -24,11 +24,9 @@ You can create an autoscaling machine pool for your {{ product_title }} cluster 
     {%- if openshift_rosa_hcp %}
                               --availability-zone=<availability_zone_name>
     {%- endif %}
-    {%- if not openshift_rosa_hcp %}
                               --availability-zone=<availability_zone_name> \
                               --use-spot-instances \
                               --spot-max-price=<price>
-    {%- endif %}
     ```
 
     where:
@@ -67,10 +65,10 @@ You can create an autoscaling machine pool for your {{ product_title }} cluster 
 {%- if openshift_rosa_hcp %}
     :   Optional: You can create a machine pool in an availability zone of your choice. Replace `<availability_zone_name>` with an availability zone name.
 {%- endif %}
-{%- if openshift_rosa %}
 
     `--use-spot-instances`
     :   Optional: Configures your machine pool to deploy machines as non-guaranteed AWS Spot Instances. For information, see [Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/) in the AWS documentation. If you select **Use Amazon EC2 Spot Instances** for a machine pool, you cannot disable the option after the machine pool is created.
+{%- if openshift_rosa %}
 
         :::important
 
@@ -79,11 +77,12 @@ You can create an autoscaling machine pool for your {{ product_title }} cluster 
         
         :::
 
+{%- endif %}
 
     `--spot-max-price=<price>`
     :   Optional: If you choose to use Spot Instances, you can specify this argument to define a maximum hourly price for a Spot Instance. If this argument is not specified, the on-demand price is used.
-{%- endif %}
-    :   The following example creates a machine pool called `mymachinepool` that uses the `m7i.xlarge` instance type and has autoscaling enabled. The minimum compute node limit is 3 and the maximum is 6 overall. The example also adds 2 workload-specific labels:
+
+    The following example creates a machine pool called `mymachinepool` that uses the `m7i.xlarge` instance type and has autoscaling enabled. The minimum compute node limit is 3 and the maximum is 6 overall. The example also adds 2 workload-specific labels:
     ```terminal
     $ rosa create machinepool --cluster=mycluster --name=mymachinepool --enable-autoscaling --min-replicas=3 --max-replicas=6 --instance-type=m7i.xlarge --labels=app=db,tier=backend
     ```

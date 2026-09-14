@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Glossary of common terms for {{ product_title }} storage {id="openshift-storage-common-terms_{{ context }}"}
 
-This glossary defines common terms that are used in the storage content.
+Review this glossary that defines common terms that are used in the storage content. {._abstract}
 
 
 Access modes
@@ -70,7 +70,7 @@ Local volumes
 
 Nested mount points
 :   A nested mount point is a mount point that attempts to use a mount point created by a previous volume.
-    ```terminal title="Example pod definition with nested mount points"
+    ```yaml title="Example pod definition with nested mount points"
     kind: Pod
     apiVersion: v1
     metadata:
@@ -87,7 +87,7 @@ Nested mount points
           volumeMounts:
           - mountPath: /mnt/web
             name: web
-          - mountPath: /mnt/web/redis (1)
+          - mountPath: /mnt/web/redis
             name: redis
       volumes:
         - name: redis
@@ -97,9 +97,16 @@ Nested mount points
           persistentVolumeClaim:
             claimName: "web"
     ```
-    1.  Nested mount point
+
+    The `spec.containers.volumeMounts.mountPath` value of `/mnt/web/redis` is a nested mount point.
+
+    :::warning
+
 
     Do _not_ use nested mount points because {{ product_title }} does not guarantee the order in which mount points are created. Such usage is prone to race conditions and undefined behavior.
+    
+    :::
+
 
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 

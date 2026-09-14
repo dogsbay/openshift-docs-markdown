@@ -12,7 +12,6 @@ These environment variables must be set before you create secrets, the `DPUClust
 | `OPENSHIFT_VERSION` | The {{ product_title }} version for the hosted cluster. | `4.22.7` |
 | `CLUSTERS_NAMESPACE` | The namespace where hosted cluster resources are created. | `clusters` |
 | `BASE_DOMAIN` | The base DNS domain for the hosted cluster. | `example.com` |
-| `BLUEFIELD_OCP_IMAGE` | Optional. The BlueField {{ product_title }} layer container image URL. When set, this value is used as `machineOSURL` in the `DPFHCPProvisioner` resource and skips automatic image lookup. If left unset, the Operator resolves the image automatically. This image will be available on registry.redhat.io for GA release. | `<GA-BLUEFIELD-OCP-IMAGE>` |
 | `ETCD_STORAGE_CLASS` | The storage class used for etcd persistent volume claims. | `lvms-vg1` |
 | `OCP_RELEASE_IMAGE` | The {{ product_title }} release image for the hosted cluster. Derived from `OPENSHIFT_VERSION`. | `quay.io/openshift-release-dev/ocp-release:4.22.7-multi` |
 | `PULL_SECRET_NAME` | The name of the Kubernetes secret that contains the pull secret for the hosted cluster. | `pull-secret` |
@@ -20,3 +19,23 @@ These environment variables must be set before you create secrets, the `DPUClust
 | `SSH_KEY_SECRET_NAME` | The name of the Kubernetes secret that contains the SSH public key for the hosted cluster. | `ssh-key` |
 | `SSH_KEY` | The file path to the SSH public key file on your workstation. Use ed25519 keys for better security. | `/root/.ssh/id_ed25519.pub` |
 | `HOSTED_CLUSTER_VIP` | The virtual IP address for the hosted cluster API server, allocated from the management cluster subnet. | `192.168.1.200` |
+
+You must set all environment variables in your terminal session before you proceed.
+
+```terminal
+$ export HOSTED_CLUSTER_NAME="dpf-hosted"
+$ export OPENSHIFT_VERSION="4.22.7"
+$ export CLUSTERS_NAMESPACE="clusters"
+$ export BASE_DOMAIN="example.com"
+$ export ETCD_STORAGE_CLASS="lvms-vg1"
+$ export OCP_RELEASE_IMAGE="quay.io/openshift-release-dev/ocp-release:${OPENSHIFT_VERSION}-multi"
+$ export PULL_SECRET_NAME="my-pull-secret"
+$ export OPENSHIFT_PULL_SECRET="/root/pull-secret.txt"
+$ export SSH_KEY_SECRET_NAME="my-ssh-key"
+$ export SSH_KEY="/root/.ssh/id_ed25519.pub"
+$ export HOSTED_CLUSTER_VIP="192.168.1.200"
+$ export DPU_HOST_CIDR="10.0.110.0/24"
+$ export VTEP_CIDR="10.0.120.0/22"
+$ export NODES_MTU="1500"      # Use 1500 for standard MTU, 9000 for jumbo frames
+$ export FLANNEL_POD_CIDR="10.132.0.0/14"
+```

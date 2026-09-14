@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Technology Preview features status {id="rn-ocp-release-notes-technology-preview-tables_{{ context }}"}
 
-You can determine if a new feature in {{ product_title }}{{ product_version }} is currently in Technology Preview before deciding to install the feature. These experimental features are not intended for production use.  {._abstract}
+You can determine if a new feature in {{ product_title }} {{ product_version }} is currently in Technology Preview before deciding to install the feature. These experimental features are not intended for production use. {._abstract}
 
 Note the following scope of support on the Red&#160;Hat Customer Portal for these features:
 
@@ -113,7 +113,7 @@ Fleet Management supersedes Selectable Cluster Inventory in {{ product_title }} 
 | Managing machines with the Cluster API for bare-metal | Technology Preview | Technology Preview | Technology Preview |
 | Cloud controller manager for {{ ibm_power_server_name }} | Technology Preview | Technology Preview | Technology Preview |
 | Adding multiple subnets to an existing {{ vmw_full }} cluster by using compute machine sets | Technology Preview | Technology Preview | Technology Preview |
-| Bare-metal nodes on {{ vmw_full }} clusters | Not Available | Technology Preview | Technology Preview |
+| Bare-metal nodes on {{ vmw_full }} clusters | Not Available | Technology Preview | General Availability |
 | {{ aws_full }} Dedicated Host support | Not Available | Not Available | Technology Preview |
 
 ## Multi-Architecture Technology Preview features {id="ocp-release-notes-multi-arch-tech-preview_{{ context }}"}
@@ -143,7 +143,7 @@ Fleet Management supersedes Selectable Cluster Inventory in {{ product_title }} 
 | Dynamic configuration manager | Technology Preview | Technology Preview |  |
 | SR-IOV Network Operator support for Intel C741 Emmitsburg Chipset | Technology Preview | Technology Preview | General Availability |
 | Dual-port NIC for PTP ordinary clock | General Availability | General Availability |  |
-| DPU Operator | Technology Preview | Technology Preview |  |
+| DPU Operator | Technology Preview | Technology Preview | Technology Preview |
 | Fast IPAM for the Whereabouts IPAM CNI plugin | Technology Preview | Technology Preview |  |
 | Unnumbered BGP peering | General Availability | General Availability |  |
 | Load balancing across the aggregated bonded interface with xmitHashPolicy | Technology Preview | Technology Preview |  |
@@ -189,14 +189,14 @@ Fleet Management supersedes Selectable Cluster Inventory in {{ product_title }} 
 
 | Feature | 4.20 | 4.21 | 4.22 |
 | --- | --- | --- | --- |
-| {{ factory_prestaging_tool }} | Technology Preview | Technology Preview |  |
-| Hyperthreading-aware CPU manager policy | Technology Preview | Technology Preview |  |
-| Mount namespace encapsulation | Technology Preview | Technology Preview |  |
-| Node Observability Operator | Technology Preview | Technology Preview |  |
-| Increasing the etcd database size | Technology Preview | Technology Preview |  |
-| Managing etcd size by setting the `eventTTLMinutes` property | Not available | Technology Preview |  |
-| Pinned Image Sets | Technology Preview | Technology Preview |  |
-| Configuring NUMA-aware scheduler replicas and high availability | Technology Preview | Technology Preview |  |
+| {{ factory_prestaging_tool }} | Technology Preview | Technology Preview | Technology Preview |
+| Hyperthreading-aware CPU manager policy | Technology Preview | Technology Preview | Technology Preview |
+| Mount namespace encapsulation | Technology Preview | Technology Preview | Technology Preview |
+| Node Observability Operator | Technology Preview | Technology Preview | Technology Preview |
+| Increasing the etcd database size | Technology Preview | Technology Preview | Technology Preview |
+| Managing etcd size by setting the `eventTTLMinutes` property | Not available | Technology Preview | General Availability |
+| Pinned Image Sets | Technology Preview | Technology Preview | General Availability |
+| Configuring NUMA-aware scheduler replicas and high availability | General Availability | General Availability | General Availability |
 
 ## Storage Technology Preview features {id="ocp-release-notes-storage-tech-preview_{{ context }}"}
 

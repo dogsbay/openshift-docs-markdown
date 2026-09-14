@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Required firewall settings {id="microshift-firewall-req-settings_{{ context }}"}
 
-An IP address range for the node network must be enabled during firewall configuration. You can use the default values or customize the IP address range. If you choose to customize the node network IP address range from the default `10.42.0.0/16` setting, you must also use the same custom range in the firewall configuration. {._abstract}
+An IP address range for the node network must be enabled during firewall configuration. You can use the default values or customize the IP address range. {._abstract}
+
+If you choose to customize the node network IP address range from the default `10.42.0.0/16` setting, you must also use the same custom range in the firewall configuration.
 
 **Firewall IP address settings**
 

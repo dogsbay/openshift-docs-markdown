@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Included greenboot health checks {id="microshift-greenboot-included-health-checks_{{ context }}"}
 
-By default, {{ op_system_ostree_first }} includes a set of built-in greenboot health checks designed to verify functions, such as network connectivity to update repositories and hardware watchdog status. Health check scripts are available in `/usr/lib/greenboot/check`, a read-only directory in {{ op_system_ostree_first }} {{ op_system_image }} systems. {._abstract}
+By default, {{ op_system_ostree_first }} includes a set of built-in greenboot health checks designed to verify functions, such as network connectivity to update repositories and hardware watchdog status. {._abstract}
+
+Health check scripts are available in `/usr/lib/greenboot/check`, a read-only directory in {{ op_system_ostree_first }} {{ op_system_image }} systems.
 
 The following health checks are included with the `greenboot-default-health-checks` framework.
 

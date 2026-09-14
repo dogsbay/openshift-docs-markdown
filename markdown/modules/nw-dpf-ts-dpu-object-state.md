@@ -10,7 +10,7 @@ Check for pending CSRs in the hosted cluster
     $ export KUBECONFIG=<path_to_hosted_cluster_kubeconfig>
     ```
     ```terminal
-    $ oc get csr -A
+    $ oc get csr
     ```
 
     Review the output and approve any CSRs that show a `Pending` status.

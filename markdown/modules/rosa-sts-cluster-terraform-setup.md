@@ -8,11 +8,11 @@
 
 # Preparing your environment for Terraform {id="rosa-sts-cluster-terraform-setup_{{ context }}"}
 
-Before you can create your {{ product_title }} cluster by using Terraform, you need to export your [offline {{ cluster_manager_first }} token](https://console.redhat.com/openshift/token). {._abstract}
+Before you can create your {{ product_title }} cluster by using Terraform, you must export your offline {{ cluster_manager_first }} token to grant Terraform permission to access your account. {._abstract}
 
 **Procedure**
 
-1.  **Optional**: Because the Terraform files get created in your current directory during this procedure, you can create a new directory to store these files and navigate into it by running the following command:
+1.  Optional: Because the Terraform files get created in your current directory during this procedure, you can create a new directory to store these files and navigate into it by running the following command:
     ```terminal
     $ mkdir terraform-cluster && cd terraform-cluster
     ```

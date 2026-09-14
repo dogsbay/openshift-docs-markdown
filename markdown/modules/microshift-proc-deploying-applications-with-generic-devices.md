@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deploy applications that use generic devices {id="microshift-deploying-applications-with-generic-devices_{{ context }}"}
 
-After the Generic Device Plugin (GDP) is configured and enabled in {{ microshift_short }}, you can deploy Kubernetes workloads, such as pods, deployments, or `StatefulSets`, that request access to the host devices that you have exposed. Devices are made available inside the container without requiring the pod to run with elevated privileges. {._abstract}
+After the Generic Device Plugin (GDP) is configured and enabled in {{ microshift_short }}, you can deploy Kubernetes workloads, such as pods, deployments, or `StatefulSets`, that request access to the host devices that you have exposed. {._abstract}
+
+Devices are made available inside the container without requiring the pod to run with elevated privileges.
 
 **Prerequisites**
 

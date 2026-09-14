@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # RHEA-2026:2640 - {{ microshift_short }} 4.22.0 bug fix and enhancement update {id="microshift-4-22-0-async_{{ context }}"}
 
-Issued: 09 June 2026 {._abstract}
+Issued: 09 June 2026. Review the changes in this {{ microshift_short }} update. Use the advisory links and image lists to see what is fixed and to plan how you apply the update to your deployment. {._abstract}
 
 {{ product_title }} release 4.22.0 is now available. Bug fixes and enhancements are listed in the [RHEA-2026:2640](https://access.redhat.com/errata/RHEA-2026:2640) advisory. Release notes for bug fixes and enhancements are provided in this documentation. The images that are included in the update are provided by the {{ OCP }} [RHBA-2026:449](https://access.redhat.com/errata/RHBA-2026:449) advisory.
 

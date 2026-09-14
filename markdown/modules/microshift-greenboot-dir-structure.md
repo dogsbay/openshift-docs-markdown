@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # How greenboot uses directories to run scripts {id="microshift-greenboot-dir-structure_{{ context }}"}
 
-Greenboot uses directory-based framework to execute health check scripts during the system boot process. By organizing your custom scripts into specific directories, you can define the boot validation workflow and determine whether the system successfully applies an update or initiates an automated rollback. {._abstract}
+Greenboot uses directory-based framework to execute health check scripts during the system boot process. {._abstract}
+
+By organizing your custom scripts into specific directories, you can define the boot validation workflow and determine whether the system successfully applies an update or initiates an automated rollback.
 
 Health check scripts run from four `/etc/greenboot` directories. These scripts run in alphabetical order. Keep this in mind when you configure the scripts for your workloads.
 

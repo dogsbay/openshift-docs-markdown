@@ -89,6 +89,10 @@ If add-ons are installed, the cluster deletion takes longer because add-ons are 
         
         :::
 
+1.  Optional: If deletion protection is enabled on the cluster, disable it by running the following command:
+    ```terminal
+    $ rosa edit cluster -c <cluster_name> --enable-delete-protection=false
+    ```
 1.  Delete the cluster by using either the {{ cluster_manager }} or the {{ rosa_cli }}:
     *   To delete the cluster by using the {{ cluster_manager }}:
         1.  Navigate to the {{ cluster_manager_url }}.

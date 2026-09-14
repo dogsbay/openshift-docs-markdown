@@ -1,3 +1,7 @@
+---
+title: Add worker nodes and provision DPUs
+---
+
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
 # Add worker nodes and provision DPUs {id="dpf-worker-nodes-provisioning"}
@@ -9,8 +13,6 @@ After the DPF Operator and the hosted cluster are configured, adjust the OVN-Kub
 {% leveloffset +1 %}{% include "./modules/nw-dpf-enabling-ovnk-resource-injector.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/nw-dpf-enabling-ovnk-dpu-host-mode.md" %}{% endleveloffset %}
-
-{% leveloffset +1 %}{% include "./modules/nw-dpf-adding-workers-assisted-installer.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/nw-dpf-adding-workers-baremetal-operator.md" %}{% endleveloffset %}
 

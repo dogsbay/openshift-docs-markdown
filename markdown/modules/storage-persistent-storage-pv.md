@@ -350,7 +350,8 @@ The following restrictions apply when using PVs with {{ product_title }}:
 ## Phase {id="pv-phase_{{ context }}"}
 Volumes can be found in one of the following phases:
 
-.Volume phases
+**Volume phases**
+
 | Phase | Description |
 | --- | --- |
 | Available | A free resource not yet bound to a claim. |
@@ -427,29 +428,31 @@ Mount options
 
 {% endif %}
 {% endif %}
+
 {% if microshift %}
-    ```yaml title="Mount options example"
-    apiVersion: storage.k8s.io/v1
-    kind: StorageClass
-    metadata:
-      annotations:
-        storageclass.kubernetes.io/is-default-class: "true"
-      name: topolvm-provisioner
-    mountOptions:
-      - uid=1500
-      - gid=1500
-    parameters:
-      csi.storage.k8s.io/fstype: xfs
-    provisioner: topolvm.io
-    reclaimPolicy: Delete
-    volumeBindingMode: WaitForFirstConsumer
-    allowVolumeExpansion: true
-    ```
+```yaml title="Mount options example"
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+  name: topolvm-provisioner
+mountOptions:
+  - uid=1500
+  - gid=1500
+parameters:
+  csi.storage.k8s.io/fstype: xfs
+provisioner: topolvm.io
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
+```
 
-    :::note
 
-    The `mountOptions` parameter values are not validated. Incorrect values cause the mount to fail and an event to be logged to the PVC.
-    
-    :::
+:::note
+
+The `mountOptions` parameter values are not validated. Incorrect values cause the mount to fail and an event to be logged to the PVC.
+
+:::
 
 {% endif %}

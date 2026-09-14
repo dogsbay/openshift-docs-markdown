@@ -77,6 +77,7 @@ You must ensure that your tag keys are not `aws`, `red-hat-managed`, `red-hat-cl
     Tags:                          red-hat-clustertype=rosa, red-hat-managed=true, tagkey1=tagvalue1, tagkey2=tagvaluev2
     Taints:
     Availability zone:             us-east-2a
+    Spot instances:                No
     ...
     ```
 {%- endif %}

@@ -4,12 +4,12 @@
 {%- set pygments_style = "emacs" -%}
 {%- set icons = "font" %}
 
-After you have created a {{ product_title }} cluster with the enabled option for external authentication providers, you must create a provider using the ROSA CLI. {._abstract}
+After you have created a {{ product_title }} cluster with the enabled option for external authentication providers, you must create a provider by using the {{ rosa_cli_first }}. {._abstract}
 
 
 :::note
 
-Similar to the `rosa create|delete|list idp[s]` command in the ROSA CLI, you cannot edit an existing identity provider that you created using `rosa create external-auth-provider`. Instead, you must delete the external authentication provider and create a new one.
+Similar to the `rosa create|delete|list idp[s]` command in the {{ rosa_cli }}, you cannot edit an existing identity provider that you created using `rosa create external-auth-provider`. Instead, you must delete the external authentication provider and create a new one.
 
 :::
 

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Use automatic recovery with {{ op_system_ostree }} {id="microshift-auto-recovery-ostree-systems_{{ context }}"}
 
-To use automatic recovery for {{ product_title }} on {{ op_system_ostree }} systems, you can add the auto-recovery systemd service, `10-auto-recovery.conf`, and the `microshift-auto-recovery` script to your blueprint. Use blueprint customizations so the image includes these files and recovery runs automatically. {._abstract}
+To use automatic recovery for {{ product_title }} on {{ op_system_ostree }} systems, you can add the auto-recovery systemd service, `10-auto-recovery.conf`, and the `microshift-auto-recovery` script to your blueprint. {._abstract}
+
+Use blueprint customizations so the image includes these files and recovery runs automatically.
 
 
 :::important

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Use automatic recovery in RPM systems {id="microshift-auto-recovery-rpm-systems_{{ context }}"}
 
-To use automatic recovery for {{ product_title }} on RPM systems, you can create the `10-auto-recovery.conf` file, the `microshift-auto-recovery.service` unit, and the `microshift-auto-recovery` script. Systemd runs the recovery service when the {{ product_title }} service does not start, and the script restores the latest backup. {._abstract}
+To use automatic recovery for {{ product_title }} on RPM systems, you can create the `10-auto-recovery.conf` file, the `microshift-auto-recovery.service` unit, and the `microshift-auto-recovery` script. {._abstract}
+
+Systemd runs the recovery service when the {{ product_title }} service does not start, and the script restores the latest backup.
 
 As a use case, consider the following example situation in which you want to automate the automatic recovery process for RPM systems that use the systemd service.
 

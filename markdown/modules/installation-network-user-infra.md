@@ -64,8 +64,7 @@ Ensure you enable the `disk.EnableUUID` parameter on all virtual machines in you
 
 {% if not (azure or gcp) %}
 {% if ibm_z %}
-During the initial boot, the machines require an HTTP or HTTPS server to
-establish a network connection to download their Ignition config files.
+During the initial boot, the machines require an HTTP or HTTPS server to establish a network connection to download their Ignition config files.
 
 The machines are configured with static IP addresses. No DHCP server is required. Ensure that the machines have persistent IP addresses and hostnames.
 {% endif %}
@@ -88,7 +87,7 @@ The Kubernetes API server must be able to resolve the node names of the cluster 
 {% if not (ibm_z or azure) %}
 ## Setting the cluster node hostnames through DHCP {id="installation-host-names-dhcp-user-infra_{{ context }}"}
 
-On {{ op_system_first }} machines, the hostname is set through NetworkManager. By default, the machines obtain their hostname through DHCP. If the hostname is not provided by DHCP, set statically through kernel arguments, or another method, it is obtained through a reverse DNS lookup. Reverse DNS lookup occurs after the network has been initialized on a node and can take time to resolve. Other system services can start prior to this and detect the hostname as `localhost` or similar. You can avoid this by using DHCP to provide the hostname for each cluster node.
+On {{ op_system_first }} machines, the hostname is set through NetworkManager. By default, the machines obtain their hostname through DHCP. If the hostname is not provided by DHCP, set statically through kernel arguments, or another method, it is obtained through a reverse DNS lookup. Reverse DNS lookup occurs after the network has been initialized on a node and can take time to resolve. Other system services can start before this and detect the hostname as `localhost` or similar. You can avoid this by using DHCP to provide the hostname for each cluster node.
 
 Additionally, setting the hostnames through DHCP can bypass any manual DNS record name configuration errors in environments that have a DNS split-horizon implementation.
 {% endif %}

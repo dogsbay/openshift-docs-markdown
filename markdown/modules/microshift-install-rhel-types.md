@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # {{ op_system_base }} installation types {id="microshift-install-rhel-types_{{ context }}"}
 
-{{ microshift_short }} supports multiple installation methods depending on your target edge environment and workload requirements. You can deploy {{ microshift_short }} by using the standard RPM packages on an existing machine or build an immutable, image-based operating system tailored for disconnected or networked edge deployments. {._abstract}
+{{ microshift_short }} supports multiple installation methods depending on your target edge environment and workload requirements. {._abstract}
+
+You can deploy {{ microshift_short }} by using the standard RPM packages on an existing machine or build an immutable, image-based operating system tailored for disconnected or networked edge deployments.
 
 Choose the best {{ op_system_base_full }} installation type based on where you want to run your node and what your applications need to do. For the best results, apply the following principles:
 

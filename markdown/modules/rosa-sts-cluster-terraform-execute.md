@@ -18,7 +18,7 @@ After you create the Terraform files, you must initiate Terraform to provide all
     ```terminal
     $ terraform init
     ```
-1.  **Optional**: Verify that the Terraform you copied is correct by running the following command:
+1.  Optional: Verify that the Terraform you copied is correct by running the following command:
     ```terminal
     $ terraform validate
     ```

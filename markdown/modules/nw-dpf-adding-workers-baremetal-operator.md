@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Add worker nodes by using the Bare Metal Operator {id="nw-dpf-adding-workers-baremetal-operator_{{ context }}"}
 
-You can add DPU-equipped worker nodes to the management cluster by using the Bare Metal Operator to automate provisioning through the cluster API. {._abstract}
+You can add DPU-equipped worker nodes to the management cluster by creating `BareMetalHost` resources that the Bare Metal Operator provisions. {._abstract}
 
 **Prerequisites**
 
@@ -96,67 +96,58 @@ You can add DPU-equipped worker nodes to the management cluster by using the Bar
     ```terminal
     $ envsubst < bmc-secret.yaml | oc apply -f -
     ```
-1.  Create a file named `machineset-dpu.yaml` with the following content:
-    ```yaml
-    apiVersion: machine.openshift.io/v1beta1
-    kind: MachineSet
-    metadata:
-      name: worker-dpu
-      namespace: openshift-machine-api
-    spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          machine.openshift.io/cluster-api-machineset: worker-dpu
-      template:
+1.  Create a file named `baremetalhost.yaml`. The `userData` secret determines the node type:
+    *   For a DPU-equipped worker node, reference the `worker-dpu-user-data-managed` secret:
+        ```yaml
+        apiVersion: metal3.io/v1alpha1
+        kind: BareMetalHost
         metadata:
-          labels:
-            machine.openshift.io/cluster-api-machineset: worker-dpu
-            node-role.kubernetes.io/worker-dpu: ""
+          name: $WORKER_NAME
+          namespace: openshift-machine-api
         spec:
-          metadata:
-            labels:
-              node-role.kubernetes.io/worker-dpu: ""
-          providerSpec:
-            value:
-              hostSelector:
-                matchLabels:
-                  dpu-capable: "true"
-              customDeploy:
-                method: install_coreos
-              userData:
-                name: worker-dpu-user-data-managed
-                namespace: openshift-machine-api
-    ```
+          online: true
+          bootMACAddress: $BOOT_MAC
+          rootDeviceHints:
+            deviceName: $ROOT_DEVICE
+          bmc:
+            address: redfish-virtualmedia+https://$BMC_IP
+            credentialsName: $WORKER_NAME-bmc-secret
+            disableCertificateVerification: true
+          customDeploy:
+            method: install_coreos
+          userData:
+            name: worker-dpu-user-data-managed
+            namespace: openshift-machine-api
+        ```
+    *   For a regular worker node without a DPU, reference the `worker-user-data-managed` secret instead:
+        ```yaml
+        apiVersion: metal3.io/v1alpha1
+        kind: BareMetalHost
+        metadata:
+          name: $WORKER_NAME
+          namespace: openshift-machine-api
+        spec:
+          online: true
+          bootMACAddress: $BOOT_MAC
+          rootDeviceHints:
+            deviceName: $ROOT_DEVICE
+          bmc:
+            address: redfish-virtualmedia+https://$BMC_IP
+            credentialsName: $WORKER_NAME-bmc-secret
+            disableCertificateVerification: true
+          customDeploy:
+            method: install_coreos
+          userData:
+            name: worker-user-data-managed
+            namespace: openshift-machine-api
+        ```
 
-    The `MachineSet` must be created before the `BareMetalHost` resources.
-    It automatically selects `BareMetalHost` resources that are labeled `dpu-capable: "true"`, provisions them, and applies the `node-role.kubernetes.io/worker-dpu=""` label.
-    Set `replicas` to match the number of DPU worker nodes.
-1.  Apply the `MachineSet` resource:
-    ```terminal
-    $ oc apply -f machineset-dpu.yaml
-    ```
-1.  Create a file named `baremetalhost.yaml` with the following content:
-    ```yaml
-    apiVersion: metal3.io/v1alpha1
-    kind: BareMetalHost
-    metadata:
-      name: $WORKER_NAME
-      namespace: openshift-machine-api
-      labels:
-        dpu-capable: "true"
-      annotations:
-        inspect.metal3.io: disabled
-    spec:
-      online: false
-      bootMACAddress: $BOOT_MAC
-      rootDeviceHints:
-        deviceName: $ROOT_DEVICE
-      bmc:
-        address: redfish-virtualmedia+https://$BMC_IP
-        credentialsName: $WORKER_NAME-bmc-secret
-        disableCertificateVerification: true
-    ```
+        :::important
+
+        Adding a regular worker node without a DPU is a Technology Preview feature.
+        
+        :::
+
 1.  Apply the `BareMetalHost` resource:
     ```terminal
     $ envsubst < baremetalhost.yaml | oc apply -f -
@@ -171,6 +162,8 @@ You can add DPU-equipped worker nodes to the management cluster by using the Bar
     ```terminal title="Example output"
     NAME        STATE          CONSUMER   ONLINE   ERROR   AGE
     worker-01   registering               true             10s
+    worker-01   inspecting                true             15s
+    worker-01   preparing                 true             20s
     worker-01   available                 true             30s
     worker-01   provisioning              true             1m
     worker-01   provisioned               true             10m

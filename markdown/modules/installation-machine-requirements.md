@@ -57,7 +57,7 @@ As an exception, you can run zero compute machines in a bare metal cluster that 
 To improve high availability of your cluster, distribute the control plane machines over different hypervisor instances on at least two physical machines.
 {% endif %}
 {% if not ibm_z %}
-To keep high availability of your cluster, use separate physical hosts for these cluster machines.
+To maintain high availability of your cluster, use separate physical hosts for these cluster machines.
 {% endif %}
 
 :::

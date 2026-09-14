@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create the DPUCluster custom resource {id="nw-dpf-creating-dpucluster_{{ context }}"}
 
-The `DPUCluster` resource tells the DPF Operator about the hosted cluster where DPU services will run.
-The DPF HCP Provisioner Operator automatically injects the kubeconfig into this resource after the hosted cluster is created. {._abstract}
+The `DPUCluster` resource tells the DPF Operator about the hosted cluster where DPU services will run. {._abstract}
+
+Do not set the `spec.kubeconfig` field. After you create the hosted cluster, the DPF HCP Provisioner Operator automatically creates the admin kubeconfig secret in the `dpf-operator-system` namespace and sets the `spec.kubeconfig` field of this resource to reference it.
 
 **Prerequisites**
 
@@ -21,7 +22,6 @@ The DPF HCP Provisioner Operator automatically injects the kubeconfig into this 
     spec:
       type: static
       maxNodes: 10
-      kubeconfig: ${HOSTED_CLUSTER_NAME}-admin-kubeconfig
     ```
 1.  Apply the resource with variable substitution:
     ```terminal

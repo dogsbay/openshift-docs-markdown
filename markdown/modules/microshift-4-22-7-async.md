@@ -1,9 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # RHBA-2026:45112 - {{ microshift_short }} 4.22.7 fixed issue update {id="microshift-4-22-7-async_{{ context }}"}
 
-Issued: 30 July 2026
+Issued: 30 July 2026. Review the changes in this {{ microshift_short }} update. Use the advisory links and image lists to see what is fixed and to plan how you apply the update to your deployment. {._abstract}
 
-{{ product_title }} release 4.22.7 is now available. Fixed issues are listed in the [RHBA-2026:45112](https://access.redhat.com/errata/RHBA-2026:45112) advisory. Release notes for fixed issues are provided in this documentation. The images that are included in the update are provided by the {{ OCP }} [RHSA-2026:44237](https://access.redhat.com/errata/RHSA-2026:44237) advisory. {._abstract}
+{{ product_title }} release 4.22.7 is now available. Fixed issues are listed in the [RHBA-2026:45112](https://access.redhat.com/errata/RHBA-2026:45112) advisory. Release notes for fixed issues are provided in this documentation. The images that are included in the update are provided by the {{ OCP }} [RHSA-2026:44237](https://access.redhat.com/errata/RHSA-2026:44237) advisory.
 
 See the latest images included with {{ microshift_short }} by using the following instructions:
 

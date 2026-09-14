@@ -110,6 +110,7 @@ There must be at least one machine pool without any taints and with at least two
     Tags:
     Taints:                        key1=value1:NoSchedule, key2=value2:NoExecute
     Availability zone:             us-east-2a
+    Spot instances:                No
     ...
     ```
 {%- endif %}

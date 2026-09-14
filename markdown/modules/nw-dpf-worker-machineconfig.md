@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure worker nodes for DPU operation {id="nw-dpf-worker-machineconfig_{{ context }}"}
 
-Deploy the `dpu-worker-config` Helm chart to configure worker nodes with DPUs before adding them to the management cluster. {._abstract}
+You must deploy the `dpu-worker-config` Helm chart to configure worker nodes with DPUs before adding those nodes to the management cluster.
+The `dpu-worker-config` Helm chart creates the `MachineConfigPool`, `dpu-worker-configuration` MachineConfig, and other required resources that configure the bridge, OVS services, and IP routing on worker nodes.
+The `MachineConfigPool` groups DPU-equipped worker nodes so that the Machine Config Operator can apply DPU-specific configurations to them. {._abstract}
 
 The MachineConfig resource performs several configuration tasks required by DPF:
 
@@ -32,13 +34,6 @@ The MachineConfig resource performs several configuration tasks required by DPF:
         --create-namespace \
         --disable-openapi-validation
     ```
-
-    :::note
-
-    Publication of the `dpu-worker-config` chart to `registry.redhat.io` is pending; the chart location is subject to change.
-    
-    :::
-
 
 **Verification**
 

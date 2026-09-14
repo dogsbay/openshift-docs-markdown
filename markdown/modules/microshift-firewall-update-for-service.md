@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Overview of firewall ports when a service is exposed {id="microshift-firewall-update-for-service_{{ context }}"}
 
-Firewalld is often active when you run services on {{ microshift_short }}. This can disrupt certain services on {{ microshift_short }} because traffic to the ports might be blocked by the firewall. You must ensure that the necessary firewall ports are open if you want certain services to be accessible from outside the host.  {._abstract}
+Firewalld is often active when you run services on {{ microshift_short }}. This can disrupt certain services on {{ microshift_short }} because traffic to the ports might be blocked by the firewall. {._abstract}
+
+You must ensure that the necessary firewall ports are open if you want certain services to be accessible from outside the host.
 
 There are several options for opening your ports:
 

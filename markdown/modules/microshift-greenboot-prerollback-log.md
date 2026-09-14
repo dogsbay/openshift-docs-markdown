@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Accessing prerollback health check output in the system log {id="microshift-greenboot-access-prerollback-check_{{ context }}"}
 
-When a system update fails and greenboot triggers a rollback, it executes prerollback scripts to clean up services and prevent data conflicts. Using the output of the health check scripts, you can verify that the cleanup tasks are completed successfully before the system reboots into the previous deployment. {._abstract}
+When a system update fails and greenboot triggers a rollback, it executes prerollback scripts to clean up services and prevent data conflicts. {._abstract}
+
+Using the output of the health check scripts, you can verify that the cleanup tasks are completed successfully before the system reboots into the previous deployment.
 
 For example, check the results of a pre-rollback script using the following procedure.
 

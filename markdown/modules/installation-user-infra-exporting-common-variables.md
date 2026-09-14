@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Exporting common variables for Infrastructure Manager templates {id="installation-user-infra-exporting-common-variables_{{ context }}"}
 
-You must export a common set of variables that are used with the provided Infrastructure Manager templates used to assist in installing a cluster with user-provisioned infrastructure on {{ gcp_first }}.
+You must export a common set of variables that the Infrastructure Manager templates reference to provision the resources for a cluster that uses user-provisioned infrastructure on {{ gcp_first }}. {._abstract}
 
 
 :::note

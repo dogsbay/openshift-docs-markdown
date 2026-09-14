@@ -158,6 +158,10 @@ For a two-node {{ product_title }} cluster with fencing (TNF), only the followin
 
     *   The `none` option requires the provision of DNS name resolution and load balancing infrastructure in your cluster. See _Requirements for a cluster using the platform "none" option_ in the "Additional resources" section for more information.
     *   See "Deploying OpenShift 4.x on non-tested platforms using the bare metal install method" before you attempt to install an {{ product_title }} cluster in virtualized or cloud environments.
+
+    For platform `vsphere`, or for platform `baremetal` on vSphere:
+
+    *   You must set the `disk.EnableUUID` parameter to `TRUE` on all {{ product_title }} nodes. If this parameter is not enabled, the Agent-based Installer validation fails.
     
     :::
 

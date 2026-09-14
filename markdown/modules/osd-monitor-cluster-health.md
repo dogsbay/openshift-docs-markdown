@@ -1,0 +1,10 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Monitor cluster health {id="osd-monitor-cluster-health_{{ context }}"}
+
+Cluster notifications are messages about the status, health, or performance of your cluster. Red Hat Site Reliability Engineering (SRE) uses cluster notifications to communicate with you about your managed cluster and to prompt you to perform actions to resolve or prevent issues. {._abstract}
+
+Cluster notifications are the primary way that Red Hat Site Reliability Engineering (SRE) communicates with you about the health of your managed cluster. Red Hat SRE may also use cluster notifications to prompt you to perform an action in order to resolve or prevent an issue with your cluster.
+
+Cluster owners and administrators must regularly review and action cluster notifications to ensure clusters remain healthy and supported.
+
+You can view cluster notifications in the {{ hybrid_console }}, in the **Cluster history** tab for your cluster. By default, only the cluster owner receives cluster notifications as emails. If other users need to receive cluster notification emails, add each user as a notification contact for your cluster.

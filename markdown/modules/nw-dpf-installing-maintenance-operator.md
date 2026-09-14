@@ -15,6 +15,7 @@ You install this operator by using Helm. {._abstract}
 1.  Create a Helm values file named `maintenance-operator-values.yaml` with the following content:
     ```yaml
     operatorConfig:
+      deploy: true
       maxParallelOperations: 60%
     operator:
       affinity:

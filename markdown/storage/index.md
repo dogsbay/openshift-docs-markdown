@@ -8,7 +8,7 @@ title: OpenShift Container Platform storage overview
 {%- set context = "storage-overview" %}
 
 {% if not (openshift_rosa or openshift_rosa_hcp) %}
-{{ product_title }} supports multiple types of storage, both for on-premise and cloud providers. You can manage container storage for persistent and non-persistent data in an {{ product_title }} cluster.
+{{ product_title }} supports multiple types of storage, both for on-premise and cloud providers. You can manage container storage for persistent and non-persistent data in an {{ product_title }} cluster. {._abstract}
 {% endif %}
 
 {% if openshift_rosa or openshift_rosa_hcp %}
@@ -17,22 +17,24 @@ title: OpenShift Container Platform storage overview
 
 {% leveloffset +1 %}{% include "./modules/openshift-storage-common-terms.md" %}{% endleveloffset %}
 
-## Storage types {id="storage-types"}
+{% leveloffset +1 %}{% include "./modules/storage-types.md" %}{% endleveloffset %}
 
-{{ product_title }} storage is broadly classified into two categories, namely ephemeral storage and persistent storage.
+**Additional resources**
+{._additional-resources}
 
-### Ephemeral storage {id="ephemeral-storage"}
+*   [Understanding ephemeral storage](/storage/understanding-ephemeral-storage#understanding-ephemeral-storage)
+*   [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage)
 
-Pods and containers are ephemeral or transient in nature and designed for stateless applications. Ephemeral storage allows administrators and developers to better manage the local storage for some of their operations. For more information about ephemeral storage overview, types, and management, see [Understanding ephemeral storage](/storage/understanding-ephemeral-storage#understanding-ephemeral-storage).
+{% leveloffset +1 %}{% include "./modules/dynamic-provisioning.md" %}{% endleveloffset %}
 
-### Persistent storage {id="persistent-storage"}
+**Additional resources**
+{._additional-resources}
 
-Stateful applications deployed in containers require persistent storage. {{ product_title }} uses a pre-provisioned storage framework called persistent volumes (PV) to allow cluster administrators to provision persistent storage. The data inside these volumes can exist beyond the lifecycle of an individual pod. Developers can use persistent volume claims (PVCs) to request storage requirements. For more information about persistent storage overview, configuration, and lifecycle, see [Understanding persistent storage](/storage/understanding-persistent-storage#understanding-persistent-storage).
+*   [Dynamic provisioning](/storage/dynamic-provisioning#dynamic-provisioning)
 
-## Container Storage Interface (CSI) {id="container-storage-interface"}
+{% leveloffset +1 %}{% include "./modules/csi.md" %}{% endleveloffset %}
 
-CSI is an API specification for the management of container storage across different container orchestration (CO) systems. You can manage the storage volumes within the container native environments, without having specific knowledge of the underlying storage infrastructure. With the CSI, storage works uniformly across different container orchestration systems, regardless of the storage vendors you are using. For more information about CSI, see [Using Container Storage Interface (CSI)](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi).
+**Additional resources**
+{._additional-resources}
 
-## Dynamic Provisioning {id="dynamic-provisioning-overview"}
-
-Dynamic Provisioning allows you to create storage volumes on-demand, eliminating the need for cluster administrators to pre-provision storage. For more information about dynamic provisioning, see [Dynamic provisioning](/storage/dynamic-provisioning#dynamic-provisioning).
+*   [Using Container Storage Interface (CSI)](/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)

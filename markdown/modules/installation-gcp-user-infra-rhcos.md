@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating the {{ op_system }} cluster image for the {{ gcp_short }} infrastructure {id="installation-gcp-user-infra-rhcos_{{ context }}"}
 
-You must use a valid {{ op_system_first }} image for {{ gcp_first }} for your {{ product_title }} nodes. {._abstract}
+To deploy {{ product_title }} nodes on {{ gcp_first }}, you must create a valid {{ op_system_first }} image in your {{ gcp_short }} project because {{ op_system }} images are not pre-published on {{ gcp_short }}. {._abstract}
 
 **Prerequisites**
 

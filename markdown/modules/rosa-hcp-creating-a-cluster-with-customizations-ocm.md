@@ -162,7 +162,7 @@ When you create a {{ product_title }} cluster, you can customize your installati
 
 
         Role prefix
-        :   Specify the prefix to include in the {{ cluster_manager }} IAM role name. The default is `ManagedOpenShift`.
+        :   Specify the prefix to include in the OCM IAM role name. The default is `ManagedOpenShift`.
 
             :::important
 

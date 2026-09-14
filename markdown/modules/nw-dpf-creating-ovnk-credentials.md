@@ -1,7 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create the OVN-Kubernetes credential request and role bindings {id="nw-dpf-creating-ovnk-credentials_{{ context }}"}
 
-Create a `DPUServiceCredentialRequest` custom resource and role bindings to enable OVN-Kubernetes DPU service authentication with the management cluster API server. {._abstract}
+To authenticate with the management cluster API server, create a `DPUServiceCredentialRequest` custom resource and the associated role bindings to enable the OVN-Kubernetes DPU service on the hosted cluster.
+The `ClusterRoleBinding` grants the required permissions for OVN node network operations. {._abstract}
 
 **Prerequisites**
 

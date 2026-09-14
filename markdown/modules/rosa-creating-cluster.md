@@ -1,16 +1,16 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating your cluster {id="rosa-creating-cluster_{{ context }}"}
 
-You can create a {{ product_title }} cluster using the {{ product_title }} CLI (`rosa`). {._abstract}
+You can create a {{ product_title }} cluster using the {{ rosa_cli_first }}. {._abstract}
 
 **Prerequisites**
 
-*   You have installed the {{ rosa_cli_first }}.
+*   You have installed the {{ rosa_cli }}.
 
 
 :::note
 
-[AWS Shared VPCs](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html) are not currently supported for ROSA installs.
+[AWS Shared Virtual Private Clouds (VPCs)](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html) are not currently supported for {{ product_title }} installs.
 
 :::
 
@@ -75,7 +75,7 @@ You can create a {{ product_title }} cluster using the {{ product_title }} CLI (
     
     :::
 
-1.  Track the progress of the cluster creation by watching the OpenShift installer logs:
+1.  Track the progress of the cluster creation by watching the {{ OCP_short }} installer logs:
     ```terminal
     $ rosa logs install --cluster=<cluster_name> --watch
     ```

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Add a certificate authority bundle to a blueprint {id="microshift-ca-adding-bundle-ostree_{{ context }}"}
 
-You can include additional certificate authorities (CAs) to be trusted by the operating system when pulling images from an image registry. To add the additional CAs to the {{ op_system_ostree_first }} `rpm-ostree` image, configure them in the blueprint that you use to create the image. {._abstract}
+You can include additional certificate authorities (CAs) to be trusted by the operating system when pulling images from an image registry. To add the CAs to the {{ op_system_ostree_first }} `rpm-ostree` image, configure them in the blueprint that you use to create the image. {._abstract}
 
 
 :::note

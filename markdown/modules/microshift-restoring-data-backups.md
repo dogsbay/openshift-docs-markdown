@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Restore {{ microshift_short }} data backups manually {id="microshift-restoring-data-backups-manually_{{ context }}"}
 
-To restore {{ product_title }} data after an update or data loss, you can run `microshift restore` with the full path to the backup. Backups can be restored after updates, or after other system events that remove or damage required data. When you restore a backup, you must use the entire file path. {._abstract}
+To restore {{ product_title }} data after an update or data loss, you can run `microshift restore` with the full path to the backup. Backups can be restored after updates, or after other system events that remove or damage required data. {._abstract}
+
+When you restore a backup, you must use the entire file path.
 
 
 :::note

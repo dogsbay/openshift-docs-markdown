@@ -107,6 +107,16 @@ After you set up your [offline {{ cluster_manager_first }} token](https://consol
     #  admin_credentials_username = <username>
     #  admin_credentials_password = <password>
 
+    # Optional: Enable cluster deletion protection to prevent accidental deletion.
+    #  delete_protection = true
+    # By default, clusters are created with deletion protection disabled.
+    # When enabled, it blocks the 'terraform destroy' command until you set
+    # 'delete_protection = false' and apply the change by running 'terraform apply'.
+    # Deletion protection only blocks deletion requests made through
+    # Terraform. It does not set any AWS-level resource protections,
+    # and you can still delete cluster resources directly in AWS,
+    # risking data loss or cluster outage.
+
       depends_on = [time_sleep.wait_60_seconds]
     }
     EOF
@@ -126,7 +136,7 @@ After you set up your [offline {{ cluster_manager_first }} token](https://consol
     
     :::
 
-    ```terminal
+    ```terminal {minja}
     $ cat<<-EOF>variables.tf
     #
     # Copyright (c) 2023 Red Hat, Inc.
@@ -146,7 +156,7 @@ After you set up your [offline {{ cluster_manager_first }} token](https://consol
     variable "openshift_version" {
       type        = string
       default     = "4.14.20"
-      description = "Desired version of OpenShift for the cluster, for example '4.14.20'. If version is greater than the currently running version, an upgrade will be scheduled."
+      description = "Desired version of {{ OCP_short }} for the cluster, for example '4.14.20'. If version is greater than the currently running version, an upgrade will be scheduled."
     }
 
     variable "create_vpc" {
@@ -154,11 +164,11 @@ After you set up your [offline {{ cluster_manager_first }} token](https://consol
       description = "If you would like to create a new VPC, set this value to 'true'. If you do not want to create a new VPC, set this value to 'false'."
     }
 
-    # ROSA Cluster info
+    # {{ product_title }} cluster info
     variable "cluster_name" {
       default     = null
       type        = string
-      description = "The name of the ROSA cluster to create"
+      description = "The name of the {{ product_title }} cluster to create"
     }
 
     variable "additional_tags" {

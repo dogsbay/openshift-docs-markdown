@@ -13,6 +13,8 @@ These release notes track the development of {{ external_secrets_operator_short 
 
 For more information, see [{{ external_secrets_operator_short }} overview](/security/external_secrets_operator/index#external-secrets-operator-about).
 
+{% leveloffset +1 %}{% include "./modules/external-secrets-operator-rn-1-2-1.md" %}{% endleveloffset %}
+
 {% leveloffset +1 %}{% include "./modules/external-secrets-operator-rn-1-2.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/external-secrets-operator-rn-1-1-1.md" %}{% endleveloffset %}

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Persistent storage overview {id="persistent-storage-overview_{{ context }}"}
 
-Stateful applications deployed in containers require persistent storage. {{ microshift_short }} uses a pre-provisioned storage framework called persistent volumes (PV) to allow node administrators to provision persistent storage. The data inside these volumes can exist beyond the lifecycle of an individual pod. Developers can use persistent volume claims (PVCs) to request storage requirements. {._abstract}
+Stateful applications deployed in containers require persistent storage. {{ microshift_short }} uses a pre-provisioned storage framework called persistent volumes (PV) to allow node administrators to provision persistent storage. {._abstract}
+
+The data inside these volumes can exist beyond the lifecycle of an individual pod. Developers can use persistent volume claims (PVCs) to request storage requirements.
 
 {% if not microshift %}
 Managing storage is a distinct problem from managing compute resources. {{ product_title }} uses the Kubernetes persistent volume (PV) framework to allow cluster administrators to provision persistent storage for a cluster. Developers can use persistent volume claims (PVCs) to request PV resources without having specific knowledge of the underlying storage infrastructure.

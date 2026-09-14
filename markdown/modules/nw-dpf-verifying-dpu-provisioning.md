@@ -1,20 +1,35 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Verify DPU provisioning {id="nw-dpf-verifying-dpu-provisioning_{{ context }}"}
 
-After worker nodes are labeled for the DPU `MachineConfigPool`, the `DPUSet` controller automatically detects nodes with the `dpu-enabled` label, creates a `DPU` object for each node, and starts the provisioning process.
+After the worker nodes join the management cluster, the `DPUSet` controller automatically detects nodes with the `feature.node.kubernetes.io/dpu-enabled` label, which the Node Feature Discovery Operator applies to DPU-equipped nodes.
+The controller then creates a `DPU` object for each node and starts the provisioning process.
 You can monitor the provisioning stages to verify progress. {._abstract}
 
 **Prerequisites**
 
 *   You have access to the management cluster as a user with the `cluster-admin` role.
 *   You have installed the `oc` CLI.
-*   Worker nodes are labeled with `node-role.kubernetes.io/worker-dpu=""`.
+*   The worker node CSRs are approved and the nodes have joined the management cluster.
 
 **Procedure**
 
 1.  Watch for `DPU` object creation:
     ```terminal
     $ oc get dpu -n dpf-operator-system -w
+    ```
+    ```terminal title="Example output"
+    NAME                     READY   OPERATIONAL   PHASE                        AGE
+    <node-name>-<dpu-id>             Unknown       Node Effect                  25s
+    <node-name>-<dpu-id>             Unknown       Initialize Interface         26s
+    <node-name>-<dpu-id>             Unknown       Config FW Parameters         28s
+    <node-name>-<dpu-id>             Unknown       Prepare BFB                  28s
+    <node-name>-<dpu-id>             Unknown       OS Installing                5m28s
+    <node-name>-<dpu-id>             Unknown       DPU Config                   15m
+    <node-name>-<dpu-id>             Unknown       Rebooting                    26m
+    <node-name>-<dpu-id>             Unknown       Host Network Configuration   27m
+    <node-name>-<dpu-id>             False         DPU Cluster Config           64m
+    <node-name>-<dpu-id>             Unknown       Node Effect Removal          71m
+    <node-name>-<dpu-id>     True    True          Ready                        71m
     ```
 
     The `DPU` objects progress through the following provisioning stages:
@@ -51,12 +66,14 @@ You can monitor the provisioning stages to verify progress. {._abstract}
     $ oc -n dpf-operator-system exec deploy/dpf-operator-controller-manager -- /dpfctl describe dpudeployments
     ```
 1.  Optional: View detailed status for a specific `DPU` object:
+
+    In the following command, replace `<dpu_name>` with the name of the `DPU` resource:
     ```terminal
     $ oc describe dpu -n dpf-operator-system <dpu_name>
     ```
+1.  Optional: Follow the provisioning controller logs for a specific DPU:
 
-    Replace `<dpu_name>` with the name of the `DPU` resource
-1.  Optional: Follow the provisioning logs for a specific DPU:
+    In the following command, replace `<dpu_name>` with the name of the `DPU` resource:
     ```terminal
-    $ oc logs -n dpf-operator-system -l dpf.nvidia.com/dpu=<dpu_name> -f
+    $ oc logs -n dpf-operator-system -l dpu.nvidia.com/component=dpf-provisioning-controller-manager --tail=-1 -f | grep <dpu_name>
     ```

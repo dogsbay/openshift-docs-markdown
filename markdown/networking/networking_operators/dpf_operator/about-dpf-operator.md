@@ -1,3 +1,7 @@
+---
+title: About the NVIDIA DPF Operator
+---
+
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
 # About the NVIDIA DPF Operator {id="about-dpf-operator"}
@@ -7,9 +11,6 @@
 The NVIDIA DOCA Platform Framework (DPF) Operator enables hardware-accelerated networking on {{ product_title }} by offloading OVN-Kubernetes data plane operations to NVIDIA BlueField-3 Data Processing Units (DPUs). {._abstract}
 
 The DPF deployment creates a dual-cluster topology consisting of a management cluster running on x86 servers and a hosted DPU cluster running on BlueField-3 DPUs.
-
-{%- set FeatureName = "The NVIDIA DPF Operator" %}
-{% include "./snippets/technology-preview.md" %}
 
 {% leveloffset +1 %}{% include "./modules/nw-dpf-architecture-overview.md" %}{% endleveloffset %}
 

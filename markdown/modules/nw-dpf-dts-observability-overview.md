@@ -1,7 +1,8 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # DPU telemetry observability with DOCA Telemetry Service {id="nw-dpf-dts-observability-overview_{{ context }}"}
 
-The DOCA Telemetry Service (DTS) exposes DPU hardware telemetry as Prometheus metrics that you can view using the {{ product_title }} web console or a Grafana dashboard. {._abstract}
+The DOCA Telemetry Service (DTS) exposes DPU hardware telemetry, such as PCIe link speed, uplink throughput, packets, errors, and NIC channel activity, as Prometheus metrics.
+You can view these metrics by using the {{ product_title }} web console or a Grafana dashboard. {._abstract}
 
 
 :::note

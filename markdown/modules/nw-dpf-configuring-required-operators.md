@@ -159,7 +159,7 @@ When you install the Operator, set the following `spec.config.env` values, or pa
       name: openshift-gitops-operator
       source: redhat-operators
       sourceNamespace: openshift-marketplace
-      startingCSV: openshift-gitops-operator.v1.21.0
+      startingCSV: openshift-gitops-operator.v1.21.3
     ```
 1.  Create a file named `argocd-instance.yaml` with the following `ArgoCD` resource definition:
     ```yaml
@@ -182,21 +182,15 @@ When you install the Operator, set the following `spec.config.env` values, or pa
       server:
         route:
           enabled: true
-        labels:
-          ovn.dpu.nvidia.com/skip-injection: ""
-      controller:
-        labels:
-          ovn.dpu.nvidia.com/skip-injection: ""
-      repo:
-        labels:
-          ovn.dpu.nvidia.com/skip-injection: ""
+      controller: {}
+      repo: {}
       applicationSet:
         enabled: false
-      resourceExclusions:
-      - apiGroups:
-        - packages.operators.coreos.com
-        kinds:
-        - PackageManifest
+      resourceExclusions: |
+        - apiGroups:
+          - packages.operators.coreos.com
+          kinds:
+          - PackageManifest
       sso:
         provider: dex
         dex:
@@ -213,27 +207,12 @@ When you install the Operator, set the following `spec.config.env` values, or pa
     $ oc wait deployment argocd-redis -n dpf-operator-system \
       --for=condition=Available --timeout=120s
     ```
-1.  Add the OVN skip-injection label to the Redis deployment:
-    ```terminal
-    $ oc patch deployment argocd-redis -n dpf-operator-system \
-      --type=merge -p '{"spec":{"template":{"metadata":{"labels":{"ovn.dpu.nvidia.com/skip-injection":""}}}}}'
-    ```
-
-    :::important
-
-    The OpenShift GitOps Operator ArgoCD CR does not support custom labels on the Redis component. This label must be applied manually to prevent the OVN resource injector from modifying Redis pods. The ArgoCD Operator will not override this patch.
-    
-    :::
-
 1.  Enable global IP forwarding on the OVN-Kubernetes configuration:
 
     This command enables IP packet forwarding between different networks managed by OVN-Kubernetes.
     ```terminal
     $ oc patch network.operator.openshift.io cluster --type=merge -p \
       '{"spec":{"defaultNetwork":{"ovnKubernetesConfig":{"gatewayConfig":{"ipForwarding":"Global"}}}}}'
-    ```
-    ```terminal title="Example output"
-    network.operator.openshift.io/cluster patched
     ```
 
 **Verification**
@@ -244,15 +223,39 @@ When you install the Operator, set the following `spec.config.env` values, or pa
     ```
     ```terminal title="Example output"
     NAME   STATUS      AGE     CURRENTVERSION   DESIREDVERSION   MESSAGE
-    mce    Available   4m58s   2.17.0           2.17.0           All components available
+    mce    Available   4m58s   2.17.2           2.17.2           All components available
     ```
 *   Verify that the hosted control planes component is enabled:
     ```terminal
     $ oc get multiclusterengine mce -o jsonpath='{.spec.overrides.components[?(@.name=="hypershift")].enabled}{"\n"}'
     ```
-    ```terminal title="Example output"
-    true
-    ```
+
+    :::note
+
+    If the previous command returns `false` or an empty result, hosted control planes is not enabled and DPU provisioning fails.
+
+    To continue, you must enable the `hypershift` component on the `MultiClusterEngine` resource.
+    In current {{ mce_short }} versions the component is named `hypershift`; earlier versions use `hypershift-preview`.
+
+    *   If the result is empty, no `hypershift` entry exists. Run the following command to add the entry and enable it:
+        ```terminal
+        $ oc patch mce multiclusterengine --type=json \
+            -p='[{"op":"add","path":"/spec/overrides/components/-","value":{"name":"hypershift","enabled":true}}]'
+        ```
+    *   If the result is `false`, an entry exists but is disabled. Edit the resource and set the `hypershift` component to `enabled: true`:
+        ```terminal
+        $ oc edit multiclusterengine mce
+        ```
+    
+    :::
+
+
+    :::important
+
+    Do not use `oc patch --type=merge` to enable the component, because a merge patch replaces the entire `components` array and removes the other components. Use the JSON `add` patch when no entry exists, or `oc edit` when an entry exists but is disabled.
+    
+    :::
+
 *   Verify that the `NodeFeatureDiscovery` instance and `NodeFeatureRule` are configured:
     ```terminal
     $ oc get nodefeaturediscovery,nodefeaturerule -n openshift-nfd

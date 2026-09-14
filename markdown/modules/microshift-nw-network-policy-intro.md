@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # How network policy works in {{ microshift_short }} {id="microshift-nw-network-policy-intro_{{ context }}"}
 
-In a node that is using the default OVN-Kubernetes Container Network Interface (CNI) plugin for {{ microshift_short }}, network isolation is controlled by both firewalld, which is configured on the host, and by `NetworkPolicy` objects created within {{ microshift_short }}. Simultaneous use of firewalld and `NetworkPolicy` is supported. {._abstract}
+In a node that is using the default OVN-Kubernetes Container Network Interface (CNI) plugin for {{ microshift_short }}, network isolation is controlled by both firewalld, which is configured on the host, and by `NetworkPolicy` objects created within {{ microshift_short }}. {._abstract}
+
+Simultaneous use of firewalld and `NetworkPolicy` is supported.
 
 *   Network policies work only within boundaries of OVN-Kubernetes-controlled traffic, so they can apply to every situation except for `hostPort/hostNetwork` enabled pods.
 *   Firewalld settings also do not apply to `hostPort/hostNetwork` enabled pods.

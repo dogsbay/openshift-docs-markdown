@@ -20,8 +20,11 @@ web console to set
 {%- if not (openshift_rosa_hcp or openshift_rosa or openshift_dedicated) %}
 a custom logo, product name, links, notifications, and command-line downloads.
 {%- endif %}
-{%- if openshift_rosa_hcp or openshift_rosa or openshift_dedicated %}
+{%- if openshift_rosa or openshift_dedicated %}
 a custom logo and product name.
+{%- endif %}
+{%- if openshift_rosa_hcp %}
+a custom logo, product name, and custom component routes.
 {%- endif %}
 This is especially helpful if you need to tailor the web console to meet specific corporate or government requirements. {._abstract}
 
@@ -60,5 +63,17 @@ This is especially helpful if you need to tailor the web console to meet specifi
 {% leveloffset +3 %}{% include "./modules/odc_con_example-yaml-file-changes.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/odc_customizing-a-developer-catalog-or-its-sub-catalogs-using-the-form-view.md" %}{% endleveloffset %}
+
+{% endif %}
+
+{% if openshift_rosa_hcp %}
+{% leveloffset +1 %}{% include "./modules/about-custom-component-routes-rosa-hcp.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/configuring-custom-component-routes-rosa-hcp.md" %}{% endleveloffset %}
+
+**Additional resources**
+{._additional-resources}
+
+*   [AWS Add CNAME Record](https://docs.aws.amazon.com/managedservices/latest/ctref/management-directory-dns-add-cname-record.html)
 
 {% endif %}

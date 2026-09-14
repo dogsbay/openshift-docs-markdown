@@ -1,9 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Completing a {{ gcp_short }} installation on user-provisioned infrastructure {id="installation-gcp-user-infra-installation_{{ context }}"}
 
-After you start the {{ product_title }} installation on {{ gcp_first }}
-user-provisioned infrastructure, you can monitor the cluster events until the
-cluster is ready.
+After you start the {{ product_title }} installation on {{ gcp_first }} user-provisioned infrastructure, you can monitor the cluster events to confirm that the installation completes successfully and the cluster is ready for use. {._abstract}
 
 **Prerequisites**
 
@@ -13,13 +11,13 @@ cluster is ready.
 
 1.  Complete the cluster installation:
     ```terminal
-    $ ./openshift-install --dir <installation_directory> wait-for install-complete (1)
+    $ ./openshift-install --dir <installation_directory> wait-for install-complete
     ```
+
+    where `<installation_directory>` specifies the path to the directory that you stored the installation files in.
     ```terminal title="Example output"
     INFO Waiting up to 30m0s for the cluster to initialize...
     ```
-    1.  For `<installation_directory>`, specify the path to the directory that you
-    stored the installation files in.
 
     :::important
 

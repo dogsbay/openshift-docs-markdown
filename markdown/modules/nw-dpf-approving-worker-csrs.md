@@ -1,13 +1,13 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Approve worker node CSRs and apply DPU labels {id="nw-dpf-approving-worker-csrs_{{ context }}"}
+# Approve worker node CSRs {id="nw-dpf-approving-worker-csrs_{{ context }}"}
 
-You must approve the pending certificate signing requests (CSRs) for worker nodes that join the management cluster and then label the nodes for the DPU `MachineConfigPool`. {._abstract}
+You must approve the pending certificate signing requests (CSRs) for worker nodes that join the management cluster. {._abstract}
 
 
 :::note
 
-When you add worker nodes by using the Bare Metal Operator, CSRs are typically auto-approved and the `worker-dpu` label is applied automatically through the `MachineSet` template.
-Manual approval is required when you use the Assisted Installer or as a fallback if auto-approval is not functioning.
+Worker nodes provisioned by using a `BareMetalHost` resource do not have an associated `Machine` object, so the default OpenShift machine approver does not automatically approve their certificate signing requests (CSRs).
+You must manually approve the `kube-apiserver-client-kubelet` CSR from the `node-bootstrapper` service account and the `kubelet-serving` CSR from the node for each worker node.
 
 :::
 
@@ -54,19 +54,5 @@ Manual approval is required when you use the Assisted Installer or as a fallback
 
     The worker nodes show a status of `NotReady` until the DPU provisioning process is fully completed and all OVN-Kubernetes CNI components on the host and the DPU are running.
     Do not proceed to the next steps until all pending CSRs are approved.
-    
-    :::
-
-1.  Label each worker node for the DPU `MachineConfigPool` by entering the following command:
-    ```terminal
-    $ oc label node <worker_node_name> node-role.kubernetes.io/worker-dpu=""
-    ```
-
-    Replace `<worker_node_name>` with the name of the worker node.
-
-    :::note
-
-    This label triggers the Machine Config Operator to apply the DPU-specific `MachineConfig` and reboot the node.
-    Wait for the reboot to complete before proceeding.
     
     :::

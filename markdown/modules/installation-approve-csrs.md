@@ -160,7 +160,7 @@ To allow newly added machines to join your {{ product_title }} cluster, confirm 
 
     :::note
 
-    You might need to wait a few minutes after approval of the server CSRs for the machines to change to the `Ready` status.
+    You might need to wait a few minutes after approval of the server CSRs for the machines to reach the `Ready` status.
     
     :::
 

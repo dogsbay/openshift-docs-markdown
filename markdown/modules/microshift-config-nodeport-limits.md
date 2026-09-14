@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Extending the port range for NodePort services {id="microshift-nodeport-range-limits_{{ context }}"}
 
-The `serviceNodePortRange` setting extends the port range available to NodePort services. This option is useful when specific standard ports under the `30000-32767` range need to be exposed. For example, if your device needs to expose the `1883/tcp` MQ Telemetry Transport (MQTT) port on the network because client devices cannot use a different port. {._abstract}
+The `serviceNodePortRange` setting extends the port range available to NodePort services. This option is useful when specific standard ports under the `30000-32767` range need to be exposed. {._abstract}
+
+For example, if your device needs to expose the `1883/tcp` MQ Telemetry Transport (MQTT) port on the network because client devices cannot use a different port.
 
 
 :::important

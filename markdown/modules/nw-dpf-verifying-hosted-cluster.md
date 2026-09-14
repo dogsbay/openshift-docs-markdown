@@ -29,12 +29,12 @@ The provisioning process can take up to 30 minutes. {._abstract}
 
 **Verification**
 
-*   Confirm that the `DPUCluster` is ready by entering the following command:
+*   Confirm that the `DPUCluster` is ready:
     ```terminal
     $ oc get dpucluster ${HOSTED_CLUSTER_NAME} -n dpf-operator-system
     ```
 
-    A `Ready` status indicates that the Operator injected the hosted cluster kubeconfig into the `DPUCluster` resource and that the hosted cluster API is reachable, which is the prerequisite for DPU worker nodes to join
+    A `Ready` status indicates that the operator created the admin kubeconfig secret referenced by the `DPUCluster` resource and that the hosted cluster API is reachable, which is the prerequisite for DPU worker nodes to join:
 *   Confirm that the admin kubeconfig secret referenced by the `DPUCluster` was created in the `dpf-operator-system` namespace:
     ```terminal
     $ oc get secret ${HOSTED_CLUSTER_NAME}-admin-kubeconfig -n dpf-operator-system

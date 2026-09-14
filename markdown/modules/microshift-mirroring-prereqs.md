@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Configure mirroring prerequisites {id="microshift-configuring-mirroring-prereqs_{{ context }}"}
 
-You must create a container image registry credentials file that allows the mirroring of images from your internet-connected mirror host to your air-gapped mirror. Follow the instructions in the "Configuring credentials that allow images to be mirrored" link provided in the "Additional resources" section. These instructions guide you to create a `~/.pull-secret-mirror.json` file on the mirror registry host that includes the user credentials for accessing the mirror. {._abstract}
+You must create a container image registry credentials file that allows the mirroring of images from your internet-connected mirror host to your air-gapped mirror. {._abstract}
+
+Follow the instructions in the "Configuring credentials that allow images to be mirrored" link provided in the "Additional resources" section. These instructions guide you to create a `~/.pull-secret-mirror.json` file on the mirror registry host that includes the user credentials for accessing the mirror.
 
 ## Example mirror registry pull secret entry {id="microshift-example-mirror-pull-secret-entry_{{ context }}"}
 

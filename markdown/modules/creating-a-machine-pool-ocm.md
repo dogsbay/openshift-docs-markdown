@@ -122,9 +122,8 @@ The compute, also known as worker, node instance types, autoscaling options, and
 {% if openshift_dedicated %}
         *   **Amazon EC2 Spot Instances**: If you deployed {{ product_title }} on AWS using the Customer Cloud Subscription (CCS) model and want to configure your machine pool to deploy machines as non-guaranteed AWS Spot Instances, select **Use Amazon EC2 Spot Instances**. Leave **Use On-Demand instance price** selected to use the on-demand instance price, or select **Set maximum price** to define a maximum hourly price for a Spot Instance.
 {% endif %}
-{% if openshift_rosa %}
+{% if openshift_rosa or openshift_rosa_hcp %}
         *   **Amazon EC2 Spot Instances**: To configure your machine pool to deploy machines as non-guaranteed AWS Spot Instances, select **Use Amazon EC2 Spot Instances**. Leave **Use On-Demand instance price** selected to use the on-demand instance price, or select **Set maximum price** to define a maximum hourly price for a Spot Instance.
-{%- if not openshift_rosa_hcp %}
 
             :::important
 
@@ -139,7 +138,6 @@ The compute, also known as worker, node instance types, autoscaling options, and
             
             :::
 
-{%- endif %}
 {% endif %}
 {% if openshift_dedicated %}
         *   **Shielded VMs** ({{ GCP }} only): By default, {{ product_title }} on {{ GCP }} instances in the machine pools inherit the Shielded VM settings at the cluster level. You can override the cluster level Shielded VM settings at the machine pool level by selecting or clearing the **Enable Secure Boot support for Shielded VMs** checkbox.

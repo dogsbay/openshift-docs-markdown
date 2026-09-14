@@ -1,3 +1,7 @@
+---
+title: Install and configure the DPF Operator
+---
+
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
 # Install and configure the DPF Operator {id="dpf-operator-installation"}
@@ -22,13 +26,13 @@ You must install the DPF Operator before the DPF HCP Provisioner Operator becaus
 
 {% leveloffset +1 %}{% include "./modules/nw-dpf-creating-sriov-config.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/nw-dpf-bf3-nvconfig-parameters.md" %}{% endleveloffset %}
-
 {% leveloffset +1 %}{% include "./modules/nw-dpf-creating-dpuflavor.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/nw-dpf-creating-bfb.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/nw-dpf-creating-dpudeployment.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/nw-dpf-creating-hbn-service.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/nw-dpf-creating-ovnk-service.md" %}{% endleveloffset %}
 

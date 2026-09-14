@@ -1,7 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # DPF Operator installation environment variables {id="nw-dpf-environment-variables_{{ context }}"}
 
-Set the required environment variables before you install and configure the DPF Operator on {{ product_title }}. The installation and configuration manifests use these variables for cluster-specific values. {._abstract}
+Set the following required environment variables before you install and configure the DPF Operator on {{ product_title }}.
+The values of these variables are used in multiple DPF Operator installation and configuration procedures. {._abstract}
 
 **DPF Operator environment variables**
 
@@ -10,16 +11,17 @@ Set the required environment variables before you install and configure the DPF 
 | `CLUSTER_NAME` | The name of the management cluster. | `<YOUR_CLUSTER_NAME>` |
 | `BASE_DOMAIN` | The base domain for the management cluster. | `example.com` |
 | `HOST_CLUSTER_API` | The API server hostname of the management cluster. Derived from `CLUSTER_NAME` and `BASE_DOMAIN`. | `api.mycluster.example.com` |
-| `TAG` | The version tag for the DPF Operator Helm chart. | `<GA-TAG>` |
+| `TAG` | The version tag for the DPF Operator Helm chart. | `v26.4.1` |
 | `TARGETCLUSTER_API_SERVER_PORT` | The port number of the hosted cluster API server. | `6443` |
 | `VTEP_CIDR` | The CIDR range for the VTEP (tunnel endpoint) network. Used as the OVN `vtepCIDR` and the `DPUServiceIPAM` network. Must be a dedicated range from the DPU high-speed network, routable between DPUs and host systems. | `10.0.120.0/22` |
-| `DPU_HOST_CIDR` | The CIDR range for the DPU nodes subnet. Must be set to match your DPU infrastructure. | `10.0.110.0/24` |
+| `DPU_HOST_CIDR` | The CIDR range of the subnet where the DPU host nodes reside. Used as the OVN `hostCIDR`. You must set this to your actual host subnet; the example value is illustrative only and is not a usable default. | `10.0.110.0/24` |
 | `NUM_VFS` | Number of SR-IOV VFs per physical function. Sets `NUM_OF_VFS` in the DPUFlavor `nvconfig`. The `NodeSRIOVDevicePluginConfig` allocates these VFs as VF0 (DPF communication channel), VF1 (OVN-Kubernetes management), and the remainder (workload and RDMA). | `46` |
 | `OVN_TEMPLATE_CHART_URL` | The OCI chart URL for the OVN-Kubernetes Helm chart. | `oci://ghcr.io/mellanox/charts` |
-| `OVN_CHART_VERSION` | The version of the OVN-Kubernetes Helm chart. | `<GA-OVN-CHART-VERSION>` |
-| `OVN_MTU` | The MTU value for OVN-Kubernetes overlay networking. Always `NODES_MTU` minus 60 bytes of Geneve encapsulation overhead: `1440` for standard MTU (1500 - 60) or `8940` for jumbo frames (9000 - 60). Must be kept consistent with `NODES_MTU`. | `1440` |
-| `BFB_URL` | The download URL for the BlueField Bootstream File image used to provision DPUs. Replace the placeholder with the full URL for the BFB image required by your deployment. | `https://content.mellanox.com/BlueField/BFBs/<bfb-image-file>` |
+| `OVN_CHART_VERSION` | The version of the OVN-Kubernetes Helm chart. | `v26.4.1-ocp-release-v4.22` |
+| `OVN_MTU` | The MTU value for OVN-Kubernetes overlay networking. Set to `1400` for standard MTU (`NODES_MTU` of 1500) or `8940` for jumbo frames (`NODES_MTU` of 9000). Must be kept consistent with `NODES_MTU`. | `1400` |
+| `BFB_URL` | The download URL for the BlueField Bootstream File image used to provision DPUs. | `https://rhcos.mirror.openshift.com/art/storage/prod/streams/rhel-10.2/builds/10.2.20260715-0/aarch64/rhcos-10.2.20260715-0-nvidiabluefield.aarch64.bfb` |
+| `BFB_FILENAME` | The local file name for the BFB image, which is typically the base name of `BFB_URL`. | `rhcos-10.2.20260715-0-nvidiabluefield.aarch64.bfb` |
 | `HOSTED_CLUSTER_NAME` | The name of the hosted cluster running on the DPUs. | `dpf-hosted` |
-| `REGISTRY` | The Helm chart registry URL for the DPF Operator. | `<GA-helm-repo-URL>` |
+| `REGISTRY` | The Helm chart registry URL for the DPF Operator. | `https://helm.ngc.nvidia.com/nvidia/doca` |
 | `NODES_MTU` | The MTU value for the node network interfaces. Use `1500` for standard MTU environments or `9000` for jumbo frame environments. This value must be consistent across all DPF networking configuration. | `1500` (standard) or `9000` (jumbo frames) |
 | `FLANNEL_POD_CIDR` | The pod CIDR for the Flannel network in the hosted cluster. Required for {{ product_title }} 4.22 and later. | `10.132.0.0/14` |

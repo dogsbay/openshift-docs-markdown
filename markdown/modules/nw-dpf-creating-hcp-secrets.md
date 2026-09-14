@@ -7,7 +7,7 @@ The `DPFHCPProvisioner` resource references these secrets during hosted cluster 
 
 :::note
 
-The BlueField {{ product_title }} layer image referenced by `BLUEFIELD_OCP_IMAGE` might require authentication to the Quay or Red&#160;Hat registry. Ensure that the pull secret includes credentials for that image registry.
+The BlueField {{ product_title }} layer image that the Operator resolves automatically might require authentication to the Quay or Red&#160;Hat registry. Ensure that the pull secret includes credentials for that image registry.
 
 :::
 
@@ -28,15 +28,23 @@ The BlueField {{ product_title }} layer image referenced by `BLUEFIELD_OCP_IMAGE
     ```terminal
     $ oc create secret generic $PULL_SECRET_NAME \
         --from-file=.dockerconfigjson=$OPENSHIFT_PULL_SECRET \
-        --type=kubernetes.io/dockerconfigjson \
+        --type=Opaque \
         -n $CLUSTERS_NAMESPACE
     ```
 1.  Create the SSH key secret:
     ```terminal
     $ oc create secret generic $SSH_KEY_SECRET_NAME \
         --from-file=id_rsa.pub=$SSH_KEY \
+        --type=Opaque \
         -n $CLUSTERS_NAMESPACE
     ```
+
+    :::note
+
+    The `id_rsa.pub` secret data key is a fixed name that the provisioner expects and it does not require an RSA key. The `SSH_KEY` variable can point to any supported public key file, such as an Ed25519 key.
+    
+    :::
+
 
 **Verification**
 
@@ -45,7 +53,7 @@ The BlueField {{ product_title }} layer image referenced by `BLUEFIELD_OCP_IMAGE
     $ oc get secrets -n $CLUSTERS_NAMESPACE
     ```
     ```terminal title="Example output"
-    NAME          TYPE                             DATA   AGE
-    pull-secret   kubernetes.io/dockerconfigjson   1      10s
-    ssh-key       Opaque                           1      5s
+    NAME             TYPE     DATA   AGE
+    my-pull-secret   Opaque   1      10s
+    my-ssh-key       Opaque   1      5s
     ```
