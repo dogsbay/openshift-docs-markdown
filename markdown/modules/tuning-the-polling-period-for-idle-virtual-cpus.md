@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Tuning the polling period for idle virtual CPUs {id="tune-the-polling-period-for-idle-virtual-cpus_{{ context }}"}
+# Tune the polling period for idle virtual CPUs {id="tune-the-polling-period-for-idle-virtual-cpus_{{ context }}"}
 
 When a virtual CPU becomes idle, KVM polls for wakeup conditions for the virtual CPU before allocating the host resource. You can specify the time interval, during which polling takes place in sysfs at `/sys/module/kvm/parameters/halt_poll_ns`.  {._abstract}
 

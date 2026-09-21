@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Securing network traffic {id="nw-understanding-networking-securing-network-traffic_{{ context }}"}
+# Secure network traffic {id="nw-understanding-networking-securing-network-traffic_{{ context }}"}
 
-{{ product_title }} provides tools to secure your network by creating rules that control which components are allowed to communicate. This is primarily managed through two types of policy resources: network policies and administrative network policies.
+{{ product_title }} provides tools to secure your network by creating rules that control which components are allowed to communicate. This is primarily managed through two types of policy resources: network policies and administrative network policies. {._abstract}
 
 ## Network policies {id="network-policies_{{ context }}"}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling the *Developer* perspective in the web console {id="enabling-developer-perspective_web-console_{{ context }}"}
+# Enable the *Developer* perspective in the web console {id="enabling-developer-perspective_web-console_{{ context }}"}
 
 Enable the **Developer** perspective in the web console to give your developers tools to manage applications, visualize topology, and monitor projects as they develop and build them. {._abstract}
 

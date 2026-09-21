@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Using secure or insecure connections {id="pruning-images-secure-insecure_{{ context }}"}
+# Use secure or insecure connections {id="pruning-images-secure-insecure_{{ context }}"}
 
 Configure secure or insecure flags when pruning images to communicate with image registries. Setting custom CA certificates or bypassing HTTPS verification prevents connection failures during pruning. {._abstract}
 

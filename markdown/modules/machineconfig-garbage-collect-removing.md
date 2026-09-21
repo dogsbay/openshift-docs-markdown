@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing unused rendered machine configs {id="machineconfig-garbage-collect-removing_{{ context }}"}
+# Remove unused rendered machine configs {id="machineconfig-garbage-collect-removing_{{ context }}"}
 
 You can remove unused rendered machine configs by using the `oc adm prune renderedmachineconfigs` command with the `--confirm` command, reducing disk space and performance issues. {._abstract}
 

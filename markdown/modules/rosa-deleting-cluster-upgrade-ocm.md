@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting an upgrade with the {{ cluster_manager }} console {id="rosa-deleting-cluster-upgrade-ocm_{{ context }}"}
+# Delete a cluster upgrade with {{ cluster_manager }} {id="rosa-deleting-cluster-upgrade-ocm_{{ context }}"}
 
 You can use the {{ cluster_manager }} console to delete a scheduled upgrade. {._abstract}
 

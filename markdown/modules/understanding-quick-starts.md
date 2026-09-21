@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding quick starts {id="understanding-quick-starts_{{ context }}"}
+# Understand quick starts {id="understanding-quick-starts_{{ context }}"}
 
 A quick start is a guided tutorial with user tasks. In the web console, you can access quick starts under the **Help** menu. They are especially useful for getting oriented with an application, Operator, or other product offering. {._abstract}
 

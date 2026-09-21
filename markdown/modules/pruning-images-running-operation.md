@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running image prune operations {id="pruning-images-running-operation_{{ context }}"}
+# Run image prune operations {id="pruning-images-running-operation_{{ context }}"}
 
 Securely remove unused container images from your registry to reclaim the cluster disk space and prevent registry storage exhaustion. {._abstract}
 

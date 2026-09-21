@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Moving resources to infrastructure machine sets {id="moving-resources-to-infrastructure-machinesets_{{ context }}"}
+# Move resources to infrastructure machine sets {id="moving-resources-to-infrastructure-machinesets_{{ context }}"}
 
 Some of the infrastructure resources are deployed in your cluster by default. You can move them to the infrastructure machine sets that you created by adding the infrastructure node selector. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling boot image management {id="mco-update-boot-images-configuring_{{ context }}"}
+# Enable boot image management {id="mco-update-boot-images-configuring_{{ context }}"}
 
 {% include "./snippets/mco-update-boot-images-abstract.md" %}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Allowing pods to reference images from other secured registries {id="images-allow-pods-to-reference-images-from-secure-registries_{{ context }}"}
+# Allow pods to reference images from other secured registries {id="images-allow-pods-to-reference-images-from-secure-registries_{{ context }}"}
 
 Pull secrets enable pods in {{ product_title }} to authenticate with secured registries and pull container images. Docker and Podman store authentication credentials in configuration files that you can use to create pull secrets for your service accounts. {._abstract}
 

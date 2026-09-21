@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Modifying an on-cluster custom layered image {id="coreos-layering-configuring-on-modifying_{{ context }}"}
+# Modify an on-cluster custom layered image {id="coreos-layering-configuring-on-modifying_{{ context }}"}
 
 You can modify an on-cluster custom layered image, as needed, to install additional packages, remove existing packages, change the pull or push repositories, update secrets, or other similar changes.  {._abstract}
 

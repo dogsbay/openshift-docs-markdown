@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 {%- if context != "rosa-hcp-upgrading-whole-cluster" %}
-# Updating the hosted control plane with the {{ rosa_cli }} {id="rosa-hcp-upgrading-cli-control-plane_{{ context }}"}
+# Upgrade the hosted control plane {id="rosa-hcp-upgrading-cli-control-plane_{{ context }}"}
 
 You can manually update the hosted control plane of a {{ product_title }} cluster by using the {{ rosa_cli_first }}. This method schedules the control plane for an update if a more recent version is available, either immediately, or at a specified future time. {._abstract}
 

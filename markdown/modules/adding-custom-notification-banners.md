@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating custom notification banners {id="creating-custom-notification-banners_{{ context }}"}
+# Create custom notification banners {id="creating-custom-notification-banners_{{ context }}"}
 
 You can create a `ConsoleNotification` custom resource to display a banner at the top or bottom of every page in the web console. {._abstract}
 

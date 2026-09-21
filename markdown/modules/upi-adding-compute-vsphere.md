@@ -13,5 +13,9 @@ You can add bare-metal compute machines to your cluster.
 
 See [Adding bare-metal compute machines to a vSphere cluster](/machine_management/user_infra/adding-bare-metal-compute-vsphere-user-infra#adding-bare-metal-compute-vsphere-user-infra) for more information.
 
-{%- set FeatureName = "Bare-metal nodes on vSphere clusters" %}
-{% include "./snippets/technology-preview.md" %}
+
+:::important
+
+Bare-metal nodes on VMware vSphere clusters is generally available for {{ product_title }} 4.22.13 and later. However, this feature is Technology Preview for 4.21 through 4.22.12.
+
+:::

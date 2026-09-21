@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Managing traffic within the cluster {id="nw-understanding-networking-managing-traffic-within_{{ context }}"}
+# Manage traffic within the cluster {id="nw-understanding-networking-managing-traffic-within_{{ context }}"}
 
 Your applications need to communicate with each other inside the cluster. {{ product_title }} provides two primary mechanisms that you can use to handle internal traffic: direct pod-to-pod communication for simple exchanges and robust service discovery for reliable connections. {._abstract}
 

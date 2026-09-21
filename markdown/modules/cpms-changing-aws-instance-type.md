@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Changing the {{ aws_full }} instance type by using a control plane machine set {id="cpms-changing-aws-instance-type_{{ context }}"}
+# Change the {{ aws_full }} instance type by using a control plane machine set {id="cpms-changing-aws-instance-type_{{ context }}"}
 
 If you need more resources for your control plane machines, you can change the {{ aws_first }} instance type that they use.
 To change the instance type, you update the instance type value in the control plane machine set custom resource (CR). {._abstract}

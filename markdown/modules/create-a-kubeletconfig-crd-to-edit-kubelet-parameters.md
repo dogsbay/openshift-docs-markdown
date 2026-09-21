@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a KubeletConfig CR to edit kubelet parameters {id="create-a-kubeletconfig-crd-to-edit-kubelet-parameters_{{ context }}"}
+# Create a KubeletConfig CR to edit kubelet parameters {id="create-a-kubeletconfig-crd-to-edit-kubelet-parameters_{{ context }}"}
 
 You can use a `KubeletConfig` custom resource (CR) to edit a kubelet parameters without modifing the kubelet configuration directly. {._abstract}
 

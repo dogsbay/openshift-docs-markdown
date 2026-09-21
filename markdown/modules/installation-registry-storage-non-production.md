@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring storage for the image registry in non-production clusters {id="installation-registry-storage-non-production_{{ context }}"}
+# Configure storage for the image registry in non-production clusters {id="installation-registry-storage-non-production_{{ context }}"}
 
 You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory, but you lose all images if you restart the registry. {._abstract}
 

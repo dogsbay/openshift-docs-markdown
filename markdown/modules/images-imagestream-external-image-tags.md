@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding tags for an external image {id="images-imagestream-external-image-tags_{{ context }}"}
+# Add tags for an external image {id="images-imagestream-external-image-tags_{{ context }}"}
 
 To enable {{ product_title }} resources to track and consume container images sourced from external registries, add tags to the corresponding image streams. This action integrates external image content securely into your cluster’s local image management system. {._abstract}
 

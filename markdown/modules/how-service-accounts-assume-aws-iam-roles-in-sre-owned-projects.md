@@ -10,7 +10,7 @@ that uses the AWS Security Token Service (STS),
 {%- endif %}
 cluster-specific Operator AWS Identity and Access Management (IAM) roles are created. These IAM roles permit the ROSA cluster Operators, managed by Red&#160;Hat Site Reliability Engineering (SRE), to run core OpenShift functionality. {._abstract}
 
-Cluster Operators use service accounts to assume IAM roles. When a service account assumes an IAM role, temporary AWS STS credentials are provided for the service account to use in the cluster Operator’s pod. If the assumed role has the necessary AWS privileges, the service account can run AWS SDK operations in the pod.
+Cluster Operators use service accounts to assume IAM roles. When a service account assumes an IAM role, temporary AWS STS credentials are provided for the service account to use in the cluster Operator’s pod. If the assumed role has the necessary AWS privileges, the service account can run AWS Software Development Kit (SDK) operations in the pod.
 
 ## Workflow for assuming AWS IAM roles in Red&#160;Hat SRE-owned projects {id="workflow-for-assuming-aws-iam-roles-in-sre-owned-projects_{{ context }}"}
 
@@ -22,7 +22,7 @@ The following diagram illustrates the workflow for assuming AWS IAM roles in SRE
 
 The workflow has the following stages:
 
-1.  Within each project that a cluster Operator runs, the Operator’s deployment spec has a volume mount for the projected service account token, and a secret containing AWS credential configuration for the pod. The token is audience-bound and time-bound. Every hour, ROSA generates a new token, and the AWS SDK reads the mounted secret containing the AWS credential configuration. This configuration has a path to the mounted token and the AWS IAM Role ARN. The secret’s credential configuration includes the following:
+1.  Within each project that a cluster Operator runs, the Operator’s deployment spec has a volume mount for the projected service account token, and a secret containing AWS credential configuration for the pod. The token is audience-bound and time-bound. Every hour, ROSA generates a new token, and the AWS SDK reads the mounted secret containing the AWS credential configuration. This configuration has a path to the mounted token and the AWS IAM Role Amazon Resource Name (ARN). The secret’s credential configuration includes the following:
     *   An `$AWS_ARN_ROLE` variable that has the ARN for the IAM role that has the permissions required to run AWS SDK operations.
     *   An `$AWS_WEB_IDENTITY_TOKEN_FILE` variable that has the full path in the pod to the OpenID Connect (OIDC) token for the service account. The full path is `/var/run/secrets/openshift/serviceaccount/token`.
 1.  When a cluster Operator needs to assume an AWS IAM role to access an AWS service (such as EC2), the AWS SDK client code running on the Operator invokes the `AssumeRoleWithWebIdentity` API call.

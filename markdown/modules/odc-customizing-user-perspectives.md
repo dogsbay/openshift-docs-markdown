@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Customizing user perspectives {id="odc-customizing-user-perspectives_{{ context }}"}
+# Customize user perspectives {id="odc-customizing-user-perspectives_{{ context }}"}
 
 As a cluster administrator, you can show or hide web console perspectives for all users or for a specific user role, ensuring users see only the perspectives relevant to their role and tasks. For example, you can hide the **Administrator** perspective from users without administrative access. {._abstract}
 

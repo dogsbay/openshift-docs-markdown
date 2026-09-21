@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Moving the default registry {id="infrastructure-moving-registry_{{ context }}"}
+# Move the default registry {id="infrastructure-moving-registry_{{ context }}"}
 
 Deploying the registry pod on an infrastructure node can reduce your {{ product_title }} subscription size. Move the registry pod by editing the `configs.imageregistry.operator.openshift.io/cluster` config object. {._abstract}
 

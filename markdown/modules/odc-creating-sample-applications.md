@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating sample applications {id="odc-creating-sample-applications_{{ context }}"}
+# Create sample applications {id="odc-creating-sample-applications_{{ context }}"}
 
-You can use the sample applications in the **+Add** flow of the **Developer** perspective to create, build, and deploy applications quickly.
+You can use the sample applications in the **+Add** flow of the **Developer** perspective to create, build, and deploy applications quickly. {._abstract}
 
 **Prerequisites**
 

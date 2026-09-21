@@ -32,21 +32,31 @@ To run the network verification, you can specify either a cluster name or a set 
                               --region <region_name> \
                               --subnet-ids subnet-03146b9b52b6024cb,subnet-03146b9b52b2034cc
         ```
-        *   The `watch` flag causes the command to complete after all the subnets under test are in a failed or passed state.
-        *   The `status-only` flag does not trigger a run of network verification but returns the current state, for example, `subnet-123 (verification still in-progress)`. By default, without this option, a call to this command always triggers a verification of the specified subnets.
-        *   Use the `region` flag to provide a specific AWS region that overrides the `_AWS_REGION_` environment variable.
-        *   Use the `subnet-ids` flag to enter a list of subnet IDs separated by commas to verify. If any of the subnets do not exist, the error message `Network verification for subnet 'subnet-<subnet_number> not found` displays and the system does not check subnets.
-            ```terminal title="Example output"
-            I: Checking the status of the following subnet IDs: [subnet-03146b9b52b6024cb subnet-03146b9b52b2034cc]
-            I: subnet-03146b9b52b6024cb: passed
-            I: subnet-03146b9b52b2034cc: passed
-            ```
 
-            :::tip
+        where:
 
-            To output the full list of verification tests, you can include the `--debug` argument when you run the `rosa verify network` command.
-            
-            :::
+        `watch`
+        :   This flag causes the command to complete after all the subnets under test are in a failed or passed state.
+
+        `status-only`
+        :   This flag does not trigger a run of network verification but returns the current state, for example, `subnet-123 (verification still in-progress)`. By default, without this option, a call to this command always triggers a verification of the specified subnets.
+
+        `region`
+        :   This flag specifies an AWS region that overrides the `_AWS_REGION_` environment variable.
+
+        `subnet-ids`
+        :   This flag accepts a list of subnet IDs separated by commas to verify. If any of the subnets do not exist, the error message `Network verification for subnet 'subnet-<subnet_number> not found` displays and the system does not check subnets.
+        ```terminal title="Example output"
+        I: Checking the status of the following subnet IDs: [subnet-03146b9b52b6024cb subnet-03146b9b52b2034cc]
+        I: subnet-03146b9b52b6024cb: passed
+        I: subnet-03146b9b52b2034cc: passed
+        ```
+
+        :::tip
+
+        To output the full list of verification tests, you can include the `--debug` argument when you run the `rosa verify network` command.
+        
+        :::
 
 *   Option 2: Verify the network configuration by specifying the VPC subnets IDs. Replace `<region_name>` with your AWS region and `<AWS_account_ID>` with your AWS account ID:
     ```terminal

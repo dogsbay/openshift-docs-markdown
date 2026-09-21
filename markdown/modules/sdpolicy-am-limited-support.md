@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Limited support status {id="limited-support_{{ context }}"}
 
-When a cluster transitions to a _Limited Support_ status, Red Hat no longer proactively monitors the cluster, the SLA is no longer applicable, and credits requested against the SLA are denied. It does not mean that you no longer have product support. In some cases, the cluster can return to a fully-supported status if you remediate the violating factors. However, in other cases, you might have to delete and recreate the cluster. {._abstract}
+When a cluster transitions to a _Limited Support_ status, Red Hat no longer proactively monitors the cluster, the service-level agreement (SLA) is no longer applicable, and credits requested against the SLA are denied. It does not mean that you no longer have product support. In some cases, the cluster can return to a fully-supported status if you remediate the violating factors. However, in other cases, you might have to delete and recreate the cluster. {._abstract}
 
 A cluster might transition to a Limited Support status for many reasons, including the following scenarios:
 

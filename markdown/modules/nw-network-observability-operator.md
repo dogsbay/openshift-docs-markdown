@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing statuses {id="nw-network-observability-operator_{{ context }}"}
+# View statuses {id="nw-network-observability-operator_{{ context }}"}
 
 View the operational status of the Network Observability Operator by using the `oc get` command to check the `FlowCollector` resource status, as well as the status of the `eBPF agent`, `flowlogs-pipeline`, and console plugin Pods. {._abstract}
 

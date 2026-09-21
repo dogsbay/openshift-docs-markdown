@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Moving the router {id="infrastructure-moving-router_{{ context }}"}
+# Move the router {id="infrastructure-moving-router_{{ context }}"}
 
 Deploying the router pod on an infrastructure node can reduce your {{ product_title }} subscription size. Move the router pod by editing the `IngressController` object in the `openshift-ingress-operator` namespace. By default, the pod is deployed to a worker node. {._abstract}
 

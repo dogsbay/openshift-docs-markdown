@@ -37,7 +37,7 @@ To enforce the maintenance exclusion, ensure machine pool autoscaling or automat
 
 ## Red Hat-initiated changes {id="policy-red-hat-initiated-changes_{{ context }}"}
 
-Red Hat site reliability engineering (SRE) manages the infrastructure, code, and configuration of {{ product_title }} using a GitOps workflow and fully automated CI/CD pipelines. This process ensures that Red Hat can safely introduce service improvements on a continuous basis without negatively impacting customers.
+Red Hat Site Reliability Engineering (SRE) manages the infrastructure, code, and configuration of {{ product_title }} using a GitOps workflow and fully automated continuous integration and continuous delivery (CI/CD) pipelines. This process ensures that Red Hat can safely introduce service improvements on a continuous basis without negatively impacting customers.
 
 Every proposed change undergoes a series of automated verifications immediately upon check-in. Changes are then deployed to a staging environment where they undergo automated integration testing. Finally, changes are deployed to the production environment. Each step is fully automated.
 
@@ -51,4 +51,4 @@ OpenShift Container Platform software and the underlying immutable Red Hat Enter
 
 ## Release management {id="release-management_{{ context }}"}
 
-Red Hat does not automatically upgrade your clusters. You can schedule to upgrade the clusters at regular intervals (recurring upgrade) or just once (individual upgrade) using the {{ cluster_manager }} web console. Red Hat might forcefully upgrade a cluster to a new z-stream version only if the cluster is affected by a critical impact CVE. You can review the history of all cluster upgrade events in the {{ cluster_manager }} web console. For more information about releases, see the [Life Cycle policy](https://docs.openshift.com/dedicated/osd_policy/osd-life-cycle.html).
+Red Hat does not automatically upgrade your clusters. You can schedule to upgrade the clusters at regular intervals (recurring upgrade) or just once (individual upgrade) using the {{ cluster_manager }} web console. Red Hat might forcefully upgrade a cluster to a new z-stream version only if the cluster is affected by a critical impact Common Vulnerabilities and Exposures (CVE). You can review the history of all cluster upgrade events in the {{ cluster_manager }} web console. For more information about releases, see the [Life Cycle policy](https://docs.openshift.com/dedicated/osd_policy/osd-life-cycle.html).

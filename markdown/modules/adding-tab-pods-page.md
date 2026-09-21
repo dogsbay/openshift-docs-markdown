@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a tab to the pods page {id="adding-tab-to-pods-page_{{ context }}"}
+# Add a tab to the pods page {id="adding-tab-to-pods-page_{{ context }}"}
 
 There are different customizations you can make to the {{ product_title }} web console. The following procedure adds a tab to the **Pod details** page as an example extension to your plugin. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a persistent volume claim {id="configuring-a-persistent-volume-claim_{{ context }}"}
+# Configure a persistent volume claim {id="configuring-a-persistent-volume-claim_{{ context }}"}
 
 {%- set configmap_name = "cluster-monitoring-config" -%}
 {%- set namespace_name = "openshift-monitoring" -%}

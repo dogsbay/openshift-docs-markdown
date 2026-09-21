@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a real-time kernel to nodes {id="nodes-nodes-rtkernel-arguments_{{ context }}"}
+# Add a real-time kernel to nodes {id="nodes-nodes-rtkernel-arguments_{{ context }}"}
 
 If your {{ product_title }} workloads require real-time operating system characteristics, you can switch your machines to the Linux real-time kernel. Switching to the real-time kernel provides a higher degree of determinism for your {{ product_title }} workloads.  {._abstract}
 

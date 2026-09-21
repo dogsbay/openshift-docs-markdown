@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Monitoring ephemeral storage {id="storage-ephemeral-storage-monitoring_{{ context }}"}
+# Monitor ephemeral storage {id="storage-ephemeral-storage-monitoring_{{ context }}"}
 
 Monitor ephemeral storage usage with the `/bin/df` utility to track disk space consumption on `/var/lib/kubelet` and `/var/lib/containers`. Regular monitoring helps you identify storage-hungry workloads and adjust resource limits before kubelet evicts pods due to storage exhaustion. {._abstract}
 

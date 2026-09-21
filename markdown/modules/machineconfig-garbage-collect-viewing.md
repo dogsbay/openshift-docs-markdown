@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing rendered machine configs {id="machineconfig-garbage-collect-viewing_{{ context }}"}
+# View rendered machine configs {id="machineconfig-garbage-collect-viewing_{{ context }}"}
 
 You can view a list of rendered machine configs by using the `oc adm prune renderedmachineconfigs` command with the `list` subcommand to determine which objects you can remove. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Updating with a {{ op_system }} custom layered image {id="coreos-layering-updating_{{ context }}"}
+# Update with a {{ op_system }} custom layered image {id="coreos-layering-updating_{{ context }}"}
 
 When you configure {{ image_mode_os_lower }}, {{ product_title }} no longer automatically updates the node pool that uses the custom layered image. You become responsible to manually update your nodes as appropriate. {._abstract}
 

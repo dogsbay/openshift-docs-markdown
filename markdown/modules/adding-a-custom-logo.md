@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a custom logo and product name {id="adding-a-custom-logo_{{ context }}"}
+# Add a custom logo and product name {id="adding-a-custom-logo_{{ context }}"}
 
 You can create custom branding by adding a custom logo or custom product name. You can set both or one without the other, as these settings are independent of each other. {._abstract}
 

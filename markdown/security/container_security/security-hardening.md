@@ -40,7 +40,7 @@ So, if you are setting out to harden {{ op_system }} nodes in {{ product_title }
 *   [Creating the Kubernetes manifest and Ignition config files](/installing/installing_bare_metal/upi/installing-bare-metal#installation-user-infra-generate-k8s-manifest-ignition_installing-bare-metal)
 *   [Installing {{ op_system }} by using an ISO image](/installing/installing_bare_metal/upi/installing-bare-metal#installation-user-infra-machines-iso_installing-bare-metal)
 *   [Customizing nodes](/installing/install_config/installing-customizing#installing-customizing)
-*   [Adding kernel arguments to nodes](/nodes/nodes/nodes-nodes-managing#nodes-nodes-kernel-arguments_nodes-nodes-managing)
+*   [Add kernel arguments to nodes](/nodes/nodes/nodes-nodes-managing#nodes-nodes-kernel-arguments_nodes-nodes-managing)
 {%- if not openshift_origin %}
 *   [Optional configuration parameters](/installing/installing_aws/installation-config-parameters-aws#installation-configuration-parameters-optional_installation-config-parameters-aws)
 *   [Support for FIPS cryptography](/installing/overview/installing-fips#installing-fips)

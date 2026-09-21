@@ -11,5 +11,6 @@ title: Migrate a VM disk to a different storage class
 
 You can migrate one or more virtual disks to a different storage class to optimize storage performance or reduce costs without stopping your virtual machine (VM) or virtual machine instance (VMI). {._abstract}
 
+{% leveloffset +1 %}{% include "./modules/virt-about-storage-class-migration.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/virt-migrating-storage-permissions.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/virt-migrating-storage-class-ui.md" %}{% endleveloffset %}

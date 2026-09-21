@@ -17,7 +17,7 @@
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Installing from the software catalog by using the web console {id="olm-installing-from-software-catalog-using-web-console_{{ context }}"}
+# Install from the software catalog by using the web console {id="olm-installing-from-software-catalog-using-web-console_{{ context }}"}
 
 To install and subscribe to an Operator from the software catalog, you can use the {{ product_title }} web console. The console guides you through selecting an install mode, namespace, and approval strategy. {._abstract}
 

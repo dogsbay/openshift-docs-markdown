@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# {{ product_title }} routes and HTTPRoutes Comparison {id="comparing-openshift-routes-and-httproutes_{{ context }}"}
+# {{ product_title }} routes and HTTPRoutes comparison {id="comparing-openshift-routes-and-httproutes_{{ context }}"}
 
 When you migrate from standard networking to the Gateway API, you can compare {{ product_title }} routes with `HTTPRoute` custom resources (CRs) to understand which features are supported and how your configuration must change. While both resources handle ingress traffic, they have distinct feature sets and implementation differences. {._abstract}
 

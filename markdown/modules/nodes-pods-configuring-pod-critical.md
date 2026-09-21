@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Preventing pod removal using critical pods {id="nodes-pods-configuring-critical_{{ context }}"}
+# Prevent pod removal using critical pods {id="nodes-pods-configuring-critical_{{ context }}"}
 
 You can mark pods on a worker node as _critical_ to prevent {{ product_title }} from evicting those pods. Pods marked as critical are not allowed to be evicted. {._abstract}
 

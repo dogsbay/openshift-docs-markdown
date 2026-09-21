@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding port forwarding {id="nodes-containers-port-forwarding-about_{{ context }}"}
+# Understand port forwarding {id="nodes-containers-port-forwarding-about_{{ context }}"}
 
 You can use the {{ oc_first }} to forward one or more local ports to a pod. This allows you to listen on a given or random port locally, and have data forwarded to and from given ports in the pod. {._abstract}
 

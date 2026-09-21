@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Customizing a perspective using YAML view {id="odc-customizing-a-perspective-using-YAML-view_{{ context }}"}
+# Customize a perspective using YAML view {id="odc-customizing-a-perspective-using-YAML-view_{{ context }}"}
 
 You can customize a perspective by editing the console resource YAML content. {._abstract}
 

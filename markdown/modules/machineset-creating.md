@@ -18,7 +18,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a compute machine set {id="machineset-creating_{{ context }}"}
+# Create a compute machine set {id="machineset-creating_{{ context }}"}
 
 To dynamically manage machine compute resources, you can create your own compute machine sets in addition to the compute machine sets created by the installation program. Use the {{ product_title }} CLI to automate node provisioning. {._abstract}
 

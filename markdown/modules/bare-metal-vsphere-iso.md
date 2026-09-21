@@ -3,8 +3,13 @@
 
 To add bare-metal compute machines to your {{ vmw_first }} cluster, you must manually provision them using an {{ op_system }} ISO image and the `coreos-installer` utility. {._abstract}
 
-{%- set FeatureName = "Bare-metal nodes on vSphere clusters" %}
-{% include "./snippets/technology-preview.md" %}
+
+:::important
+
+Bare-metal nodes on VMware vSphere clusters is generally available for {{ product_title }} 4.22.13 and later. However, this feature is Technology Preview for 4.21 through 4.22.12.
+
+:::
+
 
 **Prerequisites**
 

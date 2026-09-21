@@ -6,9 +6,9 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Updating with the {{ rosa_cli }} {id="rosa-upgrading-cli_{{ context }}"}
+# Upgrade a cluster with the {{ rosa_cli }} {id="rosa-upgrading-cli_{{ context }}"}
 
-You can use the {{ rosa_cli_first }} to update a {{ product_title }} cluster either immediately within one hour or at a future time. {._abstract}
+You can use the {{ rosa_cli_first }} to upgrade a {{ product_title }} cluster either immediately within one hour or at a future time. {._abstract}
 
 **Prerequisites**
 

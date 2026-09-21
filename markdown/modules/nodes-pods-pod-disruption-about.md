@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding how to use pod disruption budgets to specify the number of pods that must be up {id="nodes-pods-pod-disruption-about_{{ context }}"}
+# Understand how to use pod disruption budgets to specify the number of pods that must be up {id="nodes-pods-pod-disruption-about_{{ context }}"}
 
 To ensure pod availability during voluntary disruptions such as node maintenance or cluster updates, you can use pod disruption budgets to define safety constraints for your applications. {._abstract}
 

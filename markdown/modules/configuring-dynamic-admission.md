@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring dynamic admission {id="configuring-dynamic-admission_{{ context }}"}
+# Configure dynamic admission {id="configuring-dynamic-admission_{{ context }}"}
 
 You can complete high-level steps to configure dynamic admission. These steps extend the admission chain by configuring a webhook admission plugin to call out to a webhook server. {._abstract}
 

@@ -7,7 +7,7 @@ title: Expand virtual machine disks
 # Expand virtual machine disks {id="virt-expanding-vm-disks"}
 {%- set context = "virt-expanding-vm-disks" %}
 
-Expand the  persistent volume claim (PVC) of your virtual machine disk to accomodate growing data requirements. If your storage provider does not support volume expansion, you can expand the available virtual storage of a VM by adding blank data volumes. {._abstract}
+Expand the persistent volume claim (PVC) of your virtual machine disk to accommodate growing data requirements. If your storage provider does not support volume expansion, you can expand the available virtual storage of a VM by adding blank data volumes. {._abstract}
 
 You cannot reduce the size of a VM disk.
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a node with command flags {id="adding-node-iso-flags_{{ context }}"}
+# Add a node with command flags {id="adding-node-iso-flags_{{ context }}"}
 
 You can add a single node to your cluster by using command flags to specify configurations for the new node. {._abstract}
 

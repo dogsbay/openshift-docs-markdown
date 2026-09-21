@@ -11,8 +11,13 @@ To support workloads requiring direct hardware access, extend your existing {{ v
 
 This procedure supports clusters installed using installer-provisioned infrastructure, user-provisioned infrastructure, or the Assisted Installer.
 
-{%- set FeatureName = "Bare-metal nodes on vSphere clusters" %}
-{% include "./snippets/technology-preview.md" %}
+
+:::important
+
+Bare-metal nodes on VMware vSphere clusters is generally available for {{ product_title }} 4.22.13 and later. However, this feature is Technology Preview for 4.21 through 4.22.12.
+
+:::
+
 
 
 :::important
@@ -22,22 +27,7 @@ Bare-metal compute machines added to a {{ vmw_short }} cluster are unmanaged by 
 :::
 
 
-## Prerequisites {id="_prerequisites"}
-
-*   You have an existing {{ product_title }} cluster installed on {{ vmw_short }}.
-*   You have bare-metal hardware with network connectivity to the existing cluster’s machine network.
-*   You have configured the network for the new bare-metal compute machines, including:
-    *   DHCP: Persistent IP addresses and hostname reservations.
-    *   DNS: Forward and reverse DNS resolution for the new hostnames.
-*   You have obtained the {{ op_system_first }} ISO image that matches your cluster version. You can download this from the **Cluster Details** page on the {{ hybrid_console }} or extract it from the cluster payload.
-
-
-:::warning
-
-To use this feature, you must explicitly disable the native {{ vmw_short }} Container Storage Interface (CSI) driver for the entire cluster. This means existing {{ vmw_short }} virtual machines will lose the ability to provision or attach {{ vmw_short }} volumes. You must ensure that all workloads (virtual and physical) are migrated to an alternative storage solution before proceeding.
-
-:::
-
+{% leveloffset +1 %}{% include "./modules/bare-metal-vsphere-prerequisites.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}

@@ -158,7 +158,7 @@ To customize egress firewall and network policy audit logging in {{ product_titl
 1.  Display the latest entries in the network policy audit log:
     ```terminal
     $ for pod in $(oc get pods -n openshift-ovn-kubernetes -l app=ovnkube-node --no-headers=true | awk '{ print $1 }') ; do
-        oc exec -it $pod -n openshift-ovn-kubernetes -- tail -4 /var/log/ovn/acl-audit-log.log
+        oc exec -it $pod -c ovn-acl-logging -n openshift-ovn-kubernetes -- tail -4 /var/log/ovn/acl-audit-log.log
       done
     ```
     ```text title="Example output"

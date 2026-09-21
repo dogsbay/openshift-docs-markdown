@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Installing a cluster extension in all namespaces {id="olmv1-installing-an-operator_{{ context }}"}
+# Install a cluster extension in all namespaces {id="olmv1-installing-an-operator_{{ context }}"}
 
 You can install an extension from a catalog by creating a custom resource (CR) and applying it to the cluster. {{ olmv1_first }} supports installing cluster extensions, including {{ olmv0 }} Operators in the `registry+v1` bundle format, that are scoped to the cluster.  {._abstract}
 

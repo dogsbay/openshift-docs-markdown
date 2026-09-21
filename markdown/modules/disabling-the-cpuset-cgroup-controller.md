@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling the cpuset cgroup controller {id="disabling-the-cpuset-cgroup-controller_{{ context }}"}
+# Disable the cpuset cgroup controller {id="disabling-the-cpuset-cgroup-controller_{{ context }}"}
 
 You can disable the cpuset cgroup controller. Disabling the controller requires a restart of the libvirtd daemon.  {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding {{ product_title }} {id="understanding-openshift_{{ context }}"}
+# Understand {{ product_title }} {id="understanding-openshift_{{ context }}"}
 
 You can use {{ product_title }} to deploy, configure, and manage the lifecycle of container-based applications.  {._abstract}
 

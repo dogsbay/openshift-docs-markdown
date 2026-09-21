@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding config maps {id="nodes-pods-configmap-overview_{{ context }}"}
+# Understand config maps {id="nodes-pods-configmap-overview_{{ context }}"}
 
 You can review the following sections to learn how to use config maps to make configuration values available to your pods separately from application code. {._abstract}
 

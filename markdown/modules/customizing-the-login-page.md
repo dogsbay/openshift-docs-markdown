@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Customizing the login page {id="customizing-the-login-page_{{ context }}"}
+# Customize the login page {id="customizing-the-login-page_{{ context }}"}
 
 You can customize the login page to display Terms of Service information or apply custom branding for third-party login providers. {._abstract}
 

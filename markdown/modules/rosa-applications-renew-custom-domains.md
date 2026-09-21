@@ -1,25 +1,25 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Renewing a certificate for custom domains {id="rosa-applications-renew-custom-domains_{{ context }}"}
+# Renew a certificate for custom domains {id="rosa-applications-renew-custom-domains_{{ context }}"}
 
 You can renew certificates with the Custom Domains Operator (CDO) by using the `oc` CLI tool. {._abstract}
 
 **Prerequisites**
 
-*   You have the latest version `oc` CLI tool installed.
+*   You have the latest version of the `oc` CLI tool installed.
 
 **Procedure**
 
-1.  Create new secret
+1.  Create a new secret:
     ```terminal
-    $ oc create secret tls <secret-new> --cert=fullchain.pem --key=privkey.pem -n <my_project>
+    $ oc create secret tls <secret_new> --cert=fullchain.pem --key=privkey.pem -n <my_project>
     ```
-1.  Patch CustomDomain CR
+1.  Patch the `CustomDomain` CR:
     ```terminal
-    $ oc patch customdomain <company_name> --type='merge' -p '{"spec":{"certificate":{"name":"<secret-new>"}}}'
+    $ oc patch customdomain <company_name> --type='merge' -p '{"spec":{"certificate":{"name":"<secret_new>"}}}'
     ```
-1.  Delete old secret
+1.  Delete the old secret:
     ```terminal
-    $ oc delete secret <secret-old> -n <my_project>
+    $ oc delete secret <secret_old> -n <my_project>
     ```
 
 **Troubleshooting**

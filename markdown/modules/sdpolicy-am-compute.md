@@ -3,7 +3,7 @@
 
 Single availability zone clusters require a minimum of 2 worker nodes for Customer Cloud Subscription (CCS) clusters deployed to a single availability zone. A minimum of 4 worker nodes is required for non-CCS clusters. These 4 worker nodes are included in the base subscription. {._abstract}
 
-Multiple availability zone clusters require a minimum of 3 worker nodes for Customer Cloud Subscription (CCS) clusters, 1 deployed to each of 3 availability zones. A minimum of 9 worker nodes are required for non-CCS clusters. These 9 worker nodes are included in the base subscription, and additional nodes must be purchased in multiples of 3 to maintain proper node distribution.
+Multiple availability zone (Multi-AZ) clusters require a minimum of 3 worker nodes for CCS clusters, 1 deployed to each of 3 availability zones. A minimum of 9 worker nodes are required for non-CCS clusters. These 9 worker nodes are included in the base subscription, and additional nodes must be purchased in multiples of 3 to maintain proper node distribution.
 
 
 :::note
@@ -27,6 +27,6 @@ For more information about Red&#160;Hat workloads that must be deployed on worke
 
 :::note
 
-Approximately 1 vCPU core and 1 GiB of memory are reserved on each worker node and removed from allocatable resources. This is necessary to run [processes required by the underlying platform](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#system-reserved). This includes system daemons such as udev, kubelet, container runtime, and so on, and also accounts for kernel reservations. {{ OCP }} core systems such as audit log aggregation, metrics collection, DNS, image registry, SDN, and so on might consume additional allocatable resources to maintain the stability and maintainability of the cluster. The additional resources consumed might vary based on usage.
+Approximately 1 vCPU core and 1 GiB of memory are reserved on each worker node and removed from allocatable resources. This is necessary to run [processes required by the underlying platform](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#system-reserved). This includes system daemons such as udev, kubelet, container runtime, and so on, and also accounts for kernel reservations. {{ OCP }} core systems such as audit log aggregation, metrics collection, DNS, image registry, software-defined networking (SDN), and so on might consume additional allocatable resources to maintain the stability and maintainability of the cluster. The additional resources consumed might vary based on usage.
 
 :::

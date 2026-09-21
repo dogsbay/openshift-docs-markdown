@@ -1,0 +1,4 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Deploy applications with Red Hat S2I images {id="deploy-applications-with-red-hat-s2i-images-con_{{ context }}"}
+
+To build and deploy containerized applications on {{ product_title }} without manually configuring runtime environments, you can use supported Red&#160;Hat Source-to-Image (S2I) and middleware images. S2I images are runtime base images for languages such as Node.js, Python, and Java that you insert your code into, so that your application runs with version-compatible base components.

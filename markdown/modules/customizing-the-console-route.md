@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Customizing the console route {id="customizing-the-console-route_{{ context }}"}
+# Customize the console route {id="customizing-the-console-route_{{ context }}"}
 
 You can customize the console route by setting the custom hostname and TLS certificate in the `spec.componentRoutes` field of the cluster `Ingress` configuration. {._abstract}
 

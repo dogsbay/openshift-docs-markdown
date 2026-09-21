@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying a {{ FeatureName }} {id="{{ FeatureResourceName }}-deploying_{{ context }}"}
+# Deploy a {{ FeatureName }} {id="{{ FeatureResourceName }}-deploying_{{ context }}"}
 
 To deploy a {{ FeatureName }}, you create an instance of the `{{ FeatureResourceName }}`{minja} resource. {._abstract}
 

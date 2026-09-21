@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Scheduling individual upgrades for your cluster {id="upgrade-manual_{{ context }}"}
+# Schedule individual upgrades for your cluster {id="upgrade-manual_{{ context }}"}
 
 You can use {{ cluster_manager }} to manually upgrade your {{ product_title }} cluster one time. {._abstract}
 

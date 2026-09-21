@@ -26,7 +26,7 @@ You can view and analyze this stored information in the {{ product_title }} cons
 <a name="additional-resources-console_{{ context }}"></a>**Additional resources**
 {._additional-resources}
 
-*   [Enabling multi-tenancy in network observability](/observability/network_observability/installing-operators#network-observability-multi-tenancy_network_observability)
+*   [Enable multi-tenancy in network observability](/observability/network_observability/installing-operators#network-observability-multi-tenancy_network_observability)
 
 {% leveloffset +2 %}{% include "./modules/network-observability-dashboards.md" %}{% endleveloffset %}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Defining a template for an external log link {id="defining-template-for-external-log-links_{{ context }}"}
+# Define a template for an external log link {id="defining-template-for-external-log-links_{{ context }}"}
 
 If you are connected to a service that helps you browse your logs, but you need
 to generate URLs in a particular way, then you can define a template for your

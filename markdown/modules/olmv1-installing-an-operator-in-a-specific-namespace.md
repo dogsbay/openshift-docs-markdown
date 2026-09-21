@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Configuring a watch namespace for a cluster extension (Technology Preview) {id="olmv1-deploying-a-ce-in-a-specific-namespace_{{ context }}"}
+# Configure a watch namespace for a cluster extension (Technology Preview) {id="olmv1-deploying-a-ce-in-a-specific-namespace_{{ context }}"}
 
 You can configure the watch namespace for extensions that support namespace-scoped resource watching. {._abstract}
 

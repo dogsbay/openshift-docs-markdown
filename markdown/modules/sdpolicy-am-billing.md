@@ -31,7 +31,7 @@ Customers have the option to buy annual subscriptions of {{ product_title }} or 
 
 :::important
 
-Customers that use their own cloud infrastructure account, referred to as Customer Cloud Subscription (CCS), are responsible to pre-purchase or provide Reserved Instance (RI) compute instances to ensure lower cloud infrastructure costs.
+Customers that use their own cloud infrastructure account, referred to as CCS, are responsible to pre-purchase or provide Reserved Instance (RI) compute instances to ensure lower cloud infrastructure costs.
 
 :::
 
@@ -42,4 +42,4 @@ Additional resources can be purchased for an {{ product_title }} cluster, includ
 *   Middleware (JBoss EAP, JBoss Fuse, and so on) - additional pricing based on specific middleware component
 *   Additional storage in increments of 500 GB (non-CCS only; 100 GB included)
 *   Additional 12 TiB Network I/O (non-CCS only; 12 TB included)
-*   Load Balancers for Services are available in bundles of 4; enables non-HTTP/SNI traffic or non-standard ports (non-CCS only)
+*   Load Balancers for Services are available in bundles of 4; enables non-HTTP/Server Name Indication (SNI) traffic or non-standard ports (non-CCS only)

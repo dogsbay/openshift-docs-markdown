@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Injecting content into a volume by using config maps {id="nodes-pods-configmaps-use-case-consuming-in-volumes_{{ context }}"}
+# Inject content into a volume by using config maps {id="nodes-pods-configmaps-use-case-consuming-in-volumes_{{ context }}"}
 
 You can use config maps to inject content into a volume. {._abstract}
 

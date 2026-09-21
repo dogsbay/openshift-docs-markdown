@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Limiting the bandwidth available to pods {id="nodes-pods-configuring-bandwidth_{{ context }}"}
+# Limit the bandwidth available to pods {id="nodes-pods-configuring-bandwidth_{{ context }}"}
 
 You can apply quality-of-service traffic shaping to a pod and effectively limit
 its available bandwidth.  {._abstract}

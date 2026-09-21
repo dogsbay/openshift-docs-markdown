@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ rh_dev_hub }} using the {{ product_title }} web console {id="rhdh-install-web-console_{{ context }}"}
+# Install the {{ rh_dev_hub }} using the {{ product_title }} web console {id="rhdh-install-web-console_{{ context }}"}
 
 The web console provides a quick start with instructions on how to install the {{ rh_dev_hub }} Operator. {._abstract}
 

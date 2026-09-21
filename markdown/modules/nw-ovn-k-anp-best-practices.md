@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Designing AdminNetworkPolicy {id="anp-best-practices_{{ context }}"}
+# Design AdminNetworkPolicy {id="anp-best-practices_{{ context }}"}
 
 You can use this reference when you design `AdminNetworkPolicy` and `BaselineAdminNetworkPolicy` resources in {{ product_title }}. It describes priority ranges, actions, selector rules, BANP patterns, and how these policies differ from `NetworkPolicy`. {._abstract}
 

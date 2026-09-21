@@ -7,6 +7,6 @@ For reasons of platform security and stability, a patch release may be deprecate
 
 **Example**
 
-1.  4.7.6 is found to contain a critical CVE.
+1.  4.7.6 is found to contain a critical Common Vulnerabilities and Exposures (CVE).
 1.  Any releases impacted by the CVE will be removed from the supported patch release list. In
   addition, any clusters running 4.7.6 will be scheduled for automatic upgrades within 48 hours.

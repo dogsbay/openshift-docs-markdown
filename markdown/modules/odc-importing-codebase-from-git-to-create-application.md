@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Importing a codebase from Git to create an application {id="odc-importing-codebase-from-git-to-create-application_{{ context }}"}
+# Import a codebase from Git to create an application {id="odc-importing-codebase-from-git-to-create-application_{{ context }}"}
 
 You can use the **Developer** perspective to create, build, and deploy an application on {{ product_title }} using an existing codebase in GitHub. {._abstract}
 

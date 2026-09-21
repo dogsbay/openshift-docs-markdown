@@ -42,7 +42,7 @@ To create and update container images and track version changes in {{ product_ti
 **Additional resources**
 {._additional-resources}
 
-*   [Removing deprecated image stream tags from the Cluster Samples Operator](/openshift_images/configuring-samples-operator#images-samples-operator-deprecated-image-stream_configuring-samples-operator)
+*   [Remove deprecated image stream tags from the Cluster Samples Operator](/openshift_images/configuring-samples-operator#images-samples-operator-deprecated-image-stream_configuring-samples-operator)
 
 {% leveloffset +2 %}{% include "./modules/images-imagestream-import.md" %}{% endleveloffset %}
 

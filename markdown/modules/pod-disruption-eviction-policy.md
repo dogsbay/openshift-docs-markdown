@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Specifying the eviction policy for unhealthy pods {id="pod-disruption-eviction-policy_{{ context }}"}
+# Specify the eviction policy for unhealthy pods {id="pod-disruption-eviction-policy_{{ context }}"}
 
 When you use pod disruption budgets (PDBs) to specify how many pods must be available simultaneously, you can also define the criteria for how unhealthy pods are considered for eviction. The eviction policy determines which pods the cluster can evict. {._abstract}
 

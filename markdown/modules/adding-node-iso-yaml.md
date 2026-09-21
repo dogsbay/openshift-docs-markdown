@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding one or more nodes using a configuration file {id="adding-node-iso-yaml_{{ context }}"}
+# Add one or more nodes using a configuration file {id="adding-node-iso-yaml_{{ context }}"}
 
 You can add one or more nodes to your cluster by using the `nodes-config.yaml` file to specify configurations for the new nodes. {._abstract}
 

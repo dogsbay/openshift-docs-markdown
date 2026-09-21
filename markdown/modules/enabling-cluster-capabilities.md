@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Enabling cluster capabilities {id="enabling-cluster-capabilities_{{ context }}"}
+# Enable cluster capabilities {id="enabling-cluster-capabilities_{{ context }}"}
 
 If you are using an installation method that includes customizing your cluster by creating an `install-config.yaml` file, you can select which cluster capabilities you want to make available on the cluster. {._abstract}
 

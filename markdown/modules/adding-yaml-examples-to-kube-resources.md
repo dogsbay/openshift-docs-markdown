@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding YAML examples to Kubernetes resources {id="adding-yaml-examples-to-kube-resources_{{ context }}"}
+# Add YAML examples to Kubernetes resources {id="adding-yaml-examples-to-kube-resources_{{ context }}"}
 
 You can dynamically add YAML examples to any Kubernetes resources at any time. {._abstract}
 

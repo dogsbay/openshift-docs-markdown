@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Troubleshooting your dynamic plugin {id="troubleshooting-dynamic-plugin_{{ context }}"}
+# Troubleshoot your dynamic plugin {id="troubleshooting-dynamic-plugin_{{ context }}"}
 
 Refer to this list of troubleshooting tips if you run into issues loading your plugin. {._abstract}
 

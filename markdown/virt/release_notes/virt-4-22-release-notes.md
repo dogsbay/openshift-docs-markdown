@@ -160,6 +160,12 @@ The `HotplugVolume` feature gate is deprecated
 
 [CNV-73301](https://issues.redhat.com/browse/CNV-73301)
 
+
+The {{ FusionSAN }} Operator is deprecated
+:   The {{ FusionSAN }} Operator is deprecated and will be removed in a future release. For new deployments, configure {{ IBMFusionFirst }} in Fusion Data Foundation as an external system.
+
+    For more information, see [Deploying IBM Fusion Access for SAN](https://www.ibm.com/docs/en/fusion-software/2.13.x?topic=san-deploying-fusion-access).
+
 ## Removed features {id="virt-4-22-removed_{{ context }}"}
 
 Removed features are no longer supported in {{ VirtProductName }}. {._abstract}

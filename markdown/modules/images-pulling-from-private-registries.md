@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Pulling from private registries with delegated authentication {id="images-pulling-from-private-registries_{{ context }}"}
+# Pull from private registries with delegated authentication {id="images-pulling-from-private-registries_{{ context }}"}
 
 To pull images from private registries that delegate authentication to a separate service in {{ product_title }}, you can create pull secrets for both the authentication server and the registry endpoint. Use the `oc create secret docker-registry` command to create separate secrets for each service. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accessing S2I builder images in the {{ product_title }} Developer Console {id="accessing-s2i-builder-images-in-developer-console_{{ context }}"}
+# Access S2I builder images in the {{ product_title }} Developer Console {id="accessing-s2i-builder-images-in-developer-console_{{ context }}"}
 
 You can access S2I builder images through the Developer Console in the web console.
 You need these images to build containerized applications from your source code. {._abstract}

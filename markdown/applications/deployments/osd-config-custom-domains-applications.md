@@ -3,6 +3,8 @@
 # Custom domains for applications {id="osd-config-custom-domains-applications"}
 {%- set context = "osd-config-custom-domains-applications" %}
 
+You can configure a custom domain for your applications. Custom domains are specific wildcard domains that can be used with {{ product_title }} applications. {._abstract}
+
 
 :::warning
 
@@ -10,8 +12,6 @@ Starting with {{ product_title }} 4.14, the Custom Domain Operator is deprecated
 
 :::
 
-
-You can configure a custom domain for your applications. Custom domains are specific wildcard domains that can be used with {{ product_title }} applications. 
 
 {% leveloffset +1 %}{% include "./modules/osd-applications-config-custom-domains.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/osd-applications-renew-custom-domains.md" %}{% endleveloffset %}

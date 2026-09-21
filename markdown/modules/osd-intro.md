@@ -35,4 +35,4 @@ In {{ product_title }}, you require access to the internet to install and upgrad
 
 Through the Telemetry service, information is sent to Red Hat from {{ product_title }} clusters to enable subscription management automation, monitor the health of clusters, assist with support, and improve customer experience.
 
-The Telemetry service runs automatically and your cluster is registered to {{ cluster_manager_first }}. In {{ product_title }}, remote health reporting is always enabled and you cannot opt out. The Red Hat Site Reliability Engineering (SRE) team requires the information to provide effective support for your {{ product_title }} cluster.
+The Telemetry service runs automatically and your cluster is registered to {{ cluster_manager_first }}. In {{ product_title }}, remote health reporting is always enabled and you cannot opt out. The Red Hat SRE team requires the information to provide effective support for your {{ product_title }} cluster.

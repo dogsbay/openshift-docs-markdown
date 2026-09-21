@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the Developer Catalog to add services or components to your application {id="odc-using-the-developer-catalog-to-add-services-or-components_{{ context }}"}
+# Use the Developer Catalog to add services or components to your application {id="odc-using-the-developer-catalog-to-add-services-or-components_{{ context }}"}
 
-You use the Developer Catalog to deploy applications and services based on Operator backed services such as Databases, Builder Images, and Helm Charts. The Developer Catalog contains a collection of application components, services, event sources, or source-to-image builders that you can add to your project. Cluster administrators can customize the content made available in the catalog.
+You use the Developer Catalog to deploy applications and services based on Operator backed services such as Databases, Builder Images, and Helm Charts. The Developer Catalog contains a collection of application components, services, event sources, or source-to-image builders that you can add to your project. Cluster administrators can customize the content made available in the catalog. {._abstract}
 
 **Procedure**
 

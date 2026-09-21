@@ -192,7 +192,6 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
                 "iam:ListRoles",
                 "iam:ListUserPolicies",
                 "iam:ListUsers",
-                "iam:PassRole",
                 "iam:RemoveRoleFromInstanceProfile",
                 "iam:SimulatePrincipalPolicy",
                 "iam:TagRole",
@@ -258,6 +257,21 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
                 "cloudwatch:GetMetricData"
             ],
             "Resource": "*"
+        },
+        {
+            "Sid": "PassRoleToNodes",
+            "Effect": "Allow",
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:PassedToService": [
+                        "ec2.amazonaws.com"
+                    ]
+                }
+            }
         },
         {
             "Effect": "Allow",
@@ -819,10 +833,24 @@ When a policy is attached to a role, the ROSA CLI displays a confirmation output
         "elasticloadbalancing:DescribeTargetHealth",
         "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
         "elasticloadbalancing:RegisterTargets",
-        "iam:CreateServiceLinkedRole",
-        "iam:PassRole"
+        "iam:CreateServiceLinkedRole"
       ],
       "Resource": "*"
+    },
+    {
+      "Sid": "PassRoleToNodes",
+      "Effect": "Allow",
+      "Action": [
+        "iam:PassRole"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": [
+            "ec2.amazonaws.com"
+          ]
+        }
+      }
     },
     {
       "Effect": "Allow",

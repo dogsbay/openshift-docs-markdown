@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Scaling application pods and checking builds and routes {id="odc-scaling-application-pods-and-checking-builds-and-routes_{{ context }}"}
+# Scale application pods and check builds and routes {id="odc-scaling-application-pods-and-checking-builds-and-routes_{{ context }}"}
 
-The **Topology** view provides the details of the deployed components in the **Overview** panel. You can use the **Overview** and **Details** tabs to scale the application pods, check build status, services, and routes as follows:
+The **Topology** view provides the details of the deployed components in the **Overview** panel. You can use the **Overview** and **Details** tabs to scale the application pods, check build status, services, and routes as follows: {._abstract}
 
 *   Click on the component node to see the **Overview** panel to the right. Use the **Details** tab to:
     *   Scale your pods using the up and down arrows to increase or decrease the number of instances of the application manually. For serverless applications, the pods are automatically scaled down to zero when idle and scaled up depending on the channel traffic.

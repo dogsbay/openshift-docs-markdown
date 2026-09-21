@@ -93,7 +93,7 @@ The steps for performing a user-provisioned infrastructure installation are prov
 **Additional resources**
 {._additional-resources}
 
-*   [Configuring registry storage for VMware vSphere](/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)
+*   [Configure registry storage for VMware vSphere](/registry/configuring_registry_storage/configuring-registry-storage-vsphere#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere)
 
 {% leveloffset +1 %}{% include "./modules/installation-complete-user-infra.md" %}{% endleveloffset %}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding device plugins {id="nodes-pods-plugins-about_{{ context }}"}
+# Understand device plugins {id="nodes-pods-plugins-about_{{ context }}"}
 
 A device plugin is a gRPC service running on nodes that manages specific hardware resources through an extension mechanism, enabling containers to consume these devices. {._abstract}
 

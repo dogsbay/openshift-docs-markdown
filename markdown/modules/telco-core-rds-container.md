@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Extracting the telco core reference design configuration CRs {id="telco-core-rds-container_{{ context }}"}
+# Extract the telco core reference design configuration CRs {id="telco-core-rds-container_{{ context }}"}
 
 You can extract the complete set of custom resources (CRs) for the telco core profile from the `telco-core-rds-rhel9` container image.
 The container image has both the required CRs, and the optional CRs, for the telco core profile. {._abstract}

@@ -18,6 +18,8 @@ These release notes track the development of the {{ run_once_operator }} for {{ 
 
 *   [About the {{ run_once_operator }}](/nodes/pods/run_once_duration_override/index#rodoo-about_run-once-duration-override-about)
 
+{% leveloffset +1 %}{% include "./modules/rodoo-rn-1-4-2.md" %}{% endleveloffset %}
+
 {% leveloffset +1 %}{% include "./modules/rodoo-rn-1-4-1.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/rodoo-rn-1-4-0.md" %}{% endleveloffset %}

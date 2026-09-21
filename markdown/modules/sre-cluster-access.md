@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # SRE cluster access {id="sre-cluster-access_{{ context }}"}
 
-Red&#160;Hat SRE access to {{ product_title }}
+Red&#160;Hat Site Reliability Engineering (SRE) access to {{ product_title }}
 {%- if openshift_rosa %}
 (ROSA)
 {%- endif %}
@@ -9,12 +9,12 @@ clusters is controlled through several layers of required authentication, all of
 
 The information presented below is an overview of the process an SRE must perform to access a customer’s cluster.
 
-*   Red&#160;Hat SRE requests a refreshed ID token from the Red&#160;Hat SSO (Cloud Services). This request is authenticated. The token is valid for fifteen minutes. After the token expires, you can refresh the token again and receive a new token. The ability to refresh to a new token is indefinite; however, the ability to refresh to a new token is revoked after 30 days of inactivity.
-*   Red&#160;Hat SRE connects to the Red&#160;Hat VPN. The authentication to the VPN is completed by the Red&#160;Hat Corporate Identity and Access Management system (RH IAM). With RH IAM, SREs are multifactor and can be managed internally per organization by groups and existing onboarding and offboarding processes. After an SRE is authenticated and connected, the SRE can access the cloud services fleet management plane. Changes to the cloud services fleet management plane require many layers of approval and are maintained by strict company policy.
+*   Red&#160;Hat SRE requests a refreshed ID token from Red&#160;Hat single sign-on (SSO) Cloud Services. This request is authenticated. The token is valid for fifteen minutes. After the token expires, you can refresh the token again and receive a new token. The ability to refresh to a new token is indefinite; however, the ability to refresh to a new token is revoked after 30 days of inactivity.
+*   Red&#160;Hat SRE connects to the Red&#160;Hat virtual private network (VPN). The authentication to the VPN is completed by the Red&#160;Hat Corporate Identity and Access Management system (RH IAM). With RH IAM, SREs are multifactor and can be managed internally per organization by groups and existing onboarding and offboarding processes. After an SRE is authenticated and connected, the SRE can access the cloud services fleet management plane. Changes to the cloud services fleet management plane require many layers of approval and are maintained by strict company policy.
 *   After authorization is complete, the SRE logs into the fleet management plane and receives a service account token that the fleet management plane created. The token is valid for 15 minutes. After the token is no longer valid, it is deleted.
 *   With access granted to the fleet management plane, SRE uses various methods to access clusters, depending on network configuration.
     *   Accessing a private or public cluster: Request is sent through a specific Network Load Balancer (NLB) by using an encrypted HTTP connection on port 6443.
-    *   Accessing a PrivateLink cluster: Request is sent to the Red&#160;Hat Transit Gateway, which then connects to a Red&#160;Hat VPC per region. The VPC that receives the request will be dependent on the target private cluster’s region. Within the VPC, there is a private subnet that contains the PrivateLink endpoint to the customer’s PrivateLink cluster.
+    *   Accessing a PrivateLink cluster: Request is sent to the Red&#160;Hat Transit Gateway, which then connects to a Red&#160;Hat virtual private cloud (VPC) per region. The VPC that receives the request will be dependent on the target private cluster’s region. Within the VPC, there is a private subnet that contains the PrivateLink endpoint to the customer’s PrivateLink cluster.
 
 {% if openshift_dedicated %}
     *   Accessing a Private Service Connect (PSC) cluster: Request is sent to Red&#160;Hat’s internal backend infrastructure, which routes the traffic through a secured, trusted network to Red&#160;Hat’s Management project in {{ gcp_short }}. The Red&#160;Hat Management project includes VPC, which is configured with subnets in multiple regions, each containing a PSC endpoint that provides private access to the customer’s cluster in the respective region. The traffic is routed through the appropriate regional subnet, ensuring secure and private access to the cluster without traversing the public internet.
@@ -67,11 +67,11 @@ Red&#160;Hat personnel do not access AWS accounts in the course of routine {{ pr
 
 In the isolated backplane flow, SREs request access to a customer’s support role. This request is just-in-time (JIT) processed by the backplane API which dynamically updates the organization role’s permissions to a specific SRE personnel’s account. This SRE’s account is given access to a specific Red&#160;Hat customer’s environment. SRE access to a Red&#160;Hat customer’s environment is a temporary, short-lived access that is only established at the time of the access request.
 
-Access to the STS token is audit-logged and traceable back to individual users. Both STS and non-STS clusters use the AWS STS service for SRE access. Access control uses the unified backplane flow when the `ManagedOpenShift-Technical-Support-Role` has the `ManagedOpenShift-Support-Access` policy attached, and this role is used for administration. Access control uses the isolated backplane flow when the `ManagedOpenShift-Support-Role` has the `ManagedOpenShift-Technical-Support-<org_id>` policy attached. See the KCS article [Updating Trust Policies for ROSA clusters](https://access.redhat.com/solutions/7045629) for more information.
+Access to the AWS Security Token Service (STS) token is audit-logged and traceable back to individual users. Both STS and non-STS clusters use the AWS STS service for SRE access. Access control uses the unified backplane flow when the `ManagedOpenShift-Technical-Support-Role` has the `ManagedOpenShift-Support-Access` policy attached, and this role is used for administration. Access control uses the isolated backplane flow when the `ManagedOpenShift-Support-Role` has the `ManagedOpenShift-Technical-Support-<org_id>` policy attached. See the KCS article [Updating Trust Policies for ROSA clusters](https://access.redhat.com/solutions/7045629) for more information.
 
 ## SRE STS view of AWS accounts {id="rosa-sre-sts-view-aws-account_{{ context }}"}
 
-When SREs are on a VPN through two-factor authentication, they and Red&#160;Hat Support can assume the `ManagedOpenShift-Support-Role` in your AWS account. The `ManagedOpenShift-Support-Role` has all the permissions necessary for SREs to directly troubleshoot and manage AWS resources. Upon assumption of the `ManagedOpenShift-Support-Role`, SREs use a AWS Security Token Service (STS) to generate a unique, time-expiring URL to the customer’s AWS web UI for their account. SREs can then perform multiple troubleshooting actions, which include:
+When SREs are on a VPN through two-factor authentication, they and Red&#160;Hat Support can assume the `ManagedOpenShift-Support-Role` in your AWS account. The `ManagedOpenShift-Support-Role` has all the permissions necessary for SREs to directly troubleshoot and manage AWS resources. Upon assumption of the `ManagedOpenShift-Support-Role`, SREs use an STS to generate a unique, time-expiring URL to the customer’s AWS web UI for their account. SREs can then perform multiple troubleshooting actions, which include:
 
 *   Viewing CloudTrail logs
 *   Shutting down a faulty EC2 Instance
@@ -84,7 +84,7 @@ For a full list of permissions, see `sts_support_permission_policy.json` in the 
 
 PrivateLink VPC endpoint service is created as part of the ROSA cluster creation.
 
-When you have a PrivateLink ROSA cluster, its Kubernetes API Server is exposed through a load balancer that can only be accessed from within the VPC by default. Red&#160;Hat site reliability engineering (SRE) can connect to this load balancer through a VPC Endpoint Service that has an associated VPC Endpoint in a Red&#160;Hat-owned AWS account. This endpoint service contains the name of the cluster, which is also in the ARN.
+When you have a PrivateLink ROSA cluster, its Kubernetes API Server is exposed through a load balancer that can only be accessed from within the VPC by default. Red&#160;Hat SRE can connect to this load balancer through a VPC Endpoint Service that has an associated VPC Endpoint in a Red&#160;Hat-owned AWS account. This endpoint service contains the name of the cluster, which is also in the Amazon Resource Name (ARN).
 
 Under the **Allow principals** tab, a Red&#160;Hat-owned AWS account is listed. This specific user ensures that other entities cannot create VPC Endpoint connections to the PrivateLink cluster’s Kubernetes API Server.
 

@@ -12,7 +12,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Approving the certificate signing requests for your machines {id="installation-approve-csrs_{{ context }}"}
+# Approve the certificate signing requests for your machines {id="installation-approve-csrs_{{ context }}"}
 
 To allow newly added machines to join your {{ product_title }} cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests. {._abstract}
 

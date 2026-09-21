@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Selecting a cluster installation type {id="installing-preparing-selecting-cluster-type_{{ context }}"}
+# Select a cluster installation type {id="installing-preparing-selecting-cluster-type_{{ context }}"}
 
 Decide what kind of installation process to follow based on your infrastructure, experience, and security requirements. {._abstract}
 

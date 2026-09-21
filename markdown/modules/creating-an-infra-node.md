@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an infrastructure node {id="creating-an-infra-node_{{ context }}"}
+# Create an infrastructure node {id="creating-an-infra-node_{{ context }}"}
 
 To reduce subscription costs, you can use labels to configure compute nodes as infrastructure nodes, where you can move infrastructure resources. {._abstract}
 

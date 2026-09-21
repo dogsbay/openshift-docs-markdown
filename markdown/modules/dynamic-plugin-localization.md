@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Translating messages with react-i18next {id="dynamic-plugin-api_{{ context }}"}
+# Translate messages with react-i18next {id="dynamic-plugin-localization_{{ context }}"}
 
 The `console-plugin-template` plugin template demonstrates how you can translate messages with react-i18next. {._abstract}
 

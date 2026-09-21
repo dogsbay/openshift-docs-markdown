@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing deprecated image stream tags from the Cluster Samples Operator {id="images-samples-operator-deprecated-image-stream_{{ context }}"}
+# Remove deprecated image stream tags from the Cluster Samples Operator {id="images-samples-operator-deprecated-image-stream_{{ context }}"}
 
 The Cluster Samples Operator leaves deprecated image stream tags in an image stream because users can have deployments that use the deprecated image stream tags. {._abstract}
 

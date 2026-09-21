@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Creating images from source code with source-to-image {id="images-create-s2i_{{ context }}"}
+# Create images from source code with source-to-image {id="images-create-s2i_{{ context }}"}
 
 Source-to-image (S2I) is a framework that makes it easy to write images that take application source code as an input and produce a new image that runs the assembled application as output. {._abstract}
 

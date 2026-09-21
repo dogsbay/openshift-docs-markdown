@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Updating the global cluster pull secret {id="images-update-global-pull-secret_{{ context }}"}
+# Update the global cluster pull secret {id="images-update-global-pull-secret_{{ context }}"}
 
 To add new registries or update authentication for your {{ product_title }} cluster, you can update the global pull secret by appending new credentials to the _additional-pull-secret_. To do this, you can use the `oc set data secret/additional-pull-secret -n kube-system` command. Hypershift manages the new credential propagation among the HostedCluster nodes. {._abstract}
 

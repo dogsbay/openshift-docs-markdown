@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Customizing a developer catalog or its sub-catalogs using the form view {id="odc_customizing-a-developer-catalog-or-its-sub-catalogs-using-the-form-view_{{ context }}"}
+# Customize a developer catalog or its sub-catalogs using the form view {id="odc_customizing-a-developer-catalog-or-its-sub-catalogs-using-the-form-view_{{ context }}"}
 
 You can customize a developer catalog by using the form view in the Web Console. {._abstract}
 

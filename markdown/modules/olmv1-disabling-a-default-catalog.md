@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling a default catalog {id="olmv1-disabling-a-default-catalog_{{ context }}"}
+# Disable a default catalog {id="olmv1-disabling-a-default-catalog_{{ context }}"}
 
 You can disable the Red&#160;Hat-provided catalogs that are included with {{ product_title }} by default. {._abstract}
 

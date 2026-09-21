@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling the cluster autoscaler {id="deleting-cluster-autoscaler_{{ context }}"}
+# Disable the cluster autoscaler {id="deleting-cluster-autoscaler_{{ context }}"}
 
 To disable the cluster autoscaler, you delete the corresponding `ClusterAutoscaler` resource. {._abstract}
 

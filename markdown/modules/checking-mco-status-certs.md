@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing and interacting with certificates {id="checking-mco-status-certs_{{ context }}"}
+# View and interact with certificates {id="checking-mco-status-certs_{{ context }}"}
 
 You can secure connections between {{ op_system_first }} nodes and the Machine Config Server by viewing, interacting with, and extracting detailed information from Machine Config Operator and image registry certificates. {._abstract}
 

@@ -1,0 +1,4 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Understand disconnected environments {id="understand-disconnected-environments-intro_{{ context }}"}
+
+A disconnected environment is an environment that does not have full access to the internet. {{ product_title }} is designed to perform many automatic functions that depend on an internet connection, such as retrieving release images from a registry or retrieving update paths and recommendations for the cluster. Without a direct internet connection, you must perform additional setup and configuration for your cluster to maintain full functionality in the disconnected environment.

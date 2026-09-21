@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Inspecting ClusterObjectSets {id="olmv1-inspecting-clusterobjectsets_{{ context }}"}
+# Inspect ClusterObjectSets {id="olmv1-inspecting-clusterobjectsets_{{ context }}"}
 
 Monitor and troubleshoot cluster extension deployments by viewing ClusterObjectSet phases, resource status, and revision history. {._abstract}
 

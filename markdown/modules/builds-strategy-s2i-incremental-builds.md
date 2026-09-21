@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Performing source-to-image incremental builds {id="builds-strategy-s2i-incremental-builds_{{ context }}"}
+# Perform source-to-image incremental builds {id="builds-strategy-s2i-incremental-builds_{{ context }}"}
 
-Source-to-image (S2I) can perform incremental builds, which means it reuses artifacts from previously-built images.
+Source-to-image (S2I) can perform incremental builds, which means it reuses artifacts from previously-built images. {._abstract}
+
+See S2I Requirements for information on how to create a builder image supporting incremental builds.
 
 **Procedure**
 
@@ -11,13 +13,14 @@ Source-to-image (S2I) can perform incremental builds, which means it reuses arti
       sourceStrategy:
         from:
           kind: "ImageStreamTag"
-          name: "incremental-image:latest" (1)
-        incremental: true (2)
+          name: "incremental-image:latest"
+        incremental: true
     ```
-    1.  Specify an image that supports incremental builds. Consult the documentation of the builder image to determine if it supports this behavior.
-    1.  This flag controls whether an incremental build is attempted. If the builder image does not support incremental builds, the build will still succeed, but you will get a log message stating the incremental build was not successful because of a missing `save-artifacts` script.
 
-**Additional resources**
-{._additional-resources}
+    where:
 
-*   See S2I Requirements for information on how to create a builder image supporting incremental builds.
+    `strategy.sourceStrategy.from.name`
+    :   Specifies an image that supports incremental builds. Consult the documentation of the builder image to determine if it supports this behavior.
+
+    `strategy.sourceStrategy.incremental`
+    :   Specifies whether an incremental build is attempted. If the builder image does not support incremental builds, the build will still succeed, but you will get a log message stating the incremental build was not successful because of a missing `save-artifacts` script.

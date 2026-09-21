@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing the cluster capabilities {id="viewing-cluster-capabilities_{{ context }}"}
+# View the cluster capabilities {id="viewing-cluster-capabilities_{{ context }}"}
 
 As a cluster administrator, you can view the capabilities by using the `clusterversion` resource status. {._abstract}
 

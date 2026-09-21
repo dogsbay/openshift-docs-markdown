@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Binding infrastructure node workloads using taints and tolerations {id="binding-infra-node-workloads-using-taints-tolerations_{{ context }}"}
+# Bind infrastructure node workloads using taints and tolerations {id="binding-infra-node-workloads-using-taints-tolerations_{{ context }}"}
 
 To avoid user workloads being inadvertently assigned to an infra node, you can apply a taint to the infra node and tolerations for the pods you want to control. After creating an infrastructure machine set, the `worker` and `infra` roles are applied to new infra nodes. {._abstract}
 

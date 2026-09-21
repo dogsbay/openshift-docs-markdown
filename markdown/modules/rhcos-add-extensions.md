@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding extensions to {{ op_system }} {id="rhcos-add-extensions_{{ context }}"}
+# Add extensions to {{ op_system }} {id="rhcos-add-extensions_{{ context }}"}
 
 You can add software packages to {{ op_system_first }} systems by using extension packages to add a minimal set of features to specific nodes. {._abstract}
 

@@ -7,7 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using Cluster Samples Operator image streams with alternate or mirrored registries {id="installation-restricted-network-samples_{{ context }}"}
+# Use Cluster Samples Operator image streams with alternate or mirrored registries {id="installation-restricted-network-samples_{{ context }}"}
 
 You can use an alternate or mirror registry to host your images streams instead of using the Red&#160;Hat registry. {._abstract}
 

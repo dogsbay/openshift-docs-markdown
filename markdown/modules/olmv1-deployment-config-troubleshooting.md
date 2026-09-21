@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Troubleshooting `deploymentConfig` {id="olmv1-deployment-config-troubleshooting_{{ context }}"}
+# Troubleshoot `deploymentConfig` {id="olmv1-deployment-config-troubleshooting_{{ context }}"}
 
 Common `deploymentConfig` issues include validation errors, configuration verification problems, and annotation conflicts that can prevent successful Operator installation. {._abstract}
 

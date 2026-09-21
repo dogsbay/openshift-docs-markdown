@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring block registry storage for VMware vSphere {id="installation-registry-storage-block-recreate-rollout_{{ context }}"}
+# Configure block registry storage for VMware vSphere {id="installation-registry-storage-block-recreate-rollout_{{ context }}"}
 
 To allow the image registry to use block storage types such as vSphere Virtual Machine Disk (VMDK) during upgrades as a cluster administrator, you can use the `Recreate` rollout strategy. {._abstract}
 

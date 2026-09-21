@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding kernel arguments to nodes {id="nodes-nodes-kernel-arguments_{{ context }}"}
+# Add kernel arguments to nodes {id="nodes-nodes-kernel-arguments_{{ context }}"}
 
 In some special cases, you can add kernel arguments to a set of nodes in your cluster to customize the kernel behavior to meet specific needs you might have.  {._abstract}
 

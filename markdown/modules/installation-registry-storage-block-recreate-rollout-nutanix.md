@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring block registry storage for Nutanix volumes {id="installation-registry-storage-block-recreate-rollout-nutanix_{{ context }}"}
+# Configure block registry storage for Nutanix volumes {id="installation-registry-storage-block-recreate-rollout-nutanix_{{ context }}"}
 
 To allow the image registry to use block storage types such as Nutanix volumes during upgrades as a cluster administrator, you can use the `Recreate` rollout strategy. {._abstract}
 

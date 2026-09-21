@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Obtaining a FIPS-capable installation program using `oc adm extract` {id="installation-obtaining-fips-installer-oc_{{ context }}"}
+# Obtain a FIPS-capable installation program using `oc adm extract` {id="installation-obtaining-fips-installer-oc_{{ context }}"}
 
 You must get a FIPS-capable installation binary to install a {{ product_title }} cluster in FIPS mode. Extract the binary from the release image by using the {{ oc_first }}. After you get the binary, you must proceed with the cluster installation, replacing all instances of the `openshift-install` command with `openshift-install-fips`. {._abstract}
 

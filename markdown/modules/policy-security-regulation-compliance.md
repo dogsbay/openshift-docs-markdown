@@ -15,7 +15,7 @@ When a customer deletes their {{ product_title }} cluster, all cluster data is p
 Red Hat performs periodic vulnerability scanning of {{ product_title }} using industry standard tools. Identified vulnerabilities are tracked to their remediation according to timelines based on severity. Vulnerability scanning and remediation activities are documented for verification by third-party assessors in the course of compliance certification audits.
 
 ## Network security: Firewall and DDoS protection {id="firewall_{{ context }}"}
-Each {{ product_title }} cluster is protected by a secure network configuration at the cloud infrastructure level using firewall rules (AWS Security Groups or {{ gcp_full }} Compute Engine firewall rules). {{ product_title }} customers on AWS are also protected against DDoS attacks with [AWS Shield Standard](https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html).
+Each {{ product_title }} cluster is protected by a secure network configuration at the cloud infrastructure level using firewall rules (AWS Security Groups or {{ gcp_full }} Compute Engine firewall rules). {{ product_title }} customers on AWS are also protected against distributed denial-of-service (DDoS) attacks with [AWS Shield Standard](https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html).
 Similarly, all {{ gcp_short }} load balancers and public IP addresses used by {{ product_title }} on {{ gcp_short }} are protected against DDoS attacks with [{{ gcp_full }} Armor Standard](https://cloud.google.com/armor/docs/managed-protection-overview).
 
 ## Network security: Component and traffic flow encryption {id="Component-traffic-flow-encryption_{{ context }}"}
@@ -30,7 +30,7 @@ Similarly, all {{ gcp_short }} load balancers and public IP addresses used by {{
 ## Network security: Private clusters and network connectivity {id="private-clusters_{{ context }}"}
 Customers can optionally configure their {{ product_title }} cluster endpoints (web console, API, and application router) to be made private so that the cluster control plane or applications are not accessible from the Internet.
 
-For AWS, customers can configure a private network connection to their {{ product_title }} cluster through AWS VPC peering, AWS VPN, or AWS Direct Connect.
+For AWS, customers can configure a private network connection to their {{ product_title }} cluster through AWS virtual private cloud (VPC) peering, AWS virtual private network (VPN), or AWS Direct Connect.
 
 ## Network security: Cluster network access controls {id="network-access-controls_{{ context }}"}
 Fine-grained network access control rules can be configured by customers per project.

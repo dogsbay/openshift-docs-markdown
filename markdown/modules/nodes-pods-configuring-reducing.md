@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Reducing pod timeouts when using persistent volumes with high file counts {id="nodes-pods-configuring-reducing_{{ context }}"}
+# Reduce pod timeouts when using persistent volumes with high file counts {id="nodes-pods-configuring-reducing_{{ context }}"}
 
 You can prevent pod startup timeouts in clusters with high file counts, by configuring how the cluster manages volume ownership and permissions. Using security context constraints or runtime classes, you can ensure that large storage volumes mount efficiently without the delays associated with recursive permission changes. {._abstract}
 

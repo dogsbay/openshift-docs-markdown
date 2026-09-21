@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using a pull secret in a workload {id="using-pull-secret_{{ context }}"}
+# Use a pull secret in a workload {id="using-pull-secret_{{ context }}"}
 
 To allow workloads to pull images from private registries in {{ product_title }}, you can link the pull secret to a service account by entering the `oc secrets link` command or by defining it directly in your workload configuration YAML file. {._abstract}
 

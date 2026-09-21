@@ -21,8 +21,8 @@ title: Boot image management
 **Additional resources**
 {._additional-resources}
 
-*   [Disabling boot image management](/machine_configuration/mco-update-boot-images#mco-update-boot-images-disable_machine-configs-configure)
-*   [Enabling boot image management](/machine_configuration/mco-update-boot-images#mco-update-boot-images-configuring_machine-configs-configure)
+*   [Disable boot image management](/machine_configuration/mco-update-boot-images#mco-update-boot-images-disable_machine-configs-configure)
+*   [Enable boot image management](/machine_configuration/mco-update-boot-images#mco-update-boot-images-configuring_machine-configs-configure)
 
 {% leveloffset +1 %}{% include "./modules/mco-update-boot-images-configuring.md" %}{% endleveloffset %}
 

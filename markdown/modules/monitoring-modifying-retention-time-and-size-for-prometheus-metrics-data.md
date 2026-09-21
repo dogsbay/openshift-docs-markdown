@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Modifying retention time and size for Prometheus metrics data {id="modifying-retention-time-and-size-for-prometheus-metrics-data_{{ context }}"}
+# Modify retention time and size for Prometheus metrics data {id="modifying-retention-time-and-size-for-prometheus-metrics-data_{{ context }}"}
 
 {%- set configmap_name = "cluster-monitoring-config" -%}
 {%- set namespace_name = "openshift-monitoring" -%}

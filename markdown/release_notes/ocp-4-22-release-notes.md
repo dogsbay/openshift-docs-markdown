@@ -35,6 +35,8 @@ Built on {{ op_system_base_full }} and Kubernetes, {{ product_title }} provides 
 
 {% leveloffset +1 %}{% include "./modules/rn-ocp-release-notes-async-errata-updates.md" %}{% endleveloffset %}
 
+{% leveloffset +2 %}{% include "./modules/zstream-4-22-14.md" %}{% endleveloffset %}
+
 {% leveloffset +2 %}{% include "./modules/zstream-4-22-13.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/zstream-4-22-12.md" %}{% endleveloffset %}

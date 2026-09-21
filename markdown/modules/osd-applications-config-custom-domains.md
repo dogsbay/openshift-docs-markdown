@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring custom domains for applications {id="osd-applications-config-custom-domains_{{ context }}"}
+# Configure custom domains for applications {id="osd-applications-config-custom-domains_{{ context }}"}
 
-The top-level domains (TLDs) are owned by the customer that is operating the {{ product_title }} cluster. The Custom Domains Operator sets up a new ingress controller with a custom certificate as a second day operation. The public DNS record for this ingress controller can then be used by an external DNS to create a wildcard CNAME record for use with a custom domain.
+The top-level domains (TLDs) are owned by the customer that is operating the {{ product_title }} cluster. The Custom Domains Operator sets up a new ingress controller with a custom certificate as a second day operation. The public DNS record for this ingress controller can then be used by an external DNS to create a wildcard CNAME record for use with a custom domain. {._abstract}
 
 
 :::note
@@ -39,24 +39,36 @@ Do not use the reserved names `default` or `apps*`, such as `apps` or `apps2`, i
     metadata:
       name: <company_name>
     spec:
-      domain: apps.<company_name>.io (1)
+      domain: apps.<company_name>.io
       scope: External
-      loadBalancerType: Classic (2)
+      loadBalancerType: Classic
       certificate:
-        name: <name>-tls (3)
+        name: <name>-tls
         namespace: <my_project>
-      routeSelector: (4)
+      routeSelector:
         matchLabels:
          route: acme
-      namespaceSelector: (5)
+      namespaceSelector:
         matchLabels:
          type: sharded
     ```
-    1.  The custom domain.
-    1.  The type of load balancer for your custom domain. This type can be the default `classic` or `NLB` if you use a network load balancer.
-    1.  The secret created in the previous step.
-    1.  Optional: Filters the set of routes serviced by the CustomDomain ingress. If no value is provided, the default is no filtering.
-    1.  Optional: Filters the set of namespaces serviced by the CustomDomain ingress. If no value is provided, the default is no filtering.
+    where:
+
+
+    `spec.domain`
+    :   Specifies the custom domain.
+
+    `spec.loadBalancerType`
+    :   Specifies the type of load balancer for your custom domain. This type can be the default `classic` or `NLB` if you use a network load balancer.
+
+    `spec.certificate.name`
+    :   Specifies the secret created in the earlier step.
+
+    `spec.routeSelector`
+    :   Optional. Filters the set of routes serviced by the `CustomDomain` ingress. If no value is provided, the default is no filtering.
+
+    `spec.namespaceSelector`
+    :   Optional. Filters the set of namespaces serviced by the `CustomDomain` ingress. If no value is provided, the default is no filtering.
 1.  Apply the CR:
     ```terminal title="Example"
     $ oc apply -f <company_name>-custom-domain.yaml
@@ -98,4 +110,4 @@ Do not use the reserved names `default` or `apps*`, such as `apps` or `apps2`, i
 **Troubleshooting**
 
 *   [Error creating TLS secret](https://access.redhat.com/solutions/5419501)
-*   [Troubleshooting: CustomDomain in NotReady state](https://access.redhat.com/solutions/6546011)
+*   [Troubleshooting: `CustomDomain` in `NotReady` state](https://access.redhat.com/solutions/6546011)

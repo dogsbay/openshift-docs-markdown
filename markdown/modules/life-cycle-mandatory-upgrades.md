@@ -5,7 +5,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Mandatory upgrades {id="rosa-mandatory-upgrades_{{ context }}"}
 
-If a critical or important CVE, or other bug identified by Red&#160;Hat, significantly impacts the security or stability of the cluster, the customer must upgrade to the next supported patch release within two [business days](https://access.redhat.com/articles/2623321). {._abstract}
+If a critical or important Common Vulnerabilities and Exposures (CVE), or other bug identified by Red&#160;Hat, significantly impacts the security or stability of the cluster, the customer must upgrade to the next supported patch release within two [business days](https://access.redhat.com/articles/2623321). {._abstract}
 
 In extreme circumstances and based on Red&#160;Hat’s assessment of the CVE criticality to the environment, Red&#160;Hat will notify customers that they have two [business days](https://access.redhat.com/articles/2623321) to schedule or manually update their cluster to the latest, secure patch release. In the case that an update is not performed after two [business days](https://access.redhat.com/articles/2623321), Red&#160;Hat will automatically update the
 {%- if openshift_rosa_hcp %}

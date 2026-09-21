@@ -6,7 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating {{ op_system }} machines by using an ISO image {id="machine-user-infra-machines-iso_{{ context }}"}
+# Create {{ op_system }} machines by using an ISO image {id="machine-user-infra-machines-iso_{{ context }}"}
 
 {% if not ibm_power %}
 To scale your {{ product_title }} bare metal cluster, you can create more {{ op_system_first }} compute machines by using an ISO image.

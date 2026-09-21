@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding health checks using the Developer perspective {id="odc-adding-health-checks_{{ context }}"}
+# Add health checks using the Developer perspective {id="odc-adding-health-checks_{{ context }}"}
 
 You can use the **Topology** view to add health checks to your deployed application. {._abstract}
 
@@ -17,7 +17,7 @@ You can use the **Topology** view to add health checks to your deployed applicat
 
         If the container already has health checks, you see the **Edit Health Checks** option instead of the add option.
 1.  In the **Add Health Checks** form, if you have deployed multiple containers, use the **Container** list to ensure that the appropriate container is selected.
-1.  Click the required health probe links to add them to the container. Default data for the health checks is pre-populated. You can add the probes with the default data or further customize the values and then add them. For example, to add a Readiness probe that checks if your container is ready to handle requests:
+1.  Click the required health probe links to add them to the container. Default data for the health checks is pre-populated. You can add the probes with the default data or customize the values before adding them. For example, to add a Readiness probe that checks if your container is ready to handle requests:
     1.  Click **Add Readiness Probe**, to see a form containing the parameters for the probe.
     1.  Click the **Type** list to select the request type you want to add. For example, select **Container Command** to specify the command that runs inside the container.
     1.  In the **Command** field, add an argument `cat`. Similarly, you can add multiple arguments for the check. For example, add another argument `/tmp/healthy`.
@@ -31,6 +31,9 @@ You can use the **Topology** view to add health checks to your deployed applicat
 
     1.  Click the checkmark at the bottom of the form. The **Readiness Probe Added** message is displayed.
 1.  Click **Add** to add the health check. You are redirected to the **Topology** view and the container is restarted.
+
+**Verification**
+
 1.  In the side panel, verify that the probes have been added by clicking on the deployed pod under the **Pods** section.
 1.  In the **Pod Details** page, click the listed container in the **Containers** section.
 1.  In the **Container Details** page, verify that the Readiness probe - **Exec Command** `cat` `/tmp/healthy` has been added to the container.

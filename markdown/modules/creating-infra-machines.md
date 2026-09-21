@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a machine config pool for infrastructure machines {id="creating-infra-machines_{{ context }}"}
+# Create a machine config pool for infrastructure machines {id="creating-infra-machines_{{ context }}"}
 
 You can create a machine configuration pool for infrastructure machines to apply dedicated configuration to infra machines. You might want to apply dedicated configuration to infra machines because they run distinct workloads from other nodes in the cluster. {._abstract}
 

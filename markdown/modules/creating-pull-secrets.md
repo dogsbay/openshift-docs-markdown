@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a pull secret {id="creating-pull-secret_{{ context }}"}
+# Create a pull secret {id="creating-pull-secret_{{ context }}"}
 
 To authenticate with container registries in {{ product_title }}, you can create pull secrets from existing Docker or Podman authentication files. You can also create secrets by providing registry credentials directly by using the `oc create secret docker-registry` command. {._abstract}
 

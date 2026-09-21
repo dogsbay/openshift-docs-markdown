@@ -19,8 +19,8 @@ You can delete a network policy in a namespace. {._abstract}
 
 1.  From the **Administrator** perspective in the {{ cluster_manager }} web console, under **Networking**, click **NetworkPolicies**.
 1.  Use one of the following methods for deleting your network policy:
-    1.  Delete the policy from the **Network Policies** table:
+    *   Delete the policy from the **Network Policies** table:
         1.  From the **Network Policies** table, select the stack menu on the row of the network policy you want to delete and then, click **Delete NetworkPolicy**.
-    1.  Delete the policy using the **Actions** drop-down menu from the individual network policy details:
-        1.  Click **Actions** drop-down menu for your network policy.
-        1.  Select **Delete NetworkPolicy** from the menu.
+    *   Delete the policy from the individual network policy details using the **Actions** list:
+        1.  Click the **Actions** list to find your network policy.
+        1.  Select **Delete NetworkPolicy**.

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring block registry storage for bare metal {id="installation-registry-storage-block-recreate-rollout-bare-metal_{{ context }}"}
+# Configure block registry storage for bare metal {id="installation-registry-storage-block-recreate-rollout-bare-metal_{{ context }}"}
 
 To allow the image registry to use block storage types during upgrades as a cluster administrator, you can use the `Recreate` rollout strategy. {._abstract}
 

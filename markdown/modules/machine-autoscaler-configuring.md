@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Configuring machine autoscalers {id="configuring-machineautoscaler_{{ context }}"}
+# Configure machine autoscalers {id="configuring-machineautoscaler_{{ context }}"}
 
 After you deploy the cluster autoscaler, deploy `MachineAutoscaler` resources that reference the compute machine sets that are used to scale the cluster. {._abstract}
 

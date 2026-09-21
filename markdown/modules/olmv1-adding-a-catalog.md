@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a catalog to a cluster {id="olmv1-adding-a-catalog-to-a-cluster_{{ context }}"}
+# Add a catalog to a cluster {id="olmv1-adding-a-catalog-to-a-cluster_{{ context }}"}
 
 To add a catalog to a cluster for {{ olmv1_first }} usage, create a `ClusterCatalog` custom resource (CR) and apply it to the cluster. {._abstract}
 

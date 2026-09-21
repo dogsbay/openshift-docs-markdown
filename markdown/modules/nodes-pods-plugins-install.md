@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling Device Manager {id="nodes-pods-plugins-install_{{ context }}"}
+# Enable Device Manager {id="nodes-pods-plugins-install_{{ context }}"}
 
 Enable Device Manager to allow device plugins to advertise specialized node hardware resources and make them available to pods without requiring code changes. {._abstract}
 

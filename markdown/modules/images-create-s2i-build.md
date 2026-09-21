@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding the source-to-image build process {id="images-create-s2i-build_{{ context }}"}
+# Understand the source-to-image build process {id="images-create-s2i-build_{{ context }}"}
 
 Leverage the Source-to-image (S2I) process in {{ product_title }} to seamlessly transform application source code into ready-to-run, reproducible container images. {._abstract}
 

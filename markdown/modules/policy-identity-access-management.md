@@ -1,12 +1,12 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Identity and access management {id="policy-identity-access-management_{{ context }}"}
 
-Most access by Red Hat site reliability engineering (SRE) teams is done by using cluster Operators through automated configuration management. {._abstract}
+Most access by Red Hat Site Reliability Engineering (SRE) teams is done by using cluster Operators through automated configuration management. {._abstract}
 
 
 :::note
 
-{{ product_title }} on {{ GCP }} clusters that are created with the Workload Identify Federation (WIF) authentication type do not use Operators for SRE access. Instead, the required roles necessary for SRE account access are assigned to the sd-sre-platform-gcp-access group as part of the WIF configuration creation and are validated prior to the deployment of the cluster by the {{ cluster_manager }}. For more information about WIF configurations, see _Additional resources_.
+{{ product_title }} on {{ GCP }} clusters that are created with the Workload Identity Federation (WIF) authentication type do not use Operators for SRE access. Instead, the required roles necessary for SRE account access are assigned to the sd-sre-platform-gcp-access group as part of the WIF configuration creation and are validated prior to the deployment of the cluster by the {{ cluster_manager }}. For more information about WIF configurations, see _Additional resources_.
 
 :::
 
@@ -21,9 +21,9 @@ SREs access {{ product_title }} clusters through a proxy. The proxy mints a serv
 Red Hat SRE adheres to the principle of least privilege when accessing {{ product_title }} and public cloud provider components. There are four basic categories of manual SRE access:
 
 *   SRE admin access through the Red Hat Customer Portal with normal two-factor authentication and no privileged elevation.
-*   SRE admin access through the Red Hat corporate SSO with normal two-factor authentication and no privileged elevation.
+*   SRE admin access through the Red Hat corporate single sign-on (SSO) with normal two-factor authentication and no privileged elevation.
 *   OpenShift elevation, which is a manual elevation using Red Hat SSO. It is fully audited and management approval is required for every operation SREs make.
-*   Cloud provider access or elevation, which is a manual elevation for cloud provider console or CLI access. Access is limited to 60 minutes and is fully audited.
+*   Cloud provider access or elevation, which is a manual elevation for cloud provider console or command-line interface (CLI) access. Access is limited to 60 minutes and is fully audited.
 
 Each of these access types has different levels of access to components:
 
@@ -55,10 +55,10 @@ Red Hat personnel do not access cloud infrastructure accounts in the course of r
 
 In AWS, SREs generate a short-lived AWS access token for the `BYOCAdminAccess` user using the AWS Security Token Service (STS). Access to the STS token is audit logged and traceable back to individual users. The `BYOCAdminAccess` has the `AdministratorAccess` IAM policy attached.
 
-In {{ gcp_full }}, SREs access resources after being authenticated against a Red Hat SAML identity provider (IDP). The IDP authorizes tokens that have time-to-live expirations. The issuance of the token is auditable by corporate Red Hat IT and linked back to an individual user.
+In {{ gcp_full }}, SREs access resources after being authenticated against a Red Hat Security Assertion Markup Language (SAML) identity provider (IDP). The IDP authorizes tokens that have time-to-live expirations. The issuance of the token is auditable by corporate Red Hat IT and linked back to an individual user.
 
 ## Red Hat support access {id="support-access_{{ context }}"}
-Members of the Red Hat CEE team typically have read-only access to parts of the cluster. Specifically, CEE has limited access to the core and product namespaces and does not have access to the customer namespaces.
+Members of the Red Hat Customer Experience and Engagement (CEE) team typically have read-only access to parts of the cluster. Specifically, CEE has limited access to the core and product namespaces and does not have access to the customer namespaces.
 
 | Role | Core namespace | Layered product namespace | Customer namespace | Cloud infrastructure account^*^ |
 | --- |
@@ -94,7 +94,7 @@ Cloud Infrastructure Account refers to the underlying AWS or {{ gcp_full }} acco
 1.  Red Hat associates have no access to customer data by default.
 1.  SRE access to the cloud infrastructure account is a "break-glass" procedure for exceptional troubleshooting during a documented incident.
 1.  Customer administrator has limited access to the cloud infrastructure account console through Cloud Infrastructure Access.
-1.  Limited to what is granted through RBAC by the customer administrator, as well as namespaces created by the user.
+1.  Limited to what is granted through role-based access control (RBAC) by the customer administrator, as well as namespaces created by the user.
 
 ## Customer access {id="customer-access_{{ context }}"}
 Customer access is limited to namespaces created by the customer and permissions that are granted using RBAC by the customer administrator role. Access to the underlying infrastructure or product namespaces is generally not permitted without `cluster-admin` access. More information on customer access and authentication can be found in the Understanding Authentication section of the documentation.

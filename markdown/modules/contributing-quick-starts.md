@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Contributing quick starts {id="contributing-quick-starts_{{ context }}"}
+# Contribute quick starts {id="contributing-quick-starts_{{ context }}"}
 
 {{ product_title }} introduces the quick start custom resource, which is defined by a `ConsoleQuickStart` object. Operators and administrators can use this resource to contribute quick starts to the cluster. {._abstract}
 

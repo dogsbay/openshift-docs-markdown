@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Changing the Amazon Web Services instance type by using the AWS console {id="aws-console-changing-aws-instance-type_{{ context }}"}
+# Change the Amazon Web Services instance type by using the AWS console {id="aws-console-changing-aws-instance-type_{{ context }}"}
 
 You can change the {{ aws_first }} instance type that your control plane machines use by updating the instance type in the AWS console. {._abstract}
 

@@ -21,14 +21,6 @@ You can configure the following match types:
 `method`
 :   A value in upper case that should match on the HTTP request method. Must be one of: GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, or PATCH.
 
-
-:::note
-
-According to Gateway API conventions, the `RegularExpression` match type is classified as an implementation-specific feature (`Support: Implementation-specific`). While {{ SMProductName }} fully supports regular expression matching, this feature might not be available or behave identically across other Gateway API implementations.
-
-:::
-
-
 ## Example: path match {id="_example_path_match"}
 
 The following example demonstrates a complete `HTTPRoute` custom resource (CR) configured with path-based matching to route requests for `/<example_app>` to a backend service:

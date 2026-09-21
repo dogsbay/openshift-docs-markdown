@@ -34,7 +34,7 @@ Monitor the consumption of cluster infrastructure resources by using the metrics
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [KubeVirt components metrics](https://github.com/kubevirt/monitoring/blob/main/docs/metrics.md)
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
-*   [Adding kernel arguments to nodes](/machine_configuration/machine-configs-configure#nodes-nodes-kernel-arguments_machine-configs-configure)
+*   [Add kernel arguments to nodes](/machine_configuration/machine-configs-configure#nodes-nodes-kernel-arguments_machine-configs-configure)
 {%- endif %}
 {%- if not (openshift_rosa_hcp or openshift_rosa or openshift_dedicated) %}
 *   [About {{ product_title }} monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)

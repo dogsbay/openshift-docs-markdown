@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Checking the status of the DNS Operator {id="nw-dns-operator_{{ context }}"}
+# Check the status of the DNS Operator {id="nw-dns-operator_{{ context }}"}
 
 You can check the DNS Operator deployment and cluster operator status. The DNS Operator is deployed during installation with a `Deployment` object. {._abstract}
 

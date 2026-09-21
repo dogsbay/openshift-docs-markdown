@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling boot image management {id="mco-update-boot-images-disable_{{ context }}"}
+# Disable boot image management {id="mco-update-boot-images-disable_{{ context }}"}
 
 You can disable the boot image management feature so that the Machine Config Operator (MCO) no longer manages or updates the boot image in the affected machine sets. For example, you could disable this feature for the worker nodes in order to use a custom boot image that you do not want changed. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Monitoring your application metrics {id="odc-monitoring-your-application-metrics_{{ context }}"}
+# Monitor your application metrics {id="odc-monitoring-your-application-metrics_{{ context }}"}
 
 Inspect alerts, metric charts, and health check status for individual application workloads to troubleshoot performance issues and monitor health directly from the topology view. {._abstract}
 

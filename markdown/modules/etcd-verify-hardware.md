@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Validating the hardware for etcd {id="etcd-verify-hardware_{{ context }}"}
+# Validate the hardware for etcd {id="etcd-verify-hardware_{{ context }}"}
 
 Validate control plane disk performance with `fio` before or after you create the {{ product_title }} cluster so that you can confirm that storage meets etcd latency requirements. {._abstract}
 

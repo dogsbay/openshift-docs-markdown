@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating containers by using images from third-party registries {id="registry-third-party-registries_{{ context }}"}
+# Create containers by using images from third-party registries {id="registry-third-party-registries_{{ context }}"}
 
 Some container image registries require access authorization. Podman is an open source tool for managing containers and container images and interacting with image registries. You can use Podman to authenticate your credentials, pull the registry image, and store local images in a local file system. The procedure provides a generic example of authenticating the registry with Podman. {._abstract}
 

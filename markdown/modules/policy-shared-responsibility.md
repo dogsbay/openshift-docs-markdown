@@ -15,7 +15,7 @@ The customer is responsible for incident and operations management of customer a
 | * Monitor health of service load balancer endpoints. * Monitor health of application routes, and the endpoints behind them. * Report outages to Red Hat. |
 | Virtual networking |
 | * Monitor cloud load balancers, subnets, and public cloud components necessary for default platform networking, and respond to alerts. * Monitor the Red Hat Management project in {{ GCP }} and the Private Service Connect (PSC) attachments. <sup>[1]</sup> |
-| Monitor network traffic that is optionally configured through VPC to VPC connection, VPN connection, or Direct connection for potential issues or security threats. |
+| Monitor network traffic that is optionally configured through virtual private cloud (VPC) to VPC connection, virtual private network (VPN) connection, or Direct connection for potential issues or security threats. |
 
 1.  Applies to {{ product_title }} on {{ GCP }} clusters with PSC only.
 
@@ -44,11 +44,11 @@ Red Hat is responsible for enabling changes to the cluster infrastructure and se
 <tr>
   <td>Cluster networking</td>
   <td><ul><li>Set up cluster management components, such as public or private service endpoints and necessary integration with virtual networking components.</li><li>Set up internal networking components required for internal cluster communication between worker, infrastructure, and control plane nodes.</li></ul></td>
-  <td><ul><li>Provide optional non-default IP address ranges for machine CIDR, service CIDR, and pod CIDR if needed through {{ cluster_manager }} when the cluster is provisioned.</li><li>Request that the API service endpoint be made public or private on cluster creation or after cluster creation through {{ cluster_manager }}.</li></ul></td>
+  <td><ul><li>Provide optional non-default IP address ranges for machine Classless Inter-Domain Routing (CIDR), service CIDR, and pod CIDR if needed through {{ cluster_manager }} when the cluster is provisioned.</li><li>Request that the API service endpoint be made public or private on cluster creation or after cluster creation through {{ cluster_manager }}.</li></ul></td>
 </tr>
 <tr>
   <td>Virtual networking</td>
-  <td><ul><li>Set up and configure virtual networking components required to provision the cluster, including virtual private cloud, subnets, load balancers, internet gateways, NAT gateways, etc.</li><li>Provide the ability for the customer to manage VPN connectivity with on-premise resources, VPC to VPC connectivity, and Direct connectivity as required through {{ cluster_manager }}.</li><li>Setup and configure PSC attachments. <sup>[1]</sup></li><li>Enable customers to create and deploy public cloud load balancers for use with service load balancers.</li></ul></td>
+  <td><ul><li>Set up and configure virtual networking components required to provision the cluster, including VPC, subnets, load balancers, internet gateways, network address translation (NAT) gateways, etc.</li><li>Provide the ability for the customer to manage VPN connectivity with on-premise resources, VPC to VPC connectivity, and Direct connectivity as required through {{ cluster_manager }}.</li><li>Setup and configure PSC attachments. <sup>[1]</sup></li><li>Enable customers to create and deploy public cloud load balancers for use with service load balancers.</li></ul></td>
   <td><ul><li>Set up and maintain optional public cloud networking components, such as VPC to VPC connection, VPN connection, or Direct connection.</li><li>Request and configure any additional service load balancers for specific services.</li><li>Create a PSC subnet. <sup>[1]</sup></li></ul></td>
 </tr>
 <tr>
@@ -80,7 +80,7 @@ The access and identity authorization matrix includes responsibilities for manag
 <tbody>
 <tr>
   <td>Logging</td>
-  <td><ul><li>Adhere to an industry standards-based tiered internal access process for platform audit logs.</li><li>Provide native OpenShift RBAC capabilities.</li></ul></td>
+  <td><ul><li>Adhere to an industry standards-based tiered internal access process for platform audit logs.</li><li>Provide native OpenShift role-based access control (RBAC) capabilities.</li></ul></td>
   <td><ul><li>Configure OpenShift RBAC to control access to projects and by extension a project’s application logs.</li><li>For third-party or custom application logging solutions, the customer is responsible for access management.</li></ul></td>
 </tr>
 <tr>
@@ -115,7 +115,7 @@ The following are the responsibilities and controls related to compliance:
 <tbody>
 <tr>
   <td>Logging</td>
-  <td>Send cluster audit logs to a Red Hat SIEM to analyze for security events. Retain audit logs for a defined period of time to support forensic analysis.</td>
+  <td>Send cluster audit logs to a Red Hat security information and event management (SIEM) to analyze for security events. Retain audit logs for a defined period of time to support forensic analysis.</td>
   <td>Analyze application logs for security events. Send application logs to an external endpoint through logging sidecar containers or third-party logging applications if longer retention is required than is offered by the default logging stack.</td>
 </tr>
 <tr>

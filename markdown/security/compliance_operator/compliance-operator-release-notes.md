@@ -11,6 +11,8 @@ The Compliance Operator lets {{ product_title }} administrators describe the req
 
 These release notes track the development of the Compliance Operator in the {{ product_title }}.
 
+{% leveloffset +1 %}{% include "./modules/compliance-rn-1-10-0.md" %}{% endleveloffset %}
+
 {% leveloffset +1 %}{% include "./modules/compliance-rn-1-9-2.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/compliance-rn-1-9-1.md" %}{% endleveloffset %}

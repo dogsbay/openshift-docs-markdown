@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling the cluster capabilities by setting baseline capability set {id="enabling-baseline-capability-set_{{ context }}"}
+# Enable the cluster capabilities by setting baseline capability set {id="enabling-baseline-capability-set_{{ context }}"}
 
 As a cluster administrator, you can enable cluster capabilities any time after a {{ product_title }} installation by setting the `baselineCapabilitySet` configuration parameter. {._abstract}
 

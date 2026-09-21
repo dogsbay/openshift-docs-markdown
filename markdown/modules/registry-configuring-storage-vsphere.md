@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring registry storage for VMware vSphere {id="registry-configuring-storage-vsphere_{{ context }}"}
+# Configure registry storage for VMware vSphere {id="registry-configuring-storage-vsphere_{{ context }}"}
 
 As a cluster administrator, following installation you must configure your registry to use storage. {._abstract}
 

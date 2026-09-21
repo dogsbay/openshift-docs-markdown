@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Mapping the elements in the quick start to the quick start CR {id="understanding-quick-start-elements_{{ context }}"}
+# Map the elements in the quick start to the quick start CR {id="understanding-quick-start-elements_{{ context }}"}
 
 These mappings show where each part of the quick start custom resource (CR) is displayed in the quick start within the web console. {._abstract}
 

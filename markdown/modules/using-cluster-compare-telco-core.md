@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Comparing a cluster with the {{ rds }} reference configuration {id="using-cluster-compare-telco_core_{{ context }}"}
+# Compare a cluster with the {{ rds }} reference configuration {id="using-cluster-compare-telco_core_{{ context }}"}
 
 After you deploy a {{ rds }} cluster, you can use the `cluster-compare` plugin to assess the cluster’s compliance with the {{ rds }} reference design specifications (RDS). The `cluster-compare` plugin is an OpenShift CLI (`oc`) plugin. The plugin uses a {{ rds }} reference configuration to validate the cluster with the {{ rds }} custom resources (CRs). {._abstract}
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Editing the application configuration using the Developer perspective {id="odc-editing-application-configuration-using-developer-perspective_{{ context }}"}
+# Edit the application configuration using the Developer perspective {id="odc-editing-application-configuration-using-developer-perspective_{{ context }}"}
 
-You can use the **Topology** view in the **Developer** perspective to edit the configuration of your application.
+You can use the **Topology** view in the **Developer** perspective to edit the configuration of your application. {._abstract}
 
 
 :::note

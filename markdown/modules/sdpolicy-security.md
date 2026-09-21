@@ -9,7 +9,7 @@ Authentication for the cluster is configured as part of {{ cluster_manager_first
 *   GitHub or GitHub Enterprise OAuth
 *   GitLab OAuth
 *   Google OAuth
-*   LDAP
+*   Lightweight Directory Access Protocol (LDAP)
 *   OpenID connect
 
 ## Privileged containers {id="privileged-containers_{{ context }}"}
@@ -21,7 +21,7 @@ In addition to normal users, {{ product_title }} provides access to an {{ produc
 *   Have administrator access to all customer-created projects on the cluster.
 *   Can manage resource quotas and limits on the cluster.
 *   Can add and manage `NetworkPolicy` objects.
-*   Are able to view information about specific nodes and PVs in the cluster, including scheduler information.
+*   Are able to view information about specific nodes and persistent volumes (PVs) in the cluster, including scheduler information.
 *   Can access the reserved `dedicated-admin` project on the cluster, which allows for the creation of service accounts with elevated privileges and also gives the ability to update default limits and quotas for projects on the cluster.
 *   Can install Operators from the software catalog (`\*` verbs in all `*.operators.coreos.com` API groups).
 
@@ -45,7 +45,7 @@ $ oc adm policy add-cluster-role-to-group self-provisioner system:authenticated:
 See the _Security and control certifications for {{ product_title }}_ table in _Understanding process and security for {{ product_title }}_ for the latest compliance information.
 
 ## Network security {id="network-security_{{ context }}"}
-Each {{ product_title }} cluster is protected by a secure network configuration at the cloud infrastructure level using firewall rules (AWS Security Groups or {{ gcp_full }} Compute Engine firewall rules). {{ product_title }} customers on AWS are also protected against DDoS attacks with [AWS Shield Standard](https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html).
+Each {{ product_title }} cluster is protected by a secure network configuration at the cloud infrastructure level using firewall rules (AWS Security Groups or {{ gcp_full }} Compute Engine firewall rules). {{ product_title }} customers on AWS are also protected against distributed denial-of-service (DDoS) attacks with [AWS Shield Standard](https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html).
 Similarly, all {{ gcp_short }} load balancers and public IP addresses used by {{ product_title }} on {{ gcp_short }} are protected against DDoS attacks with [{{ gcp_full }} Armor Standard](https://cloud.google.com/armor/docs/managed-protection-overview).
 
 ## etcd encryption {id="etcd-encryption_{{ context }}"}

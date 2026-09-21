@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding the Cluster Samples Operator {id="samples-operator-overview_{{ context }}"}
+# Understand the Cluster Samples Operator {id="samples-operator-overview_{{ context }}"}
 
 During installation, the Operator creates the default configuration object for itself and then creates the sample image streams and templates, including quick start templates. {._abstract}
 

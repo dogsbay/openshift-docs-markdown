@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a custom icon to a quick start {id="adding-custom-icon-to-quick-start_{{ context }}"}
+# Add a custom icon to a quick start {id="adding-custom-icon-to-quick-start_{{ context }}"}
 
 A default icon is provided for all quick starts. You can provide your own custom icon. {._abstract}
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Interacting with applications and components {id="odc-interacting-with-applications-and-components_{{ context }}"}
+# Interact with applications and components {id="odc-interacting-with-applications-and-components_{{ context }}"}
 
-In the **Topology** view in the **Developer** perspective of the web console, the **Graph view** provides the following options to interact with applications and components:
+In the **Topology** view in the **Developer** perspective of the web console, the **Graph view** provides the following options to interact with applications and components: {._abstract}
 
 *   Click **Open URL** (![odc_open_url](/images/odc_open_url.png "Application Link")) to see your application exposed by the route on a public URL.
 *   Click **Edit Source code** to access your source code and modify it.

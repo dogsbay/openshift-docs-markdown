@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating applications by deploying container image {id="odc-deploying-container-image_{{ context }}"}
+# Create applications by deploying container image {id="odc-deploying-container-image_{{ context }}"}
 
-You can use an external image registry or an image stream tag from an internal registry to deploy an application on your cluster.
+You can use an external image registry or an image stream tag from an internal registry to deploy an application on your cluster. {._abstract}
 
 **Prerequisites**
 

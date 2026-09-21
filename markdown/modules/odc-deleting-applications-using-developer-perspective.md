@@ -1,10 +1,11 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting applications using the Developer perspective {id="odc-deleting-applications-using-developer-perspective_{{ context }}"}
+# Delete applications using the Developer perspective {id="odc-deleting-applications-using-developer-perspective_{{ context }}"}
 
-You can delete an application and all of its associated components using the **Topology** view in the **Developer** perspective:
+You can delete an application and all of its associated components using the **Topology** view in the **Developer** perspective: {._abstract}
+
+**Procedure**
 
 1.  Click the application you want to delete to see the side panel with the resource details of the application.
-1.  Click the **Actions** drop-down menu displayed on the upper right of the panel, and select **Delete Application** to see a confirmation dialog box.
-1.  Enter the name of the application and click **Delete** to delete it.
-
-You can also right-click the application you want to delete and click **Delete Application** to delete it.
+    1.  Click the **Actions** drop-down menu displayed on the upper right of the panel, and select **Delete Application** to see a confirmation dialog box.
+    1.  Enter the name of the application and click **Delete** to delete it.
+1.  You can also right-click the application you want to delete and click **Delete Application** to delete it.

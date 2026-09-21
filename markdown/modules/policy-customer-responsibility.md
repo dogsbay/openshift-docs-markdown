@@ -14,7 +14,7 @@ The customer is responsible for the applications, workloads, and data that they 
 <tbody>
 <tr>
   <td>Customer data</td>
-  <td><ul><li>Maintain platform-level standards for data encryption.</li><li>Provide OpenShift components to help manage application data, such as secrets.</li><li>Enable integration with third-party data services (such as AWS RDS or {{ gcp_full }} SQL) to store and manage data outside of the cluster and/or cloud provider.</li></ul></td>
+  <td><ul><li>Maintain platform-level standards for data encryption.</li><li>Provide OpenShift components to help manage application data, such as secrets.</li><li>Enable integration with third-party data services (such as Amazon Relational Database Service (RDS) or {{ gcp_full }} SQL) to store and manage data outside of the cluster and/or cloud provider.</li></ul></td>
   <td>Maintain responsibility for all customer data stored on the platform and how customer applications consume and expose this data.</td>
 </tr>
 <tr>

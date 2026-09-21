@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Including metadata in images {id="images-create-metadata_{{ context }}"}
+# Include metadata in images {id="images-create-metadata_{{ context }}"}
 
 Define comprehensive image metadata during creation to ensure {{ product_title }} correctly configures image runtime settings and tracks image lineage and compliance. This helps to provide a better experience for developers using your image. {._abstract}
 

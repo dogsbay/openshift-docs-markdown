@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Checking machine config pool status {id="checking-mco-status_{{ context }}"}
+# Check machine config pool status {id="checking-mco-status_{{ context }}"}
 
 You can see the status of the Machine Config Operator (MCO), its sub-components, and the resources it manages, by using the `oc` commands. {._abstract}
 

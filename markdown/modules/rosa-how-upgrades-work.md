@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# How {{ product_title }} cluster upgrades work {id="rosa-how-upgrades-work_{{ context }}"}
+# How cluster upgrades work {id="rosa-how-upgrades-work_{{ context }}"}
 
 Upgrades are manually initiated (one-time) or automatically scheduled (recurring). Red&#160;Hat Site Reliability Engineers (SREs) monitor upgrade progress and either proactively notify you to take corrective actions or remedy issues encountered. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting a catalog {id="olmv1-deleting-catalog_{{ context }}"}
+# Delete a catalog {id="olmv1-deleting-catalog_{{ context }}"}
 
 You can delete a catalog by deleting its custom resource (CR). {._abstract}
 

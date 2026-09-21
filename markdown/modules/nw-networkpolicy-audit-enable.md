@@ -48,7 +48,7 @@ To enable egress firewall and network policy audit logging for a namespace in {{
 *   Display the latest entries in the audit log:
     ```terminal
     $ for pod in $(oc get pods -n openshift-ovn-kubernetes -l app=ovnkube-node --no-headers=true | awk '{ print $1 }') ; do
-        oc exec -it $pod -n openshift-ovn-kubernetes -- tail -4 /var/log/ovn/acl-audit-log.log
+        oc exec -it $pod -c ovn-acl-logging -n openshift-ovn-kubernetes -- tail -4 /var/log/ovn/acl-audit-log.log
       done
     ```
     ```text title="Example output"

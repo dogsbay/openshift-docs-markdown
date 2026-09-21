@@ -5,7 +5,6 @@ To modify how HTTP requests are processed before they reach your backend service
 
 **Prerequisites**
 
-*   You have access to the cluster as a user with the `cluster-admin` role.
 *   You have installed the {{ oc_first }}.
 
 **Procedure**

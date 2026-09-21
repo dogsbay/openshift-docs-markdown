@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Configuring persistent storage {id="configuring-persistent-storage_{{ context }}"}
+# Configure persistent storage {id="configuring-persistent-storage_{{ context }}"}
 
 Run cluster monitoring with persistent storage to gain the following benefits:
 

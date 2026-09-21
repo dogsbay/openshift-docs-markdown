@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Creating {{ op_system_first }} machines {id="creating-rhcos-machines-bare-metal"}
+# Create {{ op_system_first }} machines {id="creating-rhcos-machines-bare-metal_{{ context }}"}
 
 Before you add more compute machines to a cluster that you installed on bare metal infrastructure, you must create {{ op_system }} machines for it to use. You can either use an ISO image or network PXE booting to create the machines. {._abstract}
 

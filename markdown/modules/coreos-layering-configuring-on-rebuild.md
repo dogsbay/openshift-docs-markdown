@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Rebuilding an on-cluster custom layered image {id="coreos-layering-configuring-on-rebuild_{{ context }}"}
+# Rebuild an on-cluster custom layered image {id="coreos-layering-configuring-on-rebuild_{{ context }}"}
 
 You can rebuild an on-cluster custom layered image by either modifying your `MachineOSConfig` object or adding an annotation to the `MachineOSConfig` object. Both of these actions trigger an automatic rebuild of the object.  {._abstract}
 

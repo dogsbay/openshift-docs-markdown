@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Boosting networking performance with RFS {id="ibm-z-boost-networking-performance-with-rfs_{{ context }}"}
+# Boost networking performance with RFS {id="ibm-z-boost-networking-performance-with-rfs_{{ context }}"}
 
 To boost networking performance, activate Receive Flow Steering (RFS) by using the Machine Config Operator (MCO). This configuration improves packet processing efficiency. {._abstract}
 

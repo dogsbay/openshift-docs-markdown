@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling multi-tenancy in network observability {id="network-observability-multi-tenancy_{{ context }}"}
+# Enable multi-tenancy in network observability {id="network-observability-multi-tenancy_{{ context }}"}
 
 Enable multi-tenancy in network observability by configuring cluster roles and namespace roles to grant project administrators and developers granular, restricted access to flows and metrics in Loki and Prometheus. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accessing {{ cluster_manager_first }} {id="accessing-ocm_{{ context }}"}
+# Access {{ cluster_manager_first }} {id="accessing-ocm_{{ context }}"}
 
 You can access {{ cluster_manager }} with your configured OpenShift account. {._abstract}
 

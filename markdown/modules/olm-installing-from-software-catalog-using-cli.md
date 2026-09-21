@@ -4,7 +4,7 @@
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Installing from the software catalog by using the CLI {id="olm-installing-operator-from-software-catalog-using-cli_{{ context }}"}
+# Install from the software catalog by using the CLI {id="olm-installing-operator-from-software-catalog-using-cli_{{ context }}"}
 
 To install an Operator from the software catalog without using the web console, you can create or update a `Subscription` object by using the `oc` command in {{ product_title }}. {._abstract}
 

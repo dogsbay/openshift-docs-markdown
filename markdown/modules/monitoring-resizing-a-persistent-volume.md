@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Resizing a persistent volume {id="resizing-a-persistent-volume_{{ context }}"}
+# Resize a persistent volume {id="resizing-a-persistent-volume_{{ context }}"}
 
 {%- set configmap_name = "cluster-monitoring-config" -%}
 {%- set namespace_name = "openshift-monitoring" -%}

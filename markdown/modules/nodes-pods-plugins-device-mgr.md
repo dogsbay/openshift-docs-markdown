@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding the Device Manager {id="nodes-pods-plugins-device-mgr_{{ context }}"}
+# Understand the Device Manager {id="nodes-pods-plugins-device-mgr_{{ context }}"}
 
 Device Manager advertises specialized node hardware resources through device plugins, enabling pods to consume hardware devices without requiring upstream code changes. {._abstract}
 

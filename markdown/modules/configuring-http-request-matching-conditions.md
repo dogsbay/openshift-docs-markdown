@@ -1,11 +1,10 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configure HTTP request matching conditions {id="configuring-http-request-matching-conditions_{{ context }}"}
+# Configure path-based routing {id="configuring-http-request-matching-conditions_{{ context }}"}
 
 To ensure traffic is routed to the correct application when multiple services share a gateway, you can define request matching conditions within your `HTTPRoute` custom resource (CR). You can match HTTP requests based on paths, headers, query parameters, or methods. {._abstract}
 
 **Prerequisites**
 
-*   You have access to the cluster as a user with the `cluster-admin` role.
 *   You have installed the {{ oc_first }}.
 
 **Procedure**

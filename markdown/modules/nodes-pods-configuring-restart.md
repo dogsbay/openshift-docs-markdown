@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Configuring how pods behave after restart {id="nodes-pods-configuring-restart_{{ context }}"}
+# Configure how pods behave after restart {id="nodes-pods-configuring-restart_{{ context }}"}
 
 You can configure a pod restart policy to determine how {{ product_title }} responds when containers in that pod exit. Having a proper restart policy helps you keep your cluster running efficiently. {._abstract}
 

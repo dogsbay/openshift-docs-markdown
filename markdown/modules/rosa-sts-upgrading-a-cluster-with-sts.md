@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Upgrading a {{ product_title }} cluster {id="rosa-sts-upgrading-a-cluster-with-sts_{{ context }}"}
+# Upgrade a cluster {id="rosa-sts-upgrading-a-cluster-with-sts_{{ context }}"}
 
-Upgrade your {{ product_title }} clusters using either the {{ rosa_cli_first }} or the {{ cluster_manager }} console. While both methods verify compatibility, the {{ rosa_cli }} can automatically align {{ AWS }} {{ sts_first }} policies to the target version, ensuring your IAM roles meet all security requirements for the new release. {._abstract}
+Upgrade your {{ product_title }} clusters using either the {{ rosa_cli_first }} or the {{ cluster_manager }} console. Both support immediate and scheduled one-time upgrades. {{ cluster_manager }} also schedules recurring upgrade windows that apply new z-versions automatically. {._abstract}
+
+While both methods verify compatibility, the {{ rosa_cli }} can automatically align {{ AWS }} {{ sts_first }} policies to the target version, ensuring your IAM roles meet all security requirements for the new release.
 
 
 :::note

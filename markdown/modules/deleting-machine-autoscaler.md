@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling a machine autoscaler {id="deleting-machine-autoscaler_{{ context }}"}
+# Disable a machine autoscaler {id="deleting-machine-autoscaler_{{ context }}"}
 
 To disable a machine autoscaler, you delete the corresponding `MachineAutoscaler` custom resource (CR). {._abstract}
 

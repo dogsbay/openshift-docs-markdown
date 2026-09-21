@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring custom domains for applications {id="rosa-applications-config-custom-domains_{{ context }}"}
+# Configure custom domains for applications {id="rosa-applications-config-custom-domains_{{ context }}"}
 
 The top-level domains (TLDs) are owned by the customer that is operating the {{ product_title }} cluster. The Custom Domains Operator sets up a new ingress controller with a custom certificate as a second day operation. The public DNS record for this ingress controller can then be used by an external DNS to create a wildcard CNAME record for use with a custom domain. {._abstract}
 
@@ -65,10 +65,10 @@ Do not use the reserved names `default` or `apps*`, such as `apps` or `apps2`, i
     :   Specifies the secret created in the previous step.
 
     `spec.routeSelector`
-    :   Optional. Filters the set of routes serviced by the CustomDomain ingress. If no value is provided, the default is no filtering.
+    :   Optional. Filters the set of routes serviced by the `CustomDomain` ingress. If no value is provided, the default is no filtering.
 
     `spec.namespaceSelector`
-    :   Optional. Filters the set of namespaces serviced by the CustomDomain ingress. If no value is provided, the default is no filtering.
+    :   Optional. Filters the set of namespaces serviced by the `CustomDomain` ingress. If no value is provided, the default is no filtering.
 1.  Apply the CR:
     ```terminal title="Example"
     $ oc apply -f <company_name>-custom-domain.yaml
@@ -110,4 +110,4 @@ Do not use the reserved names `default` or `apps*`, such as `apps` or `apps2`, i
 **Troubleshooting**
 
 *   [Error creating TLS secret](https://access.redhat.com/solutions/5419501)
-*   [Troubleshooting: CustomDomain in NotReady state](https://access.redhat.com/solutions/6546011)
+*   [Troubleshooting: `CustomDomain` in `NotReady` state](https://access.redhat.com/solutions/6546011)

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a priority expander for the cluster autoscaler {id="cluster-autoscaler-config-priority-expander_{{ context }}"}
+# Configure a priority expander for the cluster autoscaler {id="cluster-autoscaler-config-priority-expander_{{ context }}"}
 
 Configure a priority expander to control which machine set expands when the cluster autoscaler increases the size of the cluster.
 You can create a priority expander config map by listing priority values and regular expressions that define machine sets. {._abstract}

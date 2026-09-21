@@ -29,5 +29,5 @@ If you updated your cluster from a version earlier than 4.21, automatic allocati
 
 ## Additional resources {id="nodes-nodes-resources-configuring_additional-resources" ._additional-resources}
 
-*   [Creating a KubeletConfig CR to edit kubelet parameters](/machine_configuration/machine-configs-custom#create-a-kubeletconfig-crd-to-edit-kubelet-parameters_machine-configs-custom)
+*   [Create a KubeletConfig CR to edit kubelet parameters](/machine_configuration/machine-configs-custom#create-a-kubeletconfig-crd-to-edit-kubelet-parameters_machine-configs-custom)
 *   [Node metrics data (Kubernetes documentation)](https://kubernetes.io/docs/reference/instrumentation/node-metrics/)

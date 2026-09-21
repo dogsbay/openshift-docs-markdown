@@ -30,28 +30,16 @@ Quorum restoration should not be used to decrease the number of nodes outside of
 **Procedure**
 
 1.  Select a control plane host to use as the recovery host. You run the restore operation on this host.
-    1.  List the running etcd pods by running the following command:
-        ```terminal
-        $ oc get pods -n openshift-etcd -l app=etcd --field-selector="status.phase==Running"
-        ```
-    1.  Choose a pod and run the following command to obtain its IP address:
-        ```terminal
-        $ oc exec -n openshift-etcd <etcd-pod> -c etcdctl -- etcdctl endpoint status -w table
-        ```
-
-        Note the IP address of a member that is not a learner and has the highest Raft index.
-    1.  List nodes by running the following command:
-        ```terminal
-        $ oc get nodes -o jsonpath='{range .items[*]}[{.metadata.name},{.status.addresses[?(@.type=="InternalIP")].address}]{end}'
-        ```
-
-        Note the node name that corresponds to the IP address of the chosen etcd member.
 1.  Using SSH, connect to the chosen recovery node and run the following command to restore etcd quorum:
     ```terminal
     $ sudo -E /usr/local/bin/quorum-restore.sh
     ```
 
     After a few minutes, the nodes that went down are automatically synchronized with the node that the recovery script was run on. Any remaining online nodes automatically rejoin the new etcd cluster created by the `quorum-restore.sh` script. This process takes a few minutes.
+1.  Verify that the local etcd container is running on the host by using the container runtime CLI:
+    ```terminal
+    $ sudo crictl ps --name '^etcd$'
+    ```
 1.  Exit the SSH session.
 1.  Return to a three-node configuration if any nodes are offline. Repeat the following steps for each node that is offline to delete and re-create them. After the machines are re-created, a new revision is forced and etcd automatically scales up.
 

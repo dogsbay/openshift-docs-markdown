@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Moving the monitoring solution {id="infrastructure-moving-monitoring_{{ context }}"}
+# Move the monitoring solution {id="infrastructure-moving-monitoring_{{ context }}"}
 
 Redeploy the monitoring stack to infrastructure nodes to reduce your subscription requirements. Create and apply a custom config map to move the monitoring stack to infrastructure nodes. The monitoring stack includes Prometheus, Thanos Querier, and Alertmanager, and is managed by the {{ cmo_first }}. {._abstract}
 

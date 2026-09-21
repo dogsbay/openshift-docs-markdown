@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding more compute machines to a cluster in vSphere {id="machine-vsphere-machines_{{ context }}"}
+# Add more compute machines to a cluster in vSphere {id="machine-vsphere-machines_{{ context }}"}
 
 To scale a user-provisioned {{ product_title }} cluster on VMware vSphere, you can add more compute machines by cloning the vSphere template into a virtual machine (VM). {._abstract}
 

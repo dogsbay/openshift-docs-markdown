@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Using image streams {id="images-imagestream-use_{{ context }}"}
+# Use image streams {id="images-imagestream-use_{{ context }}"}
 
 Image streams provide an abstraction for referencing container images from within {{ product_title }}. You can use image streams to manage image versions and automate builds and deployments in your cluster. {._abstract}
 

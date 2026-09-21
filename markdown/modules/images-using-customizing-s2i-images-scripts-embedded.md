@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Invoking scripts embedded in an image {id="images-using-customizing-s2i-images-scripts-embedded_{{ context }}"}
+# Invoke scripts embedded in an image {id="images-using-customizing-s2i-images-scripts-embedded_{{ context }}"}
 
 To extend builder image behavior while preserving supported script logic and upgrade compatibility in {{ product_title }}, you can start embedded S2I image scripts by creating wrapper scripts.
 These wrapper scripts run custom logic and then call the default scripts from the image. {._abstract}

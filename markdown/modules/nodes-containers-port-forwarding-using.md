@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using port forwarding {id="nodes-containers-port-forwarding-using_{{ context }}"}
+# Use port forwarding {id="nodes-containers-port-forwarding-using_{{ context }}"}
 
 You can use the {{ oc_first }} to port-forward one or more local ports to a pod. {._abstract}
 

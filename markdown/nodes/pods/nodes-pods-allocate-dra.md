@@ -15,6 +15,13 @@ This workflow provides significant improvement in the device allocation workflow
 
 {% leveloffset +1 %}{% include "./modules/nodes-pods-allocate-dra-configure-about.md" %}{% endleveloffset %}
 
+{% leveloffset +2 %}{% include "./modules/nodes-pods-allocate-dra-admin-access.md" %}{% endleveloffset %}
+
+**Additional resources**
+{._additional-resources}
+
+*   [Adding resource claims to pods](/nodes/pods/nodes-pods-allocate-dra#nodes-pods-allocate-dra-configure_nodes-pods-allocate-dra)
+
 {% leveloffset +1 %}{% include "./modules/nodes-pods-allocate-dra-configure.md" %}{% endleveloffset %}
 
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}

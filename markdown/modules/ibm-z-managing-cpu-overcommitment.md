@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Managing CPU overcommitment {id="ibm-z-managing-cpu-overcommitment_{{ context }}"}
+# Manage CPU overcommitment {id="ibm-z-managing-cpu-overcommitment_{{ context }}"}
 
 To optimize infrastructure sizing in a highly virtualized {{ ibm_z_title }} environment, manage CPU overcommitment. By adopting this strategy, you can allocate more resources to virtual machines than are physically available at the hypervisor level. This capability requires that you plan carefully for specific workload dependencies. {._abstract}
 

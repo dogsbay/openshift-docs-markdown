@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting command-line arguments for container commands with config maps {id="nodes-pods-configmaps-use-case-setting-command-line-arguments_{{ context }}"}
+# Set command-line arguments for container commands with config maps {id="nodes-pods-configmaps-use-case-setting-command-line-arguments_{{ context }}"}
 
 You can use config maps to set the value of the commands or arguments in a container by using the Kubernetes substitution syntax `$(VAR_NAME)`. {._abstract}
 

@@ -25,15 +25,15 @@
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 {% if not (ibm_z or ibm_power) %}
-# Configuring registry storage for bare metal and other manual installations {id="registry-configuring-storage-baremetal_{{ context }}"}
+# Configure registry storage for bare metal and other manual installations {id="registry-configuring-storage-baremetal_{{ context }}"}
 
 {% endif %}
 {% if ibm_z %}
-# Configuring registry storage for {{ ibm_z_title }} {id="_configuring_registry_storage_for_ibm_z_title"}
+# Configure registry storage for {{ ibm_z_title }} {id="_configure_registry_storage_for_ibm_z_title"}
 
 {% endif %}
 {% if ibm_power %}
-# Configuring registry storage for {{ ibm_power_title }} {id="_configuring_registry_storage_for_ibm_power_title"}
+# Configure registry storage for {{ ibm_power_title }} {id="_configure_registry_storage_for_ibm_power_title"}
 
 {% endif %}
 

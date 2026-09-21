@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Audit logging {id="nw-networkpolicy-audit-concept_{{ context }}"}
 
-You can enable network policy audit logging in {{ product_title }} by annotating namespaces with the `k8s.ovn.org/acl-logging` key and configuring log destinations for the OVN-Kubernetes plugin. {._abstract}
+By default, the Cluster Network Operator (CNO) sets and manages the default network policy audit log settings cluster-wide through the `Network.operator.openshift.io` custom resource (CR). {._abstract}
+
+You can enable network policy audit logging in {{ product_title }} by annotating namespaces with the `k8s.ovn.org/acl-logging` key and configuring log destinations for the OVN-Kubernetes plugin.
 
 You can also configure the destination for audit logs, such as a syslog server or a UNIX domain socket. Regardless of any additional configuration, an audit log is always saved to `/var/log/ovn/acl-audit-log.log` on each OVN-Kubernetes pod in the cluster.
 

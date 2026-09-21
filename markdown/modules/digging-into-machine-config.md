@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Changing Ignition configs after installation {id="digging-into-machine-config_{{ context }}"}
+# Change Ignition configs after installation {id="digging-into-machine-config_{{ context }}"}
 
 Inspect machine config pools and individual machine configs to audit node configurations, verify rendered system settings, and identify managed files across your {{ product_title }} cluster. {._abstract}
 

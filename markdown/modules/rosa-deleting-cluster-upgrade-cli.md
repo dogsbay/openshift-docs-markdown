@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting a {{ product_title }} cluster upgrade with the ROSA CLI {id="rosa-deleting-cluster-upgrade-cli_{{ context }}"}
+# Delete a cluster upgrade with the {{ rosa_cli }} {id="rosa-deleting-cluster-upgrade-cli_{{ context }}"}
 
 You can use either the {{ rosa_cli_first }} or {{ cluster_manager }} console to delete a scheduled upgrade. This procedure uses the {{ rosa_cli }}. {._abstract}
 

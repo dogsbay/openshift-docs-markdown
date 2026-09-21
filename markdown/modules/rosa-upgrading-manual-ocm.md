@@ -9,7 +9,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Upgrading with the {{ cluster_manager }} console {id="rosa-upgrade-ocm_{{ context }}"}
+# Upgrade a cluster with {{ cluster_manager }} {id="rosa-upgrade-ocm_{{ context }}"}
 
 You can schedule upgrades for a {{ product_title }} cluster manually either one time or on a recurring schedule by using {{ cluster_manager }} console. {._abstract}
 

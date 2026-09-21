@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a ContainerRuntimeConfig CR to edit CRI-O parameters {id="create-a-containerruntimeconfig_{{ context }}"}
+# Create a ContainerRuntimeConfig CR to edit CRI-O parameters {id="create-a-containerruntimeconfig_{{ context }}"}
 
 You can change some of the settings associated with the {{ product_title }} CRI-O runtime for the nodes associated with a specific machine config pool (MCP) by using a `ContainerRuntimeConfig` custom resource (CR). {._abstract}
 

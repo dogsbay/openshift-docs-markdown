@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing global Operators in custom namespaces {id="olm-installing-global-namespaces_{{ context }}"}
+# Install global Operators in custom namespaces {id="olm-installing-global-namespaces_{{ context }}"}
 
 To avoid installing global Operators in the default `openshift-operators` namespace, you can create a custom global namespace in {{ product_title }} and install Operators there instead. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Network Observability Operator {id="network-observability-operator-installation_{{ context }}"}
+# Install the Network Observability Operator {id="network-observability-operator-installation_{{ context }}"}
 
 Install the Network Observability Operator and use the setup wizard to create the `FlowCollector` custom resource definition (CRD) to complete the initial configuration. {._abstract}
 

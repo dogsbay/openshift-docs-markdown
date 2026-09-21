@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Overriding source-to-image builder image scripts {id="builds-strategy-s2i-override-builder-image-scripts_{{ context }}"}
+# Override source-to-image builder image scripts {id="builds-strategy-s2i-override-builder-image-scripts_{{ context }}"}
 
-You can override the `assemble`, `run`, and `save-artifacts` source-to-image (S2I) scripts provided by the builder image.
+You can override the `assemble`, `run`, and `save-artifacts` source-to-image (S2I) scripts provided by the builder image. {._abstract}
 
 **Procedure**
 

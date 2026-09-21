@@ -31,6 +31,6 @@ Use the following sections to troubleshoot network issues. {._abstract}
 {._additional-resources}
 
 *   [Understanding the Machine Config Operator](/machine_configuration/index#machine-config-operator_machine-config-overview)
-*   [Checking machine config pool status](/machine_configuration/index#checking-mco-status_machine-config-overview)
+*   [Check machine config pool status](/machine_configuration/index#checking-mco-status_machine-config-overview)
 
 {% leveloffset +2 %}{% include "./modules/displaying-ovs-logs.md" %}{% endleveloffset %}

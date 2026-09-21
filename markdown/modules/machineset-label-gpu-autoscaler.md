@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Labeling GPU machine sets for the cluster autoscaler {id="machineset-label-gpu-autoscaler_{{ context }}"}
+# Label GPU machine sets for the cluster autoscaler {id="machineset-label-gpu-autoscaler_{{ context }}"}
 
 Label your machine sets to indicate which machines the cluster autoscaler can use for GPU-enabled nodes. Applying the accelerator label helps ensure that the autoscaler deploys the correct resources for your GPU workloads. {._abstract}
 

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Customizing a developer catalog or its sub-catalogs using the YAML view {id="odc_customizing-a-developer-catalog-or-its-sub-catalogs-using-the-yaml-view_{{ context }}"}
+# Customize a developer catalog or its sub-catalogs using the YAML view {id="odc_customizing-a-developer-catalog-or-its-sub-catalogs-using-the-yaml-view_{{ context }}"}
 
 You can customize a developer catalog by editing the YAML content in the YAML view. {._abstract}
 

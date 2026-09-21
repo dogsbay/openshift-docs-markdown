@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Specifying the number of pods that must be up with pod disruption budgets {id="nodes-pods-pod-disruption-configuring_{{ context }}"}
+# Specify the number of pods that must be up with pod disruption budgets {id="nodes-pods-pod-disruption-configuring_{{ context }}"}
 
 You can use a `PodDisruptionBudget` object to specify the minimum number or percentage of replicas that must be up at a time. This ensures pod availability during voluntary disruptions such as node maintenance or cluster updates. {._abstract}
 

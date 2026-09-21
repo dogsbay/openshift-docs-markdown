@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Excluding the memory balloon device {id="exclude-the-memory-balloon-device_{{ context }}"}
+# Exclude the memory balloon device {id="exclude-the-memory-balloon-device_{{ context }}"}
 
 Unless you need a dynamic memory size, do not define a memory balloon device and ensure that libvirt does not create one for you. Include the `memballoon` parameter as a child of the devices element in your domain configuration file. {._abstract}
 

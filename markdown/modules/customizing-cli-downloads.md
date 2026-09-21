@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Customizing CLI downloads {id="creating-custom-CLI-downloads_{{ context }}"}
+# Customize CLI downloads {id="creating-custom-CLI-downloads_{{ context }}"}
 
 You can configure links for downloading the CLI with custom link text and URLs,
 which can point directly to file packages or to an external page that provides

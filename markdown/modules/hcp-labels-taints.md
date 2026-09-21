@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Labeling management cluster nodes {id="hcp-labels-taints_{{ context }}"}
+# Label management cluster nodes {id="hcp-labels-taints_{{ context }}"}
 
 Proper node labeling is a prerequisite to deploying {{ hcp }}. {._abstract}
 

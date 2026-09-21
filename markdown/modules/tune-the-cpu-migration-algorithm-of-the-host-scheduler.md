@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Tuning the CPU migration algorithm of the host scheduler {id="tune-the-cpu-migration-algorithm-of-the-host-scheduler_{{ context }}"}
+# Tune the CPU migration algorithm of the host scheduler {id="tune-the-cpu-migration-algorithm-of-the-host-scheduler_{{ context }}"}
 
 You can tune the CPU migration algorithm of the host scheduler to meet the demands of your production system. {._abstract}
 

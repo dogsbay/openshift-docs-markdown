@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Finding Operators to install from a catalog {id="olmv1-finding-operators-to-install_{{ context }}"}
+# Find Operators to install from a catalog {id="olmv1-finding-operators-to-install_{{ context }}"}
 
 After you add a catalog to your cluster, you can query the catalog to find Operators and extensions to install. {._abstract}
 

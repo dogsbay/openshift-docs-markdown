@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing Ignition configuration files {id="ignition-config-viewing_{{ context }}"}
+# View Ignition configuration files {id="ignition-config-viewing_{{ context }}"}
 
 You can view Ignition configuration files to inspect how cluster nodes are initialized, verify early-stage manifests and credentials, and troubleshoot bootstrapping issues. {._abstract}
 

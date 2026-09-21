@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Limiting access to a quick start {id="limiting-access-to-quick-starts_{{ context }}"}
+# Limit access to a quick start {id="limiting-access-to-quick-starts_{{ context }}"}
 
 Not all quick starts should be available for everyone. The `accessReviewResources` section of the YAML file provides the ability to limit access to the quick start. {._abstract}
 

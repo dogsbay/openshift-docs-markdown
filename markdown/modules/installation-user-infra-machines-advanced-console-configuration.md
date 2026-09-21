@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Default console configuration {id="installation-user-infra-machines-advanced-console-configuration_{{ context }}"}
 
-{{ op_system_first }} nodes installed from an {{ product_title }} {{ product_version }} boot image use a default console that is meant to accomodate most virtualized and bare metal setups. Different cloud and virtualization platforms may use different default settings depending on the chosen architecture. {._abstract}
+{{ op_system_first }} nodes installed from an {{ product_title }} {{ product_version }} boot image use a default console that is meant to accommodate most virtualized and bare metal setups. Different cloud and virtualization platforms may use different default settings depending on the chosen architecture. {._abstract}
 
 Bare-metal installations use the kernel default settings which typically means the graphical console is the primary console and the serial console is disabled.
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Channels in {{ product_title }} clusters {id="rosa-upgrading-channels_{{ context }}"}
+# Channels and cluster update options {id="rosa-upgrading-channels_{{ context }}"}
 
 You can use {{ product_title }} channels to view available cluster update options and apply patches or z-stream updates in your existing channel. You can also view the update path to newer y-stream versions if available. {._abstract}
 
@@ -24,11 +24,11 @@ The channel group option is being deprecated. If you set a channel group only, {
 The process for updating your cluster is based on the updates that are available for your current version, and what level of release you are interested in, such as z-stream or y-stream updates.
 
 *   **Patch (z-stream) updates**: You do not need to change the channel when performing a patch update within your current minor version. For example, if you have your cluster at version 4.19.12, you can stay within your current `stable-4.19` channel, and decide to update your cluster when there are updates available, such as 4.19.13, 4.19.14, 4.19.17, 4.19.20 until you have the latest updates for that minor version.
-*   **Minor version (y-stream) updates**: To update to a new minor release, you must change the channel to the next release channel. 
+*   **Minor version (y-stream) updates**: To update to a new minor release, you must change the channel to the next release channel.
 
-    For example, if you have your cluster at version 4.19.12, you can switch the channel to `stable-4.20` or `stable-4.21` and check if there is an update path available for those versions. 
+    For example, if you have your cluster at version 4.19.12, you can switch the channel to `stable-4.20` or `stable-4.21` and check if there is an update path available for those versions.
 
-    If `stable-4.20` has an update path available, it shows you the z-stream updates for your current version, as well as the updates to the y+1 version, such as 4.19.14, 4.19.17, 4.19.20, 4.19.23, 4.19.27, 4.20.0. 
+    If `stable-4.20` has an update path available, it shows you the z-stream updates for your current version, as well as the updates to the y+1 version, such as 4.19.14, 4.19.17, 4.19.20, 4.19.23, 4.19.27, 4.20.0.
 
     If you select `stable-4.21`, the available updates might be 4.19.14, 4.19.17, 4.19.20, 4.19.23, 4.19.27, 4.20.0, 4.20.3, 4.20.4, 4.20.6, 4.20.7, with all the z-stream/patch updates displayed right through to the y+2 version of 4.21.0.
 

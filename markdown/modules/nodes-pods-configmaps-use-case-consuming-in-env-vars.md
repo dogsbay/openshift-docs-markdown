@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Populating environment variables in containers by using config maps {id="nodes-pods-configmaps-use-case-consuming-in-env-vars_{{ context }}"}
+# Populate environment variables in containers by using config maps {id="nodes-pods-configmaps-use-case-consuming-in-env-vars_{{ context }}"}
 
 You can use config maps to populate individual environment variables in containers or to populate environment variables in containers from all keys that form valid environment variable names. {._abstract}
 

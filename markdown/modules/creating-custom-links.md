@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating custom links in the web console {id="creating-custom-links_{{ context }}"}
+# Create custom links in the web console {id="creating-custom-links_{{ context }}"}
 
 You can create a `ConsoleLink` custom resource to add a link to the help menu, user menu, application menu, or namespace dashboard in the web console. {._abstract}
 

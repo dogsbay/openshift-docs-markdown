@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Customizing the download route {id="customizing-the-download-route_{{ context }}"}
+# Customize the download route {id="customizing-the-download-route_{{ context }}"}
 
 You can customize the download route by setting the custom hostname and TLS certificate in the `spec.componentRoutes` field of the cluster `Ingress` configuration. {._abstract}
 

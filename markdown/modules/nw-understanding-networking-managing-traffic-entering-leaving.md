@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Managing traffic entering and leaving the cluster {id="nw-understanding-networking-managing-traffic-entering-leaving_{{ context }}"}
+# Manage traffic entering and leaving the cluster {id="nw-understanding-networking-managing-traffic-entering-leaving_{{ context }}"}
 
 You need a way for external users to access your applications and for your applications to securely access external services. {{ product_title }} provides several tools to manage this flow of traffic into and out of your cluster. {._abstract}
 

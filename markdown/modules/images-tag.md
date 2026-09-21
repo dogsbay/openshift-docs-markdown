@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Understanding image tags in image streams {id="images-tag_{{ context }}"}
+# Understand image tags in image streams {id="images-tag_{{ context }}"}
 
 Image tags in {{ product_title }} help you organize, identify, and reference specific versions of container images in image streams. Tags are human-readable labels that act as pointers to particular image layers and digests. {._abstract}
 
