@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating MachineConfig objects {id="nw-cluster-mtu-creating-mc-objects_{{ context }}"}
+# Create MachineConfig objects {id="nw-cluster-mtu-creating-mc-objects_{{ context }}"}
 
 To prepare your nodes for a hardware MTU change, you must create `MachineConfig` objects for both control plane and compute nodes. Creating these objects ensures that the updated network interface settings are ready for deployment without causing immediate cluster instability. {._abstract}
 

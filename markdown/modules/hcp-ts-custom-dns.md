@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting accessing a hosted cluster by using a custom DNS {id="hcp-ts-custom-dns_{{ context }}"}
+# Troubleshoot accessing a hosted cluster by using a custom DNS {id="hcp-ts-custom-dns_{{ context }}"}
 
 If you encounter an issue when you access a hosted cluster by using a custom DNS, you can determine the root cause so that you can resolve the issue. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a custom metrics autoscaler to a job {id="nodes-cma-autoscaling-custom-creating-job_{{ context }}"}
+# Add a custom metrics autoscaler to a job {id="nodes-cma-autoscaling-custom-creating-job_{{ context }}"}
 
 You can create a custom metrics autoscaler for any `Job` object.
 

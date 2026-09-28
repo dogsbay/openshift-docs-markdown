@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Exposing MTU for vfio-pci SR-IOV devices to pod {id="nw-sriov-expose-mtu_{{ context }}"}
+# Expose MTU for vfio-pci SR-IOV devices to pod {id="nw-sriov-expose-mtu_{{ context }}"}
 
 After adding a pod to an additional network, you can check that the MTU is available for the SR-IOV network. {._abstract}
 

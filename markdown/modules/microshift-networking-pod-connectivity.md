@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About pod network connectivity {id="microshift-networking-pod-connectivity_{{ context }}"}
 
+By default, pods in {{ microshift_short }} receive internal IP addresses that clients outside the node cannot reach directly. Knowing which options are available for exposing pods helps you plan external access to your applications and secure the resulting network connections. {._abstract}
+
 {{ microshift_short }} administrators have several options for exposing applications that run inside a node to external traffic and securing network connections:
 
 *   A service such as NodePort

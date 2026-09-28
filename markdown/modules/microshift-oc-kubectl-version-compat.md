@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # oc and server version compatibility {id="microshift-oc-kubectl-version-compat_{{ context }}"}
 
+Compatibility between the `oc` CLI tool and a {{ microshift_short }} server depends on the version of each. Use the compatibility matrix to find out which combinations of client and server versions are fully supported and where features might be unavailable. {._abstract}
+
 
 :::important
 

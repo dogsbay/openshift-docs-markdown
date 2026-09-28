@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring certificates to secure routes in your cluster {id="cert-manager-configuring-routes_{{ context }}"}
+# Configure certificates to secure routes in your cluster {id="cert-manager-configuring-routes_{{ context }}"}
 
 To encrypt traffic between external clients and your applications, configure certificates for routes in your {{ product_title }} cluster. You can secure your routes by defining TLS termination types, such as edge, passthrough, or re-encrypt, to match your specific security policies. {._abstract}
 

@@ -6,7 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Mounting secrets from {{ secrets_store_provider }} {id="secrets-store-aws_{{ context }}"}
+# Mount secrets from {{ secrets_store_provider }} {id="secrets-store-aws_{{ context }}"}
 
 You can use the {{ secrets_store_operator }} to mount secrets from {{ secrets_store_provider }} external secrets store to a Container Storage Interface (CSI) volume in {{ product_title }}. Using an external secret store protects information that you do not want developers to have and can be more secure than `secret` objects. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing the status of secrets in the pod volume mount {id="secrets-store-viewing-secret-versions_{{ context }}"}
+# View the status of secrets in the pod volume mount {id="secrets-store-viewing-secret-versions_{{ context }}"}
 
 You can view detailed information of the secrets, including the versions, in the pod volume mount. You can use this information to help you confirm that secrets from your external store are active within the pod environment. {._abstract}
 

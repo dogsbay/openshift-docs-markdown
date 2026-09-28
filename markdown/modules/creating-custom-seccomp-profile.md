@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating seccomp profiles {id="creating-custom-seccomp-profile_{{ context }}"}
+# Create seccomp profiles {id="creating-custom-seccomp-profile_{{ context }}"}
 
 You can use the `MachineConfig` object to create profiles.
 

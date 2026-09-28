@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Understanding the default File Integrity Operator configuration {id="file-integrity-understanding-default-config_{{ context }}"}
+# Understand the default File Integrity Operator configuration {id="file-integrity-understanding-default-config_{{ context }}"}
 
 The default configuration for a `FileIntegrity` instance provides coverage for files under key system directories and excludes others. {._abstract}
 

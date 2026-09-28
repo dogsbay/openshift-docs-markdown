@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating service accounts {id="service-accounts-managing_{{ context }}"}
+# Create service accounts {id="service-accounts-managing_{{ context }}"}
 
 You can create a service account in a project and grant it permissions by
 binding it to a role. {._abstract}

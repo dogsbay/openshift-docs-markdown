@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Modifying the template for new projects {id="modifying-template-for-new-projects_{{ context }}"}
+# Modify the template for new projects {id="modifying-template-for-new-projects_{{ context }}"}
 
 To modify the default project template to customize the resources and settings applied when users create new projects, you can create a custom project template. {._abstract}
 

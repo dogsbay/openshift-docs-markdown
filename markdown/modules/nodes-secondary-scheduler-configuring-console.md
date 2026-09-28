@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying a secondary scheduler {id="nodes-secondary-scheduler-configuring-console_{{ context }}"}
+# Deploy a secondary scheduler {id="nodes-secondary-scheduler-configuring-console_{{ context }}"}
 
 After you have installed the {{ secondary_scheduler_operator }}, you can deploy a secondary scheduler to apply custom placement logic for specific pods. {._abstract}
 

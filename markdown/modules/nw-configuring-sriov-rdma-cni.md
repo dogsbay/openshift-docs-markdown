@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring SR-IOV RDMA CNI {id="nw-sriov-configuring-sriov-rdma-cni_{{ context }}"}
+# Configure SR-IOV RDMA CNI {id="nw-sriov-configuring-sriov-rdma-cni_{{ context }}"}
 
 Configure an RDMA CNI on SR-IOV. {._abstract}
 

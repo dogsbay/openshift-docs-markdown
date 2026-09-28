@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting a custom default certificate {id="nw-ingress-setting-a-custom-default-certificate_{{ context }}"}
+# Set a custom default certificate {id="nw-ingress-setting-a-custom-default-certificate_{{ context }}"}
 
 As an administrator, you can configure an Ingress Controller to use a custom
 certificate by creating a Secret resource and editing the `IngressController`

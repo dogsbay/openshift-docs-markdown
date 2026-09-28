@@ -1,9 +1,3 @@
-{% if context == "rosa-getting-started" %}
-{%- set getting_started = true -%}
-{% endif %}
-{% if context == "rosa-quickstart" %}
-{%- set quickstart = true -%}
-{% endif %}
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
 # Delete a {{ product_title }} cluster and the AWS IAM STS resources {id="rosa-getting-started-deleting-a-cluster_{{ context }}"}
@@ -23,14 +17,11 @@ Account-wide IAM roles and policies might be used by other {{ product_title }} c
 :::
 
 
-{% if getting_started %}
-
 **Prerequisites**
 
 *   You installed and configured the latest {{ rosa_cli }} on your workstation.
 *   You logged in to your Red&#160;Hat account using the {{ rosa_cli }}.
 *   You created a {{ product_title }} cluster.
-{% endif %}
 
 **Procedure**
 
@@ -94,16 +85,3 @@ Account-wide IAM roles and policies might be used by other {{ product_title }} c
     ```
 
     The deleted cluster should not appear in the output.
-
-**Additional resources**
-{._additional-resources}
-
-*   [About IAM resources for ROSA clusters that use STS](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html/introduction_to_rosa/rosa-sts-about-iam-resources)
-*   [Deleting a ROSA cluster](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa-sts-deleting-cluster.html)
-
-{% if context == "rosa-getting-started" %}
-{%- set getting_started = "" -%}
-{% endif %}
-{% if context == "rosa-quickstart" %}
-{%- set quickstart = "" -%}
-{% endif %}

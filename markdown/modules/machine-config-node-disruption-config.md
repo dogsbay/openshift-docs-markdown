@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring node restart behaviors upon machine config changes {id="machine-config-node-disruption-config_{{ context }}"}
+# Configure node restart behaviors upon machine config changes {id="machine-config-node-disruption-config_{{ context }}"}
 
 You can create a node disruption policy to define the machine configuration changes that cause a disruption to your cluster, and which changes do not.
 

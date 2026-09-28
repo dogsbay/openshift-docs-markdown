@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying the NUMA-aware secondary pod scheduler {id="cnf-deploying-the-numa-aware-scheduler_{{ context }}"}
+# Deploy the NUMA-aware secondary pod scheduler {id="cnf-deploying-the-numa-aware-scheduler_{{ context }}"}
 
 To optimize the placement of high-performance workloads, deploy the NUMA-aware secondary pod scheduler. This component aligns pods with specific NUMA zones to ensure efficient resource utilization in your cluster. {._abstract}
 

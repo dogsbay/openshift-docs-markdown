@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Configuring advanced options for the Overview view {id="network-observability-configuring-options-overview_{{ context }}"}
+# Configure advanced options for the Overview view {id="network-observability-configuring-options-overview_{{ context }}"}
 
 Customize the network traffic **Overview** view by configuring advanced options, such as graph scope, label truncation, and panel management, to refine the display of flow rate statistics and traffic data. {._abstract}
 

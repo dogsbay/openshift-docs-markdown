@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Exporting traffic flow data {id="network-observability-exporting-traffic-flow-data_{{ context }}"}
+# Export traffic flow data {id="network-observability-exporting-traffic-flow-data_{{ context }}"}
 
 Export network flow data from the **Traffic flows** view to a CSV file for external analysis or reporting. {._abstract}
 

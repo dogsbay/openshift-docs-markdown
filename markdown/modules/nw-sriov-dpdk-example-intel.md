@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using a virtual function in DPDK mode with an Intel NIC {id="example-vf-use-in-dpdk-mode-intel_{{ context }}"}
+# Use a virtual function in DPDK mode with an Intel NIC {id="example-vf-use-in-dpdk-mode-intel_{{ context }}"}
 
 You can use a virtual function (VF) in Data Plane Development Kit (DPDK) mode with an Intel NIC by creating a `SriovNetworkNodePolicy` object and then deploying a pod. {._abstract}
 

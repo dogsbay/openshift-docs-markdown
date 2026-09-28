@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Creating a cluster on {{ gcp_short }} with a Red Hat cloud account using {{ cluster_manager }} {id="osd-create-gcp-cluster-ccs_{{ context }}"}
+# Create a cluster on {{ gcp_short }} with a Red Hat cloud account using {{ cluster_manager }} {id="osd-create-gcp-cluster-ccs_{{ context }}"}
 
 Through {{ cluster_manager_url }}, you can create an {{ product_title }} cluster on {{ GCP }} using a standard cloud provider account owned by Red Hat. {._abstract}
 

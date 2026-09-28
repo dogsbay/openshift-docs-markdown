@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring check and notify scripts {id="nw-ipfailover-configuring-check-notify-scripts_{{ context }}"}
+# Configure check and notify scripts {id="nw-ipfailover-configuring-check-notify-scripts_{{ context }}"}
 
 To customize health monitoring for IP failover and receive notifications when VIP state changes in {{ product_title }}, you can configure check and notify scripts by using `ConfigMap` objects. {._abstract}
 

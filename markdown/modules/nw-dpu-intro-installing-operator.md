@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Installing the DPU Operator {id="overview-installing-dpu-operator_{{ context }}"}
+# Install the DPU Operator {id="overview-installing-dpu-operator_{{ context }}"}
 
 You can install the Data Processing Unit (DPU) Operator on both host and DPU clusters to manage device lifecycle and network attachments by using the CLI or web console. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a horizontal pod autoscaler by using the web console {id="nodes-pods-autoscaling-creating-web-console_{{ context }}"}
+# Create a horizontal pod autoscaler by using the web console {id="nodes-pods-autoscaling-creating-web-console_{{ context }}"}
 
 You can use the web console to create a horizontal pod autoscaler (HPA) that specifies the minimum and maximum number of pods you want to run on a `Deployment` or `DeploymentConfig` object. You can also define the amount of CPU or memory usage that your pods should target. {._abstract}
 

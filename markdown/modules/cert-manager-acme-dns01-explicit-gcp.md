@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring an ACME issuer by using explicit credentials for {{ gcp_full }} DNS {id="cert-manager-acme-dns01-explicit-gcp_{{ context }}"}
+# Configure an ACME issuer by using explicit credentials for {{ gcp_full }} DNS {id="cert-manager-acme-dns01-explicit-gcp_{{ context }}"}
 
 You can use the {{ cert_manager_operator }} to set up an ACME issuer to solve DNS-01 challenges by using explicit credentials on {{ gcp_short }}. This procedure uses _Let’s Encrypt_ as the ACME CA server and shows how to solve DNS-01 challenges with {{ gcp_full }} DNS. {._abstract}
 

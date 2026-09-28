@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Compliance Operator on ROSA hosted control planes (HCP) {id="installing-compliance-operator-rosa_{{ context }}"}
+# Install the Compliance Operator on ROSA hosted control planes (HCP) {id="installing-compliance-operator-rosa_{{ context }}"}
 
 You can install the Compliance Operator on {{ product_rosa }} by using the OpenShift CLI by creating the required namespace, Operator group, and subscription objects. {._abstract}
 

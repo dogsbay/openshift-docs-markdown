@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Replacing the default ingress certificate {id="replacing-default-ingress_{{ context }}"}
+# Replace the default ingress certificate {id="replacing-default-ingress_{{ context }}"}
 
 To secure the web console, CLI, and all applications under the `.apps` subdomain in {{ product_title }}, you can replace the default ingress certificate by creating a TLS secret with your wildcard certificate and updating the Ingress Controller and cluster proxy configuration. {._abstract}
 

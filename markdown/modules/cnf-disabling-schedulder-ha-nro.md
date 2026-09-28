@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling NUMA-aware scheduling {id="disabling-numa-aware-scheduling_{{ context }}"}
+# Disable NUMA-aware scheduling {id="disabling-numa-aware-scheduling_{{ context }}"}
 
 You can disable the NUMA-aware scheduler to stop all running scheduler pods and preventing new ones from starting. {._abstract}
 

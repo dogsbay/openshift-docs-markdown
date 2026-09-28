@@ -19,6 +19,10 @@ To add a pre-purchased Capacity Reservation to a machine pool, see [Creating a m
 *   You logged in to your Red&#160;Hat account using the {{ rosa_cli }}.
 *   You created a {{ product_title }} cluster.
 
+{% if openshift_rosa_hcp %}
+{% include "./snippets/multiple-subnets-snippet.md" %}
+{% endif %}
+
 **Procedure**
 
 *   To add a machine pool that does not use autoscaling, create the machine pool and define the instance type, compute (also known as worker) node count, and node labels:

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting temporary rekeying errors for Tang servers {id="nbde-troubleshooting-temporary-error-conditions_{{ context }}"}
+# Troubleshoot temporary rekeying errors for Tang servers {id="nbde-troubleshooting-temporary-error-conditions_{{ context }}"}
 
 To determine if the error condition from rekeying the Tang servers is temporary, perform the following procedure. Temporary error conditions might include:
 

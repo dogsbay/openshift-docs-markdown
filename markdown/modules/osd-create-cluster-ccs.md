@@ -1,13 +1,13 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Creating a cluster with Service Account authentication using {{ cluster_manager }} {id="osd-create-gcp-cluster-ccs1_{{ context }}"}
+# Create a cluster with Service Account authentication using {{ cluster_manager }} {id="osd-create-gcp-cluster-ccs1_{{ context }}"}
 
 Through {{ cluster_manager_url }}, you can create an {{ product_title }} cluster on {{ GCP }} using a cloud provider account that you own with the Service Account authentication type. {._abstract}
 
 **Procedure**
 
 1.  Log in to {{ cluster_manager_url }} and click **Create cluster**.
-1.  On the **Create an OpenShift cluster** page, select **Create cluster** in the **Red Hat OpenShift Dedicated** row.
+1.  On the **Create an OpenShift cluster** page, select **Create cluster** in the **{{ product_title }}** row.
 1.  Under **Billing model**, configure the subscription type and infrastructure type:
     1.  Select a subscription type. For information about {{ product_title }} subscription options, see [Cluster subscriptions and registration](https://access.redhat.com/documentation/en-us/openshift_cluster_manager/1-latest/html-single/managing_clusters/index#assembly-cluster-subscriptions) in the {{ cluster_manager }} documentation.
 
@@ -27,7 +27,7 @@ Through {{ cluster_manager_url }}, you can create an {{ product_title }} cluster
 
     :::note
 
-    Red Hat recommends using Workload Identity Federation as the Authentication type. For more information, see _Creating a cluster on {{ gcp_short }} with Workload Identity Federation authentication_ in the _Additional resources_ section.
+    Red Hat recommends using Workload Identity Federation as the Authentication type. For more information, see _Create a cluster on {{ gcp_short }} with Workload Identity Federation authentication_ in the _Additional resources_ section.
     
     :::
 
@@ -239,7 +239,7 @@ Through {{ cluster_manager_url }}, you can create an {{ product_title }} cluster
 
         :::note
 
-        In the event of critical security concerns that significantly impact the security or stability of a cluster, Red Hat Site Reliability Engineering (SRE) might schedule automatic updates to the latest z-stream version that is not impacted. The updates are applied within 48 hours after customer notifications are provided. For a description of the critical impact security rating, see [Understanding Red Hat security ratings](https://access.redhat.com/security/updates/classification).
+        If critical security concerns significantly impact the security or stability of a cluster, Red Hat Site Reliability Engineering (SRE) might schedule automatic updates to the latest z-stream version that is not impacted. The updates are applied within 48 hours after customer notifications are provided. For a description of the critical impact security rating, see [Understanding Red Hat security ratings](https://access.redhat.com/security/updates/classification).
         
         :::
 

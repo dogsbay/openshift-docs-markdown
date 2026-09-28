@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running compliance scans {id="running-compliance-scans_{{ context }}"}
+# Run compliance scans {id="running-compliance-scans_{{ context }}"}
 
 You can run a scan using the Center for Internet Security (CIS) profiles to evaluate cluster compliance against CIS benchmarks. For convenience, the Compliance Operator creates a `ScanSetting` object with reasonable defaults on startup. This `ScanSetting` object is named `default`. {._abstract}
 

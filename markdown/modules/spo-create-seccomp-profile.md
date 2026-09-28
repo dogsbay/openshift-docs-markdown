@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating seccomp profiles {id="spo-create-seccomp-profile_{{ context }}"}
+# Create seccomp profiles {id="spo-create-seccomp-profile_{{ context }}"}
 
 Use the `SeccompProfile` object to create seccomp profiles. {._abstract}
 

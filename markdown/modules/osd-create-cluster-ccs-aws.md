@@ -210,7 +210,3 @@ By default, clusters are created with the delete protection feature disabled.
 **Verification**
 
 *   You can monitor the progress of the installation in the **Overview** page for your cluster. You can view the installation logs on the same page. Your cluster is ready when the **Status** in the **Details** section of the page is listed as **Ready**.
-
-{% if context == "osd-creating-a-cluster-on-aws" %}
-{%- set osd_on_aws = "" -%}
-{% endif %}

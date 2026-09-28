@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Updating the run-once active deadline override value {id="rodoo-update-active-deadline-seconds_{{ context }}"}
+# Update the run-once active deadline override value {id="rodoo-update-active-deadline-seconds_{{ context }}"}
 
 Update the `activeDeadlineSeconds` field in the `RunOnceDurationOverride` resource to customize the override value that the operator applies to run-once pods. {._abstract}
 

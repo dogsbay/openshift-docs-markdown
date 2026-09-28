@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding the verification of container images lacking verifiable signatures {id="containers-signature-verify-artifacts_{{ context }}"}
+# Understand the verification of container images lacking verifiable signatures {id="containers-signature-verify-artifacts_{{ context }}"}
 
 Each {{ product_title }} release image is immutable and signed with a Red Hat production key. During cluster update or installation, a release image might deploy container images without a verifiable signature. The signature on the release image validates all release contents transitively. {._abstract}
 

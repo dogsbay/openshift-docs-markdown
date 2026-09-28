@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Creating an {{ product_title }} service account for {{ gcp_short }} {id="pod-short-term-auth-gcp-cluster-sa_{{ context }}"}
+# Create an {{ product_title }} service account for {{ gcp_short }} {id="pod-short-term-auth-gcp-cluster-sa_{{ context }}"}
 
 You create an {{ product_title }} service account and annotate it to impersonate a {{ gcp_short }} service account. {._abstract}
 

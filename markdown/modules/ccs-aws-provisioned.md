@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Provisioned AWS Infrastructure {id="ccs-aws-provisioned_{{ context }}"}
+# Provisioned AWS infrastructure {id="ccs-aws-provisioned_{{ context }}"}
 
-This is an overview of the provisioned Amazon Web Services (AWS) components on a deployed {{ product_title }} cluster. For a more detailed listing of all provisioned AWS components, see the [{{ OCP }} documentation](https://access.redhat.com/documentation/en-us/openshift_container_platform/). {._abstract}
+A deployed {{ product_title }} cluster provisions the following AWS components. For a more detailed listing of all provisioned AWS components, see the [{{ OCP }} documentation](https://access.redhat.com/documentation/en-us/openshift_container_platform/). {._abstract}
 
 ## AWS Elastic Computing (EC2) instances {id="aws-policy-ec2_{{ context }}"}
 
@@ -50,8 +50,8 @@ Two buckets are required with a typical size of 2 TB each.
 :::
 
 
-## VPC {id="aws-policy-vpc_{{ context }}"}
-Customers should expect to see one VPC per cluster. Additionally, the VPC needs the following configurations:
+## Virtual Private Cloud (VPC) {id="aws-policy-vpc_{{ context }}"}
+You should expect to see one VPC per cluster. Additionally, the VPC needs the following configurations:
 
 {% include "./snippets/snip_install-cluster-in-vpc.md" %}
 
@@ -67,13 +67,13 @@ Customers should expect to see one VPC per cluster. Additionally, the VPC needs 
 *   **Internet gateways**: One Internet Gateway per cluster.
 *   **NAT gateways**: One NAT Gateway per public subnet.
 
-## Sample VPC Architecture {id="_sample_vpc_architecture"}
+## Sample VPC architecture {id="sample-vpc-architecture_{{ context }}"}
 
 ![VPC Reference Architecture](/images/VPC-Diagram.png)
 
 ## Security groups {id="aws-policy-security-groups_{{ context }}"}
 
-AWS security groups provide security at the protocol and port-access level; they are associated with EC2 instances and Elastic Load Balancing. Each security group contains a set of rules that filter traffic coming in and out of an EC2 instance. You must ensure the ports required for the [{{ OCP }} installation](https://docs.openshift.com/container-platform/4.7/installing/installing_aws/installing-aws-user-infra.html#installation-aws-user-infra-other-infrastructure_installing-aws-user-infra) are open on your network and configured to allow access between hosts.
+AWS security groups provide security at the protocol and port-access level; they are associated with EC2 instances and Elastic Load Balancing. Each security group contains a set of rules that filter traffic coming in and out of an EC2 instance. You must ensure the ports required for the [{{ OCP }} installation](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html-single/installing_on_aws/index#installing-aws-user-infra) are open on your network and configured to allow access between hosts.
 
 ## Additional custom security groups {id="osd-security-groups-custom_{{ context }}"}
 When you create a cluster by using a non-managed VPC, you can add custom security groups during cluster creation. Custom security groups are subject to the following limitations:

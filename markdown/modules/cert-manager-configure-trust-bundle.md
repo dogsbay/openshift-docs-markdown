@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring trust bundle {id="cert-manager-configure-trust-manager_{{ context }}"}
+# Configure trust bundle {id="cert-manager-configure-trust-manager_{{ context }}"}
 
 After installing the trust-manager operand, you must use the Bundle custom resource (CR) to distribute certificate authority (CA) certificates across your cluster. A trust bundle combines certificate sources and maintains target `ConfigMap` and `Secret` objects across selected namespaces. {._abstract}
 

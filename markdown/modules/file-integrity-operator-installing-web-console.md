@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the File Integrity Operator using the web console {id="installing-file-integrity-operator-using-web-console_{{ context }}"}
+# Install the File Integrity Operator using the web console {id="installing-file-integrity-operator-using-web-console_{{ context }}"}
 
 Install the File Integrity Operator from the {{ product_title }} web console by using the Software Catalog. {._abstract}
 

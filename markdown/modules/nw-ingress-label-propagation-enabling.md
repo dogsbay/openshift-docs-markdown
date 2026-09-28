@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling label propagation from Ingress to Route resources {id="networking-ingress-label-propagation-enabling_{{ context }}"}
+# Enable label propagation from Ingress to Route resources {id="networking-ingress-label-propagation-enabling_{{ context }}"}
 
 You can enable the Ingress Operator to automatically propagate labels from an `Ingress` resource to the `Route` resource it manages. To enable this, you must add the `reconcile-labels` annotation to an `Ingress` resource. {._abstract}
 

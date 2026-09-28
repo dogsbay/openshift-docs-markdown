@@ -102,16 +102,16 @@ You can add DPU-equipped worker nodes to the management cluster by creating `Bar
         apiVersion: metal3.io/v1alpha1
         kind: BareMetalHost
         metadata:
-          name: $WORKER_NAME
+          name: ${WORKER_NAME}
           namespace: openshift-machine-api
         spec:
           online: true
-          bootMACAddress: $BOOT_MAC
+          bootMACAddress: ${BOOT_MAC}
           rootDeviceHints:
-            deviceName: $ROOT_DEVICE
+            deviceName: ${ROOT_DEVICE}
           bmc:
-            address: redfish-virtualmedia+https://$BMC_IP
-            credentialsName: $WORKER_NAME-bmc-secret
+            address: redfish-virtualmedia+https://${BMC_IP}
+            credentialsName: ${WORKER_NAME}-bmc-secret
             disableCertificateVerification: true
           customDeploy:
             method: install_coreos
@@ -124,16 +124,16 @@ You can add DPU-equipped worker nodes to the management cluster by creating `Bar
         apiVersion: metal3.io/v1alpha1
         kind: BareMetalHost
         metadata:
-          name: $WORKER_NAME
+          name: ${WORKER_NAME}
           namespace: openshift-machine-api
         spec:
           online: true
-          bootMACAddress: $BOOT_MAC
+          bootMACAddress: ${BOOT_MAC}
           rootDeviceHints:
-            deviceName: $ROOT_DEVICE
+            deviceName: ${ROOT_DEVICE}
           bmc:
-            address: redfish-virtualmedia+https://$BMC_IP
-            credentialsName: $WORKER_NAME-bmc-secret
+            address: redfish-virtualmedia+https://${BMC_IP}
+            credentialsName: ${WORKER_NAME}-bmc-secret
             disableCertificateVerification: true
           customDeploy:
             method: install_coreos

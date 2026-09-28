@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Configuring sysctl settings for pods associated with bonded SR-IOV interface flag {id="nw-configure-sysctl-settings-flag-bonded_{{ context }}"}
+# Configure sysctl settings for pods associated with bonded SR-IOV interface flag {id="nw-configure-sysctl-settings-flag-bonded_{{ context }}"}
 
 You can set interface-level network `sysctl` settings for a pod connected to a bonded SR-IOV network device. {._abstract}
 

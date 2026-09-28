@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring metrics collection for {{ cert_manager_operator }} operands by using a ServiceMonitor {id="cert-manager-enable-metrics_{{ context }}"}
+# Configure metrics collection for {{ cert_manager_operator }} operands by using a ServiceMonitor {id="cert-manager-enable-metrics_{{ context }}"}
 
 You can configure metrics collection for the {{ cert_manager_operator }} operands by creating a `ServiceMonitor` custom resource (CR). {._abstract}
 

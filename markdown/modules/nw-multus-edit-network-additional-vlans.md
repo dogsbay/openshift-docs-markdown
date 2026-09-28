@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using an OVN-Kubernetes localnet topology to map VLANs to a secondary interface {id="nw-multus-edit-network-additional-vlans_{{ context }}"}
+# Use an OVN-Kubernetes localnet topology to map VLANs to a secondary interface {id="nw-multus-edit-network-additional-vlans_{{ context }}"}
 
 You can use OVN-Kubernetes localnet topology in a `NetworkAttachmentDefinition` (NAD) to map a specific VLAN ID from the physical network to the secondary interface of a pod. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running hwlatdetect {id="cnf-performing-end-to-end-tests-running-hwlatdetect_{{ context }}"}
+# Run hwlatdetect {id="cnf-performing-end-to-end-tests-running-hwlatdetect_{{ context }}"}
 
 To measure hardware latency, run the `hwlatdetect` tool. This diagnostic utility is available in the `rt-kernel` package through your {{ op_system_base_full }} {{ op_system_version }} subscription. {._abstract}
 

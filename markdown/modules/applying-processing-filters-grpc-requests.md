@@ -1,9 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Apply processing filters to gRPC requests {id="applying-processing-filters-grpc-requests_{{ context }}"}
+# Applying processing filters to gRPC requests {id="applying-processing-filters-grpc-requests_{{ context }}"}
 
-When a gRPC request hits your route, you can apply processing filters to modify the request or response before the traffic reaches your backend.  {._abstract}
+When a gRPC request hits your route, you can apply processing filters to modify the request or response before the traffic reaches your backend. {._abstract}
 
-You can define optional filters within your routing rules to apply processing directives, such as request and response header modifiers or traffic mirroring. You can also specify rule-scoped filters directly within your backend references. 
+You can define optional filters within your routing rules to apply processing directives, such as request and response header modifiers or traffic mirroring. You can also specify rule-scoped filters directly within your backend references.
 
 Because the data-plane behavior is provided by {{ SMProductName }}, you must validate specific feature support, such as filter capabilities and header matching, against your installed Service Mesh release.
 
@@ -15,7 +15,7 @@ Because the data-plane behavior is provided by {{ SMProductName }}, you must val
 
 **Procedure**
 
-1.  Create or edit a `GRPCRoute` YAML file to include your desired processing directives under the `spec.rules.filters` field. 
+1.  Create or edit a `GRPCRoute` YAML file to include your desired processing directives under the `spec.rules.filters` field.
     The following example demonstrates a complete `GRPCRoute` resource configured with a filter that adds a custom request header before routing to the backend service:
 
     ```yaml

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the trust-manager operand {id="cert-manager-trust-manager-install_{{ context }}"}
+# Install the trust-manager operand {id="cert-manager-trust-manager-install_{{ context }}"}
 
 You can install the trust-manager operand to enable the automated distribution of trust bundles across your cluster namespaces. The trust-manager operand is not installed by default. {._abstract}
 

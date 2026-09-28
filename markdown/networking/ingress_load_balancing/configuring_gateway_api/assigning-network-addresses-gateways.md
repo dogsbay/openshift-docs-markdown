@@ -1,10 +1,10 @@
 ---
-title: Assign network addresses to gateways
+title: Assigning network addresses to gateways
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
-# Assign network addresses to gateways {id="assigning-network-addresses-gateways"}
+# Assigning network addresses to gateways {id="assigning-network-addresses-gateways"}
 {%- set context = "assigning-network-addresses-gateways" %}
 
 You can configure network addresses for your gateway to provide a predictable entry point for external and internal traffic. This ensures that clients can reliably resolve and route requests to your load balancers. {._abstract}

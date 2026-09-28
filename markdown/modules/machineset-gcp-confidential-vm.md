@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Confidential VM by using machine sets {id="machineset-gcp-confidential-vm_{{ context }}"}
+# Configure Confidential VM by using machine sets {id="machineset-gcp-confidential-vm_{{ context }}"}
 
 You create machine sets to scale clusters on {{ gcp_first }}. By editing the machine set YAML file, you can configure the Confidential VM options that a machine set uses for machines that it deploys. {._abstract}
 

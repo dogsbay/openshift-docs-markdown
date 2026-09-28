@@ -1,16 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deploy an application from the Developer Catalog {id="deploy-app_{{ context }}"}
 
-{% if context == "rosa-getting-started" %}
-{%- set getting_started = true -%}
-{% endif %}
-{% if context == "rosa-quickstart" %}
-{%- set quickstart = true -%}
-{% endif %}
-
 From the {{ product_title }} web console, you can deploy a test application from the Developer Catalog and expose it with a route. {._abstract}
-
-{% if not quickstart %}
 
 **Prerequisites**
 
@@ -18,7 +9,6 @@ From the {{ product_title }} web console, you can deploy a test application from
 *   You created a {{ product_title }} cluster.
 *   You configured an identity provider for your cluster.
 *   You added your user account to the configured identity provider.
-{% endif %}
 
 **Procedure**
 
@@ -33,10 +23,9 @@ From the {{ product_title }} web console, you can deploy a test application from
     
     :::
 
-1.  To open the **Create Source-to-Image application** page, click **Create**.
-1.  In the **Git** section, click **Try sample**, add a unique name in the **Name** field, and confirm that **Deployment** and **Create a route** are selected.
+1.  To open the **Create Source-to-Image application** page, click **Create**. In the **Git** section, click **Try sample**, add a unique name in the **Name** field, and confirm that **Deployment** and **Create a route** are selected.
 1.  Click **Create** to deploy the application. It takes a few minutes for the pods to deploy.
-1.  Optional: Monitor the deployment status in the **Topology** pane by selecting your **Node.js** app and reviewing its sidebar. Wait for the `nodejs` build to complete and for the `nodejs` pod to be in a **Running** state.
+    *   Optional: Monitor the deployment status in the **Topology** pane by selecting your **Node.js** app and reviewing its sidebar. Wait for the `nodejs` build to complete and for the `nodejs` pod to be in a **Running** state.
 1.  Access the deployed application by clicking the route URL, which has a format similar to:
     ```
     https://nodejs-<project>.<cluster_name>.<hash>.<region>.openshiftapps.com/
@@ -46,11 +35,10 @@ From the {{ product_title }} web console, you can deploy a test application from
     ```
     Welcome to your Node.js application on OpenShift
     ```
-1.  Optional: In the **Administrator** perspective, navigate to **Home** → **Projects**, click the action menu for your project, and select **Delete Project** to clean up resources.
 
 **Verification**
 
-*   Verify that the application is running:
+1.  Verify that the application is running:
     ```terminal
     $ oc get pods -n <project_name>
     ```
@@ -59,7 +47,8 @@ From the {{ product_title }} web console, you can deploy a test application from
     nodejs-1-build             0/1     Completed   0          5m
     nodejs-5d9c6c7d9c-kghq2   1/1     Running     0          2m
     ```
-*   Access the application route to verify it responds correctly.
+1.  Access the application route to verify it responds correctly.
+1.  Optional: In the **Administrator** perspective, navigate to **Home** → **Projects**, click the action menu for your project, and select **Delete Project** to clean up resources.
 
 **Additional resources**
 {._additional-resources}
@@ -67,10 +56,3 @@ From the {{ product_title }} web console, you can deploy a test application from
 *   [Creating applications by using the CLI](https://docs.openshift.com/container-platform/latest/applications/creating_applications/creating-applications-using-cli.html)
 *   [Creating applications by using the web console](https://docs.openshift.com/container-platform/latest/applications/creating_applications/creating-applications-using-web-console.html)
 *   [Understanding deployments](https://docs.openshift.com/container-platform/latest/applications/deployments/what-deployments-are.html)
-
-{% if context == "rosa-getting-started" %}
-{%- set getting_started = true -%}
-{% endif %}
-{% if context == "rosa-quickstart" %}
-{%- set quickstart = true -%}
-{% endif %}

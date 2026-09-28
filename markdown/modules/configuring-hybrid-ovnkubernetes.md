@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring hybrid networking with OVN-Kubernetes {id="configuring-hybrid-ovnkubernetes_{{ context }}"}
+# Configure hybrid networking with OVN-Kubernetes {id="configuring-hybrid-ovnkubernetes_{{ context }}"}
 
 To configure hybrid networking with OVN-Kubernetes, you can set `hybridOverlayConfig` during installation or patch the Cluster Network Operator (CNO) after installation. {._abstract}
 

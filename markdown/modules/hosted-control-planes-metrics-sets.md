@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring metrics sets for {{ hcp }} {id="hosted-control-planes-metrics-sets_{{ context }}"}
+# Configure metrics sets for {{ hcp }} {id="hosted-control-planes-metrics-sets_{{ context }}"}
 
 {{ hcp_capital }} creates `ServiceMonitor` resources in each control plane namespace that allow a Prometheus stack to gather metrics from the control planes. {._abstract}
 

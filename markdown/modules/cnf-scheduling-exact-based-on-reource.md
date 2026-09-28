@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Changing where high-performance workloads run  {id="cnf-changing-where-high-performance-workloads-run_{{ context }}"}
+# Change where high-performance workloads run {id="cnf-changing-where-high-performance-workloads-run_{{ context }}"}
 
 To optimize the processing of high-performance workloads, change the default placement behavior of the NUMA-aware secondary scheduler. With this configuration, you can assign workloads to a specific NUMA node within a compute node instead of relying on default resource availability. {._abstract}
 

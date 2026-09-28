@@ -1,8 +1,14 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Adding bare-metal nodes {id="persistent-storage-csi-vsphere-adding-bm-nodes_{{ context }}"}
 
-{{ product_title }} has the ability to add bare-metal nodes to a cluster on vSphere as a Technology Preview feature.  {._abstract}
+Adding bare-metal nodes to an {{ product_title }} cluster on vSphere is supported. However, if you add bare-metal nodes, you must remove the vSphere CSI Driver, otherwise the cluster is marked as degraded. For information about how to remove the driver and the consequences of doing this, see Section "Disabling and enabling storage on vSphere".  {._abstract}
 
-However, if you add bare-metal nodes, you must remove the vSphere CSI Driver, otherwise the cluster is marked as degraded. For information about how to remove the driver and the consequences of doing this, see "Disabling and enabling storage on vSphere". 
+
+:::important
+
+Adding bare-metal nodes is generally available for {{ product_title }} 4.22.13 and later. However, this feature is Technology Preview for 4.22 through 4.22.12.
+
+:::
+
 
 For information about how to add bare-metal nodes, see "Adding bare-metal compute machines to a vSphere cluster".

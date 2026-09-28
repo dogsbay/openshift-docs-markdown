@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Improving network traffic performance using a virtual function {id="improving-network-traffic-performance-using-vf_{{ context }}"}
+# Improve network traffic performance using a virtual function {id="improving-network-traffic-performance-using-vf_{{ context }}"}
 
 Follow this procedure to assign a virtual function to the OVN-Kubernetes management port and increase its network traffic performance. {._abstract}
 

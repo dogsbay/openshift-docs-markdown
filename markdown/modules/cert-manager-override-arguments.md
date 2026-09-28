@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Customizing cert-manager by overriding arguments from the cert-manager Operator API {id="cert-manager-override-arguments_{{ context }}"}
+# Customize cert-manager by overriding arguments from the cert-manager Operator API {id="cert-manager-override-arguments_{{ context }}"}
 
 You can override the supported arguments for the {{ cert_manager_operator }} by adding a `spec.controllerConfig` section in the `CertManager` resource. {._abstract}
 
@@ -47,7 +47,7 @@ You can override the supported arguments for the {{ cert_manager_operator }} by 
           - '--v=<verbosity_level>'
     ```
 
-    For information about the overridable aruguments, see "Overridable arguments for the cert-manager components" in "Explanation of fields in the CertManager custom resource".
+    For information about the overridable arguments, see "Overridable arguments for the cert-manager components" in "Explanation of fields in the CertManager custom resource".
 1.  Save your changes and quit the text editor to apply your changes.
 
 **Verification**

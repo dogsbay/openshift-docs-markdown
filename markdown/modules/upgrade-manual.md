@@ -2,7 +2,7 @@
 
 # Schedule individual upgrades for your cluster {id="upgrade-manual_{{ context }}"}
 
-You can use {{ cluster_manager }} to manually upgrade your {{ product_title }} cluster one time. {._abstract}
+You can use {{ cluster_manager }} to manually upgrade your {{ product_title }} cluster one time, either immediately or at a scheduled future date and time. Individual upgrades give you full control over the update process by letting you choose the exact target version and timing. {._abstract}
 
 **Procedure**
 

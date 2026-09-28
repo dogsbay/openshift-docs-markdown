@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling {{ run_once_operator }} resources {id="rodoo-uninstall-resources_{{ context }}"}
+# Uninstall {{ run_once_operator }} resources {id="rodoo-uninstall-resources_{{ context }}"}
 
 Optionally, after uninstalling the {{ run_once_operator }}, you can clean up remaining resources by deleting custom resource definitions, the operator namespace, and namespace labels. {._abstract}
 

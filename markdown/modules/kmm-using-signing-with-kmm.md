@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Using signing with Kernel Module Management (KMM) {id="kmm-using-signing-with-kmm_{{ context }}"}
+# Use signing with Kernel Module Management (KMM) {id="kmm-using-signing-with-kmm_{{ context }}"}
 
 On Secure Boot-enabled {{ product_title }} systems, out-of-tree kernel modules must be signed with keys enrolled in the Machine Owner’s Key (MOK) database. For kernel modules built out of tree, KMM supports signing kmods through the `sign` section of the kernel mapping in a `Module` custom resource. {._abstract}
 

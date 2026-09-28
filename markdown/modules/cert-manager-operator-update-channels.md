@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding update channels of the {{ cert_manager_operator }} {id="cert-manager-operator-update-channels_{{ context }}"}
+# Understand update channels of the {{ cert_manager_operator }} {id="cert-manager-operator-update-channels_{{ context }}"}
 
 Update channels are the mechanism by which you can declare the version of your {{ cert_manager_operator }} in your cluster. The {{ cert_manager_operator }} offers the following update channels: {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling the Vertical Pod Autoscaler Operator {id="nodes-pods-vertical-autoscaler-uninstall_{{ context }}"}
+# Uninstall the Vertical Pod Autoscaler Operator {id="nodes-pods-vertical-autoscaler-uninstall_{{ context }}"}
 
 You can remove the Vertical Pod Autoscaler Operator (VPA) from your {{ product_title }} cluster.  {._abstract}
 

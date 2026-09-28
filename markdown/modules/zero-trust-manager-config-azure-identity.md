@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring an Azure user managed identity {id="zero-trust-manager-configure-azure-identity_{{ context }}"}
+# Configure an Azure user managed identity {id="zero-trust-manager-configure-azure-identity_{{ context }}"}
 
 Create a user-assigned managed identity in Azure to manage access control for your resources. You must also obtain the Client ID to associate roles with the service principal. {._abstract}
 

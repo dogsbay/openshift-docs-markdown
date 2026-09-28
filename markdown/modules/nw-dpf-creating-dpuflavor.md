@@ -40,6 +40,7 @@ If BlueField-3 already has the correct values, the DPU agent reports that no act
           name: hbn-ovnk
           namespace: dpf-operator-system
           annotations:
+            # Required when flavor bfcfg exceeds the DPF limit of 128K
             provisioning.dpu.nvidia.com/skip-bfcfg-size-check: ""
         spec:
           grub:
@@ -52,7 +53,7 @@ If BlueField-3 already has the correct values, the DPU agent reports that no act
               - hugepagesz=2048kB
               - hugepages=250
           nvconfig:
-            - device: '*'
+            - device: "*"
               parameters:
                 - PF_BAR2_ENABLE=0
                 - PER_PF_NUM_SF=1
@@ -156,6 +157,7 @@ If BlueField-3 already has the correct values, the DPU agent reports that no act
           name: hbn-ovnk
           namespace: dpf-operator-system
           annotations:
+            # Required when flavor bfcfg exceeds the DPF limit of 128K
             provisioning.dpu.nvidia.com/skip-bfcfg-size-check: ""
         spec:
           grub:
@@ -168,7 +170,7 @@ If BlueField-3 already has the correct values, the DPU agent reports that no act
               - hugepagesz=2048kB
               - hugepages=250
           nvconfig:
-            - device: '*'
+            - device: "*"
               parameters:
                 - PF_BAR2_ENABLE=0
                 - PER_PF_NUM_SF=1

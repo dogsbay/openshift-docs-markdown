@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling egress firewall and network policy audit logging for a namespace {id="nw-networkpolicy-audit-enable_{{ context }}"}
+# Enable egress firewall and network policy audit logging for a namespace {id="nw-networkpolicy-audit-enable_{{ context }}"}
 
 To enable egress firewall and network policy audit logging for a namespace in {{ product_title }}, you can add the `k8s.ovn.org/acl-logging` annotation with the `oc annotate` command. You can also apply a namespace YAML file that sets `Allow` and `Deny` log severity levels. {._abstract}
 

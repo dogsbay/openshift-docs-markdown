@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring token inactivity timeout for an OAuth client {id="oauth-token-inactivity-timeout_{{ context }}"}
+# Configure token inactivity timeout for an OAuth client {id="oauth-token-inactivity-timeout_{{ context }}"}
 
 Configure OAuth clients to expire tokens after a set period of inactivity, improving security by automatically invalidating idle sessions. {._abstract}
 

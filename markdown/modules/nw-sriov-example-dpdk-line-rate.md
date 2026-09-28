@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using SR-IOV and the Node Tuning Operator to achieve a DPDK line rate {id="nw-example-dpdk-line-rate_{{ context }}"}
+# Use SR-IOV and the Node Tuning Operator to achieve a DPDK line rate {id="nw-example-dpdk-line-rate_{{ context }}"}
 
 You can use the Node Tuning Operator to configure isolated CPUs, hugepages, and a topology scheduler.
 You can then use the Node Tuning Operator with Single Root I/O Virtualization (SR-IOV) to achieve a specific Data Plane Development Kit (DPDK) line rate. {._abstract}

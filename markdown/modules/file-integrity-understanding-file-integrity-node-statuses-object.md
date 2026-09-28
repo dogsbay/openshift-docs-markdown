@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding the FileIntegrityNodeStatuses object {id="understanding-file-integrity-node-statuses-object_{{ context }}"}
+# Understand the FileIntegrityNodeStatuses object {id="understanding-file-integrity-node-statuses-object_{{ context }}"}
 
 The scan results of the `FileIntegrity` CR are reported in another object called `FileIntegrityNodeStatuses`. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the {{ product_title }} Ingress Controller for dual-stack networking {id="nw-router-configuring-dual-stack_{{ context }}"}
+# Configure the {{ product_title }} Ingress Controller for dual-stack networking {id="nw-router-configuring-dual-stack_{{ context }}"}
 
 If your {{ product_title }} cluster is configured for IPv4 and IPv6 dual-stack networking, your cluster is externally reachable by {{ product_title }} routes.
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing {{ cert_manager_operator }} resources {id="cert-manager-remove-resources-console_{{ context }}"}
+# Remove {{ cert_manager_operator }} resources {id="cert-manager-remove-resources-console_{{ context }}"}
 
 After you uninstall the {{ cert_manager_operator }}, you can delete its associated resources from your cluster. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Customizing scheduler replicas {id="customizing-scheduler-replicas_{{ context }}"}
+# Customize scheduler replicas {id="customizing-scheduler-replicas_{{ context }}"}
 
 You can set a specific number of scheduler replicas by updating the `spec.replicas` field in the `NUMAResourcesScheduler` custom resource. This configuration overrides the default HA behavior. {._abstract}
 

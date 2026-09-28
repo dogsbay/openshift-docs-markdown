@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing the list of NodeNetworkState resources {id="virt-viewing-list-of-nodenetworkstate-resources-console_{{ context }}"}
+# View the list of NodeNetworkState resources {id="virt-viewing-list-of-nodenetworkstate-resources-console_{{ context }}"}
 
 As an administrator, you can use the {{ product_title }} web console to view the list of `NodeNetworkState` resources and network interfaces, and access network details. {._abstract}
 

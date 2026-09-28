@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Reviewing a remediation {id="compliance-review_{{ context }}"}
+# Review a remediation {id="compliance-review_{{ context }}"}
 
 You can review a `ComplianceRemediation` object and the `ComplianceCheckResult` object to understand what a check verifies, its severity and security controls, and how the remediation fixes the issue. After the first scan, check for remediations with the state `MissingDependencies`. {._abstract}
 

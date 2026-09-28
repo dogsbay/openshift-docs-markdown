@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing local roles and bindings {id="viewing-local-roles_{{ context }}"}
+# View local roles and bindings {id="viewing-local-roles_{{ context }}"}
 
 You can view local role bindings by using the `oc` CLI to identify the users, groups, and service accounts that have roles within the current project or another project. {._abstract}
 

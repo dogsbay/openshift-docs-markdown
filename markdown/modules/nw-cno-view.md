@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing the cluster network configuration {id="nw-cno-view_{{ context }}"}
+# View the cluster network configuration {id="nw-cno-view_{{ context }}"}
 
 You can view your {{ product_title }} cluster network configuration by using the `oc describe` command for the `network.config/cluster` resource. {._abstract}
 

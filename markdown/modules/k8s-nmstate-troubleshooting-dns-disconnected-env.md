@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Troubleshooting DNS connectivity issues in a disconnected environment {id="troubleshooting-dns-disconnected-env_{{ context }}"}
+# Troubleshoot DNS connectivity issues in a disconnected environment {id="troubleshooting-dns-disconnected-env_{{ context }}"}
 
 If you experience health check probe issues when configuring `nmstate` in a disconnected environment, you can configure the DNS server to resolve the custom domain name instead of the default `root-servers.net` domain. {._abstract}
 

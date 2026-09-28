@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ run_once_operator }} {id="rodoo-install-operator_{{ context }}"}
+# Install the {{ run_once_operator }} {id="rodoo-install-operator_{{ context }}"}
 
 Install the {{ run_once_operator }} by using the web console to create the required namespace, install the Operator from the software catalog, and create a `RunOnceDurationOverride` instance. {._abstract}
 

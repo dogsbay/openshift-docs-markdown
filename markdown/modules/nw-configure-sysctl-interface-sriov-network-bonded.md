@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring sysctl on a bonded SR-IOV network {id="configuring-sysctl-on-bonded-sriov-network_{{ context }}"}
+# Configure sysctl on a bonded SR-IOV network {id="configuring-sysctl-on-bonded-sriov-network_{{ context }}"}
 
 You can set interface specific `sysctl` settings on a bonded interface created from two SR-IOV interfaces. Do this by adding the tuning configuration to the optional `Plugins` parameter of the bond network attachment definition. {._abstract}
 

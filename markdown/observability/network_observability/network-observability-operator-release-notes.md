@@ -15,6 +15,10 @@ These release notes track the development of the Network Observability Operator 
 
 Some referenced tickets are not linked. This means that the ticket is not accessible without Red Hat credentials.
 
+{% leveloffset +1 %}{% include "./modules/network-observability-operator-release-notes-1-12-3-advisory.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/network-observability-operator-release-notes-1-12-3-fixed-issues.md" %}{% endleveloffset %}
+
 {% leveloffset +1 %}{% include "./modules/network-observability-operator-release-notes-1-12-2-advisory.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/network-observability-operator-release-notes-1-12-2-fixed-issues.md" %}{% endleveloffset %}

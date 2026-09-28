@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Automating continuous deployment {id="security-deploy-continuous_{{ context }}"}
+# Automate continuous deployment {id="security-deploy-continuous_{{ context }}"}
 
 You can integrate your own continuous deployment (CD) tooling with {{ product_title }}.  {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Authenticating with {{ gcp_short }} Workload Identity {id="cert-manager-configure-cloud-credentials-gcp-sts_{{ context }}"}
+# Authenticate with {{ gcp_short }} Workload Identity {id="cert-manager-configure-cloud-credentials-gcp-sts_{{ context }}"}
 
 To securely access {{ gcp_first }} resources from your applications without managing long-lived keys, authenticate your workloads by using {{ gcp_short }} Workload Identity. {._abstract}
 

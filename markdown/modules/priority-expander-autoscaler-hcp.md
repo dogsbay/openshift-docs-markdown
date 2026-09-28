@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting the priority expander in a hosted cluster {id="priority-expander-autoscaler-hcp_{{ context }}"}
+# Set the priority expander in a hosted cluster {id="priority-expander-autoscaler-hcp_{{ context }}"}
 
 You can define the priority for your node pools and create high priority machines before low priority machines by using the priority expander in your hosted cluster. {._abstract}
 

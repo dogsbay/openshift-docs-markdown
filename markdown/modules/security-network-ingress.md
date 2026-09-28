@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Securing ingress traffic {id="security-network-ingress_{{ context }}"}
+# Secure ingress traffic {id="security-network-ingress_{{ context }}"}
 
 There are many security implications related to how you configure access to your Kubernetes services from outside of your {{ product_title }} cluster.
  

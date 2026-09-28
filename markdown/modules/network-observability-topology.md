@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Observing the network traffic from the Topology view {id="network-observability-topology_{{ context }}"}
+# Observe the network traffic from the Topology view {id="network-observability-topology_{{ context }}"}
 
-The **Topology** view in the **Network Traffic** page provides a graphical representation of network flows and traffic volume across your {{ product_title }} cluster. As an administrator, you can use this view to monitor application traffic data and visualize the relationships between various network components. {._abstract}
+Use the **Topology** view in the **Network Traffic** page to visualize network flows, track traffic volume, and monitor relationships across cluster components. {._abstract}
 
 The visualization represents network entities as nodes and traffic flows as edges. By selecting individual components within the graph, you can access a side panel containing specific metrics and health details for that resource. This interactive approach allows for rapid identification of traffic patterns and connectivity issues within the cluster.
 

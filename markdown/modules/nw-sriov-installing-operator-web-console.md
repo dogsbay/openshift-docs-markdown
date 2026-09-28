@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the web console to install the SR-IOV Network Operator {id="nw-sriov-installing-operator-web-console_{{ context }}"}
+# Use the web console to install the SR-IOV Network Operator {id="nw-sriov-installing-operator-web-console_{{ context }}"}
 
 You can use the web console to install the SR-IOV Network Operator. By using the web console, you can deploy the Operator and manage SR-IOV network devices and attachments directly from a graphical interface without having to use the CLI. {._abstract}
 

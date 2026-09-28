@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Detecting SYN flooding using the FlowMetric API and TCP flags {id="network-observability-tcp-flag-syn-flood_{{ context }}"}
+# Detect SYN flooding using the FlowMetric API and TCP flags {id="network-observability-tcp-flag-syn-flood_{{ context }}"}
 
 Deploy a custom `AlertingRule` and `FlowMetric` configuration to monitor TCP flags, enabling real-time detection and alerting for SYN flooding attacks on the cluster. {._abstract}
 

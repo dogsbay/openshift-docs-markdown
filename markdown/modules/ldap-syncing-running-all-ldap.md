@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Syncing the LDAP server with {{ product_title }} {id="ldap-syncing-running-all-ldap_{{ context }}"}
+# Sync the LDAP server with {{ product_title }} {id="ldap-syncing-running-all-ldap_{{ context }}"}
 
 Sync all groups from your LDAP server with {{ product_title }} so you can mirror your complete LDAP group membership in the cluster. {._abstract}
 

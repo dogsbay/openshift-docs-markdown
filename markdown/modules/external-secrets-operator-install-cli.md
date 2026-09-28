@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ external_secrets_operator }} by using the CLI {id="external-secrets-operator-install-cli_{{ context }}"}
+# Install the {{ external_secrets_operator }} by using the CLI {id="external-secrets-operator-install-cli_{{ context }}"}
 
 You can install the {{ external_secrets_operator }} by manually configuring the Operator Lifecycle Manager (OLM) resources using the OpenShift CLI. You can create a dedicated namespace, define the Operator’s scope, and install the Operator from the catalog. {._abstract}
 

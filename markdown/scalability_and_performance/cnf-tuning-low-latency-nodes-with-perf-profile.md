@@ -49,6 +49,18 @@ Use the following reference performance profiles as the basis to develop your ow
 
 {% leveloffset +1 %}{% include "./modules/cnf-configuring-power-saving-for-nodes.md" %}{% endleveloffset %}
 
+## Protecting low latency workloads from exec operations {id="cnf-exec-cpu-affinity_{{ context }}" ._additional-resources}
+
+{% leveloffset +2 %}{% include "./modules/cnf-protecting-low-latency-workloads.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/cnf-enabling-cpu-isolation-for-executed-processes.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/cnf-disabling-cpu-isolation-for-executed-processes.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/cnf-troubleshooting-exec-cpu-affinity.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/cnf-troubleshooting-exec-cpu-affinity-reference.md" %}{% endleveloffset %}
+
 **Additional resources**
 {._additional-resources}
 

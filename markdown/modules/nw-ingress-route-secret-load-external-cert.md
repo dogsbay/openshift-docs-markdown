@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a route with externally managed certificates {id="nw-ingress-route-secret-load-external-cert_{{ context }}"}
+# Create a route with externally managed certificates {id="nw-ingress-route-secret-load-external-cert_{{ context }}"}
 
 You can configure {{ product_title }} routes with third-party certificate management solutions by using the `.spec.tls.externalCertificate` field of the route API. You can reference externally managed TLS certificates via secrets, eliminating the need for manual certificate management. {._abstract}
 

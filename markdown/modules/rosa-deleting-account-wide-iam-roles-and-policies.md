@@ -1,11 +1,3 @@
-{% if context == "rosa-hcp-deleting-cluster" %}
-{%- set hcp = true -%}
-{% endif %}
-
-{% if context == "rosa-sts-deleting-cluster" %}
-{%- set sts = true -%}
-{% endif %}
-
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deleting the account-wide IAM roles and policies {id="rosa-deleting-account-wide-iam-roles-and-policies_{{ context }}"}
 
@@ -34,7 +26,7 @@ The account-wide IAM roles and policies might be used by other {{ product_title 
 
         **Example output**
 
-{%- if sts %}
+{%- if openshift_rosa %}
         ```terminal
         I: Fetching account roles
         ROLE NAME                           ROLE TYPE      ROLE ARN                                                           OPENSHIFT VERSION
@@ -44,7 +36,7 @@ The account-wide IAM roles and policies might be used by other {{ product_title 
         ManagedOpenShift-Worker-Role        Worker         arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-Worker-Role        4.22
         ```
 {%- endif %}
-{%- if hcp %}
+{%- if openshift_rosa_hcp %}
         ```terminal
         I: Fetching account roles
         ROLE NAME                                 ROLE TYPE      ROLE ARN                                                                 OPENSHIFT VERSION  AWS Managed
@@ -73,7 +65,7 @@ The account-wide IAM roles and policies might be used by other {{ product_title 
             
             :::
 
-{% if hcp %}
+{% if openshift_rosa_hcp %}
             ```terminal title="Example output"
             W: There are no classic account roles to be deleted
             I: Deleting hosted CP account roles

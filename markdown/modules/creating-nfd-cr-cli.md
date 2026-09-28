@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a NodeFeatureDiscovery CR by using the CLI {id="creating-nfd-cr-cli_{{ context }}"}
+# Create a NodeFeatureDiscovery CR by using the CLI {id="creating-nfd-cr-cli_{{ context }}"}
 
 Create a `NodeFeatureDiscovery` CR instance by using the {{ oc_first }} to deploy the NFD operand and enable hardware feature detection on your cluster nodes. {._abstract}
 

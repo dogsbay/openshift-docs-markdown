@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the custom metrics autoscaler to use {{ product_title }} monitoring {id="nodes-cma-autoscaling-custom-prometheus-config_{{ context }}"}
+# Configure the custom metrics autoscaler to use {{ product_title }} monitoring {id="nodes-cma-autoscaling-custom-prometheus-config_{{ context }}"}
 
 You can use the installed {{ product_title }} Prometheus monitoring as a source for the metrics used by the custom metrics autoscaler. However, there are some additional configurations you must perform.
 

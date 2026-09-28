@@ -10,7 +10,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding an identity provider to your cluster {id="add-identity-provider_{{ context }}"}
+# Add an identity provider to your cluster {id="add-identity-provider_{{ context }}"}
 
 Apply the identity provider custom resource (CR) to your cluster after you define it. With this configuration, you can authenticate with the configured identity provider. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting an incorrect node network configuration policy configuration {id="virt-troubleshooting-incorrect-policy-config_{{ context }}"}
+# Troubleshoot an incorrect node network configuration policy configuration {id="virt-troubleshooting-incorrect-policy-config_{{ context }}"}
 
 You can apply changes to the node network configuration across your entire cluster by applying a node network configuration policy. If you applied an incorrect configuration, you can use the following example to troubleshoot and correct the failed node network policy. {._abstract}
 

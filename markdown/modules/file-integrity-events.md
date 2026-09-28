@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding events {id="file-integrity-events_{{ context }}"}
+# Understand events {id="file-integrity-events_{{ context }}"}
 
 Transitions in the status of the `FileIntegrity` and `FileIntegrityNodeStatus` objects are logged by _events_. The creation time of the event reflects the latest transition, such as `Initializing` to `Active`, and not necessarily the latest scan result. However, the newest event always reflects the most recent status. {._abstract}
 

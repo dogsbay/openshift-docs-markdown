@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting Loki ResourceExhausted error {id="network-observability-troubleshooting-loki-resource-exhausted_{{ context }}"}
+# Troubleshoot Loki ResourceExhausted error {id="network-observability-troubleshooting-loki-resource-exhausted_{{ context }}"}
 
 Resolve Loki `ResourceExhausted` errors by adjusting the `batchSize` in the `FlowCollector` resource or the maximum message size settings in your Loki configuration to ensure flow data stays within memory limits. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the log enricher to trace an application {id="spo-log-enricher-app-trace_{{ context }}"}
+# Use the log enricher to trace an application {id="spo-log-enricher-app-trace_{{ context }}"}
 
 You can use the Security Profiles Operator log enricher to trace an application. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring huge pages at boot time {id="configuring-huge-pages_{{ context }}"}
+# Configure huge pages at boot time {id="configuring-huge-pages_{{ context }}"}
 
 To ensure nodes in your {{ product_title }} cluster pre-allocate memory for specific workloads, reserve huge pages at boot time. {._abstract}
 

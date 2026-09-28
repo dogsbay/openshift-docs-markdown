@@ -5,7 +5,8 @@ Verify that the Model Context Protocol (MCP) gateway is deployed and running cor
 
 **Prerequisites**
 
-*   Access to OpenShift console with admin rights.
+*   Access to {{ product_title }} console with admin rights.
+*   {{ oc_first }} is installed.
 *   The MCP server Helm chart is installed.
 *   MCP-compatible client connected.
 *   MCP gateway is installed.
@@ -14,12 +15,12 @@ Verify that the Model Context Protocol (MCP) gateway is deployed and running cor
 
 1.  Check the status of your deployment by running the following command:
     ```terminal
-    $ oc get pods -n mcp-system -l "app.kubernetes.io/instance=mcp-gateway"
+    $ oc get pods -n gateway-namespace -l "app.kubernetes.io/name=mcp-gateway"
     ```
 
     :::note
 
-    This example uses the namespace "mcp-system" for installing the gateway. If you install the gateway in a different namespace than "mcp-system", use that namespace instead throughout the procedure.
+    This example uses the namespace "gateway-namespace" for installing the gateway. If you install the gateway in a different namespace than "gateway-namespace", use that namespace instead throughout the procedure.
     
     :::
 
@@ -32,14 +33,14 @@ Verify that the Model Context Protocol (MCP) gateway is deployed and running cor
     $ oc get mcpgatewayextension -A
     ```
     ```terminal title="Example"
-    NAMESPACE   NAME          READY   AGE
-    mcp-system  mcp-gateway           105s
+    NAMESPACE          NAME          READY   AGE
+    gateway-namespace  mcp-gateway           105s
     ```
 1.  Verify the broker-router deployment by running the following command:
     ```terminal
-    $ oc logs -n mcp-system deployment/mcp-gateway-broker-router
+    $ oc logs -n gateway-namespace deployment/mcp-gateway
     ```
 1.  Verify EnvoyFilter was created in the gateway namespace by running the following command:
     ```terminal
-    $ oc get envoyfilter -n mcp-system -l app.kubernetes.io/managed-by=mcp-gateway-controller
+    $ oc get envoyfilter -n gateway-namespace -l app.kubernetes.io/managed-by=mcp-gateway-controller
     ```

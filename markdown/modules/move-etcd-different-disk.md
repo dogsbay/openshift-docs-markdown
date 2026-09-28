@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Moving etcd to a different disk {id="move-etcd-different-disk_{{ context }}"}
+# Move etcd to a different disk {id="move-etcd-different-disk_{{ context }}"}
 
 Move etcd data from a shared disk to a dedicated disk to resolve or prevent performance problems. Isolating etcd storage reduces latency from competing I/O on the control plane. {._abstract}
 

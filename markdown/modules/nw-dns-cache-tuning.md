@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Tuning the CoreDNS cache {id="nw-dns-cache-tuning_{{ context }}"}
+# Tune the CoreDNS cache {id="nw-dns-cache-tuning_{{ context }}"}
 
 To reduce the load on upstream DNS resolvers, you can tune the CoreDNS cache by adjusting the duration of positive and negative caching. This process involves modifying the time-to-live (TTL) values within the DNS Operator object to control how long query responses are stored. {._abstract}
 

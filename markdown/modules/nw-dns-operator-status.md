@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Checking DNS Operator status {id="nw-dns-operator-status_{{ context }}"}
+# Check DNS Operator status {id="nw-dns-operator-status_{{ context }}"}
 
 You can inspect the status and view the details of the DNS Operator by using the `oc describe` command. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling the all-multicast mode on an SR-IOV network {id="enabling-all-multicast-sriov-network_{{ context }}"}
+# Enable the all-multicast mode on an SR-IOV network {id="enabling-all-multicast-sriov-network_{{ context }}"}
 
 You can enable the all-multicast mode on an SR-IOV interface by: {._abstract}
 

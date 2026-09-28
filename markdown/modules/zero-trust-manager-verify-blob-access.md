@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Verifying that the application workload can access the content in the Azure Blob Storage {id="zero-trust-manager-verify-blob-access_{{ context }}"}
+# Verify that the application workload can access the content in the Azure Blob Storage {id="zero-trust-manager-verify-blob-access_{{ context }}"}
 
 Verify that your application workload can connect to the Azure Blob Storage. By uploading a test file, you validate the authentication token and ensure that the workload has the correct permissions. {._abstract}
 

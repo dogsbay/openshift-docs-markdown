@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Verifying TLS security profile adherence for cert-manager components {id="cert-manager-verify-tls-adherence_{{ context }}"}
+# Verify TLS security profile adherence for cert-manager components {id="cert-manager-verify-tls-adherence_{{ context }}"}
 
 After configuring the cluster TLS security profile adherence, you can verify that the TLS configuration is applied to the cert-manager controller, webhook, and CA injector deployments. {._abstract}
 

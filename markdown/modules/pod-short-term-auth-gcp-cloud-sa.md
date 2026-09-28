@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Creating a federated {{ gcp_short }} service account {id="pod-short-term-auth-gcp-cloud-sa_{{ context }}"}
+# Create a federated {{ gcp_short }} service account {id="pod-short-term-auth-gcp-cloud-sa_{{ context }}"}
 
 You can use the {{ gcp_full }} console to create a workload identity pool and provider and allow an {{ product_title }} service account to impersonate a {{ gcp_short }} service account. {._abstract}
 

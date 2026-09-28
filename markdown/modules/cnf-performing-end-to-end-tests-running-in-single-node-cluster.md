@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running latency tests on a {{ sno }} cluster {id="cnf-performing-end-to-end-tests-running-in-single-node-cluster_{{ context }}"}
+# Run latency tests on a {{ sno }} cluster {id="cnf-performing-end-to-end-tests-running-in-single-node-cluster_{{ context }}"}
 
 To validate node tuning and identify performance delays, run latency tests on your {{ sno }} clusters. Evaluating these metrics ensures your environment is optimized for high-performance workloads. {._abstract}
 

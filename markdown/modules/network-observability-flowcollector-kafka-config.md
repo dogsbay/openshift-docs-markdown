@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the FlowCollector resource with Kafka {id="network-observability-flowcollector-kafka-config_{{ context }}"}
+# Configure the FlowCollector resource with Kafka {id="network-observability-flowcollector-kafka-config_{{ context }}"}
 
 Configure the `FlowCollector` resource to use Kafka for high-throughput and low-latency data feeds. {._abstract}
 

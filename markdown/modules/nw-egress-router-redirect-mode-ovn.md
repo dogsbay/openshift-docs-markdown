@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying an egress router in redirect mode {id="nw-egress-router-redirect-mode-ovn_{{ context }}"}
+# Deploy an egress router in redirect mode {id="nw-egress-router-redirect-mode-ovn_{{ context }}"}
 
 You can deploy an egress router to redirect traffic from its own reserved source IP address to one or more destination IP addresses. {._abstract}
 

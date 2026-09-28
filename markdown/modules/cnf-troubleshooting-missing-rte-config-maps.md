@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Correcting a missing resource topology exporter config map {id="cnf-troubleshooting-missing-rte-config-maps_{{ context }}"}
+# Correct a missing resource topology exporter config map {id="cnf-troubleshooting-missing-rte-config-maps_{{ context }}"}
 
 To correct a missing config map for the resource topology exporter (RTE), resolve misconfigured settings in your cluster. Fixing this issue ensures the NUMA Resources Operator functions properly when the logs of the RTE daemon set pods indicate missing configurations. {._abstract}
 

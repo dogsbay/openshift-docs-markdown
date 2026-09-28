@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configure an internal load balancer for a gateway {id="configuring-internal-lb-gateway_{{ context }}"}
+# Configuring an internal load balancer for a gateway {id="configuring-internal-lb-gateway_{{ context }}"}
 
 By default, Gateway API provisions an external load balancer. To restrict your gateway traffic to your private network, you can configure Gateway API to provision an internal load balancer by adding a cloud-specific annotation to your `Gateway` custom resource (CR). {._abstract}
 

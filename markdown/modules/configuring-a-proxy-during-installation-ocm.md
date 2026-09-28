@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Configuring a proxy during installation using {{ cluster_manager }} {id="configuring-a-proxy-during-installation-ocm_{{ context }}"}
+# Configure a proxy during installation using {{ cluster_manager }} {id="configuring-a-proxy-during-installation-ocm_{{ context }}"}
 
 If you are installing
 {%- if openshift_dedicated %}

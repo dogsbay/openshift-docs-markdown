@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting hidden keys with the NBDE Tang Server Operator {id="deleting-hidden-keys-with-nbde-tang-server-operator_{{ context }}"}
+# Delete hidden keys with the NBDE Tang Server Operator {id="deleting-hidden-keys-with-nbde-tang-server-operator_{{ context }}"}
 
 After you rotate your Tang server keys, the previously active keys become hidden and are no longer advertised by the Tang instance. You can use the NBDE Tang Server Operator to remove encryption keys no longer used.
 

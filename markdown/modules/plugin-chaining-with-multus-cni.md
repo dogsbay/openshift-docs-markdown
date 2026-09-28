@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring plugin chaining with the route-override CNI plugin {id="configuring-plugin-chaining-with-multus-cni_{{ context }}"}
+# Configure plugin chaining with the route-override CNI plugin {id="configuring-plugin-chaining-with-multus-cni_{{ context }}"}
 
 Plugin chaining allows you to configure multiple CNI plugins to be applied sequentially to the same network interface, where each plugin in the chain processes the interface in order. {._abstract}
 

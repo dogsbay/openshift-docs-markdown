@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting the SR-IOV Network Operator into systemd mode {id="nw-sriov-hwol-configuring-systemd-mode_{{ context }}"}
+# Set the SR-IOV Network Operator into systemd mode {id="nw-sriov-hwol-configuring-systemd-mode_{{ context }}"}
 
 To support hardware offloading, you must first set the SR-IOV Network Operator into `systemd` mode. {._abstract}
 

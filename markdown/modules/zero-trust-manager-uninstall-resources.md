@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling {{ zero_trust_full }} resources by using the CLI {id="zero-trust-manager-uninstall-resources_{{ context }}"}
+# Uninstall {{ zero_trust_full }} resources by using the CLI {id="zero-trust-manager-uninstall-resources_{{ context }}"}
 
 Remove {{ zero_trust_full }} resources from your cluster using the CLI. This deletes the remaining operands and definitions to help ensure a clean environment after you uninstall the product. {._abstract}
 

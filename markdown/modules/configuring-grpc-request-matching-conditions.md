@@ -1,9 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configure gRPC request matching conditions {id="configuring-grpc-request-matching-conditions_{{ context }}"}
+# Configuring gRPC request matching conditions {id="configuring-grpc-request-matching-conditions_{{ context }}"}
 
 When multiple gRPC services share a gateway, you can define request matching conditions based on gRPC methods and headers. This ensures that traffic is successfully routed to the correct backend application. {._abstract}
 
-Matches define the specific conditions used for matching a rule against incoming gRPC requests. You can select gRPC requests via a `method` match, which can be an exact match or a regular expression, along with optional `headers` matches. 
+Matches define the specific conditions used for matching a rule against incoming gRPC requests. You can select gRPC requests via a `method` match, which can be an exact match or a regular expression, along with optional `headers` matches.
 
 Each rule can specify a maximum of 64 matches. However, the total number of matches across all rules in a single `GRPCRoute` resource cannot exceed 128. If your routing requirements exceed this limit, you must distribute your complex matching combinations across multiple routes.
 
@@ -15,7 +15,7 @@ Each rule can specify a maximum of 64 matches. However, the total number of matc
 
 **Procedure**
 
-1.  Create or edit a `GRPCRoute` YAML file to include your desired match conditions under the `spec.rules.matches` field. 
+1.  Create or edit a `GRPCRoute` YAML file to include your desired match conditions under the `spec.rules.matches` field.
     The following example demonstrates a complete `GRPCRoute` resource configured with matching conditions for a specific gRPC service, method, and header:
 
     ```yaml

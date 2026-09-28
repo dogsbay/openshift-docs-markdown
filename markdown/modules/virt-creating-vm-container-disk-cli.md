@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a VM from a container disk by using the CLI {id="virt-creating-vm-import-cli_{{ context }}"}
+# Creating a VM from a container disk by using the CLI {id="virt-creating-vm-container-disk-cli_{{ context }}"}
 
 You can create a virtual machine (VM) from a container disk by using the command line. {._abstract}
 

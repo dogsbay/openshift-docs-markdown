@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing from the software catalog using the CLI {id="nw-metallb-installing-operator-cli_{{ context }}"}
+# Install from the software catalog using the CLI {id="nw-metallb-installing-operator-cli_{{ context }}"}
 
 To install the MetalLB Operator from the software catalog in {{ product_title }} without using the web console, you can use the {{ oc_first }}. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing a secondary NetworkAttachmentDefinition custom resource {id="nw-multus-delete-network_{{ context }}"}
+# Remove a secondary NetworkAttachmentDefinition custom resource {id="nw-multus-delete-network_{{ context }}"}
 
 To clean up unused network configurations or free up network resources in {{ product_title }}, you can remove a secondary `NetworkAttachmentDefinition` CR. Edit the Cluster Network Operator CR and delete the `NetworkAttachmentDefinition` CR to remove the secondary network from your cluster. {._abstract}
 

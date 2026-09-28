@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring network policy by using the FlowCollector custom resource {id="network-observability-deploy-network-policy_{{ context }}"}
+# Configure network policy by using the FlowCollector custom resource {id="network-observability-deploy-network-policy_{{ context }}"}
 
 You can set up ingress and egress network policies to control pod traffic. This enhances security and collects only the network flow data you need. This reduces noise, supports compliance, and improves visibility into network communication. {._abstract}
 

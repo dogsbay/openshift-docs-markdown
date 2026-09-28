@@ -1,14 +1,7 @@
-{% if context == "rosa-upgrading-sts" %}
-{%- set sts = true -%}
-{% endif %}
-{% if context == "rosa-hcp-upgrading" %}
-{%- set rosa_hcp = true -%}
-{% endif %}
-
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Upgrade a cluster with the {{ rosa_cli }} {id="rosa-upgrading-cli_{{ context }}"}
 
-You can use the {{ rosa_cli_first }} to upgrade a {{ product_title }} cluster either immediately within one hour or at a future time. {._abstract}
+You can use the {{ rosa_cli_first }} to upgrade a cluster either immediately within 10 minutes or at a future time. For {{ sts_first }} clusters, the {{ rosa_cli }} automatically upgrades Identity and Access Management (IAM) policies to match the target version of the upgrade. {._abstract}
 
 **Prerequisites**
 
@@ -28,7 +21,7 @@ You can use the {{ rosa_cli_first }} to upgrade a {{ product_title }} cluster ei
     $ rosa list upgrade --cluster=<cluster_name_or_id>
     ```
 
-    The command returns a list of versions to which the cluster can be upgraded, including a recommended version. The recommendation is based on the conditional update risks. Each known risk might apply to all clusters or only clusters matching certain conditions. Refer to the OpenShift release notes to evaluate, validate and determine the appropriate version to upgrade to.
+    The command returns a list of versions to which the cluster can be upgraded, including a recommended version. The recommendation is based on the conditional update risks. Each known risk might apply to all clusters or only clusters matching certain conditions. Refer to the {{ OCP_short }} release notes to evaluate, validate and determine the appropriate version to upgrade to.
 1.  Set the update channel. For more information about channels, refer to "Understanding update channels and releases" listed in the _Additional resources_.
     ```terminal
     $ rosa edit -c <cluster_name_or_id> --channel <channel>
@@ -38,27 +31,20 @@ You can use the {{ rosa_cli_first }} to upgrade a {{ product_title }} cluster ei
     ```terminal
     $ rosa edit -c <cluster_name_or_id> --channel <stable-4.19>
     ```
-1.  To upgrade the cluster to a specified version immediately within the next hour, enter the following command:
-{% if not rosa_hcp %}
+1.  To upgrade the cluster to a specified version immediately within the next 10 minutes, enter the following command:
     ```terminal
     $ rosa upgrade cluster --cluster=<cluster_name_or_id> --version <version-id>
     ```
-{% endif %}
-{% if rosa_hcp %}
-    ```terminal
-    $ rosa upgrade cluster --cluster=<cluster_name_or_id> --control-plane
-    ```
-{% endif %}
 
     :::note
 
-    If you are upgrading an AWS Security Token Service (STS) cluster, this command starts an interactive IAM Roles/policies upgrade mode process that verifies the account and operator role policies for the chosen cluster are compatible with the target version of the upgrade. If the policies are not compatible with the chosen upgrade version, the CLI automatically upgrades them in auto mode.
+    If you are upgrading an AWS {{ sts_first }} cluster, this command starts an interactive IAM roles and policies upgrade mode process that verifies the account and Operator role policies for the chosen cluster are compatible with the target version of the upgrade. If the policies are not compatible with the chosen upgrade version, the CLI automatically upgrades them in auto mode.
     
     :::
 
 
-    The cluster is scheduled for an immediate upgrade as denoted by the _Scheduled Time_. The upgrade will begin within one hour from the scheduled time.
-1.  Alternatively, to upgrade the cluster at a future time in UTC, enter the following command:
+    The cluster is scheduled for an immediate upgrade as denoted by the _Scheduled Time_. The upgrade will begin within 10 minutes from the scheduled time.
+1.  Alternatively, to upgrade the cluster at a future time in Coordinated Universal Time (UTC), enter the following command:
     ```terminal
     $ rosa upgrade cluster --cluster=<cluster_name|cluster_id>   \
               --version <version-id>   \

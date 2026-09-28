@@ -44,7 +44,7 @@ Review platform compatibility information before you install {{ VirtProductName 
 *   [Configure CPU models](/virt/managing_vms/cpu_models/virt-configuring-default-cpu-model#virt-configuring-default-cpu-model)
 *   [Deleting a virtual machine by using the web console](/virt/managing_vms/virt-delete-vms#virt-delete-vm-web_virt-delete-vms)
 *   [Configuring a downward metrics device](/virt/monitoring/virt-exposing-downward-metrics#virt-configuring-downward-metrics_virt-exposing-downward-metrics)
-*   [Creating virtual machines from instance types](/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)
+*   [Instance types](/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)
 {%- endif %}
 *   [Networking overview](/virt/vm_networking/virt-networking-overview#virt-networking)
 {%- if not openshift_dedicated %}

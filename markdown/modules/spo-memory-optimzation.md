@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling memory optimization in the spod daemon {id="spo-memory-optimization_{{ context }}"}
+# Enable memory optimization in the spod daemon {id="spo-memory-optimization_{{ context }}"}
 
 The controller running inside of `spod` daemon process watches all pods available in the cluster when profile recording is enabled. This can lead to very high memory usage in large clusters, resulting in the `spod` daemon running out of memory or crashing. {._abstract}
 

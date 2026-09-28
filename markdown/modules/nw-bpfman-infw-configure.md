@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Ingress Node Firewall Operator to use the eBPF Manager Operator {id="bpfman-infw-configure_{{ context }}"}
+# Configure Ingress Node Firewall Operator to use the eBPF Manager Operator {id="bpfman-infw-configure_{{ context }}"}
 
 Configure the Ingress Node Firewall to use eBPF Manager for program lifecycle control. {._abstract}
 

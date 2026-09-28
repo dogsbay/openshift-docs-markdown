@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing certificate authorities on a {{ product_title }} cluster {id="configmap-removing-ca_{{ context }}"}
+# Remove certificate authorities on a {{ product_title }} cluster {id="configmap-removing-ca_{{ context }}"}
 
 You can remove certificate authorities (CA) from your cluster with the ROSA CLI, `rosa`. {._abstract}
 

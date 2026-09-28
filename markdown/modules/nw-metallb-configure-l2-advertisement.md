@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring MetalLB with an L2 advertisement {id="nw-metallb-configure-with-L2-advertisement_{{ context }}"}
+# Configure MetalLB with an L2 advertisement {id="nw-metallb-configure-with-L2-advertisement_{{ context }}"}
 
 You can configure MetalLB so that the `IPAddressPool` is advertised with the L2 protocol. {._abstract}
 

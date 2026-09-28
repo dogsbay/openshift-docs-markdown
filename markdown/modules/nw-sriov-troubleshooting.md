@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting SR-IOV configuration {id="nw-sriov-troubleshooting_{{ context }}"}
+# Troubleshoot SR-IOV configuration {id="nw-sriov-troubleshooting_{{ context }}"}
 
 After following the procedure to configure an SR-IOV network device, the following sections address some error conditions. {._abstract}
 

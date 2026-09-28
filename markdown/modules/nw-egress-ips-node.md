@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Labeling a node to host egress IP addresses {id="nw-egress-ips-node_{{ context }}"}
+# Label a node to host egress IP addresses {id="nw-egress-ips-node_{{ context }}"}
 
 You can apply the `k8s.ovn.org/egress-assignable=""` label to a node in your cluster so that {{ product_title }} can assign one or more egress IP addresses to the node. {._abstract}
 

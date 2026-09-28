@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling direct authentication {id="external-auth-disabling_{{ context }}"}
+# Disable direct authentication {id="external-auth-disabling_{{ context }}"}
 
 Disable direct authentication to revert your cluster back to using the built-in {{ product_title }} OAuth server for authentication when external OIDC integration is no longer needed. {._abstract}
 

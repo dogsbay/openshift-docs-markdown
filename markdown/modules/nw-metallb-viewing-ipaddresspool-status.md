@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing the `IPAddressPool` status {id="nw-metallb-configure-address-pool_{{ context }}"}
+# View the `IPAddressPool` status {id="nw-metallb-configure-address-pool_{{ context }}"}
 
 Check IP address allocation from your MetalLB pools by viewing the `IPAddressPool` status. This status shows the number of addresses assigned to services and the number remaining available for assignment. {._abstract}
 

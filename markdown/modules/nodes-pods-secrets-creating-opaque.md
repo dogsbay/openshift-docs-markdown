@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an opaque secret {id="nodes-pods-secrets-creating-opaque_{{ context }}"}
+# Create an opaque secret {id="nodes-pods-secrets-creating-opaque_{{ context }}"}
 
 As an administrator, you can create an opaque secret, which allows you to store unstructured `key:value` pairs that can contain arbitrary values. {._abstract}
 

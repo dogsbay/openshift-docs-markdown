@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Checking the realtime kernel version {id="ztp-checking-kernel-rt-in-cluster_{{ context }}"}
+# Check the realtime kernel version {id="ztp-checking-kernel-rt-in-cluster_{{ context }}"}
 
 Always use the latest version of the realtime kernel in your {{ product_title }} clusters. If you are unsure about the kernel version that is in use in the cluster, you can compare the current realtime kernel version to the release version with the following procedure. {._abstract}
 

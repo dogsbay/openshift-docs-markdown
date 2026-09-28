@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the TLS security profile for the kubelet {id="tls-profiles-kubelet-configuring_{{ context }}"}
+# Configure the TLS security profile for the kubelet {id="tls-profiles-kubelet-configuring_{{ context }}"}
 
 To configure TLS ciphers and minimum versions for the kubelet HTTP server in {{ product_title }}, apply a predefined or custom TLS security profile through a `KubeletConfig` custom resource (CR). Without a custom profile, the kubelet defaults to the `Intermediate` profile. {._abstract}
 

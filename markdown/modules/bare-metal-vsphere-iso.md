@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating {{ op_system }} machines using an ISO image {id="bare-metal-vsphere-iso_{{ context }}"}
+# Create {{ op_system }} machines using an ISO image {id="bare-metal-vsphere-iso_{{ context }}"}
 
 To add bare-metal compute machines to your {{ vmw_first }} cluster, you must manually provision them using an {{ op_system }} ISO image and the `coreos-installer` utility. {._abstract}
 

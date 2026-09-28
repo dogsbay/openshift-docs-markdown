@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ rhq_cso }} {id="security-pod-scan-cso_{{ context }}"}
+# Install the {{ rhq_cso }} {id="security-pod-scan-cso_{{ context }}"}
 
 You can install the {{ rhq_cso }} from the {{ product_title }} web console OperatorHub, or by using the CLI. {._abstract}
 

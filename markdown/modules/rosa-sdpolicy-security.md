@@ -1,18 +1,7 @@
-{% if context == "rosa-hcp-service-definition" %}
-{%- set rosa_with_hcp = true -%}
-{% endif %}
-
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Security {id="rosa-sdpolicy-security_{{ context }}"}
 
-This section provides information about the service definition for
-{%- if openshift_rosa_hcp %}
-{{ hcp_title_first }}
-{%- endif %}
-{%- if not openshift_rosa_hcp %}
-{{ product_title }}
-{%- endif %}
-security.
+This section provides information about the service definition for {{ product_title }} security.
 
 ## Authentication provider {id="rosa-sdpolicy-auth-provider_{{ context }}"}
 Authentication for the cluster can be configured using either {{ cluster_manager_url }} or cluster creation process or using the ROSA CLI, `rosa`. ROSA is not an identity provider, and all access to the cluster must be managed by the customer as part of their integrated solution. The use of multiple identity providers provisioned at the same time is supported. The following identity providers are supported:
@@ -28,21 +17,7 @@ Authentication for the cluster can be configured using either {{ cluster_manager
 Privileged containers are available for users with the `cluster-admin` role. Usage of privileged containers as `cluster-admin` is subject to the responsibilities and exclusion notes in the [Red&#160;Hat Enterprise Agreement Appendix 4](https://www.redhat.com/en/about/agreements) (Online Subscription Services).
 
 ## Customer administrator user {id="rosa-sdpolicy-customer-admin-user_{{ context }}"}
-In addition to normal users,
-{%- if openshift_rosa_hcp %}
-{{ hcp_title_first }}
-{%- endif %}
-{%- if not openshift_rosa_hcp %}
-{{ product_title }}
-{%- endif %}
-provides access to a
-{%- if openshift_rosa_hcp %}
-{{ hcp_title }}-specific
-{%- endif %}
-{%- if not openshift_rosa_hcp %}
-ROSA-specific
-{%- endif %}
-group called `dedicated-admin`. Any users on the cluster that are members of the `dedicated-admin` group:
+In addition to normal users, {{ product_title }} provides access to a {{ product_title }}-specific group called `dedicated-admin`. Any users on the cluster that are members of the `dedicated-admin` group:
 
 *   Have administrator access to all customer-created projects on the cluster.
 *   Can manage resource quotas and limits on the cluster.
@@ -52,14 +27,7 @@ group called `dedicated-admin`. Any users on the cluster that are members of the
 *   Can install Operators from the software catalog and perform all verbs in all `*.operators.coreos.com` API groups.
 
 ## Cluster administration role {id="rosa-sdpolicy-cluster-admin-role_{{ context }}"}
-The administrator of
-{%- if openshift_rosa_hcp %}
-{{ hcp_title_first }}
-{%- endif %}
-{%- if not openshift_rosa_hcp %}
-{{ product_title }}
-{%- endif %}
-has default access to the `cluster-admin` role for your organization’s cluster. While logged into an account with the `cluster-admin` role, users have increased permissions to run privileged security contexts.
+The administrator of {{ product_title }} has default access to the `cluster-admin` role for your organization’s cluster. While logged into an account with the `cluster-admin` role, users have increased permissions to run privileged security contexts.
 
 ## Project self-service {id="rosa-sdpolicy-project-self-service_{{ context }}"}
 By default, all users have the ability to create, update, and delete their projects. This can be restricted if a member of the `dedicated-admin` group removes the `self-provisioner` role from authenticated users:
@@ -107,8 +75,4 @@ By enabling etcd encryption for the key values in etcd, you will incur a perform
 
 :::
 
-{% endif %}
-
-{% if context == "rosa-hcp-service-definition" %}
-{%- set rosa_with_hcp = "" -%}
 {% endif %}

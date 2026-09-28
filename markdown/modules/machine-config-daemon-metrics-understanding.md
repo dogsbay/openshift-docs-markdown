@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Understanding Machine Config Daemon metrics {id="machine-config-daemon-metrics-understanding_{{ context }}"}
+# Understand Machine Config Daemon metrics {id="machine-config-daemon-metrics-understanding_{{ context }}"}
 
 You can access the metrics provided by the Machine Config Daemon by using the Prometheus Cluster Monitoring stack. {._abstract}
 

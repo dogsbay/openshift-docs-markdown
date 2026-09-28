@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring custom charts using FlowMetric API {id="network-observability-custom-charts-flowmetrics_{{ context }}"}
+# Configure custom charts using FlowMetric API {id="network-observability-custom-charts-flowmetrics_{{ context }}"}
 
 Generate custom charts for {{ product_title }} web console dashboards by defining the charts section of the `FlowMetric` custom resource. {._abstract}
 

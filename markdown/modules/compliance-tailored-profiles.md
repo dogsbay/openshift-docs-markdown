@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using tailored profiles to extend existing ProfileBundles {id="compliance-tailored-profiles_{{ context }}"}
+# Use tailored profiles to extend existing ProfileBundles {id="compliance-tailored-profiles_{{ context }}"}
 
 Although the `TailoredProfile` CR enables the most common tailoring operations, you can use the XCCDF (Extensible Configuration Checklist Description Format) standard for even more flexibility in tailoring OpenSCAP profiles.
  

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring autoscaling to and from zero on {{ hcp }} node pools {id="hcp-autoscaling-to-from-zero-configure_{{ context }}"}
+# Configure autoscaling to and from zero on {{ hcp }} node pools {id="hcp-autoscaling-to-from-zero-configure_{{ context }}"}
 
 Configure a `NodePool` object to autoscale between zero and a maximum replica count on supported {{ aws_first }} or {{ azure_short }} hosted clusters. After configuration, verify the `AutoscalingEnabled` condition and validate scale-down and scale-up behavior. {._abstract}
 

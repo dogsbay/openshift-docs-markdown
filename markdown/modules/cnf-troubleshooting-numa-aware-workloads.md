@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting NUMA-aware scheduling {id="cnf-troubleshooting-numa-aware-workloads_{{ context }}"}
+# Troubleshoot NUMA-aware scheduling {id="cnf-troubleshooting-numa-aware-workloads_{{ context }}"}
 
 To resolve common problems with NUMA-aware pod scheduling, troubleshoot your cluster configuration. Identifying and fixing these issues ensures that your pods are optimally aligned with underlying hardware for high-performance workloads. {._abstract}
 

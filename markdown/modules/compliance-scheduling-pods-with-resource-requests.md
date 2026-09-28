@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Scheduling Pods with container resource requests {id="compliance-scheduling-pods-with-resource-requests_{{ context }}"}
+# Schedule Pods with container resource requests {id="compliance-scheduling-pods-with-resource-requests_{{ context }}"}
 
 You can specify CPU and memory resource requests and limits for containers to ensure that pods are placed on nodes with sufficient capacity, preventing resource shortages. {._abstract}
 

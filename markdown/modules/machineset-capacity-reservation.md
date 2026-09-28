@@ -12,7 +12,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Capacity Reservations by using machine sets {id="machineset-capacity-reservation_{{ context }}"}
+# Configure Capacity Reservations by using machine sets {id="machineset-capacity-reservation_{{ context }}"}
 
 You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define by using
 {%- if azure %}

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enable Gateway API for the Ingress Operator {id="enable-gateway-api-ingress-operator_{{ context }}"}
+# Enabling Gateway API for the Ingress Operator {id="enable-gateway-api-ingress-operator_{{ context }}"}
 
 To configure Gateway API for use on your cluster, you must create a `GatewayClass` resource. During the creation of the `GatewayClass` resource, the Ingress Operator installs a lightweight Istio control plane, based on {{ SMProductName }}, in the `openshift-ingress` namespace. {._abstract}
 

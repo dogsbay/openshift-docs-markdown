@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling the run-once duration override on a namespace {id="rodoo-enable-override_{{ context }}"}
+# Enable the run-once duration override on a namespace {id="rodoo-enable-override_{{ context }}"}
 
 Enable the run-once duration override on a namespace by adding the `runoncedurationoverrides.admission.runoncedurationoverride.openshift.io/enabled=true` label to the namespace. {._abstract}
 

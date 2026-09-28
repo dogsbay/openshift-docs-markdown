@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the NUMA Resources Operator using the CLI {id="cnf-installing-numa-resources-operator-cli_{{ context }}"}
+# Install the NUMA Resources Operator using the CLI {id="cnf-installing-numa-resources-operator-cli_{{ context }}"}
 
 To enable NUMA-aware scheduling for high-performance workloads, install the NUMA Resources Operator by using the {{ oc_first }}. As a cluster administrator, you can deploy the Operator efficiently without using the web console. {._abstract}
 

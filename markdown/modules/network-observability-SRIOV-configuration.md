@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring monitoring for SR-IOV interface traffic {id="network-observability-SR-IOV-config_{{ context }}"}
+# Configure monitoring for SR-IOV interface traffic {id="network-observability-SR-IOV-config_{{ context }}"}
 
 Configure the `FlowCollector` resource to monitor traffic on Single Root I/O Virtualization (SR-IOV) device by setting the `spec.agent.ebpf.privileged` field to `true`, which enables the eBPF agent to monitor other network namespaces. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the custom metrics autoscaler {id="nodes-cma-autoscaling-custom-install_{{ context }}"}
+# Install the custom metrics autoscaler {id="nodes-cma-autoscaling-custom-install_{{ context }}"}
 
 You can use the following procedure to install the Custom Metrics Autoscaler Operator.
 

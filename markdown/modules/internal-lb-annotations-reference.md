@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Cloud provider annotations for internal load balancers {id="internal-lb-annotations-reference_{{ context }}"}
 
-To provision an internal load balancer for clusters deployed in private environments, you must add specific annotations to the `spec.infrastructure.annotations` field of your `Gateway` custom resource (CR).  {._abstract}
+To provision an internal load balancer for clusters deployed in private environments, you must add specific annotations to the `spec.infrastructure.annotations` field of your `Gateway` custom resource (CR). {._abstract}
 
 This configuration is supported on {{ aws_first }}, {{ azure_first }}, {{ gcp_first }}, {{ rh_openstack_first }}, and {{ ibm_cloud_title }}. The following table details the required cloud-specific annotations and their corresponding values.
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding network policies to the new project template {id="nw-networkpolicy-project-defaults_{{ context }}"}
+# Add network policies to the new project template {id="nw-networkpolicy-project-defaults_{{ context }}"}
 
 You can add `NetworkPolicy` objects to the default project template so that new projects automatically include predefined network isolation rules. Applying network policies through templates helps enforce consistent network security controls across projects. {._abstract}
 

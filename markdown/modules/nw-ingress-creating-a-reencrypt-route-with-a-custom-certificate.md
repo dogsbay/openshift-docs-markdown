@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a re-encrypt route with a custom certificate {id="nw-ingress-creating-a-reencrypt-route-with-a-custom-certificate_{{ context }}"}
+# Create a re-encrypt route with a custom certificate {id="nw-ingress-creating-a-reencrypt-route-with-a-custom-certificate_{{ context }}"}
 
 To secure traffic by using a custom certificate, configure a route with re-encrypt TLS termination by running the `oc create route` command. This configuration enables the Ingress Controller to decrypt traffic, and then re-encrypt traffic before forwarding the traffic to the destination pod. {._abstract}
 

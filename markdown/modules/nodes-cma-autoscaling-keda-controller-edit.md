@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Editing the Keda Controller CR {id="nodes-cma-autoscaling-keda-controller-edit_{{ context }}"}
+# Edit the Keda Controller CR {id="nodes-cma-autoscaling-keda-controller-edit_{{ context }}"}
 
 You can use the following procedure to modify the `KedaController` custom resource (CR), which is automatically installed during the installation of the Custom Metrics Autoscaler Operator.
 

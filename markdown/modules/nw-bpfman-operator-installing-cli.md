@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the eBPF Manager Operator using the CLI {id="nw-bpfman-operator-installing-cli_{{ context }}"}
+# Install the eBPF Manager Operator using the CLI {id="nw-bpfman-operator-installing-cli_{{ context }}"}
 
 To manage eBPF programs across your cluster nodes, you can install the eBPF Manager Operator by using the {{ product_title }} CLI. This process involves creating a dedicated namespace and subscribing to the Operator to enable node-level networking and observability tools. {._abstract}
 

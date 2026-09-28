@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling Confidential VMs {id="installation-gcp-enabling-confidential-vms_{{ context }}"}
+# Enable Confidential VMs {id="installation-gcp-enabling-confidential-vms_{{ context }}"}
 
 You can use Confidential VMs when installing your {{ product_title }} cluster. Confidential VMs encrypt data during processing. {._abstract}
 

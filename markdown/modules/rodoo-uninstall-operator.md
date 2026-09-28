@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling the {{ run_once_operator }} {id="rodoo-uninstall-operator_{{ context }}"}
+# Uninstall the {{ run_once_operator }} {id="rodoo-uninstall-operator_{{ context }}"}
 
 Uninstall the {{ run_once_operator }} from the web console to stop applying `activeDeadlineSeconds` overrides to future run-once pods without affecting existing pod configurations. {._abstract}
 

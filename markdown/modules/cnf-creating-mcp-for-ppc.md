@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a machine config pool to target nodes for performance tuning {id="creating-mcp-for-ppc_{{ context }}"}
+# Create a machine config pool to target nodes for performance tuning {id="creating-mcp-for-ppc_{{ context }}"}
 
 For multi-node clusters, you can define a machine config pool (MCP) to identify the target nodes that you want to configure with a performance profile.  {._abstract}
 

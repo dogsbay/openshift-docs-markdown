@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Verifying the signature verification configuration {id="containers-signature-verify-application_{{ context }}"}
+# Verify the signature verification configuration {id="containers-signature-verify-application_{{ context }}"}
 
 After you apply the machine configs to the cluster, you can verify that the Machine Config Controller detected the new `MachineConfig` object and generated a new `rendered-worker-<hash>` version. {._abstract}
 

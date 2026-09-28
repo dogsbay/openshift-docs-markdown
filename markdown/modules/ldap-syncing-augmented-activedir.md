@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Syncing groups using the augmented Active Directory schema {id="ldap-syncing-augmented-activedir_{{ context }}"}
+# Sync groups using the augmented Active Directory schema {id="ldap-syncing-augmented-activedir_{{ context }}"}
 
 You can sync LDAP groups for your {{ product_title }} cluster using the augmented Active Directory schema by running `oc adm groups sync` with an LDAP sync configuration file. {._abstract}
 

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Deploying customer workloads that authenticate with {{ gcp_wid_short }} {id="pod-short-term-auth-gcp-deploy-pod_{{ context }}"}
+# Deploy customer workloads that authenticate with {{ gcp_wid_short }} {id="pod-short-term-auth-gcp-deploy-pod_{{ context }}"}
 
 To use short-term authentication in your application, you must configure its related pods to use the {{ product_title }} service account.
 Use of the {{ product_title }} service account triggers the webhook to mutate the pods so they can impersonate the {{ gcp_short }} service account. {._abstract}

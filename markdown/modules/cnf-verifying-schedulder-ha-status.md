@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Verifying scheduler high availability (HA) status {id="verifying-scheduler-ha-status_{{ context }}"}
+# Verify scheduler high availability (HA) status {id="verifying-scheduler-ha-status_{{ context }}"}
 
 You can verify the status of the NUMA-aware scheduler to ensure the scheduler is running with the expected number of replicas based on your configuration. {._abstract}
 

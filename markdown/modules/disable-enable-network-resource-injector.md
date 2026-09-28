@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling or enabling the Network Resources Injector {id="disable-enable-network-resource-injector_{{ context }}"}
+# Disable or enable the Network Resources Injector {id="disable-enable-network-resource-injector_{{ context }}"}
 
 To control the automatic configuration of your cluster workloads, enable or disable the Network Resources Injector. {._abstract}
 

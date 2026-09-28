@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a BFD profile {id="nw-metallb-configure-bfdprofile_{{ context }}"}
+# Configure a BFD profile {id="nw-metallb-configure-bfdprofile_{{ context }}"}
 
 To achieve faster path failure detection for BGP sessions, configure a MetalLB BFD profile and associate it with a BGP peer. Establishing these profiles ensures that your network routing remains highly available and responsive by identifying connectivity issues more rapidly than standard protocols. {._abstract}
 

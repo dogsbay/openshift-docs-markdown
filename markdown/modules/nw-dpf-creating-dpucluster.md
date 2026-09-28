@@ -27,10 +27,3 @@ Do not set the `spec.kubeconfig` field. After you create the hosted cluster, the
     ```terminal
     $ envsubst < dpucluster.yaml | oc apply -f -
     ```
-
-**Verification**
-
-*   Verify that the `DPUCluster` resource was created:
-    ```terminal
-    $ oc get dpucluster -n dpf-operator-system
-    ```

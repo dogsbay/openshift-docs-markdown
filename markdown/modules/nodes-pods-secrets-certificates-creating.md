@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Generating signed certificates for use with secrets {id="nodes-pods-secrets-certificates-creating_{{ context }}"}
+# Generate signed certificates for use with secrets {id="nodes-pods-secrets-certificates-creating_{{ context }}"}
 
 You can use a signed serving certificate/key pair with a pod by adding
 the `service.beta.openshift.io/serving-cert-secret-name` annotation to the service, then add the secret to the pod. {._abstract}

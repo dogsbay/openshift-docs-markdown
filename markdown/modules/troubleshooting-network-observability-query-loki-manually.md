@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running custom queries to Loki {id="troubleshooting-query-loki-manually_{{ context }}"}
+# Run custom queries to Loki {id="troubleshooting-query-loki-manually_{{ context }}"}
 
 Troubleshoot network flow data by running custom Loki queries to retrieve available labels or filter logs by specific criteria, such as source namespaces, using the command-line interface. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a LokiStack custom resource {id="network-observability-lokistack-create_{{ context }}"}
+# Create a LokiStack custom resource {id="network-observability-lokistack-create_{{ context }}"}
 
 Deploy the `LokiStack` custom resource using the web console or {{ oc_first }}, ensuring you configure the correct namespace, deployment size, and secret name for Loki object storage. {._abstract}
 

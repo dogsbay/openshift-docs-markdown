@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling HTTP/2 {id="nw-enable-http2_{{ context }}"}
+# Enable HTTP/2 {id="nw-enable-http2_{{ context }}"}
 
 You can enable HTTP/2 on a specific Ingress Controller, or you can enable HTTP/2 for the entire cluster.
 

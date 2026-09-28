@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the route admission policy {id="nw-route-admission-policy_{{ context }}"}
+# Configure the route admission policy {id="nw-route-admission-policy_{{ context }}"}
 
 Administrators and application developers can run applications in multiple namespaces with the same domain name. This is for organizations where multiple teams develop microservices that are exposed on the same hostname.
 

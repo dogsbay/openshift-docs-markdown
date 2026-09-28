@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring parallel node draining during SR-IOV network policy updates {id="configure-sr-iov-operator-parallel-nodes_{{ context }}"}
+# Configure parallel node draining during SR-IOV network policy updates {id="configure-sr-iov-operator-parallel-nodes_{{ context }}"}
 
 By default, the SR-IOV Network Operator drains workloads from a node before every policy change. The Operator performs this action, one node at a time, to ensure that the reconfiguration does not impact workloads. {._abstract}
 

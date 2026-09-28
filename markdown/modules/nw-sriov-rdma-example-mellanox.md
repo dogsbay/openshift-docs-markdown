@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using a virtual function in RDMA mode with a Mellanox NIC {id="example-vf-use-in-rdma-mode-mellanox_{{ context }}"}
+# Use a virtual function in RDMA mode with a Mellanox NIC {id="example-vf-use-in-rdma-mode-mellanox_{{ context }}"}
 
 {%- set FeatureName = "RDMA over Converged Ethernet (RoCE)" %}
 {% leveloffset +0 %}{% include "./snippets/technology-preview.md" %}{% endleveloffset %}

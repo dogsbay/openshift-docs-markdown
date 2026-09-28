@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adjusting the NIC queues with the performance profile {id="adjusting-nic-queues-with-the-performance-profile_{{ context }}"}
+# Adjust the NIC queues with the performance profile {id="adjusting-nic-queues-with-the-performance-profile_{{ context }}"}
 
 You can use a performance profile to adjust the queue count for each network device. By using the Node Tuning Operator, you can reduce NIC queues for enhanced performance.  {._abstract}
 

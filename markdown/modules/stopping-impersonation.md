@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Stopping impersonation {id="stopping-impersonation"}
+# Stop impersonation {id="stopping-impersonation_{{ context }}"}
 
 You can stop impersonating a user or group at any time from the {{ product_title }} Console. {._abstract}
 

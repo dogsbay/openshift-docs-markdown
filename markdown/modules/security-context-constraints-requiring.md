@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a workload to require a specific SCC {id="security-context-constraints-requiring_{{ context }}"}
+# Configure a workload to require a specific SCC {id="security-context-constraints-requiring_{{ context }}"}
 
 You can configure a workload to require a certain security context constraint (SCC). This is useful in scenarios where you want to pin a specific SCC to the workload or if you want to prevent your required SCC from being preempted by another SCC in the cluster. {._abstract}
 

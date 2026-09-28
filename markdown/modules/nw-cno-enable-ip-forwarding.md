@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling IP forwarding globally {id="nw-cno-enable-ip-forwarding_{{ context }}"}
+# Enable IP forwarding globally {id="nw-cno-enable-ip-forwarding_{{ context }}"}
 
 From {{ product_title }} 4.14 onward, OVN-Kubernetes disables global IP forwarding by default. By setting the Cluster Network Operator `gatewayConfig.ipForwarding` spec to `Global`, you can enable cluster-wide forwarding. {._abstract}
 

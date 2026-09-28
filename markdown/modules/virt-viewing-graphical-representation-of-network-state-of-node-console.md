@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing a graphical representation of the network state of a node (NNS) topology from the web console {id="virt-viewing-graphical-representation-of-network-state-of-node-console_{{ context }}"}
+# View a graphical representation of the network state of a node (NNS) topology from the web console {id="virt-viewing-graphical-representation-of-network-state-of-node-console_{{ context }}"}
 
 To make the configuration of the node network in the cluster easier to understand, you can view it in the form of a diagram. {._abstract}
 

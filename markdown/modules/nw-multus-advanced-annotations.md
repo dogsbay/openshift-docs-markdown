@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Specifying pod-specific addressing and routing options {id="nw-multus-advanced-annotations_{{ context }}"}
+# Specify pod-specific addressing and routing options {id="nw-multus-advanced-annotations_{{ context }}"}
 
 To set static IP addresses, MAC addresses, and default routes for a pod in {{ product_title }}, you can configure pod-specific addressing and routing options using JSON-formatted annotations. With these annotations, you can customize network behavior for individual pods on secondary networks. {._abstract}
 

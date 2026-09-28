@@ -1,11 +1,11 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a Workload Identity Federation cluster using {{ cluster_manager }} {id="create-wif-cluster-ocm_{{ context }}"}
+# Create a Workload Identity Federation cluster using {{ cluster_manager }} {id="create-wif-cluster-ocm_{{ context }}"}
 
-Follow the steps in this procedure to create an {{ product_title }} cluster on {{ gcp_full }} using Workload Identity Federation (WIF) for authentication through the {{ cluster_manager }} web console {._abstract}
+Follow the steps in this procedure to create an {{ product_title }} cluster on {{ gcp_full }} using Workload Identity Federation (WIF) for authentication through the {{ cluster_manager }} web console. {._abstract}
 
 **Prerequisites**
 
-*   You have created a WIF configuration. For more information, see "Creating a Workload Identity Federation configuration".
+*   You have created a WIF configuration. For more information, see "Create a Workload Identity Federation configuration".
 *   You have access to the {{ cluster_manager }} web console. For more information, see _Accessing {{ cluster_manager }}_ in the _Additional resources_ section.
 
 **Procedure**
@@ -217,7 +217,7 @@ Follow the steps in this procedure to create an {{ product_title }} cluster on {
 
         :::note
 
-        In the event of critical security concerns that significantly impact the security or stability of a cluster, Red Hat Site Reliability Engineering (SRE) might schedule automatic updates to the latest z-stream version that is not impacted. The updates are applied within 48 hours after customer notifications are provided. For a description of the critical impact security rating, see [Understanding Red Hat security ratings](https://access.redhat.com/security/updates/classification).
+        If critical security concerns significantly impact the security or stability of a cluster, Red Hat Site Reliability Engineering (SRE) might schedule automatic updates to the latest z-stream version that is not impacted. The updates are applied within 48 hours after customer notifications are provided. For a description of the critical impact security rating, see [Understanding Red Hat security ratings](https://access.redhat.com/security/updates/classification).
         
         :::
 
@@ -235,10 +235,3 @@ By default, clusters are created with the delete protection feature disabled.
 If your cluster deployment fails during installation, certain resources created during the installation process are not automatically removed from your {{ GCP }} account. To remove these resources from your {{ gcp_short }} account, you must delete the failed cluster.
 
 :::
-
-{% if context == "osd-creating-a-cluster-on-aws" %}
-{%- set osd_on_aws = "" -%}
-{% endif %}
-{% if context == "osd-creating-a-cluster-on-gcp" %}
-{%- set osd_on_gcp = "" -%}
-{% endif %}

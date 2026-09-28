@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a cluster admin {id="creating-cluster-admin_{{ context }}"}
+# Create a cluster admin {id="creating-cluster-admin_{{ context }}"}
 
 To grant a user full administrative access to the cluster, you can bind the `cluster-admin` cluster role to that user. {._abstract}
 

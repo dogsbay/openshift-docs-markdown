@@ -7,16 +7,6 @@ The "{{ product_title }} update life cycle" page, linked in the _Additional reso
 
 You can use update channels to decide which {{ product_title }} minor version to update your clusters to. {{ product_title }} supports updates through the `stable-4.y`, `eus-4.y`, and `fast-4.y` channels.
 
-{%- if openshift_rosa_hcp %}
-
-:::note
-
-If your control plane is not currently multi-architecture enabled, the update process will first migrate the cluster to a multi-architecture image and then apply the version update. Multi-architecture clusters are capable of running both x86-based and Arm-based workloads. Clusters created after 25 July, 2024 are multi-architecture enabled by default.
-
-:::
-
-{%- endif %}
-
 **Additional resources**
 {._additional-resources}
 

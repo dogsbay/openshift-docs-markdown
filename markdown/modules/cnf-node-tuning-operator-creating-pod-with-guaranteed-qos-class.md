@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a pod with a guaranteed QoS class {id="cnf-node-tuning-operator-creating-pod-with-guaranteed-qos-class_{{ context }}"}
+# Create a pod with a guaranteed QoS class {id="cnf-node-tuning-operator-creating-pod-with-guaranteed-qos-class_{{ context }}"}
 
 You can create a pod with a quality of service (QoS) class of `Guaranteed` for high-performance workloads. Configuring a pod with a QoS class of `Guaranteed` ensures that the pod has priority access to the specified CPU and memory resources.  {._abstract}
 

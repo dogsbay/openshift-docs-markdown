@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an htpasswd file using Linux {id="identity-provider-creating-htpasswd-file-linux_{{ context }}"}
+# Create an htpasswd file using Linux {id="identity-provider-creating-htpasswd-file-linux_{{ context }}"}
 
 Create a flat `htpasswd` file on {{ op_system_base_full }} with the `htpasswd` utility to store usernames and hashed passwords for your cluster. The file enables the `htpasswd` identity provider to authenticate users in {{ product_title }} from locally stored credentials. {._abstract}
 

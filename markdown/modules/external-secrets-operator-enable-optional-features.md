@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling optional features for {{ external_secrets_operator }} {id="external-secrets-operator-enable-optional-features_{{ context }}"}
+# Enable optional features for {{ external_secrets_operator }} {id="external-secrets-operator-enable-optional-features_{{ context }}"}
 
 The {{ external_secrets_operator }} supports optional capabilities that can be enabled cluster-wide through the `ExternalSecretsManager` custom resource (CR). Features are disabled by default and must be explicitly enabled. {._abstract}
 

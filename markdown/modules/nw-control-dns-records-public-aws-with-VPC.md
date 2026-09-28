@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating DNS records in a different AWS account by using a shared VPC {id="nw-control-dns-records-public-aws-with-VPC_{{ context }}"}
+# Create DNS records in a different AWS account by using a shared VPC {id="nw-control-dns-records-public-aws-with-VPC_{{ context }}"}
 
 You can use the ExternalDNS Operator to create DNS records in a different AWS account using a shared Virtual Private Cloud (VPC). {._abstract}
 

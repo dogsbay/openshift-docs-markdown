@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting the image trigger on Kubernetes resources {id="images-triggering-updates-imagestream-changes-kubernetes-cli_{{ context }}"}
+# Set the image trigger on Kubernetes resources {id="images-triggering-updates-imagestream-changes-kubernetes-cli_{{ context }}"}
 
 To enable automatic updates for your deployed applications managed by Kubernetes, use the command-line interface (CLI) to set an image stream change trigger on Kubernetes resources. This ensures that resources, like `Deployments` and `StatefulSets`, are automatically invoked when a new version of an upstream image is available. {._abstract}
 

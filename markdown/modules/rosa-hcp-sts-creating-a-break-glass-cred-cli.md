@@ -36,7 +36,7 @@ You can create a break glass credential to generate temporary cluster-admin cred
         ```terminal
         $ rosa create break-glass-credential -c mycluster --username test-username --expiration 1h
         ```
-1.  List the break glass credential IDs, status, and associated users that are available for a cluster called `mycluster` by running the following command:
+1.  List the break glass credential IDs, status, and associated users who are available for a cluster called `mycluster` by running the following command:
     ```terminal
     $ rosa list break-glass-credential -c mycluster
     ```
@@ -51,33 +51,6 @@ You can create a break glass credential to generate temporary cluster-admin cred
     
     :::
 
-1.  To view the status of a break glass credential, run the following command, replacing `<break_glass_credential_id>` with the break glass credential ID:
-    ```terminal
-    $ rosa describe break-glass-credential <break_glass_credential_id> -c <cluster_name>
-    ```
-    ```terminal title="Example output"
-    ID:                                    2a7jli9n4phe6c02ul7ti91djtv2o51d
-    Username:                              test-user
-    Expire at:                             Dec 28 2026 10:23:05 EDT
-    Status:                                issued
-    ```
-    The following is a list of possible `Status` field values:
-
-
-    `issued`
-    :   The break glass credential has been issued and is ready to use.
-
-    `expired`
-    :   The break glass credential has expired and can no longer be used.
-
-    `failed`
-    :   The break glass credential has failed to create. In this case, you receive a service log detailing the failure. For more information about service logs, see _Accessing the service logs for Red&#160;Hat OpenShift Service on AWS clusters_. For steps to contact Red&#160;Hat Support for assistance, see _Getting support_.
-
-    `awaiting_revocation`
-    :   The break glass credential is currently being revoked, meaning it cannot be used.
-
-    `revoked`
-    :   The break glass credential has been revoked and can no longer be used.
 1.  To retrieve the `kubeconfig`, run the following commands:
     *   Create a `kubeconfigs` directory:
         ```terminal
@@ -124,3 +97,33 @@ You can create a break glass credential to generate temporary cluster-admin cred
     ```terminal
     $ rosa describe break-glass-credential <break_glass_credential_id> -c mycluster --kubeconfig > $KUBECONFIG
     ```
+
+**Verification**
+
+*   To view the status of a break glass credential, run the following command, replacing `<break_glass_credential_id>` with the break glass credential ID:
+    ```terminal
+    $ rosa describe break-glass-credential <break_glass_credential_id> -c <cluster_name>
+    ```
+    ```terminal title="Example output"
+    ID:                                    2a7jli9n4phe6c02ul7ti91djtv2o51d
+    Username:                              test-user
+    Expire at:                             Dec 28 2026 10:23:05 EDT
+    Status:                                issued
+    ```
+    The following is a list of possible `Status` field values:
+
+
+    `issued`
+    :   The break glass credential has been issued and is ready to use.
+
+    `expired`
+    :   The break glass credential has expired and can no longer be used.
+
+    `failed`
+    :   The break glass credential has failed to create. In this case, you receive a service log detailing the failure. For more information about service logs, see _Accessing the service logs for Red&#160;Hat OpenShift Service on AWS clusters_. For steps to contact Red&#160;Hat Support for assistance, see _Getting support_.
+
+    `awaiting_revocation`
+    :   The break glass credential is currently being revoked, meaning it cannot be used.
+
+    `revoked`
+    :   The break glass credential has been revoked and can no longer be used.

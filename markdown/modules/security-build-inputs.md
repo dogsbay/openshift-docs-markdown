@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Securing inputs during builds {id="security-build-inputs_{{ context }}"}
+# Secure inputs during builds {id="security-build-inputs_{{ context }}"}
 
 You can protect sensitive credentials required during builds by defining input secrets that give access to dependent resources without exposing those credentials in the final application image. {._abstract}
 

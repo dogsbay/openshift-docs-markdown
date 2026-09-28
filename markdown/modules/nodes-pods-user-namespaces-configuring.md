@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Linux user namespace support {id="nodes-pods-user-namespaces-configuring_{{ context }}"}
+# Configure Linux user namespace support {id="nodes-pods-user-namespaces-configuring_{{ context }}"}
 
 You can configure Linux user namespace by setting the `hostUsers` parameter to `false` in the pod spec, and a few other configurations. When you run workloads in user namespaces, the containers run with administrative privileges inside the namespace, but remain unprivileged on the host system. {._abstract}
 

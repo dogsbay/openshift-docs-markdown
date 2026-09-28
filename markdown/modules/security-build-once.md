@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Building once, deploying everywhere {id="security-build-once_{{ context }}"}
+# Build once, deploy everywhere {id="security-build-once_{{ context }}"}
 
 You can build container images once in a secure environment and deploy them unchanged across all stages. Using {{ product_title }} as your build standard guarantees this security, ensuring production deployments match verified builds and preventing runtime vulnerabilities. {._abstract}
 

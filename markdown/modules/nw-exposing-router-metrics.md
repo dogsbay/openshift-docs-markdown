@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Exposing router metrics {id="nw-exposing-router-metrics_{{ context }}"}
+# Expose router metrics {id="nw-exposing-router-metrics_{{ context }}"}
 
 You can retrieve Prometheus-format HAProxy ingress router metrics from port `1936` to monitor ingress load and troubleshoot routing behavior. By analyzing these metrics, you can identify capacity bottlenecks and determine when to scale your router deployment. {._abstract}
 

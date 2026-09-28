@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an interface on nodes {id="virt-creating-interface-on-nodes_{{ context }}"}
+# Create an interface on nodes {id="virt-creating-interface-on-nodes_{{ context }}"}
 
 You can create an interface on nodes in the cluster by applying a `NodeNetworkConfigurationPolicy` (NNCP) manifest to the cluster. The manifest details the requested configuration for the interface. {._abstract}
 

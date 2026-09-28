@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Installing Vault {id="zero-trust-manager-install-vault-oidc_{{ context }}"}
+# Install Vault {id="zero-trust-manager-install-vault-oidc_{{ context }}"}
 
 Install HashiCorp Vault to serve as an OpenID Connect (OIDC) provider. This establishes the necessary infrastructure to manage workload identities securely in your {{ zero_trust_full }} environment. {._abstract}
 

@@ -1,16 +1,16 @@
-{% if context == "rosa-classic-creating-a-cluster-quickly-terraform" %}
-{%- set tf_rosa_classic = true -%}
-{% endif %}
-{% if context == "rosa-hcp-creating-a-cluster-quickly-terraform" %}
-{%- set tf_rosa_hcp = true -%}
-{% endif %}
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
 # Using Terraform to create your {{ product_title }} cluster {id="rosa-sts-cluster-terraform-execute_{{ context }}"}
 
 After you create the Terraform files, you must initiate Terraform to provide all of the required dependencies. Then apply the Terraform plan. {._abstract}
 
-{% include "./snippets/terraform-modification-disclaimer.md" %}
+
+:::important
+
+Do not modify Terraform state files.
+
+:::
+
 
 **Procedure**
 
@@ -43,7 +43,7 @@ After you create the Terraform files, you must initiate Terraform to provide all
       Enter a value:
     ```
 1.  Enter `yes` to proceed or `no` to cancel when the Terraform interface lists the resources to be created or changed and prompts for confirmation:
-{% if tf_rosa_hcp %}
+{% if openshift_rosa_hcp %}
     ```terminal
     Plan: 63 to add, 0 to change, 0 to destroy.
 
@@ -52,7 +52,7 @@ After you create the Terraform files, you must initiate Terraform to provide all
       Only 'yes' will be accepted to approve.
     ```
 {% endif %}
-{% if tf_rosa_classic %}
+{% if openshift_rosa %}
     ```terminal title="Example output"
     Plan: 74 to add, 0 to change, 0 to destroy.
 
@@ -95,7 +95,7 @@ After you create the Terraform files, you must initiate Terraform to provide all
     ```terminal {minja}
     I: Fetching account roles
     ROLE NAME                                   ROLE TYPE      ROLE ARN                                                           OPENSHIFT VERSION  AWS Managed
-    {%- if tf_rosa_classic %}
+    {%- if openshift_rosa %}
     ROSA-demo-ControlPlane-Role                 Control plane  arn:aws:iam::<ID>:role/ROSA-demo-ControlPlane-Role                 4.14               No
     {%- endif %}
     ROSA-demo-Installer-Role                    Installer      arn:aws:iam::<ID>:role/ROSA-demo-Installer-Role                    4.14               No
@@ -111,17 +111,10 @@ After you create the Terraform files, you must initiate Terraform to provide all
     ```terminal {minja}
     I: Fetching operator roles
     ROLE PREFIX    AMOUNT IN BUNDLE
-    {%- if tf_rosa_classic %}
+    {%- if openshift_rosa %}
     rosa-demo      6
     {%- endif %}
-    {%- if tf_rosa_hcp %}
+    {%- if openshift_rosa_hcp %}
     rosa-demo      8
     {%- endif %}
     ```
-
-{% if context == "rosa-classic-creating-a-cluster-quickly-terraform" %}
-{%- set tf_rosa_classic = true -%}
-{% endif %}
-{% if context == "rosa-hcp-creating-a-cluster-quickly-terraform" %}
-{%- set tf_rosa_hcp = true -%}
-{% endif %}

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configure automatic address assignment for a gateway {id="configuring-automatic-address-assignment-gateway_{{ context }}"}
+# Configuring automatic address assignment for a gateway {id="configuring-automatic-address-assignment-gateway_{{ context }}"}
 
 When you create a gateway resource, you must configure it for automatic address provisioning to successfully deploy the gateway without violating {{ product_title }} manual address constraints. By intentionally omitting the addresses field, you allow the controller to seamlessly provision and bind the necessary external network addresses to your gateway. {._abstract}
 

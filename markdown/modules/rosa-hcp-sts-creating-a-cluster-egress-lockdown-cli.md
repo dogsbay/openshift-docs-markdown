@@ -15,7 +15,7 @@ You can create a {{ product_title }} cluster with {{ egress_zero }} by using the
 
 **Procedure**
 
-1.  Use one of the following commands to create your {{ product_title }} cluster:
+*   Use one of the following commands to create your {{ product_title }} cluster:
 
     :::note
 
@@ -63,6 +63,9 @@ You can create a {{ product_title }} cluster with {{ egress_zero }} by using the
             --pod-cidr 10.128.0.0/14 --host-prefix 23 \ 
             --private --properties zero_egress:true
         ```
+
+**Verification**
+
 1.  Check the status of your cluster by running the following command:
     ```terminal
     $ rosa describe cluster --cluster=<cluster_name>

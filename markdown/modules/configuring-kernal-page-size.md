@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring kernel page sizes {id="cnf-page-size-optimization_{{ context }}"}
+# Configure kernel page sizes {id="cnf-page-size-optimization_{{ context }}"}
 
 Use the `kernelPageSize` specification in a performance profile to configure the kernel page size on a specific node. Specify larger kernel page sizes for memory-intensive, high-performance workloads.  {._abstract}
 

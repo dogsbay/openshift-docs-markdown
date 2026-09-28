@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Compliance Operator through the web console {id="installing-compliance-operator-web-console_{{ context }}"}
+# Install the Compliance Operator through the web console {id="installing-compliance-operator-web-console_{{ context }}"}
 
 You can install the Compliance Operator through the {{ product_title }} web console by using the OperatorHub interface. {._abstract}
 

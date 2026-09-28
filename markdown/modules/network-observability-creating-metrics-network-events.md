@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating metrics from nested or array fields in the Traffic flows table {id="network-observability-creating-metrics-network-events_{{ context }}"}
+# Create metrics from nested or array fields in the Traffic flows table {id="network-observability-creating-metrics-network-events_{{ context }}"}
 
 Create a `FlowMetric` custom resource to generate metrics for nested or array fields in the **Traffic flows** table, such as **Network events** or **Interfaces**. {._abstract}
 

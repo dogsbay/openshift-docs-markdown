@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Creating redistributable images with UBI {id="security-container-content-universal_{{ context }}"}
+# Create redistributable images with UBI {id="security-container-content-universal_{{ context }}"}
 
 You can typically start with a trusted base image that offers the components that are usually provided by the operating system to create containerized applications. These include the libraries, utilities, and other features the application expects to see in the operating system’s file system. {._abstract}
 

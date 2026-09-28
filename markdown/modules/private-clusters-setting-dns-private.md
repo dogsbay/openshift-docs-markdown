@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring DNS records to be published in a private zone {id="private-clusters-setting-dns-private_{{ context }}"}
+# Configure DNS records to be published in a private zone {id="private-clusters-setting-dns-private_{{ context }}"}
 
 You can remove the public zone from the cluster DNS configuration so that new DNS records are published only to the private zone and remain available to internal clients. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a BGP peer {id="nw-metallb-configure-bgppeer_{{ context }}"}
+# Configure a BGP peer {id="nw-metallb-configure-bgppeer_{{ context }}"}
 
 To exchange routing information and advertise IP addresses for load balancer services, configure MetalLB BGP peer CRs. Establishing these peers ensures that your network infrastructure can reach and correctly route traffic to cluster application workloads. {._abstract}
 

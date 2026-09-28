@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a VM from an image on a web page by using the CLI {id="virt-creating-vm-import-cli_{{ context }}"}
+# Creating a VM from an image on a web page by using the CLI {id="virt-creating-vm-web-page-cli_{{ context }}"}
 
 You can create a virtual machine (VM) from an image on a web page by using the command line. {._abstract}
 

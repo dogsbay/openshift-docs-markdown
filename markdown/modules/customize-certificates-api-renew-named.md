@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Updating or renewing an existing API server named certificate {id="customize-certificates-api-renew-named_{{ context }}"}
+# Update or renew an existing API server named certificate {id="customize-certificates-api-renew-named_{{ context }}"}
 
 Update or renew an expired or expiring named certificate that has already been configured in your cluster to avoid API availability issues. The API server pods dynamically detect and reload the updated certificate asset without disruption. {._abstract}
 

@@ -6,7 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Restricting the API server to private for an {{ aws_full }} cluster {id="private-clusters-setting-api-private-aws_{{ context }}"}
+# Restrict the API server to private for an {{ aws_full }} cluster {id="private-clusters-setting-api-private-aws_{{ context }}"}
 
 If the security posture of your organization does not allow clusters to use an open API endpoint, you can restrict the API server to use only internal load balancers.
 To implement this API server restriction, use the {{ aws_first }} console and {{ oc_first }} to delete the external load balancer components. {._abstract}

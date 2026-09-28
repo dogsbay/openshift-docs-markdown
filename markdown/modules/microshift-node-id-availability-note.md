@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # When a node ID becomes available {id="microshift-node-id-availability-note_{{ context }}"}
 
-A node ID is the unique identifier of your {{ microshift_short }} node. You can retrieve the node ID manually by using the {{ oc_first }} or by reading it from a file.
+A node ID is the unique identifier of your {{ microshift_short }} node. You can retrieve the node ID manually by using the {{ oc_first }} or by reading it from a file. {._abstract}
 
 
 :::note

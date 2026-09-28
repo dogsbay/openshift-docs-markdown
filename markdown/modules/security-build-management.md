@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Managing builds {id="security-build-management_{{ context }}"}
+# Manage builds {id="security-build-management_{{ context }}"}
 
 You can use Source-to-Image (S2I) builder images that enable development and operations teams to collaborate on reproducible builds, using Red Hat Universal Base Images that you can freely redistribute with your applications. {._abstract}
 

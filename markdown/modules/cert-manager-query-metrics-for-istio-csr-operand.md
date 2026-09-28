@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Querying metrics for the istio-csr operand {id="cert-manager-query-metrics-for-istio-csr-operand_{{ context }}"}
+# Query metrics for the istio-csr operand {id="cert-manager-query-metrics-for-istio-csr-operand_{{ context }}"}
 
 Cluster administrators, or users with view access to all namespaces, can query metrics for the istio-csr operand by using the {{ product_title }} web console. For more information, see "Accessing metrics". {._abstract}
 

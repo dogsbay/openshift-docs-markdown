@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a pod using a bond interface {id="nw-sriov-creating-pod-using-bond-interface_{{ context }}"}
+# Create a pod using a bond interface {id="nw-sriov-creating-pod-using-bond-interface_{{ context }}"}
 
 You can create a pod that uses a bond interface by applying a YAML configuration that references SR-IOV and bond network attachments. {._abstract}
 

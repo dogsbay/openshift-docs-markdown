@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring logging verbosity {id="logging-verbosity_{{ context }}"}
+# Configure logging verbosity {id="logging-verbosity_{{ context }}"}
 
 The Security Profiles Operator supports the default logging verbosity of `0` and an enhanced verbosity of `1`.  {._abstract}
 

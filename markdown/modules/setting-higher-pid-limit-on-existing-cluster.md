@@ -16,7 +16,7 @@ Changing the `podPidsLimit` on an existing cluster will trigger non-control plan
 *   You have a {{ product_title }} cluster.
 *   You have installed the {{ rosa_cli_first }}.
 *   You have installed the OpenShift CLI (`oc`).
-*   You have logged in to your Red&#160;Hat account by using the ROSA CLI.
+*   You have logged in to your Red&#160;Hat account by using the {{ rosa_cli }}.
 
 **Procedure**
 

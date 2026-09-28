@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling health alerts {id="network-observability-disable-alerts_{{ context }}"}
+# Disable health alerts {id="network-observability-disable-alerts_{{ context }}"}
 
 Disable specific health alerts, such as `NetObservLokiError` or `NetObservNoFlows`, by editing the `FlowCollector` resource and using the `spec.processor.metrics.disableAlerts` specification. {._abstract}
 

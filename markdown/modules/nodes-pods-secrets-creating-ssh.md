@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an SSH authentication secret {id="nodes-pods-secrets-creating-ssh_{{ context }}"}
+# Create an SSH authentication secret {id="nodes-pods-secrets-creating-ssh_{{ context }}"}
 
 As an administrator, you can create an SSH authentication secret, which you can use to store data used for SSH authentication.  {._abstract}
 

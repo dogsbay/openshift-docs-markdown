@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding roles to users {id="adding-roles_{{ context }}"}
+# Add roles to users {id="adding-roles_{{ context }}"}
 
 To grant a user access within a project, you can bind an appropriate role to the user and verify the resulting role binding. {._abstract}
 

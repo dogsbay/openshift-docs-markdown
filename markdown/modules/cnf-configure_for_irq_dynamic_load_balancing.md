@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring node interrupt affinity {id="configuring_for_irq_dynamic_load_balancing_{{ context }}"}
+# Configure node interrupt affinity {id="configuring_for_irq_dynamic_load_balancing_{{ context }}"}
 
 Configure a cluster node for IRQ dynamic load balancing to control which cores can receive device interrupt requests (IRQ). {._abstract}
 

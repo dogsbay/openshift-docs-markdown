@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Overriding CPU and memory limits for the cert-manager components {id="cert-manager-configure-cpu-memory_{{ context }}"}
+# Override CPU and memory limits for the cert-manager components {id="cert-manager-configure-cpu-memory_{{ context }}"}
 
 To ensure stable resource allocation and operation, configure CPU and memory limits for {{ cert_manager_operator }} components. You can set specific constraints for the cert-manager controller, CA injector, and Webhook to align with your specific cluster requirements. {._abstract}
 

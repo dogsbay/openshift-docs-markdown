@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the OAuth server for a hosted cluster by using the web console {id="hcp-configuring-oauth-console_{{ context }}"}
+# Configure the OAuth server for a hosted cluster by using the web console {id="hcp-configuring-oauth-console_{{ context }}"}
 
 You can configure the internal OAuth server for your hosted cluster by using the {{ product_title }} web console. {._abstract}
 

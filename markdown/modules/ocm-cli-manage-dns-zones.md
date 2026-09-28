@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Managing DNS zones {id="ocm-cli-manage-dns-zones_{{ context }}"}
+# Manage DNS zones {id="ocm-cli-manage-dns-zones_{{ context }}"}
 
-Managing your domain infrastructure is a key part of maintaining a healthy cluster environment. With the {{ cluster_manager }} CLI (`ocm`), you can easily view and manage your existing managed DNS zones associated with your account. This allows you to keep track of your DNS configurations, make necessary updates, and ensure that your cluster’s network settings are always up to date and secure. {._abstract}
+Use the {{ cluster_manager }} CLI (`ocm`) to view and manage your existing managed Domain Name System (DNS) zones associated with your account. This allows you to monitor DNS configurations, apply updates, and ensure that your cluster’s network settings are up-to-date and secure. {._abstract}
 
 **Procedure**
 

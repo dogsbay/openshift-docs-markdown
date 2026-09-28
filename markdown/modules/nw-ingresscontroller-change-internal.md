@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the Ingress Controller endpoint publishing scope to Internal {id="nw-ingresscontroller-change-internal_{{ context }}"}
+# Configure the Ingress Controller endpoint publishing scope to Internal {id="nw-ingresscontroller-change-internal_{{ context }}"}
 
 As a cluster administrator, when you install a new cluster without specifying that the cluster is private, the default Ingress Controller is created with a `scope` set to `External`. You can change an `External` scoped Ingress Controller to `Internal`. {._abstract}
 

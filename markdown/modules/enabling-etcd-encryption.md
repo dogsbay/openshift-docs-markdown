@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling etcd encryption {id="enabling-etcd-encryption_{{ context }}"}
+# Enable etcd encryption {id="enabling-etcd-encryption_{{ context }}"}
 
 Enable etcd encryption to protect sensitive cluster resources such as secrets, config maps, routes, and OAuth tokens at rest. {._abstract}
 

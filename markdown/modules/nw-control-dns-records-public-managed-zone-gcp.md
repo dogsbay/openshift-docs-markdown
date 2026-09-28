@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating DNS records on a public managed zone for {{ gcp_short }} {id="nw-control-dns-records-public-managed-zone-gcp_{{ context }}"}
+# Create DNS records on a public managed zone for {{ gcp_short }} {id="nw-control-dns-records-public-managed-zone-gcp_{{ context }}"}
 
 To create DNS records on {{ gcp_first }}, use the External DNS Operator. The DNS Operator manages external name resolution for your cluster services. {._abstract}
 

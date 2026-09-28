@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Azure blob storage {id="zero-trust-manager-configure-azure-blob_{{ context }}"}
+# Configure Azure blob storage {id="zero-trust-manager-configure-azure-blob_{{ context }}"}
 
 Create a new {{ azure_first }} storage account and container to provide a dedicated location for your content. Configuring this storage ensures that the {{ zero_trust_full }} can successfully store and retrieve blobs for your environment. {._abstract}
 

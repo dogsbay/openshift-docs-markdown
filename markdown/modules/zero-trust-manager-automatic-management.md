@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using SPIRE federation with Automatic Certificate Management Environment protocol {id="zero-trust-manager-automatic-management_{{ context }}"}
+# Use SPIRE federation with Automatic Certificate Management Environment protocol {id="zero-trust-manager-automatic-management_{{ context }}"}
 
 Using SPIRE federation with Automatic Certificate Management Environment (ACME) protocol provides automatic certificate provisioning from Let’s Encrypt. ACME also enables automatic certificate renewal before expiration, eliminating manual certificate management overhead. {._abstract}
 

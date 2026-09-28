@@ -28,7 +28,7 @@ After you deploy a hosted cluster on {{ VirtProductName }}, you can manage the c
 **Additional resources**
 {._additional-resources}
 
-*   [Cloning a data volume using smart-cloning](/virt/creating_vm/virt-creating-vms-by-cloning-pvcs#smart-cloning_virt-creating-vms-by-cloning-pvcs)
+*   [Cloning a data volume using smart-cloning](/virt/creating_vm/virt-creating-vms-from-cli#smart-cloning_virt-creating-vms-cli)
 
 {% leveloffset +2 %}{% include "./modules/hcp-virt-storage-security-isolation.md" %}{% endleveloffset %}
 

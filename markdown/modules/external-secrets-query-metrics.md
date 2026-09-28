@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Querying metrics for the external-secrets operand {id="external-secrets-query-metrics_{{ context }}"}
+# Query metrics for the external-secrets operand {id="external-secrets-query-metrics_{{ context }}"}
 
 As a cluster administrator, or as a user with view access to all namespaces, you can query `external-secrets` operand metrics by using the {{ product_title }} web console or the command-line interface (CLI). For more information, see "Accessing metrics". {._abstract}
 

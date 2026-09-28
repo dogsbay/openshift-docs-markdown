@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accessing registry metrics {id="registry-accessing-metrics_{{ context }}"}
+# Access registry metrics {id="registry-accessing-metrics_{{ context }}"}
 
 The OpenShift Container Registry provides an endpoint for [Prometheus metrics](https://prometheus.io/docs/introduction/overview/). Prometheus is a stand-alone, open source systems monitoring and alerting toolkit. The metrics get exposed at the **_/extensions/v2/metrics_** path of the registry endpoint. You can access the metrics by running a metrics query that includes a cluster role. {._abstract}
 

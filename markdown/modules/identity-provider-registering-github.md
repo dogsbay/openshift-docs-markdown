@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Registering a GitHub application {id="identity-provider-registering-github_{{ context }}"}
+# Register a GitHub application {id="identity-provider-registering-github_{{ context }}"}
 
 Register an OAuth application on GitHub or GitHub Enterprise to obtain the client ID and client secret for the identity provider configuration. {._abstract}
 

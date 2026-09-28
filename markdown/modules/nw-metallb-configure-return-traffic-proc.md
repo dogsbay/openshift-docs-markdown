@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring symmetric routing by using VRFs with MetalLB {id="nw-metallb-configure-return-traffic-proc_{{ context }}"}
+# Configure symmetric routing by using VRFs with MetalLB {id="nw-metallb-configure-return-traffic-proc_{{ context }}"}
 
 To ensure that applications behind a MetalLB service use the same network path for both ingress and egress, configure symmetric routing by using Virtual Routing and Forwarding (VRF). {._abstract}
 

@@ -1,12 +1,12 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Service account authentication type procedure {id="ccs-gcp-customer-procedure-sa_{{ context }}"}
+# Complete service account authentication prerequisites {id="ccs-gcp-customer-procedure-sa_{{ context }}"}
 
-Besides the required customer procedures listed in _Required customer procedure_, there are other specific actions that you must take when creating an {{ product_title }} cluster on {{ GCP }} using a service account as the authentication type. {._abstract}
+In addition to the steps in _Prepare your {{ gcp_short }} project for Customer Cloud Subscription_, you must complete additional prerequisites before creating an {{ product_title }} cluster on {{ GCP }} using a service account as the authentication type. {._abstract}
 
 **Procedure**
 
-1.  To ensure that Red Hat can perform necessary actions, you must create an `osd-ccs-admin` IAM [service account](https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account) user within the {{ gcp_short }} project.
+1.  To ensure that Red&#160;Hat can perform necessary actions, create an `osd-ccs-admin` IAM [service account](https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account) user within the {{ gcp_short }} project.
 
 The following roles must be [granted to the service account](https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource):
 

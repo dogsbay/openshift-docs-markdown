@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the external certificate for the managed OIDC discovery provider route {id="zero-trust-manager-create-route-oidc_{{ context }}"}
+# Configure the external certificate for the managed OIDC discovery provider route {id="zero-trust-manager-create-route-oidc_{{ context }}"}
 
 Configure the managed OIDC discovery provider route to use an externally managed TLS certificate. By referencing a TLS secret, you can secure the OIDC endpoint with your own certificate credentials. {._abstract}
 

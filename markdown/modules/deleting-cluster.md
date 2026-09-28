@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting your cluster {id="deleting-cluster_{{ context }}"}
+# Delete your cluster {id="deleting-cluster_{{ context }}"}
 
 You can delete your {{ product_title }} cluster in {{ cluster_manager_first }}. {._abstract}
 

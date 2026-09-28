@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Changing your global cluster pull secret to enable remote health reporting {id="insights-operator-new-pull-secret-enable_{{ context }}"}
+# Change your global cluster pull secret to enable remote health reporting {id="insights-operator-new-pull-secret-enable_{{ context }}"}
 
 You can change your existing global cluster pull secret to enable remote health reporting. If you have disabled remote health monitoring, you must download a new pull secret with your `console.openshift.com` access token from {{ cluster_manager_first }}. {._abstract}
 

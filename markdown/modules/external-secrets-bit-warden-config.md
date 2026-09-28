@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the bitwardenSecretManagerProvider plugin {id="external-secrets-bit-warden-config_{{ context }}"}
+# Configure the bitwardenSecretManagerProvider plugin {id="external-secrets-bit-warden-config_{{ context }}"}
 
 You must configure the `bitwardenSecretManagerProvider` plugin to enable communication with the Bitwarden API. This configuration enables the Operator to authenticate and fetch secrets for synchronization. {._abstract}
 

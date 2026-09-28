@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Checking the keys {id="kmm-checking-the-keys_{{ context }}"}
+# Check the keys {id="kmm-checking-the-keys_{{ context }}"}
 
 To verify that your secure boot signing keys are configured correctly in {{ product_title }}, you can inspect the public certificate and private key secrets with the OpenShift CLI. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting up Topology Manager {id="setting_up_topology_manager_{{ context }}"}
+# Set up Topology Manager {id="setting_up_topology_manager_{{ context }}"}
 
 To use Topology Manager, you must configure an allocation policy in the `KubeletConfig` custom resource (CR) named `cpumanager-enabled`. This file might exist if you have set up CPU Manager. If the file does not exist, you can create the file. {._abstract}
 

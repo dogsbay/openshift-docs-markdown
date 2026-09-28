@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Increasing the database size for etcd {id="etcd-increase-db_{{ context }}"}
+# Increase the database size for etcd {id="etcd-increase-db_{{ context }}"}
 
 Increase the etcd disk quota when low space or excessive growth alerts appear. Expanding the quota before etcd runs out of space prevents write failures and cluster instability. {._abstract}
 

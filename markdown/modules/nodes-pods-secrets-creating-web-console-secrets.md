@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a secret using the web console {id="nodes-pods-secrets-creating-web-console-secrets_{{ context }}"}
+# Create a secret using the web console {id="nodes-pods-secrets-creating-web-console-secrets_{{ context }}"}
 
 You can secure sensitive information, such as passwords or tokens, in a secret and add the information to a workload by using the web console. By using secrets, you can manage application credentials and configuration files without including them in your container images. {._abstract}
 

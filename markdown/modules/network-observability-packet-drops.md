@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Working with packet drops {id="network-observability-packet-drops_{{ context }}"}
+# Work with packet drops {id="network-observability-packet-drops_{{ context }}"}
 
 Enable packet drop tracking in the Network Observability Operator by configuring the `FlowCollector` resource to monitor and visualize network data loss in the web console. {._abstract}
 

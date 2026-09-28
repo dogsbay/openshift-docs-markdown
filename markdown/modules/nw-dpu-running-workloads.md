@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running a workload on the host with DPU {id="nw-running-workloads-dpu_{{ context }}"}
+# Run a workload on the host with DPU {id="nw-running-workloads-dpu_{{ context }}"}
 
 You can deploy workloads on the host with DPU to offload specialized infrastructure tasks and improve performance while freeing up host CPU resources. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Kubernetes NMState Operator by using the web console {id="installing-the-kubernetes-nmstate-operator-web-console_{{ context }}"}
+# Install the Kubernetes NMState Operator by using the web console {id="installing-the-kubernetes-nmstate-operator-web-console_{{ context }}"}
 
 You can install the Kubernetes NMState Operator by using the web console. After you install the Kubernetes NMState Operator, the Operator has deployed the NMState State Controller as a daemon set across all of the cluster nodes. {._abstract}
 

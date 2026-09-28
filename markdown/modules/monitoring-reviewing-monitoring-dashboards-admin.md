@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Reviewing monitoring dashboards as a cluster administrator {id="reviewing-monitoring-dashboards-admin_{{ context }}"}
+# Review monitoring dashboards as a cluster administrator {id="reviewing-monitoring-dashboards-admin_{{ context }}"}
 
 View pre-built dashboards for core {{ product_title }} cluster components to monitor system health and performance. {._abstract}
 

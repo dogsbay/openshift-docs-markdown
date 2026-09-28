@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring pod security admission for a namespace {id="security-context-constraints-psa-label_{{ context }}"}
+# Configure pod security admission for a namespace {id="security-context-constraints-psa-label_{{ context }}"}
 
 You can configure pod security admission modes and profiles at the namespace level to control the security standards that pods must meet in a specific namespace. {._abstract}
 

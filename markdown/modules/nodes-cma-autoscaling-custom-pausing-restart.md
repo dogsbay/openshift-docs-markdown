@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Restarting the custom metrics autoscaler for a scaled object {id="nodes-cma-autoscaling-custom-pausing-restart_{{ context }}"}
+# Restart the custom metrics autoscaler for a scaled object {id="nodes-cma-autoscaling-custom-pausing-restart_{{ context }}"}
 
 You can restart a paused custom metrics autoscaler by removing the `autoscaling.keda.sh/paused-replicas` annotation for that `ScaledObject`.
 

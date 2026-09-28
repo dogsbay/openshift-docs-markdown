@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring VRRP preemption {id="nw-ipfailover-configuring-vrrp-preemption_{{ context }}"}
+# Configure VRRP preemption {id="nw-ipfailover-configuring-vrrp-preemption_{{ context }}"}
 
 To control VIP preemption behavior when nodes recover in {{ product_title }}, you can configure the `OPENSHIFT_HA_PREEMPTION` variable to set a delay before higher priority VIPs take over or disable preemption entirely. {._abstract}
 

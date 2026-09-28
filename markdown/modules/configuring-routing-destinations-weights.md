@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configure routing destinations and traffic weights {id="configuring-routing-destinations-weights_{{ context }}"}
+# Configuring routing destinations and traffic weights {id="configuring-routing-destinations-weights_{{ context }}"}
 
-To route traffic to your backends, you must define service destinations and traffic weights within your `HTTPRoute` custom resource (CR) to distribute requests across your applications.  {._abstract}
+To route traffic to your backends, you must define service destinations and traffic weights within your `HTTPRoute` custom resource (CR) to distribute requests across your applications. {._abstract}
 
 **Prerequisites**
 
@@ -16,16 +16,16 @@ To route traffic to your backends, you must define service destinations and traf
     apiVersion: gateway.networking.k8s.io/v1
     kind: HTTPRoute
     metadata:
-      name: <backend_route_example>
-      namespace: <example_application>
+      name: <backend_route_example>
+      namespace: <example_application>
     spec:
-      parentRefs:
-      - name: <example_gateway>
-        namespace: openshift-ingress
-      rules:
-      - backendRefs:
-        - name: <service_v1>
-          port: 8080
+      parentRefs:
+      - name: <example_gateway>
+        namespace: openshift-ingress
+      rules:
+      - backendRefs:
+        - name: <service_v1>
+          port: 8080
     ```
 1.  Apply the `HTTPRoute` CR by running the following command:
     ```terminal

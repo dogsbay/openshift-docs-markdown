@@ -5,6 +5,35 @@ You can build a virtual machine (VM) image into a container disk and upload it t
 
 The size of a container disk is limited by the maximum layer size of the registry where the container disk is hosted.
 
+You create a VM from a container disk by performing the following steps:
+
+1.  Build an operating system image into a container disk and upload it to your container registry.
+1.  If your container registry does not have TLS, configure your environment to disable TLS for your registry.
+1.  Create a VM with the container disk as the disk source by using the {{ product_title }} web console or the command line.
+
+{% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
+
+:::important
+
+If the container disks are large, the I/O traffic might increase and cause worker nodes to be unavailable. You can perform the following tasks to reclaim resources:
+
+*   Prune `DeploymentConfig` objects.
+*   Configure garbage collection.
+
+:::
+
+{% endif %}
+
+{% if openshift_rosa or openshift_dedicated or openshift_rosa_hcp %}
+
+:::important
+
+If the container disks are large, the I/O traffic might increase and cause worker nodes to be unavailable. You can prune `DeploymentConfig` objects to resolve this issue.
+
+:::
+
+{% endif %}
+
 
 :::note
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the TAP CNI to run a rootless DPDK workload with kernel access {id="nw-running-dpdk-rootless-tap_{{ context }}"}
+# Use the TAP CNI to run a rootless DPDK workload with kernel access {id="nw-running-dpdk-rootless-tap_{{ context }}"}
 
-DPDK applications can use `virtio-user` as an exception path to inject certain types of packets, such as log messages, into the kernel for processing. For more information about this feature, see [Virtio_user as Exception Path](https://doc.dpdk.org/guides/howto/virtio_user_as_exception_path.html). {._abstract}
+DPDK applications can use `virtio-user` as an exception path to inject certain types of packets, such as log messages, into the kernel for processing. {._abstract}
 
 In {{ product_title }} version 4.14 and later, you can use non-privileged pods to run DPDK applications alongside the tap CNI plugin. To enable this functionality, you need to mount the `vhost-net` device by setting the `needVhostNet` parameter to `true` within the `SriovNetworkNodePolicy` object.
 

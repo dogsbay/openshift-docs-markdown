@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Querying metrics for the {{ cert_manager_operator }} operands {id="cert-manager-query-metrics_{{ context }}"}
+# Query metrics for the {{ cert_manager_operator }} operands {id="cert-manager-query-metrics_{{ context }}"}
 
 As a cluster administrator, or as a user with view access to all namespaces, you can query {{ cert_manager_operator }} operands metrics by using the {{ product_title }} web console or the command-line interface (CLI). For more information, see "Accessing metrics". {._abstract}
 

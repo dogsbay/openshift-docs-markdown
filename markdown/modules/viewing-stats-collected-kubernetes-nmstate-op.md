@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing metrics collected by the Kubernetes NMState Operator {id="viewing-stats-collected-kubernetes-nmstate-op_{{ context }}"}
+# View metrics collected by the Kubernetes NMState Operator {id="viewing-stats-collected-kubernetes-nmstate-op_{{ context }}"}
 
 The Kubernetes NMState Operator, `kubernetes-nmstate-operator`, can collect metrics from the Kubernetes components and expose them as ready-to-use metrics. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Isolating containers with multitenancy {id="security-platform-multi-tenancy_{{ context }}"}
+# Isolate containers with multitenancy {id="security-platform-multi-tenancy_{{ context }}"}
 
 You can configure multitenancy to allow applications on an {{ product_title }} cluster that are owned by multiple users, and run across multiple hosts and namespaces, to remain isolated from each other and from outside attacks.  {._abstract}
 

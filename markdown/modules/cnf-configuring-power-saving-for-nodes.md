@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring power saving for nodes that run colocated high and low priority workloads {id="cnf-configuring-power-saving-for-nodes_{{ context }}"}
+# Configure power saving for nodes that run colocated high and low priority workloads {id="cnf-configuring-power-saving-for-nodes_{{ context }}"}
 
 You can enable power savings for a node that has low priority workloads that are colocated with high priority workloads without impacting the latency or throughput of the high priority workloads. Power saving is possible without modifications to the workloads themselves. {._abstract}
 

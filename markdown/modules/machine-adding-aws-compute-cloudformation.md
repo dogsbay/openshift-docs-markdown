@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding more compute machines to your AWS cluster by using CloudFormation templates {id="machine-adding-aws-compute-cloudformation_{{ context }}"}
+# Add more compute machines to your AWS cluster by using CloudFormation templates {id="machine-adding-aws-compute-cloudformation_{{ context }}"}
 
 To scale your {{ product_title }} cluster on Amazon Web Services (AWS), you can add more compute machines by creating additional CloudFormation stacks from the sample templates that you used during installation. {._abstract}
 

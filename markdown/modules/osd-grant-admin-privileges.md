@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Granting administrator privileges to a user {id="osd-grant-admin-privileges_{{ context }}"}
+# Grant administrator privileges to a user {id="osd-grant-admin-privileges_{{ context }}"}
 
 After you have configured an identity provider for your cluster and added a user to the identity provider, you can grant `dedicated-admin` cluster privileges to the user. {._abstract}
 

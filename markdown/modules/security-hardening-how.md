@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Choosing how to harden {{ op_system }} {id="security-hardening-how_{{ context }}"}
+# Choose how to harden {{ op_system }} {id="security-hardening-how_{{ context }}"}
 
 Direct modification of {{ op_system }} systems in {{ product_title }} is discouraged. Instead, you should think of modifying systems in pools of nodes, such as worker nodes and control plane nodes.  {._abstract}
 

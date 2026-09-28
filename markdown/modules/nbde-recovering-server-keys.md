@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Recovering keys for a Tang server {id="nbde-recovering-server-keys_{{ context }}"}
+# Recover keys for a Tang server {id="nbde-recovering-server-keys_{{ context }}"}
 
 You can recover the keys for a Tang server by accessing the keys from a backup.
 

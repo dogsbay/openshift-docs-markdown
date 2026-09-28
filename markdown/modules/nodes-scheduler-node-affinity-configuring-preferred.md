@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a preferred node affinity rule {id="nodes-scheduler-node-affinity-configuring-preferred_{{ context }}"}
+# Configure a preferred node affinity rule {id="nodes-scheduler-node-affinity-configuring-preferred_{{ context }}"}
 
 You can use a _preferred_ rule to instruct the scheduler that if a matching node is not available, schedule the pod on a different node to ensure the workload application runs. {._abstract}
 

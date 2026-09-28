@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling customer-managed encryption keys for a machine set {id="machineset-enabling-customer-managed-encryption-azure_{{ context }}"}
+# Enable customer-managed encryption keys for a machine set {id="machineset-enabling-customer-managed-encryption-azure_{{ context }}"}
 
 To enhance data security, enable customer-managed encryption on {{ azure_full }} by adding the disk encryption set ID to your machine set. {._abstract}
 

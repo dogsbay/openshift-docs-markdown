@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling egress firewall and network policy audit logging for a namespace {id="nw-networkpolicy-audit-disable_{{ context }}"}
+# Disable egress firewall and network policy audit logging for a namespace {id="nw-networkpolicy-audit-disable_{{ context }}"}
 
 To disable egress firewall and network policy audit logging for a namespace in {{ product_title }}, you can remove the `k8s.ovn.org/acl-logging` annotation with the `oc annotate` command. You can also apply a namespace YAML file that sets the annotation to `null`. {._abstract}
 

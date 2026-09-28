@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Restricting the API server to private for an {{ azure_full }} cluster {id="private-clusters-setting-api-private-azure_{{ context }}"}
+# Restrict the API server to private for an {{ azure_full }} cluster {id="private-clusters-setting-api-private-azure_{{ context }}"}
 
 If the security posture of your organization does not allow clusters to use an open API endpoint, you can restrict the API server to use only internal load balancers.
 To implement this API server restriction, use the {{ azure_first }} console to delete the external load balancer component. {._abstract}

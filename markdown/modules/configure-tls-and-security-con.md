@@ -1,0 +1,4 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Configure TLS and security {id="configure-tls-and-security-con_{{ context }}"}
+
+To secure application traffic that enters the cluster, you can configure routes to serve custom certificates to clients by using edge, passthrough, or re-encrypt TLS termination, and enforce HTTP Strict Transport Security (HSTS) per route or per domain. You can also configure TLS security profiles to control which cryptographic ciphers the Ingress Controller accepts.

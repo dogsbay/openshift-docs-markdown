@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Viewing horizontal pod autoscaler status conditions by using the CLI {id="nodes-pods-autoscaling-status-viewing_{{ context }}"}
+# View horizontal pod autoscaler status conditions by using the CLI {id="nodes-pods-autoscaling-status-viewing_{{ context }}"}
 
 You can view the status conditions set on a pod by the horizontal pod autoscaler (HPA). {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Referencing the kubelet configuration in node pools {id="hcp-kubeconf-nodepool_{{ context }}"}
+# Reference the kubelet configuration in node pools {id="hcp-kubeconf-nodepool_{{ context }}"}
 
 To reference your kubelet configuration in node pools, you add the kubelet configuration in a config map and then apply the config map in the `NodePool` resource. {._abstract}
 

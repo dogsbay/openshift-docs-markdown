@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a Cluster API machine template {id="capi-creating-machine-template_{{ context }}"}
+# Create a Cluster API machine template {id="capi-creating-machine-template_{{ context }}"}
 
 You can create a provider-specific machine template resource by creating a YAML manifest file and applying it with the {{ oc_first }}. {._abstract}
 

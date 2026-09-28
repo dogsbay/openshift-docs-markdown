@@ -29,4 +29,4 @@ title: Working with NUMA topology for virtual machines
 
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Topology Manager policies](/scalability_and_performance/using-cpu-manager#using-cpu-manager_topology-manager-policies)
-*   [Creating virtual machines from instance types](/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)
+*   [Instance types](/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)

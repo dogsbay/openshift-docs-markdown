@@ -22,6 +22,7 @@ Before you perform any tasks in the following documentation, ensure that you [in
 **Additional resources**
 {._additional-resources}
 
+*   [Virtio_user as Exception Path (DPDK documentation)](https://doc.dpdk.org/guides/howto/virtio_user_as_exception_path.html)
 *   [Creating a performance profile](/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-create-performance-profiles_cnf-tuning-low-latency-nodes-with-perf-profile)
 *   [Configuring an SR-IOV network device](/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device)
 

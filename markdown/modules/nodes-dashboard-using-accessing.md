@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accessing the node metrics dashboard {id="nodes-dashboard-using-accessing_{{ context }}"}
+# Access the node metrics dashboard {id="nodes-dashboard-using-accessing_{{ context }}"}
 
 You can access the node metrics dashboard from the **Administrator** perspective of the {{ product_title }} web console. {._abstract}
 

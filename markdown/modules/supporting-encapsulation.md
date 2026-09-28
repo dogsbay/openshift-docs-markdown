@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Inspecting encapsulated namespaces {id="supporting-encapsulation_{{ context }}"}
+# Inspect encapsulated namespaces {id="supporting-encapsulation_{{ context }}"}
 
 You can inspect Kubernetes-specific mount points in the cluster host operating system for debugging or auditing purposes by using the `kubensenter` script that is available in {{ op_system_first }}. {._abstract}
 

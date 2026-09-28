@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Granting `cluster-admin` access {id="rosa-create-cluster-admins_{{ context }}"}
+# Grant `cluster-admin` access {id="rosa-create-cluster-admins_{{ context }}"}
 
 As the user who created the cluster, add the `cluster-admin` user role to your account to have the maximum administrator privileges. These privileges are not automatically assigned to your user account when you create the cluster. {._abstract}
 

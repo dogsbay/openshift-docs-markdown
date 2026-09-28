@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running a workload on the DPU {id="nw-dpu-creating-a-sfc_{{ context }}"}
+# Run a workload on the DPU {id="nw-dpu-creating-a-sfc_{{ context }}"}
 
 You can deploy network workloads directly on the DPU to improve performance, enhance security isolation, and reduce host CPU usage. {._abstract}
 

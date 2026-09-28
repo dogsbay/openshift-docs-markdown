@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Evacuating pods on nodes {id="nodes-nodes-working-evacuating_{{ context }}"}
+# Evacuate pods on nodes {id="nodes-nodes-working-evacuating_{{ context }}"}
 
 You can remove, or evacuate, pods from a given node or nodes. Evacuating pods allows you to migrate all or selected pods to other nodes. {._abstract}
 

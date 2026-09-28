@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing an interface from nodes {id="virt-removing-interface-from-nodes_{{ context }}"}
+# Remove an interface from nodes {id="virt-removing-interface-from-nodes_{{ context }}"}
 
 You can remove an interface from one or more nodes in the cluster by editing the `NodeNetworkConfigurationPolicy` object and setting the `state` of the interface to `absent`. {._abstract}
 

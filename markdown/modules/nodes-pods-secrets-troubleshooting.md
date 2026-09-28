@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Troubleshooting secrets {id="nodes-pods-secrets-troubleshooting_{{ context }}"}
+# Troubleshoot secrets {id="nodes-pods-secrets-troubleshooting_{{ context }}"}
 
 Review the following information for troubleshooting tips for working with secrets. {._abstract}
 

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Granting user access to extension resources by using aggregated cluster roles {id="olmv1-granting-user-access-aggregated_{{ context }}"}
+# Grant user access to extension resources by using aggregated cluster roles {id="olmv1-granting-user-access-aggregated_{{ context }}"}
 
 As a cluster administrator, you can configure role-based access control (RBAC) policies to grant user access to extension resources by using aggregated cluster roles. {._abstract}
 

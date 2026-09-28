@@ -12,7 +12,7 @@
 
 {%- set _mod_docs_content_type = "PROCEDURE" -%}
 {% if ocp_sriov_net %}
-# Configuring SR-IOV additional network {id="nw-sriov-network-attachment_{{ context }}"}
+# Configure SR-IOV additional network {id="nw-sriov-network-attachment_{{ context }}"}
 
 You can configure an additional network that uses SR-IOV hardware by creating an `{{ rs }}`{minja} object.
 When you create an `{{ rs }}`{minja} object, the SR-IOV Network Operator automatically creates a `NetworkAttachmentDefinition` object. {._abstract}

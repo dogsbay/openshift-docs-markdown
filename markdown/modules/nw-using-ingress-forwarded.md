@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using X-Forwarded headers {id="nw-using-ingress-forwarded_{{ context }}"}
+# Use X-Forwarded headers {id="nw-using-ingress-forwarded_{{ context }}"}
 
 You configure the HAProxy Ingress Controller to specify a policy for how to handle HTTP headers including `Forwarded` and `X-Forwarded-For`. The Ingress Operator uses the `HTTPHeaders` field to configure the `ROUTER_SET_FORWARDED_HEADERS` environment variable of the Ingress Controller.
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Querying image vulnerabilities from the CLI {id="security-pod-scan-query-cli_{{ context }}"}
+# Query image vulnerabilities from the CLI {id="security-pod-scan-query-cli_{{ context }}"}
 
 You can display information about vulnerabilities detected by the {{ rhq_cso }} by using the `oc` command. {._abstract}
 

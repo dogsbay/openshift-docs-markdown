@@ -1,7 +1,3 @@
-{% if context == "rosa-hcp-cluster-no-cni" %}
-{%- set hcp = true -%}
-{% endif %}
-
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating an OpenID Connect configuration {id="rosa-sts-byo-oidc_{{ context }}"}
 
@@ -64,7 +60,3 @@
     2330dbs0n8m3chkkr25gkkcd8pnj3lk2  true     https://dvbwgdztaeq9o.cloudfront.net/2330dbs0n8m3chkkr25gkkcd8pnj3lk2
     233hvnrjoqu14jltk6lhbhf2tj11f8un  false    https://oidc-r7u1.s3.us-east-1.amazonaws.com                           aws:secretsmanager:us-east-1:242819244:secret:rosa-private-key-oidc-r7u1-tM3MDN
     ```
-
-{% if context == "rosa-hcp-cluster-no-cni" %}
-{%- set hcp = "" -%}
-{% endif %}

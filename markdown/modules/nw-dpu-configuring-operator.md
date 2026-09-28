@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the DPU Operator {id="nw-dpu-configuring-operator_{{ context }}"}
+# Configure the DPU Operator {id="nw-dpu-configuring-operator_{{ context }}"}
 
 You can configure the DPU Operator after installation to enable management of DPU devices and network attachments in both dual cluster and single cluster deployment modes. {._abstract}
 

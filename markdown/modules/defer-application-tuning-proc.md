@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deferring application of tuning changes: An example {id="defer-application-of-tuning-changes-example_{{ context }}"}
+# Defer application of tuning changes: An example {id="defer-application-of-tuning-changes-example_{{ context }}"}
 
 The following worked example describes how to defer the application of tuning changes by using the Node Tuning Operator. {._abstract}
 

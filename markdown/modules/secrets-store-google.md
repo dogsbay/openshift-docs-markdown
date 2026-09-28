@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Mounting secrets from Google Secret Manager {id="secrets-store-google_{{ context }}"}
+# Mount secrets from Google Secret Manager {id="secrets-store-google_{{ context }}"}
 
 You can use the {{ secrets_store_operator }} to mount secrets from Google Secret Manager to a Container Storage Interface (CSI) volume in {{ product_title }}. Using an external secret store protects information that you do not want developers to have and can be more secure than `secret` objects. {._abstract}
 

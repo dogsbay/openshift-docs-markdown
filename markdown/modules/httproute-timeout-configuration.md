@@ -3,7 +3,7 @@
 
 There are two types of timeouts you can configure for an `HTTPRoute` custom resource (CR): `request` and `backendRequest`. {._abstract}
 
-The `request` timeout covers the total time to send a request and then get a response back to the client. It represents the duration of the entire request-response transaction. 
+The `request` timeout covers the total time to send a request and then get a response back to the client. It represents the duration of the entire request-response transaction. 
 
 The `backendRequest` timeout covers the time for a request to travel from the gateway to the backend, and for a response to be received. Extending the timeout for a `backendRequest` can be helpful if the gateway needs to retry connections to a backend.
 
@@ -18,10 +18,10 @@ The `backendRequest` timeout is classified as an extended feature (`Support: Ext
 When configuring timeouts, you must adhere to the following formatting rules and constraints:
 
 *   The value of a `backendRequest` timeout cannot be greater than the value of the `request` timeout.
-*   If specified, a timeout value must be `0` or greater than or equal to `1ms`. 
+*   If specified, a timeout value must be `0` or greater than or equal to `1ms`. 
 *   A zero-valued timeout (`0`) means there is no timeout.
 *   Timeouts use a string format that starts with a number and expresses hours (`h`), minutes (`m`), seconds (`s`), or milliseconds (`ms`).
-*   The number can be up to five digits, such as `10000s`. 
+*   The number can be up to five digits, such as `10000s`. 
 *   You can use multipart durations to express fractions, such as `1m30s`, but you cannot use decimal dots.
 
 ## Example: Request timeout {id="_example_request_timeout"}
@@ -32,22 +32,22 @@ The following example demonstrates a complete `HTTPRoute` custom resource (CR) w
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: <timeout_example>
-  namespace: <example_application>
+  name: <timeout_example>
+  namespace: <example_application>
 spec:
-  parentRefs:
-  - name: <example_gateway>
-    namespace: openshift-ingress
-  rules:
-  - matches:
-    - path:
-        type: PathPrefix
-        value: /<timeout_path>
-    timeouts:
-      request: 30s
-    backendRefs:
-    - name: <example_service>
-      port: 8080
+  parentRefs:
+  - name: <example_gateway>
+    namespace: openshift-ingress
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /<timeout_path>
+    timeouts:
+      request: 30s
+    backendRefs:
+    - name: <example_service>
+      port: 8080
 ```
 *   `request` specifies the timeout for the full request-response cycle.
 *   `PathPrefix` ensures the timeout applies to all requests starting with `/<timeout_path>`.
@@ -58,11 +58,11 @@ The following snippet demonstrates a configuration where the request must succee
 
 ```yaml
 spec:
-  rules:
-  - timeouts:
-      request: 5s
-      backendRequest: 1s
-    backendRefs:
-    - name: <example_service>
-      port: 8080
+  rules:
+  - timeouts:
+      request: 5s
+      backendRequest: 1s
+    backendRefs:
+    - name: <example_service>
+      port: 8080
 ```

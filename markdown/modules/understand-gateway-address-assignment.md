@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understand gateway address assignment and types {id="understand-gateway-address-assignment_{{ context }}"}
+# Understanding gateway address assignment and types {id="understand-gateway-address-assignment_{{ context }}"}
 
 {{ product_title }} automatically handles address assignment by provisioning a `LoadBalancer` service when you create a `Gateway` resource. The network address assigned to your gateway corresponds to the IP address or hostname of this underlying load balancer. {._abstract}
 

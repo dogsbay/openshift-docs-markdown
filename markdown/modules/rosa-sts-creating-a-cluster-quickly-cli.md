@@ -1,16 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating a cluster quickly using the CLI {id="rosa-sts-creating-a-cluster-quickly-cli_{{ context }}"}
 
-{% if context == "rosa-sts-creating-a-cluster-quickly" %}
-{%- set quick_install = true -%}
-{% endif %}
-{% if context == "rosa-quickstart" %}
-{%- set quickstart = true -%}
-{% endif %}
-
 When using the {{ rosa_cli_first }}, to create a cluster that uses the AWS Security Token Service (STS), you can select the default options to create the cluster quickly. {._abstract}
-
-{% if not quickstart %}
 
 **Prerequisites**
 
@@ -20,7 +11,6 @@ When using the {{ rosa_cli_first }}, to create a cluster that uses the AWS Secur
 *   You have installed and configured the latest {{ rosa_cli }} on your installation host. Run `rosa version` to see your currently installed version of the {{ rosa_cli }}. If a newer version is available, the CLI provides a link to download this upgrade.
 *   You have logged in to your Red&#160;Hat account by using the ROSA CLI.
 *   You have verified that the AWS Elastic Load Balancing (ELB) service role exists in your AWS account.
-{% endif %}
 
 **Procedure**
 
@@ -69,10 +59,3 @@ When using the {{ rosa_cli_first }}, to create a cluster that uses the AWS Secur
     ```
 
     Specify the `--watch` flag to watch for new log messages as the installation progresses. This argument is optional.
-
-{% if context == "rosa-sts-creating-a-cluster-quickly" %}
-{%- set quick_install = true -%}
-{% endif %}
-{% if context == "rosa-quickstart" %}
-{%- set quickstart = true -%}
-{% endif %}

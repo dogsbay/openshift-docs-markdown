@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Working with DNS tracking {id="network-observability-dns-tracking_{{ context }}"}
+# Work with DNS tracking {id="network-observability-dns-tracking_{{ context }}"}
 
 Configure the `FlowCollector` custom resource to enable DNS tracking for monitoring network performance, security analysis, and DNS troubleshooting in the web console. {._abstract}
 

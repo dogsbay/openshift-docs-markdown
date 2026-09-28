@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring interrupt processing for individual pods {id="cnf-disabling-interrupt-processing-for-individual-pods_{{ context }}"}
+# Configure interrupt processing for individual pods {id="cnf-disabling-interrupt-processing-for-individual-pods_{{ context }}"}
 
 To achieve low latency for workloads, some containers require that the CPUs they are pinned to do not process device interrupts. You can use the `irq-load-balancing.crio.io` pod annotation to control whether device interrupts are processed on CPUs where the pinned containers are running. {._abstract}
 

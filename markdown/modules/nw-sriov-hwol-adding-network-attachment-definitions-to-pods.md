@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding the network attachment definition to your pods {id="adding-network-attachment-definition-to-pods_{{ context }}"}
+# Add the network attachment definition to your pods {id="adding-network-attachment-definition-to-pods_{{ context }}"}
 
 After you create the machine config pool, the `SriovNetworkPoolConfig` and `SriovNetworkNodePolicy` custom resources, and the network attachment definition, you can apply these configurations to your pods by adding the network attachment definition to your pod specifications. {._abstract}
 

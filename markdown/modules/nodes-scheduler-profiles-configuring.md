@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a scheduler profile {id="nodes-scheduler-profiles-configuring_{{ context }}"}
+# Configure a scheduler profile {id="nodes-scheduler-profiles-configuring_{{ context }}"}
 
 To customize how the cluster distributes pods across your nodes based on resource use, you can configure a specific scheduler profile. {._abstract}
 

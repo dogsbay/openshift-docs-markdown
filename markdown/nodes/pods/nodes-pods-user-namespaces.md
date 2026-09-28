@@ -32,5 +32,5 @@ To check user namespaces support for storage options, see [CSI drivers supported
 **Additional resources**
 {._additional-resources}
 
-*   [Managing security context constraints](/authentication/managing-security-context-constraints#configuring-internal-oauth)
+*   [Managing security context constraints](/authentication/managing-security-context-constraints#managing-pod-security-policies)
 *   [OpenShift CLI administrator command reference](/cli_reference/openshift_cli/administrator-cli-commands#cli-administrator-commands)

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Working with RTT tracing {id="network-observability-RTT_{{ context }}"}
+# Work with RTT tracing {id="network-observability-RTT_{{ context }}"}
 
 Enable Round Trip Time (RTT) tracing by configuring the `FlowCollector` custom resource to monitor and analyze network latency across your cluster by using the web console. {._abstract}
 

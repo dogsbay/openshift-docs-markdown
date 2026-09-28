@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a project with a node selector and toleration {id="nodes-scheduler-taints-tolerations-projects_{{ context }}"}
+# Create a project with a node selector and toleration {id="nodes-scheduler-taints-tolerations-projects_{{ context }}"}
 
 You can create a project that uses a node selector and toleration, which are set as annotations, to control the placement of pods onto specific nodes. Any subsequent resources created in the project are then scheduled on nodes that have a taint matching the toleration. {._abstract}
 

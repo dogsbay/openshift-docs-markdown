@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting the Ingress Controller health check interval {id="nw-ingress-controller-config-tuningoptions-healthcheckinterval_{{ context }}"}
+# Set the Ingress Controller health check interval {id="nw-ingress-controller-config-tuningoptions-healthcheckinterval_{{ context }}"}
 
 A cluster administrator can set the health check interval to define how long the router waits between two consecutive health checks. This value is applied globally as a default for all routes. The default value is 5 seconds.
 

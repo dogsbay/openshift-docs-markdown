@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating alerts {id="network-observability-netobserv-dashboard-high-traffic-alert_{{ context }}"}
+# Create alerts {id="network-observability-netobserv-dashboard-high-traffic-alert_{{ context }}"}
 
 Create custom `AlertingRule` resources based on `Netobserv` dashboard metrics to define conditions that trigger alerts in the {{ product_title }} console. {._abstract}
 

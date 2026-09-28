@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing Ingress Node Firewall Operator rules {id="nw-infw-operator-viewing_{{ context }}"}
+# View Ingress Node Firewall Operator rules {id="nw-infw-operator-viewing_{{ context }}"}
 
 Inspect existing rules and configs to confirm the firewall is applied as intended. {._abstract}
 

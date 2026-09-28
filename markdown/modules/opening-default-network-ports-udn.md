@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Opening default network ports on user-defined network pods {id="opening-default-network-ports-udn_{{ context }}"}
+# Open default network ports on user-defined network pods {id="opening-default-network-ports-udn_{{ context }}"}
 
 To allow default network pods to connect to a user-defined network pod, you can use the `k8s.ovn.org/open-default-ports` annotation. This annotation opens specific ports on the user-defined network pod for access from the default network. {._abstract}
 

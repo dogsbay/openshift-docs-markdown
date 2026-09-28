@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Updating image stream tags {id="images-imagestream-update-tag_{{ context }}"}
+# Update image stream tags {id="images-imagestream-update-tag_{{ context }}"}
 
 To maintain flexibility and consistency in deployment definitions, update an image stream tag to reflect a different tag in {{ product_title }}. Specifically, you can update a tag to reflect another tag in an image stream, which is essential for managing image versions effectively. {._abstract}
 

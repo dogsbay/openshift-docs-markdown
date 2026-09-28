@@ -1,11 +1,4 @@
-{%- if context == "rosa-classic-creating-a-cluster-quickly-terraform" %}
-{%- set tf_classic_defaults = true -%}
-{% endif %}
-{% if context == "rosa-hcp-creating-a-cluster-quickly-terraform" %}
-{%- set tf_hcp_defaults = true -%}
-{% endif %}
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-
 # Preparing your environment for Terraform {id="rosa-sts-cluster-terraform-setup_{{ context }}"}
 
 Before you can create your {{ product_title }} cluster by using Terraform, you must export your offline {{ cluster_manager_first }} token to grant Terraform permission to access your account. {._abstract}
@@ -35,10 +28,3 @@ Before you can create your {{ product_title }} cluster by using Terraform, you m
     ```terminal
     $ echo $RHCS_TOKEN
     ```
-
-{% if context == "rosa-classic-creating-a-cluster-quickly-terraform" %}
-{%- set tf_classic_defaults = "" -%}
-{% endif %}
-{% if context == "rosa-hcp-creating-a-cluster-quickly-terraform" %}
-{%- set tf_hcp_defaults = "" -%}
-{% endif %}

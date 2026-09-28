@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the descheduler interval {id="nodes-descheduler-configuring-interval_{{ context }}"}
+# Configure the descheduler interval {id="nodes-descheduler-configuring-interval_{{ context }}"}
 
 You can configure the amount of time between descheduler runs. The default is 3600 seconds (one hour). {._abstract}
 

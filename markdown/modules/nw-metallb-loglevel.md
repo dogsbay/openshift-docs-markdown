@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Setting the MetalLB logging levels {id="nw-metallb-setting-metalb-logging-levels_{{ context }}"}
+# Set the MetalLB logging levels {id="nw-metallb-setting-metalb-logging-levels_{{ context }}"}
 
 To manage log verbosity for the `FRRouting` (FRR) container, configure the `logLevel` specification. By adjusting this setting, you can reduce log volume from the default info level or increase detail for troubleshooting MetalLB configuration issues. {._abstract}
 

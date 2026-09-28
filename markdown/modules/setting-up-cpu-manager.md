@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting up CPU Manager {id="setting_up_cpu_manager_{{ context }}"}
+# Set up CPU Manager {id="setting_up_cpu_manager_{{ context }}"}
 
 To configure CPU manager, create a `KubeletConfig` custom resource (CR) and apply it to the required set of nodes. {._abstract}
 

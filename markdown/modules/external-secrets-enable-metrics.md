@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring metrics collection for {{ external_secrets_operator }} operands by using a ServiceMonitor {id="external-secrets-enable-metrics_{{ context }}"}
+# Configure metrics collection for {{ external_secrets_operator }} operands by using a ServiceMonitor {id="external-secrets-enable-metrics_{{ context }}"}
 
 The {{ external_secrets_operator }} operands exposes metrics by default on port `8080` at the `/metrics` service endpoint for all three components (`external-secrets`, `external-secrets-cert-controll`, and `external-secrets-webhook`). You can configure metrics collection for the external-secrets operands by creating a `ServiceMonitor` custom resource (CR) that enables the Prometheus Operator to collect custom metrics. For more information, see "Configuring user workload monitoring". {._abstract}
 

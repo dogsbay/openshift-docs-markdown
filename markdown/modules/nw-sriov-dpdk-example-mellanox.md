@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using a virtual function in DPDK mode with a Mellanox NIC {id="example-vf-use-in-dpdk-mode-mellanox_{{ context }}"}
+# Use a virtual function in DPDK mode with a Mellanox NIC {id="example-vf-use-in-dpdk-mode-mellanox_{{ context }}"}
 
 You can create a network node policy and create a Data Plane Development Kit (DPDK) pod by using a virtual function in DPDK mode with a Mellanox NIC. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting the policy {id="virt-delete-node-network-config_{{ context }}"}
+# Delete the policy {id="virt-delete-node-network-config_{{ context }}"}
 
 You can delete a `NodeNetworkConfigurationPolicy` object when it is no longer needed. {._abstract}
 

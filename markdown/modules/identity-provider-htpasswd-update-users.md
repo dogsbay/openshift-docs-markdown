@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Updating users for an htpasswd identity provider {id="identity-provider-htpasswd-update-users_{{ context }}"}
+# Update users for an htpasswd identity provider {id="identity-provider-htpasswd-update-users_{{ context }}"}
 
 Update users in the `htpasswd` identity provider so login credentials in {{ product_title }} stay in sync when you add or remove accounts. {._abstract}
 

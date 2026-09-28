@@ -112,6 +112,9 @@ Configure your VPC according to the following requirements:
 *   **Route tables**: One route table per private subnet, and one additional table per cluster.
 *   **Internet gateways**: One Internet Gateway per cluster.
 *   **NAT gateways**: One NAT Gateway per public subnet.
+{%- if openshift_rosa_hcp %}
+    {% include "./snippets/multiple-subnets-snippet.md" %}
+{%- endif %}
 
 {% if not openshift_rosa_hcp %}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Allowing JavaScript-based access to the API server from additional hosts {id="auth-allowing-javascript-access-api-server_{{ context }}"}
+# Allow JavaScript-based access to the API server from additional hosts {id="auth-allowing-javascript-access-api-server_{{ context }}"}
 
 If you need to access the API server or OAuth server from a JavaScript application by using a different hostname, you can configure additional hostnames to allow. {._abstract}
 

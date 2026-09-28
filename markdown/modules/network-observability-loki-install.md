@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ loki_op }} {id="network-observability-loki-installation_{{ context }}"}
+# Install the {{ loki_op }} {id="network-observability-loki-installation_{{ context }}"}
 
 Install the supported {{ loki_op }} version from the software catalog to enable the secure `LokiStack` instance, which provides automatic in-cluster authentication and authorization for network observability. {._abstract}
 

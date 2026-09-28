@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating Loki rate limit alerts for the NetObserv dashboard {id="network-observability-netobserv-dashboard-rate-limit-alerts_{{ context }}"}
+# Create Loki rate limit alerts for the NetObserv dashboard {id="network-observability-netobserv-dashboard-rate-limit-alerts_{{ context }}"}
 
 Create a custom `AlertingRule` resource based on Loki metrics to monitor for and trigger alerts when the Loki ingestion rate limits are reached, indicated by HTTP 429 errors. {._abstract}
 

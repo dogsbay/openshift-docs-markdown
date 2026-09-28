@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understand listener routing conflicts {id="resolving-listener-routing-conflicts_{{ context }}"}
+# Understanding listener routing conflicts {id="resolving-listener-routing-conflicts_{{ context }}"}
 
 When you configure a `Gateway` custom resource (CR) with multiple listeners, you must establish clear rules for overlapping hostnames and ports to ensure your traffic does not get misrouted. To avoid ambiguity, the Gateway API uses specific conflict management rules. {._abstract}
 

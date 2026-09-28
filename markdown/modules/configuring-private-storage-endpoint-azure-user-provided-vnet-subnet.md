@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a private storage endpoint on Azure with user-provided VNet and subnet names {id="configuring-private-storage-endpoint-azure-user-provided-vnet-subnet_{{ context }}"}
+# Configure a private storage endpoint on Azure with user-provided VNet and subnet names {id="configuring-private-storage-endpoint-azure-user-provided-vnet-subnet_{{ context }}"}
 
 You can configure a private Azure storage endpoint for the image registry by specifying user-provided VNet and subnet names, enabling registry storage without public network access. {._abstract}
 

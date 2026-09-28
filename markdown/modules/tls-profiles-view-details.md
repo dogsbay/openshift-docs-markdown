@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing TLS security profile details {id="tls-profiles-view-details_{{ context }}"}
+# View TLS security profile details {id="tls-profiles-view-details_{{ context }}"}
 
 To check the minimum TLS version and ciphers that a security profile applies in {{ product_title }}, you can inspect the profile configuration for the Ingress Controller, control plane, or kubelet. Use the `oc explain` command to display settings for a predefined or custom profile. {._abstract}
 

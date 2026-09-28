@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the Whereabouts IP reconciler schedule {id="nw-multus-configuring-whereabouts-ip-reconciler-schedule_{{ context }}"}
+# Configure the Whereabouts IP reconciler schedule {id="nw-multus-configuring-whereabouts-ip-reconciler-schedule_{{ context }}"}
 
 The Whereabouts IPAM CNI plugin runs the IP address reconciler daily. This process cleans up any stranded IP address allocations that might result in exhausting IP addresses and therefore prevent new pods from getting a stranded IP address allocated to them. {._abstract}
 

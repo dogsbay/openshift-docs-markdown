@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the OVN-Kubernetes masquerade subnet as a post-installation operation {id="nw-ovn-k-day-2-masq-subnet_{{ context }}"}
+# Configure the OVN-Kubernetes masquerade subnet as a post-installation operation {id="nw-ovn-k-day-2-masq-subnet_{{ context }}"}
 
 You can change the masquerade subnet used by OVN-Kubernetes as a post-installation operation to avoid conflicts with any existing subnets that are already in use in your environment.
 

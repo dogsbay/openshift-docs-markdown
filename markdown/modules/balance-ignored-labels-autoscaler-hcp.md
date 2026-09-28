@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Balancing ignored labels in a hosted cluster {id="balance-ignored-labels-autoscaler-hcp_{{ context }}"}
+# Balance ignored labels in a hosted cluster {id="balance-ignored-labels-autoscaler-hcp_{{ context }}"}
 
 After you scale up your node pools, you can use `balancingIgnoredLabels` to evenly distribute the machines across node pools. {._abstract}
 

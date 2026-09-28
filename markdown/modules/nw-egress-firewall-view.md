@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing an EgressFirewall custom resource (CR) {id="nw-egress-firewall-view_{{ context }}"}
+# View an EgressFirewall custom resource (CR) {id="nw-egress-firewall-view_{{ context }}"}
 
 You can view an `EgressFirewall` CR in your cluster. {._abstract}
 

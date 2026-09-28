@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring audit logging {id="nodes-cma-autoscaling-custom-audit_{{ context }}"}
+# Configure audit logging {id="nodes-cma-autoscaling-custom-audit_{{ context }}"}
 
 You can configure auditing for the Custom Metrics Autoscaler Operator by editing the `KedaController` custom resource. The logs are sent to an audit log file on a volume that is secured by using a persistent volume claim in the `KedaController` CR.
 

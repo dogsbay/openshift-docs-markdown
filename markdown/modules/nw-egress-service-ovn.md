@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying an egress service {id="nw-egress-service-ovn_{{ context }}"}
+# Deploy an egress service {id="nw-egress-service-ovn_{{ context }}"}
 
 You can deploy an egress service to manage egress traffic for pods behind a `LoadBalancer` service. {._abstract}
 

@@ -12,6 +12,12 @@ Configure the Model Context Protocol (MCP) gateway so that it can route client t
 
 **Procedure**
 
+1.  Before creating the `HTTPRoute`, verify the exact name of your MCP server service by entering the following command:
+    ```terminal
+    $ oc get svc -n openshift-mcp-server
+    ```
+
+    Ensure that the `backendRefs.name` field in the following manifest matches the `NAME` output of your service. For example, `openshift-mcp-server`.
 1.  Create the HTTPRoute for the MCP server by running the following command:
     ```terminal
     $ oc apply -f - <<EOF
@@ -25,7 +31,7 @@ Configure the Model Context Protocol (MCP) gateway so that it can route client t
       - group: gateway.networking.k8s.io
         kind: Gateway
         name: mcp-gateway
-        namespace: gateway-system
+        namespace: gateway-namespace
         sectionName: mcp
       hostnames:
       - ${MCP_SERVER_HOST}
@@ -52,7 +58,7 @@ Configure the Model Context Protocol (MCP) gateway so that it can route client t
       name: my-mcp-server-reg
       namespace: openshift-mcp-server
     spec:
-      toolPrefix: "openshift_"
+      prefix: "openshift_"
       targetRef:
         group: "gateway.networking.k8s.io"
         kind: "HTTPRoute"
@@ -82,11 +88,11 @@ Configure the Model Context Protocol (MCP) gateway so that it can route client t
     ```
 1.  Check the controller logs by running the following command:
     ```terminal
-    $ oc logs -n mcp-system deployment/mcp-gateway-controller
+    $ oc logs -n gateway-namespace deployment/mcp-gateway-controller
     ```
 1.  Check the broker logs for tool discovery by running the following command:
     ```terminal
-    $ oc logs -n mcp-system deployment/mcp-gateway-broker-router
+    $ oc logs -n gateway-namespace deployment/mcp-gateway
     ```
 1.  Verify that your MCP server tools are available through the MCP gateway:
     1.  Initialize the MCP session and capture session ID by using -D to dump headers to a file, and then reading the session ID by running the following command:
@@ -117,4 +123,4 @@ Configure the Model Context Protocol (MCP) gateway so that it can route client t
         $ rm -f /tmp/mcp_headers
         ```
 
-        You should now see your MCP server tools in the response, prefixed with your configured toolPrefix (for example, myserver_).
+        You should now see your MCP server tools in the response, prefixed with your configured `prefix` value, such as `openshift_`.

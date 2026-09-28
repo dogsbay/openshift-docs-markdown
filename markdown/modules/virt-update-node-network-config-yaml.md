@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Updating the policy by using YAML {id="virt-update-node-network-config-yaml_{{ context }}"}
+# Update the policy by using YAML {id="virt-update-node-network-config-yaml_{{ context }}"}
 
 You can update a `NodeNetworkConfigurationPolicy` object by editing the YAML in the web console. {._abstract}
 

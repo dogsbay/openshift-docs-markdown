@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding unauthenticated groups to cluster roles {id="unauthenticated-users-cluster-role-bindings_{{ context }}"}
+# Add unauthenticated groups to cluster roles {id="unauthenticated-users-cluster-role-bindings_{{ context }}"}
 
 Grant unauthenticated users access to specific cluster roles to enable features that require cluster access without authentication, such as external webhooks or automated token management. {._abstract}
 

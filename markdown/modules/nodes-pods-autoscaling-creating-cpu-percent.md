@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a horizontal pod autoscaler for a percent of CPU use {id="nodes-pods-autoscaling-creating-cpu-percent_{{ context }}"}
+# Create a horizontal pod autoscaler for a percent of CPU use {id="nodes-pods-autoscaling-creating-cpu-percent_{{ context }}"}
 
 You can use the {{ product_title }} CLI to create a horizontal pod autoscaler (HPA) that automatically scales an existing object based on percent of CPU use. The HPA scales the pods associated with that object to maintain the CPU use that you specify. {._abstract}
 

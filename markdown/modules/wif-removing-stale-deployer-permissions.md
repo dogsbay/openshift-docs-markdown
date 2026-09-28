@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Removing stale deployer permissions from service accounts managed by a WIF configuration {id="wif-removing-stale-deployer-permissions_{{ context }}"}
+# Remove stale deployer permissions from service accounts managed by a WIF configuration {id="wif-removing-stale-deployer-permissions_{{ context }}"}
 
 To remove the stale deployer permissions from service accounts managed by a WIF configuration, run the following commands on a terminal with access to the {{ gcp_full }} project hosting the service accounts. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Granting `dedicated-admin` access {id="rosa-create-dedicated-cluster-admins_{{ context }}"}
+# Grant `dedicated-admin` access {id="rosa-create-dedicated-cluster-admins_{{ context }}"}
 
 Only the user who created the cluster can grant cluster access to other `cluster-admin` or `dedicated-admin` users. Users with `dedicated-admin` access have fewer privileges. As a best practice, grant `dedicated-admin` access to most of your administrators. {._abstract}
 

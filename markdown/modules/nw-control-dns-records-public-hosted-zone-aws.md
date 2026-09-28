@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating DNS records on a public hosted zone for AWS by using Red Hat External DNS Operator {id="nw-control-dns-records-public-hosted-zone-aws_{{ context }}"}
+# Create DNS records on a public hosted zone for AWS by using Red Hat External DNS Operator {id="nw-control-dns-records-public-hosted-zone-aws_{{ context }}"}
 
 You can create DNS records on a public hosted zone for AWS by using the Red Hat External DNS Operator. You can use the same instructions to create DNS records on a hosted zone for AWS GovCloud. {._abstract}
 

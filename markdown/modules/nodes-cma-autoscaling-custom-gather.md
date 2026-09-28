@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Gathering debugging data {id="nodes-cma-autoscaling-custom-debugging-gather_{{ context }}"}
+# Gather debugging data {id="nodes-cma-autoscaling-custom-debugging-gather_{{ context }}"}
 
 The following command runs the `must-gather` tool for the Custom Metrics Autoscaler Operator:
 

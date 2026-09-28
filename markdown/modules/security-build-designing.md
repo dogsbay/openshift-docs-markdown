@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Designing your build process {id="security-build-designing_{{ context }}"}
+# Design your build process {id="security-build-designing_{{ context }}"}
 
 You can design your container image management to separate control across teams by using layered images, integrate automated security testing into your CI process, and sign custom containers to ensure integrity between build and deployment. {._abstract}
 

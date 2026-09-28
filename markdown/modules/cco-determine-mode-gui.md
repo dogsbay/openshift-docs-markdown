@@ -7,7 +7,7 @@
 {%- set about_cco = true -%}
 {% endif %}
 
-# Determining the Cloud Credential Operator mode by using the web console {id="cco-determine-mode-gui_{{ context }}"}
+# Determine the Cloud Credential Operator mode by using the web console {id="cco-determine-mode-gui_{{ context }}"}
 
 You can determine what mode the Cloud Credential Operator (CCO) is configured to use by using the web console. {._abstract}
 

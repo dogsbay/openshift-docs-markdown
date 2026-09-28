@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Scheduling the result server pod on a worker node {id="running-compliance-scans-worker-node_{{ context }}"}
+# Schedule the result server pod on a worker node {id="running-compliance-scans-worker-node_{{ context }}"}
 
 The result server pod mounts the persistent volume (PV) that stores the raw Asset Reporting Format (ARF) scan results. You can use the `nodeSelector` and `tolerations` attributes to configure the location of the result server pod to meet your organization’s requirements. {._abstract}
 

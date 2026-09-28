@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting tuning parameters for etcd {id="etcd-tuning-parameters_{{ context }}"}
+# Set tuning parameters for etcd {id="etcd-tuning-parameters_{{ context }}"}
 
 Configure the control plane hardware speed setting for etcd to match your environment’s latency. {._abstract}
 

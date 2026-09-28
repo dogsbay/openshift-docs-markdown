@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Gateway listener troubleshooting reference {id="gateway-listener-troubleshooting-reference_{{ context }}"}
 
-When you troubleshoot your gateway listeners, you can review the status conditions in the `Gateway` custom resource (CR) output to identify configuration errors or conflicts.  {._abstract}
+When you troubleshoot your gateway listeners, you can review the status conditions in the `Gateway` custom resource (CR) output to identify configuration errors or conflicts. {._abstract}
 
 The following table describes common listener conditions and how to resolve them:
 

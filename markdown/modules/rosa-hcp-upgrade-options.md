@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Update options for {{ product_title }} clusters configured with {{ autonode }} {id="rosa-upgrade-options_{{ context }}"}
 
-You can control the impact of updates to your workload by controlling which parts of the cluster are updated.  {._abstract}
+You can control the impact of updates to your workload by controlling which parts of the cluster are updated. {._abstract}
 
 
 Update only the hosted control plane
@@ -13,7 +13,7 @@ Update nodes in a machine pool
 
 
 Update nodes in a Karpenter-managed `EC2NodeClass`
-:   When {{ autonode }} is enabled, `OpenshiftEC2NodeClass` resource created in the cluster can be upgraded.  
+:   When {{ autonode }} is enabled, `OpenshiftEC2NodeClass` resource created in the cluster can be upgraded.
 
 
 :::important
@@ -37,4 +37,4 @@ You can further control the time required for a machine pool update, and the imp
 *   **To prioritize lower infrastructure costs**, you can make some existing nodes unavailable and avoid provisioning excess nodes by setting a higher value for `--max-unavailable` and setting `--max-surge` to `0`.
 *   **To prioritize update speed by updating multiple nodes simultaneously**, you can provision excess nodes and allow some existing nodes to be made unavailable by configuring moderate values for both `--max-surge` and `--max-unavailable`.
 
-For more information about these parameters and their usage, see the _ROSA CLI reference_ for `rosa edit machinepool`.
+For more information about these parameters and their usage, see the _{{ rosa_cli }} reference_ for `rosa edit machinepool`.

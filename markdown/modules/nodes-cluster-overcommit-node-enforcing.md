@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Disabling or enforcing CPU limits using CPU CFS quotas {id="nodes-cluster-overcommit-node-enforcing_{{ context }}"}
+# Disable or enforce CPU limits using CPU CFS quotas {id="nodes-cluster-overcommit-node-enforcing_{{ context }}"}
 
 You can disable the default enforcement of CPU limits for nodes in a machine config pool.  {._abstract}
 

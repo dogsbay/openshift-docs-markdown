@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring metrics collection for SPIRE Server by using a ServiceMonitor {id="zero-trust-manager-enable-metrics-server_{{ context }}"}
+# Configure metrics collection for SPIRE Server by using a ServiceMonitor {id="zero-trust-manager-enable-metrics-server_{{ context }}"}
 
 To collect custom metrics from the SPIRE Server, create a ServiceMonitor custom resource (CR). This configuration enables the Prometheus Operator to scrape metrics from the default endpoint, which helps you monitor your SPIRE deployment. {._abstract}
 

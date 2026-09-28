@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a NodeFeatureDiscovery CR by using the web console {id="creating-nfd-cr-web-console_{{ context }}"}
+# Create a NodeFeatureDiscovery CR by using the web console {id="creating-nfd-cr-web-console_{{ context }}"}
 
 Create a `NodeFeatureDiscovery` CR by using the {{ product_title }} web console to deploy the NFD operand and enable hardware feature detection on your cluster nodes. {._abstract}
 

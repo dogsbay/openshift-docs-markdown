@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the NUMAResourcesOperator custom resource {id="cnf-creating-nrop-cr_{{ context }}"}
+# Create the NUMAResourcesOperator custom resource {id="cnf-creating-nrop-cr_{{ context }}"}
 
 After you have installed the NUMA Resources Operator, you can create the `NUMAResourcesOperator` custom resource (CR). This CR instructs the NUMA Resources Operator to install all the cluster infrastructure that is needed to support the NUMA-aware scheduler, including daemon sets and APIs. {._abstract}
 

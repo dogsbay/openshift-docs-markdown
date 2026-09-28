@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Checking the status of the registry pods {id="checking-the-status-of-registry-pods_{{ context }}"}
+# Check the status of the registry pods {id="checking-the-status-of-registry-pods_{{ context }}"}
 
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 As a cluster administrator,

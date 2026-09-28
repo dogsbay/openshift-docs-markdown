@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing tags from image streams {id="images-remove-tag-imagestream_{{ context }}"}
+# Remove tags from image streams {id="images-remove-tag-imagestream_{{ context }}"}
 
 To keep your image streams clean and maintain organized image references in {{ product_title }}, you can remove unused or outdated image stream tags. Remove tags by using the `oc delete istag` or `oc tag -d` commands.  {._abstract}
 

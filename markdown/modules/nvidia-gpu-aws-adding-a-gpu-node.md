@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a GPU node to an existing {{ product_title }} cluster {id="nvidia-gpu-aws-adding-a-gpu-node_{{ context }}"}
+# Add a GPU node to an existing {{ product_title }} cluster {id="nvidia-gpu-aws-adding-a-gpu-node_{{ context }}"}
 
 You can copy and modify a default compute machine set configuration to create a GPU-enabled machine set and machines for the AWS EC2 cloud provider. {._abstract}
 

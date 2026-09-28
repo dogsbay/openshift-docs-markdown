@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Security Profiles Operator {id="spo-installing_{{ context }}"}
+# Install the Security Profiles Operator {id="spo-installing_{{ context }}"}
 
 You can use the {{ product_title }} web console to install the Security Profiles Operator. This installs the Security Profiles Operator into the `openshift-security-profiles` namespace by default. You can also verify correct installation by using the {{ product_title }} web console. {._abstract}
 

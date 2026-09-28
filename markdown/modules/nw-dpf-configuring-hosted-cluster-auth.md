@@ -19,7 +19,7 @@ You must create a `ClusterRoleBinding` on the hosted cluster that grants the `pr
     ```
 1.  Switch to the hosted cluster context:
     ```terminal
-    $ export KUBECONFIG=$HOSTED_CLUSTER_NAME.kubeconfig
+    $ export KUBECONFIG="$(pwd)/$HOSTED_CLUSTER_NAME.kubeconfig"
     ```
 1.  Create a file named `dpu-cluster-scc.yaml` with the following content:
     ```yaml

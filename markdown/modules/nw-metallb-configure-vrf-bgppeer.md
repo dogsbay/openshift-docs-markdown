@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Exposing a service through a network VRF {id="nw-metallb-bgp-peer-vrf_{{ context }}"}
+# Expose a service through a network VRF {id="nw-metallb-bgp-peer-vrf_{{ context }}"}
 
 To isolate network traffic and manage multiple routing tables, expose a service through a virtual routing and forwarding (VRF) instance. Associating a VRF with a MetalLB BGP peer ensures that external traffic is segmented and correctly routed to the intended application workloads. {._abstract}
 

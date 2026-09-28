@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Compliance Operator on {{ hcp }} {id="installing-compliance-operator-hcp_{{ context }}"}
+# Install the Compliance Operator on {{ hcp }} {id="installing-compliance-operator-hcp_{{ context }}"}
 
 Install the Compliance Operator on {{ hcp }} by creating a `Subscription` file in the software catalog so you can run compliance scans in a hosted control plane environment. {._abstract}
 

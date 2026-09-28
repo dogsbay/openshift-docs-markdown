@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the internal OAuth server’s token duration {id="oauth-configuring-internal-oauth_{{ context }}"}
+# Configure the internal OAuth server’s token duration {id="oauth-configuring-internal-oauth_{{ context }}"}
 
 Configure the internal OAuth server to extend or reduce access token validity beyond the default 24-hour lifetime. {._abstract}
 

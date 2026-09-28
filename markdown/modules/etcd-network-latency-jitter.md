@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Measuring network jitter between control plane nodes {id="etcd-network-latency-jitter_{{ context }}"}
+# Measure network jitter between control plane nodes {id="etcd-network-latency-jitter_{{ context }}"}
 
 Measure network jitter between control plane nodes to validate latency for etcd heartbeats. High jitter causes missed heartbeats, leader loss, and Kubernetes API request failures. {._abstract}
 

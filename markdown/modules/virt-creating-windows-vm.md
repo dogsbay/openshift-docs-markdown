@@ -3,6 +3,14 @@
 
 You can create a Windows virtual machine (VM) by uploading a Windows image to a persistent volume claim (PVC) and then cloning the PVC when you create a VM by using the {{ product_title }} web console. {._abstract}
 
+
+:::important
+
+You must install VirtIO drivers on Windows VMs. Download VirtIO drivers only from official Red&#160;Hat sources.
+
+:::
+
+
 **Prerequisites**
 
 *   You created a Windows installation DVD or USB with the Windows Media Creation Tool. See [Create Windows 10 installation media](https://www.microsoft.com/en-us/software-download/windows10) in the Microsoft documentation.

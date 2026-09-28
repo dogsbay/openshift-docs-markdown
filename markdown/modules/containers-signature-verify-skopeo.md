@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using skopeo to verify signatures of Red Hat container images {id="containers-signature-verify-skopeo_{{ context }}"}
+# Use skopeo to verify signatures of Red Hat container images {id="containers-signature-verify-skopeo_{{ context }}"}
 
 You can verify the signatures for container images included in an {{ product_title }} release image by pulling those signatures from the {{ product_title }} release mirror site.  {._abstract}
 

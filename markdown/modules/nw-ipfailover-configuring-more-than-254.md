@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring IP failover for more than 254 addresses {id="nw-ipfailover-configuring-more-than-254_{{ context }}"}
+# Configure IP failover for more than 254 addresses {id="nw-ipfailover-configuring-more-than-254_{{ context }}"}
 
 To configure IP failover for more than 254 Virtual IP addresses in {{ product_title }}, you can use the `OPENSHIFT_HA_VIP_GROUPS` variable to group multiple addresses together. By using the `OPENSHIFT_HA_VIP_GROUPS` variable, you can change the number of VIPs per VRRP instance and define the number of VIP groups available for each VRRP instance when configuring IP failover. {._abstract}
 

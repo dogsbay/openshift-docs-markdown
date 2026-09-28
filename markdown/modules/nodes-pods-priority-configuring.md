@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring priority and preemption {id="nodes-pods-priority-configuring_{{ context }}"}
+# Configure priority and preemption {id="nodes-pods-priority-configuring_{{ context }}"}
 
 Configure pod priority and preemption by creating priority class objects with assigned values and referencing them in pod specifications through the `priorityClassName` field. {._abstract}
 

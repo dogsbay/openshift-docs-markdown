@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a cluster image policy CR {id="nodes-sigstore-configure-cluster-policy_{{ context }}"}
+# Create a cluster image policy CR {id="nodes-sigstore-configure-cluster-policy_{{ context }}"}
 
 A cluster administrator can use a `ClusterImagePolicy` custom resource (CR) to configure a sigstore signature verification policy for the entire cluster.  {._abstract}
 

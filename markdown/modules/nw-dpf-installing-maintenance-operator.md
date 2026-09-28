@@ -15,7 +15,6 @@ You install this operator by using Helm. {._abstract}
 1.  Create a Helm values file named `maintenance-operator-values.yaml` with the following content:
     ```yaml
     operatorConfig:
-      deploy: true
       maxParallelOperations: 60%
     operator:
       affinity:
@@ -52,7 +51,4 @@ You install this operator by using Helm. {._abstract}
 *   Verify that the Operator pod is running:
     ```terminal
     $ oc get pods -n dpf-operator-system
-    ```
-    ```terminal title="Example output"
-    maintenance-operator-585767f779-kps9c   1/1     Running   0          2d23h
     ```

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a legacy service account token secret {id="nodes-pods-secrets-creating-sa_{{ context }}"}
+# Create a legacy service account token secret {id="nodes-pods-secrets-creating-sa_{{ context }}"}
 
 As an administrator, you can create a legacy service account token secret, which allows you to distribute a service account token to applications that must authenticate to the API. {._abstract}
 

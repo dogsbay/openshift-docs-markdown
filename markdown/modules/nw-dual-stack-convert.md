@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Converting to a dual-stack cluster network {id="nw-dual-stack-convert_{{ context }}"}
+# Convert to a dual-stack cluster network {id="nw-dual-stack-convert_{{ context }}"}
 
 To convert your cluster network from IPv4 single-stack to dual-stack in {{ product_title }}, you can patch the cluster network and, on installer-provisioned infrastructure, the infrastructure custom resources. You must re-create existing pods after conversion to receive IPv6 addresses. {._abstract}
 

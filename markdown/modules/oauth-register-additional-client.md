@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Registering an additional OAuth client {id="oauth-register-additional-client_{{ context }}"}
+# Register an additional OAuth client {id="oauth-register-additional-client_{{ context }}"}
 
 Register additional OAuth clients to manage authentication for applications that need to interact with your {{ product_title }} cluster. {._abstract}
 

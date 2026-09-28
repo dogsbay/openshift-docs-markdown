@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring JSON Web Token authentication with SPIRE {id="zero-trust-manager-vault-authenticate-jwt_{{ context }}"}
+# Configure JSON Web Token authentication with SPIRE {id="zero-trust-manager-vault-authenticate-jwt_{{ context }}"}
 
 To help your applications securely log in to Vault using SPIFFE identities, configure JSON Web Token (JWT) authentication. {._abstract}
 

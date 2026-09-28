@@ -1,10 +1,3 @@
-{% if context == "rosa-hcp-egress-zero-install" %}
-{%- set egress_lockdown = true -%}
-{% endif %}
-{% if context == "rosa-hcp-creating-cluster-with-fips-encryption" %}
-{%- set fips = true -%}
-{% endif %}
-
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating the account-wide STS roles and policies {id="rosa-sts-creating-account-wide-sts-roles-and-policies_{{ context }}"}
 
@@ -29,30 +22,9 @@ Specific AWS-managed policies for {{ product_title }} must be attached to each r
 **Procedure**
 
 1.  If they do not exist in your AWS account, create the required account-wide STS roles and attach the policies by running the following command:
-{% if not fips %}
     ```terminal
     $ rosa create account-roles --hosted-cp
     ```
-{% endif %}
-{% if fips %}
-    ```terminal
-    $ export PREFIX=<custom_prefix>; rosa create account-roles --hosted-cp --prefix $PREFIX
-    ```
-
-    When using FIPS encryption, you need to set a custom prefix instead of using the default `ManagedOpenShift` prefix.
-{% endif %}
-
-{% if egress_lockdown %}
-1.  Verify that your worker role has the correct AWS policy by running the following command:
-    ```terminal
-    $ aws iam attach-role-policy \
-    --role-name ManagedOpenShift-HCP-ROSA-Worker-Role \
-    --policy-arn "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-    ```
-    `--role-name ManagedOpenShift-HCP-ROSA-Worker-Role`::This role needs to include the prefix that was created in the previous step.
-{% endif %}
-
-{% if not fips %}
 1.  Optional: Set your prefix as an environmental variable by running the following command:
     ```terminal
     $ export ACCOUNT_ROLES_PREFIX=<account_role_prefix>
@@ -61,13 +33,9 @@ Specific AWS-managed policies for {{ product_title }} must be attached to each r
         ```terminal
         $ echo $ACCOUNT_ROLES_PREFIX
         ```
-
-        For example:
-        ```terminal
+        ```terminal title="Example output"
         ManagedOpenShift
         ```
-{% endif %}
-
 
         :::note
 
@@ -80,10 +48,3 @@ Specific AWS-managed policies for {{ product_title }} must be attached to each r
 {._additional-resources}
 
 *   [AWS managed IAM policies for {{ product_title }}](https://docs.aws.amazon.com/ROSA/latest/userguide/security-iam-awsmanpol.html)
-
-{% if context == "rosa-hcp-creating-cluster-with-fips-encryption" %}
-{%- set fips = "" -%}
-{% endif %}
-{% if context == "rosa-hcp-egress-zero-install" %}
-{%- set egress_lockdown = "" -%}
-{% endif %}

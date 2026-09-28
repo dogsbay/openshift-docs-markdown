@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring network traffic menu entry in the {{ product_title }} console {id="configure-network-traffic-console_{{ context }}"}
+# Configure network traffic menu entry in the {{ product_title }} console {id="configure-network-traffic-console_{{ context }}"}
 
 Restore a missing network traffic menu entry in the **Observe** menu of the {{ product_title }} console by manually registering the console plugin in the `FlowCollector` resource and the console operator configuration. {._abstract}
 

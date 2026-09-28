@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Controlling DNS pod placement {id="nw-controlling-dns-pod-placement_{{ context }}"}
+# Control DNS pod placement {id="nw-controlling-dns-pod-placement_{{ context }}"}
 
 Control where CoreDNS and node-resolver pods run by using taints, tolerations, and selectors. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring sysctl on a SR-IOV network {id="configuring-sysctl-on-sriov-network_{{ context }}"}
+# Configure sysctl on a SR-IOV network {id="configuring-sysctl-on-sriov-network_{{ context }}"}
 
 You can set interface specific `sysctl` settings on virtual interfaces created by SR-IOV by adding the tuning configuration to the optional `metaPlugins` parameter of the `SriovNetwork` resource. {._abstract}
 

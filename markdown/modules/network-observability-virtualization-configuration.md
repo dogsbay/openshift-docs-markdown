@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring virtual machine (VM) secondary network interfaces for Network Observability {id="network-observability-virtualization-config_{{ context }}"}
+# Configure virtual machine (VM) secondary network interfaces for Network Observability {id="network-observability-virtualization-config_{{ context }}"}
 
 Configure the `FlowCollector` to monitor VM secondary network traffic by setting the eBPF agent to `privileged` mode and defining the indexing for secondary networks, enabling the capture and enrichment of flows from {{ VirtProductName }}. {._abstract}
 

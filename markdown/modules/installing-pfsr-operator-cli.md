@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the PF Status Relay Operator using the CLI {id="installing-pfsr-cli_{{ context }}"}
+# Install the PF Status Relay Operator using the CLI {id="installing-pfsr-cli_{{ context }}"}
 
 Install the PF Status Relay Operator to enable {{ product_title }} to use Link Aggregation Control Protocol (LACP) as an active health check on physical functions. {._abstract}
 

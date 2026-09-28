@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a primary network attachment by applying a YAML manifest {id="nw-multus-create-network-apply_{{ context }}"}
+# Create a primary network attachment by applying a YAML manifest {id="nw-multus-create-network-apply_{{ context }}"}
 
 Create a primary network attachment by directly applying a `NetworkAttachmentDefinition` YAML manifest. This gives you full control over the network configuration without relying on the Cluster Network Operator to manage the resource automatically. {._abstract}
 

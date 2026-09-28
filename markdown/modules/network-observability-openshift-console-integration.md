@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # {{ product_title }} console integration {id="network-observability-openshift-console-integration_{{ context }}"}
 
-The Network Observability Operator integrates with the {{ product_title }} console, providing an overview, topology view, and traffic flow tables. {._abstract}
+The Network Observability Operator integrates with the {{ product_title }} console to visualize and analyze network traffic through views that display traffic overviews, topology graphs, and detailed flow tables for troubleshooting connectivity issues. {._abstract}
 
 The Network observability metrics dashboards in **Observe** → **Dashboards** are available only to users with administrator access.
 

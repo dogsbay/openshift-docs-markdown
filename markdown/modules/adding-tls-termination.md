@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding TLS termination on the AWS Load Balancer {id="nw-adding-tls-termination_{{ context }}"}
+# Add TLS termination on the AWS Load Balancer {id="nw-adding-tls-termination_{{ context }}"}
 
 You can route the traffic for the domain to pods of a service and add TLS termination on the {{ aws_short }} Load Balancer. {._abstract}
 

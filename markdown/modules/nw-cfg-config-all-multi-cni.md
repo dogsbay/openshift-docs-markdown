@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling all-multicast mode by using the tuning CNI {id="nw-enabling-all-multi-cni_{{ context }}"}
+# Enable all-multicast mode by using the tuning CNI {id="nw-enabling-all-multi-cni_{{ context }}"}
 
 To enable all-multicast mode on network interfaces in {{ product_title }}, you can use the tuning Container Network Interface (CNI) meta plugin in a network attachment definition. When enabled, the interface receives all multicast packets on the network. {._abstract}
 

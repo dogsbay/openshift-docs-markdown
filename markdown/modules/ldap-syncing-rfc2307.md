@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Syncing groups using the RFC 2307 schema {id="ldap-syncing-rfc2307_{{ context }}"}
+# Sync groups using the RFC 2307 schema {id="ldap-syncing-rfc2307_{{ context }}"}
 
 Sync LDAP groups by using the RFC 2307 schema so you can mirror direct group membership from your LDAP server in {{ product_title }}. {._abstract}
 

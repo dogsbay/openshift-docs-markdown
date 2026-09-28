@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using Entra ID with {{ azure_first }} {id="zero-trust-manager-configure-azure_{{ context }}"}
+# Use Entra ID with {{ azure_first }} {id="zero-trust-manager-configure-azure_{{ context }}"}
 
 Configure your {{ azure_first }} environment to enable Entra ID integration with {{ azure_short }}. By defining variables and creating a resource group, you establish the infrastructure needed to securely manage workload identities. {._abstract}
 

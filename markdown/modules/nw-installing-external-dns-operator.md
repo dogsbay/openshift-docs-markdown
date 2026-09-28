@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the External DNS Operator with the Software Catalog {id="nw-installing-external-dns-operator_{{ context }}"}
+# Install the External DNS Operator with the Software Catalog {id="nw-installing-external-dns-operator_{{ context }}"}
 
 You can install the External DNS Operator by using the {{ product_title }} Software Catalog. You can then manage the Operator lifecycle directly from the web console. {._abstract}
 

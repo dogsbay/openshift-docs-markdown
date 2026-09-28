@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configure routing destinations and traffic weights for gRPC {id="configuring-routing-destinations-traffic-weights-grpc_{{ context }}"}
+# Configuring routing destinations and traffic weights for gRPC {id="configuring-routing-destinations-traffic-weights-grpc_{{ context }}"}
 
 When you route gRPC traffic, you must define backend service destinations and traffic weights to distribute requests across your APIs. `BackendRefs` designate the backend services where matching and filtered gRPC requests are delivered. {._abstract}
 
@@ -41,7 +41,7 @@ Because {{ SMProductName }} handles the data-plane behavior, you must ensure tha
     ```
     *   `parentRefs` attaches the route to the `my-gateway` Gateway.
     *   `backendRefs` defines the destination services for the traffic.
-    *   `weight` dictates the traffic split. In this configuration, the total sum of the weights is 100. The route forwards 90% of the traffic to `greeter-service-v1` and 10% to `greeter-service-v2`. 
+    *   `weight` dictates the traffic split. In this configuration, the total sum of the weights is 100. The route forwards 90% of the traffic to `greeter-service-v1` and 10% to `greeter-service-v2`.
 1.  Apply the `GRPCRoute` resource by running the following command:
     ```terminal
     $ oc apply -f <filename>.yaml

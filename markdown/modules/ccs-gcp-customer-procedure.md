@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Required customer procedure {id="ccs-gcp-customer-procedure_{{ context }}"}
+# Prepare your {{ gcp_short }} project for Customer Cloud Subscription {id="ccs-gcp-customer-procedure_{{ context }}"}
 
-The Customer Cloud Subscription (CCS) model allows Red&#160;Hat to deploy and manage {{ product_title }} into a customer’s {{ gcp_first }} project. Red&#160;Hat requires several prerequisites to be completed before providing these services.
+Complete several prerequisites that Red&#160;Hat requires to deploy and manage {{ product_title }} into your {{ gcp_first }} project using the Customer Cloud Subscription (CCS) model. {._abstract}
+
 
 :::note
 
@@ -11,8 +12,8 @@ Red&#160;Hat recommends using WIF as the authentication type for installing and 
 
 For information about creating a cluster using the WIF authentication type, see _Additional resources_.
 
-For additional requirements that apply to the WIF authentication type only, see _Workload Identity Federation authentication type procedure_.
-For additional requirements that apply to the service account authentication type only, see _Service account authentication type procedure_.
+For additional requirements that apply to the WIF authentication type only, see _Complete Workload Identity Federation authentication prerequisites_.
+For additional requirements that apply to the service account authentication type only, see _Complete service account authentication prerequisites_.
 
 :::
 
@@ -107,7 +108,7 @@ For more information about configuring {{ gcp_short }} organization policy const
 <tr>
   <td><a href="https://cloud.google.com/service-usage/docs/reference/rest">Service Usage API</a></td>
   <td><code>serviceusage.googleapis.com</code></td>
-  <td>Used for determining what services are available in the customer’s {{ gcp_full }} account.</td>
+  <td>Used for determining what services are available in your {{ gcp_full }} account.</td>
 </tr>
 <tr>
   <td><a href="https://cloud.google.com/storage/docs/json_api">Cloud Storage JSON API</a></td>
@@ -122,12 +123,12 @@ For more information about configuring {{ gcp_short }} organization policy const
 <tr>
   <td><a href="https://cloud.google.com/resource-manager/docs/reference/orgpolicy/rest">Organization Policy API</a></td>
   <td><code>orgpolicy.googleapis.com</code></td>
-  <td>Used to identify governance rules applied to customer’s {{ gcp_full }} that might impact cluster creation or management.</td>
+  <td>Used to identify governance rules applied to your {{ gcp_full }} that might impact cluster creation or management.</td>
 </tr>
 <tr>
   <td><a href="https://docs.cloud.google.com/marketplace/docs/reference/consumerprocurement/rest">Cloud Commerce Consumer Procurement API</a></td>
   <td><code>cloudcommerceconsumerprocurement.googleapis.com</code></td>
-  <td>Enables users to procure products from the {{ gcp_short }}  Marketplace. Specifically, it is required to validate that customers have accepted the Marketplace terms and conditions for {{ product_title }}.<br><br>This API is required when transacting through the {{ gcp_short }} Marketplace.</td>
+  <td>Enables users to procure products from the {{ gcp_short }} Marketplace. Specifically, it is required to validate that customers have accepted the Marketplace terms and conditions for {{ product_title }}.<br><br>This API is required when transacting through the {{ gcp_short }} Marketplace.</td>
 </tr>
 <tr>
   <td><a href="https://cloud.google.com/iap/docs/reference/rest">Cloud Identity-Aware Proxy API</a></td>

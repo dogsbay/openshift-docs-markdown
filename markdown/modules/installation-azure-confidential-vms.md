@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling confidential VMs {id="installation-azure-confidential-vms_{{ context }}"}
+# Enable confidential VMs {id="installation-azure-confidential-vms_{{ context }}"}
 
 To enable confidential VMs on Azure for your {{ product_title }} cluster, you can configure the `install-config.yaml` file before deployment. Apply the settings to control plane nodes, compute nodes, or all nodes as needed. {._abstract}
 

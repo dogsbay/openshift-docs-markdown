@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a custom OIDC discovery URL {id="structured-auth-config-discovery-url_{{ context }}"}
+# Configure a custom OIDC discovery URL {id="structured-auth-config-discovery-url_{{ context }}"}
 
 Configure a custom OIDC discovery URL when your identity provider does not follow the standard discovery endpoint format. {._abstract}
 

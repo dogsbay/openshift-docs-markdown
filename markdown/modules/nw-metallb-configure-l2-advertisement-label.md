@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring MetalLB with an L2 advertisement and labels {id="nw-metallb-configure-with-L2-advertisement-label_{{ context }}"}
+# Configure MetalLB with an L2 advertisement and labels {id="nw-metallb-configure-with-L2-advertisement-label_{{ context }}"}
 
 You can use the `ipAddressPoolSelectors` field in the `L2Advertisement` custom resource definition to associate the `IPAddressPool` with the advertisement based on the label assigned to the pool instead of the pool name.
 The example configures MetalLB to advertise the pool over Layer 2 by using `ipAddressPoolSelectors`. {._abstract}

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding MetalLB status custom resources {id="nw-metallb-status-reporting_{{ context }}"}
+# Understand MetalLB status custom resources {id="nw-metallb-status-reporting_{{ context }}"}
 
 MetalLB provides a scalable framework for monitoring the health of network traffic and IP addresses. Use status fields in MetalLB custom resources to track session status and troubleshoot configuration. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling multipathing with kernel arguments on {{ op_system }} {id="rhcos-enabling-multipath-day-2_{{ context }}"}
+# Enable multipathing with kernel arguments on {{ op_system }} {id="rhcos-enabling-multipath-day-2_{{ context }}"}
 
 You can achieve higher host availability by enabling multipathing on the primary disk, which allows stronger resilience to hardware failure, by using a `MachineConfig` object. {._abstract}
 

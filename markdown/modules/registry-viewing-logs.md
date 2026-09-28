@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing registry logs {id="registry-viewing-logs_{{ context }}"}
+# View registry logs {id="registry-viewing-logs_{{ context }}"}
 
 You can view the logs for the registry by using the `oc logs` command. {._abstract}
 

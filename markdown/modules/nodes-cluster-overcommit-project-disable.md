@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling overcommitment for a project {id="nodes-cluster-overcommit-project-disable_{{ context }}"}
+# Disable overcommitment for a project {id="nodes-cluster-overcommit-project-disable_{{ context }}"}
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 If overcommitment is enabled on a project, you can disable overcommitment for that projects. This allows infrastructure components to be configured independently of overcommitment.

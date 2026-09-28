@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a Cluster API compute machine set {id="capi-creating-machine-set_{{ context }}"}
+# Create a Cluster API compute machine set {id="capi-creating-machine-set_{{ context }}"}
 
 You can create compute machine sets that use the Cluster API to dynamically manage the machine compute resources for specific workloads of your choice. {._abstract}
 

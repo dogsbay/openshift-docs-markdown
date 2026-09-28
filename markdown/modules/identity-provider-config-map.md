@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a ConfigMap {id="identity-provider-creating-configmap_{{ context }}"}
+# Create a ConfigMap {id="identity-provider-creating-configmap_{{ context }}"}
 
 Create a `ConfigMap` object in the `openshift-config` namespace that contains the certificate authority bundle for the identity provider. {{ product_title }} uses this bundle to validate Transport Layer Security (TLS) connections to the identity provider. {._abstract}
 

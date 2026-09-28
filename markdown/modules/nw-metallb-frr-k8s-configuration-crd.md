@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Configuring the FRRConfiguration CR {id="nw-metallb-frrconfiguration-crd_{{ context }}"}
+# Configure the FRRConfiguration CR {id="nw-metallb-frrconfiguration-crd_{{ context }}"}
 
 To customize routing behavior beyond standard MetalLB capabilities, configure the `FRRConfiguration` custom resource (CR). {._abstract}
 

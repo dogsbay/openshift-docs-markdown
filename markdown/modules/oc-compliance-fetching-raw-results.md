@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Fetching raw results {id="fetching-raw-results_{{ context }}"}
+# Fetch raw results {id="fetching-raw-results_{{ context }}"}
 
 An administrator or auditor can review the complete detailed results of a scan as created by the OpenSCAP tool. These results contain more details than what is contained in the  `ComplianceCheckResult` custom resource (CR). {._abstract}
 

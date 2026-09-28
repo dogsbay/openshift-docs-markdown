@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Supporting multi-network policies in IPv6 networks {id="nw-multi-network-policy-ipv6-support_{{ context }}"}
+# Support multi-network policies in IPv6 networks {id="nw-multi-network-policy-ipv6-support_{{ context }}"}
 
 The ICMPv6 Neighbor Discovery Protocol (NDP) is a set of messages and processes that enable devices to discover and maintain information about neighboring nodes. NDP is essential in IPv6 networks, facilitating the interaction between devices on the same link. {._abstract}
 

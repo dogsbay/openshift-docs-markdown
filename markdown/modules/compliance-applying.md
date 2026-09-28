@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Applying a remediation {id="compliance-applying_{{ context }}"}
+# Apply a remediation {id="compliance-applying_{{ context }}"}
 
 The boolean attribute `spec.apply` controls whether the remediation should be applied by the Compliance Operator. You can apply the remediation by setting the attribute to `true`. {._abstract}
 

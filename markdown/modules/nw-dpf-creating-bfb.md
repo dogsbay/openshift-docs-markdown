@@ -19,17 +19,12 @@ You can create a `BFB` custom resource to define the DPU image, known as a BlueF
       name: bf-bundle
       namespace: dpf-operator-system
     spec:
-      fileName: $BFB_FILENAME
       url: $BFB_URL
       versions:
         atf: 4.15.0-4-g419fbf393
         bsp: 4.15.0.13998
         doca: 3.4.1
         uefi: 4.15.0-19-g37c6f5adb2
-    ```
-1.  Set the `BFB_FILENAME` environment variable to the file name of the BFB image, which is the base name of `BFB_URL`:
-    ```terminal
-    $ export BFB_FILENAME=$(basename "$BFB_URL")
     ```
 1.  Apply the resource file:
     ```terminal

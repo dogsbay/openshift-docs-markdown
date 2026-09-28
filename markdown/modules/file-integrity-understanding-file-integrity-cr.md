@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the FileIntegrity custom resource {id="understanding-file-integrity-custom-resource_{{ context }}"}
+# Create the FileIntegrity custom resource {id="understanding-file-integrity-custom-resource_{{ context }}"}
 
 An instance of a `FileIntegrity` custom resource (CR) represents a set of continuous file integrity scans for one or more nodes. {._abstract}
 

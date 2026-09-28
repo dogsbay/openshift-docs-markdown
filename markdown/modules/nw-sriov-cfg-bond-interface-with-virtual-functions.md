@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Configuring a bond interface from two SR-IOV interfaces {id="nw-sriov-cfg-bond-interface-with-virtual-functions_{{ context }}"}
+# Configure a bond interface from two SR-IOV interfaces {id="nw-sriov-cfg-bond-interface-with-virtual-functions_{{ context }}"}
 
 Bonding enables multiple network interfaces to be aggregated into a single logical "bonded" interface. Bond Container Network Interface (Bond-CNI) brings bond capability into containers. {._abstract}
 

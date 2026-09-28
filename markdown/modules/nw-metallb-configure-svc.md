@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a service with MetalLB {id="nw-metallb-configure-svc_{{ context }}"}
+# Configure a service with MetalLB {id="nw-metallb-configure-svc_{{ context }}"}
 
 To expose an application to external network traffic, configure a load-balancing service. MetalLB assigns an external IP address from a configured address pool, ensuring that your application is reachable from outside the cluster. {._abstract}
 

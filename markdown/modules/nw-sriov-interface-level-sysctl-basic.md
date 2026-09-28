@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Setting one sysctl flag {id="nw-setting-one-sysctl-flag_{{ context }}"}
+# Set one sysctl flag {id="nw-setting-one-sysctl-flag_{{ context }}"}
 
 You can set interface-level network `sysctl` settings for a pod connected to a SR-IOV network device. {._abstract}
 

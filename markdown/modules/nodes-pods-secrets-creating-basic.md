@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a basic authentication secret {id="nodes-pods-secrets-creating-basic_{{ context }}"}
+# Create a basic authentication secret {id="nodes-pods-secrets-creating-basic_{{ context }}"}
 
 As an administrator, you can create a basic authentication secret, which you can use to store the credentials needed for basic authentication.  {._abstract}
 

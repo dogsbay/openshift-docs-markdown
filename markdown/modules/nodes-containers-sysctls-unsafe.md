@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling unsafe sysctls {id="nodes-containers-sysctls-unsafe_{{ context }}"}
+# Enable unsafe sysctls {id="nodes-containers-sysctls-unsafe_{{ context }}"}
 
 As a cluster administrator, you can allow certain unsafe sysctls for very special situations such as high performance or real-time application tuning. {._abstract}
 

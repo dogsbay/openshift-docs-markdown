@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring user validation rules {id="structured-auth-config-user-validation_{{ context }}"}
+# Configure user validation rules {id="structured-auth-config-user-validation_{{ context }}"}
 
 You can define validation rules to enforce security policies on the user object created from an authenticated token. This helps prevent privilege escalation by blocking reserved usernames and group prefixes. {._abstract}
 

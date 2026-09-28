@@ -1,14 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Cluster maximums {id="tested-cluster-maximums-sd_{{ context }}"}
 
-Review the tested object maximums when planning
-{%- if openshift_rosa %}
-a {{ product_title }}
-{%- endif %}
-{%- if openshift_dedicated %}
-an {{ product_title }}
-{%- endif %}
-cluster installation. Adhering to these supported limits helps you successfully architect and deploy a scalable, reliable environment. {._abstract}
+{{ product_title }} clusters are tested against specific object maximums. Adhering to these supported limits helps you successfully architect and deploy a scalable, reliable environment. {._abstract}
 
 These guidelines are based on a cluster of 249 compute (also known as worker) nodes in a multiple availability zone configuration. For smaller clusters, the maximums are lower.
 

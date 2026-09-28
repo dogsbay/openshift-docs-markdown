@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # How cluster upgrades work {id="rosa-how-upgrades-work_{{ context }}"}
 
-Upgrades are manually initiated (one-time) or automatically scheduled (recurring). Red&#160;Hat Site Reliability Engineers (SREs) monitor upgrade progress and either proactively notify you to take corrective actions or remedy issues encountered. {._abstract}
+Knowing how cluster upgrades work helps you anticipate what happens during an update, including pre-health checks and temporary capacity provisioning, so you can plan maintenance windows and protect critical workloads. {._abstract}
+
+Upgrades are manually initiated (one-time) or automatically scheduled (recurring). Red&#160;Hat Site Reliability Engineers (SREs) monitor upgrade progress and either proactively notify you to take corrective actions or remedy issues encountered.
 
 The Cluster Version Operator (CVO) is the primary component that orchestrates and facilitates the {{ product_title }} update process.
 
@@ -9,7 +11,7 @@ The Managed Upgrade Operator (MUO) handles the scheduling, monitoring, and notif
 
 ## Cluster upgrade scheduled time {id="rosa-upgrade-scheduled-time_{{ context }}"}
 
-You can schedule cluster upgrades by setting the scheduled time. This is when the preparation for the cluster upgrade begins with pre-upgrade health checks and additional compute capacity creation. The actual cluster upgrade starts within one hour from the scheduled time. You receive an email notification when the cluster upgrade starts.
+You can schedule cluster upgrades by setting the scheduled time. This is when the preparation for the cluster upgrade begins with pre-upgrade health checks and additional compute capacity creation. The actual cluster upgrade starts within 10 minutes from the scheduled time. You receive an email notification when the cluster upgrade starts.
 
 The Pre-Health Check (PHC) provides extra protection to ensure the scheduled update proceeds as expected and runs in the following two scenarios:
 
@@ -17,9 +19,9 @@ The Pre-Health Check (PHC) provides extra protection to ensure the scheduled upd
 *   When the upgrade is immediate or within 2 hours, the PHC runs just before the upgrade begins. This PHC is in the _Upgrading_ phase of the upgrade.
 This means that PHC is always run at least one time during the upgrading phase but can also be run additionally in advance if the upgrade is scheduled for more than 2 hours from the current time.
 
-You can observe the status of the cluster upgrade by running the `rosa describe upgrade --cluster=<cluster name_or_id>` command in the ROSA CLI (`rosa`).
+You can observe the status of the cluster upgrade by running the `rosa describe upgrade --cluster=<cluster name_or_id>` command in the {{ rosa_cli_first }}.
 
-## {{ product_title }} upgrade overview {id="rosa-cluster-upgrade-overview_{{ context }}"}
+## Cluster upgrade overview {id="rosa-cluster-upgrade-overview_{{ context }}"}
 
 The following are the high-level steps that occur during the {{ product_title }} cluster update:
 
@@ -46,7 +48,7 @@ The following are the high-level steps that occur during the {{ product_title }}
 
 1.  During the upgrade, the control plane components are updated to the new version.
 1.  Next, individual cluster Operators perform update tasks on their domain of the cluster.
-1.  Finally, the MCO updates the system configuration and operating system of every node. During this step, each node is rebooted after successfully draining the workloads running on the node.
+1.  Finally, the Machine Config Operator (MCO) updates the system configuration and operating system of every node. During this step, each node is rebooted after successfully draining the workloads running on the node.
     1.  During the update of each node, workloads are drained, honoring the PDBs. Workloads with PDBs that do not allow disruptions essentially block the draining of the node, increasing the elapsed time for the cluster update.
     1.  During the update of every node in the cluster, the cluster update waits until the time specified by the _node drain grace period_ to allow for safely draining the workloads. Upon reaching the node drain grace period, the node is forcibly drained to allow for cluster upgrade to progress. You can only configure the node drain grace period before initiating the upgrade and you cannot change it after the cluster upgrade begins.
     1.  When cluster nodes are updated, the MCO selects one node at a time per machine config pool according to their age, starting with the oldest.

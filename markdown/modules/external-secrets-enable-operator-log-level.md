@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting a log level for the {{ external_secrets_operator }} {id="external-secrets-enable-operator-log-level_{{ context }}"}
+# Set a log level for the {{ external_secrets_operator }} {id="external-secrets-enable-operator-log-level_{{ context }}"}
 
 You can configure the log verbosity for the lifecycle manager. You must adjust this setting to troubleshoot issues related to the installation, upgrade, or configuration of the operator itself, rather than secret synchronization. {._abstract}
 

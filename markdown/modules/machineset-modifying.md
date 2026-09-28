@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Modifying a compute machine set by using the CLI {id="machineset-modifying_{{ context }}"}
+# Modify a compute machine set by using the CLI {id="machineset-modifying_{{ context }}"}
 
 To enable features or change the properties of machines, you can modify the configuration of a compute machine set using the CLI. You can then propagate the changes to the machines in your cluster. {._abstract}
 

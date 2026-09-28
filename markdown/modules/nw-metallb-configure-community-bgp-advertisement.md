@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring MetalLB with a BGP advertisement and community alias {id="nw-metallb-configure-BGP-advertisement-community-alias_{{ context }}"}
+# Configure MetalLB with a BGP advertisement and community alias {id="nw-metallb-configure-BGP-advertisement-community-alias_{{ context }}"}
 
 To advertise an `IPAddressPool` by using the BGP protocol, configure MetalLB with a community alias. This configuration sets the alias to the numeric value of the `NO_ADVERTISE` community. {._abstract}
 

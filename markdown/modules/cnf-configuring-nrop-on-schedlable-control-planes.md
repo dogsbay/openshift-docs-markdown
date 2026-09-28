@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Configuring NUMA Resources Operator on schedulable control plane nodes {id="cnf-configuring-nrop-on-schedulable-cp-nodes_{{ context }}"}
+# Configure NUMA Resources Operator on schedulable control plane nodes {id="cnf-configuring-nrop-on-schedulable-cp-nodes_{{ context }}"}
 
 To run workloads on control plane nodes, configure the NUMA Resources Operator (NROP) to manage them as schedulable. This configuration is ideal for compact clusters and multi-node OpenShift (MNO) environments where control plane nodes also function as compute nodes. {._abstract}
 

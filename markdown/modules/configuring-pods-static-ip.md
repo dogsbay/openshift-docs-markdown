@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Configuring pods with a static IP address {id="configuring-pods-static-ip_{{ context }}"}
+# Configure pods with a static IP address {id="configuring-pods-static-ip_{{ context }}"}
 
 You can configure pods with a static IP address. The example in the procedure provisions a pod with a static IP address. {._abstract}
 

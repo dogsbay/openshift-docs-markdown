@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Reserving CPUs for nodes {id="nodes-nodes-resources-cpus-reserve_{{ context }}"}
+# Reserve CPUs for nodes {id="nodes-nodes-resources-cpus-reserve_{{ context }}"}
 
 You can explicitly define a list of CPUs that are reserved for critical system processes on specific nodes by creating a `KubeletConfig` custom resource (CR) to define the `reservedSystemCPUs` parameter. Reserving CPUs for critical system processes can help ensure cluster stability. {._abstract}
 

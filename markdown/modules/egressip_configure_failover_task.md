@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the EgressIP failover time limit {id="egressip_configure_failover_task_{{ context }}"}
+# Configure the EgressIP failover time limit {id="egressip_configure_failover_task_{{ context }}"}
 
 You can configure the `reachabilityTotalTimeoutSeconds` parameter to control how quickly the system detects a failing `egressIP` node and initiates a failover. {._abstract}
 

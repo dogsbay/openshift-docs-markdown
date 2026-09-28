@@ -66,6 +66,10 @@ Similar to the `rosa create|delete|list idp[s]` command in the {{ rosa_cli }}, y
 
         `<claim_validation_rule>`
         :   Optional. The rules that help validate token claims which authenticate your users. This field should be formatted as `:<required_value>`.
-        ```terminal title="Example output"
-        I: Successfully created an external authentication provider for cluster 'ext-auth-test'
-        ```
+
+**Verification**
+
+*   The command returns confirmation that the external authentication provider was created for your cluster:
+    ```terminal title="Example output"
+    I: Successfully created an external authentication provider for cluster 'ext-auth-test'
+    ```

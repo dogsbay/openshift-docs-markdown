@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Customizing daemon resource requirements {id="spo-daemon-requirements_{{ context }}"}
+# Customize daemon resource requirements {id="spo-daemon-requirements_{{ context }}"}
 
 The default resource requirements of the daemon container can be adjusted by using the field `daemonResourceRequirements` from the `spod` configuration. {._abstract}
 

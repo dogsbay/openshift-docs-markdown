@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding secrets {id="nodes-pods-secrets-about_{{ context }}"}
+# Understand secrets {id="nodes-pods-secrets-about_{{ context }}"}
 
 You can mount secrets into containers by using a volume plugin or the system can use secrets to perform actions on behalf of a pod. {._abstract}
 

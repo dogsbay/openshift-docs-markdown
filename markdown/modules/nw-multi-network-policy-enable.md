@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling multi-network policy for the cluster {id="nw-multi-network-policy-enable_{{ context }}"}
+# Enable multi-network policy for the cluster {id="nw-multi-network-policy-enable_{{ context }}"}
 
 As a cluster administrator, you can enable multi-network policy support on your cluster. {._abstract}
 

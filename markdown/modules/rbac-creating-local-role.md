@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" -%}
 {% if openshift_enterprise or openshift_webscale or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
-# Creating a local role {id="creating-local-role_{{ context }}"}
+# Create a local role {id="creating-local-role_{{ context }}"}
 
 You can create a local role and bind it to a user to define custom permissions within a project. {._abstract}
 

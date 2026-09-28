@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# {{ gcp_short }} firewall prerequisites {id="osd-gcp-psc-firewall-prerequisites_{{ context }}"}
+# Configure {{ gcp_short }} firewall prerequisites {id="osd-gcp-psc-firewall-prerequisites_{{ context }}"}
 
-If you are using a firewall to control egress traffic from {{ product_title }} on {{ GCP }}, you must configure your firewall to grant access to certain domains and port combinations listed in the tables below. {{ product_title }} requires this access to provide a fully managed OpenShift service.
+If you are using a firewall to control egress traffic from {{ product_title }} on {{ GCP }}, you must configure your firewall to grant access to certain domains and port combinations listed in the tables. {{ product_title }} requires this access to provide a fully managed {{ OCP_short }} service. {._abstract}
 
 **Procedure**
 
@@ -14,7 +14,7 @@ If you are using a firewall to control egress traffic from {{ product_title }} o
     | `sso.redhat.com` | 443 | Required. The https://console.redhat.com/openshift site uses authentication from sso.redhat.com to download the pull secret and use Red Hat SaaS solutions to facilitate monitoring of your subscriptions, cluster inventory, chargeback reporting, and so on. |
     | `quayio-production-s3.s3.amazonaws.com` | 443 | Provides core container images. |
     | `pull.q1w2.quay.rhcloud.com` | 443 | Provides core container images. |
-    | `registry.access.redhat.com` | 443 | Hosts all the container images that are stored on the Red&#160;Hat Ecosytem Catalog. Additionally, the registry provides access to the `odo` CLI tool that helps developers build on OpenShift and Kubernetes. |
+    | `registry.access.redhat.com` | 443 | Hosts all the container images that are stored on the Red&#160;Hat Ecosystem Catalog. Additionally, the registry provides access to the `odo` CLI tool that helps developers build on OpenShift and Kubernetes. |
     | `registry.connect.redhat.com` | 443 | Required for all third-party images and certified Operators. |
     | `console.redhat.com` | 443 | Required. Allows interactions between the cluster and {{ cluster_manager_first }} to enable functionality, such as scheduling upgrades. |
     | `catalog.redhat.com` | 443 | The `registry.access.redhat.com` and `https://registry.redhat.io` sites redirect through `catalog.redhat.com`. |

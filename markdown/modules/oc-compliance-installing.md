@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the oc-compliance plugin {id="installing-oc-compliance_{{ context }}"}
+# Install the oc-compliance plugin {id="installing-oc-compliance_{{ context }}"}
 
 You can install the `oc-compliance` plugin to simplify compliance operations from the command line. {._abstract}
 

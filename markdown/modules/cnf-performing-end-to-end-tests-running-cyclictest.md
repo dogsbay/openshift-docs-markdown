@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running cyclictest {id="cnf-performing-end-to-end-tests-running-cyclictest_{{ context }}"}
+# Run cyclictest {id="cnf-performing-end-to-end-tests-running-cyclictest_{{ context }}"}
 
 To measure real-time kernel scheduler latency on specified CPUs, run the `cyclictest` tool. Evaluating these metrics helps you identify execution delays and optimize your system for high-performance operations. {._abstract}
 

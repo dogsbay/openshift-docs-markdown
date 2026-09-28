@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the audit log policy {id="configuring-audit-policy_{{ context }}"}
+# Configure the audit log policy {id="configuring-audit-policy_{{ context }}"}
 
 You can configure the audit log policy to use when logging requests that come to the API servers. {._abstract}
 

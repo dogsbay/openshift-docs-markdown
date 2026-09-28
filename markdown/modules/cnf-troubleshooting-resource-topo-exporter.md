@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting the resource topology exporter {id="cnf-troubleshooting-resource-topo-exporter_{{ context }}"}
+# Troubleshoot the resource topology exporter {id="cnf-troubleshooting-resource-topo-exporter_{{ context }}"}
 
 To resolve unexpected results in `noderesourcetopologies` objects, inspect the `resource-topology-exporter` logs. Reviewing this diagnostic data helps you identify and fix configuration issues within your cluster. {._abstract}
 

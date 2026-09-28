@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Getting containers from Red Hat Registry and Ecosystem Catalog {id="security-registries-ecosystem_{{ context }}"}
+# Get containers from Red Hat Registry and Ecosystem Catalog {id="security-registries-ecosystem_{{ context }}"}
 
 Red Hat lists certified container images for Red Hat products and partner offerings from the Container Images section of the Red Hat Ecosystem Catalog. From that catalog, you can see details of each image, including CVE, software packages listings, and health scores. {._abstract}
 

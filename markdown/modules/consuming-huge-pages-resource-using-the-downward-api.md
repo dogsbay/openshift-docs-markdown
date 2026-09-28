@@ -1,7 +1,7 @@
 {%- set file_name = "hugepages-volume-pod.yaml" -%}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Consuming huge pages resources using the Downward API {id="consuming-huge-pages-resource-using-the-downward-api_{{ context }}"}
+# Consume huge pages resources using the Downward API {id="consuming-huge-pages-resource-using-the-downward-api_{{ context }}"}
 
 To inject information about the huge pages resources consumed by a container, use the Downward API. {._abstract}
 

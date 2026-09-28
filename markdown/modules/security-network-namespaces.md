@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Using network namespaces {id="security-network-namespaces_{{ context }}"}
+# Use network namespaces {id="security-network-namespaces_{{ context }}"}
 
 You can use software-defined networking (SDN) in {{ product_title }} to give a unified cluster network that enables communication between containers across the cluster. {._abstract}
 

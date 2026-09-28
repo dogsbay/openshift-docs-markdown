@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Red Hat managed IAM references for AWS {id="ccs-aws-iam_{{ context }}"}
 
-Red Hat is responsible for creating and managing the following Amazon Web Services (AWS) resources: IAM policies, IAM users, and IAM roles. {._abstract}
+Red&#160;Hat is responsible for creating and managing the following Amazon Web Services (AWS) resources: IAM policies, IAM users, and IAM roles. {._abstract}
 
 ## IAM policies {id="aws-policy-iam-policies_{{ context }}"}
 
@@ -13,7 +13,7 @@ IAM policies are subject to modification as the capabilities of {{ product_title
 :::
 
 
-*   The `AdministratorAccess` policy is used by the administration role. This policy provides Red Hat the access necessary to administer the {{ product_title }} cluster in the customer-provided AWS account.
+*   The `AdministratorAccess` policy is used by the administration role. This policy provides Red&#160;Hat the access necessary to administer the {{ product_title }} cluster in your AWS account.
     ```json
     {
         "Version": "2012-10-17",
@@ -26,9 +26,9 @@ IAM policies are subject to modification as the capabilities of {{ product_title
         ]
     }
     ```
-*   The `CustomerAdministratorAccess` role provides the customer access to administer a subset of services within the AWS account. At this time, the following are allowed:
-    *   VPC Peering
-    *   VPN Setup
+*   The `CustomerAdministratorAccess` role gives you access to administer a subset of services within the AWS account. At this time, the following are allowed:
+    *   Virtual Private Cloud (VPC) peering
+    *   Virtual private network (VPN) setup
     *   Direct Connect (only available if granted through the service control policy)
         ```json
         {
@@ -66,7 +66,7 @@ IAM policies are subject to modification as the capabilities of {{ product_title
         ```
 *   If enabled, the `BillingReadOnlyAccess` role provides read-only access to view billing and usage information for the account.
 
-    Billing and usage access is only granted if the root account in the AWS Organization has it enabled. This is an optional step the customer must perform to enable read-only billing and usage access and does not impact the creation of this profile and the role that uses it. If this role is not enabled, users will not see billing and usage information. See this tutorial on [how to enable access to billing data](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_billing.html#tutorial-billing-step1).
+    Billing and usage access is only granted if the root account in the AWS Organization has it enabled. This is an optional step you must perform to enable read-only billing and usage access and does not impact the creation of this profile and the role that uses it. If this role is not enabled, users will not see billing and usage information. For more information, see this tutorial on [how to grant access to the billing console](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_billing.html#tutorial-billing-step1) (AWS documentation).
     ```json
     {
         "Version": "2012-10-17",
@@ -85,16 +85,16 @@ IAM policies are subject to modification as the capabilities of {{ product_title
 
 ## IAM users {id="aws-policy-iam-users_{{ context }}"}
 
-The `osdManagedAdmin` user is created immediately after taking control of the customer-provided AWS account. This is the user that will perform the {{ product_title }} cluster installation.
+The `osdManagedAdmin` user is created immediately after taking control of your AWS account. This is the user that will perform the {{ product_title }} cluster installation.
 
 ## IAM roles {id="aws-policy-iam-roles_{{ context }}"}
 
-*   The `network-mgmt` role provides customer-federated administrative access to the AWS account through a separate AWS account. It also has the same access as a read-only role. The `network-mgmt` role only applies to non-Customer Cloud Subscription (CCS) clusters. The following policies are attached to the role:
-    *   AmazonEC2ReadOnlyAccess
-    *   CustomerAdministratorAccess
-*   The `read-only` role provides customer-federated read-only access to the AWS account through a separate AWS account. The following policies are attached to the role:
-    *   AWSAccountUsageReportAccess
-    *   AmazonEC2ReadOnlyAccess
-    *   AmazonS3ReadOnlyAccess
-    *   IAMReadOnlyAccess
-    *   BillingReadOnlyAccess
+*   The `network-mgmt` role provides administrative access to the AWS account through a separate federated AWS account. It also has the same access as a read-only role. The `network-mgmt` role only applies to non-Customer Cloud Subscription (CCS) clusters. The following policies are attached to the role:
+    *   `AmazonEC2ReadOnlyAccess`
+    *   `CustomerAdministratorAccess`
+*   The `read-only` role provides read-only access to the AWS account through a separate federated AWS account. The following policies are attached to the role:
+    *   `AWSAccountUsageReportAccess`
+    *   `AmazonEC2ReadOnlyAccess`
+    *   `AmazonS3ReadOnlyAccess`
+    *   `IAMReadOnlyAccess`
+    *   `BillingReadOnlyAccess`

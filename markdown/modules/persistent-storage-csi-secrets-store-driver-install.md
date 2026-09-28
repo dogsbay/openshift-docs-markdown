@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ secrets_store_driver }} {id="persistent-storage-csi-secrets-store-driver-install_{{ context }}"}
+# Install the {{ secrets_store_driver }} {id="persistent-storage-csi-secrets-store-driver-install_{{ context }}"}
 
 To enable {{ product_title }} to mount secrets from external secret management systems, install the {{ secrets_store_operator }} and create a `ClusterCSIDriver` instance. {._abstract}
 

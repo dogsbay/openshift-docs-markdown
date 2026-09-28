@@ -3,15 +3,6 @@
 
 Service control policies (SCP) are a type of organization policy that manages permissions within your organization. SCPs ensure that accounts within your organization stay within your defined access control guidelines. These policies are maintained in AWS organizations and control the services that are available within the attached AWS accounts. SCP management is the responsibility of the customer. {._abstract}
 
-{% if context == "rosa-sts-about-iam-resources" %}
-{%- set aws_sts = true -%}
-{% endif %}
-
-{% if context == "prerequisites" %}
-{%- set aws_non_sts = true -%}
-{% endif %}
-
-{% if aws_sts %}
 
 :::note
 
@@ -23,17 +14,6 @@ When using AWS Security Token Service (STS), you must ensure that the service co
 
 :::
 
-{% endif %}
-
-{% if aws_non_sts %}
-
-:::note
-
-The minimum SCP requirement does not apply when using AWS Security Token Service (STS). For more information about STS, see [AWS prerequisites for ROSA with STS](https://docs.openshift.com/rosa/rosa_getting_started_sts/rosa-sts-aws-prereqs.html).
-
-:::
-
-{% endif %}
 
 Verify that your service control policy (SCP) does not restrict any of these required permissions.
 

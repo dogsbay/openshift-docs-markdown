@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Defining a custom File Integrity Operator configuration {id="file-integrity-operator-defining-custom-config_{{ context }}"}
+# Define a custom File Integrity Operator configuration {id="file-integrity-operator-defining-custom-config_{{ context }}"}
 
 This example focuses on defining a custom configuration for a scanner that runs on the control plane nodes based on the default configuration provided for the `worker-fileintegrity` CR. This workflow might be useful if you are planning to deploy a custom software running as a daemon set and storing its data under `/opt/mydaemon` on the control plane nodes. {._abstract}
 

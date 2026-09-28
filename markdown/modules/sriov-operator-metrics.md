@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling the SR-IOV network metrics exporter {id="sriov-operator-metrics_{{ context }}"}
+# Enable the SR-IOV network metrics exporter {id="sriov-operator-metrics_{{ context }}"}
 
 To enable the SR-IOV network metrics exporter, set the `spec.featureGates.metricsExporter` field to `true`. Because the exporter is disabled by default, you must explicitly enable the SR-IOV network metrics exporter. {._abstract}
 

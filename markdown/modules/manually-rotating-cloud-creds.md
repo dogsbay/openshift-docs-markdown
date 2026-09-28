@@ -10,7 +10,7 @@
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 {% if post_install %}
-# Rotating cloud provider credentials manually {id="manually-rotating-cloud-creds_{{ context }}"}
+# Rotate cloud provider credentials manually {id="manually-rotating-cloud-creds_{{ context }}"}
 {% endif %}
 {% if not post_install %}
 # Maintaining cloud provider credentials {id="_maintaining_cloud_provider_credentials"}

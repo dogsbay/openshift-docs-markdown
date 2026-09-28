@@ -42,11 +42,10 @@ Cluster configuration procedures require `cluster-admin` privileges.
 {%- endif %}
 *   [Specify nodes for virtual machines](/virt/managing_vms/advanced_vm_management/virt-specifying-nodes-for-vms#virt-specifying-nodes-for-vms)
 *   [Install and use the `virtctl` command-line interface (CLI) tool](/virt/getting_started/virt-using-the-cli-tools#virt-using-the-cli-tools)
-*   [Create a VM from a Red&#160;Hat image](/virt/creating_vm/virt-creating-vms-from-rh-images-overview#virt-creating-vms-from-rh-images-overview)
-*   [Create a VM from an instance type](/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)
-*   [Import a custom image from a web page](/virt/creating_vm/virt-creating-vms-from-web-images#virt-creating-vms-from-web-images)
-*   [Upload an image from your local machine](/virt/creating_vm/virt-creating-vms-uploading-images#virt-creating-vms-uploading-images)
-*   [Clone a persistent volume claim (PVC)](/virt/creating_vm/virt-creating-vms-by-cloning-pvcs#virt-creating-vms-by-cloning-pvcs)
+*   [Create a VM by using the web console](/virt/creating_vm/virt-creating-vms-web#virt-creating-vms-web)
+*   [Import a custom image from a web page](/virt/creating_vm/virt-creating-vms-from-cli#virt-creating-vm-web-page-cli_virt-creating-vms-cli)
+*   [Upload an image from your local machine](/virt/creating_vm/virt-creating-vms-from-cli#virt-uploading-image-virtctl_virt-creating-vms-cli)
+*   [Clone a persistent volume claim (PVC)](/virt/creating_vm/virt-creating-vms-from-cli#virt-creating-vm-by-cloning-pvcs-cli_virt-creating-vms-cli)
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 *   [Connect a VM to a Linux bridge network](/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)
 {%- endif %}

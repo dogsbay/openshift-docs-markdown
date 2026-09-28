@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring garbage collection for containers and images {id="nodes-nodes-garbage-collection-configuring_{{ context }}"}
+# Configure garbage collection for containers and images {id="nodes-nodes-garbage-collection-configuring_{{ context }}"}
 
 As an administrator, you can configure how {{ product_title }} performs garbage collection by creating a `kubeletConfig` object for each machine config pool. Performing garbage collection helps ensure that your nodes are running efficiently. {._abstract}
 

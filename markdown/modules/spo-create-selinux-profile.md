@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating SELinux profiles {id="spo-create-selinux-profile_{{ context }}"}
+# Create SELinux profiles {id="spo-create-selinux-profile_{{ context }}"}
 
 Use the `SelinuxProfile` object to create SELinux profiles. {._abstract}
 

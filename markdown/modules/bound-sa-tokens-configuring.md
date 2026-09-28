@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring bound service account tokens using volume projection {id="bound-sa-tokens-configuring_{{ context }}"}
+# Configure bound service account tokens using volume projection {id="bound-sa-tokens-configuring_{{ context }}"}
 
 You can configure pods to request bound service account tokens by using volume projection. {._abstract}
 

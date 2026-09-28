@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring custom metrics by using FlowMetric API {id="network-observability-configuring-custom-metrics_{{ context }}"}
+# Configure custom metrics by using FlowMetric API {id="network-observability-configuring-custom-metrics_{{ context }}"}
 
 Configure the `FlowMetric` API to create custom Prometheus metrics by mapping flow log fields as labels to meet specific monitoring needs. {._abstract}
 

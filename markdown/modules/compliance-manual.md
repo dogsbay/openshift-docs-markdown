@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Remediating a platform check manually {id="compliance-manual_{{ context }}"}
+# Remediate a platform check manually {id="compliance-manual_{{ context }}"}
 
 You must manually remediate checks from Platform scans so you can fix findings that the Compliance Operator cannot apply automatically. {._abstract}
 

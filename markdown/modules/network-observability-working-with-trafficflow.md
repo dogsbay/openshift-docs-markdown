@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Working with the Traffic flows view {id="network-observability-working-with-trafficflow_{{ context }}"}
+# Work with the Traffic flows view {id="network-observability-working-with-trafficflow_{{ context }}"}
 
-View and analyze detailed network flow information by using the **Traffic flows** table. {._abstract}
+View and analyze detailed network flow information in the **Traffic flows** table to troubleshoot connectivity issues and monitor traffic patterns between cluster components. {._abstract}
 
 As an administrator, you can navigate to **Traffic flows** table to see network flow information.
 

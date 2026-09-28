@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding an API server named certificate for the first time {id="customize-certificates-api-add-named_{{ context }}"}
+# Add an API server named certificate for the first time {id="customize-certificates-api-add-named_{{ context }}"}
 
 The default API server certificate is issued by an internal {{ product_title }} cluster Certificate Authority (CA). You can add alternative certificates that the API server will return based on the fully qualified domain name (FQDN) requested by the client, for example when a reverse proxy or load balancer is used. {._abstract}
 

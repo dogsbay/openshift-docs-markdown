@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring OAuth server certificates for a hosted cluster {id="hcp-oauth-server-cert_{{ context }}"}
+# Configure OAuth server certificates for a hosted cluster {id="hcp-oauth-server-cert_{{ context }}"}
 
 If you want to use certificates from a trusted certificate authority (CA) to access a hosted cluster, you can configure OAuth server certificates. {._abstract}
 
@@ -23,23 +23,32 @@ If you want to use certificates from a trusted certificate authority (CA) to acc
         ```terminal
         $ export CLUSTER_NAME=<hosted_cluster_name>
         ```
+1.  Discover the correct OAuth route:
+    1.  Use the management cluster `kubeconfig` file to enter the following command:
+        ```terminal
+        $ oc get route oauth -n ${HC_NAMESPACE}-${CLUSTER_NAME}
+        ```
+    1.  Prepare to extract the OAuth route host by entering the following command:
+        ```terminal
+        $ export OAUTH_HOST=$(oc get route oauth \
+          -n ${HC_NAMESPACE}-${CLUSTER_NAME} \
+          -o jsonpath='{.spec.host}')
+        ```
+    1.  Extract the OAuth route host by entering the following command:
+        ```terminal
+        $ echo "${OAUTH_HOST}"
+        ```
+        ```terminal title="Example output"
+        oauth-<hosted_cluster_namespace>-<hosted_cluster_name>.apps.<management_cluster_name>.<base_domain>
+        ```
 1.  Generate a quick test certificate by entering the following command:
     ```terminal
     $ openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
       -keyout tls.key \
       -out tls.crt \
       -subj "/CN=openshift-oauth" \
-      -addext "subjectAltName=DNS:oauth-${HC_NAMESPACE}-${CLUSTER_NAME}.api-custom-cert-sample-hosted.sample-hosted.example.com"
+      -addext "subjectAltName=DNS:${OAUTH_HOST}"
     ```
-
-    The `api-custom-cert-sample-hosted.sample-hosted.example.com` value is used in the command and throughout the rest of this procedure as an example.
-
-    :::note
-
-    This example uses a placeholder hostname. After you discover your OAuth route later in this procedure, you must regenerate this certificate with the correct hostname before you edit the `HostedCluster` resource.
-    
-    :::
-
 1.  Confirm that the file exists by entering the following command:
     ```terminal
     $ ls tls.crt tls.key
@@ -47,8 +56,8 @@ If you want to use certificates from a trusted certificate authority (CA) to acc
 1.  If you have not already created the TLS secret in the hosted cluster namespace, create the secret by entering the following command:
     ```terminal
     $ oc create secret tls my-oauth-cert-secret \
-      --cert=path/to/tls.crt \
-      --key=path/to/tls.key \
+      --cert=tls.crt \
+      --key=tls.key \
       -n $HC_NAMESPACE
     ```
     ```terminal title="Example output"
@@ -61,28 +70,6 @@ If you want to use certificates from a trusted certificate authority (CA) to acc
     
     :::
 
-1.  Discover the correct OAuth route:
-    1.  Use the management cluster `kubconfig` file to enter the following command:
-        ```terminal
-        $ oc get routes -n ${HC_NAMESPACE}-${CLUSTER_NAME}
-        ```
-    1.  If the route name is `oauth`, confirm it by entering the following command:
-        ```terminal
-        $ oc get route oauth -n ${HC_NAMESPACE}-${CLUSTER_NAME} -o yaml
-        ```
-    1.  Prepare to extract the OAuth route host by entering the following command:
-        ```terminal
-        OAUTH_HOST=$(oc get route oauth \
-          -n ${HC_NAMESPACE}-${CLUSTER_NAME} \
-          -o jsonpath='{.spec.host}')
-        ```
-    1.  Extract the OAuth route host by entering the following command:
-        ```terminal
-        $ echo "${OAUTH_HOST}"
-        ```
-        ```terminal title="Example output"
-        oauth-${HC_NAMESPACE}-${CLUSTER_NAME}.api-custom-cert-sample-hosted.sample-hosted.example.com
-        ```
 1.  Edit the `HostedCluster` resource:
     1.  Open the `HostedCluster` resource for editing by entering the following command:
         ```terminal
@@ -103,7 +90,7 @@ If you want to use certificates from a trusted certificate authority (CA) to acc
               servingCerts:
                 namedCertificates:
                 - names:
-                  - api-custom-cert-sample-hosted.sample-hosted.example.com
+                  - oauth-<hosted_cluster_namespace>-<hosted_cluster_name>.apps.<management_cluster_name>.<base_domain>
                   servingCertificate:
                     name: my-oauth-cert-secret
         # ...
@@ -140,7 +127,7 @@ If you want to use certificates from a trusted certificate authority (CA) to acc
     subject=CN=openshift-oauth
     issuer=CN=openshift-oauth
     X509v3 Subject Alternative Name: 
-        DNS:oauth-${HC_NAMESPACE}-${CLUSTER_NAME}.api-custom-cert-sample-hosted.sample-hosted.example.com
+        DNS:oauth-<hosted_cluster_namespace>-<hosted_cluster_name>.apps.<management_cluster_name>.<base_domain>
     ```
 
     The output shows that the OAuth route is serving the custom certificate and the certificate comes from the `my-oauth-cert-secret` secret.

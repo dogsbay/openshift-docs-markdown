@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using ScanSettingBinding custom resources {id="using-scan-setting-bindings_{{ context }}"}
+# Use ScanSettingBinding custom resources {id="using-scan-setting-bindings_{{ context }}"}
 
 When using the `ScanSetting` and `ScanSettingBinding` custom resources (CRs) that the Compliance Operator provides, it is possible to run scans for multiple profiles while using a common set of scan options, such as `schedule`, `machine roles`, `tolerations`, and so on.
  

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accessing an example Node Tuning Operator specification {id="accessing-an-example-node-tuning-operator-specification_{{ context }}"}
+# Access an example Node Tuning Operator specification {id="accessing-an-example-node-tuning-operator-specification_{{ context }}"}
 
 Use this process to access an example Node Tuning Operator specification. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Checking the NUMA-aware scheduler logs {id="cnf-checking-numa-aware-scheduler-logs_{{ context }}"}
+# Check the NUMA-aware scheduler logs {id="cnf-checking-numa-aware-scheduler-logs_{{ context }}"}
 
 To troubleshoot problems with the NUMA-aware scheduler, review the scheduler logs. If necessary, increase the log level in the `NUMAResourcesScheduler` custom resource (CR) to capture more detailed diagnostic data. {._abstract}
 

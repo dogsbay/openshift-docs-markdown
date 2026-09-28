@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Storing containers using {{ quay }} {id="security-registries-quay_{{ context }}"}
+# Store containers using {{ quay }} {id="security-registries-quay_{{ context }}"}
 
 {{ quay }} is an enterprise-quality container registry product from Red Hat. Development for {{ quay }} is done through the upstream Project Quay. {{ quay }} is available to deploy on-premise or through the hosted version of {{ quay }} at Quay.io. {._abstract}
 

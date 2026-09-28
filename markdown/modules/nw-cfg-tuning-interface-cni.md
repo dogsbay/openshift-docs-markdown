@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring system controls by using the tuning CNI {id="nw-configuring-tuning-cni_{{ context }}"}
+# Configure system controls by using the tuning CNI {id="nw-configuring-tuning-cni_{{ context }}"}
 
 To configure interface-level network sysctls in {{ product_title }}, you can use the tuning CNI meta plugin in a network attachment definition. Configure the `net.ipv4.conf.IFNAME.accept_redirects` sysctl to enable accepting and sending ICMP-redirected packets. {._abstract}
 

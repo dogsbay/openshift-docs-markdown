@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a projected volume for a Pod {id="nodes-containers-projected-volumes-creating_{{ context }}"}
+# Configure a projected volume for a Pod {id="nodes-containers-projected-volumes-creating_{{ context }}"}
 
 You can create projected volumes to map multiple configuration sources, such as secrets and config maps, into a single directory. Projected volumes centralize sensitive information and environment metadata for your applications into a single directory.   {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding taints and tolerations using a compute machine set {id="nodes-scheduler-taints-tolerations-adding-machineset_{{ context }}"}
+# Add taints and tolerations using a compute machine set {id="nodes-scheduler-taints-tolerations-adding-machineset_{{ context }}"}
 
 You can add taints to groups of nodes by using a compute machine set. All nodes associated with the `MachineSet` object are updated with the taint.  {._abstract}
 

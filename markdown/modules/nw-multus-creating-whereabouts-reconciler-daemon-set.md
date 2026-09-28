@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a whereabouts-reconciler daemon set {id="nw-multus-creating-whereabouts-reconciler-daemon-set_{{ context }}"}
+# Create a whereabouts-reconciler daemon set {id="nw-multus-creating-whereabouts-reconciler-daemon-set_{{ context }}"}
 
 The Whereabouts reconciler is responsible for managing dynamic IP address assignments for the pods within a cluster by using the Whereabouts IP Address Management (IPAM) solution. The Whereabouts reconciler ensures that each pod gets a unique IP address from the specified IP address range. The Whereabouts reconciler also handles IP address releases when pods are deleted or scaled down. {._abstract}
 

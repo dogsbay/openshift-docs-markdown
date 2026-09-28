@@ -11,7 +11,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
 {% if oplm %}
-# Controlling where an Operator is installed {id="olm-overriding-operator-pod-affinity_{{ context }}"}
+# Control where an Operator is installed {id="olm-overriding-operator-pod-affinity_{{ context }}"}
 
 {% endif %}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Identifying pod security violations {id="security-context-constraints-psa-alert-eval_{{ context }}"}
+# Identify pod security violations {id="security-context-constraints-psa-alert-eval_{{ context }}"}
 
 To identify which workloads are causing pod security violations, you can review the Kubernetes API server audit logs by using the `must-gather` tool. {._abstract}
 

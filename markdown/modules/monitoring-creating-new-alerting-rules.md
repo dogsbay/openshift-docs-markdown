@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating new alerting rules {id="creating-new-alerting-rules_{{ context }}"}
+# Create new alerting rules {id="creating-new-alerting-rules_{{ context }}"}
 
 As a cluster administrator, you can create new alerting rules based on platform metrics.
 These alerting rules trigger alerts based on the values of chosen metrics.

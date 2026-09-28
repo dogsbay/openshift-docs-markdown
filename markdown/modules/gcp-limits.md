@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # {{ gcp_short }} account limits {id="gcp-limits_{{ context }}"}
 
-The {{ product_title }} cluster uses a number of {{ gcp_first }} components, but the default [quotas](https://cloud.google.com/docs/quota) do not affect your ability to install an {{ product_title }} cluster.
+The {{ product_title }} cluster uses several {{ gcp_first }} components, but the default quotas do not affect your ability to install an {{ product_title }} cluster. For more information about the default quotas, see "View and manage quotas" in the __Additional resources__. {._abstract}
 
 A standard {{ product_title }} cluster uses the following resources. Note that some resources are required only during the bootstrap process and are removed after the cluster deploys.
 
@@ -155,4 +155,10 @@ If you plan to deploy your cluster in one of the following regions, you will exc
 *   southamerica-east1
 *   us-west2
 
-You can increase resource quotas from the [{{ gcp_short }} console](https://console.cloud.google.com/iam-admin/quotas), but you might need to file a support ticket. Be sure to plan your cluster size early so that you can allow time to resolve the support ticket before you install your {{ product_title }} cluster.
+You can increase resource quotas from the **Quotas & System Limits** page in the {{ gcp_short }} console, linked in the __Additional resources__, but you might need to file a support ticket. Be sure to plan your cluster size early so that you can allow time to resolve the support ticket before you install your {{ product_title }} cluster.
+
+**Additional resources**
+{._additional-resources}
+
+*   [View and manage quotas](https://docs.cloud.google.com/docs/quotas/view-manage)
+*   [Quotas & System Limits in the {{ gcp_short }} console](https://console.cloud.google.com/iam-admin/quotas)

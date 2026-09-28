@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing the OVN-Kubernetes logs using the CLI {id="nw-ovn-kubernetes-logs-cli_{{ context }}"}
+# View the OVN-Kubernetes logs using the CLI {id="nw-ovn-kubernetes-logs-cli_{{ context }}"}
 
 To view OVN-Kubernetes pod logs in {{ product_title }}, you can use the {{ oc_first }} to examine logs from containers in the `openshift-ovn-kubernetes` namespace. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting permanent rekeying errors for Tang servers {id="nbde-troubleshooting-permanent-error-conditions_{{ context }}"}
+# Troubleshoot permanent rekeying errors for Tang servers {id="nbde-troubleshooting-permanent-error-conditions_{{ context }}"}
 
 If, after rekeying the Tang servers, the `READY` count does not equal the `DESIRED` count after an extended period of time, it might indicate a permanent failure condition. In this case, the following conditions might apply:
 

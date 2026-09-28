@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Working with the Overview view {id="network-observability-working-with-overview_{{ context }}"}
+# Work with the Overview view {id="network-observability-working-with-overview_{{ context }}"}
 
-Navigate to the network traffic **Overview** view in the {{ product_title }} console to see graphical representations of flow rate statistics and configure the display scope using available options. {._abstract}
+Navigate to the network traffic **Overview** view in the {{ product_title }} console to visualize flow rate statistics and customize the display scope for monitoring cluster network activity. {._abstract}
 
 **Prerequisite**
 

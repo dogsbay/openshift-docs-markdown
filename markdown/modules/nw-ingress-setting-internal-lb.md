@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring an Ingress Controller to use an internal load balancer {id="nw-ingress-setting-internal-lb_{{ context }}"}
+# Configure an Ingress Controller to use an internal load balancer {id="nw-ingress-setting-internal-lb_{{ context }}"}
 
 When creating an Ingress Controller on cloud platforms, the Ingress Controller is published by a public cloud load balancer by default.
 As an administrator, you can create an Ingress Controller that uses an internal cloud load balancer.

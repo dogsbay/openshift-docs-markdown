@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Configuring a private storage endpoint on Azure {id="registry-configuring-private-storage-endpoint-azure_{{ context }}"}
+# Configure a private storage endpoint on Azure {id="registry-configuring-private-storage-endpoint-azure_{{ context }}"}
 
 You can configure the Image Registry Operator to use a private Azure storage endpoint so that registry storage is not exposed through a public-facing endpoint. {._abstract}
 
@@ -18,7 +18,7 @@ You can configure the Image Registry Operator to use private storage endpoints o
 *   By configuring the Image Registry Operator to discover the VNet and subnet names
 *   With user-provided Azure Virtual Network (VNet) and subnet names
 
-## Limitations for configuring a private storage endpoint on Azure  {id="limitations-configuring-private-storage-endpoint-azure"}
+## Limitations for configuring a private storage endpoint on Azure  {id="limitations-configuring-private-storage-endpoint-azure_{{ context }}"}
 
 The following limitations apply when configuring a private storage endpoint on Azure:
 

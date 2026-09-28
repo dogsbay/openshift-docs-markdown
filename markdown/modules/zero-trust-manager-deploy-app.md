@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying the workload application {id="zero-trust-manager-deploy-app_{{ context }}"}
+# Deploy the workload application {id="zero-trust-manager-deploy-app_{{ context }}"}
 
 Deploy the workload application to your cluster to validate the {{ zero_trust_full }} environment. This application confirms that the SPIFFE Workload API is functioning and can successfully retrieve JWT tokens. {._abstract}
 

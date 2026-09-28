@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # How manifest resource deletion works {id="microshift-manifests-deletion-behavior_{{ context }}"}
 
-When creating new manifests in {{ microshift_short }}, you can use manifest resource deletion to remove or update old objects, ensuring there are no conflicts or issues.
+When creating new manifests in {{ microshift_short }}, you can use manifest resource deletion to remove or update old objects, ensuring there are no conflicts or issues. {._abstract}
 
 {{ microshift_short }} supports the deletion of manifest resources in the following situations:
 

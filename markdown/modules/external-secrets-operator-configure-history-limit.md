@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the revisionHistoryLimit for external-secrets components {id="external-secrets-enable-operator-configure-history-limit_{{ context }}"}
+# Configure the revisionHistoryLimit for external-secrets components {id="external-secrets-enable-operator-configure-history-limit_{{ context }}"}
 
 Configure the number of old `ReplicaSet` objects retained for rollback by setting the `revisionHistoryLimit` parameter for `external-secrets` components. {._abstract}
 

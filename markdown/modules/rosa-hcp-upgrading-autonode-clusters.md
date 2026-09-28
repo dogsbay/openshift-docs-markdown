@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Understanding upgrades for {{ product_title }} clusters configured with {{ autonode }} {id="rosa-nodes-autonode-upgrading-autonode_{{ context }}"}
 
-You can upgrade clusters that are configured with {{ autonode }}.  {._abstract}
+When {{ autonode }} is enabled, upgrade behavior for node pools depends on whether you pin their `OpenshiftEC2NodeClass` resource to an {{ ocp_short }} version. This helps you determine which node pools upgrade automatically with the hosted control plane and which node pools you control independently. {._abstract}
 
 <a name="rosa-nodes-autonode-upgrading-autonode-openshiftec2nodeclass_{{ context }}"></a>
 
@@ -13,11 +13,11 @@ When you enable {{ autonode }}, a default `OpenshiftEC2NodeClass` resource is cr
 
 **Optional `OpenshiftEC2NodeClass`**
 
-Upgrade behavior depends on whether or not the `OpenshiftEC2NodeClass` is pinned to a version by using the `spec.version` field.  
+Upgrade behavior depends on whether or not the `OpenshiftEC2NodeClass` is pinned to a version by using the `spec.version` field.
 
 
 Unpinned `OpenshiftEC2NodeClass`
-:   By default, `OpenshiftEC2NodeClass` resources have the same version of the hosted control plane. When the hosted control plane is upgraded, unpinned `OpenshiftEC2NodeClass` resources are automatically upgraded.  
+:   By default, `OpenshiftEC2NodeClass` resources have the same version of the hosted control plane. When the hosted control plane is upgraded, unpinned `OpenshiftEC2NodeClass` resources are automatically upgraded.
 
 
 Pinned `OpenshiftEC2NodeClass`

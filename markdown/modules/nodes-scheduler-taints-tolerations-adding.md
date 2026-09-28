@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding taints and tolerations {id="nodes-scheduler-taints-tolerations-adding_{{ context }}"}
+# Add taints and tolerations {id="nodes-scheduler-taints-tolerations-adding_{{ context }}"}
 
 You can add tolerations to pods and taints to nodes to allow the node to control which pods should or should not be scheduled on that node.  {._abstract}
 

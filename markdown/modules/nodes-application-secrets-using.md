@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating and using secrets {id="nodes-application-secrets-creating-using-sa_{{ context }}"}
+# Create and use secrets {id="nodes-application-secrets-creating-using-sa_{{ context }}"}
 
 As an administrator, you can create a service account token secret, which you can distribute to applications that must authenticate to the API. {._abstract}
 

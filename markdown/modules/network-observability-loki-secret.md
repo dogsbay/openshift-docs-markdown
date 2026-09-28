@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a secret for Loki storage {id="network-observability-loki-secret_{{ context }}"}
+# Create a secret for Loki storage {id="network-observability-loki-secret_{{ context }}"}
 
 Create a secret with cloud storage credentials, such as for {{ aws_first }}, to allow the Loki Operator to access the necessary object store for log persistence. {._abstract}
 

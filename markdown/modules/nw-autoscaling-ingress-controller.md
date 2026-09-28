@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Autoscaling an Ingress Controller {id="nw-autoscaling-ingress-controller_{{ context }}"}
+# Autoscale an Ingress Controller {id="nw-autoscaling-ingress-controller_{{ context }}"}
 
 You can automatically scale an Ingress Controller to dynamically meet routing performance or availability requirements. For example, the requirement to increase throughput.
 

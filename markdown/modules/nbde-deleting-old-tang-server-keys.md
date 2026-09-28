@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting old Tang server keys {id="nbde-deleting-old-tang-server-keys_{{ context }}"}
+# Delete old Tang server keys {id="nbde-deleting-old-tang-server-keys_{{ context }}"}
 
 **Prerequisites**
 

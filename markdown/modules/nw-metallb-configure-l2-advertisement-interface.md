@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring MetalLB with an L2 advertisement for selected interfaces {id="nw-metallb-configure-with-L2-advertisement-interface_{{ context }}"}
+# Configure MetalLB with an L2 advertisement for selected interfaces {id="nw-metallb-configure-with-L2-advertisement-interface_{{ context }}"}
 
 By default, the IP addresses from IP address pool that has been assigned to the service, is advertised from all the network interfaces. You can use the `interfaces` field in the `L2Advertisement` custom resource definition to restrict those network interfaces that advertise the IP address pool. {._abstract}
 

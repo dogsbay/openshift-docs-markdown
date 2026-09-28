@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 {% include "./_attributes/common-attributes.md" %}
-# Adding a GPU node to an existing {{ product_title }} cluster {id="nvidia-gpu-gcp-adding-a-gpu-node_{{ context }}"}
+# Add a GPU node to an existing {{ product_title }} cluster {id="nvidia-gpu-gcp-adding-a-gpu-node_{{ context }}"}
 
 You can copy and modify a default compute machine set configuration to create a GPU-enabled machine set and machines for the {{ gcp_short }} provider. This assists compute-intensive workloads that require hardware acceleration. {._abstract}
 

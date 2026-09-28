@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting a log level for the {{ external_secrets_operator }} operand {id="external-secrets-enable-operand-log-level_{{ context }}"}
+# Set a log level for the {{ external_secrets_operator }} operand {id="external-secrets-enable-operand-log-level_{{ context }}"}
 
 You can troubleshoot common issues, such as secret synchronization failures, provider authentication errors, or data formatting problems, by configuring the log verbosity for the core controller. {._abstract}
 

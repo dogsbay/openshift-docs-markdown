@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Tuning performance for hosted cluster nodes {id="hosted-clusters-openstack-performance-tuning_{{ context }}"}
+# Tune performance for hosted cluster nodes {id="hosted-clusters-openstack-performance-tuning_{{ context }}"}
 
 To run high-performance workloads on {{ hcp }} on {{ rh_openstack_first }}, you can create a performance profile and deploy a tuned `NodePool` resource. {._abstract}
 

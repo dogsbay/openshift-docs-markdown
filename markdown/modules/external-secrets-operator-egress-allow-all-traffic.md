@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a custom network policy to allow egress to all external providers {id="external-secrets-operator-egress-allow-all-traffic_{{ context }}"}
+# Add a custom network policy to allow egress to all external providers {id="external-secrets-operator-egress-allow-all-traffic_{{ context }}"}
 
 You must configure custom policies through the `ExternalSecretsConfig` custom resource to allow all egress to all external providers. {._abstract}
 

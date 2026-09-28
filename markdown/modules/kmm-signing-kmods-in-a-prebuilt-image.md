@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Signing kmods in a pre-built image {id="kmm-signing-kmods-in-a-prebuilt-image_{{ context }}"}
+# Sign kmods in a pre-built image {id="kmm-signing-kmods-in-a-prebuilt-image_{{ context }}"}
 
 To sign kernel modules in a vendor-supplied or externally built image on {{ product_title }}, you can configure a `Module` custom resource with unsigned and signed container image references and key secrets. {._abstract}
 

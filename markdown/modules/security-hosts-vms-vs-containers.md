@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Comparing virtualization and containers {id="security-hosts-vms-vs-containers_{{ context }}"}
+# Compare virtualization and containers {id="security-hosts-vms-vs-containers_{{ context }}"}
 
 You should understand the differences between containers and VMs to learn the advantages and drawbacks that influence the use cases in which these technologies are typically applied. {._abstract}
 

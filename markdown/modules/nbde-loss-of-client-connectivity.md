@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Planning for a loss of client network connectivity {id="nbde-loss-of-client-connectivity_{{ context }}"}
+# Plan for a loss of client network connectivity {id="nbde-loss-of-client-connectivity_{{ context }}"}
 
 The loss of network connectivity to an individual node will cause it to become unable to boot in an unattended fashion.
 

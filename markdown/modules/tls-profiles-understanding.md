@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding TLS security profiles {id="tls-profiles-understanding_{{ context }}"}
+# Understand TLS security profiles {id="tls-profiles-understanding_{{ context }}"}
 
 You can use a TLS (Transport Layer Security) security profile, as described in this section, to define which TLS ciphers are required by various {{ product_title }} components.  {._abstract}
 

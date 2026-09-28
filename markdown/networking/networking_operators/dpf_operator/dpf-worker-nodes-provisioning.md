@@ -22,6 +22,4 @@ After the DPF Operator and the hosted cluster are configured, adjust the OVN-Kub
 
 {% leveloffset +1 %}{% include "./modules/nw-dpf-configuring-hosted-cluster-auth.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/nw-dpf-approving-dpu-csrs.md" %}{% endleveloffset %}
-
 {% leveloffset +1 %}{% include "./modules/nw-dpf-verifying-system-readiness.md" %}{% endleveloffset %}

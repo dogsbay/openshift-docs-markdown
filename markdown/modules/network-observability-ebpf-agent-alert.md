@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the eBPF agent alert {id="network-observability-netobserv-dashboard-ebpf-agent-alerts_{{ context }}"}
+# Use the eBPF agent alert {id="network-observability-netobserv-dashboard-ebpf-agent-alerts_{{ context }}"}
 
 Resolve the `NetObservAgentFlowsDropped` alert, which occurs when the eBPF agent hashmap is full, by increasing the `spec.agent.ebpf.cacheMaxFlows` value in the `FlowCollector` custom resource. {._abstract}
 

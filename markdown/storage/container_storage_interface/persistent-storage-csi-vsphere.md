@@ -120,9 +120,6 @@ You can provision and manage vSphere storage in {{ product_title }} by using the
 
 {% leveloffset +1 %}{% include "./modules/persistent-storage-csi-vsphere-adding-bm-nodes.md" %}{% endleveloffset %}
 
-{%- set FeatureName = "Adding bare-metal nodes" %}
-{% leveloffset +2 %}{% include "./snippets/technology-preview.md" %}{% endleveloffset %}
-
 <a name="link_installation_config_parameters_vsphere"></a>**Additional resources**
 {._additional-resources}
 

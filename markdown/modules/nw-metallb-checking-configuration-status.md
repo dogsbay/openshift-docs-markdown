@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Checking MetalLB configuration status {id="nw-metallb-checking-configuration-status_{{ context }}"}
+# Check MetalLB configuration status {id="nw-metallb-checking-configuration-status_{{ context }}"}
 
-You can verify that the MetalLB controller and speakers have successfully applied the current configuration by viewing the `ConfigurationState` custom resource (CR). MetalLB creates a `ConfigurationState` resource for the controller and one for each speaker node. These resources report whether the configuration is valid and surface error details when validation fails, such as incompatible custom resources. {._abstract}
+You can verify that the MetalLB controller and speakers have successfully applied the current configuration by viewing the `ConfigurationState` custom resource (CR). MetalLB creates a `ConfigurationState` resource for the controller and one for each speaker node. {._abstract}
+
+These resources report whether the configuration is valid and surface error details when validation fails, such as incompatible custom resources.
 
 **Prerequisites**
 

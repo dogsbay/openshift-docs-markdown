@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Rekeying compromised key material {id="nbde-compromise-of-key-material_{{ context }}"}
+# Rekey compromised key material {id="nbde-compromise-of-key-material_{{ context }}"}
 
 If key material is potentially exposed to unauthorized third parties, such as through the physical theft of a Tang server or associated data, immediately rotate the keys.
 

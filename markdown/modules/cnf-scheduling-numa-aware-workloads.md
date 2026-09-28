@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Scheduling workloads with the NUMA-aware scheduler {id="cnf-scheduling-numa-aware-workloads_{{ context }}"}
+# Schedule workloads with the NUMA-aware scheduler {id="cnf-scheduling-numa-aware-workloads_{{ context }}"}
 
 To schedule workloads with the NUMA-aware scheduler, use deployment CRs that specify the minimum required resources. This ensures your cluster processes the workloads efficiently. {._abstract}
 

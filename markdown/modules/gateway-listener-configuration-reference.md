@@ -7,7 +7,7 @@ You can customize your gateway listener configuration using the following fields
 
 
 `spec.listeners`
-:   Defines the list of listeners for the gateway. You can customize this field with settings for port, protocol, TLS, hostnames, and allowed routes. 
+:   Defines the list of listeners for the gateway. You can customize this field with settings for port, protocol, TLS, hostnames, and allowed routes.
 
 
 `listeners.protocol` and `listeners.port`

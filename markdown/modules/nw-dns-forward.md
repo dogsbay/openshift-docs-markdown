@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using DNS forwarding {id="nw-dns-forward_{{ context }}"}
+# Use DNS forwarding {id="nw-dns-forward_{{ context }}"}
 
 Configure DNS forwarding servers and upstream resolvers for the cluster. {._abstract}
 

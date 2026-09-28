@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring cluster-level overcommit {id="nodes-cluster-resource-configure_{{ context }}"}
+# Configure cluster-level overcommit {id="nodes-cluster-resource-configure_{{ context }}"}
 
 You can use the OpenShift CLI to configure the Cluster Resource Override Operator to help control overcommit in your cluster. {._abstract}
 

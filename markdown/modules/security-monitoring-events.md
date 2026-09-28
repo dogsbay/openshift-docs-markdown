@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Watching cluster events {id="security-monitoring-events_{{ context }}"}
+# Watch cluster events {id="security-monitoring-events_{{ context }}"}
 
 Cluster administrators are encouraged to familiarize themselves with the `Event` resource type and review the list of system events to determine which events are of interest.
  

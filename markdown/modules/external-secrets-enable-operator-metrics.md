@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring metrics collection for {{ external_secrets_operator }} by using a ServiceMonitor {id="external-secrets-enable-operator-metrics_{{ context }}"}
+# Configure metrics collection for {{ external_secrets_operator }} by using a ServiceMonitor {id="external-secrets-enable-operator-metrics_{{ context }}"}
 
 The {{ external_secrets_operator }} exposes metrics by default on port `8443` at the `/metrics` service endpoint. You can configure metrics collection for the Operator by creating a `ServiceMonitor` custom resource (CR) that enables the Prometheus Operator to collect custom metrics. For more information, see "Configuring user workload monitoring". {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting user-owned OAuth access tokens {id="oauth-delete-tokens_{{ context }}"}
+# Delete user-owned OAuth access tokens {id="oauth-delete-tokens_{{ context }}"}
 
 You can use the following procedure to delete any user-owned OAuth tokens that are no longer needed. {._abstract}
 

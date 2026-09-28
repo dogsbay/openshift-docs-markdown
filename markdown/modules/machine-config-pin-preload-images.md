@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Pinning images {id="machine-config-pin-preload-images_{{ context }}"}
+# Pin images {id="machine-config-pin-preload-images_{{ context }}"}
 
 You can pin images to your nodes by using a `PinnedImageSet` custom resource (CR) making the images available to your nodes when needed for operations such as updating a cluster or deploying an application. {._abstract}
 

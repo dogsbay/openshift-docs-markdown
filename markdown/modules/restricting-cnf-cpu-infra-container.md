@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Partitioning CPUs for infra and application containers {id="restricting-cnf-cpu-infra-container_{{ context }}"}
+# Partition CPUs for infra and application containers {id="restricting-cnf-cpu-infra-container_{{ context }}"}
 
 By partitioning CPUs, you can prevent noisy processes from interfering with latency-sensitive processes by separating the processes from each other. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Mounting secrets from {{ azure_short }} Key Vault {id="secrets-store-azure_{{ context }}"}
+# Mount secrets from {{ azure_short }} Key Vault {id="secrets-store-azure_{{ context }}"}
 
 You can use the {{ secrets_store_operator }} to mount secrets from {{ azure_first }} Key Vault to a Container Storage Interface (CSI) volume in {{ product_title }}. Using an external secret store protects information that you do not want developers to have and can be more secure than `secret` objects. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Choosing what to harden in {{ op_system }} {id="security-hardening-what_{{ context }}"}
+# Choose what to harden in {{ op_system }} {id="security-hardening-what_{{ context }}"}
 
 {% if openshift_origin %}
 You can review the information on how to approach security for any {{ op_system_base }} system, in the "Security" category of the Red&#160;Hat Enterprise Linux 9 documentation to determine how to harden systems in  {{ op_system }}. {._abstract}

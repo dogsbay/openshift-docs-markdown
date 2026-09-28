@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running the latency tests {id="cnf-performing-end-to-end-tests-running-the-tests_{{ context }}"}
+# Run the latency tests {id="cnf-performing-end-to-end-tests-running-the-tests_{{ context }}"}
 
 Run the cluster latency tests to validate node tuning for your Cloud-native Network Functions (CNF) workload. {._abstract}
 

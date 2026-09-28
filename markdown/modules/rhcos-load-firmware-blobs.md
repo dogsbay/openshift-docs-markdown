@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Loading custom firmware blobs in the machine config manifest {id="rhcos-load-firmware-blobs_{{ context }}"}
+# Load custom firmware blobs in the machine config manifest {id="rhcos-load-firmware-blobs_{{ context }}"}
 
 You can load local firmware blobs that are not managed by {{ op_system }} into the machine config manifest by updating the search path with a machine config. {._abstract}
 

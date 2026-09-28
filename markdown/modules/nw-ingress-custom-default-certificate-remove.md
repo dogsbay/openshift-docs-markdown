@@ -1,4 +1,4 @@
-# Removing a custom default certificate {id="nw-ingress-custom-default-certificate-remove_{{ context }}"}
+# Remove a custom default certificate {id="nw-ingress-custom-default-certificate-remove_{{ context }}"}
 
 As an administrator, you can remove a custom certificate that you configured an Ingress Controller to use.
 

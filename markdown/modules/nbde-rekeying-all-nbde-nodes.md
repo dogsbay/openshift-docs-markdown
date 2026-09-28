@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Rekeying all NBDE nodes {id="nbde-rekeying-all-nbde-nodes_{{ context }}"}
+# Rekey all NBDE nodes {id="nbde-rekeying-all-nbde-nodes_{{ context }}"}
 
 You can rekey all of the nodes on a remote cluster by using a `DaemonSet` object without incurring any downtime to the remote cluster.
 

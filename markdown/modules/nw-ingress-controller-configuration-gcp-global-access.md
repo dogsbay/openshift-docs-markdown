@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring global access for an Ingress Controller on {{ gcp_short }} {id="nw-ingress-controller-configuration-gcp-global-access_{{ context }}"}
+# Configure global access for an Ingress Controller on {{ gcp_short }} {id="nw-ingress-controller-configuration-gcp-global-access_{{ context }}"}
 
 An Ingress Controller created on {{ gcp_short }} with an internal load balancer generates an internal IP address for the service. A cluster administrator can specify the global access option, which enables clients in any region within the same VPC network and compute region as the load balancer, to reach the workloads running on your cluster.
 

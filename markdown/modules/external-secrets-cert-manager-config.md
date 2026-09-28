@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring cert-manager for the external-secrets certificate requirements {id="external-secrets-cert-manager-config_{{ context }}"}
+# Configure cert-manager for the external-secrets certificate requirements {id="external-secrets-cert-manager-config_{{ context }}"}
 
 You can optionally configure cert-manager to manage certificates for the {{ external_secrets_operator }} webhook and plugins. If you do not use cert-manager, the Operator automatically generates webhook certificates, but you must manually configure certificates for any plugins. {._abstract}
 

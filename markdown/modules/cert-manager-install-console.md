@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ cert_manager_operator }} by using the web console {id="cert-manager-install-console_{{ context }}"}
+# Install the {{ cert_manager_operator }} by using the web console {id="cert-manager-install-console_{{ context }}"}
 
 You can use the web console to install the {{ cert_manager_operator }}. {._abstract}
 

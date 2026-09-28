@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling the DPU Operator {id="nw-dpu-operator-uninstall_{{ context }}"}
+# Uninstall the DPU Operator {id="nw-dpu-operator-uninstall_{{ context }}"}
 
 You can uninstall the DPU Operator from your cluster when you no longer need DPU device management, ensuring all workloads are deleted first. {._abstract}
 

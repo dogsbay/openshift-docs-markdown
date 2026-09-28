@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Applying remediation when using customized machine config pools {id="compliance-operator-apply-remediation-for-customized-mcp"}
+# Apply remediation when using customized machine config pools {id="compliance-operator-apply-remediation-for-customized-mcp"}
 
 When you create a custom `MachineConfigPool`, add a label to the `MachineConfigPool` so that `machineConfigPoolSelector` present in the `KubeletConfig` can match the label with `MachineConfigPool`. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a custom API server certificate in a hosted cluster {id="hcp-custom-cert_{{ context }}"}
+# Configure a custom API server certificate in a hosted cluster {id="hcp-custom-cert_{{ context }}"}
 
 To configure a custom certificate for the API server, specify the certificate details in the `spec.configuration.apiServer` section of your `HostedCluster` configuration.  {._abstract}
 

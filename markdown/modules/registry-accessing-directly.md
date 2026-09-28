@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accessing the registry directly from the cluster {id="registry-accessing-directly_{{ context }}"}
+# Access the registry directly from the cluster {id="registry-accessing-directly_{{ context }}"}
 
 You can access the registry from inside the cluster by using internal routes. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating secrets and config maps {id="security-deploy-secrets_{{ context }}"}
+# Create secrets and config maps {id="security-deploy-secrets_{{ context }}"}
 
 You can use the `Secret` object type to provide a mechanism to hold sensitive information such as passwords, {{ product_title }} client configuration files, `dockercfg` files, and private source repository credentials. Secrets decouple sensitive content from pods.
  

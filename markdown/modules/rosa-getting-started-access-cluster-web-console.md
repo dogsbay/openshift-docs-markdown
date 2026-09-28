@@ -1,16 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Access a cluster through the web console {id="rosa-getting-started-access-cluster-web-console_{{ context }}"}
 
-{% if context == "rosa-getting-started" %}
-{%- set getting_started = true -%}
-{% endif %}
-{% if context == "rosa-quickstart" %}
-{%- set quickstart = true -%}
-{% endif %}
-
 After creating a cluster administrator or adding a user to your identity provider, you can log in to your {{ product_title }} cluster through the web console. {._abstract}
-
-{% if getting_started %}
 
 **Prerequisites**
 
@@ -19,7 +10,6 @@ After creating a cluster administrator or adding a user to your identity provide
 *   You logged in to your Red&#160;Hat account using the {{ rosa_cli }}.
 *   You created a {{ product_title }} cluster.
 *   You have created a cluster administrator user or added your user account to the configured identity provider.
-{% endif %}
 
 **Procedure**
 
@@ -43,10 +33,3 @@ After creating a cluster administrator or adding a user to your identity provide
 
 *   [Accessing the web console](https://docs.openshift.com/container-platform/latest/web_console/web-console.html)
 *   [Understanding identity provider configuration](https://docs.openshift.com/container-platform/latest/authentication/understanding-identity-provider.html)
-
-{% if context == "rosa-getting-started" %}
-{%- set getting_started = true -%}
-{% endif %}
-{% if context == "rosa-quickstart" %}
-{%- set quickstart = true -%}
-{% endif %}

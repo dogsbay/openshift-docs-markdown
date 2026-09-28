@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling GPU support for a compute machine set {id="machineset-gcp-enabling-gpu-support_{{ context }}"}
+# Enable GPU support for a compute machine set {id="machineset-gcp-enabling-gpu-support_{{ context }}"}
 
 Use the {{ gcp_first }} Compute Engine to add GPUs to Virtual Machine (VM) instances. Workloads that benefit from access to GPU resources can perform better on compute machines with this feature enabled. {{ product_title }} on {{ gcp_short }} supports NVIDIA GPU models in the A2 and N1 machine series. {._abstract}
 

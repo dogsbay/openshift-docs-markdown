@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting basic authentication {id="identity-provider-basic-authentication-troubleshooting_{{ context }}"}
+# Troubleshoot basic authentication {id="identity-provider-basic-authentication-troubleshooting_{{ context }}"}
 
 Troubleshoot basic authentication by testing backend connectivity and verifying JSON login responses when users cannot authenticate in {{ product_title }}. {._abstract}
 

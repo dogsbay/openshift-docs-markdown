@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Impersonating the system:admin user {id="impersonation-system-admin-user_{{ context }}"}
+# Impersonate the system:admin user {id="impersonation-system-admin-user_{{ context }}"}
 
 You can use the OpenShift web console to impersonate a user and select multiple group memberships at the same time to reproduce that user’s effective permissions.
 

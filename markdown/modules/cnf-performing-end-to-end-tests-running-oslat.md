@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running oslat {id="cnf-performing-end-to-end-tests-running-oslat_{{ context }}"}
+# Run oslat {id="cnf-performing-end-to-end-tests-running-oslat_{{ context }}"}
 
 To evaluate how your cluster handles CPU-heavy data processing, run the `oslat` test. This diagnostic tool simulates a CPU-intensive DPDK application to measure system interruptions and performance disruptions. {._abstract}
 

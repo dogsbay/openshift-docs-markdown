@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Overriding storage or partition setup {id="machine-config-install-time-configs_{{ context }}"}
+# Override storage or partition setup {id="machine-config-install-time-configs_{{ context }}"}
 
 You can use a `MachineConfig` object to change the disk partition schema, file systems, and RAID configurations that were established during the cluster installation. This allows you to make specific configuration changes that are different from the initial cluster state. {._abstract}
 

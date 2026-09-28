@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Starting a pod with unsafe sysctls {id="nodes-containers-starting-pod-with-unsafe-sysctls_{{ context }}"}
+# Start a pod with unsafe sysctls {id="nodes-containers-starting-pod-with-unsafe-sysctls_{{ context }}"}
 
 You can run a pod that is configured to use unsafe sysctls on a node where a cluster administrator explicitly enabled unsafe sysctls. You might use unsafe sysctls for situations such as high performance or real-time application tuning. {._abstract}
 

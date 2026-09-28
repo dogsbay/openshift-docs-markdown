@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Securing containers on {{ op_system_first }} {id="security-hosts-vms-rhcos_{{ context }}"}
+# Secure containers on {{ op_system_first }} {id="security-hosts-vms-rhcos_{{ context }}"}
 
 You should understand the security enhancements you can make to the containers in your {{ product_title }} clusters. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using an alternative recommender {id="nodes-pods-vertical-autoscaler-custom_{{ context }}"}
+# Use an alternative recommender {id="nodes-pods-vertical-autoscaler-custom_{{ context }}"}
 
 You can use your own recommender to autoscale based on your own algorithms. If you do not specify an alternative recommender, {{ product_title }} uses the default recommender, which suggests CPU and memory requests based on historical usage.  {._abstract}
 

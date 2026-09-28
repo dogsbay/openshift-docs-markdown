@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting BGP issues {id="nw-metallb-troubleshoot-bgp_{{ context }}"}
+# Troubleshoot BGP issues {id="nw-metallb-troubleshoot-bgp_{{ context }}"}
 
 To diagnose and resolve BGP configuration issues, run commands directly within the FRR container. By accessing the container, you can verify routing states and identify connectivity errors. {._abstract}
 

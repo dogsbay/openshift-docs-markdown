@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the NUMAResourcesOperator custom resource for {{ hcp }} {id="cnf-creating-nrop-cr-hosted-control-plane_{{ context }}"}
+# Create the NUMAResourcesOperator custom resource for {{ hcp }} {id="cnf-creating-nrop-cr-hosted-control-plane_{{ context }}"}
 
 After you install the NUMA Resources Operator, create the `NUMAResourcesOperator` custom resource (CR). The CR instructs the NUMA Resources Operator to install all the cluster infrastructure that is needed to support the NUMA-aware scheduler on {{ hcp }}, including daemon sets and APIs. {._abstract}
 

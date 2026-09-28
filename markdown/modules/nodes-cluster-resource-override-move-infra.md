@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Moving the Cluster Resource Override Operator pods {id="nodes-cluster-resource-override-move-infra_{{ context }}"}
+# Move the Cluster Resource Override Operator pods {id="nodes-cluster-resource-override-move-infra_{{ context }}"}
 
 By default, the Cluster Resource Override Operator installation process creates an Operator pod and two Cluster Resource Override pods on nodes in the `clusterresourceoverride-operator` namespace. You can move these pods to other nodes, such as infrastructure nodes, as needed. {._abstract}
 

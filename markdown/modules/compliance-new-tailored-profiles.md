@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a new tailored profile {id="compliance-new-tailored-profiles_{{ context }}"}
+# Create a new tailored profile {id="compliance-new-tailored-profiles_{{ context }}"}
 
 You can write a tailored profile from scratch by using the `TailoredProfile` object. Set an appropriate `title` and `description` and leave the `extends` field empty.  {._abstract}
 

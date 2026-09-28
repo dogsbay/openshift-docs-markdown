@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing an unused certificate authority from the bundle {id="removing-unused-ca-bundle_{{ context }}"}
+# Remove an unused certificate authority from the bundle {id="removing-unused-ca-bundle_{{ context }}"}
 
 After a manual etcd or metrics signer rotation, delete the `etcd-ca-bundle` or `etcd-metrics-ca-bundl` as appropriate. When the cluster reconciles, unused certificate authority (CA) keys are removed. This ensures that components only trust the current signer. {._abstract}
 

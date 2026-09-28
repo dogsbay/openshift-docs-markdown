@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Modifying a NetworkAttachmentDefinition custom resource {id="nw-multus-edit-network_{{ context }}"}
+# Modify a NetworkAttachmentDefinition custom resource {id="nw-multus-edit-network_{{ context }}"}
 
 To update network settings or change network parameters for a secondary network in {{ product_title }}, you can modify the `NetworkAttachmentDefinition` custom resource. Edit the Cluster Network Operator CR to apply your changes. {._abstract}
 

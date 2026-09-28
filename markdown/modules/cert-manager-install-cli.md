@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ cert_manager_operator }} by using the CLI {id="cert-manager-install-cli_{{ context }}"}
+# Install the {{ cert_manager_operator }} by using the CLI {id="cert-manager-install-cli_{{ context }}"}
 
 You can install the {{ cert_manager_operator }} by using the command-line interface (CLI). {._abstract}
 

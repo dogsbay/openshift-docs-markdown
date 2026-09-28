@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying the SPIRE Agent {id="zero-trust-manager-spire-agent-config_{{ context }}"}
+# Deploy the SPIRE Agent {id="zero-trust-manager-spire-agent-config_{{ context }}"}
 
 Use the `SpireAgent` custom resource to configure the SPIRE Agent `DaemonSet` on your nodes. This defines how the agent verifies workloads and manages identity attestation across your {{ product_title }} cluster. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Overriding operand container arguments for the {{ external_secrets_operator }} {id="external-secrets-operator-overriding-operand-arguments_{{ context }}"}
+# Override operand container arguments for the {{ external_secrets_operator }} {id="external-secrets-operator-overriding-operand-arguments_{{ context }}"}
 
 You can override container arguments for the `external-secrets` operand deployments by setting environment variables on the {{ external_secrets_operator }} subscription. Use this method when you need to pass additional or replacement `--key=value` flags to operand containers. {._abstract}
 

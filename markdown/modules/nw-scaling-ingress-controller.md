@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Scaling an Ingress Controller {id="nw-ingress-controller-configuration_{{ context }}"}
+# Scale an Ingress Controller {id="nw-ingress-controller-configuration_{{ context }}"}
 
 Manually scale an Ingress Controller to meeting routing performance or availability requirements such as the requirement to increase throughput. `oc` commands are used to scale the `IngressController` resource. The following procedure provides an example for scaling up the default `IngressController`.
 

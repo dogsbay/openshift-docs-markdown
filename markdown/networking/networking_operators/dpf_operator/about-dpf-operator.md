@@ -34,4 +34,3 @@ The DPF deployment creates a dual-cluster topology consisting of a management cl
 *   [DPF OVN-Kubernetes with Host-Based Networking User Guide](https://networking-docs.nvidia.com/dpf/26.4.1/ovn-kubernetes-with-host-based-networking)
 *   [OpenShift mirror](https://mirror.openshift.com/pub/openshift-v4/clients/ocp/)
 *   [Helm installation guide](https://helm.sh/docs/intro/install/)
-*   [NVIDIA DPF uninstall guide](https://networking-docs.nvidia.com/dpf/26.4.1/dpf-host-trusted)

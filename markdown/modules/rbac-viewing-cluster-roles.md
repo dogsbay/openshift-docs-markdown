@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing cluster roles and bindings {id="viewing-cluster-roles_{{ context }}"}
+# View cluster roles and bindings {id="viewing-cluster-roles_{{ context }}"}
 
 You can view cluster roles and bindings by using the `oc` CLI to determine the permissions associated with roles and identify the users, groups, and service accounts assigned to them. {._abstract}
 

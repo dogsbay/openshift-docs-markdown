@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Verifying the CCO installation in a hosted cluster on {{ aws_short }} {id="hcp-cco-verify-aws-sts_{{ context }}"}
+# Verify the CCO installation in a hosted cluster on {{ aws_short }} {id="hcp-cco-verify-aws-sts_{{ context }}"}
 
 You can verify that the Cloud Credential Operator (CCO) is running correctly in your hosted control plane. {._abstract}
 

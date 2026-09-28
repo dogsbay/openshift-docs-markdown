@@ -1,11 +1,4 @@
-{%- set _mod_docs_content_type = "PROCEDURE" -%}
-{% if context == "rosa-classic-creating-a-cluster-quickly-terraform" %}
-{%- set tf_defaults = true -%}
-{% endif %}
-{% if context == "rosa-hcp-creating-a-cluster-quickly-terraform" %}
-{%- set tf_rosa_hcp = true -%}
-{% endif %}
-
+{%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deleting your {{ product_title }} cluster with Terraform {id="sd-terraform-cluster-destroy_{{ context }}"}
 
 Use the `terraform destroy` command to remove all resources you create with the `terraform apply` command. {._abstract}
@@ -46,7 +39,7 @@ If deletion protection is enabled on the cluster, disable it by setting `delete_
       Enter a value:
     ```
 1.  Enter `yes` to start the role and cluster deletion:
-{%- if tf_rosa_hcp %}
+{%- if openshift_rosa_hcp %}
     ```terminal title="Example output"
     Plan: 0 to add, 0 to change, 63 to destroy.
 
@@ -57,7 +50,7 @@ If deletion protection is enabled on the cluster, disable it by setting `delete_
       Enter a value: yes
     ```
 {%- endif %}
-{%- if tf_rosa_classic %}
+{%- if openshift_rosa %}
     ```terminal title="Example output"
     Plan: 0 to add, 0 to change, 74 to destroy.
 
@@ -94,10 +87,3 @@ If deletion protection is enabled on the cluster, disable it by setting `delete_
     I: Fetching operator roles
     I: No operator roles available
     ```
-
-{% if context == "rosa-classic-creating-a-cluster-quickly-terraform" %}
-{%- set tf_defaults = true -%}
-{% endif %}
-{% if context == "rosa-hcp-creating-a-cluster-quickly-terraform" %}
-{%- set tf_rosa_hcp = true -%}
-{% endif %}

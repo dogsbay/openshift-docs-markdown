@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing health information {id="network-observability-dashboard-view_{{ context }}"}
+# View health information {id="network-observability-dashboard-view_{{ context }}"}
 
 View the **Netobserv/Health** dashboard within the {{ product_title }} web console to monitor the health status and resource usage of the Network Observability Operator and its components. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing a KubeletConfig remediation {id="compliance-removing-kubeletconfig_{{ context }}"}
+# Remove a KubeletConfig remediation {id="compliance-removing-kubeletconfig_{{ context }}"}
 
 `KubeletConfig` remediations are included in node-level profiles. To remove a `KubeletConfig` remediation, you must manually remove it from the `KubeletConfig` objects. {._abstract}
 

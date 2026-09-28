@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring {{ azure_short }} confidential virtual machines by using machine sets {id="machineset-azure-confidential-vms_{{ context }}"}
+# Configure {{ azure_short }} confidential virtual machines by using machine sets {id="machineset-azure-confidential-vms_{{ context }}"}
 
 You can enable {{ azure_full }} confidential virtual machines (VMs) to use memory encryption to improve data confidentiality. {._abstract}
 

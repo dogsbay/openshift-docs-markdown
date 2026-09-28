@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Applying the new hardware MTU value {id="nw-cluster-mtu-applying-mtu-value_{{ context }}"}
+# Apply the new hardware MTU value {id="nw-cluster-mtu-applying-mtu-value_{{ context }}"}
 
 To ensure consistent network communication across your cluster, you must apply the new hardware maximum transmission unit (MTU) value to your nodes. This process involves updating the underlying network interfaces and verifying that the Machine Config Operator successfully reboots and updates each node. {._abstract}
 

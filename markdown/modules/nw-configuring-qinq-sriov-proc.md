@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Configuring QinQ support for SR-IOV enabled workloads {id="nw-configuring-qinq-sriov-proc_{{ context }}"}
+# Configure QinQ support for SR-IOV enabled workloads {id="nw-configuring-qinq-sriov-proc_{{ context }}"}
 
 Configure QinQ support for SR-IOV enabled workloads to enable double VLAN tagging on your cluster. {._abstract}
 

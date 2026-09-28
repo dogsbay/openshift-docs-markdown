@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling IPsec encryption for an external IPsec endpoint {id="nw-ovn-ipsec-north-south-disable_{{ context }}"}
+# Disable IPsec encryption for an external IPsec endpoint {id="nw-ovn-ipsec-north-south-disable_{{ context }}"}
 
 To stop encrypting traffic to an external host in {{ product_title }}, you can remove the IPsec tunnel configuration from your cluster nodes. {._abstract}
 

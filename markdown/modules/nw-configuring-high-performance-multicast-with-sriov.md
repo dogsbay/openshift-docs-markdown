@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring an SR-IOV interface for multicast {id="nw-using-an-sriov-interface-for-multicast_{{ context }}"}
+# Configure an SR-IOV interface for multicast {id="nw-using-an-sriov-interface-for-multicast_{{ context }}"}
 
 The following procedure creates an example SR-IOV interface for multicast. {._abstract}
 

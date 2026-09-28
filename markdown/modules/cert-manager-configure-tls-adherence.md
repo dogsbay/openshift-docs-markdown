@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring cluster TLS security profile adherence for cert-manager components {id="cert-manager-configure-tls-adherence_{{ context }}"}
+# Configure cluster TLS security profile adherence for cert-manager components {id="cert-manager-configure-tls-adherence_{{ context }}"}
 
 You can configure the {{ cert_manager_operator }} to apply the cluster-wide TLS security profile by setting the TLS adherence policy on the cluster `APIServer` resource. When the adherence policy is set to `StrictAllComponents`, cert-manager components automatically apply the cluster TLS security profile settings. {._abstract}
 

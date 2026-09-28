@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting SELinux boolean for the TAP CNI plugin {id="nw-multus-tap-setting-boolean.adoc_{{ context }}"}
+# Set SELinux boolean for the TAP CNI plugin {id="nw-multus-tap-setting-boolean.adoc_{{ context }}"}
 
 To create the tap device with the `container_t` SELinux context, enable the `container_use_devices` boolean on the host by using the Machine Config Operator (MCO). {._abstract}
 

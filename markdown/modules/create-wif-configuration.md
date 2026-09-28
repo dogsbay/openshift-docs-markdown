@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a Workload Identity Federation configuration {id="create-wif-configuration_{{ context }}"}
+# Create a Workload Identity Federation configuration {id="create-wif-configuration_{{ context }}"}
 
 You can create a WIF configuration using the `auto` mode or the `manual` mode in the `ocm` CLI. {._abstract}
 
@@ -10,17 +10,21 @@ Alternatively, you can use the `manual` mode. In `manual` mode, you are provided
 **Procedure**
 
 *   Based on your mode preference, run one of the following commands to create a WIF configuration:
-    *   Create a WIF configuration in auto mode by running the following command:
+    *   Create a WIF configuration in auto mode by running the following command, replacing `<wif_name>` with the name of your WIF configuration and `<gcp_project_id>` with the ID of the {{ GCP }} project where the WIF configuration is implemented:
         ```terminal
-        $ ocm gcp create wif-config --name <wif_name> \ (1)
-          --project <gcp_project_id> \ (2)
-          --version <osd_version> (3)
-          --federated-project <gcp_project_id> (4)
+        $ ocm gcp create wif-config --name <wif_name> \
+          --project <gcp_project_id> \
+          --version <osd_version> \
+          --federated-project <gcp_project_id>
         ```
-        1.  Replace `<wif_name>` with the name of your WIF configuration.
-        1.  Replace `<gcp_project_id>` with the ID of the {{ GCP }} project where the WIF configuration will be implemented.
-        1.  Optional: Replace `<osd_version>` with the desired {{ product_title }} version the wif-config will need to support. If you do not specify a version, the wif-config will support the latest {{ product_title }} y-stream version as well as the last three supported {{ product_title }} y-stream versions (beginning with version 4.17).
-        1.  Optional: Replace `<gcp_project_id>` with the ID of the dedicated project where the workload identity pools and providers will be created and managed. If the `--federated-project` flag is not specified, the workload identity pools and providers will be created and managed in the project specified by the `--project` flag.
+
+        where:
+
+        `--version <osd_version>`
+        :   Optional: Replace `<osd_version>` with the desired {{ product_title }} version the wif-config will need to support. If you do not specify a version, the wif-config will support the latest {{ product_title }} y-stream version as well as the last three supported {{ product_title }} y-stream versions (beginning with version 4.17).
+
+        `--federated-project <gcp_project_id>`
+        :   Optional: Replace `<gcp_project_id>` with the ID of the dedicated project where the workload identity pools and providers will be created and managed. If the `--federated-project` flag is not specified, the workload identity pools and providers will be created and managed in the project specified by the `--project` flag.
 
         :::important
 
@@ -50,16 +54,14 @@ Alternatively, you can use the `manual` mode. In `manual` mode, you are provided
         2024/09/26 13:05:53 IAM service account openshift-ingress-gcp-oeub created
         2024/09/26 13:05:55 Role "osd_deployer_v4.19" updated
         ```
-    *   Create a WIF configuration in manual mode by running the following command:
+    *   Create a WIF configuration in manual mode by running the following command, replacing `<wif_name>` with the name of your WIF configuration and `<gcp_project_id>` with the ID of the {{ GCP }} project where the WIF configuration is implemented:
         ```terminal
-        $ ocm gcp create wif-config --name <wif_name> \ (1)
-          --project <gcp_project_id> \ (2)
+        $ ocm gcp create wif-config --name <wif_name> \
+          --project <gcp_project_id> \
           --mode=manual
         ```
-        1.  Replace `<wif_name>` with the name of your WIF configuration.
-        1.  Replace `<gcp_project_id>` with the ID  of the {{ GCP }} project where the WIF configuration will be implemented.
 
-            Once the WIF is configured, the following service accounts, roles, and groups are created.
+        Once the WIF is configured, the following service accounts, roles, and groups are created.
 
         :::note
 

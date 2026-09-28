@@ -7,7 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the descheduler {id="nodes-descheduler-installing_{{ context }}"}
+# Install the descheduler {id="nodes-descheduler-installing_{{ context }}"}
 
 The descheduler is not available by default. To enable the descheduler, you must install the {{ descheduler_operator }} from the software catalog and enable one or more descheduler profiles. {._abstract}
 

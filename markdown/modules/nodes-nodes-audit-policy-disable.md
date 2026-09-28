@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling audit logging {id="configuring-audit-policy-disable_{{ context }}"}
+# Disable audit logging {id="configuring-audit-policy-disable_{{ context }}"}
 
 You can disable audit logging for {{ product_title }}. When you disable audit logging, even OAuth access token requests and OAuth authorize token requests are not logged. {._abstract}
 

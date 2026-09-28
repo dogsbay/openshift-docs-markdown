@@ -6,7 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Gathering audit logs {id="gathering-data-audit-logs_{{ context }}"}
+# Gather audit logs {id="gathering-data-audit-logs_{{ context }}"}
 
 {% if support %}
 You can gather audit logs, which are a security-relevant chronological set of records documenting the sequence of activities that have affected the system by individual users, administrators, or other components of the system. You can gather audit logs for: {._abstract}

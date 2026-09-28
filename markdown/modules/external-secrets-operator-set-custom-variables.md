@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting custom environment variables for external-secrets components {id="external-secrets-operator-set-custom-variables_{{ context }}"}
+# Set custom environment variables for external-secrets components {id="external-secrets-operator-set-custom-variables_{{ context }}"}
 
 To configure component behavior at runtime or integrate with external services, set custom environment variables for individual `external-secrets` components. {._abstract}
 

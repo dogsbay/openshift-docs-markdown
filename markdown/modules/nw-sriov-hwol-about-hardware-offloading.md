@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About hardware offloading {id="about-hardware-offloading_{{ context }}"}
 
-Open vSwitch hardware offloading is a method of processing network tasks by diverting them away from the CPU and offloading them to a dedicated processor on a network interface controller.
-As a result, clusters can benefit from faster data transfer speeds, reduced CPU workloads, and lower computing costs. {._abstract}
+Open vSwitch hardware offloading is a method of processing network tasks by diverting them away from the CPU and offloading them to a dedicated processor on a network interface controller. {._abstract}
+
+As a result, clusters can benefit from faster data transfer speeds, reduced CPU workloads, and lower computing costs.
 
 The key element for this feature is a modern class of network interface controllers known as SmartNICs.
 A SmartNIC is a network interface controller that is able to handle computationally-heavy network processing tasks.

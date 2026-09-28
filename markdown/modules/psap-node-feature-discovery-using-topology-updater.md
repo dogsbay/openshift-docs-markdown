@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the NFD Topology Updater {id="using-the-nfd-topology-updater_{{ context }}"}
+# Use the NFD Topology Updater {id="using-the-nfd-topology-updater_{{ context }}"}
 
 Enable the NFD Topology Updater to detect allocated resources on worker nodes and report per-zone resource availability. This information helps the scheduler make topology-aware placement decisions for workloads that require specific NUMA node configurations. {._abstract}
 

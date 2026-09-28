@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying the SR-IOV Operator for {{ hcp }} {id="sriov-operator-hosted-control-planes_{{ context }}"}
+# Deploy the SR-IOV Operator for {{ hcp }} {id="sriov-operator-hosted-control-planes_{{ context }}"}
 
 After you configure and deploy your hosting service cluster, you can create a subscription to the SR-IOV Operator on a hosted cluster. The SR-IOV pod runs on worker machines rather than the control plane. {._abstract}
 

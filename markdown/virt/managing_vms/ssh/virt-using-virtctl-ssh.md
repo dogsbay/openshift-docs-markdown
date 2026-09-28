@@ -33,28 +33,23 @@ Alternatively, right-click the VM in the tree view and select **Copy SSH command
 
 {% leveloffset +1 %}{% include "./modules/virt-static-key-management-vm.md" %}{% endleveloffset %}
 
-{%- set context = "static-key" -%}
-{%- set static_key = true %}
-{% leveloffset +2 %}{% include "./modules/virt-adding-key-creating-vm-template.md" %}{% endleveloffset %}
-
-{% leveloffset +2 %}{% include "./modules/virt-creating-vm-instancetype.md" %}{% endleveloffset %}
-{%- set static_key = "" %}
+{%- set context = "static-key" %}
+{% leveloffset +2 %}{% include "./modules/virt-adding-static-key-creating-vm-web.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/virt-adding-public-key-vm-cli.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/virt-adding-dynamic-key-vm.md" %}{% endleveloffset %}
 
-{%- set context = "dynamic-key" -%}
-{%- set dynamic_key = true %}
-{% leveloffset +2 %}{% include "./modules/virt-adding-key-creating-vm-template.md" %}{% endleveloffset %}
-
-{% leveloffset +2 %}{% include "./modules/virt-creating-vm-instancetype.md" %}{% endleveloffset %}
-
+{%- set context = "dynamic-key" %}
 {% leveloffset +2 %}{% include "./modules/virt-editing-vm-dynamic-key-injection.md" %}{% endleveloffset %}
-{%- set dynamic_key = "" %}
 
 {% leveloffset +2 %}{% include "./modules/virt-enabling-dynamic-key-injection-cli.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/virt-using-virtctl-ssh-command.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/virt-using-virtctl-port-forward-command.md" %}{% endleveloffset %}
+
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
+
+*   [Create virtual machines by using the web console](/virt/creating_vm/virt-creating-vms-web#virt-creating-vms-web)
+*   [Virtual machine creation wizard reference](/virt/creating_vm/virt-creating-vms-web#virt-vm-creation-considerations-web_virt-creating-vms-web)

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a custom NodeSelector for the SR-IOV Network Config daemon {id="configuring-custom-nodeselector_{{ context }}"}
+# Configure a custom NodeSelector for the SR-IOV Network Config daemon {id="configuring-custom-nodeselector_{{ context }}"}
 
 The SR-IOV Network Config daemon discovers and configures the SR-IOV network devices on cluster nodes. By default, the daemon is deployed to all the compute nodes in the cluster. You can use node labels to specify on which nodes the SR-IOV Network Config daemon runs. {._abstract}
 

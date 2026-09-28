@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the LDAP secret {id="identity-provider-creating-ldap-secret_{{ context }}"}
+# Create the LDAP secret {id="identity-provider-creating-ldap-secret_{{ context }}"}
 
 Create a secret that contains the LDAP bind password in the `openshift-config` namespace so the identity provider can authenticate to the directory. {._abstract}
 

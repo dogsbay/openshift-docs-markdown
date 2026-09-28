@@ -98,39 +98,39 @@ The `Conflicted` listener condition uses negative polarity. This means that a st
 ```yaml title="Example Gateway CR status output showing a DNS failure on one listener"
 # ...
 status:
-  # Gateway-level conditions (LoadBalancer and aggregate DNS status)
-  conditions:
-  - type: LoadBalancerReady
-    status: "True"
-    reason: LoadBalancerProvisioned
-    message: "The LoadBalancer service is provisioned"
-    observedGeneration: 1
-    lastTransitionTime: "2025-01-12T10:00:00Z"
-  - type: DNSReady
-    status: "False"
-    reason: SomeListenersNotReady
-    message: "One or more listeners have DNS provisioning issues"
-    observedGeneration: 1
-    lastTransitionTime: "2025-01-12T10:00:00Z"
+  # Gateway-level conditions (LoadBalancer and aggregate DNS status)
+  conditions:
+  - type: LoadBalancerReady
+    status: "True"
+    reason: LoadBalancerProvisioned
+    message: "The LoadBalancer service is provisioned"
+    observedGeneration: 1
+    lastTransitionTime: "2025-01-12T10:00:00Z"
+  - type: DNSReady
+    status: "False"
+    reason: SomeListenersNotReady
+    message: "One or more listeners have DNS provisioning issues"
+    observedGeneration: 1
+    lastTransitionTime: "2025-01-12T10:00:00Z"
 
-  # Listener-level conditions (DNS status per listener)
-  listeners:
-  - name: <stage_http>
-    conditions:
-    - type: DNSReady
-      status: "True"
-      reason: NoFailedZones
-      message: "The record is provisioned in all reported zones."
-      observedGeneration: 1
-      lastTransitionTime: "2025-01-12T10:00:00Z"
-  - name: <prod_https>
-    conditions:
-    - type: DNSReady
-      status: "False"
-      reason: FailedZones
-      message: "The record failed to provision in some zones: [<prod.example.com>]"
-      observedGeneration: 1
-      lastTransitionTime: "2025-01-12T10:00:00Z"
+  # Listener-level conditions (DNS status per listener)
+  listeners:
+  - name: <stage_http>
+    conditions:
+    - type: DNSReady
+      status: "True"
+      reason: NoFailedZones
+      message: "The record is provisioned in all reported zones."
+      observedGeneration: 1
+      lastTransitionTime: "2025-01-12T10:00:00Z"
+  - name: <prod_https>
+    conditions:
+    - type: DNSReady
+      status: "False"
+      reason: FailedZones
+      message: "The record failed to provision in some zones: [<prod.example.com>]"
+      observedGeneration: 1
+      lastTransitionTime: "2025-01-12T10:00:00Z"
 ```
 
 

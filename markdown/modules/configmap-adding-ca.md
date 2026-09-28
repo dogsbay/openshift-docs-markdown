@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding certificate authorities to the cluster {id="configmap-adding-ca_{{ context }}"}
+# Add certificate authorities to the cluster {id="configmap-adding-ca_{{ context }}"}
 
 {% if openshift_enterprise or openshift_rosa or openshift_dedicated or openshift_webscale or openshift_origin %}
 You can add certificate authorities (CA) to the cluster for use when pushing and pulling images with the following procedure.

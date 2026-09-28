@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a Docker configuration secret {id="nodes-pods-secrets-creating-docker_{{ context }}"}
+# Create a Docker configuration secret {id="nodes-pods-secrets-creating-docker_{{ context }}"}
 
 As an administrator, you can create a Docker configuration secret, which allows you to store the credentials for accessing a container image registry. {._abstract}
 

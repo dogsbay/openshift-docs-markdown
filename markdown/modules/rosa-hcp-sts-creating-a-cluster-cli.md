@@ -15,7 +15,7 @@ You can create a {{ product_title }} cluster quickly by using the {{ rosa_cli_fi
 
 **Procedure**
 
-1.  Use one of the following commands to create your {{ product_title }} cluster:
+*   Use one of the following commands to create your {{ product_title }} cluster:
 
     :::note
 
@@ -75,6 +75,9 @@ You can create a {{ product_title }} cluster quickly by using the {{ rosa_cli_fi
             --hosted-cp --operator-roles-prefix=$OPERATOR_ROLES_PREFIX \
             --oidc-config-id=$OIDC_ID --subnet-ids=$SUBNET_IDS
         ```
+
+**Verification**
+
 1.  Check the status of your cluster by running the following command:
     ```terminal
     $ rosa describe cluster --cluster=<cluster_name>

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Rotating keys using the NBDE Tang Server Operator {id="rotating-keys-using-nbde-tang-server-operator_{{ context }}"}
+# Rotate keys using the NBDE Tang Server Operator {id="rotating-keys-using-nbde-tang-server-operator_{{ context }}"}
 
 With the NBDE Tang Server Operator, you also can rotate your Tang server keys. The precise interval at which you should rotate them depends on your application, key sizes, and institutional policy.
 

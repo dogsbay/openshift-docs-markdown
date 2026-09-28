@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the PROXY protocol for an Ingress Controller {id="nw-ingress-controller-configuration-proxy-protocol_{{ context }}"}
+# Configure the PROXY protocol for an Ingress Controller {id="nw-ingress-controller-configuration-proxy-protocol_{{ context }}"}
 
 A cluster administrator can configure [the PROXY protocol](https://www.haproxy.org/download/2.8/doc/proxy-protocol.txt) when an Ingress Controller uses either the `HostNetwork`, `NodePortService`, or `Private` endpoint publishing strategy types. The PROXY protocol enables the load balancer to preserve the original client addresses for connections that the Ingress Controller receives. The original client addresses are useful for logging, filtering, and injecting HTTP headers. In the default configuration, the connections that the Ingress Controller receives only contain the source address that is associated with the load balancer.
 

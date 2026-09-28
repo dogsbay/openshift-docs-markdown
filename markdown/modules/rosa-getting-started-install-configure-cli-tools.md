@@ -1,7 +1,3 @@
-{% if context == "rosa-hcp-quickstart-guide" %}
-{%- set quickstart = true -%}
-{% endif %}
-
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Install and configure the required CLI tools {id="rosa-getting-started-install-configure-cli-tools_{{ context }}"}
 
@@ -142,7 +138,3 @@ Several command-line interface (CLI) tools are required to deploy and work with 
 
 *   [AWS Command Line Interface documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
 *   [Getting started with the OpenShift CLI](https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html)
-
-{% if context == "rosa-hcp-quickstart-guide" %}
-{%- set quickstart = "" -%}
-{% endif %}

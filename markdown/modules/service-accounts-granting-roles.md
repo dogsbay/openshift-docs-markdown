@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Granting roles to service accounts {id="service-accounts-granting-roles_{{ context }}"}
+# Grant roles to service accounts {id="service-accounts-granting-roles_{{ context }}"}
 
 You can grant roles to service accounts in the same way that you grant roles
 to a regular user account. {._abstract}

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the audit log policy with custom rules {id="configuring-audit-policy-custom_{{ context }}"}
+# Configure the audit log policy with custom rules {id="configuring-audit-policy-custom_{{ context }}"}
 
 You can configure an audit log policy that defines custom rules. You can specify multiple groups and define which profile to use for that group. {._abstract}
 

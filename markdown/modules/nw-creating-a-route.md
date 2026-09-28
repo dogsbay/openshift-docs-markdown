@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an HTTP-based route {id="nw-creating-a-route_{{ context }}"}
+# Create an HTTP-based route {id="nw-creating-a-route_{{ context }}"}
 
 You can use the following procedure to create a simple HTTP-based route to a web application, using the `hello-openshift` application as an example. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding EgressIP failover control {id="egressip_failover_concept_{{ context }}"}
+# Understand EgressIP failover control {id="egressip_failover_concept_{{ context }}"}
 
 The `reachabilityTotalTimeoutSeconds` parameter controls how quickly the system detects a failing `egressIP` node and initiates a failover. This parameter directly determines the maximum time the platform waits before declaring a node unreachable. {._abstract}
 

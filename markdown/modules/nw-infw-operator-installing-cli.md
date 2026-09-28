@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Ingress Node Firewall Operator {id="installing-infw-operator_{{ context }}"}
+# Install the Ingress Node Firewall Operator {id="installing-infw-operator_{{ context }}"}
 
 As a cluster administrator, you can install the Ingress Node Firewall Operator to enable node-level ingress firewalling by using the {{ product_title }} CLI. {._abstract}
 

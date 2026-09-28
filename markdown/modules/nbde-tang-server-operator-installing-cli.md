@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the NBDE Tang Server Operator using CLI {id="installing-nbde-tang-server-operator-using-cli_{{ context }}"}
+# Install the NBDE Tang Server Operator using CLI {id="installing-nbde-tang-server-operator-using-cli_{{ context }}"}
 
 You can install the NBDE Tang Server Operator from the software catalog using the CLI.
 

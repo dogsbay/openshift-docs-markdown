@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the SR-IOV network node policy {id="configure-sriov-node-policy_{{ context }}"}
+# Configure the SR-IOV network node policy {id="configure-sriov-node-policy_{{ context }}"}
 
 You can create an SR-IOV network device configuration for a node by creating an SR-IOV network node policy.
 To enable hardware offloading, you must define the `.spec.eSwitchMode` field with the value `"switchdev"`. {._abstract}

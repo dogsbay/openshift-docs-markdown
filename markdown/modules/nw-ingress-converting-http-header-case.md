@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Converting HTTP header case {id="nw-ingress-converting-http-header-case_{{ context }}"}
+# Convert HTTP header case {id="nw-ingress-converting-http-header-case_{{ context }}"}
 
 HAProxy lowercases HTTP header names by default; for example, changing `Host: xyz.com` to `host: xyz.com`. If legacy applications are sensitive to the capitalization of HTTP header names, use the Ingress Controller `spec.httpHeaders.headerNameCaseAdjustments` API field for a solution to accommodate legacy applications until they can be fixed.
 

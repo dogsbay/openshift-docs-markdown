@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Authenticating with AWS Security Token Service {id="cert-manager-configure-cloud-credentials-aws-sts_{{ context }}"}
+# Authenticate with AWS Security Token Service {id="cert-manager-configure-cloud-credentials-aws-sts_{{ context }}"}
 
 To securely access AWS resources from your applications without managing long-lived keys, authenticate your workloads by using the AWS Security Token Service (STS). {._abstract}
 

@@ -15,7 +15,7 @@ You can create a {{ product_title }} cluster without a CNI plugin by using the `
 
 **Procedure**
 
-1.  You can create your {{ product_title }} cluster with one of the following commands.
+*   You can create your {{ product_title }} cluster with one of the following commands.
 
     :::note
 
@@ -38,6 +38,9 @@ You can create a {{ product_title }} cluster without a CNI plugin by using the `
         ```terminal
         $ rosa create cluster --hosted-cp --subnet-ids=$SUBNET_IDS --oidc-config-id=$OIDC_ID --cluster-name=<cluster_name> --operator-roles-prefix=$OPERATOR_ROLES_PREFIX --no-cni
         ```
+
+**Verification**
+
 1.  Check the status of your cluster by running the following command:
     ```terminal
     $ rosa describe cluster --cluster=<cluster_name>

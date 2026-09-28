@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Listing user-owned OAuth access tokens {id="oauth-list-tokens_{{ context }}"}
+# List user-owned OAuth access tokens {id="oauth-list-tokens_{{ context }}"}
 
 List your user-owned OAuth access tokens to review active sessions, check token expiration, and identify tokens associated with specific OAuth clients. {._abstract}
 

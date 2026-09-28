@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Reinitializing the database {id="file-integrity-operator-reinitializing-database_{{ context }}"}
+# Reinitialize the database {id="file-integrity-operator-reinitializing-database_{{ context }}"}
 
 If the File Integrity Operator detects a change that was planned, it might be required to reinitialize the database. {._abstract}
 

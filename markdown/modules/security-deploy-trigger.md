@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Controlling container deployments with triggers {id="security-deploy-trigger_{{ context }}"}
+# Control container deployments with triggers {id="security-deploy-trigger_{{ context }}"}
 
 If something happens during the build process, or if a vulnerability is discovered after an image has been deployed, you can use tool for automated, policy-based deployment to remediate. You can use triggers to rebuild and replace images, ensuring the immutable containers process, instead of patching running containers, which is not recommended. {._abstract}
 

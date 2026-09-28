@@ -1,14 +1,4 @@
-{%- set _mod_docs_content_type = "PROCEDURE" -%}
-{% if context == "config-identity-providers" %}
-{%- set osd_distro = true -%}
-{% endif %}
-{% if context == "rosa-sts-config-identity-providers" %}
-{%- set rosa_distro = true -%}
-{% endif %}
-{% if context == "rosa-config-identity-providers" %}
-{%- set rosa_distro = true -%}
-{% endif %}
-
+{%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure an htpasswd identity provider with an htpasswd file {id="rosa-config-htpasswd-idp-cli-file_{{ context }}"}
 
 You can create an htpasswd identity provider (IDP) with the {{ rosa_cli_first }} tool and a well-formed htpasswd file. {._abstract}
@@ -34,13 +24,3 @@ You can create an htpasswd identity provider (IDP) with the {{ rosa_cli_first }}
     ```terminal
     $ rosa create idp --type=htpasswd -c <cluster_name> --from-file=myhtpassfile.txt
     ```
-
-{% if context == "config-identity-providers" %}
-{%- set osd_distro = "" -%}
-{% endif %}
-{% if context == "rosa-sts-config-identity-providers" %}
-{%- set rosa_distro = "" -%}
-{% endif %}
-{% if context == "rosa-config-identity-providers" %}
-{%- set rosa_distro = "" -%}
-{% endif %}

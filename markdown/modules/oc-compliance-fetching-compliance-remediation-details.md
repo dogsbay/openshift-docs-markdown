@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Fetching compliance remediation details {id="fetching-compliance-remediation-details_{{ context }}"}
+# Fetch compliance remediation details {id="fetching-compliance-remediation-details_{{ context }}"}
 
 The Compliance Operator provides remediation objects that are used to automate the changes required to make the cluster compliant. You can use the `fetch-fixes` subcommand to help you understand exactly which configuration remediations are used.
  

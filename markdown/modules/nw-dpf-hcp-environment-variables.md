@@ -20,7 +20,7 @@ These environment variables must be set before you create secrets, the `DPUClust
 | `SSH_KEY` | The file path to the SSH public key file on your workstation. Use ed25519 keys for better security. | `/root/.ssh/id_ed25519.pub` |
 | `HOSTED_CLUSTER_VIP` | The virtual IP address for the hosted cluster API server, allocated from the management cluster subnet. | `192.168.1.200` |
 
-You must set all environment variables in your terminal session before you proceed.
+You must set the following environment variables in your terminal session before you proceed.
 
 ```terminal
 $ export HOSTED_CLUSTER_NAME="dpf-hosted"

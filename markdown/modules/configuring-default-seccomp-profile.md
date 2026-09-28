@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Verifying the default seccomp profile applied to a pod {id="verifying-default-seccomp-profile_{{ context }}"}
+# Verify the default seccomp profile applied to a pod {id="verifying-default-seccomp-profile_{{ context }}"}
 
 {{ product_title }} ships with a default seccomp profile that is referenced as `runtime/default`. In {{ product_version }}, newly created pods have the Security Context Constraint (SCC) set to `restricted-v2` and the default seccomp profile applies to the pod.
 

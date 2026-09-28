@@ -1,16 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Grant administrator privileges to a user {id="rosa-getting-started-grant-admin-privileges_{{ context }}"}
 
-{% if context == "rosa-getting-started" %}
-{%- set getting_started = true -%}
-{% endif %}
-{% if context == "rosa-quickstart" %}
-{%- set quickstart = true -%}
-{% endif %}
-
 After you have added a user to your configured identity provider, you can grant the user `cluster-admin` or `dedicated-admin` privileges for your {{ product_title }} cluster. {._abstract}
-
-{% if getting_started %}
 
 **Prerequisites**
 
@@ -19,7 +10,6 @@ After you have added a user to your configured identity provider, you can grant 
 *   You logged in to your Red&#160;Hat account using the {{ rosa_cli }}.
 *   You created a {{ product_title }} cluster.
 *   You have configured a GitHub identity provider for your cluster and added identity provider users.
-{% endif %}
 
 **Procedure**
 
@@ -60,10 +50,3 @@ After you have added a user to your configured identity provider, you can grant 
 
 *   [Cluster administration role](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html/introduction_to_rosa/policies-and-service-definition)
 *   [Using RBAC to define and apply permissions](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/authentication_and_authorization/using-rbac)
-
-{% if context == "rosa-getting-started" %}
-{%- set getting_started = true -%}
-{% endif %}
-{% if context == "rosa-quickstart" %}
-{%- set quickstart = true -%}
-{% endif %}

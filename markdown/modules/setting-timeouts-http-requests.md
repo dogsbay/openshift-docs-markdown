@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Set timeouts for HTTP requests {id="setting-timeouts-http-requests_{{ context }}"}
+# Setting timeouts for HTTP requests {id="setting-timeouts-http-requests_{{ context }}"}
 
 To prevent hanging connections and ensure your application remains responsive, you can set strict timeouts for the entire request and the backend hop within your `HTTPRoute` custom resource (CR). {._abstract}
 
@@ -16,22 +16,22 @@ To prevent hanging connections and ensure your application remains responsive, y
     apiVersion: gateway.networking.k8s.io/v1
     kind: HTTPRoute
     metadata:
-      name: <timeout_example>
-      namespace: <example_application>
+      name: <timeout_example>
+      namespace: <example_application>
     spec:
-      parentRefs:
-      - name: <example_gateway>
-        namespace: openshift-ingress
-      rules:
-      - matches:
-        - path:
-            type: PathPrefix
-            value: /<timeout_path>
-        timeouts:
-          request: 30s
-        backendRefs:
-        - name: <example_service>
-          port: 8080
+      parentRefs:
+      - name: <example_gateway>
+        namespace: openshift-ingress
+      rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /<timeout_path>
+        timeouts:
+          request: 30s
+        backendRefs:
+        - name: <example_service>
+          port: 8080
     ```
 1.  Apply the `HTTPRoute` CR by running the following command:
     ```terminal

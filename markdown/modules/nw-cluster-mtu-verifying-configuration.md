@@ -12,7 +12,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Verifying the machine configuration {id="nw-cluster-mtu-verifying-configuration_{{ context }}"}
+# Verify the machine configuration {id="nw-cluster-mtu-verifying-configuration_{{ context }}"}
 
 Verify the machine configuration on your hosts to confirm that the maximum transmission unit (MTU) migration applied successfully. Checking the configuration state and system settings help ensures that the nodes use the correct migration script. {._abstract}
 

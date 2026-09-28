@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the AWS Load Balancer Controller {id="nw-creating-instance-aws-load-balancer-controller_{{ context }}"}
+# Create the AWS Load Balancer Controller {id="nw-creating-instance-aws-load-balancer-controller_{{ context }}"}
 
 You can install only a single instance of the `AWSLoadBalancerController` object in a cluster. You can create the AWS Load Balancer Controller by using CLI. The AWS Load Balancer Operator reconciles only the `cluster` named resource. {._abstract}
 

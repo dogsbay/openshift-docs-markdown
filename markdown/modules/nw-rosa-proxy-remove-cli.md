@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing the cluster-wide proxy using CLI {id="nw-rosa-proxy-remove-cli_{{ context }}"}
+# Remove the cluster-wide proxy using CLI {id="nw-rosa-proxy-remove-cli_{{ context }}"}
 
 You must use the ROSA CLI, `rosa`, to remove the proxy’s address from your cluster. {._abstract}
 

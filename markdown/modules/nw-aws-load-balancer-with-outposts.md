@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the AWS Load Balancer Operator in an AWS VPC cluster extended into an Outpost {id="nw-aws-load-balancer-with-outposts_{{ context }}"}
+# Use the AWS Load Balancer Operator in an AWS VPC cluster extended into an Outpost {id="nw-aws-load-balancer-with-outposts_{{ context }}"}
 
 You can configure the AWS Load Balancer Operator to provision an {{ aws_short }} Application Load Balancer in an {{ aws_short }} VPC cluster extended into an Outpost. {{ aws_short }} Outposts does not support {{ aws_short }} Network Load Balancers. As a result, the {{ aws_short }} Load Balancer Operator cannot provision Network Load Balancers in an Outpost. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling the {{ external_secrets_operator }} using the web console {id="external-secrets-operator-uninstall-console_{{ context }}"}
+# Uninstall the {{ external_secrets_operator }} using the web console {id="external-secrets-operator-uninstall-console_{{ context }}"}
 
 You can uninstall the {{ external_secrets_operator }} from your cluster using the {{ product_title }} web console. Uninstalling the Operator does not automatically delete the `ExternalSecrets` custom resources or the running `external-secrets` application workload. These resources remain in the cluster to prevent accidental data loss and must be removed manually if they are no longer needed. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an AWS IAM role by using the AWS CLI {id="using-aws-cli-create-iam-role-alb-operator_{{ context }}"}
+# Create an AWS IAM role by using the AWS CLI {id="using-aws-cli-create-iam-role-alb-operator_{{ context }}"}
 
 To enable the {{ aws_short }} Load Balancer Operator to interact with subnets and VPCs, create an {{ aws_short }} IAM role by using the {{ aws_short }} CLI. This enables the Operator to access and manage the necessary network resources within the cluster. {._abstract}
 

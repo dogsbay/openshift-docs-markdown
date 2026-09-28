@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring in-place pod resizing {id="nodes-pods-adjust-resources-in-place-configuring_{{ context }}"}
+# Configure in-place pod resizing {id="nodes-pods-adjust-resources-in-place-configuring_{{ context }}"}
 
 You can use in-place pod resizing to scale pod resources up or down without application disruption by adding a resize policy to a pod specification.  {._abstract}
 

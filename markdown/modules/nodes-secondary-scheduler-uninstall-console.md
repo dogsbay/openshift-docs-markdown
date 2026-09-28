@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling the {{ secondary_scheduler_operator }} {id="nodes-secondary-scheduler-uninstall-console_{{ context }}"}
+# Uninstall the {{ secondary_scheduler_operator }} {id="nodes-secondary-scheduler-uninstall-console_{{ context }}"}
 
 You can use the web console to uninstall the {{ secondary_scheduler_operator_full }} if you no longer need the Operator in your cluster. {._abstract}
 

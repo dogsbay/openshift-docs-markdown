@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a KubeletConfig CR {id="cnf-configuring-kubelet-config-nro_{{ context }}"}
+# Create a KubeletConfig CR {id="cnf-configuring-kubelet-config-nro_{{ context }}"}
 
 To configure a single NUMA node policy, create and apply a KubeletConfig custom resource (CR). While applying a performance profile is recommended, you can use the alternative method to manually manage the configuration on your cluster. {._abstract}
 

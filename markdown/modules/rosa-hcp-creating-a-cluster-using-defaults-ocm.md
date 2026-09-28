@@ -42,11 +42,3 @@ By default, clusters are created with the delete protection feature disabled.
     If the installation fails or the cluster **State** does not change to **Ready** after about 40 minutes, check the installation troubleshooting documentation for details. For more information, see _Troubleshooting installations_. For steps to contact Red&#160;Hat Support for assistance, see _Getting support for Red&#160;Hat OpenShift Service on AWS_.
     
     :::
-
-
-{% if context == "rosa-sts-creating-a-cluster-quickly" %}
-{%- set quick_install = true -%}
-{% endif %}
-{% if context == "rosa-quickstart" %}
-{%- set quickstart = true -%}
-{% endif %}

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Generating a JUnit latency test report {id="cnf-performing-end-to-end-tests-junit-test-output_{{ context }}"}
+# Generate a JUnit latency test report {id="cnf-performing-end-to-end-tests-junit-test-output_{{ context }}"}
 
 To analyze system performance and track execution delays, generate a JUnit latency test report. Reviewing this diagnostic output helps you identify configuration issues and performance bottlenecks within your cluster. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring node tuning in a hosted cluster {id="node-tuning-hosted-cluster_{{ context }}"}
+# Configure node tuning in a hosted cluster {id="node-tuning-hosted-cluster_{{ context }}"}
 
 To set node-level tuning on the nodes in your hosted cluster, you can use the Node Tuning Operator. In {{ hcp }}, you can configure node tuning by creating config maps that contain `Tuned` objects and referencing those config maps in your node pools. {._abstract}
 

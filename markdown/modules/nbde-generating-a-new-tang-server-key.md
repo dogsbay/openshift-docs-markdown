@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Generating a new Tang server key {id="nbde-generating-a-new-tang-server-key_{{ context }}"}
+# Generate a new Tang server key {id="nbde-generating-a-new-tang-server-key_{{ context }}"}
 
 **Prerequisites**
 

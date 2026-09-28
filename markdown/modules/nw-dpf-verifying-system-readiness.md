@@ -17,7 +17,7 @@ After the DPU provisioning process completes, you can verify that all worker nod
     ```
 1.  Verify that all worker nodes are in a `Ready` state:
     ```terminal
-    $ oc get node
+    $ oc get nodes
     ```
     ```terminal title="Example output"
     NAME               STATUS   ROLES                         AGE     VERSION

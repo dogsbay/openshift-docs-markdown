@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Replacing the CA Bundle certificate {id="ca-bundle-replacing_{{ context }}"}
+# Replace the CA Bundle certificate {id="ca-bundle-replacing_{{ context }}"}
 
 To trust a custom certificate authority for egress connections in {{ product_title }}, you can replace the CA bundle by creating a config map with your root CA certificate and updating the cluster proxy configuration. {._abstract}
 

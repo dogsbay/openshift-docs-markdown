@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Syncing groups using the Active Directory schema {id="ldap-syncing-activedir_{{ context }}"}
+# Sync groups using the Active Directory schema {id="ldap-syncing-activedir_{{ context }}"}
 
 You can sync LDAP groups for your {{ product_title }} cluster using the Active Directory schema by running `oc adm groups sync` with an LDAP sync configuration file. In this schema, group membership is stored in attributes on user entries, such as `memberOf`. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Starting MetalLB on your cluster {id="nw-metallb-operator-initial-config_{{ context }}"}
+# Start MetalLB on your cluster {id="nw-metallb-operator-initial-config_{{ context }}"}
 
 To start MetalLB on your cluster after installing the MetalLB Operator in {{ product_title }}, you create a single MetalLB custom resource. {._abstract}
 

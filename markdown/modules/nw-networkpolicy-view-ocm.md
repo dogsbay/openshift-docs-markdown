@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing network policies using {{ cluster_manager }} {id="nw-networkpolicy-view-ocm_{{ context }}"}
+# View network policies using {{ cluster_manager }} {id="nw-networkpolicy-view-ocm_{{ context }}"}
 
 You can view the configuration details of your network policy in {{ cluster_manager_first }}. {._abstract}
 

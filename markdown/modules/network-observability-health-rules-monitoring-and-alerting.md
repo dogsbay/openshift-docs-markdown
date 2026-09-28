@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Detecting network issues with automated health rules {id="network-observability-health-rules-monitoring-and-alerting_{{ context }}"}
+# Detect network issues with automated health rules {id="network-observability-health-rules-monitoring-and-alerting_{{ context }}"}
 
 The Network Observability Operator includes a rule-based system to detect network anomalies and infrastructure failures. By converting configurations into alerting rules, the Operator provides automated monitoring and troubleshooting through the {{ product_title }} web console. {._abstract}
 

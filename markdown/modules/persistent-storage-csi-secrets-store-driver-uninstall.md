@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling the {{ secrets_store_operator }} {id="persistent-storage-csi-secrets-store-driver-uninstall_{{ context }}"}
+# Uninstall the {{ secrets_store_operator }} {id="persistent-storage-csi-secrets-store-driver-uninstall_{{ context }}"}
 
 To remove the {{ secrets_store_operator }} and free cluster resources, uninstall the Operator after stopping applications and removing the CSI driver. {._abstract}
 

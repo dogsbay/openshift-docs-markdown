@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting the Ingress Controller to private {id="private-clusters-setting-ingress-private_{{ context }}"}
+# Set the Ingress Controller to private {id="private-clusters-setting-ingress-private_{{ context }}"}
 
 You can configure the default Ingress Controller to use an internal endpoint so that application routes are published only in the private DNS zone. {._abstract}
 

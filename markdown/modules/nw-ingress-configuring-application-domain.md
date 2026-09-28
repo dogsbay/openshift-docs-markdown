@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Specifying an alternative cluster domain using the appsDomain option {id="nw-ingress-configuring-application-domain_{{ context }}"}
+# Specify an alternative cluster domain using the appsDomain option {id="nw-ingress-configuring-application-domain_{{ context }}"}
 
 As a cluster administrator, you can specify an alternative to the default cluster domain for user-created routes by configuring the `appsDomain` field. The `appsDomain` field is an optional domain for {{ product_title }} to use instead of the default, which is specified in the `domain` field. If you specify an alternative domain, it overrides the default cluster domain for the purpose of determining the default host for a new route.
 

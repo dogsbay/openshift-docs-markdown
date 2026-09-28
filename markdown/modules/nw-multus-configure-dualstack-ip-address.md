@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a configuration for assignment of dual-stack IP addresses dynamically {id="nw-multus-configure-dualstack-ip-address_{{ context }}"}
+# Create a configuration for assignment of dual-stack IP addresses dynamically {id="nw-multus-configure-dualstack-ip-address_{{ context }}"}
 
 You can dynamically assign dual-stack IP addresses to a secondary network so that pods can communicate over both IPv4 and IPv6 addresses. {._abstract}
 

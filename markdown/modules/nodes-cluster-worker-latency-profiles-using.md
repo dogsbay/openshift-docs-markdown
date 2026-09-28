@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using and changing worker latency profiles {id="nodes-cluster-worker-latency-profiles-using_{{ context }}"}
+# Use and change worker latency profiles {id="nodes-cluster-worker-latency-profiles-using_{{ context }}"}
 
 You can change a worker latency profile to deal with network latency at any time by editing the `node.config` object. With this configuration, you can ensure that your cluster runs properly if network latency between the control plane and the compute nodes fluctuates. {._abstract}
 

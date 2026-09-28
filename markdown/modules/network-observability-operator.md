@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Network Observability Operator {id="network-observability-operator_{{ context }}"}
 
-The Network Observability Operator provides the cluster-scoped `FlowCollector` API custom resource, which manages a pipeline of eBPF agents and services that collect, enrich, and store network flows in Loki or Prometheus. {._abstract}
+The Network Observability Operator monitors and analyzes cluster network traffic by deploying eBPF-based flow collection that captures, enriches, and stores network data for troubleshooting and performance analysis. {._abstract}
 
 A `FlowCollector` instance deploys pods and services that form a monitoring pipeline.
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling Operators to support CCO-based workflows with AWS STS {id="osdk-cco-aws-sts-enabling_{{ context }}"}
+# Enable Operators to support CCO-based workflows with AWS STS {id="osdk-cco-aws-sts-enabling_{{ context }}"}
 
 As an Operator author designing your project to run on Operator Lifecycle Manager (OLM), you can enable your Operator to authenticate against AWS on STS-enabled {{ product_title }} clusters by customizing your project to support the Cloud Credential Operator (CCO). {._abstract}
 

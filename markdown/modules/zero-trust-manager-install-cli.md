@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ zero_trust_full }} by using the CLI {id="zero-trust-manager-install-cli_{{ context }}"}
+# Install the {{ zero_trust_full }} by using the CLI {id="zero-trust-manager-install-cli_{{ context }}"}
 
 Install the {{ zero_trust_full }} by using the command-line interface (CLI) to create the required project, `OperatorGroup`, and `Subscription` objects. You can then deploy the Operator components necessary for managing workload identities on your {{ product_title }} cluster. {._abstract}
 

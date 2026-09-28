@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing an EgressFirewall CR {id="nw-egress-firewall-delete_{{ context }}"}
+# Remove an EgressFirewall CR {id="nw-egress-firewall-delete_{{ context }}"}
 
 As a cluster administrator, you can remove an egress firewall from a project. {._abstract}
 

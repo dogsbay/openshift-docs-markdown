@@ -8,6 +8,7 @@ You can specify the following components:
 *   `etcd`
 *   `kubeAPIServer`
 *   `kubeControllerManager`
+*   `kubeScheduler`
 *   `openshiftAPIServer`
 *   `openshiftControllerManager`
 *   `openshiftRouteControllerManager`
@@ -65,6 +66,10 @@ kubeControllerManager:
     sourceLabels: ["__name__"]
   - action:       "drop"
     regex:        "root_ca_cert_publisher_sync_duration_seconds_(bucket|count|sum)"
+    sourceLabels: ["__name__"]
+kubeScheduler:
+  - action:       "drop"
+    regex:        "scheduler_(e2e_scheduling_latency_microseconds|scheduling_algorithm_predicate_evaluation|scheduling_algorithm_priority_evaluation|scheduling_algorithm_preemption_evaluation|scheduling_algorithm_latency_microseconds|binding_latency_microseconds|scheduling_latency_seconds)"
     sourceLabels: ["__name__"]
 openshiftAPIServer:
   - action:       "drop"

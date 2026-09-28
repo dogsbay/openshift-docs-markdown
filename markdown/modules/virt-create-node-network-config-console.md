@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a policy {id="virt-create-node-network-config-console_{{ context }}"}
+# Create a policy {id="virt-create-node-network-config-console_{{ context }}"}
 
 You can create a policy by using either a form or YAML in the web console. When creating a policy using a form, you can see how the new policy changes the topology of the nodes in your cluster in real time. {._abstract}
 

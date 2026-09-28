@@ -1,16 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create a cluster with the default options using {{ cluster_manager }} {id="rosa-sts-creating-a-cluster-using-defaults-ocm_{{ context }}"}
 
-{% if context == "rosa-sts-creating-a-cluster-quickly" %}
-{%- set quick_install = true -%}
-{% endif %}
-{% if context == "rosa-quickstart" %}
-{%- set quickstart = true -%}
-{% endif %}
-
 When using {{ cluster_manager_first }} on the {{ hybrid_console_url }} to create a {{ product_title }} cluster that uses the AWS Security Token Service (STS), you can select the default options to create the cluster quickly. You can also use the admin {{ cluster_manager }} IAM role to enable automatic deployment of the cluster-specific Operator roles and the OpenID Connect (OIDC) provider. {._abstract}
-
-{% if quick_install %}
 
 **Prerequisites**
 
@@ -21,7 +12,6 @@ When using {{ cluster_manager_first }} on the {{ hybrid_console_url }} to create
 *   You have verified that the AWS Elastic Load Balancing (ELB) service role exists in your AWS account.
 *   You have associated your AWS account with your Red&#160;Hat organization. When you associated your account, you applied the administrative permissions to the {{ cluster_manager }} role. For detailed steps, see _Associating your AWS account with your Red&#160;Hat organization_.
 *   You have created the required account-wide STS roles and policies. For detailed steps, see _Creating the account-wide STS roles and policies_.
-{% endif %}
 
 **Procedure**
 
@@ -58,11 +48,3 @@ By default, clusters are created with the delete protection feature disabled.
     If the installation fails or the cluster **State** does not change to **Ready** after about 40 minutes, check the installation troubleshooting documentation for details. For more information, see _Troubleshooting installations_. For steps to contact Red&#160;Hat Support for assistance, see _Getting support for Red&#160;Hat OpenShift Service on AWS_.
     
     :::
-
-
-{% if context == "rosa-sts-creating-a-cluster-quickly" %}
-{%- set quick_install = true -%}
-{% endif %}
-{% if context == "rosa-quickstart" %}
-{%- set quickstart = true -%}
-{% endif %}

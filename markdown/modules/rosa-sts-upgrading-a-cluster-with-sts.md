@@ -8,9 +8,9 @@ While both methods verify compatibility, the {{ rosa_cli }} can automatically al
 
 :::note
 
-The actual start time of the cluster upgrade will be within one hour of the upgrade schedule time. Additionally, the duration of the upgrade might vary based on your workload configuration.
+The actual start time of the cluster upgrade will be within 10 minutes of the upgrade schedule time. Additionally, the duration of the upgrade might vary based on your workload configuration.
 
 :::
 
 
-When a {{ product_title }} cluster that uses AWS Security Token Services (STS) is upgraded, the {{ rosa_cli }} verifies the account and Operator role policies for the chosen cluster are compatible with the target version of the upgrade. If the policies are compatible, the CLI automatically upgrades the cluster. If the policies are not compatible with the chosen upgrade version, the CLI automatically upgrades IAM policies before upgrading the cluster. When scheduling the upgrade, you give administrative acknowledgment to confirm you have reviewed the changes involved with the upgrade, if required.
+When a {{ product_title }} cluster that uses AWS {{ sts_short }} is upgraded, the {{ rosa_cli }} verifies the account and Operator role policies for the chosen cluster are compatible with the target version of the upgrade. If the policies are compatible, the CLI automatically upgrades the cluster. If the policies are not compatible with the chosen upgrade version, the CLI automatically upgrades IAM policies before upgrading the cluster. When scheduling the upgrade, you give administrative acknowledgment to confirm you have reviewed the changes involved with the upgrade, if required.

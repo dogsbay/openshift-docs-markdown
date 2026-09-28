@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the MetalLB Operator from the software catalog by using the web console {id="metallb-installing-using-web-console_{{ context }}"}
+# Install the MetalLB Operator from the software catalog by using the web console {id="metallb-installing-using-web-console_{{ context }}"}
 
 As a cluster administrator, you can install the MetalLB Operator by using the {{ product_title }} web console. {._abstract}
 

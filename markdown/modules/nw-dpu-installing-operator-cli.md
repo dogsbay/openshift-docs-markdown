@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Installing the DPU Operator by using the CLI {id="nw-dpu-installing-operator-cli_{{ context }}"}
+# Install the DPU Operator by using the CLI {id="nw-dpu-installing-operator-cli_{{ context }}"}
 
 You can install the DPU Operator by using the CLI. You can use the DPU Operator to simplify the installation process when setting up DPU device management on host clusters. {._abstract}
 

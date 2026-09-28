@@ -1,7 +1,3 @@
-{% if context == "rosa-hcp-life-cycle" %}
-{%- set rosa_with_hcp = true -%}
-{% endif %}
-
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Limited support status {id="rosa-limited-support_{{ context }}"}
 
@@ -22,7 +18,3 @@ If you remove or replace any native {{ product_title }} components or any other 
 :   If cluster administrator permissions were used, Red&#160;Hat is not responsible for any of your or your authorized users’ actions, including those that affect infrastructure services, service availability, or data loss. If Red&#160;Hat detects any such actions, the cluster might transition to a Limited Support status. Red&#160;Hat notifies you of the status change and you should either revert the action or create a support case to explore remediation steps that might require you to delete and recreate the cluster.
 
 If you have questions about a specific action that might cause a cluster to transition to a Limited Support status or need further assistance, open a support ticket.
-
-{% if context == "rosa-hcp-life-cycle" %}
-{%- set rosa_with_hcp = "" -%}
-{% endif %}

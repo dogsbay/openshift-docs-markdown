@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Controlling nodes with special hardware using taints and tolerations {id="nodes-scheduler-taints-tolerations-special_{{ context }}"}
+# Control nodes with special hardware using taints and tolerations {id="nodes-scheduler-taints-tolerations-special_{{ context }}"}
 
 In a cluster that has specialized hardware, you can use taints and tolerations to either keep pods that do not need the specialized hardware off of those nodes or require pods that need specialized hardware to use specific nodes. {._abstract}
 

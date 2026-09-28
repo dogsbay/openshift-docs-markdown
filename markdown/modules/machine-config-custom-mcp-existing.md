@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a custom machine config pool for an existing node {id="machine-config-custom-mcp-existing_{{ context }}"}
+# Create a custom machine config pool for an existing node {id="machine-config-custom-mcp-existing_{{ context }}"}
 
 You can create custom machine config pools (MCP) and manually add an existing node into that pool. With custom machine config pools, you can deploy changes targeted at the nodes in the custom pool. {._abstract}
 

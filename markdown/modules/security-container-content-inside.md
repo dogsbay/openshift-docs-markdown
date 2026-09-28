@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Securing inside the container {id="security-container-content-inside_{{ context }}"}
+# Secure inside the container {id="security-container-content-inside_{{ context }}"}
 
 For the security of your containers, you need to know where any source packages originally came from, what versions are used, who built them, and whether there is any malicious code inside them. {._abstract}
 

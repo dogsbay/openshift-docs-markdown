@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Importing control plane health dashboards {id="hcp-cp-metrics-dashboards_{{ context }}"}
+# Import control plane health dashboards {id="hcp-cp-metrics-dashboards_{{ context }}"}
 
 You can import a sample Grafana dashboard that visualizes propagated control plane metrics in the hosted cluster web console. The dashboard covers API server, etcd, cluster Operators, scheduler, controller manager, and OLM health panels. {._abstract}
 

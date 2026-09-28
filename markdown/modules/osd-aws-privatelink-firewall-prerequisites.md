@@ -1,8 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" -%}
 {% if openshift_rosa %}
-# Firewall AllowList requirements for {{ product_title }} clusters using STS {id="rosa-classic-firewall-prerequisites_{{ context }}"}
+# Firewall allowlist requirements for {{ product_title }} clusters using STS {id="rosa-classic-firewall-prerequisites_{{ context }}"}
 
-You must AllowList several URLs to download required packages and tools for your cluster.  {._abstract}
+You must add several URLs to an allowlist to download required packages and tools for your cluster. {._abstract}
 
 
 :::important
@@ -13,9 +13,9 @@ Only {{ product_title }} clusters deployed with PrivateLink can use a firewall t
 
 {% endif %}
 {% if openshift_dedicated %}
-# Firewall AllowList requirements {id="osd-aws-privatelink-firewall-prerequisites_{{ context }}"}
+# Firewall allowlist requirements {id="osd-aws-privatelink-firewall-prerequisites_{{ context }}"}
 
-If you are using a firewall to control egress traffic from {{ product_title }}, you must configure your firewall to grant access to the certain domain and port combinations below. {{ product_title }} requires this access to provide a fully managed OpenShift service.
+If you are using a firewall to control egress traffic from {{ product_title }}, you must configure your firewall to grant access to certain domain and port combinations listed in the reference tables. {{ product_title }} requires this access to provide a fully managed {{ OCP_short }} service.
 {% endif %}
 
 **Domains for installation packages and tools** {._abstract}
@@ -87,7 +87,7 @@ If you are using a firewall to control egress traffic from {{ product_title }}, 
 <tr>
   <td><code>registry.access.redhat.com</code></td>
   <td>443</td>
-  <td>Hosts all the container images that are stored on the Red&#160;Hat Ecosytem Catalog. Additionally, the registry provides access to the <code>odo</code> CLI tool that helps developers build on OpenShift and Kubernetes.</td>
+  <td>Hosts all the container images that are stored on the Red&#160;Hat Ecosystem Catalog. Additionally, the registry provides access to the <code>odo</code> CLI tool that helps developers build on OpenShift and Kubernetes.</td>
 </tr>
 <tr>
   <td><code>access.redhat.com</code></td>
@@ -105,11 +105,6 @@ If you are using a firewall to control egress traffic from {{ product_title }}, 
   <td>Required. Allows interactions between the cluster and OpenShift Console Manager to enable functionality, such as scheduling upgrades.</td>
 </tr>
 <tr>
-  <td><code>sso.redhat.com</code></td>
-  <td>443</td>
-  <td>The <code>https://console.redhat.com/openshift</code> site uses authentication from <code>sso.redhat.com</code>.</td>
-</tr>
-<tr>
   <td><code>pull.q1w2.quay.rhcloud.com</code></td>
   <td>443</td>
   <td>Provides core container images as a fallback when quay.io is not available.</td>
@@ -122,7 +117,7 @@ If you are using a firewall to control egress traffic from {{ product_title }}, 
 <tr>
   <td><code>oidc.op1.openshiftapps.com</code></td>
   <td>443</td>
-  <td>Used by {{ product_title }}  for STS implementation with managed OIDC configuration.</td>
+  <td>Used by {{ product_title }} for STS implementation with managed OIDC configuration.</td>
 </tr>
 <tr>
   {% if openshift_rosa %}<td><code>api.openshiftusgov.com</code></td>{% endif %}
@@ -211,7 +206,7 @@ If you are using a firewall to control egress traffic from {{ product_title }}, 
 </tbody>
 </table>
 
-Managed clusters require enabling telemetry to allow Red&#160;Hat to react more quickly to problems, better support the customers, and better understand how product upgrades impact clusters. For more information about how remote health monitoring data is used by Red&#160;Hat, see _About remote health monitoring_ in the _Additional resources_ section.
+Managed clusters require enabling telemetry to allow Red&#160;Hat to react more quickly to problems, better support the customers, and better understand how product upgrades impact clusters. For more information about how remote health monitoring data is used by Red&#160;Hat, see _About remote health monitoring_ in the _Additional resources_.
 
 **Domains for Amazon Web Services (AWS) APIs**
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Expanding the node port range {id="nw-nodeport-service-range-edit_{{ context }}"}
+# Expand the node port range {id="nw-nodeport-service-range-edit_{{ context }}"}
 
 To expand the node port range for your {{ product_title }} cluster after installation, you can use the `oc patch` command to update the `serviceNodePortRange` parameter. You can expand the range on either side, but you cannot shrink it after installation. {._abstract}
 

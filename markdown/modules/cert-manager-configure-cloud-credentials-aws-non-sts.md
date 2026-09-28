@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Authenticating on AWS {id="cert-manager-configure-cloud-credentials-aws-non-sts_{{ context }}"}
+# Authenticate on AWS {id="cert-manager-configure-cloud-credentials-aws-non-sts_{{ context }}"}
 
 To securely access AWS resources from your applications, authenticate your workloads on AWS by using the {{ cert_manager_operator }}. {._abstract}
 

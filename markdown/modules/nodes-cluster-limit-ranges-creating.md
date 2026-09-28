@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a Limit Range {id="nodes-cluster-limit-creating_{{ context }}"}
+# Create a Limit Range {id="nodes-cluster-limit-creating_{{ context }}"}
 
 You can define `LimitRange` objects to set specific resource limits for a pod, container, image, image stream, or persistent volume claim (PVC) in a specific project. A limit range allows you to restrict resource consumption in that project.  {._abstract}
 

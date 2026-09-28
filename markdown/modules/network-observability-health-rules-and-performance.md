@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Identifying network issues with automated health rules {id="network-observability-health-rules-and-performance_{{ context }}"}
+# Identify network issues with automated health rules {id="network-observability-health-rules-and-performance_{{ context }}"}
 
 Network observability identifies network issues by using automated health rules to monitor metrics. These rules trigger alerts when anomalies occur, which assists in maintaining connectivity and responding to network degradation. {._abstract}
 

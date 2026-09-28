@@ -10,7 +10,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Binding workloads to profiles with ProfileBindings {id="spo-binding-workloads_{{ context }}"}
+# Bind workloads to profiles with ProfileBindings {id="spo-binding-workloads_{{ context }}"}
 
 You can use the `ProfileBinding` resource to bind a security profile to the `SecurityContext` of a container. {._abstract}
 

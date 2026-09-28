@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a ClusterUserDefinedNetwork CR by using the web console {id="nw-cudn-cr-ui_{{ context }}"}
+# Create a ClusterUserDefinedNetwork CR by using the web console {id="nw-cudn-cr-ui_{{ context }}"}
 
 To implement isolated network segments with layer 2 connectivity in {{ product_title }}, create a `ClusterUserDefinedNetwork` custom resource (CR) by using the web console. Defining this resource ensures that your cluster workloads can communicate directly at the data link layer. {._abstract}
 

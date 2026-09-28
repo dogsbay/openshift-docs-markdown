@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding tags to an image stream {id="images-imagestream-adding-tags_{{ context }}"}
+# Add tags to an image stream {id="images-imagestream-adding-tags_{{ context }}"}
 
 To accurately manage and track specific versions of your container images, add tags to your image streams within {{ product_title }}, This ensures reliable referencing and deployment throughout your environment. {._abstract}
 

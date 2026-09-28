@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling customer-managed encryption keys for a machine set {id="machineset-gcp-enabling-customer-managed-encryption_{{ context }}"}
+# Enable customer-managed encryption keys for a machine set {id="machineset-gcp-enabling-customer-managed-encryption_{{ context }}"}
 
 Use {{ gcp_first }} Compute Engine to supply an encryption key to encrypt data on disks at rest. The key is used to encrypt the data encryption key, not to encrypt the customer’s data. By default, Compute Engine encrypts this data by using Compute Engine keys. {._abstract}
 

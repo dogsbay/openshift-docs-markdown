@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Evaluating KubeletConfig rules against default configuration values {id="compliance-evaluate-kubeletconfig-rules_{{ context }}"}
+# Evaluate KubeletConfig rules against default configuration values {id="compliance-evaluate-kubeletconfig-rules_{{ context }}"}
 
 The Compliance Operator uses the Node/Proxy API to evaluate `KubeletConfig` object rules against actual node configurations, preventing inaccurate results caused by incomplete configuration files and default values for missing options. {._abstract}
 

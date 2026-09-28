@@ -12,7 +12,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Finalizing the MTU migration {id="nw-cluster-mtu-finalizing-migration_{{ context }}"}
+# Finalize the MTU migration {id="nw-cluster-mtu-finalizing-migration_{{ context }}"}
 
 Finalize the MTU migration to apply the new maximum transmission unit (MTU) settings to the OVN-Kubernetes network plugin. This updates the cluster configuration and triggers a rolling reboot of the nodes to complete the process. {._abstract}
 

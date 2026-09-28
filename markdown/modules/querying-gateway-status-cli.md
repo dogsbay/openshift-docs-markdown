@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Query Gateway infrastructure status using the CLI {id="querying-gateway-status-cli_{{ context }}"}
+# Querying Gateway infrastructure status using the CLI {id="querying-gateway-status-cli_{{ context }}"}
 
 To quickly check the health of your gateway infrastructure, query specific `status` fields using the {{ product_title }} CLI. You can validate your deployment, check route attachments, and retrieve IP addresses without parsing lengthy YAML manifests. {._abstract}
 

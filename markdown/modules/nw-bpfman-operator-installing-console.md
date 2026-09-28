@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the eBPF Manager Operator using the web console {id="nw-bpfman-operator-installing-console_{{ context }}"}
+# Install the eBPF Manager Operator using the web console {id="nw-bpfman-operator-installing-console_{{ context }}"}
 
 To manage eBPF programs across your cluster nodes, you can install the eBPF Manager Operator by using the {{ product_title }} web console. You can use the eBPF Manager Operator to enable node-level networking and observability tools through the OperatorHub interface. {._abstract}
 

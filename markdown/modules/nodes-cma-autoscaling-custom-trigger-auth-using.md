@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using trigger authentications {id="nodes-cma-autoscaling-custom-trigger-auth-using_{{ context }}"}
+# Use trigger authentications {id="nodes-cma-autoscaling-custom-trigger-auth-using_{{ context }}"}
 
 You use trigger authentications and cluster trigger authentications by using a custom resource to create the authentication,  then add a reference to a scaled object or scaled job.
 

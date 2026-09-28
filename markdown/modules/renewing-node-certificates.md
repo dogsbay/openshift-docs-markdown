@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Renewing node certificates {id="renewing-node-certificates_{{ context }}"}
+# Renew node certificates {id="renewing-node-certificates_{{ context }}"}
 
 Although the kubelet CA certificate automatically renews at 292 days, you can manually trigger renewal earlier by annotating the `kube-apiserver-to-kubelet-signer` secret. {._abstract}
 

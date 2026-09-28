@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring huge pages {id="cnf-configuring-huge-pages_{{ context }}"}
+# Configure huge pages {id="cnf-configuring-huge-pages_{{ context }}"}
 
 Because nodes must pre-allocate huge pages used in an {{ product_title }} cluster, use the Node Tuning Operator to allocate huge pages on a specific node. {._abstract}
 

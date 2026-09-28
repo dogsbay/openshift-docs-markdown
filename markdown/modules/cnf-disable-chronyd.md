@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling the chrony time service {id="cnf-disable-chronyd_{{ context }}"}
+# Disable the chrony time service {id="cnf-disable-chronyd_{{ context }}"}
 
 You can disable the chrony time service (`chronyd`) for nodes with a specific role by using a `MachineConfig` custom resource (CR). {._abstract}
 

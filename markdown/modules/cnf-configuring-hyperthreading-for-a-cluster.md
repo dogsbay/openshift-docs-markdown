@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Hyper-Threading for a cluster {id="cnf-configuring-hyperthreading-for-a-cluster_{{ context }}"}
+# Configure Hyper-Threading for a cluster {id="cnf-configuring-hyperthreading-for-a-cluster_{{ context }}"}
 
 To configure Hyper-Threading for an {{ product_title }} cluster, set the CPU threads in the performance profile to the same cores that are configured for the reserved or isolated CPU pools. {._abstract}
 

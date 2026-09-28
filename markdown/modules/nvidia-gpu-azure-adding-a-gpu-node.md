@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a GPU node to an existing {{ product_title }} cluster {id="nvidia-gpu-aws-adding-a-gpu-node_{{ context }}"}
+# Add a GPU node to an existing {{ product_title }} cluster {id="nvidia-gpu-aws-adding-a-gpu-node_{{ context }}"}
 
 To provide specialized hardware for compute-intensive workloads that require NVIDIA GPU acceleration, you can copy and modify a default compute machine set configuration to create a GPU-enabled machine set and machines for the {{ azure_first }} cloud provider. {._abstract}
 

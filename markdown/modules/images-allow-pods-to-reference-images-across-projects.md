@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Allowing pods to reference images across projects {id="images-allow-pods-to-reference-images-across-projects_{{ context }}"}
+# Allow pods to reference images across projects {id="images-allow-pods-to-reference-images-across-projects_{{ context }}"}
 
 To allow pods in one {{ product_title }} project to reference images from another project, you can bind a service account to the `system:image-puller` role in the target project. Use the `oc policy add-role-to-user` or `oc policy add-role-to-group` command to grant cross-project image access. {._abstract}
 

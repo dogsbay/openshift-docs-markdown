@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Granting user access to extension resources by using custom role bindings {id="olmv1-granting-user-access-binding_{{ context }}"}
+# Grant user access to extension resources by using custom role bindings {id="olmv1-granting-user-access-binding_{{ context }}"}
 
 As a cluster administrator, you can manually create and configure role-based access control (RBAC) policies to grant user access to extension resources by using custom role bindings. {._abstract}
 

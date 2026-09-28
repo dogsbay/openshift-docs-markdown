@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling etcd encryption {id="disabling-etcd-encryption_{{ context }}"}
+# Disable etcd encryption {id="disabling-etcd-encryption_{{ context }}"}
 
 Disable etcd encryption when you no longer need to encrypt sensitive cluster resources at rest. {._abstract}
 

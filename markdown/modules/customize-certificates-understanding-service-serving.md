@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding service serving certificates {id="understanding-service-serving_{{ context }}"}
+# Understand service serving certificates {id="understanding-service-serving_{{ context }}"}
 
 Service serving certificates are TLS web server certificates that {{ product_title }} issues for middleware applications that require encryption. The `service-ca` controller stores the certificate and key in a secret and automatically replaces them near expiration. {._abstract}
 

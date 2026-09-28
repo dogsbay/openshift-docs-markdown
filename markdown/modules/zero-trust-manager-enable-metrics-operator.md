@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring metrics collection for the Operator by using a ServiceMonitor {id="zero-trust-manager-enable-metrics-operator_{{ context }}"}
+# Configure metrics collection for the Operator by using a ServiceMonitor {id="zero-trust-manager-enable-metrics-operator_{{ context }}"}
 
 The {{ zero_trust_full }} exposes metrics by default on port 8443 at the `/metrics` service endpoint. You can configure metrics collection for the Operator by creating a `ServiceMonitor` custom resource (CR) that enables the Prometheus Operator to collect custom metrics. For more information, see "Configuring user workload monitoring". {._abstract}
 

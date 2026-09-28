@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running the OpenShift Cluster Capacity Tool on the command line {id="nodes-cluster-resource-levels-command_{{ context }}"}
+# Run the OpenShift Cluster Capacity Tool on the command line {id="nodes-cluster-resource-levels-command_{{ context }}"}
 
 You can run the OpenShift Cluster Capacity Tool from the command line to estimate the number of pods that can be scheduled onto your cluster. {._abstract}
 

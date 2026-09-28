@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Deploying multiple IP failover instances {id="nw-ipfailover-vrrp-ip-offset_{{ context }}"}
+# Deploy multiple IP failover instances {id="nw-ipfailover-vrrp-ip-offset_{{ context }}"}
 
 When deploying multiple IP failover instances in {{ product_title }}, each Keepalived daemon assigns unique VRRP IDs to virtual IP addresses. Configure the `OPENSHIFT_HA_VRRP_ID_OFFSET` variable to prevent VRRP ID range overlaps between different IP failover configurations. {._abstract}
 

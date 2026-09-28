@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Deploying a demonstration application {id="zero-trust-manager-vault-deploy-demo_{{ context }}"}
+# Deploy a demonstration application {id="zero-trust-manager-vault-deploy-demo_{{ context }}"}
 
 Deploy a demonstration application to create a simple client that uses its SPIFFE identity to authenticate with Vault. By doing this you can verify that the client can successfully authenticate using the configured identity. {._abstract}
 

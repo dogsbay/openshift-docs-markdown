@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring node pools for {{ hcp }} {id="configuring-node-pools-for-hcp_{{ context }}"}
+# Configure node pools for {{ hcp }} {id="configuring-node-pools-for-hcp_{{ context }}"}
 
 In {{ hcp }}, you can configure node pools by creating a `MachineConfig` object inside of a config map in the management cluster. {._abstract}
 

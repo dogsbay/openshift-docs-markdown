@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding how to update secrets {id="nodes-pods-secrets-updating_{{ context }}"}
+# Understand how to update secrets {id="nodes-pods-secrets-updating_{{ context }}"}
 
 To update the values in a secret, you must re-create the pods that use that secret. Because running pods do not automatically detect changes to secret data, restarting the pods ensures they consume the updated configuration. {._abstract}
 

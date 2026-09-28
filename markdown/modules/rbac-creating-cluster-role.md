@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" -%}
 {% if openshift_enterprise or openshift_webscale or openshift_origin %}
-# Creating a cluster role {id="creating-cluster-role_{{ context }}"}
+# Create a cluster role {id="creating-cluster-role_{{ context }}"}
 
 To define custom cluster-wide permissions, you can create a cluster role that specifies the verbs and resources users can access. {._abstract}
 

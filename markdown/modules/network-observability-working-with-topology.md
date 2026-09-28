@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Working with the Topology view {id="network-observability-working-with-topology_{{ context }}"}
+# Work with the Topology view {id="network-observability-working-with-topology_{{ context }}"}
 
 Access the **Topology** view to visually inspect cluster network relationships and select individual components to view detailed traffic metrics and metadata. {._abstract}
 

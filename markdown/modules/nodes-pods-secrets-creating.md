@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Understanding how to create secrets {id="nodes-pods-secrets-creating_{{ context }}"}
+# Understand how to create secrets {id="nodes-pods-secrets-creating_{{ context }}"}
 
 As an administrator you must create a secret before developers can create the pods that depend on that secret. {._abstract}
 

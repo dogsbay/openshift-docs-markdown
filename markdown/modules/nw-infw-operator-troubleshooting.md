@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting the Ingress Node Firewall Operator {id="nw-infw-operator-troubleshooting_{{ context }}"}
+# Troubleshoot the Ingress Node Firewall Operator {id="nw-infw-operator-troubleshooting_{{ context }}"}
 
 You can verify the status and view the logs to diagnose ingress firewall deployment or rule issues. {._abstract}
 

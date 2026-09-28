@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the AWS Load Balancer Operator by using the CLI {id="nw-installing-aws-load-balancer-operator-cli_{{ context }}"}
+# Install the AWS Load Balancer Operator by using the CLI {id="nw-installing-aws-load-balancer-operator-cli_{{ context }}"}
 
 To deploy the AWS Load Balancer Controller, install the AWS Load Balancer Operator by using the command-line interface (CLI). {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a custom machine config pool with a new node {id="machine-config-custom-mcp-automatic_{{ context }}"}
+# Create a custom machine config pool with a new node {id="machine-config-custom-mcp-automatic_{{ context }}"}
 
 You can create a custom machine config pool (MCP) and launch a new node directly into that pool. By launching the node directly into the new pool, you save a node reboot cycle that would be required when moving the nodes from the worker machine config pool to the custom pool.  {._abstract}
 

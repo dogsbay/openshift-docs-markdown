@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring custom health rules {id="network-observability-configuring-custom-health-rules_{{ context }}"}
+# Configure custom health rules {id="network-observability-configuring-custom-health-rules_{{ context }}"}
 
 Create custom health rules by using Prometheus Query Language (PromQL) to define an `AlertingRule` resource. These rules trigger alerts based on specific network metrics, such as traffic surges. {._abstract}
 

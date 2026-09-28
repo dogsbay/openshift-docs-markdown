@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the Ingress Controller endpoint publishing scope to External {id="nw-ingresscontroller-change-external_{{ context }}"}
+# Configure the Ingress Controller endpoint publishing scope to External {id="nw-ingresscontroller-change-external_{{ context }}"}
 
 As an installation or post-installation task, a cluster administrator can configure the Ingress Controller to `Internal`. Additionally, a cluster administrator can change an `Internal` Ingress Controller to `External`. {._abstract}
 

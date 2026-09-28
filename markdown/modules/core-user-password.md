@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Changing the core user password for node access {id="core-user-password_{{ context }}"}
+# Change the core user password for node access {id="core-user-password_{{ context }}"}
 
 You can use the default `core` user to access a node through a cloud provider serial console or a bare metal baseboard controller manager (BMC) if a node is down and you cannot access that node by using SSH or the `oc debug node` command. {._abstract}
 

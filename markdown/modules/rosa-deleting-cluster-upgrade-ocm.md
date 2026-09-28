@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Delete a cluster upgrade with {{ cluster_manager }} {id="rosa-deleting-cluster-upgrade-ocm_{{ context }}"}
 
-You can use the {{ cluster_manager }} console to delete a scheduled upgrade. {._abstract}
+Cancel a scheduled cluster upgrade in the {{ cluster_manager }} console. You might need to cancel an upgrade if conditions change, for example, if you discover a new issue or a maintenance window conflict. {._abstract}
 
 **Procedure**
 

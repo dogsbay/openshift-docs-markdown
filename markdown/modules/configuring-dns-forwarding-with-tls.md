@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring DNS forwarding with TLS {id="configuring-dns-forwarding-with-tls_{{ context }}"}
+# Configure DNS forwarding with TLS {id="configuring-dns-forwarding-with-tls_{{ context }}"}
 
 Configure DNS forwarding with TLS to secure queries to upstream resolvers. {._abstract}
 

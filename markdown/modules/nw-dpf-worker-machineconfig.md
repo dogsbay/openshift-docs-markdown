@@ -24,7 +24,7 @@ The MachineConfig resource performs several configuration tasks required by DPF:
     ```terminal
     $ export OPENSHIFT_PULL_SECRET="/root/pull-secret.txt"
     ```
-1.  Deploy the `dpu-worker-config` Helm chart to create the worker node MachineConfig:
+1.  Deploy the `dpu-worker-config` Helm chart:
     ```terminal
     $ helm upgrade --install dpu-worker-config \
         oci://registry.redhat.io/dpu-kit-for-nvidia/dpu-worker-config-chart \

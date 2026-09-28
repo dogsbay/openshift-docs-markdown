@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using wildcard routes {id="using-wildcard-routes_{{ context }}"}
+# Use wildcard routes {id="using-wildcard-routes_{{ context }}"}
 
 The HAProxy Ingress Controller has support for wildcard routes. The Ingress Operator uses `wildcardPolicy` to configure the `ROUTER_ALLOW_WILDCARD_ROUTES` environment variable of the Ingress Controller.
 

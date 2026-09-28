@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring claim validation rules {id="structured-auth-config-claim-validation_{{ context }}"}
+# Configure claim validation rules {id="structured-auth-config-claim-validation_{{ context }}"}
 
 Use Common Expression Language (CEL) expressions to define custom validation rules for JWT token claims and enforce advanced security policies such as maximum token lifetimes. {._abstract}
 

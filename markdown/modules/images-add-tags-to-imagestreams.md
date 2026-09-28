@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding tags to image streams {id="images-add-tags-to-imagestreams_{{ context }}"}
+# Add tags to image streams {id="images-add-tags-to-imagestreams_{{ context }}"}
 
 To organize images and create aliases for specific versions or automatically track changes to source tags in {{ product_title }}, you can add tags to image streams with the `oc tag` command. {._abstract}
 

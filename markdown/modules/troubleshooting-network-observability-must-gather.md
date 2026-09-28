@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the must-gather tool {id="network-observability-must-gather_{{ context }}"}
+# Use the must-gather tool {id="network-observability-must-gather_{{ context }}"}
 
 Use the must-gather tool to collect diagnostic information about Network Observability Operator resources, including pod logs and configuration details, to assist in troubleshooting cluster issues. {._abstract}
 

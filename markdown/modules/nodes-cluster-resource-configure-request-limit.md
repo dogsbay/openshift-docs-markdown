@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Finding the memory request and limit from within a pod {id="nodes-cluster-resource-configure-request-limit_{{ context }}"}
+# Find the memory request and limit from within a pod {id="nodes-cluster-resource-configure-request-limit_{{ context }}"}
 
 You can configure your container to use the Downward API to dynamically discover its memory request and limit from within a pod. This allows your applications to better manage these resources without needing to use the API server.   {._abstract}
 

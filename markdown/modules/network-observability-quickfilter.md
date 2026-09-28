@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Filtering the network traffic {id="network-observability-quickfilter_{{ context }}"}
+# Filter the network traffic {id="network-observability-quickfilter_{{ context }}"}
 
-Review the available query options and filtering parameters in the **Network Traffic** view to optimize data searches, analyze specific log types, and manage directional traffic visibility. {._abstract}
+The **Network Traffic** view provides query options and filtering parameters that let you optimize data searches, analyze specific log types, and manage directional traffic visibility. {._abstract}
 
 By default, the **Network Traffic** page displays the traffic flow data in the cluster based on the default filters configured in the `FlowCollector` instance. You can use the filter options to observe the required data by changing the preset filter.
 

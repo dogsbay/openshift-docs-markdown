@@ -1,5 +1,5 @@
 {%- set _content_type = "PROCEDURE" %}
-# Creating a custom Ingress Controller {id="nw-create-custom-ingress-controller_{{ context }}"}
+# Create a custom Ingress Controller {id="nw-create-custom-ingress-controller_{{ context }}"}
 
 As a cluster administrator, you can create a new custom Ingress Controller. Because the default Ingress Controller might change during {{ product_title }} updates, creating a custom Ingress Controller can be helpful when maintaining a configuration manually that persists across cluster updates.
 

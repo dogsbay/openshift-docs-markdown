@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Scaling down the data plane to zero {id="scale-down-data-plane_{{ context }}"}
+# Scale down the data plane to zero {id="scale-down-data-plane_{{ context }}"}
 
 If you are not using the hosted control plane, to save the resources and cost you can scale down a data plane to zero. {._abstract}
 

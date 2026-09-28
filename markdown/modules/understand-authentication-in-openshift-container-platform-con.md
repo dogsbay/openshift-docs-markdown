@@ -1,0 +1,4 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Understand authentication in {{ product_title }} {id="understand-authentication-in-openshift-container-platform-con_{{ context }}"}
+
+When you interact with {{ product_title }}, the authentication layer verifies your identity before the authorization layer decides what you can do. Understanding how users, groups, OAuth tokens, and API impersonation fit together lets you plan a login architecture that is both secure and predictable.

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a network policy using {{ cluster_manager }} {id="nw-networkpolicy-create-ocm_{{ context }}"}
+# Create a network policy using {{ cluster_manager }} {id="nw-networkpolicy-create-ocm_{{ context }}"}
 
 To define granular rules describing the ingress or egress network traffic allowed for namespaces in your cluster, you can create a network policy. {._abstract}
 
@@ -14,7 +14,7 @@ To define granular rules describing the ingress or egress network traffic allowe
 **Procedure**
 
 1.  From {{ cluster_manager_url }}, click the cluster you want to access.
-1.  Click **Open console** to navigate to the OpenShift web console.
+1.  Click **Open console** to navigate to the web console.
 1.  Click your identity provider and give your credentials to log in to the cluster.
 1.  From the administrator perspective, under **Networking**, click **NetworkPolicies**.
 1.  Click **Create NetworkPolicy**.

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling image streams with Kubernetes resources {id="images-managing-images-enabling-imagestreams-kube_{{ context }}"}
+# Enable image streams with Kubernetes resources {id="images-managing-images-enabling-imagestreams-kube_{{ context }}"}
 
 When using Kubernetes resources, you must reference image streams located within the same project by specifying a single segment value, such as `ruby:2.5`, which identifies the image stream name and its tag. This ensures the resource correctly targets the local image stream within its scope. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying the AWS Load Balancer Operator {id="nw-aws-load-balancer-operator_{{ context }}"}
+# Deploy the AWS Load Balancer Operator {id="nw-aws-load-balancer-operator_{{ context }}"}
 
 The {{ aws_short }} Load Balancer Operator can tag the public subnets if the `kubernetes.io/role/elb` tag is missing. Also, the {{ aws_short }} Load Balancer Operator detects information from the underlying {{ aws_short }} cloud. {._abstract}
 

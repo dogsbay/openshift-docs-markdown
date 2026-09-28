@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Customizing the internal OAuth server URL {id="customizing-the-oauth-server-url_{{ context }}"}
+# Customize the internal OAuth server URL {id="customizing-the-oauth-server-url_{{ context }}"}
 
 Customize the internal OAuth server URL to use a custom hostname and TLS certificate by configuring the cluster Ingress component routes. {._abstract}
 

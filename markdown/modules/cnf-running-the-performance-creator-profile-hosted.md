@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running the Performance Profile Creator on a hosted cluster using Podman {id="running-the-performance-profile-profile-hosted-cluster-using-podman_{{ context }}"}
+# Run the Performance Profile Creator on a hosted cluster using Podman {id="running-the-performance-profile-profile-hosted-cluster-using-podman_{{ context }}"}
 
 As a cluster administrator, you can use Podman with the Performance Profile Creator (PPC) tool to create a performance profile. {._abstract}
 

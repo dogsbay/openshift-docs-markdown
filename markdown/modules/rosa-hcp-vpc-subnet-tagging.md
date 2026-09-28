@@ -1,17 +1,7 @@
-{%- if context == "rosa-hcp-prereqs" %}
-{%- set hcp_preqs = true -%}
-{% endif %}
-
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Tagging your subnets {id="rosa-hcp-vpc-subnet-tagging_{{ context }}"}
 
-{% if hcp_preqs %}
-If you created your own VPC to create a {{ product_title }} cluster, you must tag your VPC subnets.
-{% endif %}
-{% if not hcp_preqs %}
-Before you can use your VPC to create a {{ product_title }} cluster, you must tag your VPC subnets.
-{%- endif %}
-Automated service preflight checks verify that these resources are tagged correctly before you can use these resources for a cluster. {._abstract}
+If you created your own VPC to create a {{ product_title }} cluster, you must tag your VPC subnets. Automated service preflight checks verify that these resources are tagged correctly before you can use these resources for a cluster. {._abstract}
 
 **Required subnet tags**
 
@@ -74,6 +64,3 @@ You must tag at least one private subnet and, if applicable, one public subnet.
     TAGS    Name                    <subnet-id>        subnet  <prefix>-subnet-public1-us-east-1a
     TAGS    kubernetes.io/role/elb  <subnet-id>        subnet  1
     ```
-{% if context == "rosa-hcp-prereqs" %}
-{%- set hcp_preqs = "" -%}
-{% endif %}

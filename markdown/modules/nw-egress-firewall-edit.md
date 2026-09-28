@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Editing an EgressFirewall custom resource (CR) {id="nw-egress-firewall-edit_{{ context }}"}
+# Edit an EgressFirewall custom resource (CR) {id="nw-egress-firewall-edit_{{ context }}"}
 
 As a cluster administrator, you can update the egress firewall for a project. {._abstract}
 

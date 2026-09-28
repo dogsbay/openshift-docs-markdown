@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ zero_trust_full }} by using the web console {id="zero-trust-manager-install-console_{{ context }}"}
+# Install the {{ zero_trust_full }} by using the web console {id="zero-trust-manager-install-console_{{ context }}"}
 
 Use the Software Catalog in the {{ product_title }} web console to install the {{ zero_trust_full }}. This process streamlines deployment and helps ensure the Operator is installed in the correct namespace with the appropriate installation mode. {._abstract}
 

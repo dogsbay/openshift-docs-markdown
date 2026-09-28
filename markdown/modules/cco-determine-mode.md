@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 
-# Determining the Cloud Credential Operator mode {id="cco-determine-mode_{{ context }}"}
+# Determine the Cloud Credential Operator mode {id="cco-determine-mode_{{ context }}"}
 
 For platforms that support using the CCO in multiple modes, you can determine what mode the CCO is configured to use by using the web console or the CLI. {._abstract}
 

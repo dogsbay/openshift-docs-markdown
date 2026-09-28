@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Scaling up workloads in a hosted cluster {id="scale-up-autoscaler-hcp_{{ context }}"}
+# Scale up workloads in a hosted cluster {id="scale-up-autoscaler-hcp_{{ context }}"}
 
 To scale up the workloads in your hosted cluster, you can use the `ScaleUpOnly` behavior. {._abstract}
 

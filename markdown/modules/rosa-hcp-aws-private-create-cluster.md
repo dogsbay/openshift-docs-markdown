@@ -49,6 +49,9 @@ Creating a cluster with {{ hcp }} can take around 10 minutes.
     ```terminal
     $ rosa create cluster --private --cluster-name=<cluster-name> --sts --mode=auto --hosted-cp --operator-roles-prefix <operator_role_prefix> --oidc-config-id <oidc_config_id> [--machine-cidr=<VPC CIDR>/16] --subnet-ids=<private-subnet-id1>[,<private-subnet-id2>,<private-subnet-id3>]
     ```
+
+**Verification**
+
 1.  Enter the following command to check the status of your cluster. During cluster creation, the `State` field transitions from `pending` to `installing`, and finally, to `ready`.
     ```terminal
     $ rosa describe cluster --cluster=<cluster_name>

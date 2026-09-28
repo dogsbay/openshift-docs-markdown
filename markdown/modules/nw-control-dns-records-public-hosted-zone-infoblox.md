@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating DNS records on a public DNS zone on Infoblox {id="nw-control-dns-records-public-dns-zone-infoblox_{{ context }}"}
+# Create DNS records on a public DNS zone on Infoblox {id="nw-control-dns-records-public-dns-zone-infoblox_{{ context }}"}
 
 To create DNS records on Infoblox, use the External DNS Operator. The Operator manages external name resolution for your cluster services. {._abstract}
 

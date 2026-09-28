@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Generating a latency test failure report {id="cnf-performing-end-to-end-tests-test-failure-report_{{ context }}"}
+# Generate a latency test failure report {id="cnf-performing-end-to-end-tests-test-failure-report_{{ context }}"}
 
 To analyze test failures and troubleshoot performance issues, generate a JUnit latency test output and test failure report. Reviewing this diagnostic data helps you pinpoint exactly where your system is experiencing delays. {._abstract}
 

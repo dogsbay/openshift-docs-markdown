@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling monitoring dashboards in a hosted cluster {id="hosted-control-planes-monitoring-dashboard_{{ context }}"}
+# Enable monitoring dashboards in a hosted cluster {id="hosted-control-planes-monitoring-dashboard_{{ context }}"}
 
 You can enable monitoring dashboards in a hosted cluster by creating a config map. {._abstract}
 

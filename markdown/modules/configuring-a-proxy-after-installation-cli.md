@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a proxy after installation using the CLI {id="configuring-a-proxy-after-installation-cli_{{ context }}"}
+# Configure a proxy after installation using the CLI {id="configuring-a-proxy-after-installation-cli_{{ context }}"}
 
 You can use the ROSA CLI (`rosa`) to add a cluster-wide proxy configuration to an existing ROSA cluster in a Virtual Private Cloud (VPC). {._abstract}
 

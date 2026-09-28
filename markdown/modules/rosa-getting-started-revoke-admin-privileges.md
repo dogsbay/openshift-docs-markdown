@@ -1,16 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Revoke administrator privileges from a user {id="rosa-getting-started-revoke-admin-privileges_{{ context }}"}
 
-{% if context == "rosa-getting-started" %}
-{%- set getting_started = true -%}
-{% endif %}
-{% if context == "rosa-quickstart" %}
-{%- set quickstart = true -%}
-{% endif %}
-
 You can revoke `cluster-admin` or `dedicated-admin` privileges from a user by using the {{ rosa_cli_first }}. {._abstract}
-
-{% if getting_started %}
 
 **Prerequisites**
 
@@ -19,7 +10,6 @@ You can revoke `cluster-admin` or `dedicated-admin` privileges from a user by us
 *   You created a {{ product_title }} cluster.
 *   You have configured a GitHub identity provider for your cluster and added an identity provider user.
 *   You granted `cluster-admin` or `dedicated-admin` privileges to a user.
-{% endif %}
 
 **Procedure**
 
@@ -55,10 +45,3 @@ You can revoke `cluster-admin` or `dedicated-admin` privileges from a user by us
 
 *   [Cluster administration role](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html/introduction_to_rosa/policies-and-service-definition)
 *   [Using RBAC to define and apply permissions](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/authentication_and_authorization/using-rbac)
-
-{% if context == "rosa-getting-started" %}
-{%- set getting_started = true -%}
-{% endif %}
-{% if context == "rosa-quickstart" %}
-{%- set quickstart = true -%}
-{% endif %}

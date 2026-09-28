@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Managing policy from the web console {id="virt-node-network-config-console_{{ context }}"}
+# Manage policy from the web console {id="virt-node-network-config-console_{{ context }}"}
 
 You can update the node network configuration, such as adding or removing interfaces from nodes, by applying `NodeNetworkConfigurationPolicy` manifests to the cluster. {._abstract}
 

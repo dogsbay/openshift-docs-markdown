@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing network events {id="network-observability-viewing-network-events_{{ context }}"}
+# View network events {id="network-observability-viewing-network-events_{{ context }}"}
 
 Configure the `FlowCollector` custom resource to enable network event tracking for auditing how security policies, firewalls, and isolation rules affect traffic flows in the web console. {._abstract}
 
@@ -10,7 +10,7 @@ You can edit the `FlowCollector` to view information about network traffic event
 
 *   `NetworkPolicy`
 *   `AdminNetworkPolicy`
-*   `BaselineNetworkPolicy`
+*   `BaselineAdminNetworkPolicy`
 *   `EgressFirewall`
 *   `UserDefinedNetwork` isolation
 *   Multicast ACLs
@@ -18,7 +18,7 @@ You can edit the `FlowCollector` to view information about network traffic event
 **Prerequisites**
 
 *   You must have `OVNObservability` enabled by setting the `TechPreviewNoUpgrade` feature set in the `FeatureGate` custom resource (CR) named `cluster`. For more information, see "Enabling feature sets using the CLI" and "Checking OVN-Kubernetes network traffic with OVS sampling using the CLI".
-*   You have created at least one of the following network APIs: `NetworkPolicy`, `AdminNetworkPolicy`, `BaselineNetworkPolicy`, `UserDefinedNetwork` isolation, multicast, or `EgressFirewall`.
+*   You have created at least one of the following network APIs: `NetworkPolicy`, `AdminNetworkPolicy`, `BaselineAdminNetworkPolicy`, `UserDefinedNetwork` isolation, multicast, or `EgressFirewall`.
 
 **Procedure**
 
@@ -53,7 +53,7 @@ You can edit the `FlowCollector` to view information about network traffic event
 **Verification**
 
 1.  Navigate to the **Network Traffic** view and select the **Traffic flows** table.
-1.  You should see the new column, **Network Events**, where you can view information about impacts of one of the following network APIs you have enabled: `NetworkPolicy`, `AdminNetworkPolicy`, `BaselineNetworkPolicy`, `UserDefinedNetwork` isolation, multicast, or egress firewalls.
+1.  You should see the new column, **Network Events**, where you can view information about impacts of one of the following network APIs you have enabled: `NetworkPolicy`, `AdminNetworkPolicy`, `BaselineAdminNetworkPolicy`, `UserDefinedNetwork` isolation, multicast, or egress firewalls.
 
     An example of the kind of events you could see in this column is as follows:
     ```text title="Example of Network Events output"

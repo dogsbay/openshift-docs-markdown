@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the htpasswd secret {id="identity-provider-creating-htpasswd-secret_{{ context }}"}
+# Create the htpasswd secret {id="identity-provider-creating-htpasswd-secret_{{ context }}"}
 
 Create an {{ product_title }} secret from your `htpasswd` file so the `htpasswd` identity provider can read user credentials for cluster login. {._abstract}
 

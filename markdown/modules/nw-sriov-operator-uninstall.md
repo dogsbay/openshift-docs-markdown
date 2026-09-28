@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling the SR-IOV Network Operator {id="nw-sriov-operator-uninstall_{{ context }}"}
+# Uninstall the SR-IOV Network Operator {id="nw-sriov-operator-uninstall_{{ context }}"}
 
 You can remove the SR-IOV Network Operator from your cluster by uninstalling the Operator. This ensures that the Operator and its associated resources are deleted when you no longer need to manage SR-IOV network devices. {._abstract}
 

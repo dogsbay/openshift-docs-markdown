@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Confirming node network policy updates on nodes {id="virt-confirming-policy-updates-on-nodes_{{ context }}"}
+# Confirm node network policy updates on nodes {id="virt-confirming-policy-updates-on-nodes_{{ context }}"}
 
 When you apply a node network policy, a `NodeNetworkConfigurationEnactment` object is created for every node in the cluster. The node network configuration enactment is a read-only object that represents the status of execution of the policy on that node. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Using signature transports {id="security-deploy-signature_{{ context }}"}
+# Use signature transports {id="security-deploy-signature_{{ context }}"}
 
 You can use a signature transport as a way to store and retrieve the binary signature blob.
  

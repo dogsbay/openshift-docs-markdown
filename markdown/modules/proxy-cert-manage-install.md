@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Managing proxy certificates during installation {id="proxy-cert-manage-install_{{ context }}"}
+# Manage proxy certificates during installation {id="proxy-cert-manage-install_{{ context }}"}
 
 Configure proxy-trusted CA certificates during {{ product_title }} installation using the `additionalTrustBundle` value in the installation program configuration. {._abstract}
 

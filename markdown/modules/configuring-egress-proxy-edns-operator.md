@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Trusting the certificate authority of the cluster-wide proxy {id="nw-configuring-cluster-wide-proxy_{{ context }}"}
+# Trust the certificate authority of the cluster-wide proxy {id="nw-configuring-cluster-wide-proxy_{{ context }}"}
 
 You can configure the External DNS Operator to trust the certificate authority of the cluster-wide proxy. {._abstract}
 

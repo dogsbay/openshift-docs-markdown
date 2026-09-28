@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an AWS IAM role for the controller by using the AWS CLI {id="using-aws-cli-create-iam-role-alb-controller_{{ context }}"}
+# Create an AWS IAM role for the controller by using the AWS CLI {id="using-aws-cli-create-iam-role-alb-controller_{{ context }}"}
 
 To enable the {{ aws_short }} Load Balancer Controller to interact with subnets and Virtual Private Clouds (VPCs), create an IAM role by using the {{ aws_short }} CLI. This ensures the controller has the specific permissions required to manage network resources within the cluster. {._abstract}
 

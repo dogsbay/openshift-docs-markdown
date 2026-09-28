@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a network attachment definition {id="create-network-attachment-definition_{{ context }}"}
+# Create a network attachment definition {id="create-network-attachment-definition_{{ context }}"}
 
 After you define the machine config pool and the SR-IOV network node policy, you can create a network attachment definition for the network interface controller (NIC) you specified. {._abstract}
 

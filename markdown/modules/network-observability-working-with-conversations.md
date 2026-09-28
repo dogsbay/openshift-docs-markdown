@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Working with conversation tracking {id="network-observability-working-with-conversations_{{ context }}"}
+# Work with conversation tracking {id="network-observability-working-with-conversations_{{ context }}"}
 
 Configure the `FlowCollector` custom resource to enable conversation tracking for grouping and analyzing related network flows in the web console. {._abstract}
 

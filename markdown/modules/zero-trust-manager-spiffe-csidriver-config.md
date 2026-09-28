@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying the SPIFFE Container Storage Interface driver {id="zero-trust-manager-spire-csidriver-config_{{ context }}"}
+# Deploy the SPIFFE Container Storage Interface driver {id="zero-trust-manager-spire-csidriver-config_{{ context }}"}
 
 Configure the Container Storage Interface (CSI) driver using the `SpiffeCSIDriver` CR. This configuration mounts SPIFFE sockets directly into workload pods, which allows your applications to access the SPIFFE Workload API securely. {._abstract}
 

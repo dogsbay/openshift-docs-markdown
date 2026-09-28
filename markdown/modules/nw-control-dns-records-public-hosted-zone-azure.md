@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating DNS records on an Azure DNS zone {id="nw-control-dns-records-public-hosted-zone-azure_{{ context }}"}
+# Create DNS records on an Azure DNS zone {id="nw-control-dns-records-public-hosted-zone-azure_{{ context }}"}
 
 To create DNS records on a public or private DNS zone for Azure, use the External DNS Operator. The Operator manages external name resolution for your cluster. {._abstract}
 

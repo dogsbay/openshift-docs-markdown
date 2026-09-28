@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an image policy CR {id="nodes-sigstore-configure-image-policy_{{ context }}"}
+# Create an image policy CR {id="nodes-sigstore-configure-image-policy_{{ context }}"}
 
 A cluster administrator or application developer can use an `ImagePolicy` custom resource (CR) to configure a sigstore signature verification policy for a specific namespace.  {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling the {{ cert_manager_operator }} {id="cert-manager-uninstall-console_{{ context }}"}
+# Uninstall the {{ cert_manager_operator }} {id="cert-manager-uninstall-console_{{ context }}"}
 
 You can uninstall the {{ cert_manager_operator }} by using the web console. {._abstract}
 

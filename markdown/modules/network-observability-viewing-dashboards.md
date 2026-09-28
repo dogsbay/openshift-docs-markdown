@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing network observability metrics dashboards {id="network-observability-viewing-dashboards_{{ context }}"}
+# View network observability metrics dashboards {id="network-observability-viewing-dashboards_{{ context }}"}
 
 View network observability metrics dashboards using the **Overview** tab in the {{ product_title }} console to monitor overall traffic flow and system health, with options to filter metrics by node, namespace, owner, pod, and service. {._abstract}
 

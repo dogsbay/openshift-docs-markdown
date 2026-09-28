@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Allocating multiple huge page sizes {id="cnf-allocating-multiple-huge-page-sizes_{{ context }}"}
+# Allocate multiple huge page sizes {id="cnf-allocating-multiple-huge-page-sizes_{{ context }}"}
 
 You can request huge pages with different sizes under the same container. By doing this task, you can define more complicated pods consisting of containers with different huge page size needs. {._abstract}
 

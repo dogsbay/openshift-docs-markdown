@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing image stream tags {id="images-imagestream-remove-tag_{{ context }}"}
+# Remove image stream tags {id="images-imagestream-remove-tag_{{ context }}"}
 
 To maintain control over your image history and simplify management within {{ product_title }}, you can remove old tags from an image stream. This action helps ensure that your resources track only the current and necessary image references. {._abstract}
 

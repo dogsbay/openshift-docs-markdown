@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring an address pool {id="nw-metallb-configure-address-pool_{{ context }}"}
+# Configure an address pool {id="nw-metallb-configure-address-pool_{{ context }}"}
 
 To precisely manage external access to application workloads, configure MetalLB address pools for your cluster. By defining these pools, you can control the specific IP address ranges assigned to load balancer services for consistent network routing. {._abstract}
 

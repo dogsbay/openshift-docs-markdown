@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a ClusterUserDefinedNetwork CR by using the CLI {id="nw-cudn-cr_{{ context }}"}
+# Create a ClusterUserDefinedNetwork CR by using the CLI {id="nw-cudn-cr_{{ context }}"}
 
 To implement cluster-wide network segmentation and isolation across multiple namespaces, supporting either layer 2 or layer 3 in {{ product_title }}, create a `ClusterUserDefinedNetwork` CR by using the CLI. Defining this resource ensures that network traffic is securely partitioned across the cluster. {._abstract}
 

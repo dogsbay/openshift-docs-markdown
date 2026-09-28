@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a required node affinity rule {id="nodes-scheduler-node-affinity-configuring-required_{{ context }}"}
+# Configure a required node affinity rule {id="nodes-scheduler-node-affinity-configuring-required_{{ context }}"}
 
 You can use a _required_ rule to instruct the scheduler that the rules **must** be met before a pod can be scheduled on a node. {._abstract}
 

@@ -13,6 +13,16 @@ You can view the container images in this release by running the following comma
 $ oc adm release info 4.22.8 --pullspecs
 ```
 
+## Notable technical changes {id="zstream-4-22-8-technical-changes_{{ context }}"}
+
+
+Metrics forwarding annotation is deprecated
+:   As of {{ product_title }} 4.22.8, the `hypershift.openshift.io/enable-metrics-forwarding` annotation is deprecated. The `spec.monitoring.metricsForwarding` field on the `HostedCluster` API replaces this annotation and provides per-cluster configuration that the annotation cannot support.
+
+    The annotation continues to be honored when `spec.monitoring` is not set on the `HostedCluster` object. If you set `spec.monitoring.metricsForwarding` on a cluster, the spec field takes precedence and the annotation is ignored for that cluster, even if both are present.
+
+    Migrate all hosted clusters that use the `hypershift.openshift.io/enable-metrics-forwarding` annotation to use `spec.monitoring.metricsForwarding` before the annotation is removed in a future release. For more information, see [Migrating from annotation-based to API-based metrics forwarding](/hosted_control_planes/hcp-observability#hcp-cp-metrics-forwarding-migrate_hcp-observability).
+
 ## Fixed issues {id="zstream-4-22-8-fixed-issues_{{ context }}"}
 
 *   Before this update, setting the `.spec.timeZone` parameter in a cron job might have crashed the kube-state-metrics (KSM) pod. This issue removed the cluster metrics and monitoring alerts. With this release, kube-state-metrics (KSM) gracefully skip cron job objects with unparseable schedules instead of crashing. As a result, the KSM pod remains stable and continues to serve metrics for all cluster resources, even when individual cron job objects have schedules or time zones that cannot be parsed. ([OCPBUGS-87957](https://redhat.atlassian.net/browse/OCPBUGS-87957))

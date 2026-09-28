@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Checking the current cluster MTU value {id="nw-cluster-mtu-checking_{{ context }}"}
+# Check the current cluster MTU value {id="nw-cluster-mtu-checking_{{ context }}"}
 
 To ensure network stability and performance in a hybrid environment where part of your cluster is in the cloud and part is an on-premise environment, you can obtain the current maximum transmission unit (MTU) for the cluster network. {._abstract}
 

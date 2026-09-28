@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring token inactivity timeout for the internal OAuth server {id="oauth-token-inactivity-timeout_{{ context }}"}
+# Configure token inactivity timeout for the internal OAuth server {id="oauth-token-inactivity-timeout_{{ context }}"}
 
 Configure the internal OAuth server to automatically expire tokens after a set period of inactivity, improving security by invalidating idle sessions. {._abstract}
 

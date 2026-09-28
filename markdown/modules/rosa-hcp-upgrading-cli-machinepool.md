@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if context != "rosa-hcp-upgrading-whole-cluster" %}
 # Upgrade machine pools with the {{ rosa_cli }} {id="rosa-hcp-upgrading-cli-machinepool_{{ context }}"}
 
 You can manually update one or more machine pools in a {{ product_title }} cluster by using the {{ rosa_cli_first }}. This method schedules the specified machine pool for an update if a more recent version is available, either immediately, or at a specified future time. {._abstract}
+
+Updating machine pools on your preferred schedule allows you to apply feature updates and bug fixes with minimal workload disruption.
 
 
 :::note
@@ -16,13 +17,6 @@ Your control plane only supports machine pools within two minor y-stream version
 
 *   You have installed and configured the latest version of the {{ rosa_cli }}.
 *   No updates for the hosted control plane are in progress on the cluster, or scheduled to occur at the same time as the machine pool update.
-{%- endif %}
-
-{%- if context == "rosa-hcp-upgrading-whole-cluster" %}
-# Upgrading machine pools {id="_upgrading_machine_pools"}
-
-When your hosted control plane update is complete, you can update one or more machine pools.
-{%- endif %}
 
 
 :::note
@@ -40,31 +34,16 @@ Machine pool configurations such as node drain timeout, max-unavailable, and max
     ```
 
     Replace `<cluster_name_or_id>` with the cluster name or the cluster ID.
-{% if context != "rosa-hcp-upgrading-whole-cluster" %}
-
-**Example output**
-
-```terminal
-OpenShift Version:     4.17.0
-```
-{% endif %}
-{% if context == "rosa-hcp-upgrading-whole-cluster" %}
-**Example output**
-
-```terminal
-OpenShift Version:     4.17.8
-```
-{% endif %}
-
+    ```terminal title="Example output"
+    OpenShift Version:     4.17.0
+    ```
 1.  List the versions that you can update your machine pools to by running the following command:
     ```terminal
     $ rosa list upgrade --cluster <cluster-name> --machinepool <machinepool_name>
     ```
 
     The command returns a list of available updates, including the recommended version.
-
-    **Example output**
-    ```terminal
+    ```terminal title="Example output"
     VERSION  NOTES
     4.17.5   recommended
     4.17.4
@@ -81,9 +60,7 @@ OpenShift Version:     4.17.8
     ```terminal
     $ rosa describe machinepool --cluster=<cluster_name_or_id> <machinepool_name>
     ```
-
-    **Example output**
-    ```terminal
+    ```terminal title="Example output"
     Replicas: 5
     Node drain grace period:   30 minutes
 

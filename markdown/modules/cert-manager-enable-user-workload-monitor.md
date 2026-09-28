@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling user workload monitoring {id="cert-manager-enable-user-workload-monitor_{{ context }}"}
+# Enable user workload monitoring {id="cert-manager-enable-user-workload-monitor_{{ context }}"}
 
 To collect metrics from your specific applications, enable monitoring for user-defined projects. You can enable monitoring for user-defined projects by configuring user workload monitoring in the cluster. For more information, see "Setting up metrics collection for user-defined projects". {._abstract}
 

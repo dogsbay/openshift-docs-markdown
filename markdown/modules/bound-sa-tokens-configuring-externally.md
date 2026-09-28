@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating bound service account tokens outside the pod {id="bound-sa-tokens-configuring-externally_{{ context }}"}
+# Create bound service account tokens outside the pod {id="bound-sa-tokens-configuring-externally_{{ context }}"}
 
 You can create bound service tokens outside of the pod, if needed. {._abstract}
 

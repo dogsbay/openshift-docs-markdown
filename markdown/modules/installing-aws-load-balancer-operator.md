@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the AWS Load Balancer Operator by using the web console {id="nw-installing-aws-load-balancer-operator_{{ context }}"}
+# Install the AWS Load Balancer Operator by using the web console {id="nw-installing-aws-load-balancer-operator_{{ context }}"}
 
 To deploy the AWS Load Balancer Operator, install the Operator by using the web console. You can manage the lifecycle of the Operator by using a graphical interface. {._abstract}
 

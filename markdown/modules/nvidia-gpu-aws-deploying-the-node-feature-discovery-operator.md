@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying the Node Feature Discovery Operator {id="nvidia-gpu-aws-deploying-the-node-feature-discovery-operator_{{ context }}"}
+# Deploy the Node Feature Discovery Operator {id="nvidia-gpu-aws-deploying-the-node-feature-discovery-operator_{{ context }}"}
 
 After the GPU-enabled node is created, you need to discover the GPU-enabled node so it can be scheduled. To do this, install the Node Feature Discovery (NFD) Operator. {._abstract}
 

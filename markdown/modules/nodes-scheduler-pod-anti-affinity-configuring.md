@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a pod anti-affinity rule {id="nodes-scheduler-pod-anti-affinity-configuring_{{ context }}"}
+# Configure a pod anti-affinity rule {id="nodes-scheduler-pod-anti-affinity-configuring_{{ context }}"}
 
 To specify a preference to prevent a pod from being scheduling with another pod, you can create a pod with a label and a pod that uses an anti-affinity preferred rule. {._abstract}
 

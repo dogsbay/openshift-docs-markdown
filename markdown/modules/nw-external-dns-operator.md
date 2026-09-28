@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying the External DNS Operator {id="nw-external-dns-operator_{{ context }}"}
+# Deploy the External DNS Operator {id="nw-external-dns-operator_{{ context }}"}
 
 The External DNS Operator implements the External DNS API from the `olm.openshift.io` API group. The External DNS Operator updates services, routes, and external DNS providers. {._abstract}
 

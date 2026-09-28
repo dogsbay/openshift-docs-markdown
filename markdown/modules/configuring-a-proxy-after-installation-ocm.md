@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a proxy after installation using {{ cluster_manager }} {id="configuring-a-proxy-after-installation-ocm_{{ context }}"}
+# Configure a proxy after installation using {{ cluster_manager }} {id="configuring-a-proxy-after-installation-ocm_{{ context }}"}
 
 You can use {{ cluster_manager_first }} to add a cluster-wide proxy configuration to an existing {{ product_title }} cluster in a Virtual Private Cloud (VPC).
 {%- if openshift_dedicated %}

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Gathering data about your cluster for the PPC {id="gathering-data-about-your-cluster-using-must-gather_{{ context }}"}
+# Gather data about your cluster for the PPC {id="gathering-data-about-your-cluster-using-must-gather_{{ context }}"}
 
 The Performance Profile Creator (PPC) tool requires `must-gather` data. As a cluster administrator, run the `must-gather` command to capture information about your cluster. {._abstract}
 

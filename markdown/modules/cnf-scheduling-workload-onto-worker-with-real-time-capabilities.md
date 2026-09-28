@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Scheduling a low latency workload onto a compute node {id="cnf-scheduling-workload-onto-worker-with-real-time-capabilities_{{ context }}"}
+# Schedule a low latency workload onto a compute node {id="cnf-scheduling-workload-onto-worker-with-real-time-capabilities_{{ context }}"}
 
 You can schedule low latency workloads onto a compute node where a performance profile that configures real-time capabilities is applied. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Checking creation of ANP {id="anp-troubleshooting_{{ context }}"}
+# Check creation of ANP {id="anp-troubleshooting_{{ context }}"}
 
 To check that your `AdminNetworkPolicy` (ANP) and `BaselineAdminNetworkPolicy` (BANP) are created correctly, check the status outputs of the following commands: `oc describe anp` or `oc describe banp`. {._abstract}
 

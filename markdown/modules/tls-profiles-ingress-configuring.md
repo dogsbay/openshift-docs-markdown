@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the TLS security profile for the Ingress Controller {id="tls-profiles-ingress-configuring_{{ context }}"}
+# Configure the TLS security profile for the Ingress Controller {id="tls-profiles-ingress-configuring_{{ context }}"}
 
 To configure a TLS security profile for an Ingress Controller, edit the `IngressController` custom resource (CR) to specify a predefined or custom TLS security profile. {._abstract}
 

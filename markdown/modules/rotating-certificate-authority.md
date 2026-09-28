@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Rotating the etcd certificate {id="rotating-certificate-authority_{{ context }}"}
+# Rotate the etcd certificate {id="rotating-certificate-authority_{{ context }}"}
 
 You can manually rotate the etcd certificate before its automatic, scheduled rotation by backing up and deleting the current signer certificate. {._abstract}
 

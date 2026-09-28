@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding bundle endpoint profiles {id="zero-trust-manager-configure-endpoints_{{ context }}"}
+# Understand bundle endpoint profiles {id="zero-trust-manager-configure-endpoints_{{ context }}"}
 
 The bundle endpoint profile determines how your cluster exposes its trust bundle to other SPIRE deployments and how it authenticates remote clusters accessing the bundle. Choose the profile that best matches your security requirements and infrastructure. {._abstract}
 

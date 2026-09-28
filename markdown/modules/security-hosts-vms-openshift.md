@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Securing {{ product_title }} {id="security-hosts-vms-openshift_{{ context }}"}
+# Secure {{ product_title }} {id="security-hosts-vms-openshift_{{ context }}"}
 
 To make your {{ product_title }} cluster more secure, you should understand the security enhancements you can make to your cluster. {._abstract}
 

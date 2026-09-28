@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Working with availability zones {id="network-observability-zones_{{ context }}"}
+# Work with availability zones {id="network-observability-zones_{{ context }}"}
 
 Configure the `FlowCollector` custom resource to collect availability zone data, enabling the visualization and analysis of network traffic across different cluster zones in the web console. {._abstract}
 

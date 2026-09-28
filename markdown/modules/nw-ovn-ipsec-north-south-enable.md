@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring IPsec encryption for external traffic {id="nw-ovn-ipsec-north-south-enable_{{ context }}"}
+# Configure IPsec encryption for external traffic {id="nw-ovn-ipsec-north-south-enable_{{ context }}"}
 
 To configure IPsec encryption for traffic between {{ product_title }} and external hosts, you can create Butane machine configs with PKCS#12 certificates and apply them to cluster nodes. {._abstract}
 

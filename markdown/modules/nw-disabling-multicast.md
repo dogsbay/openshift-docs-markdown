@@ -4,7 +4,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling multicast between pods {id="nw-disabling-multicast_{{ context }}"}
+# Disable multicast between pods {id="nw-disabling-multicast_{{ context }}"}
 
 To disable multicast between pods in a project, you can remove the `k8s.ovn.org/multicast-enabled` annotation from the namespace by using the `oc annotate` command or a namespace manifest. {._abstract}
 

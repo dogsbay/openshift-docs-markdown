@@ -39,7 +39,7 @@ You can configure the following video device types:
 
 | Architecture | Boot mode | Default type | Supported types |
 | --- | --- | --- | --- |
-| AMD/x86_64 | BIOS | `vga` | `virtio`, `vga`, `bochs`, `cirrus`, `ramfb`` |
-| AMD/x86_64 | EFI | `bochs` | `virtio`, `vga`, `bochs`, `cirrus`, `ramfb`` |
+| AMD/x86_64 | BIOS | `vga` | `virtio`, `vga`, `bochs`, `cirrus`, `ramfb` |
+| AMD/x86_64 | EFI | `bochs` | `virtio`, `vga`, `bochs`, `cirrus`, `ramfb` |
 | ARM64 | BIOS/EFI | `virtio` | `virtio`, `ramfb` |
 | s390x | BIOS/EFI | `virtio` | `virtio` |

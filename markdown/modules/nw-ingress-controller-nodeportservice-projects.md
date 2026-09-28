@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a single NodePort service to an Ingress Controller {id="nw-ingress-controller-nodeportservice-projects_{{ context }}"}
+# Add a single NodePort service to an Ingress Controller {id="nw-ingress-controller-nodeportservice-projects_{{ context }}"}
 
 To prevent port conflicts, instead of creating a `NodePort`-type `Service` for each project, create a custom Ingress Controller that can use the `NodePortService` endpoint publishing strategy.  {._abstract}
 

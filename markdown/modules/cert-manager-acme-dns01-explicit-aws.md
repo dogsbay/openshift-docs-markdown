@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring an ACME issuer by using explicit credentials for AWS Route53 {id="cert-manager-acme-dns01-explicit-aws_{{ context }}"}
+# Configure an ACME issuer by using explicit credentials for AWS Route53 {id="cert-manager-acme-dns01-explicit-aws_{{ context }}"}
 
 You can use {{ cert_manager_operator }} to set up an Automated Certificate Management Environment (ACME) issuer to solve DNS-01 challenges by using explicit credentials on AWS. This procedure uses _Let’s Encrypt_ as the ACME certificate authority (CA) server and shows how to solve DNS-01 challenges with Amazon Route 53. {._abstract}
 

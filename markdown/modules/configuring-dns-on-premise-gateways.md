@@ -9,7 +9,7 @@ Although the Ingress Operator automatically creates a `DNSRecord` custom resourc
 
 *   You have access to the cluster as a user with the `cluster-admin` role.
 *   You have installed the {{ oc_first }}.
-*   You have configured a load balancer controller, such as MetalLB, for your cluster. 
+*   You have configured a load balancer controller, such as MetalLB, for your cluster.
 *   Your gateway has been assigned an external network address by the load balancer.
 *   Your gateway is located in the `openshift-ingress` namespace.
 

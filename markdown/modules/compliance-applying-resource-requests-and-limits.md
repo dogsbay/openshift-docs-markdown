@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Applying resource requests and limits {id="compliance-applying-resource-requests-and-limits_{{ context }}"}
+# Apply resource requests and limits {id="compliance-applying-resource-requests-and-limits_{{ context }}"}
 
 You can configure a container’s requests and limits for memory and CPU to define how much CPU time and memory that the container can use. {._abstract}
 

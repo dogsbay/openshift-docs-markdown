@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Configuring quick filters {id="network-observability-config-quick-filters_{{ context }}"}
+# Configure quick filters {id="network-observability-config-quick-filters_{{ context }}"}
 
 Use the list of available source, destination, and universal filter keys to modify quick filters within the `FlowCollector` resource. {._abstract}
 

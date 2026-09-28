@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Expanding the cluster network IP address range {id="nw-cluster-network-range-edit_{{ context }}"}
+# Expand the cluster network IP address range {id="nw-cluster-network-range-edit_{{ context }}"}
 
 To expand the cluster network IP address range in {{ product_title }} to support more nodes, you can modify the cluster network CIDR mask using the `oc patch` command. {._abstract}
 

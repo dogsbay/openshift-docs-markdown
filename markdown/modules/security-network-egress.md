@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Securing egress traffic {id="security-network-egress_{{ context }}"}
+# Secure egress traffic {id="security-network-egress_{{ context }}"}
 
 A cluster administrator can control egress traffic by using either a router or firewall method. For example, you can use the IP allow list to control database access. A cluster administrator can assign one or more egress IP addresses to a project by configuring an egress IP address.  {._abstract}
 

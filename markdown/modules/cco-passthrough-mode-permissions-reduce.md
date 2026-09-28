@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 
-# Reducing permissions after installation {id="cco-passthrough-mode-permissions-reduce_{{ context }}"}
+# Reduce permissions after installation {id="cco-passthrough-mode-permissions-reduce_{{ context }}"}
 
 When using passthrough mode, after installing you can reduce the installed permissions to only those permissions required to run the cluster.  {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Trusting the certificate authority of the cluster-wide proxy {id="nw-configuring-cluster-wide-proxy_{{ context }}"}
+# Trust the certificate authority of the cluster-wide proxy {id="nw-configuring-cluster-wide-proxy_{{ context }}"}
 
 You can configure the cluster-wide proxy in the AWS Load Balancer Operator. After configuring the cluster-wide proxy, Operator Lifecycle Manager (OLM) automatically updates all the deployments of the Operators with the environment variables. {._abstract}
 

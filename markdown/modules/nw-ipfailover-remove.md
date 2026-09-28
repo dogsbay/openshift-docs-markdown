@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing IP failover {id="nw-ipfailover-remove_{{ context }}"}
+# Remove IP failover {id="nw-ipfailover-remove_{{ context }}"}
 
 To remove IP failover from your {{ product_title }} cluster and clean up iptables rules and virtual IP addresses, you can delete the deployment and service account, then run a cleanup job on each configured node. {._abstract}
 

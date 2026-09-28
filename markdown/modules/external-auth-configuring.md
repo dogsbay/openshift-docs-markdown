@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring an external OIDC identity provider for direct authentication {id="external-auth-configuring_{{ context }}"}
+# Configure an external OIDC identity provider for direct authentication {id="external-auth-configuring_{{ context }}"}
 
 Configure {{ product_title }} to use an external OIDC identity provider for direct authentication, enabling users to log in with existing corporate credentials while bypassing the built-in OAuth server for streamlined single sign-on. {._abstract}
 

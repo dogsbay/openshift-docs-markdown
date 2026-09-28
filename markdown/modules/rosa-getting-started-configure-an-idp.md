@@ -1,13 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure an identity provider {id="rosa-getting-started-configure-an-idp_{{ context }}"}
 
-{% if context == "rosa-getting-started" %}
-{%- set getting_started = true -%}
-{% endif %}
-{% if context == "rosa-quickstart" %}
-{%- set quickstart = true -%}
-{% endif %}
-
 You can configure different identity provider types for your {{ product_title }}  cluster. Supported types include GitHub, GitHub Enterprise, GitLab, Google, LDAP, OpenID Connect and htpasswd identity providers. {._abstract}
 
 
@@ -20,16 +13,13 @@ The htpasswd identity provider option is included only to enable the creation of
 
 The following procedure configures a GitHub identity provider as an example.
 
-{% if getting_started %}
-
 **Prerequisites**
 
 *   You have an AWS account.
-*   You installed and configured the latest {{ rosa_cli }}, `rosa`, on your workstation.
+*   You installed and configured the latest {{ rosa_cli }} on your workstation.
 *   You logged in to your Red&#160;Hat account using the {{ rosa_cli }}.
 *   You created a {{ product_title }} cluster.
 *   You have a GitHub user account.
-{% endif %}
 
 **Procedure**
 
@@ -101,10 +91,3 @@ The following procedure configures a GitHub identity provider as an example.
 *   [Understanding identity provider configuration](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/authentication_and_authorization/understanding-identity-provider)
 *   [GitHub OAuth apps documentation](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps)
 *   [Configuring identity providers for STS](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html/install_rosa_classic_clusters/rosa-sts-config-identity-providers)
-
-{% if context == "rosa-getting-started" %}
-{%- set getting_started = true -%}
-{% endif %}
-{% if context == "rosa-quickstart" %}
-{%- set quickstart = true -%}
-{% endif %}

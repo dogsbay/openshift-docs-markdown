@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Creating a horizontal pod autoscaler object for specific memory use {id="nodes-pods-autoscaling-creating-memory-specific_{{ context }}"}
+# Create a horizontal pod autoscaler object for specific memory use {id="nodes-pods-autoscaling-creating-memory-specific_{{ context }}"}
 
 You can use the {{ product_title }} CLI to create a horizontal pod autoscaler (HPA) that automatically scales an existing object. The HPA scales the pods associated with that object to maintain the average memory use that you specify. {._abstract}
 

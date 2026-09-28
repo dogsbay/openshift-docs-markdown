@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating multiple ingress resources through a single AWS Load Balancer {id="nw-creating-multiple-ingress-through-single-alb_{{ context }}"}
+# Create multiple ingress resources through a single AWS Load Balancer {id="nw-creating-multiple-ingress-through-single-alb_{{ context }}"}
 
 To route traffic to different services within a single domain, configure multiple ingress resources on a single AWS Load Balancer. This setup allows each resource to provide different endpoints while sharing the same load balancing infrastructure. {._abstract}
 

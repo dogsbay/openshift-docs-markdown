@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Specifying architecture for --import-mode {id="images-imagestream-specify-architecture_{{ context }}"}
+# Specify architecture for --import-mode {id="images-imagestream-specify-architecture_{{ context }}"}
 
 To control the architecture of your imported images and ensure proper deployment, use the `--import-mode=` flag. You can swap your imported image stream between multi-architecture and single architecture by excluding or including the `--import-mode=` flag as needed. {._abstract}
 

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Initializing and unsealing Vault {id="zero-trust-manager-initialize-vault-oidc_{{ context }}"}
+# Initialize and unseal Vault {id="zero-trust-manager-initialize-vault-oidc_{{ context }}"}
 
 To prepare a newly installed Vault server for operation, initialize and unseal it. This process loads the primary encryption key into memory so that Vault can decrypt data and protect other encryption keys. {._abstract}
 

@@ -164,11 +164,3 @@ For a two-node {{ product_title }} cluster with fencing (TNF), only the followin
     *   You must set the `disk.EnableUUID` parameter to `TRUE` on all {{ product_title }} nodes. If this parameter is not enabled, the Agent-based Installer validation fails.
     
     :::
-
-
-
-    :::note
-
-    For installations on {{ ibm_z_name }} (`s390x`) architecture, the minimum memory requirement is 24 GB RAM per host instead of 16 GB.
-    
-    :::

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Querying control plane metrics in hosted clusters by using the web console {id="hcp-cp-query-metrics-console_{{ context }}"}
+# Query control plane metrics in hosted clusters by using the web console {id="hcp-cp-query-metrics-console_{{ context }}"}
 
 After you enable metrics forwarding, you can verify that control plane metrics are ingested and query them from the web console. {._abstract}
 

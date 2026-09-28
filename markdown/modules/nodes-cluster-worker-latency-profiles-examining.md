@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Displaying resulting values of worker latency profile {id="nodes-cluster-worker-latency-profiles-examining_{{ context }}"}
+# Display resulting values of worker latency profile {id="nodes-cluster-worker-latency-profiles-examining_{{ context }}"}
 
 You can run specific commands to display the values for the worker latency profile. You can then check the displayed values for information accuracy. {._abstract}
 

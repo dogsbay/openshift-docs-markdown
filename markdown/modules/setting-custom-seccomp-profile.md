@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting up the custom seccomp profile {id="setting-custom-seccomp-profile_{{ context }}"}
+# Set up the custom seccomp profile {id="setting-custom-seccomp-profile_{{ context }}"}
 
 **Prerequisite**
 

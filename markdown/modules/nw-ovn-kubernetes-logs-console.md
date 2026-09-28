@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing the OVN-Kubernetes logs using the web console {id="nw-ovn-kubernetes-logs-console_{{ context }}"}
+# View the OVN-Kubernetes logs using the web console {id="nw-ovn-kubernetes-logs-console_{{ context }}"}
 
 To view OVN-Kubernetes pod logs in the {{ product_title }} web console, you can open pod logs for each container in the `openshift-ovn-kubernetes` project. {._abstract}
 

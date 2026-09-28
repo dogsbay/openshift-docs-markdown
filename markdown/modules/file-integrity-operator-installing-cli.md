@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the File Integrity Operator using the CLI {id="installing-file-integrity-operator-using-cli_{{ context }}"}
+# Install the File Integrity Operator using the CLI {id="installing-file-integrity-operator-using-cli_{{ context }}"}
 
 Install the File Integrity Operator from the {{ oc_first }} by creating `Namespace`, `OperatorGroup`, and `Subscription` objects. {._abstract}
 

@@ -2,7 +2,9 @@
 
 # Schedule recurring upgrades for your cluster {id="upgrade-auto_{{ context }}"}
 
-You can use {{ cluster_manager }} to schedule recurring, automatic upgrades for z-stream patch versions for your {{ product_title }} cluster. Based on upstream changes, there might be times when no updates are released. Therefore, no upgrade occurs for that week. {._abstract}
+You can use {{ cluster_manager }} to schedule recurring, automatic upgrades for z-stream patch versions for your {{ product_title }} cluster. Recurring upgrades keep your cluster secure and up to date without manual effort. {._abstract}
+
+Upgrades occur on a weekly cadence. Based on upstream changes, there might be times when no updates are released. Therefore, no upgrade occurs for that week.
 
 **Procedure**
 

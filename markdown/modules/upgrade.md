@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding {{ product_title }} cluster upgrades {id="upgrade_{{ context }}"}
+# Understanding cluster upgrades {id="upgrade_{{ context }}"}
 
-When upgrades are made available for your {{ product_title }} cluster, you can upgrade to the newest version through {{ cluster_manager_first }} or {{ cluster_manager }} CLI. You can set your upgrade policies on existing clusters or during cluster creation, and upgrades can be scheduled to occur automatically or manually. {._abstract}
+You can upgrade your {{ product_title }} cluster to the newest available version through {{ cluster_manager_first }} or the {{ cluster_manager }} command-line interface (CLI). Keeping your cluster up to date ensures you receive the latest features, fixes, and security enhancements. {._abstract}
+
+You can set your upgrade policies on existing clusters or during cluster creation, and upgrades can be scheduled to occur automatically or manually.
 
 
 :::important
@@ -13,7 +15,7 @@ Before upgrading a Workload Identity Federation (WIF)-enabled {{ product_title }
 
 Red Hat Site Reliability Engineers (SRE) will provide a curated list of available versions for your {{ product_title }} clusters. For each cluster you will be able to review the full list of available releases, as well as the corresponding release notes. {{ cluster_manager }} will enable installation of clusters at the latest supported versions, and upgrades can be canceled at any time.
 
-You can also set a grace period for how long `PodDisruptionBudget` protected workloads are respected during upgrades. After this grace period, any workloads protected by  `PodDisruptionBudget` that have not been successfully drained from a node, will be forcibly deleted.
+You can also set a grace period for how long `PodDisruptionBudget` protected workloads are respected during upgrades. After this grace period, any workloads protected by `PodDisruptionBudget` that have not been successfully drained from a node, will be forcibly deleted.
 
 
 :::note
@@ -81,6 +83,6 @@ For more information on how to update a WIF configuration, see the  _Additional 
 
 :::note
 
-The update path to a brand new release of {{ product_title }} is not available in the stable channel until 45 to 90 days after the initial GA of a newer y-stream version.
+The update path to a brand new release of {{ product_title }} is not available in the stable channel until 45 to 90 days after the initial general availability (GA) of a newer y-stream version.
 
 :::

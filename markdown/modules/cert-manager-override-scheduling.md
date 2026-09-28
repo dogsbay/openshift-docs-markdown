@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring scheduling overrides for cert-manager components {id="cert-manager-override-scheduling_{{ context }}"}
+# Configure scheduling overrides for cert-manager components {id="cert-manager-override-scheduling_{{ context }}"}
 
 You can configure the pod scheduling from the {{ cert_manager_operator }} API for the {{ cert_manager_operator }} components, such as the cert-manager controller, CA injector, and Webhook. {._abstract}
 

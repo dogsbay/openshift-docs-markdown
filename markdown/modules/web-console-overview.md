@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Understanding and accessing the web console {id="web-console-overview_{{ context }}"}
+# Understand and access the web console {id="web-console-overview_{{ context }}"}
 
 The web console runs as a pod on the control plane node. The static assets required to run the web console are served by the pod. {._abstract}
 

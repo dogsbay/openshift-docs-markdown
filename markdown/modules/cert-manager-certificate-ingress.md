@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating certificates for the Ingress Controller {id="cert-manager-certificate-ingress_{{ context }}"}
+# Create certificates for the Ingress Controller {id="cert-manager-certificate-ingress_{{ context }}"}
 
 You can create a certificate for the Ingress Controller and then replace bootstrapped default self-signed certificates with cert-manager-managed external certificates. {._abstract}
 

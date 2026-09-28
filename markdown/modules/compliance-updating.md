@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Updating remediations {id="compliance-updating_{{ context }}"}
+# Update remediations {id="compliance-updating_{{ context }}"}
 
 When you update compliance content to a newer version, the Compliance Operator marks previously applied remediations as **Outdated**. Review these remediations and apply the updated versions to ensure your nodes use the latest configuration. {._abstract}
 

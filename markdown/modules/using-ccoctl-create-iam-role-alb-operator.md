@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an AWS IAM role by using the Cloud Credential Operator utility {id="using-ccoctl-create-iam-role-alb-operator_{{ context }}"}
+# Create an AWS IAM role by using the Cloud Credential Operator utility {id="using-ccoctl-create-iam-role-alb-operator_{{ context }}"}
 
 To enable the {{ aws_short }} Load Balancer Operator to interact with subnets and VPCs, create an {{ aws_short }} IAM role by using the Cloud Credential Operator utility (`ccoctl`). {._abstract}
 

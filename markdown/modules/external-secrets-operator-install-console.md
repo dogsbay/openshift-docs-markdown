@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ external_secrets_operator }} by using the web console {id="external-secrets-operator-install-console_{{ context }}"}
+# Install the {{ external_secrets_operator }} by using the web console {id="external-secrets-operator-install-console_{{ context }}"}
 
 You can install the {{ external_secrets_operator }} by using the {{ product_title }} web console. You can select the desired update channel and approval strategy, and deploy the Operator into the recommended namespace without manually defining YAML resources. {._abstract}
 

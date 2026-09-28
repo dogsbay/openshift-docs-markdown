@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling user workload monitoring {id="external-secrets-enable-user-workload-monitor_{{ context }}"}
+# Enable user workload monitoring {id="external-secrets-enable-user-workload-monitor_{{ context }}"}
 
 By default, the {{ product_title }} monitoring stack does not scrape metrics from user-installed applications like the External Secrets Operator. Enabling user workload monitoring is necessary to collect critical operational data, such as synchronization status, API error rates, and controller performance. This helps you to configure custom alerts for secret sync failures and create dashboards to monitor the overall health of your secret management system. You can enable monitoring for user-defined projects by configuring user workload monitoring in the cluster. For more information, see "Setting up metrics collection for user-defined projects". {._abstract}
 

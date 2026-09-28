@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Troubleshooting OAuth API events {id="oauth-troubleshooting-api-events_{{ context }}"}
+# Troubleshoot OAuth API events {id="oauth-troubleshooting-api-events_{{ context }}"}
 
 Use service account event messages to diagnose OAuth configuration issues when the API server returns `unexpected condition` errors that are otherwise difficult to debug. {._abstract}
 

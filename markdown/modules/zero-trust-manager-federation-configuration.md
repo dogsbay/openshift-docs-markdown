@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring SPIRE federation with the https_spiffe profile {id="zero-trust-manager-federation-configuration_{{ context }}"}
+# Configure SPIRE federation with the https_spiffe profile {id="zero-trust-manager-federation-configuration_{{ context }}"}
 
 The {{ zero_trust_full }} includes SPIRE Federation support, allowing multiple independent SPIRE deployments to establish trust relationships. This procedure demonstrates how to configure federation using the `https_spiffe` profile, which uses SPIFFE-based TLS authentication between SPIRE servers. {._abstract}
 

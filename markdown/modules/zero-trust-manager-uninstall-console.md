@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling the {{ zero_trust_full }} {id="zero-trust-manager-uninstall-console_{{ context }}"}
+# Uninstall the {{ zero_trust_full }} {id="zero-trust-manager-uninstall-console_{{ context }}"}
 
 To remove the {{ zero_trust_full }} from your cluster, uninstall the Operator using the web console. This helps you clean up resources and delete the service from your environment. {._abstract}
 

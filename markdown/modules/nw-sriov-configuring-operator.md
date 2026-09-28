@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the SR-IOV Network Operator {id="nw-sriov-configuring-operator_{{ context }}"}
+# Configure the SR-IOV Network Operator {id="nw-sriov-configuring-operator_{{ context }}"}
 
 To manage SR-IOV network devices and network attachments in your cluster, configure the Single Root I/O Virtualization (SR-IOV) Network Operator. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using nbctl commands for ANP and BANP {id="metrics-commands-anp_{{ context }}"}
+# Use nbctl commands for ANP and BANP {id="metrics-commands-anp_{{ context }}"}
 
 To inspect `AdminNetworkPolicy` and `BaselineAdminNetworkPolicy` resources in the OVN northbound database (nbdb) in {{ product_title }}, you can run `ovn-nbctl` from the `nbdb` container on an OVN-Kubernetes node. Use the commands in this procedure to examine `ACL`, `Address_Set`, and `Port_Group` objects. {._abstract}
 

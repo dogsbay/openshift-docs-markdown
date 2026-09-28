@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the secret {id="identity-provider-creating-secret_{{ context }}"}
+# Create the secret {id="identity-provider-creating-secret_{{ context }}"}
 
 Create a `Secret` object in the `openshift-config` namespace to store the client secret for your identity provider. The identity provider custom resource (CR) references this secret during configuration. {._abstract}
 

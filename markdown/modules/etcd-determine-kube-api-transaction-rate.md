@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Determining Kubernetes API transaction rate for your environment {id="etcd-determine-kube-api-transaction-rate_{{ context }}"}
+# Determine Kubernetes API transaction rate for your environment {id="etcd-determine-kube-api-transaction-rate_{{ context }}"}
 
 Test sustained Kubernetes API transaction rates for stretched control plane deployments by using `kube-burner-ocp` density profiles. Validate limits before production workloads exceed etcd capacity. {._abstract}
 

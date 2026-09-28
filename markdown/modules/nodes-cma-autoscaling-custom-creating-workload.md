@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a custom metrics autoscaler to a workload {id="nodes-cma-autoscaling-custom-creating-workload_{{ context }}"}
+# Add a custom metrics autoscaler to a workload {id="nodes-cma-autoscaling-custom-creating-workload_{{ context }}"}
 
 You can create a custom metrics autoscaler for a workload that is created by a `Deployment`, `StatefulSet`, or `custom resource` object.
 

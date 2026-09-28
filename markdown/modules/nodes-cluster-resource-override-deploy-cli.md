@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Cluster Resource Override Operator using the CLI {id="nodes-cluster-resource-override-deploy-cli_{{ context }}"}
+# Install the Cluster Resource Override Operator using the CLI {id="nodes-cluster-resource-override-deploy-cli_{{ context }}"}
 
 You can use the OpenShift CLI to install the Cluster Resource Override Operator to help you control overcommit in your cluster.  {._abstract}
 

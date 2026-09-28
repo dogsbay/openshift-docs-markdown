@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a managed DNS zone {id="ocm-cli-create-managed-dns-zone_{{ context }}"}
+# Create a managed DNS zone {id="ocm-cli-create-managed-dns-zone_{{ context }}"}
 
-Instead of granting {{ product_title }} broad administrative control over your host projects, you can create your own managed DNS zones and provide {{ product_title }} with strictly limited, scoped permissions before cluster creation. This allows you to maintain rigorous security compliance and adhere to the principle of least privilege, ensuring that {{ product_title }} has exactly what it needs to run without risk to your other critical cloud workloads. {._abstract}
+Instead of granting {{ product_title }} broad administrative control over your host projects, you can create your own managed Domain Name System (DNS) zones and provide {{ product_title }} with strictly limited, scoped permissions before cluster creation. This maintains security compliance and adheres to the principle of least privilege. {._abstract}
 
 Use the {{ cluster_manager }} CLI (`ocm`) to create a managed DNS zone associated with your account.
 
@@ -10,7 +10,7 @@ Use the {{ cluster_manager }} CLI (`ocm`) to create a managed DNS zone associate
 *   You have downloaded version `v1.0.12` or later of the {{ cluster_manager }} CLI (`ocm`) for your operating system from the [Downloads](https://console.redhat.com/openshift/downloads) page on {{ cluster_manager }}.
 *   You have the required permissions to create a DNS zone in your {{ GCP }} account.
 *   You have identified the {{ GCP }} project and network where your {{ product_title }} cluster will be deployed, as you will need to associate the DNS zone with this information during creation.
-*   You have created a Workload Identity Federation (WIF) configuration to use WIF for cluster authentication. For more information, see _Creating a Workload Identity Federation configuration_.
+*   You have created a Workload Identity Federation (WIF) configuration to use WIF for cluster authentication. For more information, see "Creating a Workload Identity Federation configuration" in the __Additional resources__.
 
 **Procedure**
 
@@ -30,12 +30,11 @@ Use the {{ cluster_manager }} CLI (`ocm`) to create a managed DNS zone associate
 
 
 `--network-id`
-:   Specifies the network associated with the DNS zone. This is typically the network where your {{ product_title }} cluster is deployed.
-    Note the DNS zone ID returned in the output. You will need this ID when creating your cluster.
+:   Specifies the network associated with the DNS zone. This is typically the network where your {{ product_title }} cluster is deployed. Note the DNS zone ID returned in the output. You will need this ID when creating your cluster.
 
 
 `--network-project-id`
-:   Optional. Specifies the ID of the {{ GCP }} project where the VPC network is located if it is different from the project where the DNS zone is being created. If not specified, it is assumed to be the same as the project where the DNS zone is being created.
+:   Optional. Specifies the ID of the {{ GCP }} project where the Virtual Private Cloud (VPC) network is located if it is different from the project where the DNS zone is being created. If not specified, it is assumed to be the same as the project where the DNS zone is being created.
 
 **Verification**
 

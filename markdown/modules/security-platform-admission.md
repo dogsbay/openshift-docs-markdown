@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Protecting control plane with admission plugins {id="security-platform-admission_{{ context }}"}
+# Protect control plane with admission plugins {id="security-platform-admission_{{ context }}"}
 
 Where RBAC controls access rules between users and groups and available projects, you can define access to the {{ product_title }} master API by using _admission plugins_ .
  

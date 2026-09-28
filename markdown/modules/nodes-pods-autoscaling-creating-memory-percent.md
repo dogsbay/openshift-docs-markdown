@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Creating a horizontal pod autoscaler object for a percent of memory use {id="nodes-pods-autoscaling-creating-memory-percent_{{ context }}"}
+# Create a horizontal pod autoscaler object for a percent of memory use {id="nodes-pods-autoscaling-creating-memory-percent_{{ context }}"}
 
 You can use the {{ product_title }} CLI to create a horizontal pod autoscaler (HPA) that automatically scales an existing object based on a percent of memory use. The HPA scales the pods associated with that object to maintain the memory use that you specify. {._abstract}
 

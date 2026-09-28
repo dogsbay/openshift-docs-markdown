@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Azure with the SPIFFE identity federation {id="zero-trust-manager-spiffe-identity-federation_{{ context }}"}
+# Configure Azure with the SPIFFE identity federation {id="zero-trust-manager-spiffe-identity-federation_{{ context }}"}
 
 Configure {{ azure_first }} with SPIFFE identity federation to enable password-free, automated authentication for the demonstration application. This federates the User Managed Identity with the SPIFFE identity associated with your workload application. {._abstract}
 

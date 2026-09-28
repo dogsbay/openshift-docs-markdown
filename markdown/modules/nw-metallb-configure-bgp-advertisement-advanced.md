@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Configuring MetalLB with a BGP advertisement and an advanced use case {id="nw-metallb-configure-BGP-advertisement-advanced-use-case_{{ context }}"}
+# Configure MetalLB with a BGP advertisement and an advanced use case {id="nw-metallb-configure-BGP-advertisement-advanced-use-case_{{ context }}"}
 
 Configure MetalLB so that MetalLB assigns IP addresses to load-balancer services in the ranges between `203.0.113.200` and `203.0.113.203` and between `fc00:f853:ccd:e799::0` and `fc00:f853:ccd:e799::f`. {._abstract}
 

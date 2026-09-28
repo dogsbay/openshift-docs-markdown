@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a custom network policy to allow egress to a specific provider {id="external-secrets-operator-egress-specific-provider_{{ context }}"}
+# Add a custom network policy to allow egress to a specific provider {id="external-secrets-operator-egress-specific-provider_{{ context }}"}
 
 You must configure custom policies through the `ExternalSecretsConfig` custom resource to allow all egress to a specific provider. {._abstract}
 

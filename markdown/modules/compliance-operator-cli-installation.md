@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Compliance Operator using the CLI {id="installing-compliance-operator-cli_{{ context }}"}
+# Install the Compliance Operator using the CLI {id="installing-compliance-operator-cli_{{ context }}"}
 
 You can install the Compliance Operator by using the OpenShift CLI by creating the required namespace, Operator group, and subscription objects. {._abstract}
 

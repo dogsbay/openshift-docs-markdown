@@ -1,10 +1,10 @@
 ---
-title: Understand Gateway API
+title: Understanding Gateway API
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
-# Understand Gateway API {id="understand-gateway-api_{{ context }}"}
+# Understanding Gateway API {id="understand-gateway-api_{{ context }}"}
 {%- set context = "understand-gateway-api" %}
 
 To optimize network traffic management and implement routing policies in {{ product_title }}, use Gateway API. By adopting this community-managed Kubernetes mechanism, you can configure advanced routing at both the transport (L4) and application (L7) layers while leveraging various vendor-supported implementations to meet your specific networking requirements. {._abstract}

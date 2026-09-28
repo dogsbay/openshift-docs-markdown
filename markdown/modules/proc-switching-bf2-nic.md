@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Switching Bluefield-2 from DPU mode to NIC mode {id="proc-switching-bf2-nic_{{ context }}"}
+# Switch Bluefield-2 from DPU mode to NIC mode {id="proc-switching-bf2-nic_{{ context }}"}
 
 Use the following procedure to switch Bluefield-2 from data processing units (DPU) mode to network interface controller (NIC) mode. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying Ingress Node Firewall Operator {id="nw-infw-operator-deploying_{{ context }}"}
+# Deploy Ingress Node Firewall Operator {id="nw-infw-operator-deploying_{{ context }}"}
 
 To deploy the Ingress Node Firewall Operator, create a `IngressNodeFirewallConfig` custom resource that will deploy the Operator’s daemon set. You can deploy one or multiple `IngressNodeFirewall` CRDs to nodes by applying firewall rules. {._abstract}
 

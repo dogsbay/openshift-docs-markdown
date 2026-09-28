@@ -11,7 +11,7 @@ You must enable user workload monitoring so that Prometheus can scrape user name
 
 **Procedure**
 
-1.  Create a `ConfigMap` to enable user workload monitoring in the `openshift-monitoring` namespace:
+1.  Create a file named `cluster-monitoring-config.yaml` with the following content:
     ```yaml
     apiVersion: v1
     kind: ConfigMap

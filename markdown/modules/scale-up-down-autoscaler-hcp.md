@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Scaling up and down workloads in a hosted cluster {id="scale-up-down-autoscaler-hcp_{{ context }}"}
+# Scale up and down workloads in a hosted cluster {id="scale-up-down-autoscaler-hcp_{{ context }}"}
 
 To scale up and down the workloads in your hosted cluster, you can use the `ScaleUpAndScaleDown` behavior. The compute nodes scale up when you add workloads and scale down when you delete workloads. {._abstract}
 

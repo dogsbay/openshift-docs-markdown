@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the {{ hcp }} management cluster {id="co-hcp-mgmt-config_{{ context }}"}
+# Configure the {{ hcp }} management cluster {id="co-hcp-mgmt-config_{{ context }}"}
 
 If you are hosting your own {{ hcp_capital }} or Hypershift environment and want to scan a Hosted Cluster from the management cluster, you will need to set the name and prefix namespace for the target Hosted Cluster. You can achieve this by creating a `TailoredProfile`. {._abstract}
 

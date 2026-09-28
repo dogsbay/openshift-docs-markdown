@@ -65,7 +65,7 @@ You can create a virtual machine (VM) from a `VirtualMachine` manifest. To simpl
     *   `namespace: openshift-virtualization-os-images` specifies the namespace for the boot source. Golden images are stored in the `openshift-virtualization-os-images` namespace.
     *   `instancetype: inferFromVolume: imported-volume-mk4lj` specifies the instance type inferred from the selected `DataSource` object.
     *   `preference: inferFromVolume: imported-volume-mk4lj` specifies that the preference is inferred from the selected `DataSource` object.
-    *   `type: virtio` specifies the use of a custom video device (a VirtIO device in this example) to enable hardware graphics acceleration. Enabling a custom video device is in Technology Preview for {{ VirtProductName }} 4.21.
+    *   `type: virtio` specifies the use of a custom video device (a VirtIO device in this example) to enable hardware graphics acceleration. Enabling a custom video device is in Technology Preview for {{ VirtProductName }} {{ VirtVersion }}.
 1.  Create a virtual machine by using the manifest file:
     ```terminal
     $ oc create -f <vm_manifest_file>.yaml

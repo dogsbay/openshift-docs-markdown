@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Controlling pod security admission synchronization {id="security-context-constraints-psa-opting_{{ context }}"}
+# Control pod security admission synchronization {id="security-context-constraints-psa-opting_{{ context }}"}
 
 To customize which namespaces have their pod security admission labels automatically updated, you can enable or disable synchronization for most namespaces. {._abstract}
 

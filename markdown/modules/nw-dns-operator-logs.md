@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing DNS Operator logs {id="nw-dns-operator-logs_{{ context }}"}
+# View DNS Operator logs {id="nw-dns-operator-logs_{{ context }}"}
 
 You can view DNS Operator logs to troubleshoot DNS issues, verify configuration changes, and monitor activity by using the by using the `oc logs` command. {._abstract}
 

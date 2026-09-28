@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the External Secrets operand by using the CLI {id="external-secrets-operand-install-cli_{{ context }}"}
+# Install the External Secrets operand by using the CLI {id="external-secrets-operand-install-cli_{{ context }}"}
 
 To install the External Secrets operand, create an instance of the `ExternalSecrets` custom resource by using the command-line interface (CLI) which deploys necessary operand components such as the core controller, webhook, and certificate controller into the `external-secrets` namespace. {._abstract}
 

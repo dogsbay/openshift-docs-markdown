@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling or enabling the SR-IOV Network Operator admission controller webhook {id="disable-enable-sr-iov-operator-admission-control-webhook_{{ context }}"}
+# Disable or enable the SR-IOV Network Operator admission controller webhook {id="disable-enable-sr-iov-operator-admission-control-webhook_{{ context }}"}
 
 To manage validation of your network configurations, enable or disable the SR-IOV Network Operator admission controller webhook. {._abstract}
 

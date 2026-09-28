@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Verifying that the TuneD profiles are applied {id="verifying-tuned-profiles-are-applied_{{ context }}"}
+# Verify that the TuneD profiles are applied {id="verifying-tuned-profiles-are-applied_{{ context }}"}
 
 Verify the TuneD profiles that are applied to your cluster node. {._abstract}
 

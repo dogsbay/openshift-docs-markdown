@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Managing certificates for the platform {id="security-platform-certificates_{{ context }}"}
+# Manage certificates for the platform {id="security-platform-certificates_{{ context }}"}
 
 {{ product_title }} has multiple components within its framework that use REST-based HTTPS communication leveraging encryption via TLS certificates. You can configure these certificates during installation.
  

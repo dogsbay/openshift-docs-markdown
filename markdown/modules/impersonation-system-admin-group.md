@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Impersonating the system:admin group {id="impersonation-system-admin-group_{{ context }}"}
+# Impersonate the system:admin group {id="impersonation-system-admin-group_{{ context }}"}
 
 To impersonate a user who has cluster administration privileges through group membership, you must specify both the user and the associated groups in the impersonation command. {._abstract}
 

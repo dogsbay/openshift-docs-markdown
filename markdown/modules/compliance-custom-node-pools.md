@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Scanning custom node pools {id="compliance-custom-node-pools_{{ context }}"}
+# Scan custom node pools {id="compliance-custom-node-pools_{{ context }}"}
 
 The Compliance Operator does not maintain a copy of each node pool configuration.  {._abstract}
 

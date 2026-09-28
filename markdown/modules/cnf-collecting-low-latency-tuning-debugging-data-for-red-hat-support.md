@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Collecting low latency tuning debugging data for Red Hat Support {id="cnf-collecting-low-latency-tuning-debugging-data-for-red-hat-support_{{ context }}"}
+# Collect low latency tuning debugging data for Red Hat Support {id="cnf-collecting-low-latency-tuning-debugging-data-for-red-hat-support_{{ context }}"}
 
 To debug low latency setup issues when opening a support case, collect diagnostic information for Red Hat Support using the `must-gather` tool. This command gathers essential data, such as node tuning and NUMA topology, from your {{ product_title }} cluster. {._abstract}
 

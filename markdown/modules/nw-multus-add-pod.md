@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a pod to a secondary network {id="nw-multus-add-pod_{{ context }}"}
+# Add a pod to a secondary network {id="nw-multus-add-pod_{{ context }}"}
 
 To enable a pod to use additional network interfaces in {{ product_title }}, you can attach the pod to a secondary network. The pod continues to send normal cluster-related network traffic over the default network. {._abstract}
 

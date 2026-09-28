@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring journald settings {id="machineconfig-modify-journald_{{ context }}"}
+# Configure journald settings {id="machineconfig-modify-journald_{{ context }}"}
 
 To configure settings for the `journald` service on {{ product_title }} nodes, you can modify the appropriate configuration file and pass the file to the appropriate pool of nodes as a machine config. {._abstract}
 

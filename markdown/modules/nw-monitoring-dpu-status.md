@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Monitoring the status of DPU {id="nw-dpu-monitoring-status_{{ context }}"}
+# Monitor the status of DPU {id="nw-dpu-monitoring-status_{{ context }}"}
 
 You can monitor the DPU infrastructure status to check the current state and health of your DPU devices across the cluster. {._abstract}
 

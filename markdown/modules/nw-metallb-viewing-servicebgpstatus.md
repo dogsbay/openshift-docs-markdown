@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing the ServiceBGPStatus custom resource {id="nw-viewing-service-bgp-status_{{ context }}"}
+# View the ServiceBGPStatus custom resource {id="nw-viewing-service-bgp-status_{{ context }}"}
 
 You can verify border gateway protocol (BGP) advertisement status for your services by viewing the `ServiceBGPStatus` custom resource, which shows which BGP peers receive advertisements from each node. This is essential for debugging connectivity in telco environments. {._abstract}
 

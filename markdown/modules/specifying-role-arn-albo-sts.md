@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the ARN role for the AWS Load Balancer Operator {id="specifying-role-arn-albo-sts_{{ context }}"}
+# Configure the ARN role for the AWS Load Balancer Operator {id="specifying-role-arn-albo-sts_{{ context }}"}
 
 You can configure the Amazon Resource Name (ARN) role for the {{ aws_short }} Load Balancer Operator as an environment variable. You can configure the ARN role by using the CLI. {._abstract}
 

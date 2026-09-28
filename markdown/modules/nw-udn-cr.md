@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a UserDefinedNetwork CR by using the CLI {id="nw-udn-cr_{{ context }}"}
+# Create a UserDefinedNetwork CR by using the CLI {id="nw-udn-cr_{{ context }}"}
 
 Create a `UserDefinedNetwork` CR by using the CLI to enable namespace-scoped network segmentation and isolation, allowing you to define custom Layer 2 or Layer 3 network topologies for pods within specific namespaces. {._abstract}
 

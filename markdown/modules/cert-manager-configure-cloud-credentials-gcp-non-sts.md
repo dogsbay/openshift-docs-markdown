@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Authenticating on {{ gcp_short }} {id="cert-manager-configure-cloud-credentials-gcp-non-sts_{{ context }}"}
+# Authenticate on {{ gcp_short }} {id="cert-manager-configure-cloud-credentials-gcp-non-sts_{{ context }}"}
 
 To securely access {{ gcp_first }} resources, authenticate your workloads on {{ gcp_short }} by using the {{ cert_manager_operator }}. {._abstract}
 

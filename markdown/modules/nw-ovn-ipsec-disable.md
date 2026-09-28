@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling IPsec encryption {id="nw-ovn-ipsec-disable_{{ context }}"}
+# Disable IPsec encryption {id="nw-ovn-ipsec-disable_{{ context }}"}
 
 To disable IPsec encryption in {{ product_title }}, you can patch the cluster `Network` custom resource and set `ipsecConfig` mode to `Disabled`. {._abstract}
 

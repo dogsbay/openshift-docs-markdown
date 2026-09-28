@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accessing performance metrics {id="nodes-cma-autoscaling-custom-metrics-access_{{ context }}"}
+# Access performance metrics {id="nodes-cma-autoscaling-custom-metrics-access_{{ context }}"}
 
 You can access the metrics and run queries by using the {{ product_title }} web console.
 

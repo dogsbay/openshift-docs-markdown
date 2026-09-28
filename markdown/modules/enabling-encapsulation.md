@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring mount namespace encapsulation {id="enabling-encapsulation_{{ context }}"}
+# Configure mount namespace encapsulation {id="enabling-encapsulation_{{ context }}"}
 
 You can configure mount namespace encapsulation so that a cluster runs with less resource overhead. {._abstract}
 

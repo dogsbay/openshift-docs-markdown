@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Syncing {{ product_title }} groups with the LDAP server {id="ldap-syncing-running-openshift_{{ context }}"}
+# Sync {{ product_title }} groups with the LDAP server {id="ldap-syncing-running-openshift_{{ context }}"}
 
 Sync existing {{ product_title }} groups with your LDAP server so you can update membership for groups that already exist in the cluster. {._abstract}
 

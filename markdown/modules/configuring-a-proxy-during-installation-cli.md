@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a proxy during installation using the CLI {id="configuring-a-proxy-during-installation-cli_{{ context }}"}
+# Configure a proxy during installation using the CLI {id="configuring-a-proxy-during-installation-cli_{{ context }}"}
 
 If you are installing a {{ product_title }} cluster into an existing Virtual Private Cloud (VPC), you can use the ROSA CLI (`rosa`) to enable a cluster-wide HTTP or HTTPS proxy during installation. {._abstract}
 

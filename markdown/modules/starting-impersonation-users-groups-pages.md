@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Starting impersonation from the Users or Groups pages {id="starting-impersonation-users-groups-pages"}
+# Start impersonation from the Users or Groups pages {id="starting-impersonation-users-groups-pages_{{ context }}"}
 
 You can start impersonation for users or groups from the **Users** or **Groups** pages in the {{ product_title }} Console. {._abstract}
 

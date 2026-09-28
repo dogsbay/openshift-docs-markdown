@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring IP failover in your cluster {id="nw-ipfailover-configuration_{{ context }}"}
+# Configure IP failover in your cluster {id="nw-ipfailover-configuration_{{ context }}"}
 
 To configure IP failover in your {{ product_title }} cluster and provide high availability for Virtual IP addresses, you can create a deployment that runs Keepalived on selected nodes to monitor services and fail over VIPs when nodes become unavailable. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring SriovNetwork in application namespaces {id="nw-configuring-sriov-in-app-namespace_{{ context }}"}
+# Configure SriovNetwork in application namespaces {id="nw-configuring-sriov-in-app-namespace_{{ context }}"}
 
 When an SriovNetwork custom resource (CR) is deployed in an application namespace, do not define or populate the `spec.networkNamespace` field. In this scenario, the NetworkAttachmentDefinition will be created in the same namespace as the SriovNetwork CR. {._abstract}
 

@@ -8,11 +8,13 @@ a {{ product_title }}
 {%- if openshift_dedicated %}
 an {{ product_title }}
 {%- endif %}
-cluster, the sizing of the control plane and infrastructure nodes are automatically determined by the compute node count. To maintain cluster stability, the Red&#160;Hat Site Reliability Engineering (SRE) team automatically adjusts your control plane and infrastructure nodes whenever you change your compute node count. {._abstract}
+cluster, the sizing of the control plane and infrastructure nodes is automatically determined by the compute node count. {._abstract}
+
+To maintain cluster stability, the Red&#160;Hat Site Reliability Engineering (SRE) team automatically adjusts your control plane and infrastructure nodes whenever you change your compute node count.
 
 ## Node sizing during installation {id="node-sizing-during-installation_{{ context }}"}
 
-During the installation process, the sizing of the control plane and infrastructure nodes are dynamically calculated. The sizing calculation is based on the number of compute nodes in a cluster.
+During the installation process, the sizing of the control plane and infrastructure nodes is dynamically calculated. The sizing calculation is based on the number of compute nodes in a cluster.
 
 The following
 {%- if openshift_rosa %}
@@ -96,10 +98,7 @@ AWS control plane and infrastructure node size:
 :::note
 
 The maximum number of compute nodes on
-{%- if openshift_rosa %}
-{{ product_title }}
-{%- endif %}
-{%- if openshift_dedicated %}
+{%- if openshift_rosa or openshift_dedicated %}
 {{ product_title }}
 {%- endif %}
 clusters version 4.14.14 and later is 249. For earlier versions, the limit is 180.
@@ -117,15 +116,12 @@ Postinstallation scaling requirements for control plane and infrastructure nodes
 
 The resizing alert is triggered for the control plane nodes in a cluster when the following occurs:
 
-*   Control plane nodes sustain over 66% utilization on average in a cluster.
+*   Control plane nodes sustain over 66% usage on average in a cluster.
 
     :::note
 
     The maximum number of compute nodes on
-{%- if openshift_rosa %}
-    {{ product_title }}
-{%- endif %}
-{%- if openshift_dedicated %}
+{%- if openshift_rosa or openshift_dedicated %}
     {{ product_title }}
 {%- endif %}
     is 180.
@@ -135,23 +131,20 @@ The resizing alert is triggered for the control plane nodes in a cluster when th
 
 **Rules for infrastructure node resizing alerts**
 
-Resizing alerts are triggered for the infrastructure nodes in a cluster when it has high-sustained CPU or memory utilization. This high-sustained utilization status is:
+Resizing alerts are triggered for the infrastructure nodes in a cluster when it has high-sustained CPU or memory usage. This high-sustained usage status is:
 
-*   Infrastructure nodes sustain over 50% utilization on average in a cluster with a single availability zone using 2 infrastructure nodes.
-*   Infrastructure nodes sustain over 66% utilization on average in a cluster with multiple availability zones using 3 infrastructure nodes.
+*   Infrastructure nodes sustain over 50% usage on average in a cluster with a single availability zone using 2 infrastructure nodes.
+*   Infrastructure nodes sustain over 66% usage on average in a cluster with multiple availability zones using 3 infrastructure nodes.
 
     :::note
 
     The maximum number of compute nodes on
-{%- if openshift_rosa %}
-    {{ rosa_title }}
-{%- endif %}
-{%- if openshift_dedicated %}
+{%- if openshift_rosa or openshift_dedicated %}
     {{ product_title }}
 {%- endif %}
     cluster versions 4.14.14 and later is 249. For earlier versions, the limit is 180.
 
-    The resizing alerts only appear after sustained periods of high utilization. Short usage spikes, such as a node temporarily going down causing the other node to scale up, do not trigger these alerts.
+    The resizing alerts only appear after sustained periods of high usage. Short usage spikes, such as a node temporarily going down causing the other node to scale up, do not trigger these alerts.
     
     :::
 

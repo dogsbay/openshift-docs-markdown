@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a passthrough route {id="nw-ingress-creating-a-passthrough-route_{{ context }}"}
+# Create a passthrough route {id="nw-ingress-creating-a-passthrough-route_{{ context }}"}
 
 To send encrypted traffic directly to the destination without decryption at the router, configure a route with passthrough termination by running the `oc create route` command. This configuration requires no key or certificate on the route, as the destination pod handles TLS termination. {._abstract}
 

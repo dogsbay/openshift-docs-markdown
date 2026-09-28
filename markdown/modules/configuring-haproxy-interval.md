@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring HAProxy reload interval {id="configuring-haproxy-interval_{{ context }}"}
+# Configure HAProxy reload interval {id="configuring-haproxy-interval_{{ context }}"}
 
 You can configure the HAProxy reload interval, so that when HAProxy reloads it generates a new process that handles new connections by using the updated configuration. {._abstract}
 

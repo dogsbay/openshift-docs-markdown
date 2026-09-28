@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the CLI to install the SR-IOV Network Operator {id="install-operator-cli_{{ context }}"}
+# Use the CLI to install the SR-IOV Network Operator {id="install-operator-cli_{{ context }}"}
 
 You can use the CLI to install the SR-IOV Network Operator. By using the CLI, you can deploy the Operator directly from your terminal to manage SR-IOV network devices and attachments without navigating the web console. {._abstract}
 

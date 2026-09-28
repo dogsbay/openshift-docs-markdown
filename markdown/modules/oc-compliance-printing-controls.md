@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Printing controls {id="printing-controls_{{ context }}"}
+# Print controls {id="printing-controls_{{ context }}"}
 
 You can view a report of the compliance standards and controls that a given profile satisfies. {._abstract}
 

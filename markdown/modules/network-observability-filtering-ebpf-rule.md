@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Filtering eBPF flow data using multiple rules {id="network-observability-filtering-ebpf-rule_{{ context }}"}
+# Filter eBPF flow data using multiple rules {id="network-observability-filtering-ebpf-rule_{{ context }}"}
 
 Configure multiple filtering rules in the `FlowCollector` custom resource to refine network traffic data collection by accepting or rejecting specific eBPF flows based on IP addresses and packet conditions. {._abstract}
 

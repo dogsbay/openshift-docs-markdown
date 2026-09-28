@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configure listener routing and security settings {id="configuring-listener-routing-security_{{ context }}"}
+# Configuring listener routing and security settings {id="configuring-listener-routing-security_{{ context }}"}
 
 To ensure that your applications receive only authenticated and authorized traffic, you must specify the allowed protocols and ports for your gateway. If you are routing secure traffic, you must also configure TLS settings. You can define these parameters by configuring the `spec.listeners` field in your `Gateway` custom resource (CR). {._abstract}
 
@@ -53,7 +53,7 @@ If nothing is listed in the `spec.listeners[].allowedRoutes[]` field, the gatewa
               matchLabels:
                 env: "dev"
     ```
-    +
+
     With this configuration, only `HTTPRoute` resources in namespaces that have the `env: "dev"` label can attach to these listeners.
 1.  Apply the `Gateway` CR by running the following command:
     ```terminal

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring identity providers using the web console {id="identity-provider-configuring-using-the-web-console_{{ context }}"}
+# Configure identity providers using the web console {id="identity-provider-configuring-using-the-web-console_{{ context }}"}
 
 You can configure identity providers on your {{ product_title }} cluster through the web console by updating the **OAuth** settings in the **Cluster Settings**. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using image stream reference syntax {id="images-referencing-images-imagestreams_{{ context }}"}
+# Use image stream reference syntax {id="images-referencing-images-imagestreams_{{ context }}"}
 
 To ensure that your builds and deployments use the intended image version in {{ product_title }}, you must use the correct reference syntax format. {._abstract}
 

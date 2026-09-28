@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the NTP server for hosted clusters {id="hcp-configure-ntp_{{ context }}"}
+# Configure the NTP server for hosted clusters {id="hcp-configure-ntp_{{ context }}"}
 
 You can configure the Network Time Protocol (NTP) server for your hosted clusters by using Butane. {._abstract}
 

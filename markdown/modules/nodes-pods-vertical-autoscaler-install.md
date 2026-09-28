@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Vertical Pod Autoscaler Operator {id="nodes-pods-vertical-autoscaler-install_{{ context }}"}
+# Install the Vertical Pod Autoscaler Operator {id="nodes-pods-vertical-autoscaler-install_{{ context }}"}
 
 You can install the Vertical Pod Autoscaler Operator (VPA) by using the {{ product_title }} web console. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the demonstration application {id="zero-trust-manager-create-demo-app_{{ context }}"}
+# Create the demonstration application {id="zero-trust-manager-create-demo-app_{{ context }}"}
 
 Create the demonstration application to verify that the entire system functions correctly. This process validates the configuration of your application secrets and namespaces. {._abstract}
 

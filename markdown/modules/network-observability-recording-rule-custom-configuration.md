@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Optimizing dashboard metrics with recording rules {id="network-observability-configuring-custom-recording-rules_{{ context }}"}
+# Optimize dashboard metrics with recording rules {id="network-observability-configuring-custom-recording-rules_{{ context }}"}
 
 Create custom recording rules to pre-compute metrics for the **Network Health** dashboard. Recording rules require specific annotations and labels to integrate with the Network Observability Operator. {._abstract}
 

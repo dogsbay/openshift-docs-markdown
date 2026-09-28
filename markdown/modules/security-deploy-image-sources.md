@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Controlling what image sources can be deployed {id="security-deploy-image-sources_{{ context }}"}
+# Control what image sources can be deployed {id="security-deploy-image-sources_{{ context }}"}
 
 {{ product_title }} enables cluster administrators to apply security policy that is broad or narrow, reflecting deployment environment and security requirements. {._abstract}
 

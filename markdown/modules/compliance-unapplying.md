@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Unapplying a remediation {id="compliance-unapplying_{{ context }}"}
+# Unapply a remediation {id="compliance-unapplying_{{ context }}"}
 
 You can unapply a remediation that was previously applied to roll back a change when you need to revert it. {._abstract}
 

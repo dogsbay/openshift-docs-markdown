@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding the default ingress certificate {id="understanding-default-ingress_{{ context }}"}
+# Understand the default ingress certificate {id="understanding-default-ingress_{{ context }}"}
 
 You can replace the default ingress certificate with a certificate from a public CA so that external clients connect securely to your applications. {._abstract}
 

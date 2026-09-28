@@ -26,4 +26,7 @@ Spot instances are supported
 :   AWS Spot instances are supported for {{ product_title }} clusters. This option can minimize compute costs by using spare EC2 instances and Spot market options in a cluster. Both simple mode and enhanced mode for graceful termination handling are supported. For more information, see the following documentation:
     *   [Configure AWS Spot instances for {{ product_title }} using the CLI](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/install_clusters/rosa-hcp-config-aws-spot-instances-cli)
     *   [Configure AWS Spot instances for {{ product_title }} with Terraform](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/install_clusters/creating-a-red-hat-openshift-service-on-aws-cluster-with-terraform#rosa-hcp-config-aws-spot-instances-terraform)
+
+Multiple subnet support per Availability Zone (AZ)
+:   Administrators can now configure clusters and provision machine pools in multiple subnets within a single AZ. This enhancement provides greater flexibility when integrating {{ product_title }} into complex or constrained AWS Virtual Private Cloud (VPC) topologies, providing each subnet with access to the VPC endpoint. This update applies to {{ product_title }} versions 4.22.4+, 4.21.25+, and 4.20.31+.
 {% endif %}

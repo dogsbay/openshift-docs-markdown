@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the secret {id="identity-provider-creating-secret-tls_{{ context }}"}
+# Create the secret {id="identity-provider-creating-secret-tls_{{ context }}"}
 
 You can create a TLS `Secret` object in the `openshift-config` namespace by using the `oc` CLI or by applying a YAML file to store client certificates and keys that identity providers require for secure communication. {._abstract}
 

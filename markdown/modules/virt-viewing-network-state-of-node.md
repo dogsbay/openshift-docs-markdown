@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing the network state of a node by using the CLI {id="virt-viewing-network-state-of-node_{{ context }}"}
+# View the network state of a node by using the CLI {id="virt-viewing-network-state-of-node_{{ context }}"}
 
 Node network state is the network configuration for all nodes in the cluster. A `NodeNetworkState` object exists on every node in the cluster. This object is periodically updated and captures the state of the network for that node. {._abstract}
 

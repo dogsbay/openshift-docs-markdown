@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Security Profiles Operator using the CLI {id="spo-installing-cli_{{ context }}"}
+# Install the Security Profiles Operator using the CLI {id="spo-installing-cli_{{ context }}"}
 
 You can install the {{ product_title }} Security Profiles Operator by using the command line interface.  {._abstract}
 

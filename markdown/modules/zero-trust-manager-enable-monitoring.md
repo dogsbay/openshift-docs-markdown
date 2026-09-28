@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling user workload monitoring {id="zero-trust-manager-enable-monitoring_{{ context }}"}
+# Enable user workload monitoring {id="zero-trust-manager-enable-monitoring_{{ context }}"}
 
 Enable user workload monitoring to track metrics for your user-defined projects. Configuring this feature allows you to observe application performance and helps you maintain the health of your services. {._abstract}
 

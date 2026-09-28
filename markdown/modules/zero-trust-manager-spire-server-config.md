@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying the SPIRE Server {id="zero-trust-manager-spire-server-config_{{ context }}"}
+# Deploy the SPIRE Server {id="zero-trust-manager-spire-server-config_{{ context }}"}
 
 Deploy the SPIRE Server by configuring the `SpireServer` custom resource (CR). This establishes a central authority that manages and issues identities to the workloads in your cluster. {._abstract}
 

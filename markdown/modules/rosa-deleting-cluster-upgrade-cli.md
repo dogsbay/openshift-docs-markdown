@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Delete a cluster upgrade with the {{ rosa_cli }} {id="rosa-deleting-cluster-upgrade-cli_{{ context }}"}
 
-You can use either the {{ rosa_cli_first }} or {{ cluster_manager }} console to delete a scheduled upgrade. This procedure uses the {{ rosa_cli }}. {._abstract}
+Cancel a scheduled cluster upgrade by using the {{ rosa_cli_first }}. You might need to cancel an upgrade if conditions change, for example, if you discover a new issue or a maintenance window conflict. {._abstract}
 
 **Procedure**
 

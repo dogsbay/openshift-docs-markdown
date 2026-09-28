@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Converting to a single-stack cluster network {id="nw-dual-stack-convert-back-single-stack_{{ context }}"}
+# Convert to a single-stack cluster network {id="nw-dual-stack-convert-back-single-stack_{{ context }}"}
 
 To revert dual-stack networking in {{ product_title }}, you can edit the cluster network configuration and remove the IPv4 or IPv6 blocks you added during dual-stack conversion. You can convert back only to the same single-stack family you had before dual-stack (IPv4 or IPv6). {._abstract}
 

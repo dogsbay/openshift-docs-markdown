@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring dual-stack networking for an EgressIP object {id="nw-egress-ips-object-dual-stack_{{ context }}"}
+# Configure dual-stack networking for an EgressIP object {id="nw-egress-ips-object-dual-stack_{{ context }}"}
 
 For a cluster configured for dual-stack networking, you can apply dual-stack networking to a single `EgressIP` object. The `EgressIP` object can then extend dual-stack networking capabilities to a pod. {._abstract}
 

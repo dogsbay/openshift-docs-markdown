@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating certificates for the API server {id="cert-manager-certificate-api-server_{{ context }}"}
+# Create certificates for the API server {id="cert-manager-certificate-api-server_{{ context }}"}
 
 To secure interactions with the cluster control plane, create TLS certificates for the API server by using the {{ cert_manager_operator }}. {._abstract}
 

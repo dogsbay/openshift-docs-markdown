@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the Vertical Pod Autoscaler Operator {id="nodes-pods-vertical-autoscaler-configuring_{{ context }}"}
+# Use the Vertical Pod Autoscaler Operator {id="nodes-pods-vertical-autoscaler-configuring_{{ context }}"}
 
 You can use the Vertical Pod Autoscaler Operator (VPA) to help you maintain the optimal CPU and memory usage for your pods by creating a VPA custom resource (CR). The CR indicates the pods to analyze and determines the actions for the VPA to take with those pods. {._abstract}
 

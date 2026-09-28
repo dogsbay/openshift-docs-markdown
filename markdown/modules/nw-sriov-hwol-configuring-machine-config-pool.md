@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a machine config pool for hardware offloading {id="configuring-machine-config-pool_{{ context }}"}
+# Configure a machine config pool for hardware offloading {id="configuring-machine-config-pool_{{ context }}"}
 
 To enable hardware offloading, you now create a dedicated machine config pool and configure it to work with the SR-IOV Network Operator. {._abstract}
 

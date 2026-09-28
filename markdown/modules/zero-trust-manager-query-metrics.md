@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Querying metrics for the {{ zero_trust_full }} {id="zero-trust-manager-query-metrics_{{ context }}"}
+# Query metrics for the {{ zero_trust_full }} {id="zero-trust-manager-query-metrics_{{ context }}"}
 
 Query SPIRE Agent and SPIRE Server metrics using the {{ product_title }} web console or the command line. This helps you monitor the performance of SPIRE components that match specific job labels. {._abstract}
 

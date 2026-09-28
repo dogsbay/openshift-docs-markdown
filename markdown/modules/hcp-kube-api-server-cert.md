@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the Kubernetes API server for a hosted cluster {id="hcp-kube-api-server-cert_{{ context }}"}
+# Configure the Kubernetes API server for a hosted cluster {id="hcp-kube-api-server-cert_{{ context }}"}
 
 You can customize the Kubernetes API server for your hosted cluster. {._abstract}
 

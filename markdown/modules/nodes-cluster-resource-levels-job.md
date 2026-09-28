@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running the OpenShift Cluster Capacity Tool as a job inside a pod {id="nodes-cluster-resource-levels-job_{{ context }}"}
+# Run the OpenShift Cluster Capacity Tool as a job inside a pod {id="nodes-cluster-resource-levels-job_{{ context }}"}
 
 You can run the OpenShift Cluster Capacity Tool as a job inside of a pod by using a `ConfigMap` object. This allows you to run the tool multiple times without needing user intervention. {._abstract}
 

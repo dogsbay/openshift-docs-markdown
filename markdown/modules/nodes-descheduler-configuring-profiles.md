@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring descheduler profiles {id="nodes-descheduler-configuring-profiles_{{ context }}"}
+# Configure descheduler profiles {id="nodes-descheduler-configuring-profiles_{{ context }}"}
 
 To manage cluster pod eviction behavior, select which descheduler profiles to enable. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshoot listener connections using status conditions {id="troubleshooting-listener-conditions_{{ context }}"}
+# Troubleshooting listener connections using status conditions {id="troubleshooting-listener-conditions_{{ context }}"}
 
 When a listener is not routing traffic as expected, you can review its `status` conditions to quickly diagnose and fix the configuration error. The listener `status` condition gives insight into its current state and any underlying issues preventing it from accepting traffic. {._abstract}
 

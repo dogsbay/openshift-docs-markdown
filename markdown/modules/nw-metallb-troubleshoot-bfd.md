@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting BFD issues {id="nw-metallb-troubleshoot-bfd_{{ context }}"}
+# Troubleshoot BFD issues {id="nw-metallb-troubleshoot-bfd_{{ context }}"}
 
 To diagnose and resolve Bidirectional Forwarding Detection (BFD) issues, run commands directly within the `FRRouting` (FRR) container. By accessing the container, you can verify that BFD peers are correctly configured with established BGP sessions. {._abstract}
 

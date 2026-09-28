@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Configuring the advanced options for the Topology view {id="network-observability-configuring-options-topology_{{ context }}"}
+# Configure the advanced options for the Topology view {id="network-observability-configuring-options-topology_{{ context }}"}
 
-Review the available advanced options in the **Topology** view to customize display settings, configure component grouping and layouts, and export the network graph as an image. {._abstract}
+The **Topology** view provides advanced options that let you customize display settings, configure component grouping and layouts, and export the network graph as an image. {._abstract}
 
 You can customize and export the view by using **Show advanced options**. The advanced options view has the following features:
 

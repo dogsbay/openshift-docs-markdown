@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Updating the interface-specific safe sysctls list {id="updating-interface-specific-safe-sysctls-list_{{ context }}"}
+# Update the interface-specific safe sysctls list {id="updating-interface-specific-safe-sysctls-list_{{ context }}"}
 
 You can modify the default list of safe interface-specific `sysctls` by updating the `cni-sysctl-allowlist` in the `openshift-multus` namespace. {._abstract}
 

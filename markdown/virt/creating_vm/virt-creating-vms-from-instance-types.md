@@ -1,13 +1,13 @@
 ---
-title: Creating virtual machines from instance types
+title: Instance types
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
-# Creating virtual machines from instance types {id="virt-creating-vms-from-instance-types"}
+# Instance types {id="virt-creating-vms-from-instance-types"}
 {%- set context = "virt-creating-vms-from-instance-types" %}
 
-You can simplify virtual machine (VM) creation by using instance types, whether you use the {{ product_title }} web console or the CLI to create VMs. {._abstract}
+You can simplify virtual machine (VM) creation by using instance types, which define a reusable set of resources, such as CPU and memory. You can create instance types or change the VMs that use them. {._abstract}
 
 {%- if openshift_rosa or openshift_rosa_hcp %}
 
@@ -21,17 +21,11 @@ Creating a VM from an instance type in {{ VirtProductName }} 4.15 and higher is 
 
 {% leveloffset +1 %}{% include "./modules/virt-about-instance-types.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/virt-common-instancetypes.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/virt-using-flags-specify.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/virt-specifying-instance-preference.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/virt-infer-instancetype-preference.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/virt-using-flags-specify.md" %}{% endleveloffset %}
-
-{% leveloffset +2 %}{% include "./modules/virt-infer-instancetype-preference.md" %}{% endleveloffset %}
-
-{% leveloffset +2 %}{% include "./modules/virt-inferfromvolume-labels.md" %}{% endleveloffset %}
-
-{% leveloffset +1 %}{% include "./modules/virt-creating-vm-instancetype.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/virt-inferfromvolume-labels.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/virt-instance-types-changing-types.md" %}{% endleveloffset %}
 

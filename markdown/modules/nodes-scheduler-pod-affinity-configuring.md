@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a pod affinity rule {id="nodes-scheduler-pod-affinity-configuring_{{ context }}"}
+# Configure a pod affinity rule {id="nodes-scheduler-pod-affinity-configuring_{{ context }}"}
 
 You can use the following example pod specifications to create a pod with a label and a pod that uses affinity to allow scheduling with that pod. {._abstract}
 

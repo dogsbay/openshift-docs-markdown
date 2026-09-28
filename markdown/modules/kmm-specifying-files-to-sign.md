@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Specifying files to sign {id="kmm-specifying-files-to-sign_{{ context }}"}
+# Specify files to sign {id="kmm-specifying-files-to-sign_{{ context }}"}
 
 You can specify full paths or wildcard and glob patterns to sign kernel module (`.ko`) files in specific directories.  {._abstract}
 

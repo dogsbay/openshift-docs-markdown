@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing {{ external_secrets_operator }} resources by using the web console {id="external-secrets-remove-resources_{{ context }}"}
+# Remove {{ external_secrets_operator }} resources by using the web console {id="external-secrets-remove-resources_{{ context }}"}
 
 After you have uninstalled the {{ external_secrets_operator }}, you can optionally eliminate its associated resources from your cluster. {._abstract}
 

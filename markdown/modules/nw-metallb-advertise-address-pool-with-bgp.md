@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Advertising a basic address pool configuration with BGP {id="nw-metallb-advertise-a-basic-address-pool-configuration-bgp_{{ context }}"}
+# Advertise a basic address pool configuration with BGP {id="nw-metallb-advertise-a-basic-address-pool-configuration-bgp_{{ context }}"}
 
 Configure MetalLB to advertise the `IPAddressPool` by using Border Gateway Protocol (BGP). {._abstract}
 

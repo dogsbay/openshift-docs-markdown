@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Ingress Controller sharding by using route labels {id="nw-ingress-sharding-route-labels_{{ context }}"}
+# Configure Ingress Controller sharding by using route labels {id="nw-ingress-sharding-route-labels_{{ context }}"}
 
 You can use route labels to configure Ingress Controller sharding so that the Ingress Controller serves any route in any namespace that is selected by the route selector. {._abstract}
 

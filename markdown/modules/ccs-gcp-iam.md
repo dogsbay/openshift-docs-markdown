@@ -14,7 +14,7 @@ The _IAM service account and roles_ and _IAM group and roles_ topics are only ap
 
 ## IAM service account and roles {id="ccs-gcp-iam-service-account-roles_{{ context }}"}
 
-The `osd-managed-admin` IAM service account is created immediately after taking control of the customer-provided {{ gcp_short }} account. This is the user that will perform the {{ product_title }} cluster installation.
+The `osd-managed-admin` IAM service account is created immediately after taking control of your {{ gcp_short }} account. This is the user that will perform the {{ product_title }} cluster installation.
 
 The following roles are attached to the service account:
 
@@ -37,7 +37,7 @@ The following roles are attached to the service account:
 <tr>
   <td>DNS Administrator</td>
   <td><code>roles/dns.admin</code></td>
-  <td>Provides read-write access to all Cloud DNS resources.</td>
+  <td>Provides read/write access to all Cloud DNS resources.</td>
 </tr>
 <tr>
   <td>Security Admin</td>
@@ -83,6 +83,7 @@ The `sd-sre-platform-gcp-access` Google group is granted access to the {{ gcp_sh
 *   For information about creating a cluster using the Workload Identity Federation authentication type, see _Additional resources_.
 
 :::
+
 
 The following roles are attached to the group:
 
@@ -140,7 +141,7 @@ The following roles are attached to the group:
 <tr>
   <td>Tech Support Editor</td>
   <td><code>roles/cloudsupport.techSupportEditor</code></td>
-  <td>Provides full read-write access to technical support cases.</td>
+  <td>Provides full read/write access to technical support cases.</td>
 </tr>
 </tbody>
 </table>

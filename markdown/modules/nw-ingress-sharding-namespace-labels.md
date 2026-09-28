@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Ingress Controller sharding by using namespace labels {id="nw-ingress-sharding-namespace-labels_{{ context }}"}
+# Configure Ingress Controller sharding by using namespace labels {id="nw-ingress-sharding-namespace-labels_{{ context }}"}
 
 You can use namespace labels to configure Ingress Controller sharding so that the Ingress Controller serves any route in any namespace that is selected by the namespace selector. {._abstract}
 

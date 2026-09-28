@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an EgressFirewall custom resource (CR) {id="nw-egress-firewall-policy-create_{{ context }}"}
+# Create an EgressFirewall custom resource (CR) {id="nw-egress-firewall-policy-create_{{ context }}"}
 
 As a cluster administrator, you can create an egress firewall policy object for a project. {._abstract}
 

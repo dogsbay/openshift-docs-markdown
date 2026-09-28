@@ -20,7 +20,7 @@ Three nodes form the control plane of the management cluster.
 | --- | --- |
 | Form factor | Virtual machines or physical servers |
 | Memory | 60 GB RAM |
-| CPU | 16 vCPUs (Intel or AMD x86_64) |
+| CPU | 16 CPUs (Intel or AMD x86_64) |
 | Storage | 120 GB NVMe SSD storage, plus an additional 80 GB disk for {{ lvms }} |
 | Networking | 1x 1GbE network interface |
 | DPUs | DPUs must not be installed on control plane nodes |
@@ -34,7 +34,7 @@ Two physical x86 servers host the NVIDIA BlueField-3 DPUs and act as worker node
 | Component | Requirement |
 | --- | --- |
 | Memory | 256 GB RAM |
-| CPU | 16 cores (Intel or AMD x86_64) |
+| CPU | 16 CPUs (Intel or AMD x86_64) |
 | Storage | A minimum of 500 GB NVMe SSD storage for the base operating system |
 | DPU slot | PCIe Gen 5 x16 slot required. Each server can have multiple DPUs but only one NVIDIA BlueField-3 DPU can be provisioned. |
 | BIOS settings | SR-IOV must be enabled. In-Band Manageability Interface must be enabled. |

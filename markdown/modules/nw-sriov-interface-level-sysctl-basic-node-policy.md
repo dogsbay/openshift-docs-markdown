@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting one sysctl flag on nodes with SR-IOV network devices {id="nw-basic-example-setting-one-sysctl-flag-node-policy_{{ context }}"}
+# Set one sysctl flag on nodes with SR-IOV network devices {id="nw-basic-example-setting-one-sysctl-flag-node-policy_{{ context }}"}
 
 The SR-IOV Network Operator adds the `SriovNetworkNodePolicy.sriovnetwork.openshift.io` custom resource definition (CRD) to {{ product_title }}. You can configure an SR-IOV network device by creating a `SriovNetworkNodePolicy` custom resource (CR). {._abstract}
 

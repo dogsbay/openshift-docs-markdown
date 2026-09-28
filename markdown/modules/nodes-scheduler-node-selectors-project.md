@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating project-wide node selectors {id="nodes-scheduler-node-selectors-project_{{ context }}"}
+# Create project-wide node selectors {id="nodes-scheduler-node-selectors-project_{{ context }}"}
 
 You can use node selectors in a project together with labels on nodes to constrain all pods created in that project to the labeled nodes. {._abstract}
 

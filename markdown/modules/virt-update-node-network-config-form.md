@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Updating the policy by using form {id="virt-update-node-network-config-form_{{ context }}"}
+# Update the policy by using form {id="virt-update-node-network-config-form_{{ context }}"}
 
 You can update a `NodeNetworkConfigurationPolicy` object by using the form view in the web console. {._abstract}
 

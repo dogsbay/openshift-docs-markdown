@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling the SR-IOV Network Operator in a hosted cluster {id="hosted-clusters-openstack-performance-enabling_{{ context }}"}
+# Enable the SR-IOV Network Operator in a hosted cluster {id="hosted-clusters-openstack-performance-enabling_{{ context }}"}
 
 To manage the SR-IOV-capable devices on nodes deployed by the `NodePool` resource, you can enable the SR-IOV Network Operator. {._abstract}
 

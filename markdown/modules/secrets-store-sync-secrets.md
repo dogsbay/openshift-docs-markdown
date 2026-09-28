@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling synchronization of mounted content as Kubernetes secrets {id="secrets-store-sync-secrets_{{ context }}"}
+# Enable synchronization of mounted content as Kubernetes secrets {id="secrets-store-sync-secrets_{{ context }}"}
 
 You can enable a synchronization process that creates `secret` objects from the content on a mounted volume. Using secrets protects information that you do not want developers to have. {._abstract}
 

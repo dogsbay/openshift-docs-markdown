@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Filtering audit logs {id="security-audit-log-basic-filtering_{{ context }}"}
+# Filter audit logs {id="security-audit-log-basic-filtering_{{ context }}"}
 
 You can use `jq` or another JSON parsing tool to filter the API server audit logs. {._abstract}
 

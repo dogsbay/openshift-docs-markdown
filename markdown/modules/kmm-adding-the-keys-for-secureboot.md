@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding the keys for secureboot {id="kmm-adding-the-keys-for-secureboot_{{ context }}"}
+# Add the keys for secureboot {id="kmm-adding-the-keys-for-secureboot_{{ context }}"}
 
 To sign kernel modules with Kernel Module Management (KMM) on {{ product_title }}, you can add Secure Boot certificate and private key files as Kubernetes secrets. {._abstract}
 

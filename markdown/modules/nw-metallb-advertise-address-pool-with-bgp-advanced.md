@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Advertising an advanced address pool configuration with BGP {id="nw-metallb-advertise-an-advanced-address-pool-configuration-bgp_{{ context }}"}
+# Advertise an advanced address pool configuration with BGP {id="nw-metallb-advertise-an-advanced-address-pool-configuration-bgp_{{ context }}"}
 
 Configure MetalLB to advertise an advanced address pool by using BGP attributes such as BGP communities, route aggregation, and local preference. {._abstract}
 

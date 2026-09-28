@@ -5,13 +5,16 @@ By default, only the IAM role that created the cluster can access the cluster’
 
 **Procedure**
 
-1.  Add the `--additional-allowed-principals` argument to the `rosa create cluster` command, similar to the following:
+*   Add the `--additional-allowed-principals` argument to the `rosa create cluster` command, similar to the following:
     ```terminal
     $ rosa create cluster [...] --additional-allowed-principals <arn_string>
     ```
 
     You can use `arn:aws:iam::account_id:role/role_name` to approve a specific role.
-1.  When the cluster creation command runs, you receive a summary of your cluster with the `--additional-allowed-principals` specified:
+
+**Verification**
+
+*   When the cluster creation command runs, you receive a summary of your cluster with the `--additional-allowed-principals` specified:
     ```terminal title="Example output"
     Name:                       mycluster
     Domain Prefix:              mycluster

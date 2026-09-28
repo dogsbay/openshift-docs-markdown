@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling transparent huge pages {id="disable-thp_{{ context }}"}
+# Disable transparent huge pages {id="disable-thp_{{ context }}"}
 
 If your application can handle huge pages on its own, you can disable transparent huge pages (THP) to optimally handle huge pages for all types of workloads and avoid the performance regressions that THP can cause. {._abstract}
 

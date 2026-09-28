@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring periodic importing of image stream tags {id="images-imagestream-import_{{ context }}"}
+# Configure periodic importing of image stream tags {id="images-imagestream-import_{{ context }}"}
 
 To maintain up-to-date image definitions from an external container image registry, configure periodic importing of image stream tags. This process allows you to quickly re-import images for critical security updates by using the `--scheduled` flag. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring an ACME issuer by using ambient credentials on AWS {id="cert-manager-acme-dns01-ambient-aws_{{ context }}"}
+# Configure an ACME issuer by using ambient credentials on AWS {id="cert-manager-acme-dns01-ambient-aws_{{ context }}"}
 
 You can use {{ cert_manager_operator }} to set up an ACME issuer to solve DNS-01 challenges by using ambient credentials on AWS. This procedure uses _Let’s Encrypt_ as the ACME CA server and shows how to solve DNS-01 challenges with Amazon Route 53. {._abstract}
 

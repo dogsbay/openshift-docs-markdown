@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Using Ingress Controllers and routes {id="nw-using-ingress-and-routes_{{ context }}"}
+# Use Ingress Controllers and routes {id="nw-using-ingress-and-routes_{{ context }}"}
 
 You can use the Ingress Controller to allow external access to an {{ product_title }} cluster. The Ingress Operator manages Ingress Controllers and wildcard DNS. {._abstract}
 

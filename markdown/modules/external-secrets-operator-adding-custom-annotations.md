@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding custom annotations to external-secrets resources {id="external-secrets-enable-operator-adding-custom-annotations_{{ context }}"}
+# Add custom annotations to external-secrets resources {id="external-secrets-enable-operator-adding-custom-annotations_{{ context }}"}
 
 To customize your resources, you can define up to 20 custom annotations in the custom resource (CR). The Operator merges the annotations with the defaults, prioritizes them, and safely preserves annotations set by external systems. {._abstract}
 

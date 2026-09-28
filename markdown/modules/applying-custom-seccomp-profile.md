@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Applying the custom seccomp profile to the workload {id="applying-custom-seccomp-profile_{{ context }}"}
+# Apply the custom seccomp profile to the workload {id="applying-custom-seccomp-profile_{{ context }}"}
 
 **Prerequisite**
 

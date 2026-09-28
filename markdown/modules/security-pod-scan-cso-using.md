@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the {{ rhq_cso }} {id="security-pod-scan-cso-using_{{ context }}"}
+# Use the {{ rhq_cso }} {id="security-pod-scan-cso-using_{{ context }}"}
 
 You can use the {{ rhq_cso }} to access vulnerability scan results from the {{ product_title }} web console. {._abstract}
 

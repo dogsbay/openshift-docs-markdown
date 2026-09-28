@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Assigning an egress IP address to a namespace {id="nw-egress-ips-assign_{{ context }}"}
+# Assign an egress IP address to a namespace {id="nw-egress-ips-assign_{{ context }}"}
 
 You can assign one or more egress IP addresses to a namespace or to specific pods in a namespace. {._abstract}
 

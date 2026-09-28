@@ -12,7 +12,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Beginning the MTU migration {id="nw-cluster-mtu-migration_{{ context }}"}
+# Begin the MTU migration {id="nw-cluster-mtu-migration_{{ context }}"}
 
 Start the maximum transmission unit (MTU) migration by specifying the migration configuration for the cluster network and machine interfaces. The Machine Config Operator performs a rolling reboot of the nodes to prepare the cluster for the MTU change. {._abstract}
 

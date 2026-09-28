@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring /dev/fuse for unprivileged builds in pods {id="nodes-containers-dev-fuse-configuring_{{ context }}"}
+# Configure /dev/fuse for unprivileged builds in pods {id="nodes-containers-dev-fuse-configuring_{{ context }}"}
 
 You can grant an unprivileged pod the capability to perform Filesystem in Userspace (FUSE) mounts by exposing the `/dev/fuse` device. With this setup, an unprivileged user within the pod can use tools such as `podman` with storage drivers such as `fuse-overlayfs` by mimicking privileged build capabilities in a secure and efficient manner without granting full privileged access to the pod. {._abstract}
 

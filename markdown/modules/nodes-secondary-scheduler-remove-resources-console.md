@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing {{ secondary_scheduler_operator }} resources {id="nodes-secondary-scheduler-remove-resources-console_{{ context }}"}
+# Remove {{ secondary_scheduler_operator }} resources {id="nodes-secondary-scheduler-remove-resources-console_{{ context }}"}
 
 Optionally, remove the custom resource definition (CRD) and associated namespace after the {{ secondary_scheduler_operator_full }} is uninstalled. This cleans up all remaining secondary scheduler artifacts. {._abstract}
 

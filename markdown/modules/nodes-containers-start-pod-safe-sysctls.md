@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Starting a pod with safe sysctls {id="nodes-starting-pod-safe-sysctls_{{ context }}"}
+# Start a pod with safe sysctls {id="nodes-starting-pod-safe-sysctls_{{ context }}"}
 
 You can modify kernel parameters for all containers in a pod by adding the sysctls parameter to the `securityContext` parameter in a pod spec. {._abstract}
 

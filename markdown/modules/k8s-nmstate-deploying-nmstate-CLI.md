@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Kubernetes NMState Operator by using the CLI {id="installing-the-kubernetes-nmstate-operator-CLI_{{ context }}"}
+# Install the Kubernetes NMState Operator by using the CLI {id="installing-the-kubernetes-nmstate-operator-CLI_{{ context }}"}
 
 You can install the Kubernetes NMState Operator by using the OpenShift CLI (`oc)`. After it is installed, the Operator deploys the NMState State Controller as a daemon set across all of the cluster nodes to manage the node network state and configuration. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating default cluster-wide node selectors {id="nodes-scheduler-node-selectors-cluster_{{ context }}"}
+# Create default cluster-wide node selectors {id="nodes-scheduler-node-selectors-cluster_{{ context }}"}
 
 You can use default cluster-wide node selectors on pods together with labels on nodes to constrain all pods created in a cluster to specific nodes. {._abstract}
 

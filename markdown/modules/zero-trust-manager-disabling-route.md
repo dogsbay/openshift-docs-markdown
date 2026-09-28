@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling a managed route {id="zero-trust-manager-disabling-route_{{ context }}"}
+# Disable a managed route {id="zero-trust-manager-disabling-route_{{ context }}"}
 
 If you want to fully control the behavior of exposing the OIDC Discovery Provider service, you can disable the managed route based on your requirements. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a primary network attachment with the Cluster Network Operator {id="nw-multus-create-network_{{ context }}"}
+# Create a primary network attachment with the Cluster Network Operator {id="nw-multus-create-network_{{ context }}"}
 
 When you specify a primary network to create by using the Cluster Network Operator (CNO), the (CNO) creates the `NetworkAttachmentDefinition` custom resource definition (CRD) automatically and manages it. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Recognizing resource and project limits and quotas {id="recognize-resource-limits-quotas"}
+# Recognize resource and project limits and quotas {id="recognize-resource-limits-quotas"}
 
 You can view a graphical representation of available resources in the **Topology** view of the web console **Developer** perspective. {._abstract}
 

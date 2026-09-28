@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Listing Workload Identity Federation clusters {id="ocm-cli-list-wif-commands_{{ context }}"}
+# List Workload Identity Federation clusters {id="ocm-cli-list-wif-commands_{{ context }}"}
 
 You can list {{ product_title }} clusters that have been deployed using Workload Identity Federation (WIF) authentication by using the {{ cluster_manager }} CLI (`ocm`). {._abstract}
 

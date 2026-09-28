@@ -44,7 +44,7 @@ You can monitor the provisioning stages to verify progress. {._abstract}
     :   The host and DPU are resetting.
 
     `DPU Cluster Config`
-    :   The DPU Kubernetes node join procedure is in progress. Manual CSR approval is required during this stage.
+    :   The DPU Kubernetes node join procedure is in progress. DPU CSRs are automatically approved by the DPF HCP Provisioner Operator.
 
     `Host Network Configuration`
     :   Networking configuration adjustments are applied on the host.
@@ -57,7 +57,7 @@ You can monitor the provisioning stages to verify progress. {._abstract}
 
     :::important
 
-    When the provisioning stage reaches `DPU Cluster Config`, proceed to "Configure authorization for the hosted cluster" and "Approve DPU node CSRs" to complete the DPU node join process.
+    When the provisioning stage reaches `DPU Cluster Config`, proceed to "Configure authorization for the hosted cluster" to complete the DPU node join process.
     
     :::
 

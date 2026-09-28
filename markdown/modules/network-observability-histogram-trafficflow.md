@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Using the histogram {id="network-observability-histogram-trafficflow_{{ context }}"}
+# Use the histogram {id="network-observability-histogram-trafficflow_{{ context }}"}
 
 The histogram provides a visualization of network flow logs that you can use to analyze traffic volume trends and filter flow data by specific time intervals. {._abstract}
 

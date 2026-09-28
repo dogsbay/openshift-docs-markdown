@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Configuring pods for secondary networks {id="configuring-pods-secondary-network_{{ context }}"}
+# Configure pods for secondary networks {id="configuring-pods-secondary-network_{{ context }}"}
 
 You must specify the secondary network attachments through the `k8s.v1.cni.cncf.io/networks` annotation. {._abstract}
 

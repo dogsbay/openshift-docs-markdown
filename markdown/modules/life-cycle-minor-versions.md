@@ -1,7 +1,3 @@
-{% if context == "rosa-hcp-life-cycle" %}
-{%- set rosa_with_hcp = true -%}
-{% endif %}
-
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Minor versions (x.Y.z) {id="rosa-minor-versions_{{ context }}"}
 
@@ -26,7 +22,3 @@ the cluster will enter a "Limited Support" status.
 {%- if not openshift_rosa_hcp %}
 1.  If the upgrade has not been performed, the cluster will be flagged as being in a "Limited Support" status.
 {%- endif %}
-
-{% if context == "rosa-hcp-life-cycle" %}
-{%- set rosa_with_hcp = "" -%}
-{% endif %}

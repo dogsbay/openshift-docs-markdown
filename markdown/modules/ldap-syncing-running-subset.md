@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Syncing subgroups from the LDAP server with {{ product_title }} {id="ldap-syncing-running-subset_{{ context }}"}
+# Sync subgroups from the LDAP server with {{ product_title }} {id="ldap-syncing-running-subset_{{ context }}"}
 
 Sync a subset of LDAP groups with {{ product_title }} so you can control which groups are synchronized using allowlist files, denylist files, or both. {._abstract}
 

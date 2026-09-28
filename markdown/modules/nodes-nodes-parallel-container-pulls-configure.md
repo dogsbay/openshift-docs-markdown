@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring parallel container image pulls {id="nodes-nodes-parallel-container-pulls-configure_{{ context }}"}
+# Configure parallel container image pulls {id="nodes-nodes-parallel-container-pulls-configure_{{ context }}"}
 
 You can control the number of images that can be pulled by your workload simultaneously by using a kubelet configuration. You can set a maximum number of images that can be pulled or force workloads to pull images one at a time. {._abstract}
 

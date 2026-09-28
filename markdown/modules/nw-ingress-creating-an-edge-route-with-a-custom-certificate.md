@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an edge route with a custom certificate {id="nw-ingress-creating-an-edge-route-with-a-custom-certificate_{{ context }}"}
+# Create an edge route with a custom certificate {id="nw-ingress-creating-an-edge-route-with-a-custom-certificate_{{ context }}"}
 
 To secure traffic by using a custom certificate, configure a route with edge TLS termination by running the `oc create route` command. This configuration terminates encryption at the Ingress Controller before forwarding traffic to the destination pod. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Obtaining Compliance Operator raw results from a persistent volume {id="compliance-results_{{ context }}"}
+# Obtain Compliance Operator raw results from a persistent volume {id="compliance-results_{{ context }}"}
 
 You can view the results of Compliance Operator scans for auditing purposes. The Operator stores the raw results in a persistent volume in Asset Reporting Format (ARF). {._abstract}
 

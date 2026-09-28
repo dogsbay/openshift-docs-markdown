@@ -1,10 +1,10 @@
 ---
-title: Route gRPC requests to services
+title: Routing gRPC requests to services
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
-# Route gRPC requests to services {id="routing-grpc-requests-to-services"}
+# Routing gRPC requests to services {id="routing-grpc-requests-to-services"}
 {%- set context = "routing-grpc-requests-to-services" %}
 
 When you expose your gRPC APIs through a gateway, you must configure a `GRPCRoute` resource to accurately direct incoming gRPC requests from a Gateway listener to an API object. A `GRPCRoute` specifies the exact routing behavior for these requests by evaluating a set of defined rules. {._abstract}
@@ -19,10 +19,10 @@ While standard `GRPCRoute` configurations share many similarities with `HTTPRout
 
 To successfully configure your gRPC routing behavior, complete the following tasks:
 
-*   Configure gRPC request matching conditions
-*   Apply processing filters to gRPC requests
-*   Configure routing destinations and traffic weights for gRPC
-*   Understand `GRPCRoute` implementation details 
+*   Configuring gRPC request matching conditions
+*   Applying processing filters to gRPC requests
+*   Configuring routing destinations and traffic weights for gRPC
+*   Understand `GRPCRoute` implementation details
 
 {% leveloffset +1 %}{% include "./modules/configuring-grpc-request-matching-conditions.md" %}{% endleveloffset %}
 

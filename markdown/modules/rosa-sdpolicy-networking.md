@@ -1,7 +1,3 @@
-{% if context == "rosa-hcp-service-definition" %}
-{%- set rosa_with_hcp = true -%}
-{% endif %}
-
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Networking {id="rosa-sdpolicy-networking_{{ context }}"}
 
@@ -50,7 +46,7 @@ All cluster ingress traffic will go through the defined load balancers. Direct a
 ## Cluster egress {id="rosa-sdpolicy-cluster-egress_{{ context }}"}
 Pod egress traffic control through `EgressNetworkPolicy` objects can be used to prevent or limit outbound traffic in
 {%- if openshift_rosa_hcp %}
-ROSA with hosted control planes (HCP).
+{{ product_title }} with hosted control planes (HCP).
 {%- endif %}
 {%- if not openshift_rosa_hcp %}
 {{ product_title }}.
@@ -89,7 +85,3 @@ For ROSA clusters that have a private cloud network configuration, a customer ca
 Network verification checks run automatically when you deploy a ROSA cluster into an existing Virtual Private Cloud (VPC) or create an additional machine pool with a subnet that is new to your cluster. The checks validate your network configuration and highlight errors, enabling you to resolve configuration issues prior to deployment.
 
 You can also run the network verification checks manually to validate the configuration for an existing cluster.
-
-{% if context == "rosa-hcp-service-definition" %}
-{%- set rosa_with_hcp = "" -%}
-{% endif %}

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing a limit {id="nodes-cluster-limit-viewing_{{ context }}"}
+# View a limit {id="nodes-cluster-limit-viewing_{{ context }}"}
 
 You can view the limits defined in a project by navigating in the web console to the project’s **Quota** page. This allows you to see details about each of the limit ranges in a project.  {._abstract}
 

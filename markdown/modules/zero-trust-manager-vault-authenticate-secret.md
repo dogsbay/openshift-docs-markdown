@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Authenticating and retrieving the secret {id="zero-trust-manager-vault-authenticate-secret_{{ context }}"}
+# Authenticate and retrieve the secret {id="zero-trust-manager-vault-authenticate-secret_{{ context }}"}
 
 Use the demonstration application to fetch a JWT token from the SPIFFE Workload API. Use the token to authenticate with Vault so that you can securely retrieve the secret and verify the workflow. {._abstract}
 

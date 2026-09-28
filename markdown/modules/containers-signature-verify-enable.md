@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling signature verification for Red Hat Container Registries {id="containers-signature-verify-enable_{{ context }}"}
+# Enable signature verification for Red Hat Container Registries {id="containers-signature-verify-enable_{{ context }}"}
 
 To verify the integrity of the images in the Red Hat Container Registries, you can enable container signature validation for Red Hat Container Registries by writing a signature verification policy file specifying the keys to verify images from these registries.
  

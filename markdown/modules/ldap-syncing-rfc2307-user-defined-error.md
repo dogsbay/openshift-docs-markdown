@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Syncing groups by using RFC 2307 with user-defined error tolerances {id="ldap-syncing-rfc2307-user-defined-error_{{ context }}"}
+# Sync groups by using RFC 2307 with user-defined error tolerances {id="ldap-syncing-rfc2307-user-defined-error_{{ context }}"}
 
 Sync LDAP groups using the RFC 2307 schema with error tolerances so you can complete group synchronization when some members are missing or out of scope. {._abstract}
 

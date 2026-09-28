@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Apache authentication using the request header {id="identity-provider-configuring-apache-request-header_{{ context }}"}
+# Configure Apache authentication using the request header {id="identity-provider-configuring-apache-request-header_{{ context }}"}
 
 Configure an Apache authentication proxy with the `mod_auth_gssapi` module for the request header identity provider. Use this example to set up a proxy that validates users and forwards trusted identity headers to {{ product_title }}. {._abstract}
 

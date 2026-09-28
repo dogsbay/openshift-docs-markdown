@@ -1,17 +1,7 @@
-{% if context == "rosa-hcp-service-definition" %}
-{%- set rosa_with_hcp = true -%}
-{% endif %}
-
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Regions and availability zones {id="rosa-sdpolicy-regions-az_{{ context }}"}
 
-The following AWS regions are currently available
-{%- if openshift_rosa_hcp %}
-for {{ hcp_title }}.
-{%- endif %}
-{%- if not openshift_rosa_hcp %}
-for Red&#160;Hat OpenShift 4 and are supported for {{ product_title }}.
-{%- endif %}
+The following AWS regions are currently available for Red&#160;Hat OpenShift 4 and are supported for {{ product_title }}.
 
 
 :::note
@@ -24,14 +14,14 @@ Regions in China are not supported, regardless of their support on OpenShift Con
 
 :::note
 
-For GovCloud (US) regions, you must submit an [Access request for Red&#160;Hat OpenShift Service on AWS (ROSA) FedRAMP](https://console.redhat.com/openshift/create/rosa/govcloud).
+For GovCloud (US) regions, you must submit an Access request for {{ product_title }} FedRAMP.
 
 The following AWS GovCloud regions are supported:
 
 *   `us-gov-west-1`
 *   `us-gov-east-1`
 
-For more information about AWS GovCloud regions, see the [The AWS GovCloud (US) User Guide](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/welcome.html).
+For more information about AWS GovCloud regions, see the AWS GovCloud (US) User Guide.
 
 :::
 
@@ -43,7 +33,7 @@ For more information about AWS GovCloud regions, see the [The AWS GovCloud (US) 
 <tr>
   <th>Region</th>
   <th>Location</th>
-  <th>Minimum ROSA version required</th>
+  <th>Minimum {{ product_title }} version required</th>
   <th>AWS opt-in required</th>
 </tr>
 </thead>
@@ -261,16 +251,9 @@ For more information about AWS GovCloud regions, see the [The AWS GovCloud (US) 
 </tbody>
 </table>
 
-Clusters can only be deployed in regions with at least 3 availability zones. For more information, see the [Regions and Availability Zones](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) section in the AWS documentation.
+Clusters can only be deployed in regions with at least three availability zones. For more information, see the Regions and Availability Zones section in the AWS documentation.
 
-Each new
-{%- if not openshift_rosa_hcp %}
-{{ product_title }}
-{%- endif %}
-{%- if openshift_rosa_hcp %}
-{{ hcp_title }}
-{%- endif %}
-cluster is installed within
+Each new {{ product_title }} cluster is installed within
 {%- if openshift_rosa_hcp %}
 a
 {%- endif %}
@@ -296,8 +279,3 @@ and the choice of single or multiple availability zone
 cannot be changed after a cluster has been deployed.
 
 :::
-
-
-{% if context == "rosa-hcp-service-definition" %}
-{%- set rosa_with_hcp = "" -%}
-{% endif %}

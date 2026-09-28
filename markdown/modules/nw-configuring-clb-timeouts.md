@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Classic Load Balancer timeouts {id="nw-configuring-clb-timeouts_{{ context }}"}
+# Configure Classic Load Balancer timeouts {id="nw-configuring-clb-timeouts_{{ context }}"}
 
 You can configure the default timeouts for a Classic Load Balancer (CLB) to extend idle connections. {._abstract}
 

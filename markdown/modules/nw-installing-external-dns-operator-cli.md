@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the External DNS Operator by using the CLI {id="nw-installing-external-dns-operator-cli_{{ context }}"}
+# Install the External DNS Operator by using the CLI {id="nw-installing-external-dns-operator-cli_{{ context }}"}
 
 You can use the {{ oc_first }} to install the External DNS Operator. The Operator manages the installation process directly from your terminal without you having to use the web console. {._abstract}
 

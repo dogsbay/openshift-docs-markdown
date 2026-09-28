@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring route timeouts {id="nw-configuring-route-timeouts_{{ context }}"}
+# Configure route timeouts {id="nw-configuring-route-timeouts_{{ context }}"}
 
 You can configure the default timeouts for an existing route when you have services in need of a low timeout, which is required for Service Level Availability (SLA) purposes, or a high timeout, for cases with a slow back end. {._abstract}
 

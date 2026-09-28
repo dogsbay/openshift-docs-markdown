@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Cluster Resource Override Operator using the web console {id="nodes-cluster-resource-override-deploy-console_{{ context }}"}
+# Install the Cluster Resource Override Operator using the web console {id="nodes-cluster-resource-override-deploy-console_{{ context }}"}
 
 You can use the {{ product_title }} web console to install the Cluster Resource Override Operator to help you control overcommit in your cluster.  {._abstract}
 

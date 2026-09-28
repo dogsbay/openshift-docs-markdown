@@ -1,7 +1,3 @@
-{% if context == "rosa-hcp-life-cycle" %}
-{%- set rosa_with_hcp = true -%}
-{% endif %}
-
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Mandatory upgrades {id="rosa-mandatory-upgrades_{{ context }}"}
 
@@ -15,7 +11,3 @@ cluster’s control plane
 cluster
 {%- endif %}
 to the latest, secure patch release to mitigate potential security breach(es) or instability. Red&#160;Hat might, at its own discretion, temporarily delay an automated update if requested by a customer through a [support case](https://access.redhat.com/support).
-
-{% if context == "rosa-hcp-life-cycle" %}
-{%- set rosa_with_hcp = "" -%}
-{% endif %}

@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-{%- if context != "rosa-hcp-upgrading-whole-cluster" %}
-# Upgrade the hosted control plane {id="rosa-hcp-upgrading-cli-control-plane_{{ context }}"}
+# Upgrade the hosted control plane with the {{ rosa_cli }} {id="rosa-hcp-upgrading-cli-control-plane_{{ context }}"}
 
 You can manually update the hosted control plane of a {{ product_title }} cluster by using the {{ rosa_cli_first }}. This method schedules the control plane for an update if a more recent version is available, either immediately, or at a specified future time. {._abstract}
+
+You can upgrade the hosted control plane separately from the machine pools and apply the latest feature and security improvements without affecting running workloads on your worker nodes.
 
 
 :::note
@@ -12,17 +13,9 @@ Your control plane only supports machine pools within two minor y-stream version
 :::
 
 
-{%- endif %}
-
-{%- if context == "rosa-hcp-upgrading-whole-cluster" %}
-# Updating the hosted control plane {id="_updating_the_hosted_control_plane"}
-
-When you need to update the whole cluster, update the hosted control plane first.
-{%- endif %}
-
 **Prerequisites**
 
-*   You have installed and configured the latest version of the ROSA CLI.
+*   You have installed and configured the latest version of the {{ rosa_cli }}.
 *   No machine pool updates are in progress or scheduled to take place at the same time as the hosted control plane update.
 
 **Procedure**
@@ -39,9 +32,7 @@ When you need to update the whole cluster, update the hosted control plane first
     ```
 
     The command returns a list of available updates, including the recommended version.
-
-    **Example output**
-    ```terminal
+    ```terminal title="Example output"
     VERSION  NOTES
     4.18.18   recommended
     4.18.17
@@ -73,9 +64,6 @@ When you need to update the whole cluster, update the hosted control plane first
 
         Your hosted control plane is scheduled for an update at the specified time in Coordinated Universal Time (UTC).
 
-{% if context != "rosa-hcp-upgrading-whole-cluster" %}
-
 **Troubleshooting**
 
 *   Sometimes a scheduled update does not initiate. See [Upgrade maintenance canceled](https://access.redhat.com/solutions/6648291) for more information.
-{% endif %}

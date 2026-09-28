@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Node Feature Discovery Operator {id="installing-the-node-feature-discovery-operator_{{ context }}"}
+# Install the Node Feature Discovery Operator {id="installing-the-node-feature-discovery-operator_{{ context }}"}
 
 As a cluster administrator, you can install the NFD Operator by using the {{ product_title }} CLI or the web console. The Node Feature Discovery (NFD) Operator orchestrates all resources needed to run the NFD daemon set. {._abstract}
 

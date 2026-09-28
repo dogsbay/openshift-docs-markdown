@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using node selectors to control pod placement {id="nodes-scheduler-node-selectors-pod_{{ context }}"}
+# Use node selectors to control pod placement {id="nodes-scheduler-node-selectors-pod_{{ context }}"}
 
 You can use node selectors on pods and labels on nodes to control where the pod is scheduled. With node selectors, {{ product_title }} schedules the pods on nodes that contain matching labels. {._abstract}
 

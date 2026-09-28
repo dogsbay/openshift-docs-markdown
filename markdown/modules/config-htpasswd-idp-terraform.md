@@ -1,16 +1,6 @@
-{%- set _mod_docs_content_type = "PROCEDURE" -%}
-{% if context == "rosa-hcp-creating-a-cluster-quickly-terraform" %}
-{%- set tf_config = true -%}
-{% endif %}
-
 # Configure an htpasswd identity provider with Terraform {id="config-htpasswd-idp-terraform_{{ context }}"}
 
-{% if tf_config %}
-After creating your cluster with Terraform, you can permit users access to your cluster by using an htpasswd identity provider (IDP) with the Terraform tool.
-{% endif %}
-{% if not tf_config %}
 You can create an htpasswd identity provider (IDP) with Terraform. {._abstract}
-{% endif %}
 
 **Prerequisites**
 
@@ -19,7 +9,6 @@ You can create an htpasswd identity provider (IDP) with Terraform. {._abstract}
 
 **Procedure**
 
-{%- if not tf_config %}
 1.  Grant permissions to your account by using [an offline {{ cluster_manager_first }} token](https://console.redhat.com/openshift/token).
 1.  Copy your offline token, and set the token as an environmental variable by running the following command:
     ```terminal
@@ -31,8 +20,6 @@ You can create an htpasswd identity provider (IDP) with Terraform. {._abstract}
     This environmental variable resets at the end of each session, such as restarting your machine or closing the terminal.
     
     :::
-
-{%- endif %}
 
 1.  Create the `htpasswd_idp.tf` file by running one of the following commands:
     *   **Option 1**: To create a user with a generated, randomized password, run:
@@ -131,8 +118,3 @@ You can create an htpasswd identity provider (IDP) with Terraform. {._abstract}
     If you used the randomized password template, then the generated password is stored in your AWS Secrets manager.
     
     :::
-
-
-{% if context == "rosa-hcp-creating-a-cluster-quickly-terraform" %}
-{%- set tf_config = "" -%}
-{% endif %}

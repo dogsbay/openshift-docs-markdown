@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Implementing worker latency profiles at cluster creation {id="nodes-cluster-worker-latency-profiles-using-at-creation_{{ context }}"}
+# Implement worker latency profiles at cluster creation {id="nodes-cluster-worker-latency-profiles-using-at-creation_{{ context }}"}
 
 During cluster creation, you can implement worker latency profiles so that you can control the reaction of the cluster to latency issues without relying on manual methods to determine the best values. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Importing manifest lists in image streams on your multi-architecture compute machines {id="multi-architecture-import-imagestreams_{{ context }}"}
+# Import manifest lists in image streams on your multi-architecture compute machines {id="multi-architecture-import-imagestreams_{{ context }}"}
 
 On an {{ product_title }} {{ product_version }} cluster with multi-architecture compute machines, the image streams in the cluster do not import manifest lists automatically. You must manually change the default `importMode` option to the `PreserveOriginal` option to import the manifest list. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Creating a bond network attachment definition {id="nw-sriov-creating-bond-network-attachment-definition_{{ context }}"}
+# Create a bond network attachment definition {id="nw-sriov-creating-bond-network-attachment-definition_{{ context }}"}
 
 After the SR-IOV virtual functions are available, you can create a bond network attachment definition. {._abstract}
 

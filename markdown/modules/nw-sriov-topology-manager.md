@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a non-uniform memory access (NUMA) aligned SR-IOV pod {id="nw-sriov-topology-manager_{{ context }}"}
+# Create a non-uniform memory access (NUMA) aligned SR-IOV pod {id="nw-sriov-topology-manager_{{ context }}"}
 
 You can create a NUMA aligned SR-IOV pod by restricting SR-IOV and the CPU resources allocated from the same NUMA node with `restricted` or `single-numa-node` Topology Manager policies. {._abstract}
 

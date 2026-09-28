@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting errors with the cnf-tests container {id="cnf-performing-end-to-end-tests-troubleshooting_{{ context }}"}
+# Troubleshoot errors with the cnf-tests container {id="cnf-performing-end-to-end-tests-troubleshooting_{{ context }}"}
 
 To troubleshoot errors when running latency tests, verify that your cluster is accessible from within the `cnf-tests` container. Ensuring this connectivity resolves common test execution failures. {._abstract}
 

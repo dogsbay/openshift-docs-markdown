@@ -18,14 +18,19 @@ Before installing the NVIDIA DPF Operator, you must set up the management cluste
 
 {% leveloffset +1 %}{% include "./modules/nw-dpf-installing-required-operators.md" %}{% endleveloffset %}
 
+{% leveloffset +2 %}{% include "./modules/nw-dpf-installing-mce-operator.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/nw-dpf-installing-cert-manager-operator.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/nw-dpf-installing-metallb-operator.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/nw-dpf-installing-gitops-operator.md" %}{% endleveloffset %}
+
 {% leveloffset +2 %}{% include "./modules/nw-dpf-installing-maintenance-operator.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}
 
-*   [Installing the {{ cert_manager_operator }}](/security/cert_manager_operator/cert-manager-operator-install#cert-manager-operator-install)
-*   [Installing the MetalLB Operator](/networking/networking_operators/metallb-operator/metallb-operator-install#metallb-operator-install)
-*   [Installing {{ gitops_title }}](https://docs.openshift.com/gitops/latest/installing_gitops/installing-openshift-gitops.html#installing-openshift-gitops)
 *   [DPF Operator prerequisites](https://networking-docs.nvidia.com/dpf/26.4.1/host-network-configuration-prerequisites)
 
 {% leveloffset +1 %}{% include "./modules/nw-dpf-configuring-required-operators.md" %}{% endleveloffset %}

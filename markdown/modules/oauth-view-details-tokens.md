@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing the details of a user-owned OAuth access token {id="oauth-view-details-tokens_{{ context }}"}
+# View the details of a user-owned OAuth access token {id="oauth-view-details-tokens_{{ context }}"}
 
 View details of a user-owned OAuth access token to identify the associated client application, check expiration and inactivity timeouts, verify scopes, and see other information fields. {._abstract}
 

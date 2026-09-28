@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing the audit logs {id="nodes-nodes-audit-log-basic-viewing_{{ context }}"}
+# View the audit logs {id="nodes-nodes-audit-log-basic-viewing_{{ context }}"}
 
 You can view the logs for the OpenShift API server, Kubernetes API server, OpenShift OAuth API server, and OpenShift OAuth server for each control plane node. {._abstract}
 

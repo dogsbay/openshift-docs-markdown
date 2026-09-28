@@ -6,7 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Moving the Vertical Pod Autoscaler Operator components {id="infrastructure-moving-vpa_{{ context }}"}
+# Move the Vertical Pod Autoscaler Operator components {id="infrastructure-moving-vpa_{{ context }}"}
 
 {% if machinemgmt %}
 You can move the VPA Operator and component pods to infrastructure nodes by adding a node selector to the VPA subscription and the `VerticalPodAutoscalerController` CR.

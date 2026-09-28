@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring egress firewall and network policy auditing for a cluster {id="nw-networkpolicy-audit-configure_{{ context }}"}
+# Configure egress firewall and network policy auditing for a cluster {id="nw-networkpolicy-audit-configure_{{ context }}"}
 
 To customize egress firewall and network policy audit logging in {{ product_title }}, you can configure the `policyAuditConfig` section in the cluster `Network` custom resource. Adjust log destination, file size, and rate limits to control how ACL events are recorded. {._abstract}
 

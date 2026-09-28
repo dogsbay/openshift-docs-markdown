@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Determining the size of the etcd database and understanding its effects {id="etcd-database-size_{{ context }}"}
+# Determine the size of the etcd database and understand its effects {id="etcd-database-size_{{ context }}"}
 
 etcd database size affects defragmentation duration, resync time after network partitions, and transaction rates. Plan capacity so maintenance and recovery do not degrade cluster stability. {._abstract}
 

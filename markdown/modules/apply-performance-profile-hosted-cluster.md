@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring low-latency tuning in a hosted cluster {id="apply-performance-profile-hosted-cluster_{{ context }}"}
+# Configure low-latency tuning in a hosted cluster {id="apply-performance-profile-hosted-cluster_{{ context }}"}
 
 To set low latency with the performance profile on the nodes in your hosted cluster, you can use the Node Tuning Operator. In {{ hcp }}, you can configure low-latency tuning by creating config maps that contain `Tuned` objects and referencing those config maps in your node pools.  {._abstract}
 

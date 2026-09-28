@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Scheduling a pod using the secondary scheduler {id="nodes-secondary-scheduler-pod-console_{{ context }}"}
+# Schedule a pod using the secondary scheduler {id="nodes-secondary-scheduler-pod-console_{{ context }}"}
 
 To schedule a pod by using the secondary scheduler, set the `schedulerName` field in the pod definition. {._abstract}
 

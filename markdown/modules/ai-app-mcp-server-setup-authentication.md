@@ -17,7 +17,7 @@ To ensure that only verified users can access MCP server for Red Hat OpenShift t
 
 1.  Configure OAuth metadata discovery by setting environment variables on the MCP gateway broker-router deployment by running the following command:
     ```terminal
-    $ oc set env deployment/mcp-gateway-broker-router -n mcp-system\
+    $ oc set env mcp-gateway/gateway-namespace -n mcp-system\
     OAUTH_RESOURCE_NAME="MCP Server" \
     OAUTH_RESOURCE="http://mcp.127-0-0-1.sslip.io:8001/mcp" \
     OAUTH_AUTHORIZATION_SERVERS="https://login.microsoftonline.com/<tenant-id>/v2.0" \
@@ -33,13 +33,13 @@ To ensure that only verified users can access MCP server for Red Hat OpenShift t
     kind: HTTPRoute
     metadata:
       name: mcp-gateway-oauth-metadata
-      namespace: mcp-system
+      namespace: gateway-namespace
     spec:
       parentRefs:
       - group: gateway.networking.k8s.io
         kind: Gateway
         name: mcp-gateway
-        namespace: gateway-system
+        namespace: gateway-namespace
         sectionName: mcp
       hostnames:
       - ${MCP_GATEWAY_HOST}
@@ -91,7 +91,7 @@ To ensure that only verified users can access MCP server for Red Hat OpenShift t
     kind: AuthPolicy
     metadata:
       name: mcp-auth-policy
-      namespace: mcp-system
+      namespace: gateway-namespace
     spec:
       targetRef:
         group: gateway.networking.k8s.io

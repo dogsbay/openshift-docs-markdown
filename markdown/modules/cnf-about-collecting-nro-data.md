@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Collecting NUMA Resources Operator data {id="cnf-about-collecting-nro-data_{{ context }}"}
+# Collect NUMA Resources Operator data {id="cnf-about-collecting-nro-data_{{ context }}"}
 
 You can use the `oc adm must-gather` CLI command to collect information about your cluster, including features and objects associated with the NUMA Resources Operator. {._abstract}
 

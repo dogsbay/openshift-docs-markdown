@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying a containerized eBPF program {id="nw-bpfman-operator-deploy_{{ context }}"}
+# Deploy a containerized eBPF program {id="nw-bpfman-operator-deploy_{{ context }}"}
 
 To run custom networking or security logic on your cluster nodes, you can deploy containerized eBPF programs. You can use containerized eBPF programs to monitor kernel events and manage network traffic efficiently at the node level. {._abstract}
 

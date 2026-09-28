@@ -1,7 +1,3 @@
-{% if context == "rosa-hcp-deleting-cluster" %}
-{%- set hcp = true -%}
-{% endif %}
-
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Unlinking and deleting the {{ cluster_manager }} and user IAM roles {id="rosa-unlinking-and-deleting-ocm-and-user-iam-roles_{{ context }}"}
 
@@ -28,14 +24,14 @@ The {{ cluster_manager }} and user IAM roles are required to install and manage 
         ```terminal
         $ rosa list ocm-roles
         ```
-{% if not hcp %}
+{% if not openshift_rosa_hcp %}
         ```terminal title="Example output"
         I: Fetching ocm roles
         ROLE NAME                           ROLE ARN                                                                      LINKED  ADMIN
         ManagedOpenShift-OCM-Role-<red_hat_organization_external_id>  arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-OCM-Role-<red_hat_organization_external_id>  Yes     Yes
         ```
 {% endif %}
-{% if hcp %}
+{% if openshift_rosa_hcp %}
         ```terminal title="Example output"
         I: Fetching ocm roles
         ROLE NAME                                                     ROLE ARN                                                                                         LINKED  ADMIN  AWS Managed

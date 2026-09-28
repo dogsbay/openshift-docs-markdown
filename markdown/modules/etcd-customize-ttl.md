@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Managing etcd size by limiting the duration of Kubernetes events {id="etcd-customize-ttl_{{ context }}"}
+# Manage etcd size by limiting the duration of Kubernetes events {id="etcd-customize-ttl_{{ context }}"}
 
 To manage etcd size, you can set the maximum time that Kubernetes events are stored in the etcd database of the Kubernetes API server. By specifying the `eventTTLMinutes` property, you can control how long events are stored in the etcd database before they are purged. {._abstract}
 

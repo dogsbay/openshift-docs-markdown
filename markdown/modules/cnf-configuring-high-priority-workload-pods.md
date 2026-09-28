@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling power saving mode for high priority pods {id="cnf-configuring-high-priority-workload-pods_{{ context }}"}
+# Disable power saving mode for high priority pods {id="cnf-configuring-high-priority-workload-pods_{{ context }}"}
 
 To protect high priority workloads when using power saving configurations on a node, apply performance settings at the pod level. This ensures that the configuration applies to all cores used by the pod, maintaining performance stability. {._abstract}
 

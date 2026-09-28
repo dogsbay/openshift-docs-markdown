@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Mounting a custom trusted certificate authority bundle for external-secrets {id="external-secrets-operator-mounting-bundle_{{ context }}"}
+# Mount a custom trusted certificate authority bundle for external-secrets {id="external-secrets-operator-mounting-bundle_{{ context }}"}
 
 You can configure the {{ external_secrets_operator }} to trust a custom certificate authority (CA) bundle when the `external-secrets` core controller communicates with external secret backends over transport layer socket (TLS). This is required when your organization uses a private CA or a self-signed certificate that is not included in the default system truststore. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Labeling nodes with an SR-IOV enabled NIC {id="nw-labeling-sriov-enabled-nodes_{{ context }}"}
+# Label nodes with an SR-IOV enabled NIC {id="nw-labeling-sriov-enabled-nodes_{{ context }}"}
 
 If you want to enable SR-IOV on only SR-IOV capable nodes there are a couple of ways to do this. {._abstract}
 

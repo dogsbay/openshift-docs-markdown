@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Removing stale support permissions from service accounts managed by a WIF configuration {id="wif-removing-stale-support-permissions_{{ context }}"}
+# Remove stale support permissions from service accounts managed by a WIF configuration {id="wif-removing-stale-support-permissions_{{ context }}"}
 
 To remove stale support permissions, run the following commands on a terminal with access to the {{ gcp_full }} project hosting the service accounts. {._abstract}
 

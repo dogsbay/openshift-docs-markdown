@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling Hyper-Threading for low latency applications {id="disabling-hyperthreading-for-low-latency-applications_{{ context }}"}
+# Disable Hyper-Threading for low latency applications {id="disabling-hyperthreading-for-low-latency-applications_{{ context }}"}
 
 When configuring clusters for low latency processing, consider whether you want to disable Hyper-Threading before you deploy the cluster.  {._abstract}
 

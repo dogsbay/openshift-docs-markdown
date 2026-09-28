@@ -1,18 +1,18 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure the required Operators {id="nw-dpf-configuring-required-operators_{{ context }}"}
 
-After the required Operators are installed, configure Node Feature Discovery, MetalLB, {{ gitops_shortname }}, and Cluster Network Operator for the DPF environment. This procedure also verifies that the multicluster engine and hosted control planes components are ready. {._abstract}
+After the required Operators are installed, configure Node Feature Discovery, MetalLB, {{ gitops_shortname }}, and Cluster Network Operator for the DPF environment. This procedure also verifies that the multicluster engine and hosted control plane components are ready. {._abstract}
 
 **Prerequisites**
 
 *   You have access to the cluster as a user with the `cluster-admin` role.
 *   You have installed the OpenShift CLI (`oc`).
 *   You have installed the {{ cert_manager_operator }}, MetalLB Operator, {{ gitops_title }}, and NVIDIA Maintenance Operator.
-*   You have installed the Logical Volume Manager Storage Operator, multicluster engine operator, and the Node Feature Discovery Operator. You can install them by using the Assisted Installer during cluster creation. For manual installation, see [Installing multicluster engine operator](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.17/html/install/index) and ensure that the hosted control planes component is enabled.
+*   You have installed the Logical Volume Manager Storage Operator, multicluster engine Operator, and the Node Feature Discovery Operator. You can install them by using the Assisted Installer during cluster creation. If you did not install the multicluster engine Operator, follow "Install the multicluster engine Operator" before continuing.
 
 **Procedure**
 
-1.  Define the cluster variables used by Node Feature Discovery:
+1.  Define the cluster variables:
     ```terminal
     $ export CLUSTER_NAME="doca-mgmt"
     $ export BASE_DOMAIN="example.com"
@@ -62,7 +62,7 @@ After the required Operators are installed, configure Node Feature Discovery, Me
     ```terminal
     $ envsubst < nfd-instance.yaml | oc apply -f -
     ```
-1.  Create a file named `nfd-rule.yaml` with the following `NodeFeatureRule` resource definition to detect worker nodes with DPUs and label them with a `dpu-enabled` label:
+1.  Create a file named `nfd-rule.yaml` with the following `NodeFeatureRule` resource definition:
     ```yaml
     apiVersion: nfd.openshift.io/v1alpha1
     kind: NodeFeatureRule
@@ -91,33 +91,6 @@ After the required Operators are installed, configure Node Feature Discovery, Me
     ```terminal
     $ oc apply -f nfd-rule.yaml
     ```
-1.  Ensure that the MetalLB Operator `Subscription` schedules Operator pods on control-plane nodes.
-When you install the MetalLB Operator, include the following `spec.config` settings, or patch an existing `Subscription` to add them:
-    ```yaml
-    apiVersion: operators.coreos.com/v1alpha1
-    kind: Subscription
-    metadata:
-      name: metallb-operator
-      namespace: openshift-operators
-    spec:
-      channel: "stable"
-      name: metallb-operator
-      source: redhat-operators
-      sourceNamespace: openshift-marketplace
-      installPlanApproval: Automatic
-      config:
-        tolerations:
-        - key: "node-role.kubernetes.io/control-plane"
-          operator: "Exists"
-          effect: "NoSchedule"
-        affinity:
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-              - matchExpressions:
-                - key: "node-role.kubernetes.io/control-plane"
-                  operator: "Exists"
-    ```
 1.  Create a file named `metallb-config.yaml` with the following `MetalLB` resource definition:
     ```yaml
     apiVersion: metallb.io/v1beta1
@@ -136,30 +109,6 @@ When you install the MetalLB Operator, include the following `spec.config` setti
 1.  Apply the MetalLB resource file:
     ```terminal
     $ oc apply -f metallb-config.yaml
-    ```
-1.  Ensure that the {{ gitops_title }} `Subscription` includes the DPF-required environment variables.
-When you install the Operator, set the following `spec.config.env` values, or patch an existing `Subscription` to add them so that Argo CD can manage the `dpf-operator-system` namespace:
-    ```yaml
-    apiVersion: operators.coreos.com/v1alpha1
-    kind: Subscription
-    metadata:
-      name: openshift-gitops-operator
-      namespace: openshift-gitops-operator
-    spec:
-      channel: gitops-1.21
-      config:
-        env:
-        - name: ARGOCD_CLUSTER_CONFIG_NAMESPACES
-          value: "openshift-gitops,dpf-operator-system"
-        - name: CONTROLLER_CLUSTER_ROLE
-          value: "cluster-admin"
-        - name: SERVER_CLUSTER_ROLE
-          value: "cluster-admin"
-      installPlanApproval: Automatic
-      name: openshift-gitops-operator
-      source: redhat-operators
-      sourceNamespace: openshift-marketplace
-      startingCSV: openshift-gitops-operator.v1.21.3
     ```
 1.  Create a file named `argocd-instance.yaml` with the following `ArgoCD` resource definition:
     ```yaml
@@ -225,36 +174,42 @@ When you install the Operator, set the following `spec.config.env` values, or pa
     NAME   STATUS      AGE     CURRENTVERSION   DESIREDVERSION   MESSAGE
     mce    Available   4m58s   2.17.2           2.17.2           All components available
     ```
-*   Verify that the hosted control planes component is enabled:
+*   Verify that the hosted control plane component is enabled:
     ```terminal
     $ oc get multiclusterengine mce -o jsonpath='{.spec.overrides.components[?(@.name=="hypershift")].enabled}{"\n"}'
     ```
 
     :::note
 
-    If the previous command returns `false` or an empty result, hosted control planes is not enabled and DPU provisioning fails.
+    The manual installation procedure creates `mce` with `hypershift` enabled. If the previous command returns `true`, no further action is needed. If it returns `false` or an empty result, you must enable the `hypershift` component before DPU provisioning can succeed.
+    
+    :::
 
-    To continue, you must enable the `hypershift` component on the `MultiClusterEngine` resource.
-    In current {{ mce_short }} versions the component is named `hypershift`; earlier versions use `hypershift-preview`.
 
-    *   If the result is empty, no `hypershift` entry exists. Run the following command to add the entry and enable it:
+    To enable the `hypershift` component on the `MultiClusterEngine` resource, use the following steps.
+    In current {{ mce_short }} versions the component is named `hypershift`. Earlier versions use `hypershift-preview`.
+    *   If the result is empty, check whether the `components` list exists:
         ```terminal
-        $ oc patch mce multiclusterengine --type=json \
+        $ oc get multiclusterengine mce -o jsonpath='{.spec.overrides.components}{"\n"}'
+        ```
+
+        If the list exists but has no `hypershift` entry, append it without replacing the other components:
+        ```terminal
+        $ oc patch multiclusterengine mce --type=json \
             -p='[{"op":"add","path":"/spec/overrides/components/-","value":{"name":"hypershift","enabled":true}}]'
         ```
+
+        If the list is absent, edit the resource instead and create `spec.overrides.components` with an entry named `hypershift` set to `enabled: true`.
     *   If the result is `false`, an entry exists but is disabled. Edit the resource and set the `hypershift` component to `enabled: true`:
         ```terminal
         $ oc edit multiclusterengine mce
         ```
-    
-    :::
 
+        :::important
 
-    :::important
-
-    Do not use `oc patch --type=merge` to enable the component, because a merge patch replaces the entire `components` array and removes the other components. Use the JSON `add` patch when no entry exists, or `oc edit` when an entry exists but is disabled.
-    
-    :::
+        Do not use `oc patch --type=merge` to enable the component, because a merge patch replaces the entire `components` array and removes the other components. Use the JSON `add` patch only when the `components` list exists. Otherwise, use `oc edit`.
+        
+        :::
 
 *   Verify that the `NodeFeatureDiscovery` instance and `NodeFeatureRule` are configured:
     ```terminal
@@ -266,7 +221,7 @@ When you install the Operator, set the following `spec.config.env` values, or pa
     ```
 *   Verify that the Argo CD pods are running:
     ```terminal
-    $ oc get pods -n dpf-operator-system -l app.kubernetes.io/part-of=argocd
+    $ oc get pods -n dpf-operator-system | grep argocd
     ```
 *   Verify that IP forwarding is set to `Global`:
     ```terminal

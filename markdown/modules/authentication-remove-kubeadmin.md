@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing the kubeadmin user {id="removing-kubeadmin_{{ context }}"}
+# Remove the kubeadmin user {id="removing-kubeadmin_{{ context }}"}
 
 After you define an identity provider and create a new `cluster-admin`
 user, you can remove the `kubeadmin` to improve cluster security. {._abstract}

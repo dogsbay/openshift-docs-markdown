@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling workload partitioning  {id="enabling-workload-partitioning_{{ context }}"}
+# Enable workload partitioning {id="enabling-workload-partitioning_{{ context }}"}
 
 To partition cluster management pods into a specified CPU affinity, enable workload partitioning. This configuration ensures that management pods operate within the reserved CPU limits defined in your Performance Profile. {._abstract}
 

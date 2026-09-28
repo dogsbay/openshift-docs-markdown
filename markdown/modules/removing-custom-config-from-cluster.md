@@ -6,8 +6,8 @@ You can remove custom configuration from your cluster by removing the `KubeletCo
 **Prerequisites**
 
 *   You have an existing {{ product_title }} cluster.
-*   You have installed the ROSA CLI (rosa).
-*   You have logged in to your Red Hat account by using the ROSA CLI.
+*   You have installed the {{ rosa_cli_first }}.
+*   You have logged in to your Red Hat account by using the {{ rosa_cli }}.
 
 **Procedure**
 

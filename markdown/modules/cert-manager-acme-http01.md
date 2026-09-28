@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring an ACME issuer to solve HTTP-01 challenges {id="cert-manager-acme-http01_{{ context }}"}
+# Configure an ACME issuer to solve HTTP-01 challenges {id="cert-manager-acme-http01_{{ context }}"}
 
 You can use {{ cert_manager_operator }} to set up an ACME issuer to solve HTTP-01 challenges. This procedure uses _Let’s Encrypt_ as the ACME CA server. {._abstract}
 

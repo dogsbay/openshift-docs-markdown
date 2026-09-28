@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Configuring routes using the route-override plugin on a secondary network {id="nw-route-override-cni_{{ context }}"}
+# Configure routes using the route-override plugin on a secondary network {id="nw-route-override-cni_{{ context }}"}
 
 The Route override CNI plugin JSON configuration object describes the configuration parameters for the `route-override` CNI plugin. The following table details these parameters: {._abstract}
 

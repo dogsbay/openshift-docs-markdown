@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Minimum required service control policy (SCP) {id="ccs-aws-scp_{{ context }}"}
 
-Service control policy (SCP) management is the responsibility of the customer. These policies are maintained in the AWS Organization and control what services are available within the attached AWS accounts. {._abstract}
+Service control policy (SCP) management is your responsibility. These policies are maintained in the AWS Organization and control what services are available within the attached AWS accounts. {._abstract}
 
 <table>
 <thead>
@@ -86,13 +86,13 @@ Service control policy (SCP) management is the responsibility of the customer. T
 </tr>
 <tr>
   <td>AWS Service Quotas</td>
-  <td>ListServices GetRequestedServiceQuotaChange GetServiceQuota RequestServiceQuotaIncrease ListServiceQuotas</td>
+  <td><code>ListServices</code> <code>GetRequestedServiceQuotaChange</code> <code>GetServiceQuota</code> <code>RequestServiceQuotaIncrease</code> <code>ListServiceQuotas</code></td>
   <td>Allow</td>
 </tr>
 <tr>
   <td rowspan="3">Optional</td>
   <td>AWS Billing</td>
-  <td>ViewAccount<br><br>Viewbilling<br><br>ViewUsage</td>
+  <td><code>ViewAccount</code><br><br><code>ViewBilling</code><br><br><code>ViewUsage</code></td>
   <td>Allow</td>
 </tr>
 <tr>

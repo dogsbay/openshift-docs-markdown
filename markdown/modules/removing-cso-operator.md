@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling the {{ rhq_cso }} {id="uninstalling-container-security-operator_{{ context }}"}
+# Uninstall the {{ rhq_cso }} {id="uninstalling-container-security-operator_{{ context }}"}
 
 To uninstall the Container Security Operator, you must uninstall the Operator and delete the `imagemanifestvulns.secscan.quay.redhat.com` custom resource definition (CRD). {._abstract}
 

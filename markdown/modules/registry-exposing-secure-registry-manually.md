@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Exposing a secure registry manually {id="registry-exposing-secure-registry-manually_{{ context }}"}
+# Expose a secure registry manually {id="registry-exposing-secure-registry-manually_{{ context }}"}
 
 Instead of logging in to the {{ product_registry }} from within the cluster, you can gain external access to the {{ product_registry }} by exposing the registry with a route. With this external access, you can log in to the registry from outside the cluster by using the route address. You can then tag and push images to an existing project by using the route host. {._abstract}
 

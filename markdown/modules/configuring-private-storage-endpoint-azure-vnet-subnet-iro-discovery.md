@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a private storage endpoint on Azure by enabling the Image Registry Operator to discover VNet and subnet names {id="configuring-private-storage-endpoint-azure-vnet-subnet-iro-discovery_{{ context }}"}
+# Configure a private storage endpoint on Azure by enabling the Image Registry Operator to discover VNet and subnet names {id="configuring-private-storage-endpoint-azure-vnet-subnet-iro-discovery_{{ context }}"}
 
 You can configure a private Azure storage endpoint by enabling the Image Registry Operator to discover the VNet and subnet, allowing registry storage without public network access. {._abstract}
 

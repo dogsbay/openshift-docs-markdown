@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Migrating removed stored versions of the FlowCollector CRD {id="network-observability-updating-migrating_{{ context }}"}
+# Migrate removed stored versions of the FlowCollector CRD {id="network-observability-updating-migrating_{{ context }}"}
 
 Manually remove the deprecated `v1alpha1` version from the `FlowCollector` custom resource definition (CRD) `storedVersion` list to prevent upgrade errors and successfully migrate to Network Observability Operator 1.6. {._abstract}
 

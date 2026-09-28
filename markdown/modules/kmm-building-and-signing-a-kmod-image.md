@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Building and signing a kmod image {id="kmm-building-and-signing-a-kmod-image_{{ context }}"}
+# Build and sign a kmod image {id="kmm-building-and-signing-a-kmod-image_{{ context }}"}
 
 To build and sign a kmod image from source code on {{ product_title }}, you can apply a `Module` custom resource that builds an unsigned image and then signs it with your key and certificate secrets. {._abstract}
 

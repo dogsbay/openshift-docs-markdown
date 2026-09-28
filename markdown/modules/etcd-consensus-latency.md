@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Monitoring consensus latency for etcd {id="etcd-consensus-latency_{{ context }}"}
+# Monitor consensus latency for etcd {id="etcd-consensus-latency_{{ context }}"}
 
 Use the `etcdctl` command-line interface (CLI) to check endpoint health and consensus latency on a running cluster. Regular monitoring helps you spot delays before they cause leader elections and Kubernetes API instability. {._abstract}
 

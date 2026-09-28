@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Provisioned {{ gcp_short }} Infrastructure {id="ccs-gcp-provisioned_{{ context }}"}
+# Provisioned {{ gcp_short }} infrastructure {id="ccs-gcp-provisioned_{{ context }}"}
 
-This is an overview of the provisioned {{ gcp_first }} components on a deployed {{ product_title }} cluster. For a more detailed listing of all provisioned {{ gcp_short }} components, see the [{{ OCP }} documentation](https://access.redhat.com/documentation/en-us/openshift_container_platform/). {._abstract}
+A deployed {{ product_title }} cluster provisions the following {{ gcp_first }} components. For a more detailed listing of all provisioned {{ gcp_short }} components, see the [{{ OCP }} documentation](https://access.redhat.com/documentation/en-us/openshift_container_platform/). {._abstract}
 
 ## Compute instances {id="gcp-policy-instances_{{ context }}"}
 
@@ -26,9 +26,9 @@ This is an overview of the provisioned {{ gcp_first }} components on a deployed 
 *   Control plane volumes:
     *   350 GB SSD persistent disk  (deleted on instance deletion)
 
-## Installing a new cluster into an existing VPC {id="gcp-policy-vpc_{{ context }}"}
+## VPC requirements for installing a new cluster into an existing VPC {id="gcp-policy-vpc_{{ context }}"}
 
-You must have at least one VPC network within the {{ GCP }} project where the {{ product_title }} cluster is being installed. The VPC network must include the following subnets within the same region as the cluster:
+You must have at least one Virtual Private Cloud (VPC) network within the {{ GCP }} project where the {{ product_title }} cluster is being installed. The VPC network must include the following subnets within the same region as the cluster:
 
 *   A control plane subnet for the OpenShift control plane.
 *   A compute subnet for user workloads.
@@ -46,4 +46,4 @@ IPv6 and dual-stack (IPv4 and IPv6) address ranges are not supported within the 
 
 ## Services {id="gcp-policy-services_{{ context }}"}
 
-For a list of services that must be enabled on a {{ gcp_short }} CCS cluster, see the _Required API services_ table.
+For a list of services that must be enabled on a {{ gcp_short }} Customer Cloud Subscription (CCS) cluster, see the _Required API services_ table.

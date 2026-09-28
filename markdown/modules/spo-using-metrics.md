@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using metrics {id="spo-using-metrics_{{ context }}"}
+# Use metrics {id="spo-using-metrics_{{ context }}"}
 
 The `openshift-security-profiles` namespace provides metrics endpoints, which are secured by the `kube-rbac-proxy` container. All metrics are exposed by the `metrics` service within the `openshift-security-profiles` namespace. {._abstract}
 

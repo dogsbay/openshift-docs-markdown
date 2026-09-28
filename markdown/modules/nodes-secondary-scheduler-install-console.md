@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ secondary_scheduler_operator }} {id="nodes-secondary-scheduler-install-console_{{ context }}"}
+# Install the {{ secondary_scheduler_operator }} {id="nodes-secondary-scheduler-install-console_{{ context }}"}
 
 You can install the {{ secondary_scheduler_operator_full }} through the {{ product_title }} web console to configure a secondary scheduler. {._abstract}
 

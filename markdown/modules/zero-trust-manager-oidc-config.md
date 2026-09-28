@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Deploying the SPIRE OpenID Connect Discovery Provider {id="zero-trust-manager-oidc-config_{{ context }}"}
+# Deploy the SPIRE OpenID Connect Discovery Provider {id="zero-trust-manager-oidc-config_{{ context }}"}
 
 Deploy the SPIRE OpenID Connect (OIDC) Discovery Provider by configuring the `SpireOIDCDiscoveryProvider` CR. This allows you to define the trust domain and JSON web token (JWT) issuer for your cluster. {._abstract}
 

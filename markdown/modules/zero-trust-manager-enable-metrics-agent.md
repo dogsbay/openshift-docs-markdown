@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring metrics collection for SPIRE Agent by using a Service Monitor {id="zero-trust-manager-enable-metrics-agent_{{ context }}"}
+# Configure metrics collection for SPIRE Agent by using a Service Monitor {id="zero-trust-manager-enable-metrics-agent_{{ context }}"}
 
 Configure metrics collection for the SPIRE Agent by creating a `ServiceMonitor` custom resource (CR). This enables the Prometheus Operator to collect custom metrics that the SPIRE Agent exposes on the default port. {._abstract}
 

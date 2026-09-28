@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Scaling a compute machine set manually {id="machineset-manually-scaling_{{ context }}"}
+# Scale a compute machine set manually {id="machineset-manually-scaling_{{ context }}"}
 
 To add or remove an instance of a machine in a compute machine set, you can manually scale the compute machine set. {._abstract}
 

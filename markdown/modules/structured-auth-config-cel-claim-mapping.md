@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring CEL expressions for username and groups claim mapping {id="structured-auth-config-cel-claim-mapping_{{ context }}"}
+# Configure CEL expressions for username and groups claim mapping {id="structured-auth-config-cel-claim-mapping_{{ context }}"}
 
 You can use Common Expression Language (CEL) expressions to construct usernames and groups from JWT token claims. This provides flexible claim mapping, including fallback logic when specific claims are not present. {._abstract}
 

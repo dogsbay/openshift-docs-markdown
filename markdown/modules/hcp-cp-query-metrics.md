@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Querying control plane metrics in hosted clusters by using the CLI {id="hcp-cp-query-metrics_{{ context }}"}
+# Query control plane metrics in hosted clusters by using the CLI {id="hcp-cp-query-metrics_{{ context }}"}
 
 After you enable metrics forwarding, you can verify that control plane metrics are ingested and query them from the CLI. {._abstract}
 

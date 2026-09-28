@@ -8,7 +8,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling multicast between pods {id="nw-enabling-multicast_{{ context }}"}
+# Enable multicast between pods {id="nw-enabling-multicast_{{ context }}"}
 
 To enable multicast between pods in a project, you can add the `k8s.ovn.org/multicast-enabled` annotation to the namespace by using the `oc annotate` command or a namespace manifest. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Monitoring the policy status {id="virt-monitor-node-network-config-console_{{ context }}"}
+# Monitor the policy status {id="virt-monitor-node-network-config-console_{{ context }}"}
 
 You can monitor the policy status from the **NodeNetworkConfigurationPolicy** page. This page displays all the policies created in the cluster in a tabular format, with the following columns: {._abstract}
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Securing client connections with edge TLS termination {id="securing-client-connections-edge-tls_{{ context }}"}
 
-To secure traffic from clients to your gateway, configure a listener with the `Terminate` TLS mode and a `certificateRef` to an {{ product_title }} secret.  {._abstract}
+To secure traffic from clients to your gateway, configure a listener with the `Terminate` TLS mode and a `certificateRef` to an {{ product_title }} secret. {._abstract}
 
 This configuration terminates encryption at the gateway for `HTTPRoute` custom resource (CR) traffic that targets the listener, and forwards unencrypted traffic to the destination service. You must have both an `HTTPRoute` CR and a gateway listener configured with intersecting hostnames for edge termination to successfully connect.
 

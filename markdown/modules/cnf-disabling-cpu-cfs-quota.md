@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling CPU CFS quota {id="cnf-disabling-cpu-cfs-quota_{{ context }}"}
+# Disable CPU CFS quota {id="cnf-disabling-cpu-cfs-quota_{{ context }}"}
 
 To eliminate CPU throttling for pinned pods, create a pod with the `cpu-quota.crio.io: "disable"` annotation. This annotation disables the CPU completely fair scheduler (CFS) quota when the pod runs. {._abstract}
 

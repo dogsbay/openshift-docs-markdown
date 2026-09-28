@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating certificates for user workloads {id="cert-manager-certificate-mgmt_{{ context }}"}
+# Create certificates for user workloads {id="cert-manager-certificate-mgmt_{{ context }}"}
 
 To secure communications for your applications, create and manage TLS certificates for your workloads by using the {{ cert_manager_operator }} {._abstract}
 

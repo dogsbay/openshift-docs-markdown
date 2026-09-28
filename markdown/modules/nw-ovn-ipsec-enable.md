@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling IPsec encryption {id="nw-ovn-ipsec-enable_{{ context }}"}
+# Enable IPsec encryption {id="nw-ovn-ipsec-enable_{{ context }}"}
 
 To enable pod-to-pod and external IPsec encryption in {{ product_title }}, you can patch the cluster `Network` custom resource and set `ipsecConfig` mode to `Full` or `External`. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Binding a user to a node using taints and tolerations {id="nodes-scheduler-taints-tolerations-bindings_{{ context }}"}
+# Bind a user to a node using taints and tolerations {id="nodes-scheduler-taints-tolerations-bindings_{{ context }}"}
 
 You can use taints and tolerations to dedicate a set of nodes for exclusive use by a particular set of users.  {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing taints and tolerations {id="nodes-scheduler-taints-tolerations-removing_{{ context }}"}
+# Remove taints and tolerations {id="nodes-scheduler-taints-tolerations-removing_{{ context }}"}
 
 You can remove taints from nodes and tolerations from pods as needed if you no longer want the scheduling behavior.  {._abstract}
 

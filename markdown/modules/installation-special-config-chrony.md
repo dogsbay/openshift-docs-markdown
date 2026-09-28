@@ -6,7 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring chrony time service {id="installation-special-config-chrony_{{ context }}"}
+# Configure chrony time service {id="installation-special-config-chrony_{{ context }}"}
 
 You
 {%- if restricted %}

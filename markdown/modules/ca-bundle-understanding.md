@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "SNIPPET" %}
-# Understanding the CA Bundle certificate {id="ca-bundle-understanding_{{ context }}"}
+# Understand the CA Bundle certificate {id="ca-bundle-understanding_{{ context }}"}
 
 Proxy certificates allow users to specify one or more custom certificate authority (CA) used by platform components when making egress connections.
 
