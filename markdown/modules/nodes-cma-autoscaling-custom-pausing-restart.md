@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Restart the custom metrics autoscaler for a scaled object {id="nodes-cma-autoscaling-custom-pausing-restart_{{ context }}"}
 
-You can restart a paused custom metrics autoscaler by removing the `autoscaling.keda.sh/paused-replicas` annotation for that `ScaledObject`.
+You can restart a paused custom metrics autoscaler by removing the `autoscaling.keda.sh/paused-replicas` annotation for that `ScaledObject`. {._abstract}
 
 ```yaml
 apiVersion: keda.sh/v1alpha1
@@ -18,13 +18,13 @@ metadata:
     ```terminal
     $ oc edit ScaledObject scaledobject
     ```
-1.  Remove the `autoscaling.keda.sh/paused-replicas` annotation.
+1.  Remove the `autoscaling.keda.sh/paused-replicas` annotation to restart a paused custom metrics autoscaler:
     ```yaml
     apiVersion: keda.sh/v1alpha1
     kind: ScaledObject
     metadata:
       annotations:
-        autoscaling.keda.sh/paused-replicas: "4" (1)
+        autoscaling.keda.sh/paused-replicas: "4"
       creationTimestamp: "2023-02-08T14:41:01Z"
       generation: 1
       name: scaledobject
@@ -32,4 +32,3 @@ metadata:
       resourceVersion: '65729'
       uid: f5aec682-acdf-4232-a783-58b5b82f5dd0
     ```
-    1.  Remove this annotation to restart a paused custom metrics autoscaler.

@@ -1,13 +1,13 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an IAM role and policy {id="rosa-create-an-iam-role-policy_{{ context }}"}
+# Grant permissions to write logs to AWS {id="rosa-create-an-iam-role-policy_{{ context }}"}
 
 When you forward your logs to an Amazon CloudWatch group or S3 bucket, those locations exist outside your control plane. You must create an Identity and Access Management (IAM) role and policy so that your log forwarder has the right permissions and capabilities to send these logs to your chosen destination, CloudWatch, or S3. {._abstract}
 
 
 :::note
 
-*   To use a CloudWatch group, you must create an IAM role and policy. 
-*   To use an S3 bucket, you do not need an IAM role and policy. 
+*   To use a CloudWatch group, you must create an IAM role and policy.
+*   To use an S3 bucket, you do not need an IAM role and policy.
 *   The only supported Amazon S3-managed encryption method is `SSE-S3`.
 
 :::

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Customize cert-manager by overriding environment variables from the cert-manager Operator API {id="cert-manager-override-environment-variables_{{ context }}"}
 
-To refine your deployment for specific operational requirements, override supported environment variables for the {{ cert_manager_operator }}. You can customize these variables through the Operator API to apply configurations, such as proxy settings or system-level adjustments, that differ from the default values. {._abstract}
+To refine your deployment for specific operational requirements, override supported environment variables for the {{ cert_manager_operator }}. {._abstract}
+
+You can customize these variables through the Operator API to apply configurations, such as proxy settings or system-level adjustments, that differ from the default values.
 
 You can override the supported environment variables for the {{ cert_manager_operator }} by adding a `spec.controllerConfig` section in the `CertManager` resource.
 

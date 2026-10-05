@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring machine pool disk volume using the ROSA CLI {id="configuring-machine-pool-disk-volume-cli_{{ context }}"}
+# Configure machine pool disk volume using the ROSA CLI {id="configuring-machine-pool-disk-volume-cli_{{ context }}"}
 
 Configure the disk volume size for machine pools during cluster creation or when adding new machine pools by using the {{ rosa_cli_first }}. {._abstract}
 

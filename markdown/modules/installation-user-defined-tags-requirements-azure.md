@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # User-defined tags requirements {id="installation-user-defined-tags-requirements-azure_{{ context }}"}
 
-The user-defined tags have the following requirements:
+The user-defined tags have the following requirements: {._abstract}
 
 *   A tag key must have a maximum of 128 characters.
 *   A tag key must begin with a letter.

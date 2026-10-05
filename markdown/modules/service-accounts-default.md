@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Default service accounts {id="service-accounts-default_{{ context }}"}
 
-Your {{ product_title }} cluster contains default service accounts for
-cluster management and generates more service accounts for each project.
+{{ product_title }} automatically creates default service accounts for cluster management and in each project for build, deployment, and pod operations. {._abstract}
 
 ## Default cluster service accounts {id="default-cluster-service-accounts_{{ context }}"}
 

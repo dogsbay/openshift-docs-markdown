@@ -56,8 +56,8 @@ Each `PersistentVolume` object in {{ product_title }} represents one storage ass
     "secret/keyN":"&lt;secretN>"
 
 
-:::note
+    :::note
 
-Secrets are passed only to mount or unmount call-outs.
-
-:::
+    Secrets are passed only to mount or unmount call-outs.
+    
+    :::

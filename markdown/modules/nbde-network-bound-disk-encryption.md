@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Network-Bound Disk Encryption (NBDE) {id="nbde-network-bound-disk-encryption_{{ context }}"}
 
-Network-Bound Disk Encryption (NBDE) effectively ties the encryption key to an external server or set of servers in a secure and anonymous way across the network. This is not a key escrow, in that the nodes do not store the encryption key or transfer it over the network, but otherwise behaves in a similar fashion.
+Network-Bound Disk Encryption (NBDE) effectively ties the encryption key to an external server or set of servers in a secure and anonymous way across the network. {._abstract}
+
+This is not a key escrow, in that the nodes do not store the encryption key or transfer it over the network, but otherwise behaves in a similar fashion.
 
 Clevis and Tang are generic client and server components that provide network-bound encryption. {{ op_system_first }}
 uses these components in conjunction with Linux Unified Key Setup-on-disk-format (LUKS) to encrypt and decrypt root and non-root storage volumes to accomplish

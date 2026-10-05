@@ -87,11 +87,11 @@ API and cluster applications. {._abstract}
 {%- endif %}
 
 
-        :::tip
+    :::tip
 
-        You can make {{ product_title }} resources available outside of the cluster by assigning a floating IP address and updating your firewall configuration.
-        
-        :::
+    You can make {{ product_title }} resources available outside of the cluster by assigning a floating IP address and updating your firewall configuration.
+    
+    :::
 
 
 {% if context == "installing-openstack-user" %}

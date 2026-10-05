@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Customize HAProxy error code response pages {id="nw-customize-ingress-error-pages_{{ context }}"}
 
-As a cluster administrator, you can specify a custom error code response page for either 503, 404, or both error pages. The HAProxy router serves a 503 error page when the application pod is not running or a 404 error page when the requested URL does not exist. For example, if you customize the 503 error code response page, then the page is served when the application pod is not running, and the default 404 error code HTTP response page is served by the HAProxy router for an incorrect route or a non-existing route.
+To customize HAProxy 503 or 404 error pages for the Ingress router in {{ product_title }}, you can provide custom pages in a config map and patch the Ingress Controller. {._abstract}
 
 Custom error code response pages are specified in a config map then patched to the Ingress Controller. The config map keys have two available file names as follows:
 `error-page-503.http` and `error-page-404.http`.

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring AutoRepair on a machine pool using {{ cluster_manager }} {id="rosa-autorepair-ocm_{{ context }}"}
+# Configure AutoRepair on a machine pool using {{ cluster_manager }} {id="rosa-autorepair-ocm_{{ context }}"}
 
 You can configure machine pool AutoRepair for your {{ product_title }} cluster by using {{ cluster_manager_first }}. {._abstract}
 

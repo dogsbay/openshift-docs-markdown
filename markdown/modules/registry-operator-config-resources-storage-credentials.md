@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring storage credentials for the Image Registry Operator {id="registry-operator-config-resources-storage-credentials_{{ context }}"}
+# Configure storage credentials for the Image Registry Operator {id="registry-operator-config-resources-storage-credentials_{{ context }}"}
 
 In addition to the `configs.imageregistry.operator.openshift.io` Custom Resource (CR) and ConfigMap resources, storage credential configuration is provided to the Operator by a separate secret resource. This resource is located within the `openshift-image-registry` namespace. {._abstract}
 

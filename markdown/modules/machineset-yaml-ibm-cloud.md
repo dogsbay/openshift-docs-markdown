@@ -6,12 +6,14 @@
 {% include "./_attributes/common-attributes.md" %}
 # Sample YAML for a compute machine set custom resource on {{ ibm_cloud_title }} {id="machineset-yaml-ibm-cloud_{{ context }}"}
 
-You can use the sample YAML file to automate the provisioning of compute or infrastructure nodes within a specific Virtual Private Cloud (VPC). The sample YAML defines a compute machine set that runs in a specified {{ ibm_cloud_name }} zone in a region and creates nodes that are labeled with
+You can use the sample YAML file to automate the provisioning of compute or infrastructure nodes within a specific Virtual Private Cloud (VPC). {._abstract}
+
+The sample YAML defines a compute machine set that runs in a specified {{ ibm_cloud_name }} zone in a region and creates nodes that are labeled with
 {%- if not infra %}
 `node-role.kubernetes.io/<role>: ""`.
 {%- endif %}
 {%- if infra %}
-`node-role.kubernetes.io/infra: ""`. {._abstract}
+`node-role.kubernetes.io/infra: ""`.
 {%- endif %}
 
 In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and

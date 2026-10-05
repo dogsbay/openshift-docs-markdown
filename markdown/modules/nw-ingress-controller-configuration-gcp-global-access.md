@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure global access for an Ingress Controller on {{ gcp_short }} {id="nw-ingress-controller-configuration-gcp-global-access_{{ context }}"}
 
-An Ingress Controller created on {{ gcp_short }} with an internal load balancer generates an internal IP address for the service. A cluster administrator can specify the global access option, which enables clients in any region within the same VPC network and compute region as the load balancer, to reach the workloads running on your cluster.
+To allow clients in any region of the same VPC to reach workloads behind an internal load balancer on {{ gcp_short }}, you can enable global access on an Ingress Controller in {{ product_title }}. {._abstract}
 
 For more information, see the {{ gcp_short }} documentation for [global access](https://cloud.google.com/kubernetes-engine/docs/how-to/internal-load-balancing#global_access).
 

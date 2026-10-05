@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Static IP addresses for vSphere nodes {id="installation-vsphere-installer-infra-static-ip-nodes_{{ context }}"}
 
-You can provision bootstrap, control plane, and compute nodes to be configured with static IP addresses in environments where Dynamic Host Configuration Protocol (DHCP) does not exist. To configure this environment, you must provide values to the `platform.vsphere.hosts.role` parameter in the `install-config.yaml` file. {._abstract}
+You can provision bootstrap, control plane, and compute nodes to be configured with static IP addresses in environments where Dynamic Host Configuration Protocol (DHCP) does not exist. {._abstract}
+
+To configure this environment, you must provide values to the `platform.vsphere.hosts.role` parameter in the `install-config.yaml` file.
 
 By default, the installation program is configured to use the DHCP for the network, but this network has limited configurable capabilities.
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure audit logging {id="nodes-cma-autoscaling-custom-audit_{{ context }}"}
 
-You can configure auditing for the Custom Metrics Autoscaler Operator by editing the `KedaController` custom resource. The logs are sent to an audit log file on a volume that is secured by using a persistent volume claim in the `KedaController` CR.
+You can configure auditing for the Custom Metrics Autoscaler Operator by editing the `KedaController` custom resource. The logs are sent to an audit log file on a volume that is secured by using a persistent volume claim in the `KedaController` CR. {._abstract}
 
 **Prerequisites**
 
@@ -22,14 +22,14 @@ You can configure auditing for the Custom Metrics Autoscaler Operator by editing
       metricsServer:
     # ...
         auditConfig:
-          logFormat: "json" (1)
-          logOutputVolumeClaim: "pvc-audit-log" (2)
+          logFormat: "json"
+          logOutputVolumeClaim: "pvc-audit-log"
           policy:
-            rules: (3)
+            rules:
             - level: Metadata
-            omitStages: "RequestReceived" (4)
-            omitManagedFields: false (5)
-          lifetime: (6)
+            omitStages: "RequestReceived"
+            omitManagedFields: false
+          lifetime:
             maxAge: "2"
             maxBackup: "1"
             maxSize: "50"
@@ -47,32 +47,50 @@ You can configure auditing for the Custom Metrics Autoscaler Operator by editing
       metricsServer:
     # ...
         auditConfig:
-          logFormat: "json" (1)
-          logOutputVolumeClaim: "pvc-audit-log" (2)
+          logFormat: "json"
+          logOutputVolumeClaim: "pvc-audit-log"
           policy:
-            rules: (3)
+            rules:
             - level: Metadata
-            omitStages: "RequestReceived" (4)
-            omitManagedFields: false (5)
-          lifetime: (6)
+            omitStages: "RequestReceived"
+            omitManagedFields: false
+          lifetime:
             maxAge: "2"
             maxBackup: "1"
             maxSize: "50"
     ```
-{%- endif %}
-    1.  Specifies the output format of the audit log, either `legacy` or `json`.
-    1.  Specifies an existing persistent volume claim for storing the log data. All requests coming to the API server are logged to this persistent volume claim. If you leave this field empty, the log data is sent to stdout.
-    1.  Specifies which events should be recorded and what data they should include:
-        *   `None`: Do not log events.
-        *   `Metadata`: Log only the metadata for the request, such as user, timestamp, and so forth. Do not log the request text and the response text. This is the default.
-        *   `Request`: Log only the metadata and the request text but not the response text. This option does not apply for non-resource requests.
-        *   `RequestResponse`: Log event metadata, request text, and response text. This option does not apply for non-resource requests.
-    1.  Specifies stages for which no event is created.
-    1.  Specifies whether to omit the managed fields of the request and response bodies from being written to the API audit log, either `true` to omit the fields or `false` to include the fields.
-    1.  Specifies the size and lifespan of the audit logs.
-        *   `maxAge`: The maximum number of days to retain audit log files, based on the timestamp encoded in their filename.
-        *   `maxBackup`: The maximum number of audit log files to retain. Set to `0` to retain all audit log files.
-        *   `maxSize`: The maximum size in megabytes of an audit log file before it gets rotated.
+{% endif %}
+
+    where:
+
+    `spec.metricsServer.auditConfig.logFormat`
+    :   Specifies the output format of the audit log, either `legacy` or `json`.
+
+
+`spec.metricsServer.auditConfig.logOutputVolumeClaim`
+:   Specifies an existing persistent volume claim for storing the log data. All requests coming to the API server are logged to this persistent volume claim. If you leave this field empty, the log data is sent to stdout.
+
+
+`spec.metricsServer.auditConfig.policy.rules`
+:   Specifies which events should be recorded and what data they should include:
+    *   `None`: Do not log events.
+    *   `Metadata`: Log only the metadata for the request, such as user, timestamp, and so forth. Do not log the request text and the response text. This is the default.
+    *   `Request`: Log only the metadata and the request text but not the response text. This option does not apply for non-resource requests.
+    *   `RequestResponse`: Log event metadata, request text, and response text. This option does not apply for non-resource requests.
+
+    `spec.metricsServer.auditConfig.policy.omitStages`
+    :   Specifies stages for which no event is created.
+
+
+`spec.metricsServer.auditConfig.policy.omitManagedFields`
+:   Specifies whether to omit the managed fields of the request and response bodies from being written to the API audit log, either `true` to omit the fields or `false` to include the fields.
+
+
+`spec.metricsServer.auditConfig.lifetime`
+:   Specifies the size and lifespan of the audit logs.
+    *   `maxAge`: The maximum number of days to retain audit log files, based on the timestamp encoded in their filename.
+    *   `maxBackup`: The maximum number of audit log files to retain. Set to `0` to retain all audit log files.
+    *   `maxSize`: The maximum size in megabytes of an audit log file before it gets rotated.
 
 **Verification**
 
@@ -96,11 +114,12 @@ You can configure auditing for the Custom Metrics Autoscaler Operator by editing
         ```
     1.  View the log data by using a command similar to the following:
         ```terminal
-        $ oc logs keda-metrics-apiserver-<hash>|grep -i metadata (1)
+        $ oc logs keda-metrics-apiserver-<hash>|grep -i metadata
         ```
-        1.  Optional: You can use the `grep` command to specify the log level to display: `Metadata`, `Request`, `RequestResponse`.
 
-            For example:
+        Optional: You can use the `grep` command to specify the log level to display: `Metadata`, `Request`, `RequestResponse`.
+
+        For example:
         ```terminal
         $ oc logs keda-metrics-apiserver-65c7cc44fd-rrl4r|grep -i metadata
         ```
@@ -144,11 +163,12 @@ You can configure auditing for the Custom Metrics Autoscaler Operator by editing
         ```
     1.  View the log, as needed:
         ```terminal
-        sh-4.4$ cat <log_name>/<pvc_name>|grep -i <log_level> (1)
+        sh-4.4$ cat <log_name>/<pvc_name>|grep -i <log_level>
         ```
-        1.  Optional: You can use the `grep` command to specify the log level to display: `Metadata`, `Request`, `RequestResponse`.
 
-            For example:
+        Optional: You can use the `grep` command to specify the log level to display: `Metadata`, `Request`, `RequestResponse`.
+
+        For example:
         ```terminal
         sh-4.4$ cat log-2023.02.17-14:50/pvc-audit-log|grep -i Request
         ```

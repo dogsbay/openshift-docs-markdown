@@ -50,6 +50,7 @@ Learn about certificates in {{ product_title }} and how to maintain them by usin
 **Additional resources**
 {._additional-resources}
 
+*   [Checking etcd certificate expiry in OpenShift 4](https://access.redhat.com/solutions/7000968)
 *   [etcd certificates](/security/certificate_types_descriptions/etcd-certificates#cert-types-etcd-certificates_cert-types-etcd-certificates)
 
 {% leveloffset +2 %}{% include "./modules/troubleshooting-certs-auto-node.md" %}{% endleveloffset %}

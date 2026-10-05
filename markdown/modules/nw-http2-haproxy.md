@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Enable or disable HTTP/2 on Ingress Controllers {id="nw-http2-haproxy_{{ context }}"}
 
-You can enable or disable transparent end-to-end HTTP/2 connectivity in HAProxy. Application owners can use HTTP/2 protocol capabilities, including single connection, header compression, binary streams, and more.
+You can enable or disable transparent end-to-end HTTP/2 connectivity in HAProxy. Application owners can use HTTP/2 protocol capabilities, including single connection, header compression, binary streams, and more. {._abstract}
 
 You can enable or disable HTTP/2 connectivity for an individual Ingress Controller or for the entire cluster.
 

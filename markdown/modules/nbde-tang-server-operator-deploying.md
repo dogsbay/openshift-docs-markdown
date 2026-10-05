@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deploy a Tang server using the NBDE Tang Server Operator {id="deploying-nbde-tang-server_{{ context }}"}
 
-You can deploy and quickly configure one or more Tang servers using the NBDE Tang Server Operator in the web console.
+You can deploy and quickly configure one or more Tang servers using the NBDE Tang Server Operator in the web console. {._abstract}
 
 **Prerequisites**
 

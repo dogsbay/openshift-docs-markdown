@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting cluster notifications {id="rosa-troubleshooting-cluster-notifications_{{ context }}"}
+# Troubleshoot cluster notifications {id="rosa-troubleshooting-cluster-notifications_{{ context }}"}
 
 If you are not receiving cluster notification emails, troubleshoot the issue by checking email filters, verifying notification contacts, and confirming network access. {._abstract}
 

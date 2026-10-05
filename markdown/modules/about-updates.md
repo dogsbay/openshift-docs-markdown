@@ -13,7 +13,7 @@ To reconcile the cluster with the newly specified version, the CVO retrieves the
 
 :::note
 
-Operators previously installed through Operator Lifecycle Manager (OLM) follow a different process for updates. See [Updating installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators) for more information.
+Operators previously installed through Operator Lifecycle Manager (OLM) follow a different process for updates. See "Updating installed Operators" for more information.
 
 :::
 

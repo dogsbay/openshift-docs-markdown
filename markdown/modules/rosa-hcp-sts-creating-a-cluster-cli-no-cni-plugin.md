@@ -10,7 +10,7 @@ You can create a {{ product_title }} cluster without a CNI plugin by using the `
 *   You have enabled the {{ product_title }} in the AWS Console.
 *   You have installed and configured the latest ROSA CLI (`rosa`) on your installation host. Run `rosa version` to see your currently installed version of the ROSA CLI. If a newer version is available, the CLI provides a link to download this upgrade.
 *   You have logged in to your Red&#160;Hat account by using the ROSA CLI.
-*   You have created an OIDC configuration.
+*   You have created an OpenID Connect (OIDC) configuration.
 *   You have verified that the AWS Elastic Load Balancing (ELB) service role exists in your AWS account.
 
 **Procedure**

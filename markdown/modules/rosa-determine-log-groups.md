@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Determining what log groups to use {id="rosa-determine-log-groups_{{ context }}"}
+# Select log groups and applications {id="rosa-determine-log-groups_{{ context }}"}
 
 When you forward control plane logs to Amazon CloudWatch or S3, you must decide on what log groups you want to use. Because of the existing AWS pricing for these services, you can expect additional costs associated with forwarding and storing your logs in S3 and CloudWatch. When you determine what log group to use, consider these additional costs along with other factors, such as your log retention requirements. {._abstract}
 

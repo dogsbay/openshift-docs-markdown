@@ -5,5 +5,5 @@ To create a {{ product_title }} cluster, you must have the following items: {._a
 
 *   A configured virtual private cloud (VPC)
 *   Account-wide roles
-*   An OIDC configuration
+*   An OpenID Connect (OIDC) configuration
 *   Operator roles

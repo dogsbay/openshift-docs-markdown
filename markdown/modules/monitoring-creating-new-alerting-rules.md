@@ -2,7 +2,7 @@
 # Create new alerting rules {id="creating-new-alerting-rules_{{ context }}"}
 
 As a cluster administrator, you can create new alerting rules based on platform metrics.
-These alerting rules trigger alerts based on the values of chosen metrics.
+These alerting rules trigger alerts based on the values of chosen metrics. {._abstract}
 
 
 :::note
@@ -28,31 +28,46 @@ The following example creates a new alerting rule named `example`, similar to th
     kind: AlertingRule
     metadata:
       name: example
-      namespace: openshift-monitoring (1)
+      namespace: openshift-monitoring
     spec:
       groups:
       - name: example-rules
         rules:
-        - alert: ExampleAlert (2)
-          for: 1m (3)
-          expr: vector(1) (4)
+        - alert: ExampleAlert
+          for: 1m
+          expr: vector(1)
           labels:
-            severity: warning (5)
+            severity: warning
           annotations:
-            message: This is an example alert. (6)
+            message: This is an example alert.
     ```
-    1.  Ensure that the namespace is `openshift-monitoring`.
-    1.  The name of the alerting rule you want to create.
-    1.  The duration for which the condition should be true before an alert is fired.
-    1.  The PromQL query expression that defines the new rule.
-    1.  The severity that alerting rule assigns to the alert.
-    1.  The message associated with the alert.
+
+    where:
+
+    `metadata.namespace`
+    :   Specifies the namespace. Ensure that the namespace is `openshift-monitoring`.
+
+    `spec.groups[].rules[].alert`
+    :   Specifies the name of the alerting rule you want to create.
+
+    `spec.groups[].rules[].for`
+    :   Specifies the duration for which the condition should be true before an alert is fired.
+
+    `spec.groups[].rules[].expr`
+    :   Specifies the PromQL query expression that defines the new rule.
+
+    `spec.groups[].rules[].labels.severity`
+    :   Specifies the severity that the alerting rule assigns to the alert.
+
+    `spec.groups[].rules[].annotations.message`
+    :   Specifies the message associated with the alert.
 
     :::important
 
     You must create the `AlertingRule` object in the `openshift-monitoring` namespace. Otherwise, the alerting rule is not accepted.
     
     :::
+
 
 1.  Apply the configuration file to the cluster:
     ```terminal

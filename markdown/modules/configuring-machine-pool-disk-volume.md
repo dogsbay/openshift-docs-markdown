@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Configuring machine pool disk volume {id="configuring-machine-pool-disk-volume_{{ context }}"}
+# Configure machine pool disk volume {id="configuring-machine-pool-disk-volume_{{ context }}"}
 
 Machine pool disk volume size can be configured for additional flexibility. The default disk size is 300 GiB. {._abstract}
 

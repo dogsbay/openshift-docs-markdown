@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Configuring GPU-based autoscaling with Prometheus and DCGM metrics {id="nodes-cma-autoscaling-custom-trigger-prom-gpu_{{ context }}"}
 
-You can use the Custom Metrics Autoscaler with NVIDIA Data Center GPU Manager (DCGM) metrics to scale workloads based on GPU utilization. This is particularly useful for AI and machine learning workloads that require GPU resources.
+You can use the Custom Metrics Autoscaler with NVIDIA Data Center GPU Manager (DCGM) metrics to scale workloads based on GPU utilization. This is particularly useful for AI and machine learning workloads that require GPU resources. {._abstract}
 
 ```yaml title="Example scaled object with a Prometheus target for GPU-based autoscaling"
 apiVersion: keda.sh/v1alpha1
@@ -13,21 +13,31 @@ spec:
   scaleTargetRef:
     kind: Deployment
     name: gpu-deployment
-  minReplicaCount: 1 (1)
-  maxReplicaCount: 5 (2)
+  minReplicaCount: 1
+  maxReplicaCount: 5
   triggers:
   - type: prometheus
     metadata:
       serverAddress: https://thanos-querier.openshift-monitoring.svc.cluster.local:9092
       namespace: my-namespace
       metricName: gpu_utilization
-      threshold: '90' (3)
-      query: SUM(DCGM_FI_DEV_GPU_UTIL{instance=~".+", gpu=~".+"}) (4)
+      threshold: '90'
+      query: SUM(DCGM_FI_DEV_GPU_UTIL{instance=~".+", gpu=~".+"})
       authModes: bearer
-    authenticationRef:
-      name: keda-trigger-auth-prometheus
+  authenticationRef:
+    name: keda-trigger-auth-prometheus
 ```
-1.  Specifies the minimum number of replicas to maintain. For GPU workloads, this should not be set to `0` to ensure that metrics continue to be collected.
-1.  Specifies the maximum number of replicas allowed during scale-up operations.
-1.  Specifies the GPU utilization percentage threshold that triggers scaling. When the average GPU utilization exceeds 90%, the autoscaler scales up the deployment.
-1.  Specifies a Prometheus query using NVIDIA DCGM metrics to monitor GPU utilization across all GPU devices. The `DCGM_FI_DEV_GPU_UTIL` metric provides GPU utilization percentages.
+where:
+
+
+`spec.minReplicaCount`
+:   Specifies the minimum number of replicas to maintain. For GPU workloads, this should not be set to `0` to ensure that metrics continue to be collected.
+
+`spec.maxReplicaCount`
+:   Specifies the maximum number of replicas allowed during scale-up operations.
+
+`spec.triggers[].metadata.threshold`
+:   Specifies the GPU utilization percentage threshold that triggers scaling. When the average GPU utilization exceeds 90%, the autoscaler scales up the deployment.
+
+`spec.triggers[].metadata.query`
+:   Specifies a Prometheus query using NVIDIA DCGM metrics to monitor GPU utilization across all GPU devices. The `DCGM_FI_DEV_GPU_UTIL` metric provides GPU utilization percentages.

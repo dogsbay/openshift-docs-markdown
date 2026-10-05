@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" -%}
 {% if openshift_rosa %}
-# Configuring machine pool disk volume using {{ cluster_manager }} {id="configuring-machine-pool-disk-volume-ocm_{{ context }}"}
+# Configure machine pool disk volume using {{ cluster_manager }} {id="configuring-machine-pool-disk-volume-ocm_{{ context }}"}
 
 {% endif %}
 

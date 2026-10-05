@@ -1,5 +1,7 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # Developer {id="rosa-developer-topics_{{ context }}"}
+
+Use the following resources to learn about application development, deployment, and tooling in {{ product_title }}. {._abstract}
 
 | Learn about application development in {{ product_title }} | Deploy applications | Additional resources |
 | --- | --- | --- |

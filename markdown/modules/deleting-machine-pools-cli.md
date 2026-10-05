@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting a machine pool using the {{ rosa_cli }} {id="deleting-machine-pools-cli_{{ context }}"}
+# Delete a machine pool using the {{ rosa_cli }} {id="deleting-machine-pools-cli_{{ context }}"}
 
 You can delete a machine pool for your {{ product_title }} cluster by using the {{ rosa_cli_first }}. {._abstract}
 

@@ -15,7 +15,7 @@ Before upgrading a WIF-enabled {{ product_title }} cluster to a newer version, y
 
 As part of Red&#160;Hat’s ongoing commitment to the principle of least privilege, certain permissions previously assigned to the `osd-deployer` service account in WIF configurations have been removed. These changes help enhance the security of your clusters by ensuring that service accounts have only the permissions they need to perform their functions.
 
-For the complete list of WIF configuration roles and their assigned permissions, see [managed-cluster-config](https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.19/vanilla.yaml).
+For the complete list of WIF configuration roles and their assigned permissions, see [managed-cluster-config](https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.22/vanilla.yaml).
 
 To align your existing WIF configurations with these updated permissions, you can run the `ocm gcp update wif-config` command. This command updates the WIF configuration to include the latest permissions and roles required for optimal operation.
 
@@ -26,9 +26,9 @@ When you update a wif-config or create a new one, ensure your {{ cluster_manager
 Error: failed to create wif-config: failed to create wif-config: status is 400, identifier is '400', code is 'CLUSTERS-MGMT-400', at '2025-10-06T15:18:37Z' and operation identifier is 'f9551d63-a58a-4e3c-b847-5f99ba1b0b74': Client version is out of date for WIF operations. Please update from vOCM-CLI/1.0.7 to v1.0.8 and try again.
 ```
 
-You can also update an existing {{ product_title }} cluster that is already using WIF by adding a dedicated project to manage workload identity pools and providers using the `--federated-project` flag. This best-practice model separates the workload identity pools and providers into a dedicated, centralized {{ GCP }} project.
+You can also update an existing {{ product_title }} cluster that is already using WIF by adding a dedicated project to manage workload identity pools and providers by using the `--federated-project` flag. This best-practice model separates the workload identity pools and providers into a dedicated, centralized {{ GCP }} project.
 
-When you update the configuration using the `--federated-project` flag, any associated workload identity pools move to the new federated project you specify, while the existing IAM service accounts and custom roles remain in the original cluster-associated project.
+When you update the configuration by using the `--federated-project` flag, any associated workload identity pools move to the new federated project you specify, while the existing IAM service accounts and custom roles remain in the original cluster-associated project.
 
 **Procedure**
 
@@ -39,9 +39,9 @@ When you update the configuration using the `--federated-project` flag, any asso
 1.  Optional: If your `ocm` version is not the latest available, download and install the latest version from the [Downloads](https://console.redhat.com/openshift/downloads) page on {{ cluster_manager }}.
 1.  Update a wif-config to a specific {{ product_title }} version by running the following command:
     ```terminal
-    ocm gcp update wif-config <wif_name> \
-    --version <version>
-    --federated-project <gcp_project_id>
+    $ ocm gcp update wif-config <wif_name> \
+      --version <version> \
+      --federated-project <gcp_project_id>
     ```
 
     where:
@@ -51,7 +51,7 @@ When you update the configuration using the `--federated-project` flag, any asso
 
 
 `<version>`
-:   Optional: The {{ product_title }} y-stream version you plan to update the cluster to. If you do not specify a version, the wif-config will be updated to support the latest {{ product_title }} y-stream version as well as the last three {{ product_title }} supported y-stream versions (beginning with version 4.17).
+:   Optional: The {{ product_title }} y-stream version you plan to update the cluster to. If you do not specify a version, the wif-config is updated to support the latest {{ product_title }} y-stream version and the last three {{ product_title }} supported y-stream versions (beginning with version 4.17).
 
 
 `--federated-project <gcp_project_id>`
@@ -59,7 +59,9 @@ When you update the configuration using the `--federated-project` flag, any asso
 
 **Next steps**
 
-The stale set of permissions previously assigned to the `osd-deployer` service account will remain on the account after updating the wif-config. You need to manually access the roles and remove these stale permissions from them.
+If you are upgrading a cluster across multiple y-stream versions, update the WIF configuration to each intermediate version before upgrading the cluster to that version. For example, to upgrade from 4.20 to 4.22, update the WIF configuration to 4.21 first, upgrade the cluster to 4.21, then update the WIF configuration to 4.22 and upgrade the cluster to 4.22.
+
+The stale set of permissions previously assigned to the `osd-deployer` service account will remain on the account after updating the `wif-config`. You need to manually access the roles and remove these stale permissions from them.
 
 Follow the instructions in the "Removing stale deployer permissions from service accounts managed by a WIF configuration" and "Removing stale support permissions from service accounts managed by a WIF configuration" guides to remove these stale permissions.
 

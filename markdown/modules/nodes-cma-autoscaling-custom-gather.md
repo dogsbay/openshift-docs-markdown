@@ -1,18 +1,12 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Gather debugging data {id="nodes-cma-autoscaling-custom-debugging-gather_{{ context }}"}
 
-The following command runs the `must-gather` tool for the Custom Metrics Autoscaler Operator:
-
-```terminal
-$ oc adm must-gather --image="$(oc get packagemanifests openshift-custom-metrics-autoscaler-operator \
--n openshift-marketplace \
--o jsonpath='{.status.channels[?(@.name=="stable")].currentCSVDesc.annotations.containerImage}')"
-```
+When troubleshooting issues with the Custom Metrics Autoscaler Operator, you can use the `must-gather` tool to collect diagnostic information. The tool gathers resource definitions, pod logs, and configuration details that help identify problems or can be shared with Red Hat Support for assistance. {._abstract}
 
 
 :::note
 
-The standard {{ product_title }} `must-gather` command, `oc adm must-gather`, does not collect Custom Metrics Autoscaler Operator data.
+The standard {{ product_title }} `must-gather` command, `oc adm must-gather`, does not collect Custom Metrics Autoscaler Operator data. You must use the custom command in this procedure.
 
 :::
 
@@ -67,7 +61,6 @@ The standard {{ product_title }} `must-gather` command, `oc adm must-gather`, do
     **Example must-gather output for the Custom Metric Autoscaler**
 
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
-    :::details{title="Details"}
     ```terminal
     └── openshift-keda
         ├── apps
@@ -147,10 +140,8 @@ The standard {{ product_title }} `must-gather` command, `oc adm must-gather`, do
         └── route.openshift.io
             └── routes.yaml
     ```
-    :::
 {%- endif %}
 {%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
-    :::details{title="Details"}
     ```terminal
     └── keda
         ├── apps
@@ -230,15 +221,15 @@ The standard {{ product_title }} `must-gather` command, `oc adm must-gather`, do
         └── route.openshift.io
             └── routes.yaml
     ```
-    :::
 {%- endif %}
 
 {% if not openshift_origin %}
 1.  Create a compressed file from the `must-gather` directory that was created in your working directory. For example, on a computer that uses a Linux
 operating system, run the following command:
     ```terminal
-    $ tar cvaf must-gather.tar.gz must-gather.local.5421342344627712289/ (1)
+    $ tar cvaf must-gather.tar.gz must-gather.local.5421342344627712289/
     ```
-    1.  Replace `must-gather-local.5421342344627712289/` with the actual directory name.
+
+    Replace `must-gather-local.5421342344627712289/` with the actual directory name.
 1.  Attach the compressed file to your support case on the [Red Hat Customer Portal](https://access.redhat.com).
 {% endif %}

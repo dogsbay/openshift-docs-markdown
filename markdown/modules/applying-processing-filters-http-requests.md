@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Applying processing filters to HTTP requests {id="applying-processing-filters-http-requests_{{ context }}"}
 
-To modify how HTTP requests are processed before they reach your backend services, you can pre-configure filters within the rules of your `HTTPRoute` custom resource (CR). Configuring these filters allows you to automatically redirect traffic, modify headers, or mirror requests to achieve your desired routing behavior. {._abstract}
+To modify how HTTP requests are processed before they reach your backend services, you can pre-configure filters within the rules of your `HTTPRoute` custom resource (CR). {._abstract}
+
+Configuring these filters allows you to automatically redirect traffic, modify headers, or mirror requests to achieve your desired routing behavior.
 
 **Prerequisites**
 
@@ -9,7 +11,7 @@ To modify how HTTP requests are processed before they reach your backend service
 
 **Procedure**
 
-1.  Create or edit an `HTTPRoute` YAML file to include your desired processing directives under the `spec.rules.filters` field. 
+1.  Create or edit an `HTTPRoute` YAML file to include your desired processing directives under the `spec.rules.filters` field.
     The following example demonstrates a complete `HTTPRoute` custom resource (CR) with a `requestRedirect` filter that issues a permanent redirect (301) from HTTP to HTTPS. For details on configuring other filter types, see [supported-httproute-filters_{{ context }}](#supported-httproute-filters_{{ context }}).
 
     ```yaml

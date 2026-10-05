@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Plugin service proxy {id="dynamic-plugin-proxy-service_{{ context }}"}
 
-If you need to make HTTP requests to an in-cluster service from your plugin, you can declare a service proxy in its `ConsolePlugin` resource by using the `spec.proxy` array field. The console backend exposes the `/api/proxy/plugin/<plugin-name>/<proxy-alias>/<request-path>++?++<optional-query-parameters>` endpoint to proxy the communication between the plugin and the service. A proxied request uses a _service CA bundle_ by default. The service must use HTTPS. {._abstract}
+If you need to make HTTP requests to an in-cluster service from your plugin, you can declare a service proxy in its `ConsolePlugin` resource by using the `spec.proxy` array field.  {._abstract}
+
+The console backend exposes the `/api/proxy/plugin/<plugin-name>/<proxy-alias>/<request-path>++?++<optional-query-parameters>` endpoint to proxy the communication between the plugin and the service. A proxied request uses a _service CA bundle_ by default. The service must use HTTPS.
 
 
 :::note

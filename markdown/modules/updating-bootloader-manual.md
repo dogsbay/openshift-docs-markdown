@@ -20,8 +20,7 @@ You can manually inspect the status of the system and update the boot loader by 
       Installed: grub2-efi-aa64-1:2.02-99.el8_4.1.aarch64,shim-aa64-15.4-2.el8_1.aarch64
       Update: At latest version
     ```
-{% endif %}
-
+{%- endif %}
 1.  {{ product_title }} clusters initially installed on version 4.4 and older require an explicit adoption phase.
 
     If the system status is `Adoptable`, perform the adoption by running the following command:

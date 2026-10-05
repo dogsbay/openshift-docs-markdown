@@ -11,7 +11,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About edge compute pools {id="edge-machine-pools-aws-local-zones_{{ context }}"}
 
-The edge compute pool configuration is common between {{ aws_first }} {{ zone_type }} locations. You can use the edge compute pool to create new labels to deploy applications onto {{ aws_first }} {{ zone_type }} nodes. Edge compute nodes are tainted compute nodes that run in {{ aws_short }} {{ zone_type }} locations. {._abstract}
+The edge compute pool configuration is common between {{ aws_first }} {{ zone_type }} locations.  {._abstract}
+
+You can use the edge compute pool to create new labels to deploy applications onto {{ aws_first }} {{ zone_type }} nodes. Edge compute nodes are tainted compute nodes that run in {{ aws_short }} {{ zone_type }} locations.
 
 When deploying a cluster that uses {{ zone_type }}, consider the following points:
 

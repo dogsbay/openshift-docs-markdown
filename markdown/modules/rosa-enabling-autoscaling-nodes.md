@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling autoscaling nodes in an existing cluster using the {{ rosa_cli }} {id="rosa-enabling-autoscaling-nodes_{{ context }}"}
+# Enable autoscaling nodes in an existing cluster using the {{ rosa_cli }} {id="rosa-enabling-autoscaling-nodes_{{ context }}"}
 
 Configure autoscaling to dynamically scale the number of worker nodes up or down based on load. {._abstract}
 

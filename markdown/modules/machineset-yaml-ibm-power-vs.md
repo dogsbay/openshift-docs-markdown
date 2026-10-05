@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Sample YAML for a compute machine set custom resource on {{ ibm_power_server_title }} {id="machineset-yaml-ibm-power-vs_{{ context }}"}
 
-You can use the sample YAML file to help automate provisioning and to ensure scaling and scheduling work, as required. The sample YAML file defines a compute machine set that runs in a specified {{ ibm_power_server_name }} zone in a region and creates nodes that are labeled with `node-role.kubernetes.io/<role>: ""`. {._abstract}
+You can use the sample YAML file to help automate provisioning and to ensure scaling and scheduling work, as required. {._abstract}
+
+The sample YAML file defines a compute machine set that runs in a specified {{ ibm_power_server_name }} zone in a region and creates nodes that are labeled with `node-role.kubernetes.io/<role>: ""`.
 
 In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `<role>` is the node label to add.
 

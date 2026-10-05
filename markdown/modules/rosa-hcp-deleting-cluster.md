@@ -85,7 +85,7 @@ If add-ons are installed, the cluster deletion takes longer because add-ons are 
 
         :::important
 
-        After the cluster is deleted, you need the cluster ID to delete the cluster-specific STS resources using the {{ rosa_cli }}.
+        After the cluster is deleted, you need the cluster ID to delete the cluster-specific {{ sts_first }} resources using the {{ rosa_cli }}.
         
         :::
 

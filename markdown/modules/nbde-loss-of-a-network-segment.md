@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Loss of a network segment {id="nbde-loss-of-a-network-segment_{{ context }}"}
 
-The loss of a network segment, making a Tang server temporarily unavailable, has the following consequences:
+The loss of a network segment makes a Tang server temporarily unavailable. {._abstract}
+
+This has the following consequences:
 
 *   {{ product_title }} nodes continue to boot as normal, provided other servers are available.
 *   New nodes cannot establish their encryption keys until the network segment is restored. In this case, ensure connectivity to remote geographic locations for the purposes of high availability and redundancy. This is because when you are installing a new node or rekeying an existing node, all of the Tang servers you are referencing in that operation must be available.

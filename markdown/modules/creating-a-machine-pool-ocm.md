@@ -4,7 +4,7 @@
 
 {% endif %}
 {% if openshift_rosa or openshift_rosa_hcp %}
-# Creating a machine pool using {{ cluster_manager }} {id="_creating_a_machine_pool_using_cluster_manager"}
+# Create a machine pool using {{ cluster_manager }} {id="_create_a_machine_pool_using_cluster_manager"}
 
 {% endif %}
 

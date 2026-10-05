@@ -24,8 +24,6 @@ When configuring timeouts, you must adhere to the following formatting rules and
 *   The number can be up to five digits, such as `10000s`. 
 *   You can use multipart durations to express fractions, such as `1m30s`, but you cannot use decimal dots.
 
-## Example: Request timeout {id="_example_request_timeout"}
-
 The following example demonstrates a complete `HTTPRoute` custom resource (CR) where the entire request must complete within 30 seconds:
 
 ```yaml
@@ -51,8 +49,6 @@ spec:
 ```
 *   `request` specifies the timeout for the full request-response cycle.
 *   `PathPrefix` ensures the timeout applies to all requests starting with `/<timeout_path>`.
-
-## Example: Request and backendRequest timeouts {id="_example_request_and_backendrequest_timeouts"}
 
 The following snippet demonstrates a configuration where the request must succeed within 5 seconds, and the gateway-to-backend hop must complete within 1 second:
 

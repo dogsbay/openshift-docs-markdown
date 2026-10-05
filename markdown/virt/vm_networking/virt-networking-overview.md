@@ -33,7 +33,7 @@ When deploying VM networks on public clouds, you can choose from the following s
 *   Primary layer 2 user-defined network (UDN): This is the preferred approach. It provides a flat layer 2 network for VMs, sticky IP addresses, and direct east-west connectivity.
 *   Secondary layer 2 network attachment definition (NAD): This approach provides an isolated layer 2 overlay network to connect VMs on different nodes, without configuring any additional physical networking infrastructure.
 
-For the default pod network and the primary user-defined network, egress traffic relies on Network Address Translation (NAT). Ingress traffic requires load balancer services integrated with the cloud provider’s native load balancers. 
+For the default pod network and the primary user-defined network, egress traffic relies on Network Address Translation (NAT). Ingress traffic requires load balancer services integrated with the cloud provider’s native load balancers.
 
 The layer 2 secondary network does not provide external ingress or egress routing.
 
@@ -51,10 +51,9 @@ The layer 2 secondary network does not provide external ingress or egress routin
 
 :::important
 
-The following features are not supported on {{ product_rosa }}, {{ azure_first }}, {{ product_dedicated }}, {{ gcp_first }}, and {{ oci_first }}:
+The following features are not supported on public clouds:
 
 *   Connecting VMs directly to the underlay network
-*   Using Border Gateway Protocol (BGP) to allow direct routing to VMs
 *   Using Ethernet Virtual Private Network (EVPN) with BGP to extend layer 2 connectivity for primary cluster-scoped UDNs
 
 :::

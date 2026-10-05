@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Glossary of common terms for {{ product_title }} monitoring {id="monitoring-common-terms_{{ context }}"}
 
-This glossary defines common terms that are used in {{ product_title }} architecture.
+This glossary defines common terms that are used in {{ product_title }} architecture. {._abstract}
 
 
 Alertmanager

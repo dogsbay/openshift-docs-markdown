@@ -9,7 +9,7 @@ Use the `--external-auth-providers-enabled` flag in the {{ rosa_cli_first }} to 
 
 :::note
 
-When creating a {{ product_title }} cluster, the default machine Classless Inter-Domain Routing (CIDR) is `10.0.0.0/16`. If this does not correspond to the CIDR range for your VPC subnets, add `--machine-cidr <address_block>` to the following commands.
+When creating a {{ product_title }} cluster, the default machine Classless Inter-Domain Routing (CIDR) is `10.0.0.0/16`. If this does not correspond to the CIDR range for your virtual private cloud (VPC) subnets, add `--machine-cidr <address_block>` to the following commands.
 
 :::
 

@@ -53,11 +53,11 @@ To statically provision VMware vSphere volumes you must create the virtual machi
     :   Specifies the file system type to mount. For example, ext4, xfs, or other file systems.
 
 
-:::important
+    :::important
 
-Changing the value of the fsType parameter after the volume is formatted and provisioned can result in data loss and pod failure.
-
-:::
+    Changing the value of the fsType parameter after the volume is formatted and provisioned can result in data loss and pod failure.
+    
+    :::
 
 
 1.  Create the `PersistentVolume` object from the file:

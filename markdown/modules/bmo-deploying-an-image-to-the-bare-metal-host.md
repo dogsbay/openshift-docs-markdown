@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deploying an image to the bare-metal host {id="bmo-deploying-an-image-to-the-bare-metal-host_{{ context }}"}
 
-To deploy the image to the host, update the `image` field in the `spec` section of the `BareMetalHost` resource. Once you update the `image` field, provisioning begins immediately. Deploying an image transforms bare hardware into a functional system
-ready to run your workloads, in an automated and repeatable way. {._abstract}
+To deploy the image to the host, update the `image` field in the `spec` section of the `BareMetalHost` resource. Once you update the `image` field, provisioning begins immediately. {._abstract}
+
+Deploying an image transforms bare hardware into a functional system ready to run your workloads, in an automated and repeatable way.
 
 **Procedure**
 

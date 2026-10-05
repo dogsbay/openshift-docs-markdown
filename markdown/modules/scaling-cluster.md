@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Scaling your cluster {id="scaling-cluster_{{ context }}"}
+# Scale your cluster {id="scaling-cluster_{{ context }}"}
 
 You can scale the number of load balancers, the persistent storage capacity, and the node count for your {{ product_title }} cluster from {{ cluster_manager }}. {._abstract}
 

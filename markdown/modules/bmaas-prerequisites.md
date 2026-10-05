@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Prerequisites for using {{ bmaas_first }} {id="bmaas-prerequisites_{{ context }}"}
 
-{{ bmaas_first }} lets you apply cloud-native management practices to bare-metal infrastructure, enabling automated provisioning and lifecycle management for workloads that require physical hardware. To use {{ bmaas_first }}, complete the following prerequisites: {._abstract}
+{{ bmaas_first }} lets you apply cloud-native management practices to bare-metal infrastructure, enabling automated provisioning and lifecycle management for workloads that require physical hardware. {._abstract}
+
+To use {{ bmaas_first }}, complete the following prerequisites:
 
 
 BareMetalHost Configuration

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deploying routers on compute nodes {id="deploying-routers-on-worker-nodes_{{ context }}"}
 
-During installation, the installation program deploys router pods on compute nodes. By default, the installation program installs two router pods. If a deployed cluster requires additional routers to handle external traffic loads destined for services within the {{ product_title }} cluster, you can create a `yaml` file to set an appropriate number of router replicas. {._abstract}
+To handle external traffic loads for services in your {{ product_title }} cluster, create a `yaml` file that sets an appropriate number of router replicas. {._abstract}
+
+During installation, the installation program deploys router pods on compute nodes. By default, the installation program installs two router pods.
 
 
 :::important

@@ -10,7 +10,7 @@ You can create a {{ product_title }} cluster quickly by using the {{ rosa_cli_fi
 *   You have enabled the {{ product_title }} in the AWS Console.
 *   You have installed and configured the latest ROSA CLI (`rosa`) on your installation host. Run `rosa version` to see your currently installed version of the ROSA CLI. If a newer version is available, the CLI provides a link to download this upgrade.
 *   You have logged in to your Red&#160;Hat account by using the ROSA CLI.
-*   You have created an OIDC configuration.
+*   You have created an OpenID Connect (OIDC) configuration.
 *   You have verified that the AWS Elastic Load Balancing (ELB) service role exists in your AWS account.
 
 **Procedure**
@@ -19,7 +19,7 @@ You can create a {{ product_title }} cluster quickly by using the {{ rosa_cli_fi
 
     :::note
 
-    When creating a {{ product_title }} cluster, the default machine Classless Inter-Domain Routing (CIDR) is `10.0.0.0/16`. If this does not correspond to the CIDR range for your VPC subnets, add `--machine-cidr <address_block>` to the following commands. To learn more about the default CIDR ranges for {{ product_title }}, see CIDR range definitions.
+    When creating a {{ product_title }} cluster, the default machine Classless Inter-Domain Routing (CIDR) is `10.0.0.0/16`. If this does not correspond to the CIDR range for your virtual private cloud (VPC) subnets, add `--machine-cidr <address_block>` to the following commands. To learn more about the default CIDR ranges for {{ product_title }}, see CIDR range definitions.
     
     :::
 
@@ -43,7 +43,7 @@ You can create a {{ product_title }} cluster quickly by using the {{ rosa_cli_fi
         :   Optional. Use the `--private` argument to create private {{ product_title }} clusters. If you use this argument, ensure that you only use your private subnet ID for `--subnet-ids`.
 
         `<operator-role-prefix>`
-        :   By default, the cluster-specific Operator role names are prefixed with the cluster name and a random 4-digit hash. You can optionally specify a custom prefix to replace `<cluster_name>-<hash>` in the role names. The prefix is applied when you create the cluster-specific Operator IAM roles. For information about the prefix, see _About custom Operator IAM role prefixes_.
+        :   By default, the cluster-specific Operator role names are prefixed with the cluster name and a random 4-digit hash. You can optionally specify a custom prefix to replace `<cluster_name>-<hash>` in the role names. The prefix is applied when you create the cluster-specific Operator Identity and Access Management (IAM) roles. For information about the prefix, see _About custom Operator IAM role prefixes_.
 
         `<external-id>`
         :   Optional. A unique identifier that might be required when you assume a role in another account. For more information about external ID, see _About external ID_.
@@ -59,7 +59,7 @@ You can create a {{ product_title }} cluster quickly by using the {{ rosa_cli_fi
             :::note
 
 
-            If you specified custom ARN paths when you created the associated account-wide roles, the custom path is automatically detected. The custom path is applied to the cluster-specific Operator roles when you create them in a later step.
+            If you specified custom Amazon Resource Name (ARN) paths when you created the associated account-wide roles, the custom path is automatically detected. The custom path is applied to the cluster-specific Operator roles when you create them in a later step.
             
             :::
 

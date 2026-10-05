@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Uninstall the Custom Metrics Autoscaler Operator {id="nodes-cma-autoscaling-custom-uninstalling_{{ context }}"}
 
-Use the following procedure to remove the custom metrics autoscaler from your {{ product_title }} cluster.
+You can remove the custom metrics autoscaler from your {{ product_title }} cluster. {._abstract}
 
 **Prerequisites**
 

@@ -17,7 +17,7 @@ You can create a break glass credential to generate temporary cluster-admin cred
         $ rosa create break-glass-credential -c <cluster_name> -i
         ```
 
-        This command starts an interactive CLI process:
+        This command starts an interactive command-line interface (CLI) process:
         ```terminal
         I: Enabling interactive mode
         ? Username (optional):

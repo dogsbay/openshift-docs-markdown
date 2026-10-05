@@ -2,7 +2,9 @@
 
 # Passthrough mode permissions requirements {id="cco-passthrough-mode-permissions_{{ context }}"}
 
-When using the CCO in passthrough mode, ensure that the credential you provide meets the requirements of the cloud on which you are running or installing {{ product_title }}. If the provided credentials the CCO passes to a component that creates a `CredentialsRequest` CR are not sufficient, that component will report an error when it tries to call an API that it does not have permissions for. {._abstract}
+When using the CCO in passthrough mode, ensure that the credential you provide meets the requirements of the cloud on which you are running or installing {{ product_title }}. {._abstract}
+
+If the provided credentials the CCO passes to a component that creates a `CredentialsRequest` CR are not sufficient, that component will report an error when it tries to call an API that it does not have permissions for.
 
 
 Amazon Web Services (AWS) permissions

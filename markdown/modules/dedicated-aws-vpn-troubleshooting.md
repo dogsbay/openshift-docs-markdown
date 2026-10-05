@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Troubleshooting the VPN connection {id="dedicated-aws-vpn-troubleshooting"}
+# Troubleshoot the VPN connection {id="dedicated-aws-vpn-troubleshooting"}
 
 Review the following troubleshooting scenarios for common VPN connection issues. {._abstract}
 

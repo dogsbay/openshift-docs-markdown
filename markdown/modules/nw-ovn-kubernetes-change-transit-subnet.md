@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure the OVN-Kubernetes transit subnet {id="nw-ovn-kubernetes-change-transit-subnet_{{ context }}"}
 
-You can change the transit subnet used by OVN-Kubernetes to avoid conflicting with any existing subnets already in use in your environment.
+You can change the transit subnet used by OVN-Kubernetes to avoid conflicting with any existing subnets already in use in your environment. {._abstract}
 
 **Prerequisites**
 

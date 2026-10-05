@@ -38,7 +38,7 @@ The `FlowCollector` is explicitly created during installation. Since this resour
 
 *   [Network flows format reference](/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)
 
-{% leveloffset +1 %}{% include "./modules/network-observability-configuring-FLP-sampling.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/network-observability-configuring-flp-sampling.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/network-observability-filter-network-flows-at-ingestion.md" %}{% endleveloffset %}
 

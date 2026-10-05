@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure the default Ingress Controller for your cluster to be internal {id="nw-ingress-default-internal_{{ context }}"}
 
-You can configure the `default` Ingress Controller for your cluster to be internal by deleting and recreating it.
+You can configure the `default` Ingress Controller for your cluster to be internal by deleting and recreating it. {._abstract}
 
 {% if not (openshift_rosa or openshift_dedicated) %}
 

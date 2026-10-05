@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the hub cluster to use unauthenticated registries {id="ztp-configuring-the-hub-cluster-to-use-unauthenticated-registries_{{ context }}"}
+# Configure the hub cluster to use unauthenticated registries {id="ztp-configuring-the-hub-cluster-to-use-unauthenticated-registries_{{ context }}"}
 
 You can configure the hub cluster to use unauthenticated registries.
 Unauthenticated registries does not require authentication to access and download images. {._abstract}

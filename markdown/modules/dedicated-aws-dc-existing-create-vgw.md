@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a virtual private gateway for a Direct Connect connection {id="dedicated-aws-dc-existing-create-vgw_{{ context }}"}
+# Create a virtual private gateway for a Direct Connect connection {id="dedicated-aws-dc-existing-create-vgw_{{ context }}"}
 
 Create a virtual private gateway in your {{ product_title }} AWS account to connect to an existing Direct Connect Gateway. {._abstract}
 

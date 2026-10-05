@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Optional: Preparing a private Microsoft Azure cluster for a private image registry {id="installing-private-image-registry-private-azure"}
 
-By installing a private image registry on a private Microsoft Azure cluster, you can create private storage endpoints. Private storage endpoints disable public facing endpoints to the registry’s storage account, adding an extra layer of security to your {{ product_title }} deployment.
+By installing a private image registry on a private Microsoft Azure cluster, you can create private storage endpoints. {._abstract}
+
+Private storage endpoints disable public facing endpoints to the registry’s storage account, adding an extra layer of security to your {{ product_title }} deployment.
 
 
 :::important
@@ -50,20 +52,31 @@ Use the following guide to prepare your private Microsoft Azure cluster for inst
         azure:
           networkAccess:
             internal:
-              networkResourceGroupName: <vnet_resource_group> (1)
-              subnetName: <subnet_name> (2)
-              vnetName: <vnet_name> (3)
+              networkResourceGroupName: <vnet_resource_group>
+              subnetName: <subnet_name>
+              vnetName: <vnet_name>
             type: Internal 
     ```
-    1.  Optional. If you have an existing VNet and subnet setup, replace `<vnet_resource_group>` with the resource group name that contains the existing virtual network (VNet).
-    1.  Optional. If you have an existing VNet and subnet setup, replace `<subnet_name>` with the name of the existing compute subnet within the specified resource group.
-    1.  Optional. If you have an existing VNet and subnet setup, replace `<vnet_name>` with the name of the existing virtual network (VNet) in the specified resource group.
+
+    where:
+
+    `spec.storage.azure.networkAccess.internal.networkResourceGroupName`
+    :   Specifies the resource group name that contains the existing virtual network (VNet), if you have an existing VNet and subnet setup. This field is optional.
+
+
+`spec.storage.azure.networkAccess.internal.subnetName`
+:   Specifies the name of the existing compute subnet within the specified resource group, if you have an existing VNet and subnet setup. This field is optional.
+
+
+`spec.storage.azure.networkAccess.internal.vnetName`
+:   Specifies the name of the existing virtual network (VNet) in the specified resource group, if you have an existing VNet and subnet setup. This field is optional.
 
     :::note
 
     The `imageregistry-config.yaml` file is consumed during the installation process. If desired, you must back it up before installation.
     
     :::
+
 
 1.  Move the `imageregistry-config.yaml` file to the `<installation_directory/manifests>` folder by running the following command:
     ```terminal

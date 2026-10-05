@@ -11,7 +11,9 @@ To configure TLS ciphers and minimum versions for the kubelet HTTP server in {{ 
 *   The kubelet uses its HTTP/GRPC server to communicate with the Kubernetes API server, which sends commands to pods, gathers logs, and run exec commands on pods through the kubelet.
 {% endif %}
 
-```yaml title="Sample KubeletConfig CR that configures the Old TLS security profile on worker nodes"
+The following example is a `KubeletConfig` CR that configures the `Old` TLS security profile on worker nodes:
+
+```yaml
 apiVersion: machineconfiguration.openshift.io/v1
 kind: KubeletConfig
 # ...

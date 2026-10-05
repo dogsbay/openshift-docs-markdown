@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Troubleshooting a failure to add the ingress certificate to kubeconfig {id="troubleshooting-failure-to-add-the-ingress-certificate-to-kubeconfig_{{ context }}"}
 
-The installation program adds the default ingress certificate to the list of trusted client certificate authorities in `${{ INSTALL_DIR }}/auth/kubeconfig`{minja}. If the installation program fails to add the ingress certificate to the `kubeconfig` file, you can retrieve the certificate from the cluster and add it. {._abstract}
+If the installation program fails to add the default ingress certificate to `${{ INSTALL_DIR }}/auth/kubeconfig`{minja}, retrieve the certificate from the cluster and add it. {._abstract}
+
+The installation program normally adds the default ingress certificate to the list of trusted client certificate authorities in `${{ INSTALL_DIR }}/auth/kubeconfig`{minja}.
 
 **Procedure**
 

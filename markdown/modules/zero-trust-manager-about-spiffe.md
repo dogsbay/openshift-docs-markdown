@@ -8,4 +8,9 @@ The SPIFFE IDs are contained in the {{ svid_full }}. SVIDs are used by workloads
 *   X.509-SVIDs: X.509 certificates where the SPIFFE ID is embedded in the Subject Alternative Name (SAN) field.
 *   JWT-SVIDs: JSON Web Tokens (JWTs) where the SPIFFE ID is included as the `sub` claim.
 
-For more information, see [SPIFFE Overview](https://spiffe.io/docs/latest/spiffe-about/overview/).
+For more information, see "SPIFFE Overview".
+
+**Additional resources**
+{._additional-resources}
+
+*   [SPIFFE Overview](https://spiffe.io/docs/latest/spiffe-about/overview/)

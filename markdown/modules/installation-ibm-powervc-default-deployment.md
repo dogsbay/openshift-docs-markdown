@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Resource guidelines for installing {{ product_title }} on {{ ibm_power_vc_name }} {id="installation-ibm-powervc-default-deployment_{{ context }}"}
 
-To support an {{ product_title }} installation, it is recommended that your {{ ibm_power_vc_name }} has room for the following resources available:
+To support an {{ product_title }} installation, it is recommended that your {{ ibm_power_vc_name }} has room for the following resources available: {._abstract}
 
 **Recommended resources for a default {{ product_title }} cluster on {{ ibm_power_vc_name }}**
 

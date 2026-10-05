@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deleting the machine of the unhealthy etcd member {id="deleting-machine_{{ context }}"}
 
-Finish removing the failed control plane node by deleting the machine of the unhealthy etcd member.
+Finish removing the failed control plane node by deleting the machine of the unhealthy etcd member. {._abstract}
 
 **Procedure**
 

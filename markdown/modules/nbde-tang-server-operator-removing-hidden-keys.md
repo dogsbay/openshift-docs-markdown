@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Delete hidden keys with the NBDE Tang Server Operator {id="deleting-hidden-keys-with-nbde-tang-server-operator_{{ context }}"}
 
-After you rotate your Tang server keys, the previously active keys become hidden and are no longer advertised by the Tang instance. You can use the NBDE Tang Server Operator to remove encryption keys no longer used.
+After you rotate your Tang server keys, the previously active keys become hidden and are no longer advertised by the Tang instance. You can use the NBDE Tang Server Operator to remove encryption keys no longer used. {._abstract}
 
 
 WARNING
@@ -29,7 +29,7 @@ WARNING
     	sha256:	    	QS82aXnPKA4XpfHr3umbA0r2iTbRcpWQ0VI2Qdhi6xg
     …
     ```
-1.  Create a YAML file for removing all hidden keys, for example, `hidden-keys-deletion-tangserver.yaml`:
+1.  Create a YAML file for removing all hidden keys, for example, `hidden-keys-deletion-tangserver.yaml`. Set the `hiddenKeys` entry to an empty array to preserve no hidden keys on your Tang server:
     ```yaml title="Example hidden-keys-deletion YAML for tang-operator"
     apiVersion: daemons.redhat.com/v1alpha1
     kind: TangServer
@@ -40,9 +40,8 @@ WARNING
         - finalizer.daemons.tangserver.redhat.com
     spec:
       replicas: 1
-      hiddenKeys: [] (1)
+      hiddenKeys: []
     ```
-    1.  The empty array as the value of the `hiddenKeys` entry indicates you want to preserve no hidden keys on your Tang server.
 1.  Apply the YAML file:
     ```terminal
     $ oc apply -f hidden-keys-deletion-tangserver.yaml

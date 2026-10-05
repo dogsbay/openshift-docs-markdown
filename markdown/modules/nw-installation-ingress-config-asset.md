@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # The Ingress configuration asset {id="nw-installation-ingress-config-asset_{{ context }}"}
 
-The installation program generates an asset with an `Ingress` resource in the `config.openshift.io` API group, `cluster-ingress-02-config.yml`.
+The installation program generates an asset with an `Ingress` resource in the `config.openshift.io` API group, `cluster-ingress-02-config.yml`. {._abstract}
 
 ```yaml title="YAML Definition of the Ingress resource"
 apiVersion: config.openshift.io/v1

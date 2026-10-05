@@ -24,6 +24,10 @@ Seccomp profiles cannot be applied to privileged containers.
 
 {% leveloffset +1 %}{% include "./modules/configuring-default-seccomp-profile.md" %}{% endleveloffset %}
 
+{% leveloffset +2 %}{% include "./modules/seccomp-upgraded-cluster-scc-behavior.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/seccomp-newly-installed-cluster-scc-behavior.md" %}{% endleveloffset %}
+
 ## Configuring a custom seccomp profile {id="custom-seccomp-profile"}
 You can configure a custom seccomp profile, which allows you to update the filters based on the application requirements. This allows cluster administrators to have greater control over the security of workloads running in OpenShift Container Platform.
 

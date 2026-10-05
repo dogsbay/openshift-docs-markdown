@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Kernel Module Management Operator on earlier versions of {{ product_title }} {id="kmm-install-older-version_{{ context }}"}
+# Install the Kernel Module Management Operator on earlier versions of {{ product_title }} {id="kmm-install-older-version_{{ context }}"}
 
 As a cluster administrator, you can install the Kernel Module Management (KMM) Operator by using the OpenShift CLI. {._abstract}
 

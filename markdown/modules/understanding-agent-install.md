@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding Agent-based Installer {id="understanding-agent-install_{{ context }}"}
+# Understand Agent-based Installer {id="understanding-agent-install_{{ context }}"}
 
 As an {{ product_title }} user, you can leverage the advantages of the Assisted Installer hosted service in disconnected environments. {._abstract}
 

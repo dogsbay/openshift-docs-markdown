@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Configuring multiple cluster nodes {id="ipi-install-configure-multiple-cluster-nodes_{{ context }}"}
 
-You can simultaneously configure {{ product_title }} cluster nodes with identical settings. Configuring multiple cluster nodes avoids adding redundant information for each node to the `install-config.yaml` file. This file contains specific parameters to apply an identical configuration to multiple nodes in the cluster. {._abstract}
+You can simultaneously configure {{ product_title }} cluster nodes with identical settings. {._abstract}
+
+Configuring multiple cluster nodes avoids adding redundant information for each node to the `install-config.yaml` file. This file contains specific parameters to apply an identical configuration to multiple nodes in the cluster.
 
 Compute nodes are configured separately from the controller node. However, configurations for both node types use the highlighted parameters in the `install-config.yaml` file to enable multi-node configuration. Set the `networkConfig` parameters to `BOND`, as shown in the following example:
 

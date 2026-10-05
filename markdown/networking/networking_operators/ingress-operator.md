@@ -94,6 +94,8 @@ TLS security profiles provide a way for servers to regulate which ciphers a conn
 
 {% leveloffset +2 %}{% include "./modules/nw-using-ingress-forwarded.md" %}{% endleveloffset %}
 
+{% leveloffset +3 %}{% include "./modules/nw-using-ingress-forwarded-example-use-cases.md" %}{% endleveloffset %}
+
 {% leveloffset +2 %}{% include "./modules/nw-http2-haproxy.md" %}{% endleveloffset %}
 
 {% leveloffset +3 %}{% include "./modules/nw-enable-http2.md" %}{% endleveloffset %}

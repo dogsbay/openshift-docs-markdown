@@ -9,6 +9,6 @@ Deploying a {{ product_title }} cluster consists of the following general steps.
 
 1.  Create the account-wide roles.
 1.  Create the Operator roles.
-    *   Red&#160;Hat uses AWS IAM STS to send the required permissions to AWS that allow AWS to create and attach the corresponding AWS-managed Operator policies.
-1.  Create the OIDC provider.
+    *   Red&#160;Hat uses AWS Identity and Access Management (IAM) Security Token Service (STS) to send the required permissions to AWS that allow AWS to create and attach the corresponding AWS-managed Operator policies.
+1.  Create the OpenID Connect (OIDC) provider.
 1.  Create the cluster.

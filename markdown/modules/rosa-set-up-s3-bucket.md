@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting up the S3 bucket {id="rosa-set-up-s3-bucket_{{ context }}"}
+# Archive logs to S3 for long-term compliance {id="rosa-set-up-s3-bucket_{{ context }}"}
 
 If you have logs that need long-term storage or large-scale data analysis, set up an Amazon S3 bucket. {._abstract}
 
@@ -54,6 +54,8 @@ If you have logs that need long-term storage or large-scale data analysis, set u
       groups:
         - "<example_group1>"
     ```
+    where:
+
 
     &lt;example_app1>
     :   Add one or more applications. For a list of applications, see the table in "Determining what log groups to use".

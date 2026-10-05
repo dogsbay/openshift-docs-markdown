@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Cluster configuration reference {id="adding-node-iso-configs_{{ context }}"}
 
-When creating the ISO image, configurations are retrieved from the target cluster and are applied to the new nodes. You can override these configurations by specifying new values in either the `nodes-config.yaml` file or any flags you add to the `oc adm node-image create` command before you create the ISO image. {._abstract}
+When creating the ISO image, configurations are retrieved from the target cluster and are applied to the new nodes. {._abstract}
+
+You can override these configurations by specifying new values in either the `nodes-config.yaml` file or any flags you add to the `oc adm node-image create` command before you create the ISO image.
 
 
 YAML file parameters

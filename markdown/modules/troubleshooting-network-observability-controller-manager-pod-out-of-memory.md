@@ -26,7 +26,7 @@ You can increase memory limits for the Network Observability Operator by editing
       config:
         resources:
           limits:
-            memory: 800Mi     (1)
+            memory: 800Mi
           requests:
             cpu: 100m
             memory: 100Mi
@@ -34,7 +34,13 @@ You can increase memory limits for the Network Observability Operator by editing
       name: netobserv-operator
       source: redhat-operators
       sourceNamespace: openshift-marketplace
-      startingCSV: <network_observability_operator_latest_version> (2)
+      startingCSV: <network_observability_operator_latest_version>
     ```
-    1.  For example, you can increase the memory limit to `800Mi`.
-    1.  This value should not be edited, but note that it changes depending on the most current release of the Operator.
+
+    where:
+
+    `spec.config.resources.limits.memory`
+    :   Specifies the memory limit. For example, you can increase the memory limit to `800Mi`.
+
+    `spec.startingCSV`
+    :   Specifies the starting CSV. This value should not be edited, but note that it changes depending on the most current release of the Operator.

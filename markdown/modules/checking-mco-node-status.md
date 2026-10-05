@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About node status during updates {id="checking-mco-node-status_{{ context }}"}
 
-If you make changes to a machine config pool (MCP) that results in a new machine config, for example by using a `MachineConfig` or `KubeletConfig` object, you can get detailed information about the progress of the node updates by using the machine config nodes custom resource. This information can be helpful if issues arise during the update and you need to troubleshoot a node. {._abstract}
+If you make changes to a machine config pool (MCP) that results in a new machine config, for example by using a `MachineConfig` or `KubeletConfig` object, you can get detailed information about the progress of the node updates by using the machine config nodes custom resource. {._abstract}
+
+This information can be helpful if issues arise during the update and you need to troubleshoot a node.
 
 The `MachineConfigNode` custom resource allows you to monitor the progress of individual node updates as they move through the update phases. This information can be helpful with troubleshooting if one of the nodes has an issue during the update. The custom resource reports where in the update process the node is at the moment, the phases that have completed, and the phases that are remaining.
 
@@ -25,7 +27,7 @@ The node update process consists of the following phases and subphases that are 
 
 {%- set FeatureName = "The `AppliedFiles` and `AppliedOSImage` condition" %}
         {% include "./snippets/technology-preview.md" %}
-*   **PinnedImageSetsProgressing** The MCO is performing the steps needed to pin and pre-load container images. 
+*   **PinnedImageSetsProgressing** The MCO is performing the steps needed to pin and pre-load container images.
 *   **PinnedImageSetsDegraded** The pinned image process failed. You can view the reason for the failure by using the `oc describe machineconfignode` command, as described later in this section.
 *   **NodeDegraded** The node update failed. You can view the reason for the failure by using the `oc describe machineconfignode` command, as described later in this section.
 *   **Update Post update action** The MCO is reloading CRI-O, as needed.

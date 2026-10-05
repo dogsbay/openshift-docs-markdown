@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing custom configuration from a machine pool {id="removing-custom-config-from-machinepool_{{ context }}"}
+# Remove custom configuration from a machine pool {id="removing-custom-config-from-machinepool_{{ context }}"}
 
 You can remove custom configuration on your machine pools by removing the `KubeletConfig` object that contains the configuration details. {._abstract}
 

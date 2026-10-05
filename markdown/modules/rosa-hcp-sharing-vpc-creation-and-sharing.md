@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Step One - VPC Owner: Configuring a VPC to share within your AWS organization {id="rosa-hcp-sharing-vpc-creation-and-sharing_{{ context }}"}
 
-You can share subnets within a VPC with another AWS account in your AWS organization. {._abstract}
+You can share subnets within a virtual private cloud (VPC) with another AWS account in your AWS organization. {._abstract}
 
 ![Step one of the shared VPC workflow showing VPC creation and sharing.](/images/522-shared-vpc-step-1.png)
 
@@ -35,7 +35,7 @@ You can share subnets within a VPC with another AWS account in your AWS organiza
         ```
 
         The trust policy principals (`Principal.AWS`) may be scoped down to the ingress Operator role and installer account role rather than `root`.
-    1.  Create the IAM role for the AWS managed policy [`ROSASharedVPCRoute53Policy`](https://docs.aws.amazon.com/rosa/latest/userguide/security-iam-awsmanpol.html#security-iam-awsmanpol-rosasharedvpcroute53policy).
+    1.  Create the Identity and Access Management (IAM) role for the AWS managed policy [`ROSASharedVPCRoute53Policy`](https://docs.aws.amazon.com/rosa/latest/userguide/security-iam-awsmanpol.html#security-iam-awsmanpol-rosasharedvpcroute53policy).
         ```terminal
         $ aws iam create-role --role-name <role_name> \
             --assume-role-policy-document file:///tmp/route53-role.json
@@ -75,4 +75,4 @@ You can share subnets within a VPC with another AWS account in your AWS organiza
         $ aws iam attach-role-policy --role-name <role_name> \
         --policy-arn arn:aws:iam::aws:policy/ROSASharedVPCEndpointPolicy
         ```
-1.  Provide the `Route 53 role` ARN and the `VPC endpoint role` ARN to the **Cluster Creator** to continue configuration.
+1.  Provide the `Route 53 role` Amazon Resource Name (ARN) and the `VPC endpoint role` ARN to the **Cluster Creator** to continue configuration.

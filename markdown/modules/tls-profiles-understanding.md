@@ -1,7 +1,7 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # Understand TLS security profiles {id="tls-profiles-understanding_{{ context }}"}
 
-You can use a TLS (Transport Layer Security) security profile, as described in this section, to define which TLS ciphers are required by various {{ product_title }} components.  {._abstract}
+You can use a TLS (Transport Layer Security) security profile, as described in this section, to define which TLS ciphers are required by various {{ product_title }} components. {._abstract}
 
 The {{ product_title }} TLS security profiles are based on [Mozilla recommended configurations](https://wiki.mozilla.org/Security/Server_Side_TLS).
 

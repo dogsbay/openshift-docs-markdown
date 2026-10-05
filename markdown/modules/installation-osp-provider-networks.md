@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Cluster deployment on {{ rh_openstack }} provider networks {id="installation-osp-provider-networks_{{ context }}"}
 
-You can deploy your {{ product_title }} clusters on {{ rh_openstack_first }} with a primary network interface on a provider network. Provider networks are commonly used to give projects direct access to a public network that can be used to reach the internet. You can also share provider networks among projects as part of the network creation process. {._abstract}
+You can deploy your {{ product_title }} clusters on {{ rh_openstack_first }} with a primary network interface on a provider network. {._abstract}
+
+Provider networks are commonly used to give projects direct access to a public network that can be used to reach the internet. You can also share provider networks among projects as part of the network creation process.
 
 {{ rh_openstack }} provider networks map directly to an existing physical network in the data center. A {{ rh_openstack }} administrator must create them.
 

@@ -3,6 +3,20 @@
 
 The following items were added during the third quarter of 2026. {._abstract}
 
+{% if openshift_rosa_hcp %}
+
+Default worker node instance type is now `m7i.xlarge`
+:   New {{ product_title }} clusters that do not specify a worker node instance type use `m7i.xlarge` by default. For more information, see [Overview of the default cluster specifications](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html-single/introduction_to_rosa/index#rosa-sts-overview-of-the-default-cluster-specifications_rosa-sts-creating-a-cluster-quickly).
+
+    :::note
+
+
+    The `m7i` instance type is not available in every AWS region. In regions where `m7i` is not offered, you must specify a supported instance type or cluster creation fails. Currently, the `m7i` instance type is _not_ supported in Calgary `ca-west-1` and Bahrain `me-south-1`. For a complete list of supported regions, see [_Amazon EC2 instance types by Region_](https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-regions.html).
+    
+    :::
+
+{% endif %}
+
 
 Cluster deletion protection
 :   You can enable deletion protection when creating {{ product_title }} clusters using the {{ rosa_cli }} or Terraform to prevent accidental deletion. For more information, see the following documentation:

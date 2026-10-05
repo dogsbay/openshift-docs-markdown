@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an autoscaling machine pool using the {{ rosa_cli }} {id="creating_machine_pools_cli_autoscaling_{{ context }}"}
+# Create an autoscaling machine pool using the {{ rosa_cli }} {id="creating_machine_pools_cli_autoscaling_{{ context }}"}
 
 You can create an autoscaling machine pool for your {{ product_title }} cluster by using the {{ rosa_cli_first }}. {._abstract}
 

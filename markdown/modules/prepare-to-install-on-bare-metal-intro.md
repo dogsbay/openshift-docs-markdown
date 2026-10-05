@@ -1,0 +1,11 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Prepare to install on bare metal {id="prepare-to-install-on-bare-metal-intro_{{ context }}"}
+
+Review the different methods for installing {{ product_title }} on bare metal and prepare your environment for installation. Before you deploy, verify that your hardware, network, and DNS configuration meet the requirements of the installation method you choose. {._abstract}
+
+The installation program offers four methods for deploying a bare-metal cluster:
+
+*   **Interactive**: Deploy a cluster with the web-based {{ ai_full }}. This is the recommended approach for clusters with networks connected to the internet.
+*   **Local Agent-based**: Deploy a cluster locally with the Agent-based Installer. This approach is ideal for air-gapped or restricted networks.
+*   **Automated**: Deploy a cluster on installer-provisioned infrastructure. The installation program uses each cluster host’s baseboard management controller (BMC) for provisioning.
+*   **Full control**: Deploy a cluster on infrastructure that you prepare and maintain, which provides maximum customizability.

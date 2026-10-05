@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Validation checklist for nodes {id="validation-checklist-for-nodes_{{ context }}"}
 
+Use the following checklist to validate the nodes before installing {{ product_title }} on bare metal. {._abstract}
+
 *   When using the `provisioning` network
     *   [ ] NIC1 VLAN is configured for the `provisioning` network.
     *   [ ] NIC1 for the `provisioning` network is PXE-enabled on the provisioner, control plane, and worker nodes.

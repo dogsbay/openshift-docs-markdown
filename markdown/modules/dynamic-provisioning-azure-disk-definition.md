@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Azure Disk StorageClass object definition {id="azure-disk-definition_{{ context }}"}
 
-This Azure Disk storage class example demonstrates how to configure managed disks with delayed volume binding for optimal zone placement, volume expansion, and performance tiers. Key parameters ensure compatibility with OpenShift nodes, which require managed disks rather than shared or dedicated storage accounts. {._abstract}
+This Azure Disk storage class example demonstrates how to configure managed disks with delayed volume binding for optimal zone placement, volume expansion, and performance tiers.  {._abstract}
+
+Key parameters ensure compatibility with OpenShift nodes, which require managed disks rather than shared or dedicated storage accounts.
 
 ```yaml title="Example Azure Disk storage class YAML file"
 apiVersion: storage.k8s.io/v1

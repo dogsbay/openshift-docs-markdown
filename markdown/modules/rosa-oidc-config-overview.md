@@ -1,4 +1,6 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Creating an OpenID Connect Configuration {id="rosa-byo-odic-overview_{{ context }}"}
+# OpenID Connect configuration overview {id="rosa-byo-odic-overview_{{ context }}"}
 
-When using a cluster hosted by Red&#160;Hat, you can create a managed or unmanaged OpenID Connect (OIDC) configuration by using the {{ product_title }} (ROSA) CLI, `rosa`. A managed OIDC configuration is stored within Red&#160;Hat’s AWS account, while a generated unmanaged OIDC configuration is stored within your AWS account. The OIDC configuration is registered to be used with {{ cluster_manager }}. When creating an unmanaged OIDC configuration, the CLI provides the private key for you.
+When using a cluster hosted by Red&#160;Hat, you can create a managed or unmanaged OpenID Connect (OIDC) configuration by using the {{ rosa_cli_first }}. Your choice of OIDC configuration determines where the OIDC keys are stored. {._abstract}
+
+A managed OIDC configuration is stored within Red&#160;Hat’s AWS account, while a generated unmanaged OIDC configuration is stored within your AWS account. The OIDC configuration is registered to be used with {{ cluster_manager }}. When creating an unmanaged OIDC configuration, the {{ rosa_cli }} provides the private key for you.

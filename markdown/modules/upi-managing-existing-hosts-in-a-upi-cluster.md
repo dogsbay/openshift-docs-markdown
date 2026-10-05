@@ -1,7 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Optional: Managing existing hosts in a user-provisioned cluster by using the BMO {id="upi-managing-existing-hosts-in-a-upi-cluster_{{ context }}"}
 
-Optionally, you can use the Bare Metal Operator (BMO) to manage existing bare-metal controller hosts in a user-provisioned cluster by creating a `BareMetalHost` object for the existing host.
+Optionally, you can use the Bare Metal Operator (BMO) to manage existing bare-metal controller hosts in a user-provisioned cluster by creating a `BareMetalHost` object for the existing host. {._abstract}
+
 It is not a requirement to manage existing user-provisioned hosts; however, you can enroll them as externally-provisioned hosts for inventory purposes.
 
 
@@ -41,19 +42,27 @@ To manage existing hosts by using the BMO, you must set the `spec.externallyProv
           namespace: openshift-machine-api
         spec:
           bmc:
-            address: <protocol>://<bmc_url> (1)
+            address: <protocol>://<bmc_url>
             credentialsName: "controller1-bmc"
           bootMACAddress: <nic1_mac_address>
           customDeploy:
             method: install_coreos
-          externallyProvisioned: true (2)
+          externallyProvisioned: true
           online: true
           userData:
             name: controller-user-data-managed
             namespace: openshift-machine-api
         ```
-        1.  You can only use bare-metal host drivers that support virtual media networking booting, for example `redfish-virtualmedia` and `idrac-virtualmedia`.
-        1.  You must set the value to true to prevent the BMO from re-provisioning the bare-metal controller host.
+
+        where:
+
+        `spec.bmc.address`
+        :   Specifies the BMC address. Only bare-metal host drivers that support virtual media networking booting are supported, for example `redfish-virtualmedia` and `idrac-virtualmedia`.
+
+
+`spec.externallyProvisioned`
+:   Specifies whether the host is externally provisioned. You must set this value to `true` to prevent the BMO from re-provisioning the bare-metal controller host.
+
 1.  Create the bare-metal host object by running the following command:
     ```terminal
     $ oc create -f controller.yaml

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Discovery ISO kernel arguments for installations using {{ ztp }} {id="setting-managed-bare-metal-host-kernel-arguments_{{ context }}"}
+# Configure Discovery ISO kernel arguments for installations using {{ ztp }} {id="setting-managed-bare-metal-host-kernel-arguments_{{ context }}"}
 
 The {{ ztp_first }} workflow uses the Discovery ISO as part of the {{ product_title }} installation process on managed bare-metal hosts. You can edit the `InfraEnv` resource to specify kernel arguments for the Discovery ISO. This is useful for cluster installations with specific environmental requirements.  {._abstract}
 

@@ -22,6 +22,10 @@ To integrate {{ product_title }} with an external OpenID Connect (OIDC) identity
 *   [OpenID Connect Discovery (OpenID documentation)](https://openid.net/specs/openid-connect-discovery-1_0.html)
 *   [OpenID claims documentation](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims)
 
+{% if openshift_origin %}
+*   [Server Administration Guide (Keycloak documentation)](https://www.keycloak.org/docs/latest/server_admin/index.html#openshift)
+{% endif %}
+
 {% if openshift_enterprise %}
 {% leveloffset +1 %}{% include "./modules/identity-provider-oidc-supported.md" %}{% endleveloffset %}
 

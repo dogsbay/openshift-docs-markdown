@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the hub cluster for backup and restore {id="ztp-configuring-the-hub-cluster-for-backup-and-restore_{{ context }}"}
+# Configure the hub cluster for backup and restore {id="ztp-configuring-the-hub-cluster-for-backup-and-restore_{{ context }}"}
 
 You can use {{ ztp }} to configure a set of policies to back up `BareMetalHost` resources.
 This allows you to recover data from a failed hub cluster and deploy a replacement cluster using {{ rh_rhacm_first }}. {._abstract}

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure the SR-IOV Network Operator for single node installations {id="configure-sr-iov-operator-single-node_{{ context }}"}
 
-By default, the SR-IOV Network Operator drains workloads from a node before every policy change. The Operator performs this action to ensure that no workloads are using the virtual functions before the reconfiguration. As a result, you must configure the Operator to not drain workloads from the single node. {._abstract}
+By default, the SR-IOV Network Operator drains workloads from a node before every policy change.  {._abstract}
+
+The Operator performs this action to ensure that no workloads are using the virtual functions before the reconfiguration. As a result, you must configure the Operator to not drain workloads from the single node.
 
 For installations on a single node, other nodes do not receive the workloads. 
 

@@ -1,4 +1,4 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
+{%- set _mod_docs_content_type = "PROCEDURE" %}
 
 # Installing the cluster-compare plugin {id="installing-cluster-compare_{{ context }}"}
 

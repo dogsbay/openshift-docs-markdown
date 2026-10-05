@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deploying GPU workloads with the Dynamic Accelerator Slicer Operator {id="das-operator-deploying-workloads_{{ context }}"}
 
-You can deploy workloads that request GPU slices managed by the Dynamic Accelerator Slicer (DAS) Operator. The Operator dynamically partitions GPU accelerators and schedules workloads to available GPU slices.
+You can deploy workloads that request GPU slices managed by the Dynamic Accelerator Slicer (DAS) Operator. The Operator dynamically partitions GPU accelerators and schedules workloads to available GPU slices. {._abstract}
 
 **Prerequisites**
 

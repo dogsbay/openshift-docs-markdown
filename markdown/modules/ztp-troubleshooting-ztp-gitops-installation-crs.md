@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting {{ ztp }} by validating the installation CRs {id="ztp-troubleshooting-ztp-gitops-installation-crs_{{ context }}"}
+# Troubleshoot {{ ztp }} by validating the installation CRs {id="ztp-troubleshooting-ztp-gitops-installation-crs_{{ context }}"}
 
 The ArgoCD pipeline uses the `ClusterInstance` and `PolicyGenerator` or `PolicyGentemplate` custom resources (CRs) to generate the cluster configuration CRs and {{ rh_rhacm_first }} policies. Use the following steps to troubleshoot issues that might occur during this process. {._abstract}
 

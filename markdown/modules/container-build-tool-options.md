@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Container build tool options {id="container-build-tool-options_{{ context }}"}
 
-Building and managing containers with `buildah`, `podman`, and `skopeo` results in industry-standard container images that include features specifically tuned for deploying containers in {{ product_title }} or other Kubernetes environments. These daemonless, rootless tools reduce overhead while tuning your containers for Kubernetes. {._abstract}
+Building and managing containers with `buildah`, `podman`, and `skopeo` results in industry-standard container images that include features specifically tuned for deploying containers in {{ product_title }} or other Kubernetes environments.  {._abstract}
+
+These daemonless, rootless tools reduce overhead while tuning your containers for Kubernetes.
 
 
 :::important

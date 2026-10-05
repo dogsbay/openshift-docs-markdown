@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Add a custom metrics autoscaler to a workload {id="nodes-cma-autoscaling-custom-creating-workload_{{ context }}"}
 
-You can create a custom metrics autoscaler for a workload that is created by a `Deployment`, `StatefulSet`, or `custom resource` object.
+You can create a custom metrics autoscaler for a workload that is created by a `Deployment`, `StatefulSet`, or `custom resource` object. {._abstract}
 
 **Prerequisites**
 
@@ -57,19 +57,19 @@ You can create a custom metrics autoscaler for a workload that is created by a `
     kind: ScaledObject
     metadata:
       annotations:
-        autoscaling.keda.sh/paused-replicas: "0" (1)
-      name: scaledobject (2)
+        autoscaling.keda.sh/paused-replicas: "0"
+      name: scaledobject
       namespace: my-namespace
     spec:
       scaleTargetRef:
-        apiVersion: apps/v1 (3)
-        name: example-deployment (4)
-        kind: Deployment (5)
-        envSourceContainerName: .spec.template.spec.containers[0] (6)
-      cooldownPeriod:  200 (7)
-      maxReplicaCount: 100 (8)
-      minReplicaCount: 0 (9)
-      metricsServer: (10)
+        apiVersion: apps/v1
+        name: example-deployment
+        kind: Deployment
+        envSourceContainerName: .spec.template.spec.containers[0]
+      cooldownPeriod:  200
+      maxReplicaCount: 100
+      minReplicaCount: 0
+      metricsServer:
         auditConfig:
           logFormat: "json"
           logOutputVolumeClaim: "persistentVolumeClaimName"
@@ -82,16 +82,16 @@ You can create a custom metrics autoscaler for a workload that is created by a `
             maxAge: "2"
             maxBackup: "1"
             maxSize: "50"
-      fallback: (11)
+      fallback:
         failureThreshold: 3
         replicas: 6
-        behavior: static (12)
-      pollingInterval: 30 (13)
+        behavior: static
+      pollingInterval: 30
       advanced:
-        restoreToOriginalReplicaCount: false (14)
+        restoreToOriginalReplicaCount: false
         horizontalPodAutoscalerConfig:
-          name: keda-hpa-scale-down (15)
-          behavior: (16)
+          name: keda-hpa-scale-down
+          behavior:
             scaleDown:
               stabilizationWindowSeconds: 300
               policies:
@@ -99,7 +99,7 @@ You can create a custom metrics autoscaler for a workload that is created by a `
                 value: 100
                 periodSeconds: 15
       triggers:
-      - type: prometheus (17)
+      - type: prometheus
         metadata:
           serverAddress: https://thanos-querier.openshift-monitoring.svc.cluster.local:9092
           namespace: kedatest
@@ -107,34 +107,72 @@ You can create a custom metrics autoscaler for a workload that is created by a `
           threshold: '5'
           query: sum(rate(http_requests_total{job="test-app"}[1m]))
           authModes: basic
-        authenticationRef: (18)
+        authenticationRef:
           name: prom-triggerauthentication
           kind: TriggerAuthentication
     ```
-    1.  Optional: Specifies that the Custom Metrics Autoscaler Operator is to scale the replicas to the specified value and stop autoscaling, as described in the "Pausing the custom metrics autoscaler for a workload" section.
-    1.  Specifies a name for this custom metrics autoscaler.
-    1.  Optional: Specifies the API version of the target resource. The default is `apps/v1`.
-    1.  Specifies the name of the object that you want to scale.
-    1.  Specifies the `kind` as `Deployment`, `StatefulSet` or `CustomResource`.
-    1.  Optional: Specifies the name of the container in the target resource, from which the custom metrics autoscaler gets environment variables holding secrets and so forth. The default is `.spec.template.spec.containers[0]`.
-    1.  Optional. Specifies the period in seconds to wait after the last trigger is reported before scaling the deployment back to `0` if the `minReplicaCount` is set to `0`. The default is `300`.
-    1.  Optional: Specifies the maximum number of replicas when scaling up. The default is `100`.
-    1.  Optional: Specifies the minimum number of replicas when scaling down.
-    1.  Optional: Specifies the parameters for audit logs. as described in the "Configuring audit logging" section.
-    1.  Optional: Specifies the number of replicas to fall back to if a scaler fails to get metrics from the source for the number of times defined by the `failureThreshold` parameter. For more information on fallback behavior, see the [KEDA documentation](https://keda.sh/docs/latest/reference/scaledobject-spec/#fallback).
-    1.  Optional: Specifies the replica count to be used if a fallback occurs. Enter one of the following options or omit the parameter:
-        *   Enter `static` to use the number of replicas specified by the `fallback.replicas` parameter. This is the default.
-        *   Enter `currentReplicas` to maintain the current number of replicas.
-        *   Enter `currentReplicasIfHigher` to maintain the current number of replicas, if that number is higher than the `fallback.replicas` parameter. If the current number of replicas is lower than the `fallback.replicas` parameter, use the `fallback.replicas` value.
-        *   Enter `currentReplicasIfLower` to maintain the current number of replicas, if that number is lower than the `fallback.replicas` parameter. If the current number of replicas is higher than the `fallback.replicas` parameter, use the `fallback.replicas` value.
-    1.  Optional: Specifies the interval in seconds to check each trigger on. The default is `30`.
-    1.  Optional: Specifies whether to scale back the target resource to the original replica count after the scaled object is deleted. The default is `false`, which keeps the replica count as it is when the scaled object is deleted.
-    1.  Optional: Specifies a name for the horizontal pod autoscaler. The default is `keda-hpa-{{ scaled_object_name }}`{minja}.
-    1.  Optional: Specifies a scaling policy to use to control the rate to scale pods up or down, as described in the "Scaling policies" section.
-    1.  Specifies the trigger to use as the basis for scaling, as described in the "Understanding the custom metrics autoscaler triggers" section. This example uses {{ product_title }} monitoring.
-    1.  Optional: Specifies a trigger authentication or a cluster trigger authentication. For more information, see "Understanding the custom metrics autoscaler trigger authentication".
-        *   Enter `TriggerAuthentication` to use a trigger authentication. This is the default.
-        *   Enter `ClusterTriggerAuthentication` to use a cluster trigger authentication.
+
+    where:
+
+    `metadata.annotations.autoscaling.keda.sh/paused-replicas`
+    :   Specifies that the Custom Metrics Autoscaler Operator is to scale the replicas to the specified value and stop autoscaling, as described in the "Pausing the custom metrics autoscaler for a workload" section. This field is optional.
+
+    `metadata.name`
+    :   Specifies a name for this custom metrics autoscaler.
+
+    `spec.scaleTargetRef.apiVersion`
+    :   Specifies the API version of the target resource. The default is `apps/v1`. This field is optional.
+
+    `spec.scaleTargetRef.name`
+    :   Specifies the name of the object that you want to scale.
+
+    `spec.scaleTargetRef.kind`
+    :   Specifies the `kind` as `Deployment`, `StatefulSet` or `CustomResource`.
+
+    `spec.scaleTargetRef.envSourceContainerName`
+    :   Specifies the name of the container in the target resource, from which the custom metrics autoscaler gets environment variables holding secrets and so forth. The default is `.spec.template.spec.containers[0]`. This field is optional.
+
+    `spec.cooldownPeriod`
+    :   Specifies the period in seconds to wait after the last trigger is reported before scaling the deployment back to `0` if the `minReplicaCount` is set to `0`. The default is `300`. This field is optional.
+
+    `spec.maxReplicaCount`
+    :   Specifies the maximum number of replicas when scaling up. The default is `100`. This field is optional.
+
+    `spec.minReplicaCount`
+    :   Specifies the minimum number of replicas when scaling down. This field is optional.
+
+    `spec.metricsServer`
+    :   Specifies the parameters for audit logs. as described in the "Configuring audit logging" section. This field is optional.
+
+    `spec.fallback`
+    :   Specifies the number of replicas to fall back to if a scaler fails to get metrics from the source for the number of times defined by the `failureThreshold` parameter. For more information on fallback behavior, see the [KEDA documentation](https://keda.sh/docs/latest/reference/scaledobject-spec/#fallback). This field is optional.
+
+    `spec.fallback.behavior`
+    :   Specifies the replica count to be used if a fallback occurs. Enter one of the following options or omit the parameter. This field is optional.
+    *   Enter `static` to use the number of replicas specified by the `fallback.replicas` parameter. This is the default.
+    *   Enter `currentReplicas` to maintain the current number of replicas.
+    *   Enter `currentReplicasIfHigher` to maintain the current number of replicas, if that number is higher than the `fallback.replicas` parameter. If the current number of replicas is lower than the `fallback.replicas` parameter, use the `fallback.replicas` value.
+    *   Enter `currentReplicasIfLower` to maintain the current number of replicas, if that number is lower than the `fallback.replicas` parameter. If the current number of replicas is higher than the `fallback.replicas` parameter, use the `fallback.replicas` value.
+
+    `spec.pollingInterval`
+    :   Specifies the interval in seconds to check each trigger on. The default is `30`. This field is optional.
+
+    `spec.advanced.restoreToOriginalReplicaCount`
+    :   Specifies whether to scale back the target resource to the original replica count after the scaled object is deleted. The default is `false`, which keeps the replica count as it is when the scaled object is deleted. This field is optional.
+
+    `spec.advanced.horizontalPodAutoscalerConfig.name`
+    :   Specifies a name for the horizontal pod autoscaler. The default is `keda-hpa-{{ scaled_object_name }}`{minja}. This field is optional.
+
+    `spec.advanced.horizontalPodAutoscalerConfig.behavior`
+    :   Specifies a scaling policy to use to control the rate to scale pods up or down, as described in the "Scaling policies" section. This field is optional.
+
+    `spec.triggers[].type`
+    :   Specifies the trigger to use as the basis for scaling, as described in the "Understanding the custom metrics autoscaler triggers" section. This example uses {{ product_title }} monitoring.
+
+    `spec.triggers[].authenticationRef`
+    :   Specifies a trigger authentication or a cluster trigger authentication. For more information, see "Understanding the custom metrics autoscaler trigger authentication". This field is optional.
+    *   Enter `TriggerAuthentication` to use a trigger authentication. This is the default.
+    *   Enter `ClusterTriggerAuthentication` to use a cluster trigger authentication.
 1.  Create the custom metrics autoscaler by running the following command:
     ```terminal
     $ oc create -f <filename>.yaml

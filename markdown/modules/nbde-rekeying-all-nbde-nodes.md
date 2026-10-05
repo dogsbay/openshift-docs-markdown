@@ -1,13 +1,12 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Rekey all NBDE nodes {id="nbde-rekeying-all-nbde-nodes_{{ context }}"}
 
-You can rekey all of the nodes on a remote cluster by using a `DaemonSet` object without incurring any downtime to the remote cluster.
+You can rekey all of the nodes on a remote cluster by using a `DaemonSet` object without incurring any downtime to the remote cluster. {._abstract}
 
 
 :::note
 
-If a node loses power during the rekeying, it is possible that it might become unbootable, and must be redeployed via
-{{ rh_rhacm_first }} or a GitOps pipeline.
+If a node loses power during the rekeying, it is possible that it might become unbootable, and must be redeployed via {{ rh_rhacm_first }} or a GitOps pipeline.
 
 :::
 
@@ -97,7 +96,6 @@ If a node loses power during the rekeying, it is possible that it might become u
 
     However, to run at scale, wrap the daemon set in an ACM policy. This ACM configuration must contain one policy to deploy the daemon set,
     a second policy to check that all the daemon set pods are READY, and a placement rule to apply it to the appropriate set of clusters.
-
 
     :::note
 

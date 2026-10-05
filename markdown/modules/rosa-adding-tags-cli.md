@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding tags to a machine pool by using the {{ rosa_cli }} {id="rosa-adding-tags-cli_{{ context }}"}
+# Add tags to a machine pool by using the {{ rosa_cli }} {id="rosa-adding-tags-cli_{{ context }}"}
 
 You cannot not edit the tags after after you create the machine pool. {._abstract}
 

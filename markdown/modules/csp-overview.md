@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Key features of Content Security Policy (CSP) {id="content-security-policy-overview_{{ context }}"}
 
-A Content Security Policy (CSP) is delivered to the browser in the `Content-Security-Policy-Report-Only` response header. The policy is specified as a series of directives and values. Each directive type serves a different purpose, and each directive can have a list of values representing allowed sources. {._abstract}
+A Content Security Policy (CSP) is delivered to the browser in the `Content-Security-Policy-Report-Only` response header.  {._abstract}
+
+The policy is specified as a series of directives and values. Each directive type serves a different purpose, and each directive can have a list of values representing allowed sources.
 
 ## Directive Types {id="content-security-policy-directive-types_{{ context }}"}
 The supported directive types include `DefaultSrc`, `ScriptSrc`, `StyleSrc`, `ImgSrc`, and `FontSrc`. These directives allow you to specify valid sources for loading different types of content for your plugin. Each directive type serves a different purpose. For example, `ScriptSrc` defines valid JavaScript sources, while `ImgSrc` controls where images can be loaded from.

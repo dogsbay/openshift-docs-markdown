@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding process ID limits {id="understanding-process-id-limits_{{ context }}"}
+# Process ID limits {id="understanding-process-id-limits_{{ context }}"}
 
 You can review the following information to learn how to limit the number of processes running on your nodes. Configuring an appropriate number of processes can help keep the nodes in your cluster running efficiently.  {._abstract}
 

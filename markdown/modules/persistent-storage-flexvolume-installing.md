@@ -46,8 +46,6 @@ You can implement FlexVolumes by using a list of operations to call and the inst
 
 **Procedure**
 
-To install the FlexVolume driver:
-
 1.  Ensure that the executable file exists on all nodes in the cluster.
 1.  Place the executable file at the volume plugin path:
 `/etc/kubernetes/kubelet-plugins/volume/exec/<vendor>~<driver>/<driver>`.

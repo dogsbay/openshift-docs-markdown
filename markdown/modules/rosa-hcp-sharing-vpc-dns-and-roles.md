@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Step Two - Cluster Creator: Reserving your DNS entries and creating cluster Operator roles {id="rosa-hcp-sharing-vpc-dns-and-roles_{{ context }}"}
 
-After the **VPC Owner** creates a VPC, subnets, and an IAM role, reserve an `openshiftapps.com` DNS domain and create Operator roles. {._abstract}
+After the **VPC Owner** creates a VPC, subnets, and an Identity and Access Management (IAM) role, reserve an `openshiftapps.com` DNS domain and create Operator roles. {._abstract}
 
 
 :::note
@@ -15,7 +15,7 @@ For shared VPC clusters, you can choose to create the Operator roles after the c
 
 **Prerequisites**
 
-*   You have the `Route 53 role` ARN for the IAM role from the **VPC Owner**.
+*   You have the `Route 53 role` Amazon Resource Name (ARN) for the IAM role from the **VPC Owner**.
 *   You have the `VPC endpoint role` ARN for the IAM role from the **VPC Owner**.
 
 **Procedure**
@@ -30,7 +30,7 @@ For shared VPC clusters, you can choose to create the Operator roles after the c
     I: DNS domain '14eo.p3.openshiftapps.com' has been created.
     I: To view all DNS domains, run 'rosa list dns-domains'
     ```
-1.  Create an OIDC configuration.
+1.  Create an OpenID Connect (OIDC) configuration.
 
     Review this article for more information on the [OIDC configuration process](https://access.redhat.com/articles/7031018). The following command produces the OIDC configuration ID that you need:
     ```terminal

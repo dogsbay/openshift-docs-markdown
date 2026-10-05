@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Deferring application of tuning changes {id="defer-application-of-tuning-changes_{{ context }}"}
 
-As an administrator, use the Node Tuning Operator (NTO) to update custom resources (CRs) on a running system and make tuning changes. For example, they can update or add a sysctl parameter to the [sysctl] section of the tuned object. When administrators apply a tuning change, the NTO prompts TuneD to reprocess all configurations, causing the tuned process to roll back all tuning and then reapply it. {._abstract}
+As an administrator, use the Node Tuning Operator (NTO) to update custom resources (CRs) on a running system and make tuning changes.  {._abstract}
+
+For example, they can update or add a sysctl parameter to the [sysctl] section of the tuned object. When administrators apply a tuning change, the NTO prompts TuneD to reprocess all configurations, causing the tuned process to roll back all tuning and then reapply it.
 
 Latency-sensitive applications may not tolerate the removal and reapplication of the tuned profile, as it can briefly disrupt performance. This is particularly critical for configurations that partition CPUs and manage process or interrupt affinity using the performance profile. To avoid this issue, {{ product_title }} introduced new methods for applying tuning changes. Before {{ product_title }} 4.17, the only available method, immediate, applied changes instantly, often triggering a tuned restart.
 

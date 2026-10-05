@@ -31,6 +31,11 @@ There are several caveats to consider when attempting a Control Plane Only updat
 
 {% leveloffset +1 %}{% include "./modules/updating-control-plane-only-update.md" %}{% endleveloffset %}
 
+**Additional resources**
+{._additional-resources}
+
+*   [Known Issues with OpenShift 4.12 to 4.13 or 4.13 to 4.14 vSphere CSI Storage Migration](https://access.redhat.com/node/7011683)
+
 {% leveloffset +2 %}{% include "./modules/updating-control-plane-only-update-console.md" %}{% endleveloffset %}
 
 <a name="additional-resources_updating-control-plane-only-update-console"></a>**Additional resources**
@@ -51,7 +56,9 @@ There are several caveats to consider when attempting a Control Plane Only updat
 <a name="additional-resources_updating-control-plane-only-layered-products"></a>**Additional resources**
 {._additional-resources}
 
+*   [Layered Offering On OpenShift](https://access.redhat.com/support/policy/updates/openshift/#layered)
 *   [Updating installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
+*   [Red&#160;Hat {{ product_title }} Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/?operator=logging&&ocp_versions=4.10,4.11,4.12)
 *   [Performing a Control Plane Only update using the web console](/updating/updating_a_cluster/control-plane-only-update#updating-control-plane-only-update-console_control-plane-only-update)
 *   [Performing a Control Plane Only update using the CLI](/updating/updating_a_cluster/control-plane-only-update#updating-control-plane-only-update-cli_control-plane-only-update)
 *   [Preventing workload updates during a Control Plane Only update](/virt/updating/upgrading-virt#virt-preventing-workload-updates-during-control-plane-only-update_upgrading-virt)

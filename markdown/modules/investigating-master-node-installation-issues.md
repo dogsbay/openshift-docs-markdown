@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Investigating control plane node installation issues {id="investigating-master-node-installation-issues_{{ context }}"}
 
-If you experience control plane node installation issues, determine the control plane node {{ product_title }} software defined network (SDN), and network Operator status. Collect `kubelet.service`, `crio.service` journald unit logs, and control plane node container logs for visibility into control plane node agent, CRI-O container runtime, and pod activity. {._abstract}
+If you experience control plane node installation issues, determine the control plane node {{ product_title }} software defined network (SDN), and network Operator status. {._abstract}
+
+Collect `kubelet.service`, `crio.service` journald unit logs, and control plane node container logs for visibility into control plane node agent, CRI-O container runtime, and pod activity.
 
 **Prerequisites**
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding {{ op_system }} ISO and RootFS images to the disconnected mirror host {id="ztp-acm-adding-images-to-mirror-registry_{{ context }}"}
+# Add {{ op_system }} ISO and RootFS images to the disconnected mirror host {id="ztp-acm-adding-images-to-mirror-registry_{{ context }}"}
 
 Before you begin installing clusters in the disconnected environment with {{ rh_rhacm_first }}, you must first host {{ op_system_first }} images for it to use. Use a disconnected mirror to host the {{ op_system }} images. {._abstract}
 

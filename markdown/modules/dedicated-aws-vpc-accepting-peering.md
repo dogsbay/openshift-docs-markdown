@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accepting the VPC peer request {id="dedicated-aws-vpc-accepting-peering"}
+# Accept the VPC peer request {id="dedicated-aws-vpc-accepting-peering"}
 
 After you create the Virtual Private Cloud (VPC) peering connection, you must accept the request in the Customer AWS Account.
 

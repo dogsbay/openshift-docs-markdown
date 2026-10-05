@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # AWS STS security {id="rosa-hcp-sts-security_{{ context }}"}
 
-Security features for AWS STS include: {._abstract}
+AWS Security Token Service (STS) enhances cluster security by replacing long-lived credentials with short-lived tokens, reducing the risk of credential leakage. Security features for AWS STS include: {._abstract}
 
 *   An explicit and limited set of policies that the user creates ahead of time.
     *   The user can review every requested permission needed by the platform.

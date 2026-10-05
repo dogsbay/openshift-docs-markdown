@@ -20,8 +20,12 @@ The labels in these metrics contain, among others:
 *   Pod namespace
 *   Interface name (such as `eth0`)
 
-These metrics work well until new interfaces are added to the pod, for example via [Multus](https://github.com/intel/multus-cni), as it is not clear what the interface names refer to.
+These metrics work well until new interfaces are added to the pod, for example via Multus, as it is not clear what the interface names refer to.
 
 The interface label refers to the interface name, but it is not clear what that interface is meant for. In case of many different interfaces, it would be impossible to understand what network the metrics you are monitoring refer to.
 
 This is addressed by introducing the new `pod_network_name_info` described in the following section.
+
+## Additional resources {id="_additional_resources" ._additional-resources}
+
+*   [Multus](https://github.com/intel/multus-cni)

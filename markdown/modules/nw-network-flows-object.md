@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Network object configuration for tracking network flows {id="nw-network-flows-object_{{ context }}"}
 
-The fields for configuring network flows collectors in the Cluster Network Operator (CNO) are shown in the following table:
+Review the fields for configuring network flows collectors in the Cluster Network Operator (CNO). {._abstract}
 
 **Network flows configuration**
 

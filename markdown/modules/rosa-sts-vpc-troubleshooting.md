@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Troubleshooting VPC configuration for ROSA clusters {id="rosa-sts-vpc-troubleshooting_{{ context }}"}
+# Troubleshoot VPC configuration for ROSA clusters {id="rosa-sts-vpc-troubleshooting_{{ context }}"}
 
 If your cluster fails to install, check common VPC configuration issues. {._abstract}
 

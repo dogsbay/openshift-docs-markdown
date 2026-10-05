@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About boot image management {id="mco-update-boot-images_{{ context }}"}
 
-With boot image management enabled, the Machine Config Operator (MCO) manages and updates the {{ op_system_first }} version of the boot image in the machine sets for your control plane or worker nodes. This means that the MCO updates the boot image whenever you update your cluster. Without boot image management enabled, if your cluster was originally created with an older {{ product_title }} version, the boot image that the MCO would use to create new nodes is an older {{ op_system_first }} version, even if your cluster is at a later {{ product_title }} version.  {._abstract}
+With boot image management enabled, the Machine Config Operator (MCO) manages and updates the {{ op_system_first }} version of the boot image in the machine sets for your control plane or worker nodes. {._abstract}
+
+This means that the MCO updates the boot image whenever you update your cluster. Without boot image management enabled, if your cluster was originally created with an older {{ product_title }} version, the boot image that the MCO would use to create new nodes is an older {{ op_system_first }} version, even if your cluster is at a later {{ product_title }} version.
 
 New nodes created after enabling the feature use the updated boot image. This feature has no effect on existing nodes.
 

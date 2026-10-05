@@ -11,7 +11,7 @@ Container images cannot be built using the `VOLUME` directive in the `DOCKERFILE
 
 ## Enable images for source-to-image (S2I) {id="enable-images-for-source-to-image_{{ context }}"}
 
-For images that are intended to run application code provided by a third party, such as a Ruby image designed to run Ruby code provided by a developer, you can enable your image to work with the [Source-to-Image (S2I)](https://github.com/openshift/source-to-image) build tool. S2I is a framework that makes it easy to write images that take application source code as an input and produce a new image that runs the assembled application as output.
+For images that are intended to run application code provided by a third party, such as a Ruby image designed to run Ruby code provided by a developer, you can enable your image to work with the Source-to-Image (S2I) build tool. S2I is a framework that makes it easy to write images that take application source code as an input and produce a new image that runs the assembled application as output.
 
 ## Support arbitrary user ids {id="use-uid_{{ context }}"}
 
@@ -101,3 +101,8 @@ Document example liveness and readiness probes that can be used with your image.
 ## Templates {id="templates_{{ context }}"}
 
 Consider providing an example template with your image. A template gives users an easy way to quickly get your image deployed with a working configuration. Your template must include the liveness and readiness probes you documented with the image, for completeness.
+
+**Additional resources**
+{._additional-resources}
+
+*   [Source-to-Image (S2I)](https://github.com/openshift/source-to-image)

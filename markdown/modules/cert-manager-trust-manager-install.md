@@ -104,6 +104,6 @@ You can install the trust-manager operand to enable the automated distribution o
     trust-manager-547bb59b4b-hd6mv    1/1     Running   0          24s
     ```
 
-**Next Step**
+**Next step**
 
 *   Configuring trust bundle

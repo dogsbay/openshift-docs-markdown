@@ -1,7 +1,7 @@
-{%- set _mod_docs_content_type = "PROCEDURE" %}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # Understanding the Kubernetes workload trigger {id="nodes-cma-autoscaling-custom-trigger-workload_{{ context }}"}
 
-You can scale pods based on the number of pods matching a specific label selector.
+You can scale pods based on the number of pods matching a specific label selector. {._abstract}
 
 The Custom Metrics Autoscaler Operator tracks the number of pods with a specific label that are in the same namespace, then calculates a _relation_ based on the number of labeled pods to the pods for the scaled object. Using this relation, the Custom Metrics Autoscaler Operator scales the object according to the scaling policy in the `ScaledObject` or `ScaledJob` specification.
 
@@ -9,7 +9,9 @@ The pod counts includes pods with a `Succeeded` or `Failed` phase.
 
 For example, if you have a `frontend` deployment and a `backend` deployment. You can use a `kubernetes-workload` trigger to scale the `backend` deployment based on the number of `frontend` pods. If number of `frontend` pods goes up, the Operator would scale the `backend` pods to maintain the specified ratio. In this example, if there are 10 pods with the `app=frontend` pod selector, the Operator scales the backend pods to 5 in order to maintain the `0.5` ratio set in the scaled object.
 
-```yaml title="Example scaled object with a Kubernetes workload trigger"
+The following example scales the pods associated with this scaled object to maintain the ratio of `frontend` pods to `backend` pods at 0.5:
+
+```yaml
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
@@ -17,16 +19,26 @@ metadata:
   namespace: my-namespace
 spec:
   triggers:
-  - type: kubernetes-workload (1)
+  - type: kubernetes-workload
     metadata:
-      podSelector: 'app=frontend' (2)
-      value: '0.5' (3)
-      activationValue: '3.1' (4)
+      podSelector: 'app=frontend'
+      value: '0.5'
+      activationValue: '3.1'
 ```
-1.  Specifies a Kubernetes workload trigger.
-1.  Specifies one or more pod selectors and/or set-based selectors, separated with commas, to use to get the pod count.
-1.  Specifies the target relation between the scaled workload and the number of pods that match the selector. The relation is calculated following the following formula: 
+where:
+
+
+`spec.triggers[].type`
+:   Specifies a Kubernetes workload trigger.
+
+`spec.triggers[].metadata.podSelector`
+:   Specifies one or more pod selectors and/or set-based selectors, separated with commas, to use to get the pod count.
+
+`spec.triggers[].metadata.value`
+:   Specifies the target relation between the scaled workload and the number of pods that match the selector. The relation is calculated following the following formula:
     ```
     relation = (pods that match the selector) / (scaled workload pods)
     ```
-1.  Optional: Specifies the target value for scaler activation phase. The default is `0`.
+
+`spec.triggers[].metadata.activationValue`
+:   Specifies the target value for scaler activation phase. The default is `0`. This parameter is optional.

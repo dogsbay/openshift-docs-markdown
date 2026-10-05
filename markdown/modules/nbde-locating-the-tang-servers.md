@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Tang server location planning {id="nbde-locating-the-tang-servers_{{ context }}"}
 
-When planning your Tang server environment, consider the physical and network locations of the Tang servers.
+When planning your Tang server environment, consider the physical and network locations of the Tang servers. {._abstract}
 
 
 Physical location

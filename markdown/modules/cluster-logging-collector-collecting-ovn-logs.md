@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Collecting OVN network policy audit logs {id="cluster-logging-collecting-ovn-audit-logs_{{ context }}"}
 
-You can collect the OVN network policy audit logs from the `/var/log/ovn/acl-audit-log.log` file on OVN-Kubernetes pods and forward them to logging servers.
+You can collect the OVN network policy audit logs from the `/var/log/ovn/acl-audit-log.log` file on OVN-Kubernetes pods and forward them to logging servers. {._abstract}
 
 **Prerequisites**
 
@@ -26,12 +26,19 @@ Often, logging servers that store audit data must meet organizational and govern
       pipelines:
        - name: audit-logs
          inputRefs:
-          - audit (1)
+          - audit
          outputRefs:
-          - secure-logging-server (2)
+          - secure-logging-server
     ```
-    1.  Specify `audit` as one of the log types to input.
-    1.  Specify the output that connects to your logging server.
+
+    where:
+
+    `pipelines.inputRefs`
+    :   Specifies `audit` as one of the log types to input.
+
+    `pipelines.outputRefs`
+    :   Specifies the output that connects to your logging server.
+
 1.  Recreate the updated CR object:
     ```terminal
     $ oc create -f <file-name>.yaml

@@ -142,7 +142,6 @@ The following example shows `sts_installer_core_permission_boundary_policy.json`
 		    "iam:ListRoles",
 		    "iam:ListUserPolicies",
 		    "iam:ListUsers",
-		    "iam:PassRole",
 		    "iam:RemoveRoleFromInstanceProfile",
 		    "iam:SimulatePrincipalPolicy",
 		    "iam:TagRole",
@@ -211,6 +210,21 @@ The following example shows `sts_installer_core_permission_boundary_policy.json`
             ],
             "Resource": "*"
         },
+		{
+      		"Sid": "PassRoleToNodes",
+			"Effect": "Allow",
+      		"Action": [
+        		"iam:PassRole"
+      		],
+      		"Resource": "*",
+      		"Condition": {
+                "StringEquals": {
+                    "iam:PassedToService": [
+                        "ec2.amazonaws.com"
+                    ]
+                }
+            }
+    	},
         {
             "Effect": "Allow",
             "Action": [

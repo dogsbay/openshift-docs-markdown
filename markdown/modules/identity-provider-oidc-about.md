@@ -6,7 +6,7 @@ Review OpenID Connect (OIDC) discovery, scopes, and claim mapping before you con
 The Authentication Operator in {{ product_title }} requires that the configured OIDC identity provider implements the OIDC discovery specification. For more information, see "OpenID Connect Discovery".
 
 {% if openshift_origin %}
-You can [configure a Keycloak](https://www.keycloak.org/docs/latest/server_admin/index.html#openshift) server as an OpenID Connect identity provider for {{ product_title }}.
+See "Server Administration Guide" in the Keycloak documentation for how to configure a Keycloak server as an OpenID Connect identity provider for {{ product_title }}.
 {% endif %}
 
 

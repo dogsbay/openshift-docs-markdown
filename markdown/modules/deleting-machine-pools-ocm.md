@@ -4,7 +4,7 @@
 
 {% endif %}
 {% if openshift_rosa or openshift_rosa_hcp %}
-# Deleting a machine pool using {{ cluster_manager }} {id="_deleting_a_machine_pool_using_cluster_manager"}
+# Delete a machine pool using {{ cluster_manager }} {id="_delete_a_machine_pool_using_cluster_manager"}
 
 {% endif %}
 

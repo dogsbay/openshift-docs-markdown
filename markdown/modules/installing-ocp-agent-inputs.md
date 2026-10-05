@@ -7,7 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the preferred configuration inputs {id="installing-ocp-agent-inputs_{{ context }}"}
+# Create the preferred configuration inputs {id="installing-ocp-agent-inputs_{{ context }}"}
 
 {% if not pxe_boot %}
 Create the preferred configuration inputs used to create the agent image. {._abstract}

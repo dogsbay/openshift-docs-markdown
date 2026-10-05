@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding taints to a machine pool using {{ cluster_manager }} {id="rosa-adding-taints-ocm_{{ context }}"}
+# Add taints to a machine pool using {{ cluster_manager }} {id="rosa-adding-taints-ocm_{{ context }}"}
 
 You can add taints to a machine pool for your {{ product_title }} cluster by using {{ cluster_manager_first }}. {._abstract}
 

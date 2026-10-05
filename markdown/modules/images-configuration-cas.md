@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring additional trust stores for image registry access {id="images-configuration-cas_{{ context }}"}
+# Configure additional trust stores for image registry access {id="images-configuration-cas_{{ context }}"}
 
 You can add references to a config map that has additional certificate authorities (CAs) to be trusted during image registry access to the `image.config.openshift.io/cluster` custom resource (CR). {._abstract}
 

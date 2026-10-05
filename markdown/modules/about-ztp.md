@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Using {{ ztp }} to provision clusters at the network far edge {id="about-ztp_{{ context }}"}
+# Use {{ ztp }} to provision clusters at the network far edge {id="about-ztp_{{ context }}"}
 
-{{ rh_rhacm_first }} manages clusters in a hub-and-spoke architecture, where a single hub cluster manages many spoke clusters. Hub clusters running {{ rh_rhacm }} provision and deploy the managed clusters by using {{ ztp_first }} and the assisted service that is deployed when you install {{ rh_rhacm }}. {._abstract}
+{{ rh_rhacm_first }} manages clusters in a hub-and-spoke architecture, where a single hub cluster manages many spoke clusters. {._abstract}
+
+Hub clusters running {{ rh_rhacm }} provision and deploy the managed clusters by using {{ ztp_first }} and the assisted service that is deployed when you install {{ rh_rhacm }}.
 
 The assisted service handles provisioning of {{ product_title }} on single node clusters, three-node clusters, or standard clusters running on bare metal.
 

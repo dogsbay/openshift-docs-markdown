@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Considerations when using Azure File {id="azure-file-considerations_{{ context }}"}
 
-Azure File storage has inherent file system limitations, including lack of support for symlinks, hard links, and sparse files by default, plus ownership mismatches between mounted directories and container processes. Understanding these constraints and using mount options such as uid, gid, and mfsymlinks helps you configure Azure File storage classes that work correctly with your containerized applications. {._abstract}
+Azure File storage has inherent file system limitations, including lack of support for symlinks, hard links, and sparse files by default, plus ownership mismatches between mounted directories and container processes.  {._abstract}
+
+Understanding these constraints and using mount options such as uid, gid, and mfsymlinks helps you configure Azure File storage classes that work correctly with your containerized applications.
 
 The following features are not supported:
 

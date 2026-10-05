@@ -29,7 +29,7 @@ By default, ports are allocated automatically and you can access the port alloca
 :::
 
 
-For more information, see the [Kubernetes Services documentation on `NodePort`](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport).
+For more information, see the "Kubernetes Services documentation on `NodePort`".
 
 
 `HostNetwork` endpoint publishing strategy*
@@ -55,3 +55,7 @@ spec:
       httpsPort: 443
       statsPort: 1936
 ```
+
+## Additional resources {id="additional-resources"}
+
+*   [Kubernetes Services documentation on `NodePort`](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport)

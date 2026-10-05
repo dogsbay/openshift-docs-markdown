@@ -20,5 +20,10 @@ Consider using the FlowMetrics API to create your own metric
 
 Configure Loki to improve the query performance
 :   If the problem persists, you can consider configuring Loki to improve the query performance. Some options depend on the installation mode you used for Loki, such as using the Operator and `LokiStack`, or `Monolithic` mode, or `Microservices` mode.
-    *   In `LokiStack` or `Microservices` modes, try [increasing the number of querier replicas](https://loki-operator.dev/docs/api.md/#loki-grafana-com-v1-LokiComponentSpec).
-    *   Increase the [query timeout](https://loki-operator.dev/docs/api.md/#loki-grafana-com-v1-QueryLimitSpec). You must also increase the Network Observability read timeout to Loki in the `FlowCollector` `spec.loki.readTimeout`.
+    *   In `LokiStack` or `Microservices` modes, try increasing the number of querier replicas. For more information, see "LokiComponentSpec".
+    *   Increase the query timeout. You must also increase the Network Observability read timeout to Loki in the `FlowCollector` `spec.loki.readTimeout`. For more information, see "QueryLimitSpec".
+
+## Additional resources {id="_additional_resources" ._additional-resources}
+
+*   [LokiComponentSpec](https://loki-operator.dev/docs/api.md/#loki-grafana-com-v1-LokiComponentSpec)
+*   [QueryLimitSpec](https://loki-operator.dev/docs/api.md/#loki-grafana-com-v1-QueryLimitSpec)

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a machine pool using the {{ rosa_cli }} {id="creating_machine_pools_cli_{{ context }}"}
+# Create a machine pool using the {{ rosa_cli }} {id="creating_machine_pools_cli_{{ context }}"}
 
 You can create additional machine pools for your {{ product_title }} cluster by using the {{ rosa_cli_first }}. {._abstract}
 

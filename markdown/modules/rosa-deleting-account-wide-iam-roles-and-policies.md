@@ -14,12 +14,12 @@ The account-wide IAM roles and policies might be used by other {{ product_title 
 **Prerequisites**
 
 *   You have account-wide IAM roles that you want to delete.
-*   You have installed and configured the latest ROSA CLI (`rosa`) on your installation host.
+*   You have installed and configured the latest {{ rosa_cli_first }} on your installation host.
 
 **Procedure**
 
 1.  Delete the account-wide roles:
-    1.  List the account-wide roles in your AWS account by using the ROSA CLI (`rosa`):
+    1.  List the account-wide roles in your AWS account by using the {{ rosa_cli }}:
         ```terminal
         $ rosa list account-roles
         ```

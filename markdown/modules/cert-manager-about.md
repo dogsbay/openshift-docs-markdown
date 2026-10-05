@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About the {{ cert_manager_operator }} {id="cert-manager-about_{{ context }}"}
 
-The `cert-manager` project introduces certificate authorities and certificates as resource types in the Kubernetes API, which makes it possible to provide certificates on-demand to developers working within your cluster. The {{ cert_manager_operator }} provides a supported way to integrate `cert-manager` into your {{ product_title }} cluster. {._abstract}
+The `cert-manager` project introduces certificate authorities and certificates as resource types in the Kubernetes API, which makes it possible to provide certificates on-demand to developers working within your cluster. {._abstract}
+
+The {{ cert_manager_operator }} provides a supported way to integrate `cert-manager` into your {{ product_title }} cluster.
 
 The {{ cert_manager_operator }} provides the following features:
 

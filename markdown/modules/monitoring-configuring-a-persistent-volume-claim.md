@@ -8,7 +8,7 @@
 {%- set namespace_name = "openshift-user-workload-monitoring" -%}
 {%- set component = "thanosRuler" %}
 
-To use a persistent volume (PV) for monitoring components, you must configure a persistent volume claim (PVC).
+To use a persistent volume (PV) for monitoring components, you must configure a persistent volume claim (PVC). {._abstract}
 
 **Prerequisites**
 
@@ -39,21 +39,29 @@ To use a persistent volume (PV) for monitoring components, you must configure a 
       namespace: {{ namespace_name }}
     data:
       config.yaml: |
-        <component>: (1)
+        <component>:
           volumeClaimTemplate:
             spec:
-              storageClassName: <storage_class> (2)
+              storageClassName: <storage_class>
               resources:
                 requests:
-                  storage: <amount_of_storage> (3)
+                  storage: <amount_of_storage>
     ```
-    1.  Specify the monitoring component for which you want to configure the PVC.
-    1.  Specify an existing storage class. If a storage class is not specified, the default storage class is used.
-    1.  Specify the amount of required storage.
 
-        The following example configures a PVC that claims persistent storage for 
-        Prometheus:
-        Thanos Ruler:
+    where:
+
+    `<component>`
+    :   Specifies the monitoring component for which you want to configure the PVC.
+
+    `<storage_class>`
+    :   Specifies an existing storage class. If a storage class is not specified, the default storage class is used.
+
+    `<amount_of_storage>`
+    :   Specifies the amount of required storage.
+
+    The following example configures a PVC that claims persistent storage for 
+    Prometheus:
+    Thanos Ruler:
     ```yaml title="Example PVC configuration" {minja}
     apiVersion: v1
     kind: ConfigMap

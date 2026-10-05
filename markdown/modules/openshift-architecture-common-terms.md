@@ -1,9 +1,11 @@
-{%- set _mod_docs_content_type = "REFERENCE" -%}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 {% if not openshift_rosa %}
 # Glossary of common terms for {{ product_title }} architecture {id="openshift-architecture-common-terms_{{ context }}"}
+
 {% endif %}
 {% if openshift_rosa %}
-# Glossary of common terms for {{ product_title }} {id="openshift-architecture-common-terms_{{ context }}"}
+# Glossary of common terms for {{ product_title }} {id="_glossary_of_common_terms_for_product_title"}
+
 {% endif %}
 
 Review the architecture terms and concepts to plan and deploy the cluster infrastructure. {._abstract}

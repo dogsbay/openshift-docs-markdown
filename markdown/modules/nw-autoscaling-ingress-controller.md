@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Autoscale an Ingress Controller {id="nw-autoscaling-ingress-controller_{{ context }}"}
 
-You can automatically scale an Ingress Controller to dynamically meet routing performance or availability requirements. For example, the requirement to increase throughput.
+You can automatically scale an Ingress Controller to dynamically meet routing performance or availability requirements. For example, the requirement to increase throughput. {._abstract}
 
 The following procedure provides an example for scaling up the default Ingress Controller.
 
@@ -121,39 +121,52 @@ The following procedure provides an example for scaling up the default Ingress C
       name: ingress-scaler
       namespace: openshift-ingress-operator
     spec:
-      scaleTargetRef: (1)
+      scaleTargetRef:
         apiVersion: operator.openshift.io/v1
         kind: IngressController
         name: default
         envSourceContainerName: ingress-operator
       minReplicaCount: 1
-      maxReplicaCount: 20 (2)
+      maxReplicaCount: 20
       cooldownPeriod: 1
       pollingInterval: 1
       triggers:
       - type: prometheus
         metricType: AverageValue
         metadata:
-          serverAddress: https://thanos-querier.openshift-monitoring.svc.cluster.local:9091 (3)
-          namespace: openshift-ingress-operator (4)
+          serverAddress: https://thanos-querier.openshift-monitoring.svc.cluster.local:9091
+          namespace: openshift-ingress-operator
           metricName: 'kube-node-role'
           threshold: '1'
-          query: 'sum(kube_node_role{role="worker",service="kube-state-metrics"})' (5)
+          query: 'sum(kube_node_role{role="worker",service="kube-state-metrics"})'
           authModes: "bearer"
         authenticationRef:
           name: keda-trigger-auth-prometheus
     ```
-    1.  The custom resource that you are targeting. In this case, the Ingress Controller.
-    1.  Optional: The maximum number of replicas. If you omit this field, the default maximum is set to 100 replicas.
-    1.  The Thanos service endpoint in the `openshift-monitoring` namespace.
-    1.  The Ingress Operator namespace.
-    1.  This expression evaluates to however many worker nodes are present in the deployed cluster.
+
+    where:
+
+    `spec.scaleTargetRef`
+    :   Specifies the custom resource that you are targeting. In this case, the Ingress Controller.
+
+    `spec.maxReplicaCount`
+    :   Specifies the maximum number of replicas. If you omit this field, the default maximum is set to 100 replicas. This field is optional.
+
+    `spec.triggers.metadata.serverAddress`
+    :   Specifies the Thanos service endpoint in the `openshift-monitoring` namespace.
+
+    `spec.triggers.metadata.namespace`
+    :   The Ingress Operator namespace.
+
+    `spec.triggers.metadata.query`
+    :   This expression evaluates to however many worker nodes are present in the deployed cluster.
 
     :::important
 
     If you are using cross-namespace queries, you must target port 9091 and not port 9092 in the `serverAddress` field. You also must have elevated privileges to read metrics from this port.
     
     :::
+
 
 1.  Apply the custom resource definition by running the following command:
     ```terminal

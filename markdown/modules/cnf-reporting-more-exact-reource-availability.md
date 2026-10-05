@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Report more exact resource availability {id="cnf-reporting-more-exact-resource-availability_{{ context }}"}
 
-To report more exact resource availability and minimize Topology Affinity Errors, enable the `cacheResyncPeriod` specification for the NUMA Resources Operator. This configuration monitors pending resources on nodes and synchronizes them in the scheduler cache, though lower intervals increase network load. {._abstract}
+To report more exact resource availability and minimize Topology Affinity Errors, enable the `cacheResyncPeriod` specification for the NUMA Resources Operator. {._abstract}
+
+This configuration monitors pending resources on nodes and synchronizes them in the scheduler cache, though lower intervals increase network load.
 
 The lower the interval, the greater the network load. The `cacheResyncPeriod` specification is disabled by default.
 

@@ -14,9 +14,10 @@ You can override the `assemble`, `run`, and `save-artifacts` source-to-image (S2
             from:
               kind: "ImageStreamTag"
               name: "builder-image:latest"
-            scripts: "http://somehost.com/scripts_directory" (1)
+            scripts: "http://somehost.com/scripts_directory"
         ```
-        1.  The build process appends `run`, `assemble`, and `save-artifacts` to the path. If any or all scripts with these names exist, the build process uses these scripts in place of scripts with the same name that are provided in the image.
+
+        The build process appends `run`, `assemble`, and `save-artifacts` to the path. If any or all scripts with these names exist, the build process uses these scripts in place of scripts with the same name that are provided in the image.
 
         :::note
 

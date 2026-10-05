@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Managing control plane log forwarding {id="rosa-manage-control-plane-log-forwarding_{{ context }}"}
+# Manage existing log forwarding configurations with the {{ rosa_cli }} {id="rosa-manage-control-plane-log-forwarding_{{ context }}"}
 
 After you configure the {{ product_title }} clusters to use your selected log forwarder for control plane logs, see the following commands to run based on your specific needs. For all of these commands, you must provide the `clusterid` or cluster name in the `--cluster` flag: {._abstract}
 

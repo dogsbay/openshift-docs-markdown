@@ -22,14 +22,21 @@ You can update the LokiStack CRD with the `perStreamRateLimit` and `perStreamRat
       limits:
         global:
           ingestion:
-            perStreamRateLimit: 6        (1)
-            perStreamRateLimitBurst: 30  (2)
+            perStreamRateLimit: 6
+            perStreamRateLimitBurst: 30
       tenants:
         mode: openshift-network
       managementState: Managed
     ```
-    1.  The default value for `perStreamRateLimit` is `3`.
-    1.  The default value for `perStreamRateLimitBurst` is `15`.
+
+    where:
+
+    `spec.limits.global.ingestion.perStreamRateLimit`
+    :   Specifies the ingestion rate limit. The default value is `3`.
+
+    `spec.limits.global.ingestion.perStreamRateLimitBurst`
+    :   Specifies the ingestion rate limit burst. The default value is `15`.
+
 1.  Click **Save**.
 
 **Verification**

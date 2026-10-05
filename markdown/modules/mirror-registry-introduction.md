@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Mirror registry for Red Hat OpenShift introduction {id="mirror-registry-introduction_{{ context }}"}
 
-For disconnected deployments of {{ product_title }}, a container registry is required to carry out the installation of the clusters. To run a production-grade registry service on such a cluster, you must create a separate registry deployment to install the first cluster. The _mirror registry for Red&#160;Hat OpenShift_ addresses this need and is included in every {{ product_title }} subscription. It is available for download on the "OpenShift console Downloads" page. {._abstract}
+For disconnected deployments of {{ product_title }}, a container registry is required to carry out the installation of the clusters.  {._abstract}
+
+To run a production-grade registry service on such a cluster, you must create a separate registry deployment to install the first cluster. The _mirror registry for Red&#160;Hat OpenShift_ addresses this need and is included in every {{ product_title }} subscription. It is available for download on the "OpenShift console Downloads" page.
 
 The _mirror registry for Red&#160;Hat OpenShift_ allows users to install a small-scale version of {{ quay }} and its required components by using the `mirror-registry` command-line interface (CLI) tool. The _mirror registry for Red&#160;Hat OpenShift_ is deployed automatically with pre-configured local storage and a local database. It also includes auto-generated user credentials and access permissions with a single set of inputs and no additional configuration choices to get started.
 

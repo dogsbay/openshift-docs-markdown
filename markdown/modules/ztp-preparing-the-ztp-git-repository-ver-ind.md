@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Preparing the {{ ztp }} site configuration repository for version independence {id="ztp-preparing-the-ztp-git-repository-ver-ind_{{ context }}"}
+# Prepare the {{ ztp }} site configuration repository for version independence {id="ztp-preparing-the-ztp-git-repository-ver-ind_{{ context }}"}
 
 You can use {{ ztp }} to manage source custom resources (CRs) for managed clusters that are running different versions of {{ product_title }}.
 This means that the version of {{ product_title }} running on the hub cluster can be independent of the version running on the managed clusters. {._abstract}

@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # API compatibility common terminology {id="api-compatibility-common-terminology_{{ context }}"}
 
+This glossary defines common terms for {{ product_title }} API compatibility, including APIs, the Application Operating Environment (AOE), release version types, and support tiers. {._abstract}
+
 ## Application Programming Interface (API) {id="api-compatibility-common-terminology-api_{{ context }}"}
 
 An API is a public interface implemented by a software program that enables it to interact with other software. In {{ product_title }}, the API is served from a centralized API server and is used as the hub for all system interaction.
@@ -39,8 +41,14 @@ A minor release in an {{ product_title }} major release that has an extended sup
 
 An optional product capability that is not officially supported by Red Hat, but is intended to provide a mechanism to explore early phase technology. By default, Developer Preview functionality is opt-in, and subject to removal at any time. Enabling a Developer Preview feature might render a cluster unsupportable dependent upon the scope of the feature.
 
-If you are a Red(&#160;)Hat customer or partner and have feedback about these developer preview versions, file an issue by using the [OpenShift Bugs tracker](https://issues.redhat.com/projects/OCPBUGS/issues). Do not use the formal Red(&#160;)Hat support service ticket process. You can read more about support handling in the following [knowledge article](https://access.redhat.com/support/offerings/devpreview).
+If you are a Red(&#160;)Hat customer or partner and have feedback about these developer preview versions, file an issue by using the OpenShift Bugs tracker. Do not use the formal Red(&#160;)Hat support service ticket process.
 
 ## Technology Preview {id="api-compatibility-common-terminology-tech-preview_{{ context }}"}
 
-An optional product capability that provides early access to upcoming product innovations to test functionality and provide feedback during the development process. The feature is not fully supported, might not be functionally complete, and is not intended for production use. Usage of a Technology Preview function requires explicit opt-in. Learn more about the [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview).
+An optional product capability that provides early access to upcoming product innovations to test functionality and provide feedback during the development process. The feature is not fully supported, might not be functionally complete, and is not intended for production use. Usage of a Technology Preview function requires explicit opt-in.
+
+## Additional resources {id="_additional_resources" ._additional-resources}
+
+*   [OpenShift Bugs tracker](https://issues.redhat.com/projects/OCPBUGS/issues)
+*   [Developer Preview support handling](https://access.redhat.com/support/offerings/devpreview)
+*   [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview)

@@ -79,7 +79,7 @@ The `sd-sre-platform-gcp-access` Google group is granted access to the {{ gcp_sh
 
 :::note
 
-*   For information regarding the roles within the `sd-sre-platform-gcp-access`  group that are specific to clusters created when using the Workload Identity Federation (WIF) authentication type, see [managed-cluster-config](https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.19/vanilla.yaml).
+*   For information regarding the roles within the `sd-sre-platform-gcp-access` group that are specific to clusters created when using the Workload Identity Federation (WIF) authentication type, see [managed-cluster-config](https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.22/vanilla.yaml).
 *   For information about creating a cluster using the Workload Identity Federation authentication type, see _Additional resources_.
 
 :::

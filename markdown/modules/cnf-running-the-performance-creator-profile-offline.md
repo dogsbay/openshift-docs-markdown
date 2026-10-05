@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Run the Performance Profile Creator wrapper script {id="running-the-performance-profile-creator-wrapper-script_{{ context }}"}
 
-The wrapper script simplifies the process of creating a performance profile with the Performance Profile Creator (PPC) tool. The script handles tasks such as pulling and running the required container image, mounting directories into the container, and providing parameters directly to the container through Podman. {._abstract}
+The wrapper script simplifies the process of creating a performance profile with the Performance Profile Creator (PPC) tool. {._abstract}
+
+The script handles tasks such as pulling and running the required container image, mounting directories into the container, and providing parameters directly to the container through Podman.
 
 For more information about the Performance Profile Creator arguments, see the section "Performance Profile Creator arguments".
 

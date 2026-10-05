@@ -7,14 +7,16 @@ For example, you can add metadata to provide helpful descriptions of your image,
 
 This topic only defines the metadata needed by the current set of use cases. Additional metadata or use cases may be added in the future.
 
-## Defining image metadata {id="_defining_image_metadata"}
+## Defining image metadata {id="defining-image-metadata"}
+
 You can use the `LABEL` instruction in a `Dockerfile` to define image metadata. Labels are similar to environment variables in that they are key value pairs attached to an image or a container. Labels are different from environment variable in that they are not visible to the running application and they can also be used for fast look-up of images and containers.
 
-[Docker documentation](https://docs.docker.com/engine/reference/builder/#label) for more information on the `LABEL` instruction.
+For more information on the `LABEL` instruction, see "LABEL - Docker
+documentation".
 
 The label names are typically namespaced. The namespace is set accordingly to reflect the project that is going to pick up the labels and use them. For {{ product_title }} the namespace is set to `io.openshift` and for Kubernetes the namespace is `io.k8s`.
 
-See the [Docker custom metadata](https://docs.docker.com/engine/userguide/labels-custom-metadata) documentation for details about the format.
+See the "Docker custom metadata" documentation for details about the format.
 
 **Supported Metadata**
 
@@ -48,3 +50,8 @@ See the [Docker custom metadata](https://docs.docker.com/engine/userguide/labels
 </tr>
 </tbody>
 </table>
+
+## Additional resources {id="_additional_resources" ._additional-resources}
+
+*   [LABEL - Docker documentation](https://docs.docker.com/engine/reference/builder/#label)
+*   [Docker custom metadata](https://docs.docker.com/engine/userguide/labels-custom-metadata)

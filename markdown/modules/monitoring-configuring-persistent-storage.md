@@ -1,10 +1,12 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Configure persistent storage {id="configuring-persistent-storage_{{ context }}"}
 
-Run cluster monitoring with persistent storage to gain the following benefits:
+Running cluster monitoring with persistent storage helps protect your data from loss and ensures more reliable alert management. {._abstract}
 
-*   Protect your metrics and alerting data from data loss by storing them in a persistent volume (PV). As a result, they can survive pods being restarted or recreated.
-*   Avoid getting duplicate notifications and losing silences for alerts when the Alertmanager pods are restarted.
+Persistent storage provides the following benefits:
+
+*   Metrics and alerting data are stored in a persistent volume (PV) and can survive pods being restarted or recreated.
+*   Duplicate notifications and lost silences for alerts are avoided when Alertmanager pods are restarted.
 
 
 :::important

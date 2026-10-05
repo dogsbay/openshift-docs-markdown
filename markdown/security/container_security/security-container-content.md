@@ -16,6 +16,15 @@ To ensure the security of the content inside your containers you need to start w
 {% leveloffset +1 %}{% include "./modules/security-container-content-scanning.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/security-container-content-external-scanning.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/security-image-metadata.md" %}{% endleveloffset %}
+{% leveloffset +3 %}{% include "./modules/security-example-annotation-keys.md" %}{% endleveloffset %}
+{% leveloffset +3 %}{% include "./modules/security-example-annotation-values.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/security-annotating-image-objects.md" %}{% endleveloffset %}
+{% leveloffset +3 %}{% include "./modules/security-example-annotate-cli.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/controlling-pod-execution.md" %}{% endleveloffset %}
+{% leveloffset +3 %}{% include "./modules/security-controlling-pod-execution-example-annotation.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/security-integration-reference.md" %}{% endleveloffset %}
+{% leveloffset +3 %}{% include "./modules/security-integration-reference-example-api-call.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}

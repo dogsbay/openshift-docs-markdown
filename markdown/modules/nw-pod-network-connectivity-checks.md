@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Connection health checks that are performed {id="nw-pod-network-connectivity-checks_{{ context }}"}
 
+Establish TCP connections to target services, endpoints, and load balancers to verify that control plane components, routing layers, and node services can communicate without interruption. {._abstract}
+
 To verify that cluster resources are reachable, a TCP connection is made to each of the following cluster API services:
 
 *   Kubernetes API server service

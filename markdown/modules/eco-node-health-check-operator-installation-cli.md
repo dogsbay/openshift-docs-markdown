@@ -1,6 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Installing the Node Health Check Operator by using the CLI {id="installing-node-health-check-operator-using-cli_{{ context }}"}
-You can use the OpenShift CLI (`oc`) to install the Node Health Check Operator.
+
+You can use the OpenShift CLI (`oc`) to install the Node Health Check Operator. {._abstract}
 
 To install the Operator in your own namespace, follow the steps in the procedure.
 

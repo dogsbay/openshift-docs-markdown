@@ -34,6 +34,7 @@ The following requirements apply to {{ hcp }}:
 **Additional resources**
 {._additional-resources}
 
+*   [Switching {{ op_system_base }} to FIPS mode](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening)
 *   [The multicluster engine for Kubernetes operator 2.17 Support Matrix](https://access.redhat.com/articles/7142379)
 *   [Red&#160;Hat {{ product_title }} Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/?operator=multicluster-engine&&upgrade_path=4.14%20to%204.16)
 *   [Shared infrastructure between hosted and standalone control planes](/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-shared-infra_hcp-sizing-guidance)

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About the {{ external_secrets_operator }} {id="external-secrets-about_{{ context }}"}
 
-Use the {{ external_secrets_operator }} to integrate the `external-secrets` application with the {{ product_title }} cluster. The `external-secrets` application fetches secrets stored in external providers such as AWS Secrets Manager, HashiCorp Vault, Google Secret Manager, Azure Key Vault, {{ ibm_cloud_title }} Secrets Manager, and AWS Systems Manager Parameter Store, and integrates them with Kubernetes in a secure manner. {._abstract}
+Use the {{ external_secrets_operator }} to integrate the `external-secrets` application with the {{ product_title }} cluster.  {._abstract}
+
+The `external-secrets` application fetches secrets stored in external providers such as AWS Secrets Manager, HashiCorp Vault, Google Secret Manager, Azure Key Vault, {{ ibm_cloud_title }} Secrets Manager, and AWS Systems Manager Parameter Store, and integrates them with Kubernetes in a secure manner.
 
 Using the {{ external_secrets_operator_short }} ensures the following:
 

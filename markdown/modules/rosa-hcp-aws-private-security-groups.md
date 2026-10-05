@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Adding additional AWS security groups to the AWS PrivateLink endpoint {id="rosa-hcp-aws-private-security-groups_{{ context }}"}
 
-The AWS PrivateLink endpoint in the host VPC has a default security group that restricts access to the cluster’s Machine CIDR range. To grant API access from outside the VPC, you must create and attach an additional security group to the PrivateLink endpoint. {._abstract}
+The AWS PrivateLink endpoint in the host VPC has a default security group that restricts access to the cluster’s Machine Classless Inter-Domain Routing (CIDR) range. To grant API access from outside the VPC, you must create and attach an additional security group to the PrivateLink endpoint. {._abstract}
 
 
 :::important

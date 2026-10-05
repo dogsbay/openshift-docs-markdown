@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Verifying the VPN connection {id="dedicated-aws-vpn-verifying"}
+# Verify the VPN connection {id="dedicated-aws-vpn-verifying"}
 
 After you have set up your side of the Virtual Private Network (VPN) tunnel, you can verify that the tunnel is up in the AWS console and that connectivity across the tunnel is working. {._abstract}
 

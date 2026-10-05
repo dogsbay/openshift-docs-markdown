@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Disable HTTP/2 {id="nw-disable-http2_{{ context }}"}
 
-You can disable HTTP/2 on a specific Ingress Controller, or you can disable HTTP/2 for the entire cluster.
+To disable HTTP/2 for Ingress Controllers in {{ product_title }}, you can annotate a specific Ingress Controller or the cluster Ingress configuration. {._abstract}
 
 **Procedure**
 

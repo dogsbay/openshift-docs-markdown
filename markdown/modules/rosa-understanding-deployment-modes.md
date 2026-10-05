@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding the auto and manual deployment modes {id="rosa-understanding-deployment-modes_{{ context }}"}
+# Understand the auto and manual deployment modes {id="rosa-understanding-deployment-modes_{{ context }}"}
 
 When installing a {{ product_title }} cluster that uses the AWS Security Token Service (STS), you can choose between the `auto` and `manual` modes to create the required AWS Identity and Access Management (IAM) resources. {._abstract}
 

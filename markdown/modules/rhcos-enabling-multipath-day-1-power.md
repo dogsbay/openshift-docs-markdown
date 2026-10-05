@@ -50,8 +50,8 @@ During the initial cluster creation, you might want to add kernel arguments to a
         :::
 
 
-In case of MPIO failure, use the `bootlist` command to update the boot device list with alternate logical device names. The command displays a boot list and designates the possible boot devices for when the system is booted in normal mode.
 
+        In case of MPIO failure, use the `bootlist` command to update the boot device list with alternate logical device names. The command displays a boot list and designates the possible boot devices for when the system is booted in normal mode.
 1.  To display a boot list and specify the possible boot devices if the system is booted in normal mode, enter the following command:
     ```terminal
     $ bootlist -m normal -o

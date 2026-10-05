@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Tang server disk encryption {id="nbde-using-tang-servers-for-disk-encryption_{{ context }}"}
 
-The following components and technologies implement Network-Bound Disk Encryption (NBDE).
+The following components and technologies implement Network-Bound Disk Encryption (NBDE). {._abstract}
 
 <a name="fig-NBDE-Clevis-Tang"></a>**Figure 1. NBDE scheme when using a LUKS1-encrypted volume. The luksmeta package is not used for LUKS2 volumes.**
 

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # How ExecCPUAffinity prevents latency spikes from exec operations {id="cnf-protecting-low-latency-workloads_{{ context }}"}
 
-When you run exec operations such as `oc exec` or shell access on a container with isolated CPUs, those processes can interrupt your time-sensitive workloads. The `ExecCPUAffinity` feature automatically pins these secondary processes to a specific CPU within the container’s isolated set. This ensures that your primary low-latency applications, such as Telco RAN DU or 5G Core, maintain deterministic performance without resource contention. {._abstract}
+When you run exec operations such as `oc exec` or shell access on a container with isolated CPUs, those processes can interrupt your time-sensitive workloads. The `ExecCPUAffinity` feature automatically pins these secondary processes to a specific CPU within the container’s isolated set. {._abstract}
+
+This ensures that your primary low-latency applications, such as Telco RAN DU or 5G Core, maintain deterministic performance without resource contention.
 
 `ExecCPUAffinity` is enabled by default whenever you apply a `PerformanceProfile` to a node. The feature operates at the container level and requires the following conditions:
 

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Configuring user-defined tags for {{ azure_short }} {id="installing-azure-user-defined-tags_{{ context }}"}
 
-In {{ product_title }}, you can use tags for grouping resources and for managing resource access and cost. Tags are applied only to the resources created by the {{ product_title }} installation program and its core Operators such as Machine API Operator, Cluster Ingress Operator, Cluster Image Registry Operator. The {{ product_title }} consists of the following types of tags:
+In {{ product_title }}, you can use tags for grouping resources and for managing resource access and cost.  {._abstract}
+
+Tags are applied only to the resources created by the {{ product_title }} installation program and its core Operators such as Machine API Operator, Cluster Ingress Operator, Cluster Image Registry Operator. The {{ product_title }} consists of the following types of tags:
 
 
 {{ product_title }} tags

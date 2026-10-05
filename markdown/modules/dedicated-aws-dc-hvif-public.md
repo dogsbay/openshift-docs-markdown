@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a Direct Connect Gateway for a public Direct Connect {id="dedicated-aws-dc-hvif-public_{{ context }}"}
+# Create a Direct Connect Gateway for a public Direct Connect {id="dedicated-aws-dc-hvif-public_{{ context }}"}
 
 If your Direct Connect Virtual Interface type is public, create a Direct Connect Gateway. {._abstract}
 

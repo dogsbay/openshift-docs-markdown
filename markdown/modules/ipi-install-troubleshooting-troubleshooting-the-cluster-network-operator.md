@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Troubleshooting the Cluster Network Operator {id="troubleshooting-the-cluster-network-operator_{{ context }}"}
 
-The Cluster Network Operator is responsible for deploying the networking components. It runs early in the installation process, after the control plane nodes have come up but before the installation program removes the bootstrap control plane. Issues with this Operator might indicate installation program issues. {._abstract}
+To troubleshoot Cluster Network Operator issues during installation, verify that the network configuration exists and is running. {._abstract}
+
+The Cluster Network Operator deploys networking components early in the installation process, after the control plane nodes have come up but before the installation program removes the bootstrap control plane. Issues with this Operator might indicate installation program issues.
 
 **Procedure**
 

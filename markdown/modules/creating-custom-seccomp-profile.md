@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create seccomp profiles {id="creating-custom-seccomp-profile_{{ context }}"}
 
-You can use the `MachineConfig` object to create profiles.
+You can use the `MachineConfig` object to create profiles. {._abstract}
 
 Seccomp can restrict system calls (syscalls) within a container, limiting the access of your application.
 

@@ -2,7 +2,9 @@
 
 # Configure polling operations for NUMA resources updates {id="cnf-configuring-node-groups-for-the-numaresourcesoperator_{{ context }}"}
 
-As an optional task, you can improve scheduling behavior and troubleshoot suboptimal scheduling decisions by configuring the `spec.nodeGroups` specification in the `NUMAResourcesOperator` custom resource (CR). This configuration fine-tunes how daemons poll for available NUMA resources, providing advanced control over your polling operations. {._abstract}
+As an optional task, you can improve scheduling behavior and troubleshoot suboptimal scheduling decisions by configuring the `spec.nodeGroups` specification in the `NUMAResourcesOperator` custom resource (CR). {._abstract}
+
+This configuration fine-tunes how daemons poll for available NUMA resources, providing advanced control over your polling operations.
 
 The configuration options are listed as follows:
 

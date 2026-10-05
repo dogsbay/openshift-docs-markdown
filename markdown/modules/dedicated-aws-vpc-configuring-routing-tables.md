@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the routing tables {id="dedicated-aws-vpc-configuring-routing-tables"}
+# Configure the routing tables {id="dedicated-aws-vpc-configuring-routing-tables"}
 
 After you accept the Virtual Private Cloud (VPC) peering request, both VPCs must configure their routes to communicate across the peering connection.
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # {{ product_title }} Ingress Operator {id="nw-ne-openshift-ingress_{{ context }}"}
 
-When you create your {{ product_title }} cluster, pods and services running on the cluster are each allocated their own IP addresses. The IP addresses are accessible to other pods and services running nearby but are not accessible to outside clients.
+When you create your {{ product_title }} cluster, pods and services running on the cluster are each allocated their own IP addresses. The IP addresses are accessible to other pods and services running nearby but are not accessible to outside clients. {._abstract}
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 The Ingress Operator makes it possible for external clients to access your service by deploying and managing one or more HAProxy-based

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing {{ ztp }} in a disconnected environment {id="installing-disconnected-rhacm_{{ context }}"}
+# Install {{ ztp }} in a disconnected environment {id="installing-disconnected-rhacm_{{ context }}"}
 
 Use {{ rh_rhacm_first }}, {{ gitops_title }}, and {{ cgu_operator_first }} on the hub cluster in the disconnected environment to manage the deployment of multiple managed clusters. {._abstract}
 

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About the machine autoscaler {id="machine-autoscaler-about_{{ context }}"}
 
-The machine autoscaler adjusts the number of Machines in the compute machine sets that you deploy in an {{ product_title }} cluster. You can scale both the default `worker` compute machine set and any other compute machine sets that you create. The machine autoscaler makes more Machines when the cluster runs out of resources to support more deployments. Any changes to the values in `MachineAutoscaler` resources, such as the minimum or maximum number of instances, are immediately applied to the compute machine set they target. {._abstract}
+The machine autoscaler adjusts the number of Machines in the compute machine sets that you deploy in an {{ product_title }} cluster. {._abstract}
+
+You can scale both the default `worker` compute machine set and any other compute machine sets that you create. The machine autoscaler makes more Machines when the cluster runs out of resources to support more deployments. Any changes to the values in `MachineAutoscaler` resources, such as the minimum or maximum number of instances, are immediately applied to the compute machine set they target.
 
 
 :::important

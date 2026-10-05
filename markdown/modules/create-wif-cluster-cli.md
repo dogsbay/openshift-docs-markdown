@@ -6,6 +6,7 @@ You can create an {{ product_title }} on {{ GCP }} cluster with Workload Identit
 **Prerequisites**
 
 *   You have created a WIF configuration. For more information, see "Create a Workload Identity Federation configuration".
+*   You have created the required firewall rules in your {{ gcp_short }} project if you are installing a cluster by using {{ product_title }} version 4.21 or later. For more information, see _Create firewall rules for reduced Workload Identity Federation permissions on {{ gcp_short }}_ .
 *   You have downloaded the latest version of the {{ cluster_manager }} CLI (`ocm`) for your operating system from the [Downloads](https://console.redhat.com/openshift/downloads) page on {{ cluster_manager }}.
 
 **Procedure**

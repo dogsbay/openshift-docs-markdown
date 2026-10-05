@@ -21,10 +21,20 @@ At a minimum, the following EC2 instances are deployed:
 {%- endif %}
 
 {% if openshift_rosa_hcp %}
-At a minimum, two `m5.xlarge` EC2 instances are deployed for use as worker nodes.
+At a minimum, two `m7i.xlarge` EC2 instances are deployed for use as worker nodes.
 {% endif %}
 
 The instance type shown for worker nodes is the default value, but you can customize the instance type for worker nodes according to the needs of your workload.
+
+{% if openshift_rosa_hcp %}
+
+:::note
+
+The `m7i` instance type is not available in every AWS region. In regions where `m7i` is not offered, you must specify a supported instance type when you create a cluster or cluster creation fails. For a complete list of supported regions, see [_Amazon EC2 instance types by Region_](https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-regions.html).
+
+:::
+
+{% endif %}
 
 ## Amazon Elastic Block Store storage {id="rosa-ebs-storage_{{ context }}"}
 

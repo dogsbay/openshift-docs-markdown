@@ -1,24 +1,23 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create a policy {id="virt-create-node-network-config-console_{{ context }}"}
 
-You can create a policy by using either a form or YAML in the web console. When creating a policy using a form, you can see how the new policy changes the topology of the nodes in your cluster in real time. {._abstract}
+You can create a policy by using either a form or YAML in the web console. When creating a policy by using a form, you can see how the new policy changes the topology of the nodes in your cluster in real time. {._abstract}
 
 **Procedure**
 
-1.  Navigate to **Networking** → **Node Network Configuration**.
+1.  Go to **Networking** → **Node Network Configuration**.
 1.  On the **Node Network Configuration** page, click **Create** and select the **From Form** option.
 
     :::note
 
-    To create a policy using YAML, click **Create** → **With YAML** option. However, the following steps apply only to the form method.
+    To create a policy by using YAML, click **Create** → **With YAML** option. However, the following steps apply only to the form method.
     
     :::
 
-1.  Optional: Check the **Apply this NodeNetworkConfigurationPolicy only to specific subsets of nodes using the node selector** checkbox to specify the nodes where the policy must be applied.
+1.  Optional: To apply this `NodeNetworkConfigurationPolicy` object only to specific subsets of nodes by using the node selector, select the corresponding checkbox.
 1.  Enter the policy name in the **Policy name** field.
-1.  Optional: Enter the description of the policy in the **Description** field.
 1.  Click **Next** to move to the **Policy Interfaces** section.
-1.  In the **Bridging** part of the **Policy Interfaces** section, a bridge interface named `br0` is added by default with preset values in editable fields. If required, edit the values by performing the following steps:
+1.  In the **Bridging** part of the **Policy Interfaces** section, the form adds a bridge interface named `br0` by default with preset values in editable fields. If required, edit the values by performing the following steps:
     1.  Enter the name of the interface in **Interface name** field.
     1.  Select the required network state. The default selected state is **Up**.
     1.  Select the type of interface. The available types are **Bridge**, **Bonding**, and **Ethernet**. The default selected value is **Bridge**.
@@ -31,18 +30,18 @@ You can create a policy by using either a form or YAML in the web console. When 
 
     1.  Optional: In the IP configuration section, check **IPv4** checkbox to assign an IPv4 address to the interface, and configure the IP address assignment details:
         1.  Click **IP address** to configure the interface with a static IP address, or **DHCP** to auto-assign an IP address.
-        1.  If you have selected **IP address** option, enter the IPv4 address in **IPV4 address** field, and enter the prefix length in **Prefix length** field.
+        1.  If you have selected **IP address** option, enter the IPv4 address in the **IPv4 address** field, and enter the prefix length in **Prefix length** field.
 
-            If you have selected **DHCP** option, uncheck the options that you want to disable. The available options are **Auto-DNS**, **Auto-routes**, and **Auto-gateway**. All the options are selected by default.
+            If you have selected **DHCP** option, clear the options that you want to disable. The available options are **Auto-DNS**, **Auto-routes**, and **Auto-gateway**. By default, the form selects all options.
     1.  Optional: Enter the port number in **Port** field.
-    1.  Optional: Check the checkbox **Enable STP** to enable STP.
+    1.  Optional: Select the **Enable STP** checkbox to enable Spanning Tree Protocol (STP).
     1.  Optional: To add an interface to the policy, click **Add another interface to the policy**.
     1.  Optional: To remove an interface from the policy, click ![minus](/images/fa-minus-circle.svg) icon next to the interface.
 
 
         :::note
 
-        Alternatively, you can click **Edit YAML** on the top of the page to continue editing the form using YAML.
+        You can also click **Edit YAML** at the top of the page to continue editing the form by using YAML.
         
         :::
 

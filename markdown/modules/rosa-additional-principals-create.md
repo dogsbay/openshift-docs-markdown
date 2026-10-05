@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Adding additional principals while creating your {{ product_title }} cluster {id="rosa-additional-principals-create_{{ context }}"}
 
-By default, only the IAM role that created the cluster can access the cluster’s API. If other IAM roles in your AWS account need access to the cluster API, you can grant them access by specifying additional allowed principals during cluster creation. {._abstract}
+By default, only the Identity and Access Management (IAM) role that created the cluster can access the cluster’s API. If other IAM roles in your AWS account need access to the cluster API, you can grant them access by specifying additional allowed principals during cluster creation. {._abstract}
 
 **Procedure**
 

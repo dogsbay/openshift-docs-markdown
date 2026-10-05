@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring listener routing and security settings {id="configuring-listener-routing-security_{{ context }}"}
 
-To ensure that your applications receive only authenticated and authorized traffic, you must specify the allowed protocols and ports for your gateway. If you are routing secure traffic, you must also configure TLS settings. You can define these parameters by configuring the `spec.listeners` field in your `Gateway` custom resource (CR). {._abstract}
+To ensure that your applications receive only authenticated and authorized traffic, you must specify the allowed protocols and ports for your gateway.  {._abstract}
+
+If you are routing secure traffic, you must also configure TLS settings. You can define these parameters by configuring the `spec.listeners` field in your `Gateway` custom resource (CR).
 
 
 :::important

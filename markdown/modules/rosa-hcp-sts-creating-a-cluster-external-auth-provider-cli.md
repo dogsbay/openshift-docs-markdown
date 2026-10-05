@@ -62,7 +62,7 @@ Similar to the `rosa create|delete|list idp[s]` command in the {{ rosa_cli }}, y
         :   Optional. The application or client ID that your app registration uses for the console.
 
         `<client_secret>`
-        :   The client secret that is used to associate your account with the application. If you do not include the client secret, this command uses a public OIDC OAuthClient.
+        :   The client secret that is used to associate your account with the application. If you do not include the client secret, this command uses a public OpenID Connect (OIDC) OAuthClient.
 
         `<claim_validation_rule>`
         :   Optional. The rules that help validate token claims which authenticate your users. This field should be formatted as `:<required_value>`.

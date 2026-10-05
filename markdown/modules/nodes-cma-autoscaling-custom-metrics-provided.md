@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Provided Operator metrics {id="nodes-cma-autoscaling-custom-metrics-provided_{{ context }}"}
 
-The Custom Metrics Autoscaler Operator exposes the following metrics, which you can view by using the {{ product_title }} web console.
+The Custom Metrics Autoscaler Operator exposes the following metrics, which you can view by using the {{ product_title }} web console. {._abstract}
 
 **Custom Metric Autoscaler Operator metrics**
 
@@ -16,9 +16,9 @@ The Custom Metrics Autoscaler Operator exposes the following metrics, which you 
 | `keda_resource_totals` | The total number of Custom Metrics Autoscaler custom resources in each namespace for each custom resource type. |
 | `keda_trigger_totals` | The total number of triggers by trigger type. |
 
-**Custom Metrics Autoscaler Admission webhook metrics**
-
 The Custom Metrics Autoscaler Admission webhook also exposes the following Prometheus metrics.
+
+**Custom Metrics Autoscaler Admission webhook metrics**
 
 |     |     |
 | --- | --- |

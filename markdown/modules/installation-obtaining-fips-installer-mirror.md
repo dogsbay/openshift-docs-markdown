@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Obtain a FIPS-capable installation program using the public OpenShift mirror {id="installation-obtaining-fips-installer-mirror_{{ context }}"}
 
-{{ product_title }} requires the use of a FIPS-capable installation binary to install a cluster in FIPS mode. You can obtain this binary by downloading it from the public OpenShift mirror. After you have obtained the binary, proceed with the cluster installation, replacing all instances of the `openshift-install` binary with `openshift-install-fips`. {._abstract}
+To install a {{ product_title }} cluster in FIPS mode, download the FIPS-capable installation binary from the public OpenShift mirror. {._abstract}
+
+After you obtain the binary, proceed with the cluster installation, replacing all instances of the `openshift-install` binary with `openshift-install-fips`.
 
 **Prerequisites**
 

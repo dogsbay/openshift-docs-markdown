@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Set or delete HTTP request and response headers in an Ingress Controller {id="nw-ingress-set-or-delete-http-headers_{{ context }}"}
 
-You can set or delete certain HTTP request and response headers for compliance purposes or other reasons. You can set or delete these headers either for all routes served by an Ingress Controller or for specific routes.
+To set or delete HTTP request and response headers on routes in {{ product_title }}, you can configure header actions on an Ingress Controller. You can apply the actions to all routes that the controller serves or to specific routes. {._abstract}
 
 For example, you might want to migrate an application running on your cluster to use mutual TLS, which requires that your application checks for an X-Forwarded-Client-Cert request header, but the {{ product_title }} default Ingress Controller provides an X-SSL-Client-Der request header.
 

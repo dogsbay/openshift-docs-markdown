@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Setting the default storage class {id="storage-class-annotations_{{ context }}"}
 
-A default storage class automatically provisions persistent volumes when you create persistent volume claims (PVCs) without specifying a storage class. This simplifies storage management by removing the need for users to select a storage class for each claim. To designate a storage class as the cluster-wide default, add an annotation to the storage class metadata. {._abstract}
+A default storage class automatically provisions persistent volumes when you create persistent volume claims (PVCs) without specifying a storage class.  {._abstract}
+
+This simplifies storage management by removing the need for users to select a storage class for each claim. To designate a storage class as the cluster-wide default, add an annotation to the storage class metadata.
 
 **Prerequisites**
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Ingress Controller configuration parameters {id="nw-ingress-controller-configuration-parameters_{{ context }}"}
 
-The `IngressController` custom resource (CR) includes optional configuration parameters that you can configure to meet specific needs for your organization.
+The `IngressController` custom resource (CR) includes optional configuration parameters that you can configure to meet specific needs for your organization. {._abstract}
 
 <table>
 <thead>

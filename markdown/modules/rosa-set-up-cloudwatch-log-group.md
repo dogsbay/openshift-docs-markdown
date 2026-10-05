@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting up the CloudWatch log group {id="rosa-set-up-cloudwatch-log-group_{{ context }}"}
+# Forward logs to CloudWatch for real-time monitoring {id="rosa-set-up-cloudwatch-log-group_{{ context }}"}
 
 If you have logs that require immediate action or organization, set up an Amazon CloudWatch log group. {._abstract}
 

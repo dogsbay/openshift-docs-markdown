@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Step Three - VPC Owner: Updating the shared VPC role and creating hosted zones {id="rosa-hcp-sharing-vpc-hosted-zones_{{ context }}"}
 
-After the **Cluster Creator** provides the DNS domain and IAM roles, create two hosted zones and update the trust policy on the shared VPC IAM roles. {._abstract}
+After the **Cluster Creator** provides the DNS domain and Identity and Access Management (IAM) roles, create two hosted zones and update the trust policy on the shared virtual private cloud (VPC) IAM roles. {._abstract}
 
 
 :::note
@@ -18,7 +18,7 @@ The hosted zones can be created in either the centrally-managed VPC account or i
 **Prerequisites**
 
 *   You have the full domain name from the **Cluster Creator**.
-*   You have the _Ingress Operator Cloud Credentials_ role’s ARN from the **Cluster Creator**.
+*   You have the _Ingress Operator Cloud Credentials_ role’s Amazon Resource Name (ARN) from the **Cluster Creator**.
 *   You have the _Installer_ role’s ARN from the **Cluster Creator**.
 *   You have the _Control plane Operator Cloud Credentials_ role’s ARN from the **Cluster Creator**.
 

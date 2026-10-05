@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Root device hints {id="root-device-hints_{{ context }}"}
 
-The `rootDeviceHints` parameter enables the installer to provision the {{ op_system_first }} image to a particular device. The installer examines the devices in the order it discovers them, and compares the discovered values with the hint values. The installer uses the first discovered device that matches the hint value. The configuration can combine multiple hints, but a device must match all hints for the installer to select it. {._abstract}
+The `rootDeviceHints` parameter enables the installer to provision the {{ op_system_first }} image to a particular device. {._abstract}
+
+The installer examines the devices in the order it discovers them, and compares the discovered values with the hint values. The installer uses the first discovered device that matches the hint value. The configuration can combine multiple hints, but a device must match all hints for the installer to select it.
 
 **Subfields**
 

@@ -1,6 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating a node health check {id="eco-node-health-check-operator-creating-node-health-check_{{ context }}"}
-Using the web console, you can create a node health check to identify unhealthy nodes and specify the remediation type and strategy to fix them.
+
+Using the web console, you can create a node health check to identify unhealthy nodes and specify the remediation type and strategy to fix them. {._abstract}
 
 **Procedure**
 

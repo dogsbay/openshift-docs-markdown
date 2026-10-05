@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a cluster with customizations by using {{ cluster_manager }} {id="rosa-sts-creating-cluster-customizations-ocm_{{ context }}"}
+# Create a cluster with customizations by using {{ cluster_manager }} {id="rosa-sts-creating-cluster-customizations-ocm_{{ context }}"}
 
 When you create a {{ product_title }} cluster, you can customize your installation interactively by using {{ cluster_manager_first }}. {._abstract}
 

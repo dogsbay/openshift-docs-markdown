@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting a higher process ID limit on an existing {{ product_title }} cluster {id="setting-higher-pid-limit-on-existing-cluster_{{ context }}"}
+# Set a higher process ID limit on an existing {{ product_title }} cluster {id="setting-higher-pid-limit-on-existing-cluster_{{ context }}"}
 
 You can set a higher `podPidsLimit` on an existing {{ product_title }} cluster by creating or editing a `KubeletConfig` object that changes the `--pod-pids-limit` parameter. {._abstract}
 

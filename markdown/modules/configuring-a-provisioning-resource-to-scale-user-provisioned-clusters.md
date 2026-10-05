@@ -2,7 +2,7 @@
 
 # Configuring a provisioning resource to scale user-provisioned clusters {id="configuring-a-provisioning-resource-to-scale-user-provisioned-clusters_{{ context }}"}
 
-Create a `Provisioning` custom resource (CR) to enable Metal platform components on a user-provisioned infrastructure cluster.
+Create a `Provisioning` custom resource (CR) to enable Metal platform components on a user-provisioned infrastructure cluster. {._abstract}
 
 **Prerequisites**
 

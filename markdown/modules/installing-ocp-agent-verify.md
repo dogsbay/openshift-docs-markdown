@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Tracking and verifying installation progress {id="installing-ocp-agent-verify_{{ context }}"}
+# Track and verify installation progress {id="installing-ocp-agent-verify_{{ context }}"}
 
 After the installation has started, you can track installation progress and verify a successful installation. {._abstract}
 

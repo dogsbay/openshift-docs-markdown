@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Tang server sizing requirements {id="nbde-deciding-the-number-of-tang-servers-to-use_{{ context }}"}
 
-The requirements around availability, network, and physical location drive the decision of how many Tang servers to use, rather than any concern over server capacity.
+The requirements around availability, network, and physical location drive the decision of how many Tang servers to use, rather than any concern over server capacity. {._abstract}
 
 Tang servers do not maintain the state of data encrypted using Tang resources. Tang servers are either fully independent or share only their key material, which enables them to scale well.
 

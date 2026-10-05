@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# View cluster notifications using the {{ hybrid_console }} {id="managed-cluster-notification-view-hcc_{{ context }}"}
+# View cluster notifications using the {{ hybrid_console_second }} {id="managed-cluster-notification-view-hcc_{{ context }}"}
 
 Cluster notifications give important information about the health of your cluster. You can view notifications sent to your cluster in the **Cluster history** tab on the {{ hybrid_console }}. {._abstract}
 

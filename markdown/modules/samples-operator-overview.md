@@ -32,10 +32,11 @@ The Cluster Samples Operator configuration resource includes a finalizer which c
 
 Upon deletion of the samples resource, the Cluster Samples Operator recreates the resource by using the default configuration.
 
-If the Cluster Samples Operator is removed during installation, you can use the Cluster Samples Operator with an alternate registry so that content can be imported. Then you can set the Cluster Samples Operator to `Managed` to get the samples. Use the following instructions:
+If the Cluster Samples Operator is removed during installation, you can use the Cluster Samples Operator with an alternate registry so that content can be imported. Then you can set the Cluster Samples Operator to `Managed` to get the samples. For instructions, see "Using the Cluster Samples Operator with an alternate registry".
+
+For more information about configuring credentials, see "Using image pull secrets".
+
+**Additional resources**
 
 *   [Using the Cluster Samples Operator with an alternate registry](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/images/samples-operator-alt-registry)
-
-For more information about configuring credentials, see the following link:
-
 *   [Using image pull secrets](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/images/managing-images#using-image-pull-secrets)

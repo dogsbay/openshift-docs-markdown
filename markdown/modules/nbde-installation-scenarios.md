@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Installation scenarios {id="nbde-installation-scenarios_{{ context }}"}
 
-Consider the following recommendations when planning Tang server installations:
+Consider the following recommendations when planning Tang server installations: {._abstract}
 
 *   Small environments can use a single set of key material, even when using multiple Tang servers:
     *   Key rotations are easier.

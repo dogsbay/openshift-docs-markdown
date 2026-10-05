@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Glossary of disconnected environment terms {id="glossary-disconnected_{{ context }}"}
 
-Although it is used throughout the {{ product_title }} documentation, _disconnected environment_ is a broad term that can refer to environments with various levels of internet connectivity.
-Other terms are sometimes used to refer to a specific level of internet connectivity, and these environments might require additional unique configurations. {._abstract}
+Although it is used throughout the {{ product_title }} documentation, _disconnected environment_ is a broad term that can refer to environments with various levels of internet connectivity. {._abstract}
+
+Other terms are sometimes used to refer to a specific level of internet connectivity, and these environments might require additional unique configurations.
 
 The following table describes the different terms used to refer to environments without a full internet connection:
 

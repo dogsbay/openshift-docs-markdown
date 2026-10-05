@@ -1,11 +1,11 @@
-{%- set _mod_docs_content_type = "PROCEDURE" %}
-# Performing a Control Plane Only update {id="updating-control-plane-only-update_{{ context }}"}
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Performing Control Plane Only updates {id="updating-control-plane-only-update_{{ context }}"}
 
 You can perform a Control Plane Only update by pausing all non-`master` machine config pools, performing updates from {{ product_title }} &lt;4.y> to &lt;4.y+1> to &lt;4.y+2>, then unpausing the machine config pools. {._abstract}
 
-Following this procedure reduces the total update duration and the number of times worker nodes are restarted.
+Following these procedures reduces the total update duration and the number of times worker nodes are restarted.
 
-**Prerequisites**
+Before performing a Control Plane Only update, ensure that you meet the following prerequisites:
 
 *   You reviewed the release notes for {{ product_title }} &lt;4.y+1> and &lt;4.y+2>.
 *   You reviewed the release notes and product lifecycles for any layered products and Operator Lifecycle Manager (OLM) Operators. Some products and OLM Operators might require updates either before or during a Control Plane Only update.
@@ -15,6 +15,6 @@ Following this procedure reduces the total update duration and the number of tim
     :::important
 
     If you do not update vSphere to 7.0u3L+ or 8.0u2+ before initiating an {{ product_title }} update, known issues might occur with your cluster after the update.
-    For more information, see [Known Issues with OpenShift 4.12 to 4.13 or 4.13 to 4.14 vSphere CSI Storage Migration](https://access.redhat.com/node/7011683).
+    For more information, see "Known Issues with OpenShift 4.12 to 4.13 or 4.13 to 4.14 vSphere CSI Storage Migration".
     
     :::

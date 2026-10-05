@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Required {{ gcp_short }} permissions for installer-provisioned infrastructure {id="minimum-required-permissions-ipi-gcp_{{ context }}"}
 
-When you attach the `Owner` role to the service account that you create, you grant that service account all permissions, including those that are required to install {{ product_title }}. If your organization’s security policies require a more restrictive set of permissions, you can create [custom roles](https://cloud.google.com/iam/docs/creating-custom-roles) with the necessary permissions. {._abstract}
+When you attach the `Owner` role to the service account that you create, you grant that service account all permissions, including those that are required to install {{ product_title }}. {._abstract}
+
+If your organization’s security policies require a more restrictive set of permissions, you can create [custom roles](https://cloud.google.com/iam/docs/creating-custom-roles) with the necessary permissions.
 
 The following permissions are required for the installer-provisioned infrastructure for creating and deleting the {{ product_title }} cluster.
 

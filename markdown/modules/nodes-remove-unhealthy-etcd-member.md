@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Removing the unhealthy etcd member {id="removing-etcd-member_{{ context }}"}
 
-Begin removing the failed control plane node by first disabling the quorum guard, then removing the unhealthy etcd member and its secrets.
+Begin removing the failed control plane node by first disabling the quorum guard, then removing the unhealthy etcd member and its secrets. {._abstract}
 
 **Procedure**
 

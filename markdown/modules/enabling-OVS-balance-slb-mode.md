@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Enabling OVS balance-slb mode for your cluster {id="enabling-OVS-balance-slb-mode_{{ context }}"}
 
-You can enable the Open vSwitch (OVS) `balance-slb` mode so that two or more physical interfaces can share their network traffic. A `balance-slb` mode interface can give source load balancing (SLB) capabilities to a cluster that runs virtualization workloads, without requiring load balancing negotiation with the network switch. {._abstract}
+You can enable the Open vSwitch (OVS) `balance-slb` mode so that two or more physical interfaces can share their network traffic.  {._abstract}
+
+A `balance-slb` mode interface can give source load balancing (SLB) capabilities to a cluster that runs virtualization workloads, without requiring load balancing negotiation with the network switch.
 
 Currently, source load balancing runs on a bond interface, where the interface connects to an auxiliary bridge, such as  `br-phy`. Source load balancing balances only across different Media Access Control (MAC) address and virtual local area network (VLAN) combinations. Note that all OVN-Kubernetes pod traffic uses the same MAC address and VLAN, so this traffic cannot be load balanced across many physical interfaces.
 

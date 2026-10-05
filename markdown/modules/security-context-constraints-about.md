@@ -49,7 +49,7 @@ Instead of modifying the default SCCs, create and modify your own SCCs as needed
 :::
 
 
-**Default security context constraints**
+The following table describes the default SCCs that are available in {{ product_title }}.
 
 <table>
 <thead>
@@ -166,7 +166,7 @@ You can drop all capabilites from containers by setting the `requiredDropCapabil
 
 ## Security context constraints strategies {id="authorization-SCC-strategies_{{ context }}"}
 
-**RunAsUser**
+The following example shows the strategies that are available for the `RunAsUser` field.
 
 *   `MustRunAs` - Requires a `runAsUser` to be configured. Uses the configured
 `runAsUser` as the default. Validates against the configured `runAsUser`.
@@ -209,7 +209,7 @@ provided.
     ...
     ```
 
-**SELinuxContext**
+The following example shows the strategies that are available for the `seLinuxOptions` field.
 
 *   `MustRunAs` - Requires `seLinuxOptions` to be configured if not using
 pre-allocated values. Uses `seLinuxOptions` as the default. Validates against
@@ -217,7 +217,7 @@ pre-allocated values. Uses `seLinuxOptions` as the default. Validates against
 *   `RunAsAny` - No default provided. Allows any `seLinuxOptions` to be
 specified.
 
-**SupplementalGroups**
+The following example shows the strategies that are available for the `supplementalGroups` field.
 
 *   `MustRunAs` - Requires at least one range to be specified if not using
 pre-allocated values. Uses the minimum value of the first range as the default.
@@ -225,7 +225,7 @@ Validates against all ranges.
 *   `RunAsAny` - No default provided. Allows any `supplementalGroups` to be
 specified.
 
-**FSGroup**
+The following example shows the strategies that are available for the `fsGroup` field.
 
 *   `MustRunAs` - Requires at least one range to be specified if not using
 pre-allocated values. Uses the minimum value of the first range as the default.

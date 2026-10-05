@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Overlapped sharding example {id="nw-overlapped-sharding_{{ context }}"}
 
-An example of a configured Ingress Controller `devops-router` that has the label selector `spec.namespaceSelector.matchExpressions` with key values set to `dev` and `ops`:
+An overlapped sharding example shows how an Ingress Controller in {{ product_title }} can serve overlapping namespace label selectors so that more than one controller can admit the same routes. {._abstract}
 
 ```yaml title="Example YAML definition for devops-router"
 apiVersion: operator.openshift.io/v1

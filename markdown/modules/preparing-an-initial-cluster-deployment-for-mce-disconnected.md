@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Preparing an Agent-based cluster deployment for the {{ mce }} while disconnected {id="preparing-an-initial-cluster-deployment-for-mce-disconnected_{{ context }}"}
+# Prepare an Agent-based cluster deployment for the {{ mce }} while disconnected {id="preparing-an-initial-cluster-deployment-for-mce-disconnected_{{ context }}"}
 
 You can mirror the required {{ product_title }} container images, the {{ mce_short }}, and the Local Storage Operator (LSO) into your local mirror registry in a disconnected environment.
 Ensure that you note the local DNS hostname and port of your mirror registry. {._abstract}

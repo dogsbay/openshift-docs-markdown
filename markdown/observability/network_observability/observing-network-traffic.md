@@ -33,9 +33,9 @@ As an administrator, you can observe the network traffic in the {{ product_title
 
 *   [Network Observability metrics](/observability/network_observability/metrics-alerts-dashboards#network-observability-metrics_metrics-dashboards-alerts)
 
-{% leveloffset +2 %}{% include "./modules/network-observability-RTT-overview.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/network-observability-rtt-overview.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/network-observability-RTT.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/network-observability-rtt.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/network-observability-ebpf-rule-flow-filter.md" %}{% endleveloffset %}
 

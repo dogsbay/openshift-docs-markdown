@@ -3,25 +3,25 @@
 
 Follow fundamental guidelines for creating container images to ensure they are secure, efficient, and reproducible for deployment in {{ product_title }}. {._abstract}
 
-## Reuse images {id="_reuse_images"}
+## Reuse images {id="reusing-images_{{ context }}"}
 
 Wherever possible, base your image on an appropriate upstream image using the `FROM` statement. This ensures your image can easily pick up security fixes from an upstream image when it is updated, rather than you having to update your dependencies directly.
 
 In addition, use tags in the `FROM` instruction, for example, `rhel:rhel7`, to make it clear to users exactly which version of an image your image is based on. Using a tag other than `latest` ensures your image is not subjected to breaking changes that might go into the `latest` version of an upstream image.
 
-## Maintain compatibility within tags {id="_maintain_compatibility_within_tags"}
+## Maintain compatibility within tags {id="maintaining-compatibility-within-tags_{{ context }}"}
 
 When tagging your own images, try to maintain backwards compatibility within a tag. For example, if you provide an image named `image` and it currently includes version `1.0`, you might provide a tag of `image:v1`. When you update the image, as long as it continues to be compatible with the original image, you can continue to tag the new image `image:v1`, and downstream consumers of this tag are able to get updates without being broken.
 
 If you later release an incompatible update, then switch to a new tag, for example `image:v2`. This allows downstream consumers to move up to the new version at will, but not be inadvertently broken by the new incompatible image. Any downstream consumer using `image:latest` takes on the risk of any incompatible changes being introduced.
 
-## Avoid multiple processes {id="_avoid_multiple_processes"}
+## Avoid multiple processes {id="avoiding-multiple-processes_{{ context }}"}
 
 Do not start multiple services, such as a database and `SSHD`, inside one container. This is not necessary because containers are lightweight and can be easily linked together for orchestrating multiple processes. {{ product_title }} allows you to easily colocate and co-manage related images by grouping them into a single pod.
 
 This colocation ensures the containers share a network namespace and storage for communication. Updates are also less disruptive as each image can be updated less frequently and independently. Signal handling flows are also clearer with a single process as you do not have to manage routing signals to spawned processes.
 
-## Use `exec` in wrapper scripts {id="_use_exec_in_wrapper_scripts"}
+## Use `exec` in wrapper scripts {id="using-exec-in-wrapper-scripts_{{ context }}"}
 
 Many images use wrapper scripts to do some setup before starting a process for the software being run. If your image uses such a script, that script uses `exec` so that the script’s process is replaced by your software. If you do not use `exec`, then signals sent by your container runtime go to your wrapper script instead of your software’s process. This is not what you want.
 
@@ -29,7 +29,7 @@ If you have a wrapper script that starts a process for some server. You start yo
 
 Also note that your process runs as `PID 1` when running in a container. This means that if your main process terminates, the entire container is stopped, canceling any child processes you launched from your `PID 1` process.
 
-## Clean temporary files {id="_clean_temporary_files"}
+## Clean temporary files {id="cleaning-temporary-files_{{ context }}"}
 
 Remove all temporary files you create during the build process. This also includes any files added with the `ADD` command.  For example, run the `yum clean` command after performing `yum install` operations.
 
@@ -52,7 +52,7 @@ The current container build process does not allow a command run in a later laye
 
 In addition, performing multiple commands in a single `RUN` statement reduces the number of layers in your image, which improves download and extraction time.
 
-## Place instructions in the proper order {id="_place_instructions_in_the_proper_order"}
+## Place instructions in the proper order {id="placing-instructions-in-the-proper-order_{{ context }}"}
 
 The container builder reads the `Dockerfile` and runs the instructions from top to bottom. Every instruction that is successfully executed creates a layer which can be reused the next time this or another image is built. It is very important to place instructions that rarely change at the top of your `Dockerfile`. Doing so ensures the next builds of the same image are very fast because the cache is not invalidated by upper layer changes.
 
@@ -76,7 +76,7 @@ RUN yum -y install mypackage && yum clean all -y
 
 Then each time you changed `myfile` and reran `podman build` or `docker build`, the `ADD` operation would invalidate the `RUN` layer cache, so the `yum` operation must be rerun as well.
 
-## Mark important ports {id="_mark_important_ports"}
+## Mark important ports {id="marking-important-ports_{{ context }}"}
 
 The EXPOSE instruction makes a port in the container available to the host system and other containers. While it is possible to specify that a port should be exposed with a `podman run` invocation, using the EXPOSE instruction in a `Dockerfile` makes it easier for both humans and software to use your image by explicitly declaring the ports your software needs to run:
 
@@ -84,29 +84,29 @@ The EXPOSE instruction makes a port in the container available to the host syste
 *   Exposed ports are present in the metadata for your image returned by `podman inspect`.
 *   Exposed ports are linked when you link one container to another.
 
-## Set environment variables {id="_set_environment_variables"}
+## Set environment variables {id="setting-environment-variables_{{ context }}"}
 
 It is good practice to set environment variables with the `ENV` instruction. One example is to set the version of your project. This makes it easy for people to find the version without looking at the `Dockerfile`. Another example is advertising a path on the system that could be used by another process, such as `JAVA_HOME`.
 
-## Avoid default passwords {id="_avoid_default_passwords"}
+## Avoid default passwords {id="avoiding-default-passwords_{{ context }}"}
 
 Avoid setting default passwords. Many people extend the image and forget to remove or change the default password. This can lead to security issues if a user in production is assigned a well-known password. Passwords are configurable using an environment variable instead.
 
 If you do choose to set a default password, ensure that an appropriate warning message is displayed when the container is started. The message should inform the user of the value of the default password and explain how to change it, such as what environment variable to set.
 
-## Avoid sshd {id="_avoid_sshd"}
+## Avoid sshd {id="avoiding-sshd_{{ context }}"}
 
 It is best to avoid running `sshd` in your image. You can use the `podman exec` or `docker exec` command to access containers that are running on the local host. Alternatively, you can use the `oc exec` command or the `oc rsh` command to access containers that are running on the {{ product_title }} cluster. Installing and running `sshd` in your image opens up additional vectors for attack and requirements for security patching.
 
-## Use volumes for persistent data {id="_use_volumes_for_persistent_data"}
+## Use volumes for persistent data {id="using-volumes-persistent-data_{{ context }}"}
 
-Images use a [volume](https://docs.docker.com/reference/builder/#volume) for persistent data. This way {{ product_title }} mounts the network storage to the node running the container, and if the container moves to a new node the storage is reattached to that node. By using the volume for all persistent storage needs, the content is preserved even if the container is restarted or moved. If your image writes data to arbitrary locations within the container, that content could not be preserved.
+Images use a _volume_ for persistent data. This way {{ product_title }} mounts the network storage to the node running the container, and if the container moves to a new node the storage is reattached to that node. By using the volume for all persistent storage needs, the content is preserved even if the container is restarted or moved. If your image writes data to arbitrary locations within the container, that content could not be preserved.
 
 All data that needs to be preserved even after the container is destroyed must be written to a volume. Container engines support a `readonly` flag for containers, which can be used to strictly enforce good practices about not writing data to ephemeral storage in a container. Designing your image around that capability now makes it easier to take advantage of it later.
 
 Explicitly defining volumes in your `Dockerfile` makes it easy for consumers of the image to understand what volumes they must define when running your image.
 
-See the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/volumes/) for more information on how volumes are used in {{ product_title }}.
+See the "Kubernetes documentation" for more information on how volumes are used in {{ product_title }}.
 
 
 :::note
@@ -114,3 +114,9 @@ See the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/v
 Even with persistent volumes, each instance of your image has its own volume, and the filesystem is not shared between instances. This means the volume cannot be used to share state in a cluster.
 
 :::
+
+
+## Additional resources {id="_additional_resources" ._additional-resources}
+
+*   [volume](https://docs.docker.com/reference/builder/#volume)
+*   [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/volumes)

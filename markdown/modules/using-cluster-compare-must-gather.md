@@ -96,18 +96,17 @@ For production environments, use the `cluster-compare` plugin with `must-gather`
         `No patched CRs`
         :   The list of patched CRs.
 
+        :::note
 
-:::note
+        Get the output in the `junit` format by adding `-o junit` to the command. For example:
+        ```terminal
+        $ oc cluster-compare -r <path_to_reference_config>/metadata.yaml -f "must-gather*/*/cluster-scoped-resources","must-gather*/*/namespaces" -R -o junit
+        ```
 
-Get the output in the `junit` format by adding `-o junit` to the command. For example:
-```terminal
-$ oc cluster-compare -r <path_to_reference_config>/metadata.yaml -f "must-gather*/*/cluster-scoped-resources","must-gather*/*/namespaces" -R -o junit
-```
+        The `junit` output includes the following result types:
 
-The `junit` output includes the following result types:
-
-*   Passed results for each fully matched template.
-*   Failed results for differences found or missing required custom resources (CRs).
-*   Skipped results for differences patched using the user override mechanism.
-
-:::
+        *   Passed results for each fully matched template.
+        *   Failed results for differences found or missing required custom resources (CRs).
+        *   Skipped results for differences patched using the user override mechanism.
+        
+        :::

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Add a custom metrics autoscaler to a job {id="nodes-cma-autoscaling-custom-creating-job_{{ context }}"}
 
-You can create a custom metrics autoscaler for any `Job` object.
+You can create a custom metrics autoscaler for any `Job` object. {._abstract}
 
 {%- set FeatureName = "Scaling by using a scaled job" %}
 {% include "./snippets/technology-preview.md" %}
@@ -22,11 +22,11 @@ You can create a custom metrics autoscaler for any `Job` object.
     spec:
       failedJobsHistoryLimit: 5
       jobTargetRef:
-        activeDeadlineSeconds: 600 (1)
-        backoffLimit: 6 (2)
-        parallelism: 1 (3)
-        completions: 1 (4)
-        template:  (5)
+        activeDeadlineSeconds: 600
+        backoffLimit: 6
+        parallelism: 1
+        completions: 1
+        template:
           metadata:
             name: pi
           spec:
@@ -34,13 +34,13 @@ You can create a custom metrics autoscaler for any `Job` object.
             - name: pi
               image: perl
               command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
-      maxReplicaCount: 100 (6)
-      pollingInterval: 30 (7)
-      successfulJobsHistoryLimit: 5 (8)
-      failedJobsHistoryLimit: 5 (9)
-      envSourceContainerName: (10)
-      rolloutStrategy: gradual (11)
-      scalingStrategy: (12)
+      maxReplicaCount: 100
+      pollingInterval: 30
+      successfulJobsHistoryLimit: 5
+      failedJobsHistoryLimit: 5
+      envSourceContainerName:
+      rolloutStrategy: gradual
+      scalingStrategy:
         strategy: "custom"
         customScalingQueueLengthDeduction: 1
         customScalingRunningJobPercentage: "0.5"
@@ -50,7 +50,7 @@ You can create a custom metrics autoscaler for any `Job` object.
           - "AnyOtherCustomPodCondition"
         multipleScalersCalculation : "max"
       triggers:
-      - type: prometheus (13)
+      - type: prometheus
         metadata:
           serverAddress: https://thanos-querier.openshift-monitoring.svc.cluster.local:9092
           namespace: kedatest
@@ -58,31 +58,61 @@ You can create a custom metrics autoscaler for any `Job` object.
           threshold: '5'
           query: sum(rate(http_requests_total{job="test-app"}[1m]))
           authModes: "bearer"
-        authenticationRef: (14)
+        authenticationRef:
           name: prom-cluster-triggerauthentication
     ```
-    1.  Specifies the maximum duration the job can run.
-    1.  Specifies the number of retries for a job. The default is `6`.
-    1.  Optional: Specifies how many pod replicas a job should run in parallel; defaults to `1`.
-        *   For non-parallel jobs, leave unset. When unset, the default is `1`.
-    1.  Optional: Specifies how many successful pod completions are needed to mark a job completed.
-        *   For non-parallel jobs, leave unset. When unset,  the default is `1`.
-        *   For parallel jobs with a fixed completion count, specify the number of completions.
-        *   For parallel jobs with a work queue, leave unset. When unset the default is the value of the `parallelism` parameter.
-    1.  Specifies the template for the pod the controller creates.
-    1.  Optional: Specifies the maximum number of replicas when scaling up. The default is `100`.
-    1.  Optional: Specifies the interval in seconds to check each trigger on. The default is `30`.
-    1.  Optional: Specifies the number of successful finished jobs should be kept. The default is `100`.
-    1.  Optional: Specifies how many failed jobs should be kept. The default is `100`.
-    1.  Optional: Specifies the name of the container in the target resource, from which the custom autoscaler gets environment variables holding secrets and so forth. The default is `.spec.template.spec.containers[0]`.
-    1.  Optional: Specifies whether existing jobs are terminated whenever a scaled job is being updated:
-        *   `default`: The autoscaler terminates an existing job if its associated scaled job is updated. The autoscaler recreates the job with the latest specs.
-        *   `gradual`: The autoscaler does not terminate an existing job if its associated scaled job is updated. The autoscaler creates new jobs with the latest specs.
-    1.  Optional: Specifies a scaling strategy: `default`, `custom`, or `accurate`. The default is `default`.
-    1.  Specifies the trigger to use as the basis for scaling. For more information, see "Understanding custom metrics autoscaler triggers".
-    1.  Optional: Specifies a trigger authentication or a cluster trigger authentication. For more information, see "Understanding custom metrics autoscaler trigger authentications".
-        *   Enter `TriggerAuthentication` to use a trigger authentication. This is the default.
-        *   Enter `ClusterTriggerAuthentication` to use a cluster trigger authentication.
+
+    where:
+
+    `spec.jobTargetRef.activeDeadlineSeconds`
+    :   Specifies the maximum duration the job can run.
+
+    `spec.jobTargetRef.backoffLimit`
+    :   Specifies the number of retries for a job. The default is `6`.
+
+    `spec.jobTargetRef.parallelism`
+    :   Specifies how many pod replicas a job should run in parallel; defaults to `1`. This field is optional.
+    *   For non-parallel jobs, leave unset. When unset, the default is `1`.
+
+    `spec.jobTargetRef.completions`
+    :   Specifies how many successful pod completions are needed to mark a job completed. This field is optional.
+    *   For non-parallel jobs, leave unset. When unset,  the default is `1`.
+    *   For parallel jobs with a fixed completion count, specify the number of completions.
+    *   For parallel jobs with a work queue, leave unset. When unset the default is the value of the `parallelism` parameter.
+
+    `spec.jobTargetRef.template`
+    :   Specifies the template for the pod the controller creates.
+
+    `spec.maxReplicaCount`
+    :   Specifies the maximum number of replicas when scaling up. The default is `100`. This field is optional.
+
+    `spec.pollingInterval`
+    :   Specifies the interval in seconds to check each trigger on. The default is `30`. This field is optional.
+
+    `spec.successfulJobsHistoryLimit`
+    :   Specifies the number of successful finished jobs should be kept. The default is `100`. This field is optional.
+
+    `spec.failedJobsHistoryLimit`
+    :   Specifies how many failed jobs should be kept. The default is `100`. This field is optional.
+
+    `spec.envSourceContainerName`
+    :   Specifies the name of the container in the target resource, from which the custom autoscaler gets environment variables holding secrets and so forth. The default is `.spec.template.spec.containers[0]`. This field is optional.
+
+    `spec.rolloutStrategy`
+    :   Specifies whether existing jobs are terminated whenever a scaled job is being updated. This field is optional.
+    *   `default`: The autoscaler terminates an existing job if its associated scaled job is updated. The autoscaler recreates the job with the latest specs.
+    *   `gradual`: The autoscaler does not terminate an existing job if its associated scaled job is updated. The autoscaler creates new jobs with the latest specs.
+
+    `spec.scalingStrategy`
+    :   Specifies a scaling strategy: `default`, `custom`, or `accurate`. The default is `default`. This field is optional.
+
+    `spec.triggers[].type`
+    :   Specifies the trigger to use as the basis for scaling. For more information, see "Understanding custom metrics autoscaler triggers".
+
+    `spec.triggers[].authenticationRef`
+    :   Specifies a trigger authentication or a cluster trigger authentication. For more information, see "Understanding custom metrics autoscaler trigger authentications". This field is optional.
+    *   Enter `TriggerAuthentication` to use a trigger authentication. This is the default.
+    *   Enter `ClusterTriggerAuthentication` to use a cluster trigger authentication.
 1.  Create the custom metrics autoscaler by running the following command:
     ```terminal
     $ oc create -f <filename>.yaml

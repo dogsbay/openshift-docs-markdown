@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the hub cluster to use a disconnected mirror registry {id="ztp-configuring-the-cluster-for-a-disconnected-environment_{{ context }}"}
+# Configure the hub cluster to use a disconnected mirror registry {id="ztp-configuring-the-cluster-for-a-disconnected-environment_{{ context }}"}
 
 You can configure the hub cluster to use a disconnected mirror registry for a disconnected environment. {._abstract}
 

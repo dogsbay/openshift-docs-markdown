@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Attaching a non-bootable ISO to a bare-metal node {id="bmo-attaching-a-non-bootable-iso-to-a-bare-metal-node_{{ context }}"}
 
-You can attach a generic, non-bootable ISO virtual media image to a provisioned node by using the `DataImage` resource. After you apply the resource, the ISO image becomes accessible to the operating system after it has booted. This is useful for configuring a node after provisioning the operating system and before the node boots for the first time. {._abstract}
+You can attach a generic, non-bootable ISO virtual media image to a provisioned node by using the `DataImage` resource. After you apply the resource, the ISO image becomes accessible to the operating system after it has booted. {._abstract}
+
+This is useful for configuring a node after provisioning the operating system and before the node boots for the first time.
 
 **Prerequisites**
 

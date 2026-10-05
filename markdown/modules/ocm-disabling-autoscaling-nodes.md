@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disable autoscaling nodes in an existing cluster using {{ cluster_manager_first }} {id="ocm-disabling-autoscaling_{{ context }}"}
+# Disable autoscaling nodes in an existing cluster using {{ cluster_manager }} {id="ocm-disabling-autoscaling_{{ context }}"}
 
 Disable autoscaling for worker nodes in the machine pool definition from {{ cluster_manager }}. {._abstract}
 

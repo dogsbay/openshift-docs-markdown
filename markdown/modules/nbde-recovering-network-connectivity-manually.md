@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Recover network connectivity manually {id="nbde-recovering-network-connectivity-manually_{{ context }}"}
 
-A somewhat complex and manually intensive process is also available to the onsite technician for network recovery.
+A somewhat complex and manually intensive process is also available to the onsite technician for network recovery. {._abstract}
 
 **Procedure**
 

@@ -12,7 +12,7 @@ You can configure the Network Observability Operator to collect and enrich netwo
 ## Prerequisites {id="network-observability-secondary-network-prerequisites_{{ context }}"}
 *   Access to an {{ product_title }} cluster with an additional network interface, such as a secondary interface or an L2 network.
 
-{% leveloffset +1 %}{% include "./modules/network-observability-SRIOV-configuration.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/network-observability-sriov-configuration.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}

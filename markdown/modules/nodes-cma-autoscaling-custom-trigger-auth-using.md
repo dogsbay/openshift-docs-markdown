@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Use trigger authentications {id="nodes-cma-autoscaling-custom-trigger-auth-using_{{ context }}"}
 
-You use trigger authentications and cluster trigger authentications by using a custom resource to create the authentication,  then add a reference to a scaled object or scaled job.
+You use trigger authentications and cluster trigger authentications by using a custom resource to create the authentication,  then add a reference to a scaled object or scaled job. {._abstract}
 
 **Prerequisites**
 
@@ -13,7 +13,7 @@ You use trigger authentications and cluster trigger authentications by using a c
     kind: Role
     metadata:
       name: keda-operator-token-creator
-      namespace: <namespace_name> (1)
+      namespace: <namespace_name>
     rules:
     - apiGroups:
       - ""
@@ -22,13 +22,13 @@ You use trigger authentications and cluster trigger authentications by using a c
       verbs:
       - create
       resourceNames:
-      - thanos (2)
+      - thanos
     ---
     apiVersion: rbac.authorization.k8s.io/v1
     kind: RoleBinding
     metadata:
       name: keda-operator-token-creator-binding
-      namespace: <namespace_name> (3)
+      namespace: <namespace_name>
     roleRef:
       apiGroup: rbac.authorization.k8s.io
       kind: Role
@@ -38,9 +38,15 @@ You use trigger authentications and cluster trigger authentications by using a c
       name: keda-operator
       namespace: openshift-keda
     ```
-    1.  Specifies the namespace of the service account.
-    1.  Specifies the name of the service account.
-    1.  Specifies the namespace of the service account.
+
+    where:
+
+    `metadata.namespace`
+    :   Specifies the namespace of the service account.
+
+    `rules[].resourceNames[]`
+    :   Specifies the name of the service account.
+
 *   If you are using a secret, the `Secret` object must exist.
 
 **Procedure**
@@ -52,15 +58,24 @@ You use trigger authentications and cluster trigger authentications by using a c
         apiVersion: keda.sh/v1alpha1
         metadata:
           name: prom-triggerauthentication
-          namespace: my-namespace (1)
+          namespace: my-namespace
           spec:
-          boundServiceAccountToken: (2)
+          boundServiceAccountToken:
             - parameter: token
-              serviceAccountName: thanos (3)
+              serviceAccountName: thanos
         ```
-        1.  Specifies the namespace of the object you want to scale.
-        1.  Specifies that this trigger authentication uses a bound service account token for authorization when connecting to the metrics endpoint.
-        1.  Specifies the name of the service account to use.
+
+        where:
+
+        `metadata.namespace`
+        :   Specifies the namespace of the object you want to scale.
+
+        `spec.boundServiceAccountToken`
+        :   Specifies that this trigger authentication uses a bound service account token for authorization when connecting to the metrics endpoint.
+
+        `spec.boundServiceAccountToken[].serviceAccountName`
+        :   Specifies the name of the service account to use.
+
     1.  Create the `TriggerAuthentication` object:
         ```terminal
         $ oc create -f <filename>.yaml
@@ -89,11 +104,17 @@ You use trigger authentications and cluster trigger authentications by using a c
               query: sum(rate(http_requests_total{job="test-app"}[1m]))
               authModes: "basic"
             authenticationRef:
-              name: prom-triggerauthentication (1)
-              kind: TriggerAuthentication (2)
+              name: prom-triggerauthentication
+              kind: TriggerAuthentication
         ```
-        1.  Specify the name of your trigger authentication object.
-        1.  Specify `TriggerAuthentication`. `TriggerAuthentication` is the default.
+
+        where:
+
+        `spec.triggers[].authenticationRef.name`
+        :   Specifies the name of your trigger authentication object.
+
+        `spec.triggers[].authenticationRef.kind`
+        :   Specifies `TriggerAuthentication`. `TriggerAuthentication` is the default.
         ```yaml title="Example scaled object with a cluster trigger authentication"
         apiVersion: keda.sh/v1alpha1
         kind: ScaledObject
@@ -116,11 +137,18 @@ You use trigger authentications and cluster trigger authentications by using a c
               query: sum(rate(http_requests_total{job="test-app"}[1m]))
               authModes: "basic"
             authenticationRef:
-              name: prom-cluster-triggerauthentication (1)
-              kind: ClusterTriggerAuthentication (2)
+              name: prom-cluster-triggerauthentication
+              kind: ClusterTriggerAuthentication
         ```
-        1.  Specify the name of your trigger authentication object.
-        1.  Specify `ClusterTriggerAuthentication`.
+        where:
+
+
+`spec.triggers[].authenticationRef.name`
+:   Specifies the name of your trigger authentication object.
+
+`spec.triggers[].authenticationRef.kind`
+:   Specifies `ClusterTriggerAuthentication`.
+
     1.  Create the scaled object by running the following command:
         ```terminal
         $ oc apply -f <filename>

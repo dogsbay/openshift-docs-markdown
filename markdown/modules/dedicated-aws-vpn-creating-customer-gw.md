@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a customer gateway and virtual private gateway {id="dedicated-aws-vpn-creating-customer-gw_{{ context }}"}
+# Create a customer gateway and virtual private gateway {id="dedicated-aws-vpn-creating-customer-gw_{{ context }}"}
 
 Create a customer gateway and, if needed, a virtual private gateway to prepare for a VPN connection to your {{ product_title }} cluster. {._abstract}
 

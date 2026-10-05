@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Configuring managed clusters with policies and {{ policy_gen_cr }} resources {id="ztp-configuring-cluster-policies_{{ context }}"}
+# Configure managed clusters with policies and {{ policy_gen_cr }} resources {id="ztp-configuring-cluster-policies_{{ context }}"}
 
 {{ ztp_first }} uses {{ rh_rhacm_first }} to configure clusters by using a policy-based governance approach to applying the configuration. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Edit a {{ product_title }} cluster with log forwarding {id="rosa-edit-cluster-log-forwarding-ui_{{ context }}"}
+# Edit log forwarding configurations in the {{ hybrid_console_second }} {id="rosa-edit-cluster-log-forwarding-ui_{{ context }}"}
 
 You can verify the status of log forwarding for a cluster and edit the log forwarding configurations. {._abstract}
 

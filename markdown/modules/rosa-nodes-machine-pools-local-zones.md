@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring machine pools in Local Zones {id="rosa-nodes-machine-pools-local-zones_{{ context }}"}
+# Configure machine pools in Local Zones {id="rosa-nodes-machine-pools-local-zones_{{ context }}"}
 
 Use the following steps to configure machine pools in Local Zones. {._abstract}
 

@@ -1,7 +1,7 @@
-{%- set _mod_docs_content_type = "PROCEDURE" %}
+{%- set _mod_docs_content_type = "CONCEPT" %}
 # CPUs for infra and application containers {id="cnf-cpu-infra-container_{{ context }}"}
 
-Generic housekeeping and workload tasks use CPUs in a way that might impact latency-sensitive processes. By default, the container runtime uses all online CPUs to run all containers together, which can result in context switches and spikes in latency.  {._abstract}
+Generic housekeeping and workload tasks use CPUs in a way that might impact latency-sensitive processes. By default, the container runtime uses all online CPUs to run all containers together, which can result in context switches and spikes in latency. {._abstract}
 
 Partitioning the CPUs prevents noisy processes from interfering with latency-sensitive processes by separating them from each other. The following table describes how processes run on a CPU after you have tuned the node using the Node Tuning Operator:
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Creating a {{ product_title }} cluster using FIPS encryption {id="creating-cluster-with-fips-encryption_{{ context }}"}
 
-You can create a {{ product_title }} cluster with Federal Information Processing Standards (FIPS) encryption and a customer-provided KMS key for node root volumes, the etcd database, or both. A different KMS key ARN can be provided for each option. {._abstract}
+You can create a {{ product_title }} cluster with Federal Information Processing Standards (FIPS) encryption and a customer-provided KMS key for node root volumes, the etcd database, or both. A different KMS key Amazon Resource Name (ARN) can be provided for each option. {._abstract}
 
 
 :::note

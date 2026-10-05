@@ -1,9 +1,21 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Set a custom default certificate {id="nw-ingress-setting-a-custom-default-certificate_{{ context }}"}
 
-As an administrator, you can configure an Ingress Controller to use a custom
-certificate by creating a Secret resource and editing the `IngressController`
-custom resource (CR).
+As an administrator, you can configure an Ingress Controller to use a custom certificate by creating a Secret resource and editing the `IngressController` custom resource (CR). {._abstract}
+
+The following procedure assumes that the custom certificate and key pair are in the
+`tls.crt` and `tls.key` files in the current working directory. Substitute the
+actual path names for `tls.crt` and `tls.key`. You also may substitute another
+name for `custom-certs-default` when creating the Secret resource and
+referencing it in the IngressController CR.
+
+
+:::note
+
+The following procedure causes the Ingress Controller to be redeployed, using a rolling deployment strategy.
+
+:::
+
 
 **Prerequisites**
 
@@ -18,7 +30,6 @@ certificate authority that you configured in a custom PKI.
     $ oc --namespace openshift-ingress-operator get ingresscontrollers
     ```
 
-
     :::note
 
     If you have intermediate certificates, they must be included in the `tls.crt`
@@ -30,20 +41,6 @@ certificate authority that you configured in a custom PKI.
 
 
 **Procedure**
-
-The following assumes that the custom certificate and key pair are in the
-`tls.crt` and `tls.key` files in the current working directory. Substitute the
-actual path names for `tls.crt` and `tls.key`. You also may substitute another
-name for `custom-certs-default` when creating the Secret resource and
-referencing it in the IngressController CR.
-
-
-:::note
-
-This action will cause the Ingress Controller to be redeployed, using a rolling deployment strategy.
-
-:::
-
 
 1.  Create a Secret resource containing the custom certificate in the
 `openshift-ingress` namespace using the `tls.crt` and `tls.key` files.
@@ -92,5 +89,5 @@ This action will cause the Ingress Controller to be redeployed, using a rolling 
 
     The certificate secret name should match the value used to update the CR.
 
-Once the IngressController CR has been modified, the Ingress Operator
-updates the Ingress Controller’s deployment to use the custom certificate.
+    Once the IngressController CR has been modified, the Ingress Operator
+    updates the Ingress Controller’s deployment to use the custom certificate.

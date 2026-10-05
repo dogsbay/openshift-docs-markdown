@@ -23,11 +23,11 @@ Creating a cluster with {{ hcp }} can take around 10 minutes.
     
     :::
 
-1.  Create the account-wide IAM roles by running the following command:
+1.  Create the account-wide Identity and Access Management (IAM) roles by running the following command:
     ```terminal
     $ rosa create account-roles --hosted-cp
     ```
-1.  Create the OIDC configuration by running the following command:
+1.  Create the OpenID Connect (OIDC) configuration by running the following command:
     ```terminal
     $ rosa create oidc-config --mode=auto --yes
     ```

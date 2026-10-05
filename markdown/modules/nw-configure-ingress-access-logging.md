@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure Ingress access logging {id="nw-configure-ingress-access-logging_{{ context }}"}
 
-You can configure the Ingress Controller to enable access logs. If you have clusters that do not receive much traffic, then you can log to a sidecar. If you have high traffic clusters, to avoid exceeding the capacity of the logging stack or  to integrate with a logging infrastructure outside of {{ product_title }}, you can forward logs to a custom syslog endpoint. You can also specify the format for access logs.
+To enable Ingress access logging in {{ product_title }}, you can log to a sidecar or forward logs to a custom syslog endpoint and specify the log format. {._abstract}
 
 Container logging is useful to enable access logs on low-traffic clusters when there is no existing Syslog logging infrastructure, or for short-term use while diagnosing problems with the Ingress Controller.
 

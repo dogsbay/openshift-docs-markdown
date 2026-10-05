@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Gathering log data from a failed Agent-based installation {id="installing-ocp-agent-gather-log_{{ context }}"}
+# Gather log data from a failed Agent-based installation {id="installing-ocp-agent-gather-log_{{ context }}"}
 
 If you encounter a failed Agent-based installation, you can gather log data to provide for a support case. {._abstract}
 

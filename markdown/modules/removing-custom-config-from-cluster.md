@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing custom configuration from a cluster {id="removing-custom-config-from-cluster_{{ context }}"}
+# Remove custom configuration from a cluster {id="removing-custom-config-from-cluster_{{ context }}"}
 
 You can remove custom configuration from your cluster by removing the `KubeletConfig` object that contains the configuration details. {._abstract}
 

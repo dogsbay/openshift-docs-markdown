@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Pause a custom metrics autoscaler {id="nodes-cma-autoscaling-custom-pausing-workload_{{ context }}"}
 
-You can pause the autoscaling of a scaled object by adding the `autoscaling.keda.sh/paused-replicas` annotation to the custom metrics autoscaler for that scaled object. The custom metrics autoscaler scales the replicas for that workload to the specified value and pauses autoscaling until the annotation is removed.
+You can pause the autoscaling of a scaled object by adding the `autoscaling.keda.sh/paused-replicas` annotation to the custom metrics autoscaler for that scaled object.  {._abstract}
+
+The custom metrics autoscaler scales the replicas for that workload to the specified value and pauses autoscaling until the annotation is removed.
 
 ```yaml
 apiVersion: keda.sh/v1alpha1
@@ -24,7 +26,7 @@ metadata:
     kind: ScaledObject
     metadata:
       annotations:
-        autoscaling.keda.sh/paused-replicas: "4" (1)
+        autoscaling.keda.sh/paused-replicas: "4"
       creationTimestamp: "2023-02-08T14:41:01Z"
       generation: 1
       name: scaledobject
@@ -32,4 +34,8 @@ metadata:
       resourceVersion: '65729'
       uid: f5aec682-acdf-4232-a783-58b5b82f5dd0
     ```
-    1.  Specifies that the Custom Metrics Autoscaler Operator is to scale the replicas to the specified value and stop autoscaling.
+
+    where:
+
+    `metadata.annotations.autoscaling.keda.sh/paused-replicas`
+    :   Specifies that the Custom Metrics Autoscaler Operator is to scale the replicas to the specified value and stop autoscaling.

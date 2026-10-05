@@ -1,10 +1,10 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Components of {{ product_title }} {id="rosa-hcp-sts-components_{{ context }}"}
 
-{{ product_title }} consists of the following components: {._abstract}
+Understanding the components of {{ product_title }} helps you plan your AWS environment. {{ product_title }} consists of the following components: {._abstract}
 
-*   **AWS infrastructure** - The infrastructure required for the cluster including the Amazon EC2 instances, Amazon Elastic Block Store (EBS) storage, and networking components.
-*   **AWS STS** - A method for granting short-term, dynamic tokens to provide users the necessary permissions to temporarily interact with your AWS account resources.
+*   **AWS infrastructure** - The infrastructure required for the cluster including the Amazon Elastic Compute Cloud (EC2) instances, Amazon Elastic Block Store (EBS) storage, and networking components.
+*   **AWS Security Token Service (STS)** - A method for granting short-term, dynamic tokens to provide users the necessary permissions to temporarily interact with your AWS account resources.
 *   **OpenID Connect (OIDC)** - A mechanism for cluster Operators to authenticate with AWS, assume the cluster roles through a trust policy, and obtain temporary credentials from AWS IAM STS to make the required API calls.
 *   **Roles and policies** - The roles and policies used by {{ product_title }} can be divided into account-wide roles and policies and Operator roles and policies.
 

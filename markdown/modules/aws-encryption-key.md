@@ -1,11 +1,11 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create an AWS KMS encryption key {id="aws-encryption-key_{{ context }}"}
 
-Using your AWS account and the `aws` CLI tool, you can create an AWS KMS encryption key to encrypt your resources. {._abstract}
+Using your AWS account and the `aws` command-line interface (CLI) tool, you can create an AWS Key Management Service (KMS) encryption key to encrypt your resources. {._abstract}
 
 **Procedure**
 
-1.  Set the AWS region where you installed your VPC by running the following command:
+1.  Set the AWS region where you installed your virtual private cloud (VPC) by running the following command:
 
     :::note
 

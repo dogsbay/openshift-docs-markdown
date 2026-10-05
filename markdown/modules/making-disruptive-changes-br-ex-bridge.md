@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Making disruptive changes to a customized br-ex bridge {id="making-disruptive-changes-br-ex-bridge.adoc_{{ context }}"}
 
-For certain situations, you might need to make disruptive changes to a `br-ex` bridge for planned maintenance or network configuration updates. A `br-ex` bridge is a gateway for all external network traffic from your workloads, so any change to the bridge might temporarily disconnect pods and virtual machines (VMs) from an external network. {._abstract}
+For certain situations, you might need to make disruptive changes to a `br-ex` bridge for planned maintenance or network configuration updates. {._abstract}
+
+A `br-ex` bridge is a gateway for all external network traffic from your workloads, so any change to the bridge might temporarily disconnect pods and virtual machines (VMs) from an external network.
 
 The following procedure shows how to make disruptive changes to a `br-ex` bridge while minimizing the impact to running cluster workloads. 
 

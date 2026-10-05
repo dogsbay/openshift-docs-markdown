@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Establishing the VPN connection and enabling route propagation {id="dedicated-aws-vpn-establishing-connection_{{ context }}"}
+# Establish the VPN connection and enable route propagation {id="dedicated-aws-vpn-establishing-connection_{{ context }}"}
 
 After you create the customer gateway and virtual private gateway, establish the Site-to-Site VPN connection and enable route propagation. {._abstract}
 

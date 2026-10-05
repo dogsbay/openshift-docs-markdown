@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Verifying and troubleshooting VPC peering {id="dedicated-aws-vpc-verifying-troubleshooting"}
+# Verify and troubleshoot VPC peering {id="dedicated-aws-vpc-verifying-troubleshooting"}
 
 After you set up a Virtual Private Cloud (VPC) peering connection, it is best to confirm it has been configured and is working correctly.
 

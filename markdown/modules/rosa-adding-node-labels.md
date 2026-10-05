@@ -3,6 +3,8 @@
 
 Add or edit labels for compute nodes at any time to manage the nodes in a manner that is relevant to you. For example, you can assign types of workloads to specific nodes. Each key must be unique to the object it is assigned to. {._abstract}
 
+A label is a key-value pair applied to a `Node` object. You can use labels to organize sets of objects and control the scheduling of pods. You can add labels during or after cluster creation, and you can update them at any time.
+
 **Prerequisites**
 
 {% if openshift_rosa or openshift_rosa_hcp %}

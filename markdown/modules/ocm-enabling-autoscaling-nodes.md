@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enable autoscaling nodes in an existing cluster using {{ cluster_manager_first }} {id="ocm-enabling-autoscaling_{{ context }}"}
+# Enable autoscaling nodes in an existing cluster using {{ cluster_manager }} {id="ocm-enabling-autoscaling_{{ context }}"}
 
 Enable autoscaling for worker nodes in the machine pool definition from {{ cluster_manager }} console. {._abstract}
 

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Add the service CA bundle to a custom resource definition {id="add-service-certificate-crd_{{ context }}"}
 
-You can annotate a `CustomResourceDefinition` (CRD) object with `service.beta.openshift.io/inject-cabundle=true` to have its `spec.conversion.webhook.clientConfig.caBundle` field populated with the service Certificate Authority (CA) bundle. This allows the Kubernetes API server to validate the service CA certificate used to secure the targeted endpoint. {._abstract}
+You can annotate a `CustomResourceDefinition` (CRD) object with `service.beta.openshift.io/inject-cabundle=true` to have its `spec.conversion.webhook.clientConfig.caBundle` field populated with the service Certificate Authority (CA) bundle.  {._abstract}
+
+This allows the Kubernetes API server to validate the service CA certificate used to secure the targeted endpoint.
 
 
 :::note

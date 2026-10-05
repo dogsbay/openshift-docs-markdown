@@ -13,6 +13,11 @@ Platform administrators can view new update options either by going to **Adminis
 
 {% leveloffset +1 %}{% include "./modules/about-updates.md" %}{% endleveloffset %}
 
+**Additional resources**
+{._additional-resources}
+
+*   [Updating installed Operators](/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
+
 {% if openshift_enterprise %}
 
 {% leveloffset +1 %}{% include "./modules/update-availability-faq.md" %}{% endleveloffset %}

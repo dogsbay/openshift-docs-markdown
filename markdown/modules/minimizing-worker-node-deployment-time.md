@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Minimizing worker node deployment time {id="minimizing-worker-node-deployment-time_{{ context }}"}
 
-You can minimize deployment time during cluster worker node installation by applying configuration changes across nodes simultaneously.
+You can minimize deployment time during cluster worker node installation by applying configuration changes across nodes simultaneously. {._abstract}
 
 **Prerequisites**
 

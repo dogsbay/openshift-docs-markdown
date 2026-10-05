@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Investigating worker node installation issues {id="investigating-worker-node-installation-issues_{{ context }}"}
 
-If you experience worker node installation issues, you can review the worker node status. Collect `kubelet.service`, `crio.service` journald unit logs and the worker node container logs for visibility into the worker node agent, CRI-O container runtime and pod activity. Additionally, you can check the Ignition file and Machine API Operator functionality. If worker node postinstallation configuration fails, check Machine Config Operator (MCO) and DNS functionality. You can also verify system clock synchronization between the bootstrap, master, and worker nodes, and validate certificates. {._abstract}
+If you experience worker node installation issues, you can review the worker node status. {._abstract}
+
+Collect `kubelet.service`, `crio.service` journald unit logs and the worker node container logs for visibility into the worker node agent, CRI-O container runtime and pod activity. Additionally, you can check the Ignition file and Machine API Operator functionality. If worker node postinstallation configuration fails, check Machine Config Operator (MCO) and DNS functionality. You can also verify system clock synchronization between the bootstrap, master, and worker nodes, and validate certificates.
 
 **Prerequisites**
 

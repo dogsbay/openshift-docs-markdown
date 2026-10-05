@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating and booting the agent image {id="installing-ocp-agent-boot_{{ context }}"}
+# Create and boot the agent image {id="installing-ocp-agent-boot_{{ context }}"}
 
 After you have prepared the configuration inputs for your installation, create the ISO image and boot it on your machines. {._abstract}
 

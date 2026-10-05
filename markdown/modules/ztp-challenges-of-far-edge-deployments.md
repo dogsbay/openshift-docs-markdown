@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Overcoming the challenges of the network far edge {id="ztp-challenges-of-far-edge-deployments_{{ context }}"}
+# Overcome the challenges of the network far edge {id="ztp-challenges-of-far-edge-deployments_{{ context }}"}
 
 Today, service providers want to deploy their infrastructure at the edge of the network. This presents significant challenges: {._abstract}
 

@@ -8,8 +8,9 @@
 {%- set namespace_name = "openshift-user-workload-monitoring" -%}
 {%- set component = "thanosRuler" %}
 
-You can resize a persistent volume (PV) for monitoring components, such as Prometheus or Alertmanager. 
-You can resize a persistent volume (PV) for the instances of Prometheus, Thanos Ruler, and Alertmanager.
+You can resize a persistent volume (PV) for monitoring components, such as Prometheus or Alertmanager.
+You can resize a persistent volume (PV) for the instances of Prometheus, Thanos Ruler, and Alertmanager. {._abstract}
+
 You need to manually expand a persistent volume claim (PVC), and then update the config map in which the component is configured.
 
 
@@ -46,19 +47,25 @@ You can only expand the size of the PVC. Shrinking the storage size is not possi
       namespace: {{ namespace_name }}
     data:
       config.yaml: |
-        <component>: (1)
+        <component>:
           volumeClaimTemplate:
             spec:
               resources:
                 requests:
-                  storage: <amount_of_storage> (2)
+                  storage: <amount_of_storage>
     ```
-    1.  The component for which you want to change the storage size.
-    1.  Specify the new size for the storage volume. It must be greater than the previous value.
 
-        The following example sets the new PVC request to 
-        100 gigabytes for the Prometheus instance:
-        20 gigabytes for Thanos Ruler:
+    where:
+
+    `<component>`
+    :   Specifies the component for which you want to change the storage size.
+
+    `<amount_of_storage>`
+    :   Specifies the new size for the storage volume. It must be greater than the previous value.
+
+    The following example sets the new PVC request to 
+    100 gigabytes for the Prometheus instance:
+    20 gigabytes for Thanos Ruler:
     ```yaml title="Example storage configuration for {{ component }}" {minja}
     apiVersion: v1
     kind: ConfigMap

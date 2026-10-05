@@ -1,0 +1,17 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Bring your own (BYO) firewall rules reference {id="cloud-experts-osd-gcp-byo-firewall-byo-rules-reference_{{ context }}"}
+
+The following table summarizes the eight bring your own (BYO) firewall rules that you create in [Creating bring your own (BYO) firewall rules](#cloud-experts-osd-gcp-byo-firewall-creating-byo-rules_{{ context }}). {._abstract}
+
+**BYO firewall rules**
+
+| Number | Rule | Ports | Source | Target service account |
+| --- | --- | --- | --- | --- |
+| 1 | `<byo_prefix>-api` | `tcp:6443` | `0.0.0.0/0` | Control plane |
+| 2 | `<byo_prefix>-etcd` | `tcp:2379-2380` | Control plane service account | Control plane |
+| 3 | `<byo_prefix>-health-checks` | `tcp:6080,tcp:6443,tcp:22624` | {{ GCP }} load balancer CIDR ranges | Control plane |
+| 4 | `<byo_prefix>-control-plane` | `tcp:2379-2380,tcp:6443,tcp:9258-9259,tcp:10257-10259,tcp:22623-22624` | Control plane service account | Control plane |
+| 5 | `<byo_prefix>-internal-network` | `tcp,udp` (various ports) | Control plane and worker service accounts | Control plane and worker |
+| 6 | `<byo_prefix>-internal-cluster` | `tcp,udp,icmp` (all ports) | Control plane and worker service accounts | Control plane and worker |
+| 7 | `<byo_prefix>-ingress-k8s-fw` | `tcp:80,tcp:443` | `0.0.0.0/0` | Worker |
+| 8 | `<byo_prefix>-ingress-k8s-http-hc` | `tcp:30000-32767` | {{ GCP }} load balancer CIDR ranges | Worker |

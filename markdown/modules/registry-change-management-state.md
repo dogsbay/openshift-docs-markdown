@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Changing the image registry’s management state {id="registry-change-management-state_{{ context }}"}
+# Change the image registry’s management state {id="registry-change-management-state_{{ context }}"}
 
 To start the image registry, you must change the Image Registry Operator configuration’s `managementState` from `Removed` to `Managed`. {._abstract}
 

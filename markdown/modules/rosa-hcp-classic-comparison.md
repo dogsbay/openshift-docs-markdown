@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Comparing {{ hcp_title_first }} and {{ rosa_classic_title }} {id="rosa-hcp-classic-comparison_{{ context }}"}
 
+{{ hcp_title_first }} and {{ rosa_classic_title }} differ in how they host the control plane, deploy infrastructure, and handle upgrades. {._abstract}
+
 **{{ hcp_title_first }} and {{ rosa_classic_title }} architectures comparison table**
 
 <table>
@@ -19,7 +21,7 @@
 </tr>
 <tr>
   <td><strong>Virtual Private Cloud (VPC)</strong></td>
-  <td>Worker nodes communicate with the control plane over <a href="https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html">AWS PrivateLink</a>.</td>
+  <td>Worker nodes communicate with the control plane over AWS PrivateLink. For more details, see the <em>Additional resources</em>.</td>
   <td>Worker nodes and control plane nodes are deployed in the customer's VPC.</td>
 </tr>
 <tr>
@@ -38,7 +40,7 @@
   <td>Uses 2 (single-AZ) or 3 (multi-AZ) dedicated infrastructure nodes to host platform components.</td>
 </tr>
 <tr>
-  <td><strong>OpenShift capabilities</strong></td>
+  <td><strong>{{ OCP_short }} capabilities</strong></td>
   <td>Platform monitoring, image registry, and the ingress controller are deployed in the worker nodes.</td>
   <td>Platform monitoring, image registry, and the ingress controller are deployed in the dedicated infrastructure nodes.</td>
 </tr>

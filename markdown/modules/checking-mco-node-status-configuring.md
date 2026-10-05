@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Check node status during updates {id="checking-mco-node-status-configuring_{{ context }}"}
 
-During the update of a machine config pool (MCP), you can monitor the progress of all of the nodes in your cluster by using the `oc get machineconfignodes` and `oc describe machineconfignodes` commands. These commands provide information that can be helpful if issues arise during the update and you need to troubleshoot a node. {._abstract}
+During the update of a machine config pool (MCP), you can monitor the progress of all of the nodes in your cluster by using the `oc get machineconfignodes` and `oc describe machineconfignodes` commands. {._abstract}
+
+These commands provide information that can be helpful if issues arise during the update and you need to troubleshoot a node.
 
 For more information on the meaning of these fields, see "About checking machine config node status."
 
@@ -122,5 +124,5 @@ For more information on the meaning of these fields, see "About checking machine
       pinnedImageSets:
       - desiredGeneration: 1
         name: worker-pinned-images
-    # ...  
+    # ...
     ```

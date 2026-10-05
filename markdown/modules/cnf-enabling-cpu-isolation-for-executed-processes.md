@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Isolate exec processes from latency-sensitive workloads {id="cnf-enabling-cpu-isolation-for-executed-processes_{{ context }}"}
 
-You can prevent `oc exec` and shell processes from interrupting latency-sensitive workloads by applying a `PerformanceProfile` to a node. The Node Tuning Operator (NTO) automatically enables the `ExecCPUAffinity` feature, which pins exec processes to a designated CPU so that your primary workload CPUs remain undisturbed. {._abstract}
+You can prevent `oc exec` and shell processes from interrupting latency-sensitive workloads by applying a `PerformanceProfile` to a node. {._abstract}
+
+The Node Tuning Operator (NTO) automatically enables the `ExecCPUAffinity` feature, which pins exec processes to a designated CPU so that your primary workload CPUs remain undisturbed.
 
 **Prerequisites**
 

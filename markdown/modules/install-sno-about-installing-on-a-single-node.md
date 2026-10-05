@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About OpenShift on a single node {id="install-sno-about-installing-on-a-single-node_{{ context }}"}
 
-You can create a single-node cluster with standard installation methods. {{ product_title }} on a single node is a specialized installation that requires the creation of a special Ignition configuration file. 
+You can create a single-node cluster with standard installation methods. {{ product_title }} on a single node is a specialized installation that requires the creation of a special Ignition configuration file.  {._abstract}
 
 
 :::important

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using ZTP manifests {id="installing-ocp-agent-ztp_{{ context }}"}
+# Use ZTP manifests {id="installing-ocp-agent-ztp_{{ context }}"}
 
 As an optional task, you can use {{ ztp_first }} manifests to configure your installation beyond the options available through the `install-config.yaml` and `agent-config.yaml` files. {._abstract}
 

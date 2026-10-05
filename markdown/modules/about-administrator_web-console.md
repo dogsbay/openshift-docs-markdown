@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Administrator role in the web console {id="about-administrator-perspective_{{ context }}"}
 
-The cluster administrator role enables you to view the cluster inventory, capacity, general and specific utilization information, and the stream of important events, all of which help you to simplify planning and troubleshooting tasks. Both project administrators and cluster administrators can use all features in the web console. {._abstract}
+The cluster administrator role enables you to view the cluster inventory, capacity, general and specific utilization information, and the stream of important events, all of which help you to simplify planning and troubleshooting tasks. {._abstract}
+
+Both project administrators and cluster administrators can use all features in the web console.
 
 {% if not openshift_rosa_hcp %}
 Cluster administrators can also open an embedded command-line terminal instance with the web terminal Operator in {{ product_title }} 4.7 and later.

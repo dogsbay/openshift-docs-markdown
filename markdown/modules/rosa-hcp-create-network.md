@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating an AWS VPC using the ROSA CLI {id="rosa-hcp-create-network_{{ context }}"}
 
-The `rosa create network` command is available in v.1.2.48 or later of the {{ rosa_cli }}. The command uses AWS CloudFormation to create a VPC and associated networking components necessary to install a {{ product_title }} cluster. CloudFormation is a native AWS infrastructure-as-code tool and is compatible with the AWS CLI. {._abstract}
+The `rosa create network` command is available in v.1.2.48 or later of the {{ rosa_cli_first }}. The command uses AWS CloudFormation to create a virtual private cloud (VPC) and associated networking components necessary to install a {{ product_title }} cluster. CloudFormation is a native AWS infrastructure-as-code tool and is compatible with the AWS CLI. {._abstract}
 
 If you do not specify a template, CloudFormation uses a default template that creates resources with the following parameters:
 

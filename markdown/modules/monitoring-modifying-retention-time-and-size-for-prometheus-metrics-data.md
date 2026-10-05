@@ -8,10 +8,12 @@
 {%- set namespace_name = "openshift-user-workload-monitoring" -%}
 {%- set component = "prometheus" %}
 
-By default, Prometheus retains metrics data for 
+By default, Prometheus retains metrics data for
 15 days for core platform monitoring.
 24 hours for monitoring for user-defined projects.
-You can modify the retention time for the Prometheus instance to change when the data is deleted. You can also set the maximum amount of disk space the retained metrics data uses.
+You can modify the retention time for the Prometheus instance to change when the data is deleted. {._abstract}
+
+You can also set the maximum amount of disk space the retained metrics data uses.
 
 
 :::note
@@ -51,13 +53,19 @@ Data compaction occurs every two hours. Therefore, a persistent volume (PV) migh
     data:
       config.yaml: |
         {{ component }}:
-          retention: <time_specification> (1)
-          retentionSize: <size_specification> (2)
+          retention: <time_specification>
+          retentionSize: <size_specification>
     ```
-    1.  The retention time: a number directly followed by `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours), `d` (days), `w` (weeks), or `y` (years). You can also combine time values for specific times, such as `1h30m15s`.
-    1.  The retention size: a number directly followed by `B` (bytes), `KB` (kilobytes), `MB` (megabytes), `GB` (gigabytes), `TB` (terabytes), `PB` (petabytes), and `EB` (exabytes).
 
-        The following example sets the retention time to 24 hours and the retention size to 10 gigabytes for the Prometheus instance:
+    where:
+
+    `<time_specification>`
+    :   Specifies the retention time: a number directly followed by `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours), `d` (days), `w` (weeks), or `y` (years). You can also combine time values for specific times, such as `1h30m15s`.
+
+    `<size_specification>`
+    :   Specifies the retention size: a number directly followed by `B` (bytes), `KB` (kilobytes), `MB` (megabytes), `GB` (gigabytes), `TB` (terabytes), `PB` (petabytes), and `EB` (exabytes).
+
+    The following example sets the retention time to 24 hours and the retention size to 10 gigabytes for the Prometheus instance:
     ```yaml title="Example of setting retention time for Prometheus" {minja}
     apiVersion: v1
     kind: ConfigMap

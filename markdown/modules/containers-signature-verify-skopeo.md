@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Use skopeo to verify signatures of Red Hat container images {id="containers-signature-verify-skopeo_{{ context }}"}
 
-You can verify the signatures for container images included in an {{ product_title }} release image by pulling those signatures from the {{ product_title }} release mirror site.  {._abstract}
+You can verify the signatures for container images included in an {{ product_title }} release image by pulling those signatures from the {{ product_title }} release mirror site. {._abstract}
 
 Because the signatures on the mirror site are not in a format readily understood by Podman or CRI-O, you can use the `skopeo standalone-verify` command to verify that your release images are signed by Red Hat.
 
@@ -30,7 +30,7 @@ Because the signatures on the mirror site are not in a format readily understood
     $ curl -o signature-1 https://mirror.openshift.com/pub/openshift-v4/signatures/openshift-release-dev/ocp-release/sha256=<sha_from_version>/signature-1
     ```
 
-    Replace `<sha_from_version>` with SHA value from the full link to the mirror site that matches the SHA of your release. For example, the link to the signature for the 4.12.23 release is `https://mirror.openshift.com/pub/openshift-v4/signatures/openshift-release-dev/ocp-release/sha256=e73ab4b33a9c3ff00c9f800a38d69853ca0c4dfa5a88e3df331f66df8f18ec55/signature-1`, and the SHA value is `e73ab4b33a9c3ff00c9f800a38d69853ca0c4dfa5a88e3df331f66df8f18ec55`. 
+    Replace `<sha_from_version>` with SHA value from the full link to the mirror site that matches the SHA of your release. For example, the link to the signature for the 4.12.23 release is `https://mirror.openshift.com/pub/openshift-v4/signatures/openshift-release-dev/ocp-release/sha256=e73ab4b33a9c3ff00c9f800a38d69853ca0c4dfa5a88e3df331f66df8f18ec55/signature-1`, and the SHA value is `e73ab4b33a9c3ff00c9f800a38d69853ca0c4dfa5a88e3df331f66df8f18ec55`.
 1.  Get the manifest for the release image by running the following command:
     ```terminal
     $ skopeo inspect --raw docker://<quay_link_to_release> > manifest.json

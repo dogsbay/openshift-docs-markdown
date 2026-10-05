@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Network requirements {id="network-requirements_{{ context }}"}
 
-Installer-provisioned installation of {{ product_title }} involves multiple network requirements. First, installer-provisioned installation involves an optional non-routable `provisioning` network for provisioning the operating system on each bare-metal node. Second, installer-provisioned installation involves a routable `baremetal` network. {._abstract}
+Installer-provisioned installation of {{ product_title }} involves multiple network requirements. {._abstract}
+
+First, installer-provisioned installation involves an optional non-routable `provisioning` network for provisioning the operating system on each bare-metal node. Second, installer-provisioned installation involves a routable `baremetal` network.
 
 **Figure 1. Installer-provisioned networking**
 

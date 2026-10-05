@@ -103,6 +103,7 @@ This section describes the requirements for deploying {{ product_title }} on use
 **Additional resources**
 {._additional-resources}
 
+*   [Creating a MachineConfig object by using Butane](/installing/install_config/installing-customizing#installation-special-config-butane-create_installing-customizing)
 *   [Converting to a dual-stack cluster network](/networking/ovn_kubernetes_network_provider/converting-to-dual-stack#nw-dual-stack-convert_converting-to-dual-stack)
 *   [Expanding the cluster](/installing/installing_bare_metal/bare-metal-expanding-the-cluster#bare-metal-expanding-the-cluster)
 

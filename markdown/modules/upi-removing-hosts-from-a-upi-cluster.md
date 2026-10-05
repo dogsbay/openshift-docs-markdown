@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Removing hosts from a user-provisioned cluster by using the BMO {id="upi-removing-hosts-from-a-upi-cluster_{{ context }}"}
 
-You can use the Bare Metal Operator (BMO) to remove bare-metal hosts from a user-provisioned cluster.
+You can use the Bare Metal Operator (BMO) to remove bare-metal hosts from a user-provisioned cluster. {._abstract}
 
 **Prerequisites**
 

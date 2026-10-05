@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Installing managed clusters with ClusterInstance resources and {{ rh_rhacm }} {id="ztp-creating-ztp-crs-for-multiple-managed-clusters_{{ context }}"}
+# Install managed clusters with ClusterInstance resources and {{ rh_rhacm }} {id="ztp-creating-ztp-crs-for-multiple-managed-clusters_{{ context }}"}
 
 {{ ztp_first }} uses `ClusterInstance` custom resources (CRs) in a Git repository to manage the processes that install {{ product_title }} clusters. The `ClusterInstance` CR contains cluster-specific parameters required for installation. It has options for applying select configuration CRs during installation including user defined extra manifests. {._abstract}
 

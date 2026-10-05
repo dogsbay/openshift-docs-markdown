@@ -23,6 +23,11 @@ You must not assign the following capabilities to a pod:
 *   `SYS_ADMIN`: A powerful capability that grants elevated privileges. Allowing this capability can break security boundaries and pose a significant security risk.
 *   `NET_ADMIN`: Allows control over networking, like SR-IOV ports, but can be replaced with alternative solutions in modern setups.
 
-For more information about Linux capabilities, see the [Linux capabilities](https://man7.org/linux/man-pages/man7/capabilities.7.html) man page.
+For more information about Linux capabilities, see "Linux capabilities".
 
 :::
+
+
+## Additional resources {id="_additional_resources" ._additional-resources}
+
+*   [Linux capabilities](https://man7.org/linux/man-pages/man7/capabilities.7.html)

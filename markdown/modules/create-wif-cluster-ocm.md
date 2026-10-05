@@ -102,7 +102,7 @@ Follow the steps in this procedure to create an {{ product_title }} cluster on {
 
         :::important
 
-        Private Service Connect is supported only with **Install into an existing VPC**.
+        Private Service Connect (PSC) is supported only with **Install into an existing VPC**.
         
         :::
 
@@ -136,6 +136,8 @@ Follow the steps in this procedure to create an {{ product_title }} cluster on {
         *   `roles/compute.networkAdmin`
         *   `roles/compute.securityAdmin`
         *   `roles/dns.admin`
+
+        You can significantly reduce these permissions by using a custom role with minimal permissions. For more information, see _Configure reduced permissions for a Shared VPC host project on {{ gcp_short }}_ in the _Additional resources_ section.
 
         If you use a managed DNS zone (by selecting a zone from the **DNS Zone** list), the `roles/dns.admin` role is not required on the host project.
         

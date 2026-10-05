@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an OpenID Connect configuration {id="rosa-sts-byo-oidc_{{ context }}"}
+# Create an OpenID Connect configuration {id="rosa-sts-byo-oidc_{{ context }}"}
 
-{{ product_title }} clusters use OIDC and the AWS Security Token Service (STS) to authenticate Operator access to AWS resources they require to perform their functions. Each production cluster requires its own OIDC configuration. When creating a {{ product_title }} cluster, you can create the OpenID Connect (OIDC) configuration before creating your cluster.  {._abstract}
+{{ product_title }} clusters use OpenID Connect (OIDC) and the AWS Security Token Service (STS) to authenticate Operator access to required AWS resources. {._abstract}
+
+Each production cluster requires its own OIDC configuration. When creating a {{ product_title }} cluster, you can create the OIDC configuration before creating your cluster.
 
 **Prerequisites**
 
@@ -14,12 +16,8 @@
     ```terminal
     $ rosa create oidc-config --mode=auto --yes
     ```
-
-    This command returns the following information.
-
-    For example:
-    ```terminal
-    ? Would you like to create a Managed (Red Hat hosted) OIDC Configuration Yes
+    ```terminal title="Example output"
+    ? Would you like to create a Managed (Red{nbsp}Hat hosted) OIDC Configuration Yes
     I: Setting up managed OIDC configuration
     I: To create Operator Roles for this OIDC Configuration, run the following command and remember to replace <user-defined> with a prefix of your choice:
     	rosa create operator-roles --prefix <user-defined> --oidc-config-id 13cdr6b
@@ -41,9 +39,7 @@
         ```terminal
         $ echo $OIDC_ID
         ```
-
-        For example:
-        ```terminal
+        ```terminal title="Example output"
         13cdr6b
         ```
 
@@ -53,9 +49,7 @@
     ```terminal
     $ rosa list oidc-config
     ```
-
-    For example:
-    ```terminal
+    ```terminal title="Example output"
     ID                                MANAGED  ISSUER URL                                                             SECRET ARN
     2330dbs0n8m3chkkr25gkkcd8pnj3lk2  true     https://dvbwgdztaeq9o.cloudfront.net/2330dbs0n8m3chkkr25gkkcd8pnj3lk2
     233hvnrjoqu14jltk6lhbhf2tj11f8un  false    https://oidc-r7u1.s3.us-east-1.amazonaws.com                           aws:secretsmanager:us-east-1:242819244:secret:rosa-private-key-oidc-r7u1-tM3MDN

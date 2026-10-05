@@ -23,7 +23,7 @@ Linux namespaces
 Security-Enhanced Linux (SELinux)
 :   Enforces mandatory access controls to restrict access to files and directories by processes. SELinux adds an extra layer of security by preventing unauthorized access to files if a process tries to break its confinement.
 
-    SELinux follows the security policy of denying everything unless explicitly allowed. If a process attempts to modify or access a file without permission, SELinux denies access. For more information, see [Introduction to SELinux](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/using_selinux/index#introduction-to-selinux_getting-started-with-selinux).
+    SELinux follows the security policy of denying everything unless explicitly allowed. If a process attempts to modify or access a file without permission, SELinux denies access. For more information, see "Introduction to SELinux".
 
 
 Linux capabilities
@@ -36,3 +36,7 @@ Control groups (cgroups)
 
 CRI-O
 :   Serves as a lightweight container runtime that enforces security boundaries and manages container workloads.
+
+## Additional resources {id="_additional_resources" ._additional-resources}
+
+*   [Introduction to SELinux](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/using_selinux/index#introduction-to-selinux_getting-started-with-selinux)

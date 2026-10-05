@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Using the Bare Metal Operator to manage resources across all namespaces {id="bmaas-using-the-bmo-to-manage-resources-across-all-namespaces_{{ context }}"}
 
-For the Bare Metal Operator (BMO) to manage `BareMetalHost` resources across all namespaces in your {{ product_title }} cluster, you must configure the Operator to watch all namespaces. This configuration is important to avoid mixing non-{{ product_title }} workloads with other components in the same namespace. {._abstract}
+For the Bare Metal Operator (BMO) to manage `BareMetalHost` resources across all namespaces in your {{ product_title }} cluster, you must configure the Operator to watch all namespaces. {._abstract}
+
+This configuration is important to avoid mixing non-{{ product_title }} workloads with other components in the same namespace.
 
 **Prerequisites**
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Downloading the Agent-based Installer {id="installing-ocp-agent-retrieve_{{ context }}"}
+# Download the Agent-based Installer {id="installing-ocp-agent-retrieve_{{ context }}"}
 
 Begin the installation process by downloading the Agent-based Installer and the CLI needed for your installation. {._abstract}
 

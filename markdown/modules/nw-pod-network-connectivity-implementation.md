@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Implementation of connection health checks {id="nw-pod-network-connectivity-implementation_{{ context }}"}
 
-The connectivity check controller orchestrates connection verification checks in your cluster. The results for the connection tests are stored in `PodNetworkConnectivity` objects in the `openshift-network-diagnostics` namespace. Connection tests are performed every minute in parallel.
+The connectivity check controller orchestrates connection verification checks in your cluster. The results for the connection tests are stored in `PodNetworkConnectivity` objects in the `openshift-network-diagnostics` namespace. Connection tests are performed every minute in parallel. {._abstract}
 
 The Cluster Network Operator (CNO) deploys several resources to the cluster to send and receive connectivity health checks:
 
@@ -43,8 +43,18 @@ spec:
           effect: NoExecute
           operator: Exists
 ```
-1.  Specifies the network diagnostics configuration. If a value is not specified or an empty object is specified, and `spec.disableNetworkDiagnostics=true` is set in the `network.operator.openshift.io` custom resource named `cluster`, network diagnostics are disabled. If set, this value overrides `spec.disableNetworkDiagnostics=true`.
-1.  Specifies the diagnostics mode. The value can be the empty string, `All`, or `Disabled`. The empty string is equivalent to specifying `All`.
-1.  Optional: Specifies a selector for connectivity check source pods. You can use the `nodeSelector` and `tolerations` fields to further specify the `sourceNode` pods. These are optional for both source and target pods. You can omit them, use both, or use only one of them.
-1.  Optional: Specifies a selector for connectivity check target pods.
-You can use the `nodeSelector` and `tolerations` fields to further specify the `targetNode` pods. These are optional for both source and target pods. You can omit them, use both, or use only one of them.
+where:
+
+
+`spec.networkDiagnostics`
+:   Specifies the network diagnostics configuration. If a value is not specified or an empty object is specified, and `spec.disableNetworkDiagnostics=true` is set in the `network.operator.openshift.io` custom resource named `cluster`, network diagnostics are disabled. If set, this value overrides `spec.disableNetworkDiagnostics=true`.
+
+`spec.networkDiagnostics.mode`
+:   Specifies the diagnostics mode. The value can be the empty string, `All`, or `Disabled`. The empty string is equivalent to specifying `All`.
+
+`spec.networkDiagnostics.sourcePlacement`
+:   Optional: Specifies a selector for connectivity check source pods. You can use the `nodeSelector` and `tolerations` fields to further specify the `sourceNode` pods. These are optional for both source and target pods. You can omit them, use both, or use only one of them.
+
+`spec.networkDiagnostics.targetPlacement`
+:   Optional: Specifies a selector for connectivity check target pods.
+    You can use the `nodeSelector` and `tolerations` fields to further specify the `targetNode` pods. These are optional for both source and target pods. You can omit them, use both, or use only one of them.

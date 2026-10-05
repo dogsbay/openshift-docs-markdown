@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Initiating the VPC peer request {id="dedicated-aws-vpc-initiating-peering"}
+# Initiate the VPC peer request {id="dedicated-aws-vpc-initiating-peering"}
 
 You can send a Virtual Private Cloud (VPC) peering connection request from the {{ product_title }} AWS Account to the Customer AWS Account.
 

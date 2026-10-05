@@ -18,7 +18,7 @@ You can perform a Control Plane Only update by using the {{ oc_first }}. {._abst
 
 **Procedure**
 
-1.  Using the web console, update any Operator Lifecycle Manager (OLM) Operators to the versions that are compatible with your intended updated version. You can find more information on how to perform this action in "Updating installed Operators"; see "Additional resources".
+1.  Using the web console, update any Operator Lifecycle Manager (OLM) Operators to the versions that are compatible with your intended updated version. For more information on how to perform this action, see "Updating installed Operators".
 1.  Verify that all machine config pools display a status of `UPDATED` and that no machine config pool displays a status of `UPDATING`.
 To view the status of all machine config pools, run the following command:
     ```terminal

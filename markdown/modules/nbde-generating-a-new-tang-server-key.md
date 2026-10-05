@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Generate a new Tang server key {id="nbde-generating-a-new-tang-server-key_{{ context }}"}
 
+Generate a new Tang server key to rotate the key material advertised by the server. Keep the old key available for decryption until all clients have completed rekeying. {._abstract}
+
 **Prerequisites**
 
 *   A root shell on the Linux machine running the Tang server.

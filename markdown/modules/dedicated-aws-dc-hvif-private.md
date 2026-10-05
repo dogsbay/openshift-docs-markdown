@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a Virtual Private Gateway for a private Direct Connect {id="dedicated-aws-dc-hvif-private_{{ context }}"}
+# Create a Virtual Private Gateway for a private Direct Connect {id="dedicated-aws-dc-hvif-private_{{ context }}"}
 
 If your Direct Connect Virtual Interface type is private, create and attach a Virtual Private Gateway to your {{ product_title }} cluster VPC. {._abstract}
 

@@ -3,6 +3,14 @@
 
 {{ product_title }} offers the following worker node types and sizes on AWS: {._abstract}
 
+
+:::note
+
+The `m7i` instance type is not available in every AWS region. In regions where `m7i` is not offered, you must specify a supported instance type when you create a cluster or cluster creation fails. For a complete list of supported regions, see [_Amazon EC2 instance types by Region_](https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-regions.html).
+
+:::
+
+
 :::details{title="General purpose"}
 *   m5.xlarge (4 vCPU, 16 GiB)
 *   m5.2xlarge (8 vCPU, 32 GiB)

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the Agent-based Installer to use mirrored images {id="agent-install-configuring-for-disconnected-registry_{{ context }}"}
+# Configure the Agent-based Installer to use mirrored images {id="agent-install-configuring-for-disconnected-registry_{{ context }}"}
 
 You must use the output of either the `oc adm release mirror` command or the oc-mirror plugin to configure the Agent-based Installer to use mirrored images. {._abstract}
 

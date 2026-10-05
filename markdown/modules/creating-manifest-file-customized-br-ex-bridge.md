@@ -23,6 +23,14 @@ For more information about an additional manifest file, see "Creating a director
 
 {% endif %}
 
+
+:::note
+
+You can use Butane to create machine configs. For more information, see "Creating a MachineConfig object by using Butane".
+
+:::
+
+
 Consider using the customized `br-ex` bridge configuration for any of the following tasks:
 
 *   You need to modify the `br-ex` bridge after you installed the cluster.

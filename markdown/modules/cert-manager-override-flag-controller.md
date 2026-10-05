@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Delete a TLS secret automatically upon Certificate removal {id="cert-manager-override-flag-controller_{{ context }}"}
 
-You can enable the `--enable-certificate-owner-ref` flag for the {{ cert_manager_operator }} by adding a `spec.controllerConfig` section in the `CertManager` resource. The `--enable-certificate-owner-ref` flag sets the certificate resource as an owner of the secret where the TLS certificate is stored. {._abstract}
+You can enable the `--enable-certificate-owner-ref` flag for the {{ cert_manager_operator }} by adding a `spec.controllerConfig` section in the `CertManager` resource. {._abstract}
+
+The `--enable-certificate-owner-ref` flag sets the certificate resource as an owner of the secret where the TLS certificate is stored.
 
 
 :::warning

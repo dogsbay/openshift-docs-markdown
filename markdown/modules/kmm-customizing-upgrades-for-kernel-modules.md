@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Customizing upgrades for kernel modules {id="kmm-customizing-upgrades-for-kernel-modules_{{ context }}"}
+# Customize upgrades for kernel modules {id="kmm-customizing-upgrades-for-kernel-modules_{{ context }}"}
 
 The Kernel Module Management (KMM) Operator periodically upgrades `Module` resources in the cluster, typically during a cluster upgrade.   {._abstract}
 

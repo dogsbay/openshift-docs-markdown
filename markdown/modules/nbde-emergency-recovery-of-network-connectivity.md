@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Emergency recovery of network connectivity {id="nbde-emergency-recovery-of-network-connectivity_{{ context }}"}
 
-If you are unable to recover network connectivity manually, consider the following steps. Be aware that these steps are discouraged if other methods to recover network connectivity are available.
+If you are unable to recover network connectivity manually, consider the following steps. Be aware that these steps are discouraged if other methods to recover network connectivity are available. {._abstract}
 
 *   This method must only be performed by a highly trusted technician.
 *   Taking the Tang server’s key material to the remote site is considered to be a breach of the key material and all servers must be rekeyed and re-encrypted.

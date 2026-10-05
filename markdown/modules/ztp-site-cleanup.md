@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing a managed cluster site from the {{ ztp }} pipeline {id="ztp-site-cleanup_{{ context }}"}
+# Remove a managed cluster site from the {{ ztp }} pipeline {id="ztp-site-cleanup_{{ context }}"}
 
 You can remove a managed site and the associated installation and configuration policy CRs from the {{ ztp_first }} pipeline. {._abstract}
 

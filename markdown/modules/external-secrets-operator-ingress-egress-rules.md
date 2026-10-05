@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Default ingress and egress rules {id="external-secrets-operator-ingress-egress-rules_{{ context }}"}
 
-The ingress and egress rules are necessary to build a secure setup where every component acts with the least amount of privilege necessary. These rules protect your cluster by strictly blocking unnecessary traffic and only allowing the outbound connections needed to fetch secrets. They also permit the specific inbound connections required to validate webhooks and observe system performance. {._abstract}
+The ingress and egress rules are necessary to build a secure setup where every component acts with the least amount of privilege necessary.  {._abstract}
+
+These rules protect your cluster by strictly blocking unnecessary traffic and only allowing the outbound connections needed to fetch secrets. They also permit the specific inbound connections required to validate webhooks and observe system performance.
 
 The following table summarizes the specific ports and protocols used by each component.
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting a machine pool {id="deleting-machine-pools_{{ context }}"}
+# Delete a machine pool {id="deleting-machine-pools_{{ context }}"}
 
 You can delete a machine pool if your workload requirements have changed and your current machine pools no longer meet your needs. You can delete machine pools by using
 {%- if openshift_rosa or openshift_rosa_hcp %}

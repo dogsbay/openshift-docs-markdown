@@ -1,13 +1,15 @@
-{%- set _mod_docs_content_type = "PROCEDURE" %}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # Understanding the Cron trigger {id="nodes-cma-autoscaling-custom-trigger-cron_{{ context }}"}
 
-You can scale pods based on a time range. 
+You can scale pods based on a time range.  {._abstract}
 
 When the time range starts, the custom metrics autoscaler scales the pods associated with an object from the configured minimum number of pods to the specified number of desired pods. At the end of the time range, the pods are scaled back to the configured minimum. The time period must be configured in [cron format](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#writing-a-cronjob-spec). 
 
 The following example scales the pods associated with this scaled object from `0` to `100` from 6:00 AM to 6:30 PM India Standard Time.
 
-```yaml title="Example scaled object with a Cron trigger"
+The following example scales the pods associated with this scaled object from `0` to `100` from 6:00 AM to 6:30 PM India Standard Time:
+
+```yaml
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
@@ -16,21 +18,37 @@ metadata:
 spec:
   scaleTargetRef:
     name: my-deployment
-  minReplicaCount: 0 (1)
-  maxReplicaCount: 100 (2)
+  minReplicaCount: 0
+  maxReplicaCount: 100
   cooldownPeriod: 300
   triggers:
-  - type: cron (3)
+  - type: cron
     metadata: 
-      timezone: Asia/Kolkata (4)
-      start: "0 6 * * *" (5)
-      end: "30 18 * * *" (6)
-      desiredReplicas: "100" (7)
+      timezone: Asia/Kolkata
+      start: "0 6 * * *"
+      end: "30 18 * * *"
+      desiredReplicas: "100"
 ```
-1.  Specifies the minimum number of pods to scale down to at the end of the time frame.
-1.  Specifies the maximum number of replicas when scaling up. This value should be the same as `desiredReplicas`. The default is `100`.
-1.  Specifies a Cron trigger.
-1.  Specifies the timezone for the time frame. This value must be from the [IANA Time Zone Database](https://data.iana.org/time-zones/tzdb-2021a/zone1970.tab).
-1.  Specifies the start of the time frame.
-1.  Specifies the end of the time frame.
-1.  Specifies the number of pods to scale to between the start and end of the time frame. This value should be the same as `maxReplicaCount`.
+where:
+
+
+`spec.minReplicaCount`
+:   Specifies the minimum number of pods to scale down to at the end of the time frame.
+
+`spec.maxReplicaCount`
+:   Specifies the maximum number of replicas when scaling up. This value should be the same as `desiredReplicas`. The default is `100`.
+
+`spec.triggers[].type`
+:   Specifies a Cron trigger.
+
+`spec.triggers[].metadata.timezone`
+:   Specifies the timezone for the time frame. This value must be from the [IANA Time Zone Database](https://data.iana.org/time-zones/tzdb-2021a/zone1970.tab).
+
+`spec.triggers[].metadata.start`
+:   Specifies the start of the time frame.
+
+`spec.triggers[].metadata.end`
+:   Specifies the end of the time frame.
+
+`spec.triggers[].metadata.desiredReplicas`
+:   Specifies the number of pods to scale to between the start and end of the time frame. This value should be the same as `maxReplicaCount`.

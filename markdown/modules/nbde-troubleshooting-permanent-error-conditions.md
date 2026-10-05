@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Troubleshoot permanent rekeying errors for Tang servers {id="nbde-troubleshooting-permanent-error-conditions_{{ context }}"}
 
-If, after rekeying the Tang servers, the `READY` count does not equal the `DESIRED` count after an extended period of time, it might indicate a permanent failure condition. In this case, the following conditions might apply:
+If, after rekeying the Tang servers, the `READY` count does not equal the `DESIRED` count after an extended period of time, it might indicate a permanent failure condition. {._abstract}
+
+In this case, the following conditions might apply:
 
 *   A typographical error in the Tang server URL or thumbprint in the `NEW_TANG_PIN` definition.
 *   The Tang server is decommissioned or the keys are permanently lost.
@@ -32,7 +34,6 @@ server’s configuration as defined in the daemon set.
       '{"url":"http://tangserver03:7500","thp":"goodthumbprint"}' | \
       clevis decrypt
     ```
-
     ```terminal title="Example output"
     okay
     ```
@@ -44,12 +45,11 @@ server’s configuration as defined in the daemon set.
         *   Add a new Tang server that is a replacement for a decommissioned server.
 1.  Distribute the updated daemon set again.
 
+    :::note
 
-:::note
-
-When replacing, removing, or adding a Tang server from a configuration, the rekeying operation will succeed as long as at least one original server is still functional, including the server currently being rekeyed. If none of the original Tang servers are functional or can be recovered, recovery of the system is impossible and you must redeploy the affected nodes.
-
-:::
+    When replacing, removing, or adding a Tang server from a configuration, the rekeying operation will succeed as long as at least one original server is still functional, including the server currently being rekeyed. If none of the original Tang servers are functional or can be recovered, recovery of the system is impossible and you must redeploy the affected nodes.
+    
+    :::
 
 
 **Verification**

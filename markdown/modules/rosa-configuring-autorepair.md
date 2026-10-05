@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Configuring machine pool AutoRepair {id="rosa-configuring-autorepair_{{ context }}"}
+# Configure machine pool AutoRepair {id="rosa-configuring-autorepair_{{ context }}"}
 
 {{ product_title }} supports AutoRepair, an automatic repair process for machine pools. AutoRepair detects unhealthy nodes, drains them, and re-creates them. You can disable AutoRepair if unhealthy nodes should be preserved. AutoRepair is enabled by default on machine pools. {._abstract}
 

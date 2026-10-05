@@ -1,11 +1,11 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create a Workload Identity Federation configuration {id="create-wif-configuration_{{ context }}"}
 
-You can create a WIF configuration using the `auto` mode or the `manual` mode in the `ocm` CLI. {._abstract}
+You can create a Workload Identity Federation (WIF) configuration using the `auto` mode or the `manual` mode in the `ocm` CLI. {._abstract}
 
-The `auto` mode enables you to automatically create the service accounts for {{ product_title }} components as well as other IAM resources.
+In `auto` mode, the service accounts for {{ product_title }} components and other IAM resources are created automatically.
 
-Alternatively, you can use the `manual` mode. In `manual` mode, you are provided with commands within a `script.sh` file which you use to manually create the service accounts for {{ product_title }} components as well as other IAM resources.
+You can also use the `manual` mode, where a `script.sh` file has commands that you use to manually create the service accounts for {{ product_title }} components and other IAM resources.
 
 **Procedure**
 
@@ -20,11 +20,20 @@ Alternatively, you can use the `manual` mode. In `manual` mode, you are provided
 
         where:
 
-        `--version <osd_version>`
-        :   Optional: Replace `<osd_version>` with the desired {{ product_title }} version the wif-config will need to support. If you do not specify a version, the wif-config will support the latest {{ product_title }} y-stream version as well as the last three supported {{ product_title }} y-stream versions (beginning with version 4.17).
+        `--wif_name`
+        :   Specifies the name of the WIF configuration. The name must be unique within your {{ GCP }} project.
 
-        `--federated-project <gcp_project_id>`
-        :   Optional: Replace `<gcp_project_id>` with the ID of the dedicated project where the workload identity pools and providers will be created and managed. If the `--federated-project` flag is not specified, the workload identity pools and providers will be created and managed in the project specified by the `--project` flag.
+
+        `--project`
+        :   Specifies the ID of the {{ GCP }} project where the WIF configuration will be implemented.
+
+
+        `--version`
+        :   Optional. Specifies the desired {{ product_title }} version the wif-config will need to support. If you do not specify a version, the wif-config will support the latest {{ product_title }} y-stream version as well as the last three supported {{ product_title }} y-stream versions (beginning with version 4.17).
+
+
+        `--federated-project`
+        :   Optional. Specifies the ID of the dedicated project where the workload identity pools and providers will be created and managed. If this flag is not specified, the workload identity pools and providers will be created and managed in the project specified by the `--project` flag.
 
         :::important
 
@@ -39,20 +48,20 @@ Alternatively, you can use the `manual` mode. In `manual` mode, you are provided
 
         **Example output**
         ```terminal
-        2024/09/26 13:05:41 Creating workload identity configuration...
-        2024/09/26 13:05:47 Workload identity pool created with name 2e1kcps6jtgla8818vqs8tbjjls4oeub
-        2024/09/26 13:05:47 workload identity provider created with name oidc
-        2024/09/26 13:05:48 IAM service account osd-worker-oeub created
-        2024/09/26 13:05:49 IAM service account osd-control-plane-oeub created
-        2024/09/26 13:05:49 IAM service account openshift-gcp-ccm-oeub created
-        2024/09/26 13:05:50 IAM service account openshift-gcp-pd-csi-driv-oeub created
-        2024/09/26 13:05:50 IAM service account openshift-image-registry-oeub created
-        2024/09/26 13:05:51 IAM service account openshift-machine-api-gcp-oeub created
-        2024/09/26 13:05:51 IAM service account osd-deployer-oeub created
-        2024/09/26 13:05:52 IAM service account cloud-credential-operator-oeub created
-        2024/09/26 13:05:52 IAM service account openshift-cloud-network-c-oeub created
-        2024/09/26 13:05:53 IAM service account openshift-ingress-gcp-oeub created
-        2024/09/26 13:05:55 Role "osd_deployer_v4.19" updated
+        2026/09/26 13:05:41 Creating workload identity configuration...
+        2026/09/26 13:05:47 Workload identity pool created with name 2e1kcps6jtgla8818vqs8tbjjls4oeub
+        2026/09/26 13:05:47 workload identity provider created with name oidc
+        2026/09/26 13:05:48 IAM service account osd-worker-oeub created
+        2026/09/26 13:05:49 IAM service account osd-control-plane-oeub created
+        2026/09/26 13:05:49 IAM service account openshift-gcp-ccm-oeub created
+        2026/09/26 13:05:50 IAM service account openshift-gcp-pd-csi-driv-oeub created
+        2026/09/26 13:05:50 IAM service account openshift-image-registry-oeub created
+        2026/09/26 13:05:51 IAM service account openshift-machine-api-gcp-oeub created
+        2026/09/26 13:05:51 IAM service account osd-deployer-oeub created
+        2026/09/26 13:05:52 IAM service account cloud-credential-operator-oeub created
+        2026/09/26 13:05:52 IAM service account openshift-cloud-network-c-oeub created
+        2026/09/26 13:05:53 IAM service account openshift-ingress-gcp-oeub created
+        2026/09/26 13:05:55 Role "osd_deployer_v4.22" updated
         ```
     *   Create a WIF configuration in manual mode by running the following command, replacing `<wif_name>` with the name of your WIF configuration and `<gcp_project_id>` with the ID of the {{ GCP }} project where the WIF configuration is implemented:
         ```terminal
@@ -61,22 +70,33 @@ Alternatively, you can use the `manual` mode. In `manual` mode, you are provided
           --mode=manual
         ```
 
+        where:
+
+        `--wif_name`
+        :   Specifies the name of the WIF configuration. The name must be unique within your {{ GCP }} project.
+
+
+`--project`
+:   Specifies the ID of the {{ GCP }} project where the WIF configuration will be implemented.
+
+
+`--mode=manual`
+:   Specifies that the WIF configuration is created in manual mode. In this mode, a `script.sh` file is generated that contains commands to manually create the service accounts for {{ product_title }} components and other IAM resources.
         Once the WIF is configured, the following service accounts, roles, and groups are created.
 
         :::note
 
-        Red&#160;Hat custom roles are versioned with every OpenShift y-stream release, for example 4.19.
+        Red&#160;Hat custom roles are versioned with every OpenShift y-stream release, for example 4.22.
         
         :::
 
-
-        **WIF configuration service accounts, group and roles**
+        **WIF configuration service accounts, group, and roles**
 
 <table>
 <thead>
 <tr>
   <th>Service Account/Group</th>
-  <th>{{ gcp_short }} pre-defined roles and Red Hat custom roles</th>
+  <th>{{ gcp_short }} predefined roles and Red&#160;Hat custom roles</th>
 </tr>
 </thead>
 <tbody>
@@ -106,7 +126,7 @@ Alternatively, you can use the `manual` mode. In `manual` mode, you are provided
 </tr>
 <tr>
   <td>openshift-gcp-pd-csi-driver-operator</td>
-  <td><ul><li>compute.storageAdmin</li><li>iam.serviceAccountUser</li><li>resourcemanager.tagUser</li><li>openshift_gcp_pd_csi_driver_operator_v<y-stream-version></li></ul></td>
+  <td><ul><li>compute.storageAdmin</li><li>resourcemanager.tagUser</li><li>openshift_gcp_pd_csi_driver_operator_v<y-stream-version></li></ul></td>
 </tr>
 <tr>
   <td>openshift-image-registry-gcp</td>
@@ -118,7 +138,7 @@ Alternatively, you can use the `manual` mode. In `manual` mode, you are provided
 </tr>
 <tr>
   <td>openshift-machine-api-gcp</td>
-  <td>openshift_machine_api_gcp_v<y-stream-version></td>
+  <td><ul><li>iam.serviceAccountUser (scoped to <code>osd-worker</code> and <code>osd-control-plane</code> service accounts)</li><li>openshift_machine_api_gcp_v<y-stream-version></li></ul></td>
 </tr>
 <tr>
   <td>Access via SRE group:sd-sre-platform-gcp-access</td>
@@ -127,5 +147,4 @@ Alternatively, you can use the `manual` mode. In `manual` mode, you are provided
 </tbody>
 </table>
 
-
-        For the complete list of WIF configuration roles and their assigned permissions, see [managed-cluster-config](https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.19/vanilla.yaml).
+        For the complete list of WIF configuration roles and their assigned permissions, see [managed-cluster-config](https://github.com/openshift/managed-cluster-config/blob/master/resources/wif/4.22/vanilla.yaml).

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Determining the Direct Connect Virtual Interface type {id="dedicated-aws-dc-hvif-determine-type_{{ context }}"}
+# Determine the Direct Connect Virtual Interface type {id="dedicated-aws-dc-hvif-determine-type_{{ context }}"}
 
 Determine whether your Direct Connect Virtual Interface (VIF) is private or public. This determines whether you create a Virtual Private Gateway or a Direct Connect Gateway. {._abstract}
 

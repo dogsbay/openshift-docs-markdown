@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Associating the Direct Connect gateway with the virtual private gateway {id="dedicated-aws-dc-existing-associate-dxgw_{{ context }}"}
+# Associate the Direct Connect gateway with the virtual private gateway {id="dedicated-aws-dc-existing-associate-dxgw_{{ context }}"}
 
 After you create a virtual private gateway, associate it with your existing Direct Connect gateway. {._abstract}
 

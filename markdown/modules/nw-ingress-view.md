@@ -2,7 +2,7 @@
 # View the default Ingress Controller {id="nw-ingress-view_{{ context }}"}
 
 The Ingress Operator is a core feature of {{ product_title }} and is enabled out of the
-box.
+box. {._abstract}
 
 Every new {{ product_title }} installation has an `ingresscontroller` named default. It
 can be supplemented with additional Ingress Controllers. If the default

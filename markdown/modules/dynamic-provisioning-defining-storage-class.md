@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Defining a storage class {id="dynamic-provisioning-defining-storage-class_{{ context }}"}
 
-`StorageClass` objects apply cluster-wide and are available to all namespaces. Only users with cluster-admin or storage-admin privileges can create or modify them. This centralized control ensures consistent storage policies across your cluster while requiring application teams to coordinate with administrators for custom storage configurations. {._abstract}
+`StorageClass` objects apply cluster-wide and are available to all namespaces. Only users with cluster-admin or storage-admin privileges can create or modify them.  {._abstract}
+
+This centralized control ensures consistent storage policies across your cluster while requiring application teams to coordinate with administrators for custom storage configurations.
 
 {% if not (microshift or openshift_rosa or openshift_rosa_hcp) %}
 

@@ -5,7 +5,7 @@ You must have a Virtual Private Cloud (VPC) to create a {{ product_title }} clus
 
 You can create a VPC by using one of these methods:
 
-*   Create a VPC using the ROSA CLI
+*   Create a VPC using the {{ rosa_cli_first }}
 *   Create a VPC by using a Terraform template
 *   Manually create the VPC resources in the AWS console
 

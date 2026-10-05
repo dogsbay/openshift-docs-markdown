@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Azure File object definition {id="azure-file-definition_{{ context }}"}
 
-To enable Azure File storage classes to dynamically provision file shares, grant the persistent volume binder permissions to create and manage secrets containing Azure storage credentials. This allows the provisioner to securely store and access the Azure storage account name and key required for file share creation. {._abstract}
+To enable Azure File storage classes to dynamically provision file shares, grant the persistent volume binder permissions to create and manage secrets containing Azure storage credentials.  {._abstract}
+
+This allows the provisioner to securely store and access the Azure storage account name and key required for file share creation.
 
 **Procedure**
 

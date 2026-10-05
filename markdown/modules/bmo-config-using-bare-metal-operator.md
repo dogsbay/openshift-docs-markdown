@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Configuration using the Bare Metal Operator {id="bmo-config-using-bare-metal-operator_{{ context }}"}
 
-When deploying {{ product_title }} on bare-metal hosts, there are times when you need to make changes to the host either before or after provisioning. This can include inspecting the host’s hardware, firmware, and firmware details. It can also include formatting disks or changing modifiable firmware settings. {._abstract}
+When deploying {{ product_title }} on bare-metal hosts, there are times when you need to make changes to the host either before or after provisioning. {._abstract}
+
+This can include inspecting the host’s hardware, firmware, and firmware details. It can also include formatting disks or changing modifiable firmware settings.
 
 You can use the Bare Metal Operator (BMO) to provision, manage, and inspect bare-metal hosts in your cluster. The BMO can complete the following operations:
 

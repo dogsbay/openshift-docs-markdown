@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Update policies on managed clusters {id="talo-policies-concept_{{ context }}"}
 
-The {{ cgu_operator_first }} remediates a set of `inform` policies for the clusters specified in the `ClusterGroupUpgrade` custom resource (CR). {{ cgu_operator }} remediates `inform` policies by controlling the `remediationAction` specification in a `Policy` CR through the `bindingOverrides.remediationAction` and `subFilter` specifications in the `PlacementBinding` CR. Each policy has its own corresponding {{ rh_rhacm }} placement rule and {{ rh_rhacm }} placement binding. {._abstract}
+The {{ cgu_operator_first }} remediates a set of `inform` policies for the clusters specified in the `ClusterGroupUpgrade` custom resource (CR). {._abstract}
+
+{{ cgu_operator }} remediates `inform` policies by controlling the `remediationAction` specification in a `Policy` CR through the `bindingOverrides.remediationAction` and `subFilter` specifications in the `PlacementBinding` CR. Each policy has its own corresponding {{ rh_rhacm }} placement rule and {{ rh_rhacm }} placement binding.
 
 One by one, {{ cgu_operator }} adds each cluster from the current batch to the placement rule that corresponds with the applicable managed policy. If a cluster is already compliant with a policy, {{ cgu_operator }} skips applying that policy on the compliant cluster. {{ cgu_operator }} then moves on to applying the next policy to the non-compliant cluster. After {{ cgu_operator }} completes the updates in a batch, all clusters are removed from the placement rules associated with the policies. Then, the update of the next batch starts.
 

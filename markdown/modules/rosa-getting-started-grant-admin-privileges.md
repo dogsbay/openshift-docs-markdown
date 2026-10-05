@@ -6,7 +6,7 @@ After you have added a user to your configured identity provider, you can grant 
 **Prerequisites**
 
 *   You have an AWS account.
-*   You installed and configured the latest {{ rosa_cli }}, `rosa`, on your workstation.
+*   You installed and configured the latest {{ rosa_cli_first }} on your workstation.
 *   You logged in to your Red&#160;Hat account using the {{ rosa_cli }}.
 *   You created a {{ product_title }} cluster.
 *   You have configured a GitHub identity provider for your cluster and added identity provider users.

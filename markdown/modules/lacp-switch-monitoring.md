@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure the PF Status Relay Operator for LACP state monitoring on SR-IOV networks {id="configuring-lacp-sriov_{{ context }}"}
 
-Use the PF Status Relay Operator to enable Link Aggregation Control Protocol (LACP) state monitoring for workloads by using pod-level bonding with SR-IOV networks. The Operator monitors the LACP state on physical functions (PF) and changes the link state for attached virtual functions (VF) when it detects an upstream failure. With this approach, you can detect failures on VFs attached to a PF to ensure a timely failover to a backup network path, ensuring high availability for your workloads. {._abstract}
+Use the PF Status Relay Operator to enable Link Aggregation Control Protocol (LACP) state monitoring for workloads by using pod-level bonding with SR-IOV networks. {._abstract}
+
+The Operator monitors the LACP state on physical functions (PF) and changes the link state for attached virtual functions (VF) when it detects an upstream failure. With this approach, you can detect failures on VFs attached to a PF to ensure a timely failover to a backup network path, ensuring high availability for your workloads.
 
 The following scenario demonstrates how to configure and verify LACP state monitoring for SR-IOV networks:
 
@@ -252,7 +254,7 @@ The following scenario demonstrates how to configure and verify LACP state monit
         ```
         *   `linksInContainer: true` creates the bond inside the pod’s network namespace.
         *   `mode: active-backup` configures the bond to use active-backup mode.
-        *   `links` specifies the pod-level interfaces to include in the bond. 
+        *   `links` specifies the pod-level interfaces to include in the bond.
 
             :::important
 
@@ -313,7 +315,7 @@ The following scenario demonstrates how to configure and verify LACP state monit
         sh-4.4# cat /proc/net/bonding/bond0
         ```
         ```bash title="Example output"
-        [root@client-bond-tlb /]# cat /proc/net/bonding/bond0 
+        [root@client-bond-tlb /]# cat /proc/net/bonding/bond0
         ...
 
         Bonding Mode: transmit load balancing

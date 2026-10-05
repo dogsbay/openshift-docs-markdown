@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Rekey Tang servers {id="nbde-rekeying-tang-servers_{{ context }}"}
 
-This procedure uses a set of three Tang servers, each with unique keys, as an example.
+This procedure uses a set of three Tang servers, each with unique keys, as an example. {._abstract}
 
 Using redundant Tang servers reduces the chances of nodes failing to boot automatically.
 

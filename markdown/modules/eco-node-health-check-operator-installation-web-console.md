@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Installing the Node Health Check Operator by using the web console {id="installing-node-health-check-operator-using-web-console_{{ context }}"}
 
-You can use the {{ product_title }} web console to install the Node Health Check Operator.
+You can use the {{ product_title }} web console to install the Node Health Check Operator. {._abstract}
 
 **Prerequisites**
 

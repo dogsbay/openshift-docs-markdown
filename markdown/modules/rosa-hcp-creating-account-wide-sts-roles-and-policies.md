@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating the account-wide STS roles and policies {id="rosa-sts-creating-account-wide-sts-roles-and-policies_{{ context }}"}
 
-Before you create a {{ product_title }} cluster, you must create the required account-wide IAM roles and policies by using the {{ rosa_cli_first }}. {._abstract}
+Before you create a {{ product_title }} cluster, you must create the required account-wide Identity and Access Management (IAM) roles and policies by using the {{ rosa_cli_first }}. {._abstract}
 
 
 :::note
@@ -21,7 +21,7 @@ Specific AWS-managed policies for {{ product_title }} must be attached to each r
 
 **Procedure**
 
-1.  If they do not exist in your AWS account, create the required account-wide STS roles and attach the policies by running the following command:
+1.  If they do not exist in your AWS account, create the required account-wide {{ sts_first }} roles and attach the policies by running the following command:
     ```terminal
     $ rosa create account-roles --hosted-cp
     ```

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding taints to a machine pool using the {{ rosa_cli }} {id="rosa-adding-taints-cli_{{ context }}"}
+# Add taints to a machine pool using the {{ rosa_cli }} {id="rosa-adding-taints-cli_{{ context }}"}
 
 You can add taints to a machine pool for your {{ product_title }} cluster by using the {{ rosa_cli_first }}. {._abstract}
 

@@ -6,7 +6,7 @@ After creating a cluster administrator or adding a user to your identity provide
 **Prerequisites**
 
 *   You have an AWS account.
-*   You installed and configured the latest {{ rosa_cli }}, `rosa`, on your workstation.
+*   You installed and configured the latest {{ rosa_cli_first }} on your workstation.
 *   You logged in to your Red&#160;Hat account using the {{ rosa_cli }}.
 *   You created a {{ product_title }} cluster.
 *   You have created a cluster administrator user or added your user account to the configured identity provider.

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Rotate keys using the NBDE Tang Server Operator {id="rotating-keys-using-nbde-tang-server-operator_{{ context }}"}
 
-With the NBDE Tang Server Operator, you also can rotate your Tang server keys. The precise interval at which you should rotate them depends on your application, key sizes, and institutional policy.
+With the NBDE Tang Server Operator, you also can rotate your Tang server keys. The precise interval at which you should rotate them depends on your application, key sizes, and institutional policy. {._abstract}
 
 **Prerequisites**
 
@@ -25,7 +25,7 @@ With the NBDE Tang Server Operator, you also can rotate your Tang server keys. T
     	sha256:     	QS82aXnPKA4XpfHr3umbA0r2iTbRcpWQ0VI2Qdhi6xg
     …	
     ```
-1.  Create a YAML file for moving your active keys to hidden keys, for example, `minimal-keyretrieve-rotate-tangserver.yaml`:
+1.  Create a YAML file for moving your active keys to hidden keys, for example, `minimal-keyretrieve-rotate-tangserver.yaml`. Specify the SHA-1 thumbprint of your active key in the `hiddenKeys` entry:
     ```yaml title="Example key-rotation YAML for tang-operator"
     apiVersion: daemons.redhat.com/v1alpha1
     kind: TangServer
@@ -37,9 +37,8 @@ With the NBDE Tang Server Operator, you also can rotate your Tang server keys. T
     spec:
       replicas: 1
       hiddenKeys:
-        - sha1: "PvYQKtrTuYsMV2AomUeHrUWkCGg" (1)
+        - sha1: "PvYQKtrTuYsMV2AomUeHrUWkCGg"
     ```
-    1.  Specify the SHA-1 thumbprint of your active key to rotate it.
 1.  Apply the YAML file:
     ```terminal
     $ oc apply -f minimal-keyretrieve-rotate-tangserver.yaml

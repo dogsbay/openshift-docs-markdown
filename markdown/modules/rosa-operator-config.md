@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating Operator roles and policies {id="rosa-operator-config_{{ context }}"}
 
-When you deploy a {{ product_title }} cluster, you must create the Operator IAM roles. The cluster Operators use the Operator roles and policies to obtain temporary permissions to perform cluster operations, such as managing storage and external access. {._abstract}
+When you deploy a {{ product_title }} cluster, you must create the Operator Identity and Access Management (IAM) roles. The cluster Operators use the Operator roles and policies to obtain temporary permissions to perform cluster operations, such as managing storage and external access. {._abstract}
 
 **Prerequisites**
 
@@ -30,10 +30,10 @@ When you deploy a {{ product_title }} cluster, you must create the Operator IAM 
     :   You must supply a prefix when creating these Operator roles. Failing to do so produces an error. See the Additional resources of this section for information on the Operator prefix.
 
     `--oidc-config-id=`
-    :   This value is the OIDC configuration ID that you created for your {{ product_title }} cluster.
+    :   This value is the OpenID Connect (OIDC) configuration ID that you created for your {{ product_title }} cluster.
 
     `--installer-role-arn`
-    :   This value is the installer role ARN that you created when you created the {{ product_title }} account roles.
+    :   This value is the installer role Amazon Resource Name (ARN) that you created when you created the {{ product_title }} account roles.
 
     You must include the `--hosted-cp` parameter to create the correct roles for {{ product_title }} clusters. This command returns the following information.
     ```terminal title="Example output"

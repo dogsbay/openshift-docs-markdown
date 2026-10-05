@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the hub cluster with ArgoCD {id="ztp-configuring-hub-cluster-with-argocd_{{ context }}"}
+# Configure the hub cluster with ArgoCD {id="ztp-configuring-hub-cluster-with-argocd_{{ context }}"}
 
 You can configure the hub cluster with a set of ArgoCD applications that generate the required installation and policy custom resources (CRs) for each site with {{ ztp_first }}. {._abstract}
 
@@ -27,9 +27,62 @@ You can configure the hub cluster with a set of ArgoCD applications that generat
         *   Update the URL to point to the Git repository. The URL ends with `.git`, for example, `https://repo.example.com/repo.git`.
         *   The `targetRevision` indicates which Git repository branch to monitor.
         *   `path` specifies the path to the `ClusterInstance` and `PolicyGenerator` or `PolicyGentemplate` CRs, respectively.
+1.  To install the {{ ztp }} plugin, patch the ArgoCD instance in the hub cluster with the relevant multicluster engine (MCE) subscription image. Customize the patch file that you previously extracted into the `out/argocd/deployment/` directory for your environment.
+    1.  Select the `multicluster-operators-subscription` image that matches your {{ rh_rhacm }} version.
+        *   For {{ rh_rhacm }} 2.8 and 2.9, use the `registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel8:v<rhacm_version>` image.
+        *   For {{ rh_rhacm }} 2.10 and later, use the `registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel9:v<rhacm_version>` image.
 
-{% include "./snippets/ztp-patch-argocd-hub-cluster.md" %}
 
+        :::important
+
+        The version of the `multicluster-operators-subscription` image must match the {{ rh_rhacm }} version.
+        Beginning with the MCE 2.10 release, {{ op_system_base }} 9 is the base image for `multicluster-operators-subscription` images.
+
+        Click `[Expand for Operator list]` in the "Platform Aligned Operators" table in [OpenShift Operator Life Cycles](https://access.redhat.com/support/policy/updates/openshift_operators) to view the complete supported Operators matrix for {{ product_title }}.
+        
+        :::
+
+    1.  Modify the `out/argocd/deployment/argocd-openshift-gitops-patch.json` file with the `multicluster-operators-subscription` image that matches your {{ rh_rhacm }} version:
+        ```json
+        {
+          "args": [
+            "-c",
+            "mkdir -p /.config/kustomize/plugin/policy.open-cluster-management.io/v1/policygenerator && cp /policy-generator/PolicyGenerator-not-fips-compliant /.config/kustomize/plugin/policy.open-cluster-management.io/v1/policygenerator/PolicyGenerator"
+          ],
+          "command": [
+            "/bin/bash"
+          ],
+          "image": "registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel9:v2.10",
+          "name": "policy-generator-install",
+          "imagePullPolicy": "Always",
+          "volumeMounts": [
+            {
+              "mountPath": "/.config",
+              "name": "kustomize"
+            }
+          ]
+        }
+        ```
+
+        *   Optional: For RHEL 9 images, in the `args` field, change the executable path from `/policy-generator/PolicyGenerator-not-fips-compliant` to match the required universal executable for your ArgoCD version.
+        *   Match the `multicluster-operators-subscription` image to your {{ rh_rhacm }} version. In disconnected environments, replace the URL with the disconnected registry equivalent for your environment.
+    1.  Patch the ArgoCD instance.
+    Run the following command:
+        ```terminal
+        $ oc patch argocd openshift-gitops \
+        -n openshift-gitops --type=merge \
+        --patch-file out/argocd/deployment/argocd-openshift-gitops-patch.json
+        ```
+1.  In {{ rh_rhacm }} 2.7 and later, the multicluster engine enables the `cluster-proxy-addon` feature by default.
+Apply the following patch to disable the `cluster-proxy-addon` feature and remove the relevant hub cluster and managed pods that are responsible for this add-on.
+Run the following command:
+    ```terminal
+    $ oc patch multiclusterengines.multicluster.openshift.io multiclusterengine --type=merge --patch-file out/argocd/deployment/disable-cluster-proxy-addon.json
+    ```
+1.  Apply the pipeline configuration to your hub cluster by running the following command:
+    ```terminal
+    $ oc apply -k out/argocd/deployment
+    ```
 1.  Optional: If you have existing ArgoCD applications, verify that the `PrunePropagationPolicy=background` policy is set in the `Application` resource by running the following command:
     ```terminal
     $ oc -n openshift-gitops get applications.argoproj.io  \

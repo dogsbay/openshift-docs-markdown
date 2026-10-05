@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring machine pool AutoRepair using the {{ rosa_cli }} {id="rosa-autorepair-cli_{{ context }}"}
+# Configure machine pool AutoRepair using the {{ rosa_cli }} {id="rosa-autorepair-cli_{{ context }}"}
 
 You can configure machine pool AutoRepair for your {{ product_title }} cluster by using the {{ rosa_cli_first }}. {._abstract}
 

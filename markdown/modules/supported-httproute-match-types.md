@@ -7,21 +7,19 @@ You can configure the following match types:
 
 
 `path`
-:   Consists of type and value. Path match type indicates how to match the value and may be either “Exact” or “PathPrefix” (default). The default path value, if omitted, is “/”. On {{ SMProductName }}, “RegularExpression” may also be used as a type.
+:   Consists of type and value. Path match type indicates how to match the value and may be either "Exact" or "PathPrefix" (default). The default path value, if omitted, is "/". On {{ SMProductName }}, "RegularExpression" may also be used as a type.
 
 
 `headers`
-:   Each consists of type, name, and value. Header match type indicates how to match the value and may be “Exact” (default) or on {{ SMProductName }}, “RegularExpression”. Name is the HTTP header name, which must be case-insensitive. Value is the value of the HTTP header to be matched.
+:   Each consists of type, name, and value. Header match type indicates how to match the value and may be "Exact" (default) or on {{ SMProductName }}, "RegularExpression". Name is the HTTP header name, which must be case-insensitive. Value is the value of the HTTP header to be matched.
 
 
 `queryParameters`
-:   Each consists of type, name, and value. QueryParameters match type indicates how to match the value and may be “Exact” (default) or on {{ SMProductName }}, “RegularExpression”. Name is the HTTP query parameter name and must match exactly. Value is the value of the HTTP query parameter to be matched.
+:   Each consists of type, name, and value. QueryParameters match type indicates how to match the value and may be "Exact" (default) or on {{ SMProductName }}, "RegularExpression". Name is the HTTP query parameter name and must match exactly. Value is the value of the HTTP query parameter to be matched.
 
 
 `method`
 :   A value in upper case that should match on the HTTP request method. Must be one of: GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, or PATCH.
-
-## Example: path match {id="_example_path_match"}
 
 The following example demonstrates a complete `HTTPRoute` custom resource (CR) configured with path-based matching to route requests for `/<example_app>` to a backend service:
 
@@ -50,8 +48,6 @@ spec:
 *   `path` specifies that the request must match a specific URL path.
 *   `type: Exact` ensures the route only matches the exact string `/<example_app>`.
 *   `backendRefs` defines the service where matching traffic is sent.
-
-## Example: headers match (AND condition) {id="_example_headers_match_and_condition"}
 
 The following snippet demonstrates how to combine multiple header matches so that a request must contain both `myheader: newheader` AND `color: orange` to successfully match:
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Preparing the {{ ztp }} site configuration repository {id="ztp-preparing-the-ztp-git-repository_{{ context }}"}
+# Prepare the {{ ztp }} site configuration repository {id="ztp-preparing-the-ztp-git-repository_{{ context }}"}
 
 Before you can use the {{ ztp_first }} pipeline, you need to prepare the Git repository to host the site configuration data. {._abstract}
 

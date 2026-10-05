@@ -72,6 +72,10 @@
 {%- set google_cloud_platform = true -%}
 {%- set cco_multi_mode = true -%}
 {% endif %}
+{% if context == "installing-gcp-dedicated" %}
+{%- set google_cloud_platform = true -%}
+{%- set cco_multi_mode = true -%}
+{% endif %}
 
 {%- if context == "installing-azure-customizations" %}
 {%- set azure = true -%}
@@ -356,6 +360,10 @@ You must manually create and configure the identity and access management (IAM) 
 {%- set cco_multi_mode = "" -%}
 {% endif %}
 {% if context == "installing-gcp-private" %}
+{%- set google_cloud_platform = "" -%}
+{%- set cco_multi_mode = "" -%}
+{% endif %}
+{% if context == "installing-gcp-dedicated" %}
 {%- set google_cloud_platform = "" -%}
 {%- set cco_multi_mode = "" -%}
 {% endif %}

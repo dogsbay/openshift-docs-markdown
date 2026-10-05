@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Set up the custom seccomp profile {id="setting-custom-seccomp-profile_{{ context }}"}
 
+You can configure a custom seccomp profile for use with your workloads. {._abstract}
+
 **Prerequisite**
 
 *   You have cluster administrator permissions.
@@ -13,6 +15,10 @@
 1.  Update the custom SCC by providing reference to the created custom seccomp profile:
     ```yaml
     seccompProfiles:
-    - localhost/<custom-name>.json (1)
+    - localhost/<custom-name>.json
     ```
-    1.  Provide the name of your custom seccomp profile.
+
+    where:
+
+    `<custom-name>`
+    :   Specifies the name of your custom seccomp profile.

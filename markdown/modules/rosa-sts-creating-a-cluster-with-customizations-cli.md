@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a cluster with customizations using the CLI {id="rosa-sts-creating-cluster-customizations-cli_{{ context }}"}
+# Create a cluster with customizations using the CLI {id="rosa-sts-creating-cluster-customizations-cli_{{ context }}"}
 
 When you create a {{ product_title }} cluster that uses the AWS Security Token Service (STS), you can customize your installation interactively. {._abstract}
 

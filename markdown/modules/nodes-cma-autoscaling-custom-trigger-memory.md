@@ -1,7 +1,7 @@
-{%- set _mod_docs_content_type = "PROCEDURE" %}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # Understanding the memory trigger {id="nodes-cma-autoscaling-custom-trigger-memory_{{ context }}"}
 
-You can scale pods based on memory metrics. This trigger uses cluster metrics as the source for metrics.
+You can scale pods based on memory metrics. This trigger uses cluster metrics as the source for metrics. {._abstract}
 
 The custom metrics autoscaler scales the pods associated with an object to maintain the average memory usage that you specify. The autoscaler increases and decreases the number of replicas between the minimum and maximum numbers to maintain the specified memory utilization across all pods. The memory trigger considers the memory utilization of entire pod. If the pod has multiple containers, the memory utilization is the sum of all of the containers.
 
@@ -14,7 +14,9 @@ The custom metrics autoscaler scales the pods associated with an object to maint
 :::
 
 
-```yaml title="Example scaled object with a memory target"
+The following example scales the pods associated with this scaled object to maintain the memory usage at 60% of the requested value of the resource for the pods:
+
+```yaml
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
@@ -23,15 +25,25 @@ metadata:
 spec:
 # ...
   triggers:
-  - type: memory (1)
-    metricType: Utilization (2)
+  - type: memory
+    metricType: Utilization
     metadata:
-      value: '60' (3)
-      containerName: api (4)
+      value: '60'
+      containerName: api
 ```
-1.  Specifies memory as the trigger type.
-1.  Specifies the type of metric to use, either `Utilization` or `AverageValue`.
-1.  Specifies the value that triggers scaling. Must be specified as a quoted string value.
+where:
+
+
+`spec.triggers[].type`
+:   Specifies memory as the trigger type.
+
+`spec.triggers[].metricType`
+:   Specifies the type of metric to use, either `Utilization` or `AverageValue`.
+
+`spec.triggers[].metadata.value`
+:   Specifies the value that triggers scaling. Must be specified as a quoted string value.
     *   When using `Utilization`, the target value is the average of the resource metrics across all relevant pods, represented as a percentage of the requested value of the resource for the pods.
     *   When using `AverageValue`, the target value is the average of the metrics across all relevant pods.
-1.  Optional: Specifies an individual container to scale, based on the memory utilization of only that container, rather than the entire pod. In this example, only the container named `api` is to be scaled.
+
+`spec.triggers[].metadata.containerName`
+:   Specifies an individual container to scale, based on the memory utilization of only that container, rather than the entire pod. In this example, only the container named `api` is to be scaled. This parameter is optional.

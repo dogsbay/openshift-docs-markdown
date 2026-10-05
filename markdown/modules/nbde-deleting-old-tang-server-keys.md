@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Delete old Tang server keys {id="nbde-deleting-old-tang-server-keys_{{ context }}"}
 
+You can delete old Tang server keys after rotating them to prevent decryption with outdated key material. {._abstract}
+
 **Prerequisites**
 
 *   A root shell on the Linux machine running the Tang server.

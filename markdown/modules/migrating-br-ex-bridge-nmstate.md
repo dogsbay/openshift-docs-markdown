@@ -39,9 +39,11 @@ Misconfiguring any files that form part of the migration operation can cause dis
     :::important
 
     To ensure network stability and performance, you must explicitly declare the MTU in the manifest for every interface. Do not rely on automatic MTU configuration. The MTU configured on a bridge port or VLAN-tagged interface must not exceed the maximum frame size supported by the attached physical medium. A mismatch causes packet fragmentation or connectivity loss.
+    
+    :::
 
-    The following example sets the MTU to `9000` for both the physical device and the bridge interface in the NMState configuration file. You must base64-encode the file and then embed the output in a `MachineConfig` manifest file. The `MachineConfig` manifest file writes to `/etc/nmstate/openshift/cluster.yml` or a per-node path under `/etc/nmstate/openshift/`.
 
+    You can use NMState to apply various network settings across cluster nodes. As an example, the following configuration sets the MTU to `9000` for both a physical device and a bridge interface. You must encode the file in base64 format and then embed the output in a `MachineConfig` manifest file. The `MachineConfig` manifest file writes to `/etc/nmstate/openshift/cluster.yml` or a per-node path under `/etc/nmstate/openshift/`.
     ```yaml title="NMState file before encoding"
     # ...
     interfaces:
@@ -58,7 +60,6 @@ Misconfiguring any files that form part of the migration operation can cause dis
       mtu: 9000
     # ...
     ```
-
     ```yaml title="MachineConfig embeds the encoded file"
     # ...
       kind: MachineConfig
@@ -75,9 +76,6 @@ Misconfiguring any files that form part of the migration operation can cause dis
             path: /etc/nmstate/openshift/cluster.yml
     # ...
     ```
-    
-    :::
-
 1.  Apply the updates from the `MachineConfig` object to your cluster by entering the following command:
     ```terminal
     $ oc apply -f <machine_config>.yml

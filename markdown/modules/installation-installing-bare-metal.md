@@ -20,7 +20,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Waiting for the bootstrap process to complete {id="installation-installing-bare-metal_{{ context }}"}
 
-The {{ product_title }} bootstrap process begins after the cluster nodes first boot into the persistent {{ op_system }} environment that has been installed to disk. The configuration information provided through the Ignition config files is used to initialize the bootstrap process and install {{ product_title }} on the machines. You must wait for the bootstrap process to complete. {._abstract}
+After your cluster nodes first boot into the persistent {{ op_system }} environment installed to disk, wait for the {{ product_title }} bootstrap process to complete. {._abstract}
+
+The configuration information provided through the Ignition config files is used to initialize the bootstrap process and install {{ product_title }} on the machines.
 
 **Prerequisites**
 

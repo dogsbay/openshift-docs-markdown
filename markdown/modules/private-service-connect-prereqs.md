@@ -16,7 +16,7 @@ In addition to the prerequisites that you need to complete before deploying any 
 
 
         For information about how to create a VPC on {{ GCP }}, see [Create and manage VPC networks](https://cloud.google.com/vpc/docs/create-modify-vpc-networks) in the {{ gcp_full }} documentation.
-*   Provide a path from the OpenShift Dedicated cluster to the internet for the domains and ports listed in the _{{ gcp_short }} firewall prerequisites_ in the _Additional resources_ section.
+*   Provide a path from the OpenShift Dedicated cluster to the internet for the domains and ports listed in the _{{ gcp_short }} firewall prerequisites_ in the _Next steps_ section.
 *   Enabled [Cloud Identity-Aware Proxy API](https://console.cloud.google.com/marketplace/product/google/iap.googleapis.com?q=search&referrer=search&hl=en&project=openshift-gce-devel) at the {{ GCP }} project level.
 
 In addition to the requirements listed above, clusters configured with the **Service Account authentication type** must grant the `IAP-Secured Tunnel User` role to `osd-ccs-admin` service account.

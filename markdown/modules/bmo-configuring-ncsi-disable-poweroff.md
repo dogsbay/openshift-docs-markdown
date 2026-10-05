@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring NC-SI and DisablePowerOff for shared NICs {id="bmo-configuring-ncsi-disable-poweroff_{{ context }}"}
 
-The Network Controller Sideband Interface (NC-SI) enables the Baseboard Management Controller (BMC) to share a system network interface card (NIC) with the host for management traffic, using protocols like Redfish, IPMI, or vendor-specific interfaces. The `DisablePowerOff` feature prevents hard power-offs, ensuring soft reboots to maintain BMC connectivity. {._abstract}
+The Network Controller Sideband Interface (NC-SI) enables the Baseboard Management Controller (BMC) to share a system network interface card (NIC) with the host for management traffic, using protocols like Redfish, IPMI, or vendor-specific interfaces. {._abstract}
+
+The `DisablePowerOff` feature prevents hard power-offs, ensuring soft reboots to maintain BMC connectivity.
 
 **Prerequisites**
 

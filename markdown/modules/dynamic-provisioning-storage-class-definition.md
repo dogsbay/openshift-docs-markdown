@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Basic StorageClass object definition {id="basic-storage-class-definition_{{ context }}"}
 
-A `StorageClass` object defines the metadata, provisioner type, and plugin-specific parameters that determine how persistent volumes (PVs) are dynamically created in your cluster. Each storage provisioner type requires different parameters, and annotations control cluster-wide defaults, making this structure the foundation for all dynamic storage provisioning. {._abstract}
+A `StorageClass` object defines the metadata, provisioner type, and plugin-specific parameters that determine how persistent volumes (PVs) are dynamically created in your cluster.  {._abstract}
+
+Each storage provisioner type requires different parameters, and annotations control cluster-wide defaults, making this structure the foundation for all dynamic storage provisioning.
 
 {% if not (openshift_rosa or openshift_rosa_hcp) %}
 ```yaml title="Example StorageClass definition"

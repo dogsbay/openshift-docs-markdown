@@ -22,6 +22,10 @@ Manually remove the part in the `interfaces` or `excludeInterfaces` that restric
       agent:
         type: EBPF
         ebpf:
-          interfaces: [ 'br-int', 'br-ex' ] (1)
+          interfaces: [ 'br-int', 'br-ex' ]
     ```
-    1.  Specifies the network interfaces.
+
+    where:
+
+    `spec.agent.ebpf.interfaces`
+    :   Specifies the network interfaces.

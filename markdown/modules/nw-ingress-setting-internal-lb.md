@@ -2,7 +2,7 @@
 # Configure an Ingress Controller to use an internal load balancer {id="nw-ingress-setting-internal-lb_{{ context }}"}
 
 When creating an Ingress Controller on cloud platforms, the Ingress Controller is published by a public cloud load balancer by default.
-As an administrator, you can create an Ingress Controller that uses an internal cloud load balancer.
+As an administrator, you can create an Ingress Controller that uses an internal cloud load balancer. {._abstract}
 
 {% if not (openshift_rosa or openshift_dedicated) %}
 
@@ -48,22 +48,36 @@ for implementation details.
     kind: IngressController
     metadata:
       namespace: openshift-ingress-operator
-      name: <name> (1)
+      name: <name>
     spec:
-      domain: <domain> (2)
+      domain: <domain>
       endpointPublishingStrategy:
         type: LoadBalancerService
         loadBalancer:
-          scope: Internal (3)
+          scope: Internal
     ```
-    1.  Replace `<name>` with a name for the `IngressController` object.
-    1.  Specify the `domain` for the application published by the controller.
-    1.  Specify a value of `Internal` to use an internal load balancer.
+
+    where:
+
+    `metadata.name`
+    :   Specifies a name for the `IngressController` object.
+
+    `spec.domain`
+    :   Specifies the `domain` for the application published by the controller.
+
+    `spec.endpointPublishingStrategy.loadBalancer.scope`
+    :   Specifies a value of `Internal` to use an internal load balancer.
+
 1.  Create the Ingress Controller defined in the previous step by running the following command:
     ```terminal
-    $ oc create -f <name>-ingress-controller.yaml (1)
+    $ oc create -f <name>-ingress-controller.yaml
     ```
-    1.  Replace `<name>` with the name of the `IngressController` object.
+
+    where:
+
+    `<name>`
+    :   Specifies the name of the `IngressController` object.
+
 1.  Optional: Confirm that the Ingress Controller was created by running the following command:
     ```terminal
     $ oc --all-namespaces=true get ingresscontrollers

@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating a directory to contain additional manifests {id="installing-ocp-agent-manifest-folder_{{ context }}"}
 
-If you create additional manifests to configure your Agent-based installation beyond the `install-config.yaml` and `agent-config.yaml` files, you must create an `openshift` subdirectory within your installation directory.
-All of your additional machine configurations must be located within this subdirectory. {._abstract}
+If you create additional manifests to configure your Agent-based installation beyond the `install-config.yaml` and `agent-config.yaml` files, you must create an `openshift` subdirectory within your installation directory. {._abstract}
+
+All of your additional machine configurations must be located within this subdirectory.
 
 
 :::note

@@ -6,7 +6,9 @@
 {% include "./_attributes/common-attributes.md" %}
 # Sample YAML for a compute machine set custom resource on {{ gcp_short }} {id="machineset-yaml-gcp_{{ context }}"}
 
-The sample YAML defines a compute machine set for {{ gcp_first }}, enabling the automated provisioning of nodes within a specific VPC. When you apply this configuration by using the {{ product_title }} CLI, you can ensure consistent scaling, scheduling, and infrastructure ID labeling for compute resources in your cluster. {._abstract}
+The sample YAML defines a compute machine set for {{ gcp_first }}, enabling the automated provisioning of nodes within a specific VPC. {._abstract}
+
+When you apply this configuration by using the {{ product_title }} CLI, you can ensure consistent scaling, scheduling, and infrastructure ID labeling for compute resources in your cluster.
 
 The sample YAML defines a compute machine set that runs in {{ gcp_full }} and creates nodes that are labeled with
 {%- if not infra %}

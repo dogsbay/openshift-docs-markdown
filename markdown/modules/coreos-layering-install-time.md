@@ -5,7 +5,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Applying a custom layered image during {{ product_title }} installation {id="coreos-layering-install-time_{{ context }}"}
 
-You can use the standard {{ product_title }} installation process to apply a custom layered image to your nodes by adding a `MachineOSConfig` custom resource (CR) YAML and a push secret YAML to the `<installation_directory>/manifests/` directory. This allows you to use {{ image_mode_os_lower }} to apply additional functionality to specific nodes upon cluster installation. {._abstract}
+You can use the standard {{ product_title }} installation process to apply a custom layered image to your nodes by adding a `MachineOSConfig` custom resource (CR) YAML and a push secret YAML to the `<installation_directory>/manifests/` directory.  {._abstract}
+
+This allows you to use {{ image_mode_os_lower }} to apply additional functionality to specific nodes upon cluster installation.
 
 {% if install %}
 With {{ image_mode_os_lower }}, you can extend the functionality of your base {{ op_system_first }} image by layering additional images onto the base image. This layering does not modify the base RHCOS image. Instead, it creates a custom layered image that includes all {{ op_system }} functionality and adds additional functionality to specific nodes in the cluster. For example, you can create custom layered images to apply hotfixes, RHEL packages, or third-party RPMs to the nodes your cluster.
