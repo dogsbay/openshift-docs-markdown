@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Adding the registry certificate authority to the hosted cluster {id="hcp-ibm-z-adding-registry-ca-hostedcluster_{{ context }}"}
 
-When you are deploying {{ hcp }} on {{ ibm_z_title }} in a disconnected environment, include the `additional-trust-bundle` and `image-content-sources` resources. The hosted cluster uses those resources to inject the certificate authority into the data plane compute nodes so that the images are pulled from the registry. {._abstract}
+When you deploy {{ hcp }} on {{ ibm_z_title }} in a disconnected environment, include the `additional-trust-bundle` and `image-content-sources` resources. The hosted cluster uses these resources to inject certificate authorities into data plane compute nodes so that images pull from the registry. {._abstract}
 
 **Procedure**
 

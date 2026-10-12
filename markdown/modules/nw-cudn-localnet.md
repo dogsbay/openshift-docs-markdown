@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create a ClusterUserDefinedNetwork CR for a Localnet topology {id="nw-cudn-localnet_{{ context }}"}
 
-You deploy a `Localnet` topology to connect the secondary network to the physical underlay. This enables both east-west cluster traffic and access to services running outside the cluster. This topology type requires the additional configuration of the underlying Open vSwitch (OVS) system on cluster nodes. {._abstract}
+You deploy a `Localnet` topology to connect the secondary network to the physical underlay, enabling both east-west cluster traffic and access to services running outside the cluster. {._abstract}
 
 **Prerequisites**
 

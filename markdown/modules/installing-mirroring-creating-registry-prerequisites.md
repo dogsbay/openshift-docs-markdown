@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Prerequisites {id="prerequisites_{{ context }}"}
+# Prerequisites for creating a mirror registry {id="prerequisites_{{ context }}"}
 
 There are several prerequisites that you must meet before you can create a mirror registry. {._abstract}
 

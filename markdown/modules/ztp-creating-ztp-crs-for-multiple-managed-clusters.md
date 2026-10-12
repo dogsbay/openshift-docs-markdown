@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Install managed clusters with ClusterInstance resources and {{ rh_rhacm }} {id="ztp-creating-ztp-crs-for-multiple-managed-clusters_{{ context }}"}
 
-{{ ztp_first }} uses `ClusterInstance` custom resources (CRs) in a Git repository to manage the processes that install {{ product_title }} clusters. The `ClusterInstance` CR contains cluster-specific parameters required for installation. It has options for applying select configuration CRs during installation including user defined extra manifests. {._abstract}
+{{ ztp_first }} uses `ClusterInstance` custom resources (CRs) in a Git repository to manage the installation of {{ product_title }} clusters. The `ClusterInstance` CR contains cluster-specific parameters and options for applying configuration CRs during installation. {._abstract}
 
 The {{ ztp }} plugin processes `ClusterInstance` CRs to generate a collection of CRs on the hub cluster. This triggers the assisted service in {{ rh_rhacm_first }} to install {{ product_title }} on the bare-metal host. You can find installation status and error messages in these CRs on the hub cluster.
 You can provision single clusters manually or in batches with {{ ztp }}:

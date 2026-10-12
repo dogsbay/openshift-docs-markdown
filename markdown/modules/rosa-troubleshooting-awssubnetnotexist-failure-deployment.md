@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting cluster creation with an AWSSubnetDoesNotExist error {id="rosa-troubleshooting-awssubnetnotexist-failure-deployment_{{ context }}"}
+# Troubleshoot cluster creation with an AWSSubnetDoesNotExist error {id="rosa-troubleshooting-awssubnetnotexist-failure-deployment_{{ context }}"}
 
 If a cluster creation action fails, you can receive the following error messages. {._abstract}
 

@@ -33,6 +33,6 @@ Notes
 {%- set operator_ref = "" -%}
 {% endif %}
 
-{% if context == "cluster-caps" %}
+{% if context == "cluster-capabilities" %}
 {%- set cluster_caps = "" -%}
 {% endif %}

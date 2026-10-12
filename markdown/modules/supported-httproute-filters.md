@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Supported HTTPRoute filters {id="supported-httproute-filters_{{ context }}"}
 
-Filters apply processing directions to the HTTP request, such as header modification or redirect to another URL. You can specify up to 16 filters in a rule. Filters may usually be combined for advanced filtering results, except for the urlRewrite and requestRedirect filters, which may not be combined. {._abstract}
+Filters apply processing directions to the HTTP request, such as header modification or redirect to another URL. You can specify up to 16 filters in a rule and combine most filter types except `urlRewrite` and `requestRedirect`. {._abstract}
 
 You can apply the following filter types to a rule:
 

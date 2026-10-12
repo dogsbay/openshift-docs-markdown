@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Specifying multiple subnets for your network {id="nw-operator-vsphere-multiple-subnets_{{ context }}"}
 
-Before you install an {{ product_title }} cluster on a {{ vmw_short }} host, you can specify multiple subnets for a networking implementation so that the {{ vmw_short }} cloud controller manager (CCM) can select the appropriate subnet for a given networking situation. {{ vmw_short }} can use the subnet for managing pods and services on your cluster. {._abstract}
+Before you install an {{ product_title }} cluster on a {{ vmw_short }} host, you can specify multiple subnets so that the {{ vmw_short }} cloud controller manager (CCM) can select the appropriate subnet for managing pods and services. {._abstract}
 
 For this configuration, you must specify internal and external Classless Inter-Domain Routing (CIDR) implementations in the {{ vmw_short }} CCM configuration. Each CIDR implementation lists an IP address range that the CCM uses to decide what subnets interact with traffic from internal and external networks.
 

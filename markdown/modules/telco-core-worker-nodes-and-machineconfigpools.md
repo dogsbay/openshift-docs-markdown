@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Worker Nodes and MachineConfigPools {id="telco-core-worker-nodes-and-machineconfigpools_{{ context }}"}
 
-`MachineConfigPools` (MCPs) custom resources (CR) enable the subdivision of worker nodes in telco core clusters into different node groups based on customer planning parameters.
-Careful deployment planning using MCPs is crucial to minimize deployment and upgrade time and, more importantly, to minimize interruption of telco-grade services during cluster upgrades. {._abstract}
+`MachineConfigPools` (MCPs) custom resources (CR) subdivide worker nodes in telco core clusters into different node groups. Careful MCP planning minimizes deployment and upgrade time and interruption of telco-grade services. {._abstract}
 
 **Description**
 

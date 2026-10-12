@@ -12,7 +12,7 @@ Only use this procedure for {{ ibm_z_name }} clusters with z/VM.
 **Procedure**
 
 1.  Create a parameter file for the z/VM guest:
-    ```text title="Example parameter file"
+    ```text
     rd.neednet=1 \
     console=ttysclp0 \
     coreos.live.rootfs_url=<rootfs_url> \
@@ -40,7 +40,7 @@ Only use this procedure for {{ ibm_z_name }} clusters with z/VM.
         
         :::
 
-        ```text title="Example"
+        ```text
         rd.zfcp=<adapter1>,<wwpn1>,<lun1> \
         rd.zfcp=<adapter2>,<wwpn2>,<lun2> \
         rd.multipath=default
@@ -50,7 +50,7 @@ Only use this procedure for {{ ibm_z_name }} clusters with z/VM.
     Leave all other parameters unchanged.
 1.  Punch the `kernel.img`,`generic.parm`, and `initrd.img` files to the virtual reader of the z/VM guest virtual machine.
 
-    For more information, see [PUNCH](https://www.ibm.com/docs/en/zvm/latest?topic=commands-punch) ({{ ibm_title }} Documentation).
+    For more information, see "PUNCH" in the {{ ibm_title }} documentation.
 
     :::tip
 
@@ -64,4 +64,10 @@ Only use this procedure for {{ ibm_z_name }} clusters with z/VM.
     $ ipl c
     ```
 
-    For more information, see [IPL](https://www.ibm.com/docs/en/zvm/latest?topic=commands-ipl) ({{ ibm_title }} Documentation).
+    For more information, see "IPL" in the {{ ibm_title }} documentation.
+
+**Additional resources**
+{._additional-resources}
+
+*   [PUNCH](https://www.ibm.com/docs/en/zvm/latest?topic=commands-punch)
+*   [IPL](https://www.ibm.com/docs/en/zvm/latest?topic=commands-ipl)

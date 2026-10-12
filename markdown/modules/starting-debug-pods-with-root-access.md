@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Starting debug pods with root access {id="starting-debug-pods-with-root-access_{{ context }}"}
+# Start debug pods with root access {id="starting-debug-pods-with-root-access_{{ context }}"}
 
 You can start a debug pod with root access, based on a problematic pod’s deployment or deployment configuration. Pod users typically run with non-root privileges, but running troubleshooting pods with temporary root privileges can be useful during issue investigation. {._abstract}
 

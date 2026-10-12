@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deploying hosted cluster objects {id="hcp-hc-objects_{{ context }}"}
 
-Typically, the HyperShift Operator creates the `HostedControlPlane` namespace. However, you might want to include all the objects before the HyperShift Operator begins to reconcile the `HostedCluster` object. Then, when the Operator starts the reconciliation process, it can find all of the objects in place. {._abstract}
+Typically, the HyperShift Operator creates the `HostedControlPlane` namespace. However, you might want to include all objects before the HyperShift Operator begins to reconcile the `HostedCluster` object. Then, when the Operator starts the reconciliation process, it finds the objects in place. {._abstract}
 
 **Procedure**
 

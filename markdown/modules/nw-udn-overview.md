@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Overview of user-defined networks {id="nw-udn-overview_{{ context }}"}
 
-To secure and improve network segmentation and isolation, cluster administrators can create primary or secondary networks that span namespaces at the cluster level using the `ClusterUserDefinedNetwork` custom resource (CR) while a developer can define secondary networks at the namespace level using the `UserDefinedNetwork` CR. {._abstract}
+Cluster administrators can create primary or secondary networks that span namespaces by using the `ClusterUserDefinedNetwork` CR, while developers can define secondary networks at the namespace level by using the `UserDefinedNetwork` CR. {._abstract}
 
 Before the implementation of user-defined networks (UDN), the OVN-Kubernetes CNI plugin for {{ product_title }} only supported a layer 3 topology on the primary or _main_ network. Due to Kubernetes design principles: all pods are attached to the main network, all pods communicate with each other by their IP addresses, and inter-pod traffic is restricted according to network policy.
 

@@ -1,4 +1,4 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Postinstallation requirements {id="olm-mirror-catalog-post_{{ context }}"}
 
-After you mirror the catalog, you can continue with the remainder of your cluster installation. After your cluster installation has finished successfully, you must specify the manifests directory from this procedure to create the `ImageContentSourcePolicy` and `CatalogSource` objects. These objects are required to populate and enable installation of Operators from the software catalog.
+After mirroring the catalog and completing the cluster installation, you must create `ImageContentSourcePolicy` and `CatalogSource` objects from the manifests directory to enable installation of Operators from the software catalog.

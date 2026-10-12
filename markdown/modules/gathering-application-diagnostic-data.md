@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Gathering application diagnostic data to investigate application failures {id="gathering-application-diagnostic-data_{{ context }}"}
+# Gather application diagnostic data to investigate application failures {id="gathering-application-diagnostic-data_{{ context }}"}
 
 Application failures can occur within running application pods. In these situations, you can retrieve diagnostic information with these strategies: {._abstract}
 

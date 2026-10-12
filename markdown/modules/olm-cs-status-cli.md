@@ -6,7 +6,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing Operator catalog source status by using the CLI {id="olm-cs-status-cli_{{ context }}"}
+# View Operator catalog source status by using the CLI {id="olm-cs-status-cli_{{ context }}"}
 
 You can view the status of an Operator catalog source by using the CLI. {._abstract}
 

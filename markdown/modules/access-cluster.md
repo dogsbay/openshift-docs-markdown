@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accessing your cluster {id="access-cluster_{{ context }}"}
+# Access your cluster {id="access-cluster_{{ context }}"}
 
 After you have configured your identity providers, users can access the cluster from {{ cluster_manager_first }}. {._abstract}
 

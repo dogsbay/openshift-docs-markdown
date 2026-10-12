@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding pod error states {id="understanding-pod-error-states_{{ context }}"}
+# Understand pod error states {id="understanding-pod-error-states_{{ context }}"}
 
 Pod failures return explicit error states that can be observed in the `status` field in the output of `oc get pods`. Pod error states cover image, container, and container network related failures. {._abstract}
 

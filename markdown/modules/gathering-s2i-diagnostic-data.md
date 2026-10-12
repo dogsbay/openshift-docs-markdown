@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Gathering Source-to-Image diagnostic data {id="gathering-s2i-diagnostic-data_{{ context }}"}
+# Gather Source-to-Image diagnostic data {id="gathering-s2i-diagnostic-data_{{ context }}"}
 
-The S2I tool runs a build pod and a deployment pod in sequence. The deployment pod is responsible for deploying the application pods based on the application container image created in the build stage. Watch build, deployment and application pod status to determine where in the S2I process a failure occurs. Then, focus diagnostic data collection accordingly. {._abstract}
+The S2I tool runs a build pod and a deployment pod in sequence. The deployment pod is responsible for deploying the application pods based on the application container image created in the build stage. {._abstract}
+
+Watch build, deployment and application pod status to determine where in the S2I process a failure occurs. Then, focus diagnostic data collection accordingly.
 
 **Prerequisites**
 

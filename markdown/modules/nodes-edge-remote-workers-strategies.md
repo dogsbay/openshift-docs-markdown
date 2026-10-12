@@ -46,7 +46,7 @@ Daemon sets
 
 
 Static pods
-:   If you want pods to restart if a node reboots, such as after a power loss, you might use [static pods](https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/). The kubelet on a node automatically restarts static pods as the node restarts.
+:   If you want pods to restart if a node reboots, such as after a power loss, you might use "static pods". The kubelet on a node automatically restarts static pods as the node restarts.
 
     :::note
 
@@ -58,7 +58,7 @@ Static pods
 
 
 Kubernetes zones
-:   [Kubernetes zones](https://kubernetes.io/docs/setup/best-practices/multiple-zones/) can slow down the rate or, in some cases, completely stop pod evictions.
+:   "Kubernetes zones" can slow down the rate or, in some cases, completely stop pod evictions.
 
     <a name="nodes-edge-remote-workers-strategies-zones_{{ context }}"></a>
 
@@ -174,6 +174,13 @@ Other types of {{ product_title }} objects
 
     <a name="nodes-edge-remote-workers-strategies-statefulset_{{ context }}"></a>
 
-    [stateful sets](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) do not get restarted when there is an outage. The pods remain in the `terminating` state until the control plane can acknowledge that the pods are terminated.
+    "Stateful sets" do not get restarted when there is an outage. The pods remain in the `terminating` state until the control plane can acknowledge that the pods are terminated.
 
     To avoid scheduling a to a node that does not have access to the same type of persistent storage, {{ product_title }} cannot migrate pods that require persistent volumes to other zones in the case of network separation.
+
+**Additional resources**
+{._additional-resources}
+
+*   [Static pods](https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/)
+*   [Kubernetes zones](https://kubernetes.io/docs/setup/best-practices/multiple-zones/)
+*   [Stateful sets](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)

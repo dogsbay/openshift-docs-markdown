@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Autoscaling to and from zero on {{ hcp }} node pools {id="hcp-autoscaling-to-from-zero_{{ context }}"}
 
-You can configure {{ hcp }} node pools to autoscale down to zero compute nodes when no schedulable workloads remain on the pool and to provision nodes on-demand when pending pods require capacity. This capability reduces idle compute costs for variable workloads while the hosted control plane stays available. {._abstract}
+You can configure {{ hcp }} node pools to autoscale down to zero compute nodes when no schedulable workloads remain on the pool and to provision nodes on-demand when pending pods require capacity. {._abstract}
+
+This capability reduces idle compute costs for variable workloads while the hosted control plane stays available.
 
 
 :::note

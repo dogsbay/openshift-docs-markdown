@@ -403,7 +403,7 @@ Support for the PCI addresses of NICs in `BareMetalHost` hardware data
 
 
 Expanding bare-metal clusters using OCI images and {{ bmaas_first }} (Technology Preview)
-:   With this update, you can expand your bare-metal cluster using {{ bmaas_first }} with images from an OCI registry as a Technology Preview feature. You can use images from public OCI registries or from the built-in cluster registry. For more information, see [Using Red Hat Bare Metal as a Service for OpenShift](/installing/installing_bare_metal/bare-metal-using-bare-metal-as-a-service).
+:   With this update, you can expand your bare-metal cluster using {{ bmaas_first }} with images from an OCI registry as a Technology Preview feature. You can use images from public OCI registries or from the built-in cluster registry. For more information, see [Using {{ bmaas_first }}](/installing/installing_bare_metal/bare-metal-using-bare-metal-as-a-service).
 
 
 Adding an ARM node to an x86 bare metal cluster

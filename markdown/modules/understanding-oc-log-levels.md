@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding OpenShift CLI (`oc`) log levels {id="understanding-oc-log-levels_{{ context }}"}
+# Understand OpenShift CLI (`oc`) log levels {id="understanding-oc-log-levels_{{ context }}"}
 
 With the OpenShift CLI (`oc`), you can create applications and manage {{ product_title }} projects from a terminal. {._abstract}
 

@@ -5,16 +5,69 @@ To verify that your `GatewayClass` custom resource (CR) is valid and ready to pr
 
 **`GatewayClass` CR status conditions**
 
-| Condition | Status | Description and common reasons |
-| --- | --- | --- |
-| `Accepted` | `True` | The `GatewayClass` CR is valid and the controller has claimed it. |
-| `Accepted` | `False` | The configuration has errors or was rejected. Common reasons include `InvalidParameters` (referenced parameters are invalid or not found), `Pending` (the controller has not processed the resource yet), or `Unknown` (an unsupported `controllerName` was provided). |
-| `Accepted` | `Unknown` | The `GatewayClass` CR is waiting for the controller to process it. |
-| `SupportedVersion` | `True` | The installed Gateway API version is compatible with the controller. |
-| `SupportedVersion` | `False` | There is a version mismatch. A common reason is `UnsupportedVersion`, which indicates that the custom resource definition (CRD) version does not match the controller requirements. |
-| `ControllerInstalled` | `True` | The Cluster Ingress Operator successfully installed the Gateway API controller. |
-| `ControllerInstalled` | `False` | The installation failed. |
-| `ControllerInstalled` | `Unknown` | The controller has not started the installation yet. |
-| `CRDsReady` | `True` | The Istio CRDs are installed and actively managed by either the Cluster Ingress Operator or OLM. |
-| `CRDsReady` | `False` | The CRDs were installed by a third party or have mixed ownership, preventing the controller from managing them. |
-| `CRDsReady` | `Unknown` | The CRDs are not installed yet. |
+<table>
+<thead>
+<tr>
+  <th>Condition</th>
+  <th>Status</th>
+  <th>Description and common reasons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>Accepted</code></td>
+  <td><code>True</code></td>
+  <td>The <code>GatewayClass</code> CR is valid and the controller has claimed it.</td>
+</tr>
+<tr>
+  <td><code>Accepted</code></td>
+  <td><code>False</code></td>
+  <td>The configuration has errors or was rejected. Common reasons include:<br><br><ul><li><code>InvalidParameters</code>: Referenced parameters are invalid or not found.</li><li><code>Pending</code>: The controller has not processed the resource yet.</li><li><code>Unknown</code>: An unsupported <code>controllerName</code> was provided.</li></ul></td>
+</tr>
+<tr>
+  <td><code>Accepted</code></td>
+  <td><code>Unknown</code></td>
+  <td>The <code>GatewayClass</code> CR is waiting for the controller to process it.</td>
+</tr>
+<tr>
+  <td><code>SupportedVersion</code></td>
+  <td><code>True</code></td>
+  <td>The installed Gateway API version is compatible with the controller.</td>
+</tr>
+<tr>
+  <td><code>SupportedVersion</code></td>
+  <td><code>False</code></td>
+  <td>There is a version mismatch. A common reason is <code>UnsupportedVersion</code>, which indicates that the custom resource definition (CRD) version does not match the controller requirements.</td>
+</tr>
+<tr>
+  <td><code>ControllerInstalled</code></td>
+  <td><code>True</code></td>
+  <td>The Cluster Ingress Operator successfully installed the controller for Gateway API.</td>
+</tr>
+<tr>
+  <td><code>ControllerInstalled</code></td>
+  <td><code>False</code></td>
+  <td>The installation failed.</td>
+</tr>
+<tr>
+  <td><code>ControllerInstalled</code></td>
+  <td><code>Unknown</code></td>
+  <td>The controller has not started the installation yet.</td>
+</tr>
+<tr>
+  <td><code>CRDsReady</code></td>
+  <td><code>True</code></td>
+  <td>The Istio CRDs are installed and actively managed by either the Cluster Ingress Operator or OLM.</td>
+</tr>
+<tr>
+  <td><code>CRDsReady</code></td>
+  <td><code>False</code></td>
+  <td>The CRDs were installed by a third party or have mixed ownership, preventing the controller from managing them.</td>
+</tr>
+<tr>
+  <td><code>CRDsReady</code></td>
+  <td><code>Unknown</code></td>
+  <td>The CRDs are not installed yet.</td>
+</tr>
+</tbody>
+</table>

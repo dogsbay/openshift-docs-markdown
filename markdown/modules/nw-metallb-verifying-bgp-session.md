@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Verify BGP session state {id="nw-metallb-verifying-bgp-session_{{ context }}"}
 
-Once you configure MetalLB for border gateway protocol (BGP) mode, you can verify that the system has established BGP sessions and is advertising routes. You can examine the `BGPSessionState` custom resource (CR) and the `FRRNodeState` CR to troubleshoot BGP connectivity and confirm proper route advertisement. {._abstract}
+After you configure MetalLB for BGP mode, you can examine the `BGPSessionState` and `FRRNodeState` custom resources (CRs) to verify that BGP sessions are established and routes are advertised. {._abstract}
 
 
 :::note

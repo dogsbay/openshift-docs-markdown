@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Example BGP peer configurations {id="nw-metallb-example-bgppeer_{{ context }}"}
 
-To precisely manage network topology and improve routing resilience, configure MetalLB BGP peer settings that limit node connectivity and incorporate BFD profiles. Defining these parameters ensures that your cluster maintains secure peer relationships and rapidly detects path failures for high service availability. {._abstract}
+Configure MetalLB BGP peer settings that limit node connectivity and incorporate BFD profiles to maintain secure peer relationships and detect path failures. {._abstract}
 
 
 Example of limiting which nodes connect to a BGP peer

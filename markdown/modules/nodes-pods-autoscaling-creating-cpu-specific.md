@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create a horizontal pod autoscaler for a specific CPU value {id="nodes-pods-autoscaling-creating-cpu-specific_{{ context }}"}
 
-You can use the {{ product_title }} CLI to create a horizontal pod autoscaler (HPA) that automatically scales an existing object based on a specific CPU value by creating a `HorizontalPodAutoscaler` object with the target CPU and pod limits. The HPA scales the pods associated with that object to maintain the CPU use that you specify. {._abstract}
+You can create a `HorizontalPodAutoscaler` object with a target CPU value and pod limits to automatically scale an existing object. The HPA scales the pods associated with that object to maintain the CPU usage that you specify. {._abstract}
 
 
 :::note

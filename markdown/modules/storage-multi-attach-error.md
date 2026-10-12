@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Resolving multi-attach errors {id="storage-multi-attach-error_{{ context }}"}
+# Resolve multi-attach errors {id="storage-multi-attach-error_{{ context }}"}
 
 When a node crashes or shuts down abruptly, the attached ReadWriteOnce (RWO) volume is expected to be unmounted from the node so that it can be used by a pod scheduled on another node. {._abstract}
 

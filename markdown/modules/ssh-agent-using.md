@@ -62,7 +62,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Generating a key pair for cluster node SSH access {id="ssh-agent-using_{{ context }}"}
 
-During an {{ product_title }} installation, you can provide an SSH public key to the installation program. The key is passed to the {{ op_system_first }} nodes through their Ignition config files and is used to authenticate SSH access to the nodes. The key is added to the `~/.ssh/authorized_keys` list for the `core` user on each node, which enables password-less authentication. {._abstract}
+During an {{ product_title }} installation, you can provide an SSH public key to the installation program. The key is passed to {{ op_system_first }} nodes through their Ignition config files and is added to `~/.ssh/authorized_keys` for the `core` user on each node. {._abstract}
 
 The key is added to the `~/.ssh/authorized_keys` list for the `core` user on each node, which enables password-less authentication. After the key is passed to the nodes, you can use the key pair to SSH in to the {{ op_system }} nodes as the user `core`. To access the nodes through SSH, the private key identity must be managed by SSH for your local user.
 

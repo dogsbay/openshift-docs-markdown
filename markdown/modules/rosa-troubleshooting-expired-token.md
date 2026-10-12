@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting expired offline access tokens {id="rosa-troubleshooting-expired-offline-access-tokens_{{ context }}"}
+# Troubleshoot expired offline access tokens {id="rosa-troubleshooting-expired-offline-access-tokens_{{ context }}"}
 
 If you use the {{ product_title }} (ROSA) CLI, `rosa`, and your api.openshift.com offline access token expires, an error message is displayed. This happens when sso.redhat.com invalidates the token. {._abstract}
 

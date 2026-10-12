@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Reviewing node status, resource usage, and configuration {id="reviewing-node-status-use-and-configuration_{{ context }}"}
+# Review node status, resource usage, and configuration {id="reviewing-node-status-use-and-configuration_{{ context }}"}
 
 Review cluster node health status, resource consumption statistics, and node logs. Additionally, query `kubelet` status on individual nodes. {._abstract}
 

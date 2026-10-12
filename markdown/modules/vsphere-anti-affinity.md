@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring vSphere DRS anti-affinity rules for control plane nodes {id="anti-affinity-vsphere_{{ context }}"}
 
-vSphere Distributed Resource Scheduler (DRS) anti-affinity rules can be configured to support higher availability of {{ product_title }} Control Plane nodes. Anti-affinity rules ensure that the vSphere Virtual Machines for the {{ product_title }} Control Plane nodes are not scheduled to the same vSphere Host. {._abstract}
+vSphere Distributed Resource Scheduler (DRS) anti-affinity rules ensure that {{ product_title }} control plane node VMs are not scheduled to the same vSphere host, supporting higher availability. {._abstract}
 
 
 :::important

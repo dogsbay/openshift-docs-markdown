@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Preparing your cluster for users after installation {id="installing-preparing-cluster-for-users_{{ context }}"}
+# Prepare your cluster for users after installation {id="installing-preparing-cluster-for-users_{{ context }}"}
 
 Configure a production cluster for users before they access it. {._abstract}
 

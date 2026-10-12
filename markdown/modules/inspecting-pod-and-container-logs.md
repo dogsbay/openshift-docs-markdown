@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Inspecting pod and container logs {id="inspecting-pod-and-container-logs_{{ context }}"}
+# Inspect pod and container logs {id="inspecting-pod-and-container-logs_{{ context }}"}
 
 You can inspect pod and container logs for warnings and error messages related to explicit pod failures. Depending on policy and exit code, pod and container logs remain available after pods have been terminated. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Least privilege permissions for common {{ rosa_cli }} commands {id="rosa-cli-hcp-examples_{{ context }}"}
+# Least privilege permissions for common {{ rosa_cli_title }} commands {id="rosa-cli-hcp-examples_{{ context }}"}
 
 These examples list the least privilege IAM permissions for common {{ rosa_cli_first }} commands when you build {{ product_title }} clusters. {._abstract}
 

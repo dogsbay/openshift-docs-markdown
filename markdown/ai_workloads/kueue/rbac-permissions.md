@@ -9,16 +9,7 @@ title: Configuring role-based permissions
 
 You can configure role-based access control (RBAC) for your {{ kueue_name }} deployment to control which users can create specific {{ kueue_name }} objects. {._abstract}
 
-## Cluster roles {id="authentication-clusterroles"}
-
-The {{ kueue_name }} Operator deploys `kueue-batch-admin-role` and `kueue-batch-user-role` cluster roles by default.
-
-
-kueue-batch-admin-role
-:   This cluster role includes the permissions to manage cluster queues, local queues, workloads, and resource flavors.
-
-kueue-batch-user-role
-:   This cluster role includes the permissions to manage jobs and to view local queues and workloads.
+{% leveloffset +1 %}{% include "./modules/kueue-cluster-roles.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/kueue-configure-rbac-batch-admins.md" %}{% endleveloffset %}
 

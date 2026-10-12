@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # {{ ztp }} and {{ cgu_operator_full }} {id="ztp-talo-integration_{{ context }}"}
 
-{{ ztp_first }} generates installation and configuration CRs from manifests stored in Git. These artifacts are applied to a centralized hub cluster where {{ rh_rhacm_first }}, the assisted service, and the {{ cgu_operator_first }} use the CRs to install and configure the managed cluster. The configuration phase of the {{ ztp }} pipeline uses the {{ cgu_operator }} to orchestrate the application of the configuration CRs to the cluster. There are several key integration points between {{ ztp }} and the {{ cgu_operator }}. {._abstract}
+{{ ztp_first }} generates installation and configuration CRs from Git manifests and applies them to a hub cluster where {{ rh_rhacm_first }}, the assisted service, and the {{ cgu_operator_first }} manage the cluster lifecycle. {._abstract}
+
+The configuration phase of the {{ ztp }} pipeline uses the {{ cgu_operator }} to orchestrate the application of configuration CRs to the cluster.
 
 
 Inform policies

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Image Registry Operator distribution across availability zones {id="registry-operator-distribution-across-availability-zones_{{ context }}"}
 
-The default configuration of the Image Registry Operator spreads image registry pods across topology zones to prevent delayed recovery times in case of a complete zone failure where all pods are impacted. Reference the example YAML to understand the default parameter values that the Image Registry Operator uses when the Operator deploys with a zone-related topology constraint: {._abstract}
+The Image Registry Operator spreads image registry pods across topology zones by default to prevent delayed recovery times during a complete zone failure. {._abstract}
+
+The following example YAML shows the default topology constraint parameter values:
 
 ```yaml
   topologySpreadConstraints:

@@ -1,11 +1,11 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating a Jira issue {id="virt-creating-jira-issue_{{ context }}"}
 
-To report a bug, use the Red Hat Issue Router (RHIR), which is available in the Customer Portal Labs. {._abstract}
+To report a bug, use the Red&#160;Hat Issue Router (RHIR), which is available in the Customer Portal Labs. {._abstract}
 
 **Procedure**
 
-1.  Access the RHIR.
+1.  Access the [RHIR](https://access.redhat.com/labs/rhir/?product=cnv).
 1.  In the list of all {{ VirtProductName }} components, find the component for which you want to report an issue.
 1.  Click the **Report a bug** link of the component.
 1.  On the **Create issue** page, fill out the form:

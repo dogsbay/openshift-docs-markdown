@@ -17,4 +17,9 @@ The `ClusterGroupUpgrade` CR’s `batchTimeoutAction` determines what happens if
 
 {% include "./snippets/cnf-example-upgrade-policy.md" %}
 
-For more information about {{ rh_rhacm }} policies, see [Policy overview](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/{{ rh_rhacm_version }}/html-single/governance/index#policy-overview).
+For more information about {{ rh_rhacm }} policies, see "Policy overview" in the {{ rh_rhacm }} documentation.
+
+**Additional resources**
+{._additional-resources}
+
+*   [Policy overview](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/{{ rh_rhacm_version }}/html-single/governance/index#policy-overview)

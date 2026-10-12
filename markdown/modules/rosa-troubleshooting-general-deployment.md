@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Obtaining information about a failed cluster {id="rosa-troubleshooting-general-deployment-failure_{{ context }}"}
+# Obtain information about a failed cluster {id="rosa-troubleshooting-general-deployment-failure_{{ context }}"}
 
 If a cluster deployment fails, the cluster is put into an "error" state. {._abstract}
 

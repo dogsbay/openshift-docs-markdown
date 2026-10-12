@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Copying files to and from pods and containers {id="copying-files-pods-and-containers_{{ context }}"}
+# Copy files to and from pods and containers {id="copying-files-pods-and-containers_{{ context }}"}
 
 You can copy files to and from a pod to test configuration changes or gather diagnostic information. {._abstract}
 

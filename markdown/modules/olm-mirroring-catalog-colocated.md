@@ -50,7 +50,7 @@ If your mirror registry is co-located on the same network as your workstation wi
 
     `--manifests-only`
     :   Specifies the `--manifests-only` flag. This flag is optional. Generates only the manifests required for mirroring without actually mirroring the image content to a registry. This option can be useful for reviewing what will be mirrored, and lets you make any changes to the mapping list, if you require only a subset of packages. You can then use the `mapping.txt` file with the `oc image mirror` command to mirror the modified list of images in a later step. This flag is intended for only advanced selective mirroring of content from the catalog.
-    ```terminal title="Example output" {minja}
+    ```terminal {minja}
     src image has index label for database path: /database/index.db
     using database path mapping: /database/index.db:/tmp/153048078
     wrote database to /tmp/153048078

@@ -44,3 +44,7 @@ In earlier versions of {{ product_title }}, the Performance Addon Operator was u
 :::
 
 {% endif %}
+
+{% if context == "cluster-capabilities" %}
+{%- set cluster_caps = "" -%}
+{% endif %}

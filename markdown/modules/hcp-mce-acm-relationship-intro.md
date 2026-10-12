@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Relationship between {{ hcp }}, {{ mce_short }}, and {{ rh_rhacm }} {id="hcp-mce-acm-relationship-intro_{{ context }}"}
 
-You can configure {{ hcp }} by using the {{ mce }}. The {{ mce_short }} cluster lifecycle defines the process of creating, importing, managing, and destroying Kubernetes clusters across various infrastructure cloud providers, private clouds, and on-premise data centers. {._abstract}
+Configure {{ hcp }} by using the {{ mce }}. The {{ mce_short }} cluster lifecycle defines the process that creates, imports, manages, and destroys Kubernetes clusters across cloud providers, private clouds, and on-premises data centers. {._abstract}
 
 
 :::note

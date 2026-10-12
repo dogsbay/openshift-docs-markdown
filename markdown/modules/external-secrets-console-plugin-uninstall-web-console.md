@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling the {{ external_secrets_console_plugin }} {id="external-secrets-console-plugin-uninstall-web-console_{{ context }}"}
+# Uninstalling the {{ external_secrets_console_plugin }} by using the web console {id="external-secrets-console-plugin-uninstall-web-console_{{ context }}"}
 
 You can uninstall the {{ external_secrets_console_plugin }} from your cluster using the {{ product_title }} web console. {._abstract}
 

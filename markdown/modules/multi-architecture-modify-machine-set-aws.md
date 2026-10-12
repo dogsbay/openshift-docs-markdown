@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a multi-architecture compute machine set to your AWS cluster {id="multi-architecture-modify-machine-set-aws_{{ context }}"}
+# Add a multi-architecture compute machine set to your AWS cluster {id="multi-architecture-modify-machine-set-aws_{{ context }}"}
 
 After creating a multi-architecture cluster, you can add nodes with different architectures.  {._abstract}
 

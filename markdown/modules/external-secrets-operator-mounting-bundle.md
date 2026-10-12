@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Mount a custom trusted certificate authority bundle for external-secrets {id="external-secrets-operator-mounting-bundle_{{ context }}"}
 
-You can configure the {{ external_secrets_operator }} to trust a custom certificate authority (CA) bundle when the `external-secrets` core controller communicates with external secret backends over transport layer socket (TLS). This is required when your organization uses a private CA or a self-signed certificate that is not included in the default system truststore. {._abstract}
+You can configure the {{ external_secrets_operator }} to trust a custom certificate authority (CA) bundle when the `external-secrets` core controller communicates with external secret backends over transport layer socket (TLS). {._abstract}
+
+This is required when your organization uses a private CA or a self-signed certificate that is not included in the default system truststore.
 
 To enable mounting a custom trusted CA, you reference a `ConfigMap` that contains the Privacy Enhanced Mail (PEM)-encoded CA certificates in the `spec.controllerConfig.trustedCABundle` field of the `ExternalSecretsConfig` custom resource (CR). The Operator mounts the bundle into the core controller pod and configures the TLS library to use it alongside the default system trust stores.
 

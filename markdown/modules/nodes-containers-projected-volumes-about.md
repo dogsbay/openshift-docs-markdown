@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Understanding projected volumes {id="nodes-containers-projected-volumes-about_{{ context }}"}
 
-To simplify data management within your pods, you can use projected volumes to map multiple configuration sources, such as secrets and config maps, into a single directory. By using a single directory, you make it easier for your applications to access sensitive information and environment metadata easier. {._abstract}
+You can use projected volumes to map multiple configuration sources, such as secrets and config maps, into a single directory, simplifying how applications access sensitive information and environment metadata. {._abstract}
 
 You can use projected volumes to map any combination of the volume sources into a single directory, allowing the user to perform the following actions:
 

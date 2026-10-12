@@ -16,4 +16,4 @@ Limits and requirements
     {{ odf_short }} IPv4 is supported on dual-stack clusters.
 
 Engineering considerations
-:   *   Address capacity warnings promptly as recovery can be difficult in case of storage capacity exhaustion, see [Capacity planning](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/4.21/html-single/planning_your_deployment/index#capacity_planning).
+:   *   Address capacity warnings promptly as recovery can be difficult in case of storage capacity exhaustion, see [Capacity planning](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/4.22/html-single/planning_your_deployment/index#capacity_planning).

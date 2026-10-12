@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Enabling IPv6 connectivity to pods on {{ rh_openstack }} {id="nw-osp-pod-connections-ipv6_{{ context }}"}
 
-To enable IPv6 connectivity between pods that have additional networks that are on different nodes, disable port security for the IPv6 port of the server. Disabling port security obviates the need to create allowed address pairs for each IPv6 address that is assigned to pods and enables traffic on the security group. {._abstract}
+To enable IPv6 connectivity between pods on additional networks across different nodes, disable port security for the IPv6 port of the server. {._abstract}
+
+Disabling port security removes the need to create allowed address pairs for each IPv6 address assigned to pods and enables traffic on the security group.
 
 
 :::important

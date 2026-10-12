@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Support matrix for {{ hcp }} {id="hcp-support-matrix_{{ context }}"}
 
-Because {{ mce }} includes the HyperShift Operator, releases of {{ hcp }} align with releases of {{ mce_short }}. The support matrix includes details about supported clusters, platforms, and architectures, as well as information about updates and technology preview features. {._abstract}
+ecause {{ mce }} includes the HyperShift Operator, {{ hcp }} releases align with {{ mce_short }}. The support matrix covers supported clusters, platforms, architectures, updates, and technology preview features. {._abstract}
 
 For more information, see "OpenShift Operator Life Cycles".
 

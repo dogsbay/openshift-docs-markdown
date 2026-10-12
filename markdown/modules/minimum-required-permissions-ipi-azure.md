@@ -9,8 +9,8 @@ The following options are available to you:
 
     If you set `identity.type` to `None` in the `install-config.yaml` file, you do not need to assign the `User Access Administrator` role to the service principal.
 
-    For more information about assigning roles, see the {{ azure_short }} documentation for [managing access to Azure resources using the Azure portal](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal).
-*   If the security policies of your organization require a more restrictive set of permissions, you can create a [custom role](https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles) with the necessary permissions.
+    For more information about assigning roles, see the {{ azure_short }} documentation for "managing access to Azure resources using the Azure portal".
+*   If the security policies of your organization require a more restrictive set of permissions, you can create a "custom role" with the necessary permissions.
 
 The following permissions are required for creating an {{ product_title }} cluster on {{ azure_first }}.
 
@@ -159,6 +159,20 @@ Required permissions for creating storage resources
     *   `Microsoft.Storage/storageAccounts/read`
     *   `Microsoft.Storage/storageAccounts/write`
 
+
+:::important
+
+The installation program creates the bootstrap ignition storage account with shared key access disabled, `allowSharedKeyAccess: false`, to align with security best practices from Microsoft.
+
+To provide this authorization, assign the `Storage Blob Data Contributor` role to the installing identity at the subscription or resource group scope. Without this role, installation fails during the bootstrap phase with an `AuthorizationPermissionMismatch` error.
+
+As a fallback, if you cannot grant the `Storage Blob Data Contributor` role, you can set `platform.azure.allowSharedKeyAccess` to `true` in the `install-config.yaml` file. This re-enables shared key authorization on the ignition storage account, allowing the existing management-plane permissions to complete the upload. 
+
+Enabling shared key access allows any client with the storage account keys to access data without Azure Active Directory authentication; this approach weakens the access control posture of the storage account. Only enable shared key access when the data-plane role cannot be granted.
+
+:::
+
+
 Optional permissions for creating a private storage endpoint for the image registry
 :   *   `Microsoft.Network/privateEndpoints/write`
     *   `Microsoft.Network/privateEndpoints/read`
@@ -280,3 +294,10 @@ To install {{ product_title }} on {{ azure_short }}, you must scope the permissi
 You can scope all the permissions to your subscription when deleting an {{ product_title }} cluster.
 
 :::
+
+
+**Additional resources**
+{._additional-resources}
+
+*   [Managing access to Azure resources using the Azure portal](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal)
+*   [Custom roles](https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles)

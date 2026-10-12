@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Provisioning your own DNS records {id="installation-gcp-provisioning-own-dns-records_{{ context }}"}
 
-Use the IP address of the API server to provision your own DNS record with the `api.<cluster_name>.<base_domain>.` hostname by using your cluster name and base cluster domain. Use the IP address of the Ingress service to provision your own DNS record with the `*.apps.<cluster_name>.<base_domain>.` hostname by using your cluster name and base cluster domain. {._abstract}
+Use your cluster name and base domain to provision your DNS records. Point `api.<cluster_name>.<base_domain>.` to the API server IP address, and point `*.apps.<cluster_name>.<base_domain>.` to the Ingress service IP address. {._abstract}
 
 
 :::important

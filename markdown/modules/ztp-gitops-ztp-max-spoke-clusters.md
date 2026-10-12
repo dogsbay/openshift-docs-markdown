@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Recommended hub cluster specifications and managed cluster limits for {{ ztp }} {id="ztp-gitops-ztp-max-spoke-clusters_{{ context }}"}
 
-With {{ ztp_first }}, you can manage thousands of clusters in geographically dispersed regions and networks.
-The Red Hat Performance and Scale lab successfully created and managed 3500 virtual {{ sno }} clusters with a reduced DU profile from a single {{ rh_rhacm_first }} hub cluster in a lab environment. {._abstract}
+With {{ ztp_first }}, you can manage thousands of clusters in geographically dispersed regions and networks. {._abstract}
+
+The Red Hat Performance and Scale lab successfully created and managed 3500 virtual {{ sno }} clusters with a reduced DU profile from a single {{ rh_rhacm_first }} hub cluster in a lab environment.
 
 In real-world situations, the scaling limits for the number of clusters that you can manage will vary depending on various factors affecting the hub cluster.
 For example:

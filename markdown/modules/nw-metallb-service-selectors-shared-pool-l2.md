@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Apply different Layer 2 advertisement policies on a shared IP address pool {id="nw-metallb-service-selectors-shared-pool-l2_{{ context }}"}
 
-Use this procedure when many `L2Advertisement` resources reference the same `IPAddressPool` and each advertisement must apply different Layer 2 settings to a different group of `LoadBalancer` services.
-You match services with `spec.serviceSelectors` so each advertisement applies only where its selectors match. {._abstract}
+You can configure multiple `L2Advertisement` resources that reference the same `IPAddressPool` and use `spec.serviceSelectors` to apply different Layer 2 settings to different groups of `LoadBalancer` services. {._abstract}
 
 **Prerequisites**
 

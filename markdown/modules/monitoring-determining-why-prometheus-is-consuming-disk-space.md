@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Determining why Prometheus is consuming a lot of disk space {id="determining-why-prometheus-is-consuming-disk-space_{{ context }}"}
+# Determine why Prometheus is consuming a lot of disk space {id="determining-why-prometheus-is-consuming-disk-space_{{ context }}"}
 
 Developers can create labels to define attributes for metrics in the form of key-value pairs. The number of potential key-value pairs corresponds to the number of possible values for an attribute. An attribute that has an unlimited number of potential values is called an unbound attribute. For example, a `customer_id` attribute is unbound because it has an infinite number of possible values. {._abstract}
 

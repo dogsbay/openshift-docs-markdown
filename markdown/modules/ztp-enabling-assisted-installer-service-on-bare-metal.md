@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Enable the assisted service {id="enabling-assisted-installer-service-on-bare-metal_{{ context }}"}
 
-{{ rh_rhacm_first }} uses the assisted service to deploy {{ product_title }} clusters. The assisted service is deployed automatically when you enable the MultiClusterHub Operator on {{ rh_rhacm_first }}. After that, you need to configure the `Provisioning` resource to watch all namespaces and to update the `AgentServiceConfig` custom resource (CR) with references to the ISO and RootFS images that are hosted on the mirror registry HTTP server. {._abstract}
+{{ rh_rhacm_first }} uses the assisted service to deploy {{ product_title }} clusters. The assisted service is deployed automatically when you enable the MultiClusterHub Operator on {{ rh_rhacm }}. {._abstract}
+
+After enabling the MultiClusterHub Operator, configure the `Provisioning` resource to watch all namespaces and update the `AgentServiceConfig` CR with references to the ISO and RootFS images hosted on the mirror registry HTTP server.
 
 **Prerequisites**
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Monitor managed cluster installation progress {id="ztp-monitoring-deployment-progress_{{ context }}"}
 
-The Argo CD pipeline syncs the `ClusterInstance` CR from the Git repository to the hub cluster. The SiteConfig Operator then processes the `ClusterInstance` CR and generates the required cluster configuration CRs. You can monitor the progress of the cluster installation from the {{ rh_rhacm }} dashboard or from the command line. {._abstract}
+You can monitor managed cluster installation progress from the {{ rh_rhacm }} dashboard or from the command line after the Argo CD pipeline syncs the `ClusterInstance` CR to the hub cluster. {._abstract}
 
 **Prerequisites**
 

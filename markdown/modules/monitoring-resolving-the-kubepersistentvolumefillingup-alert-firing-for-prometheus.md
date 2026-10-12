@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Resolving the KubePersistentVolumeFillingUp alert firing for Prometheus {id="resolving-the-kubepersistentvolumefillingup-alert-firing-for-prometheus_{{ context }}"}
+# Resolve the KubePersistentVolumeFillingUp alert firing for Prometheus {id="resolving-the-kubepersistentvolumefillingup-alert-firing-for-prometheus_{{ context }}"}
 
 As a cluster administrator, you can resolve the `KubePersistentVolumeFillingUp` alert being triggered for Prometheus.  {._abstract}
 

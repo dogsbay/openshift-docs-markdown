@@ -34,7 +34,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About installations in restricted networks {id="installation-about-restricted-networks_{{ context }}"}
 
-You can install {{ product_title }} {{ product_version }} in a restricted network without an active internet connection to obtain software components. Restricted network installations can use installer-provisioned or user-provisioned infrastructure, depending on the cloud platform to which you are installing the cluster. {._abstract}
+You can install {{ product_title }} {{ product_version }} in a restricted network that lacks an active internet connection. These restricted installations use installer-provisioned or user-provisioned infrastructure, depending on your cloud platform. {._abstract}
 
 {% if not (ibm_power or ibm_cloud) %}
 If you choose to perform a restricted network installation on a cloud platform, you still require access to its cloud APIs. Some cloud functions, such as Amazon Web Service’s Route 53 DNS and IAM services, require internet access.

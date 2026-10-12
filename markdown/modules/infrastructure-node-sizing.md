@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Infrastructure node sizing {id="infrastructure-node-sizing_{{ context }}"}
 
-_Infrastructure nodes_ are nodes that are labeled to run pieces of the {{ product_title }} environment. The infrastructure node resource requirements depend on the cluster age, nodes, and objects in the cluster, as these factors can lead to an increase in the number of metrics or time series in Prometheus. The following infrastructure node size recommendations are based on the results observed in cluster-density testing detailed in the **Control plane node sizing** section, where the monitoring stack and the default ingress-controller were moved to these nodes. {._abstract}
+Infrastructure nodes are nodes that are labeled to run pieces of the {{ product_title }} environment. The infrastructure node resource requirements depend on the cluster age, nodes, and objects in the cluster, as these factors can increase the number of metrics or time series in Prometheus. {._abstract}
+
+The following infrastructure node size recommendations are based on the results observed in cluster-density testing detailed in the **Control plane node sizing** section, where the monitoring stack and the default ingress-controller were moved to these nodes.
 
 | Number of worker nodes | Cluster density, or number of namespaces | CPU cores | Memory (GB) |
 | --- | --- | --- | --- |

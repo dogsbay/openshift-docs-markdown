@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Gateway API implementation specifics {id="gateway-api-implementation-specifics_{{ context }}"}
 
-To ensure interoperability between external vendor implementations and your networking infrastructure in {{ product_title }}, the Ingress Operator manages the lifecycle of Gateway API custom resource definitions (CRDs). Understanding how these CRDs are managed helps you prevent disrupted workloads and security issues caused by incompatible vendor fields. {._abstract}
+To ensure interoperability between external vendor implementations and your networking infrastructure in {{ product_title }}, the Ingress Operator manages the lifecycle of Gateway API custom resource definitions (CRDs). {._abstract}
+
+Understanding how these CRDs are managed helps you prevent disrupted workloads and security issues caused by incompatible vendor fields.
 
 In some situations, Gateway API provides one or more fields that a vendor implementation does not support, but that implementation is otherwise compatible in schema with the rest of the fields. These "dead fields" can result in disrupted Ingress workloads, improperly provisioned applications and services, and security-related issues. Because {{ product_title }} uses a specific version of Gateway API CRDs, any use of third-party implementations of Gateway API must conform to the {{ product_title }} implementation to ensure that all fields work as expected.
 
@@ -17,7 +19,7 @@ If you are updating your cluster from a previous {{ product_title }} version tha
 
 ## Gateway API CRDs for `gateway.networking.x-k8s.io` {id="gateway-api-x-k8s-io-crds_{{ context }}"}
 
-In previous versions of {{ product_title }}, cluster security policies blocked the deployment of the Gateway API CRD for `gateway.networking.x-k8s.io`. Starting in {{ product_title }} 4.22, this restriction is removed, and you can deploy that CRD.
+In previous versions of {{ product_title }}, cluster security policies blocked the deployment of the `gateway.networking.x-k8s.io` Gateway API CRD. Starting in {{ product_title }} 4.22, this restriction is removed, and you can deploy that CRD.
 
 
 :::note

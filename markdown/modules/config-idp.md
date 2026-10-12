@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring an identity provider {id="config-idp_{{ context }}"}
+# Configure an identity provider {id="config-idp_{{ context }}"}
 
 After you have installed {{ product_title }}, you must configure your cluster to use an identity provider. You can then add members to your identity provider to grant them access to your cluster. {._abstract}
 

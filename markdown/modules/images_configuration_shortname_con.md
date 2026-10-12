@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About adding registries that allow image short names {id="images-configuration-shortname-con_{{ context }}"}
+# Configure short-name search registries {id="images-configuration-shortname-con_{{ context }}"}
 
 With an image short name, you can search for images without including the fully qualified domain name in the pull `spec` parameter. {._abstract}
 

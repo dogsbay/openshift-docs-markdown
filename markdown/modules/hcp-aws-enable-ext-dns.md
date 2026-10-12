@@ -38,4 +38,9 @@ You can deploy `external-dns` alongside the HyperShift Operator in the `hypershi
 
 You can use external DNS on cloud environments only. For the other environments, you need to manually configure DNS and services.
 
-For more information about external DNS, see [external DNS](https://github.com/kubernetes-sigs/external-dns).
+For more information about external DNS, see "external DNS".
+
+**Additional resources**
+{._additional-resources}
+
+*   [external DNS](https://github.com/kubernetes-sigs/external-dns)

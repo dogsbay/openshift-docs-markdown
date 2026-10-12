@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Querying Operator pod status {id="querying-operator-pod-status_{{ context }}"}
+# Query Operator pod status {id="querying-operator-pod-status_{{ context }}"}
 
 You can list Operator pods within a cluster and their status. You can also collect a detailed Operator pod summary. {._abstract}
 

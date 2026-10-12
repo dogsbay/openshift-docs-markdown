@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Live migration for compute nodes {id="hcp-virt-live-migration_{{ context }}"}
 
-While the management cluster for hosted cluster virtual machines (VMs) is undergoing updates or maintenance, the hosted cluster VMs can be automatically live migrated to prevent disrupting hosted cluster workloads. As a result, the management cluster can be updated without affecting the availability and operation of the KubeVirt platform hosted clusters. {._abstract}
+While the management cluster for hosted cluster virtual machines (VMs) is undergoing updates or maintenance, the hosted cluster VMs can be automatically live migrated to prevent disrupting hosted cluster workloads. {._abstract}
+
+As a result, the management cluster can be updated without affecting the availability and operation of the KubeVirt platform hosted clusters.
 
 
 :::important

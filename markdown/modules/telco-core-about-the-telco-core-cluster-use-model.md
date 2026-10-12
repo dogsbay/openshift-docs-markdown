@@ -1,9 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # About the telco core cluster use model {id="telco-core-about-the-telco-core-cluster-use-model_{{ context }}"}
 
-The telco core cluster use model is designed for clusters running on commodity hardware.
-Telco core clusters support large scale telco applications including control plane functions like signaling, aggregation, session border controller (SBC), and centralized data plane functions such as 5G user plane functions (UPF).
-Telco core cluster functions require scalability, complex networking support, resilient software-defined storage, and support performance requirements that are less stringent and constrained than far-edge RAN deployments. {._abstract}
+The telco core cluster use model supports large-scale telco applications on commodity hardware, including control plane functions and centralized data plane functions such as 5G user plane functions (UPF). {._abstract}
+
+Control plane functions include signaling, aggregation, and session border controller (SBC). These functions require scalability, complex networking support, resilient software-defined storage, and performance requirements that are less stringent than far-edge RAN deployments.
 
 Networking requirements for telco core functions vary widely across a range of networking features and performance points.
 IPv6 is a requirement and dual-stack is common.

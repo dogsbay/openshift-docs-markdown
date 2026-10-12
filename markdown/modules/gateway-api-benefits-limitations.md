@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Gateway API benefits and limitations {id="gateway-api-benefits-limitations_{{ context }}"}
 
-To determine if Gateway API is the right routing solution for your cluster, review its benefits and limitations. The project is an effort to provide a standardized ecosystem by using a portable API with broad community support. Understanding these factors ensures your networking infrastructure aligns with your organizational needs and technical capabilities. {._abstract}
+Review the benefits and limitations of Gateway API to determine if it suits your cluster. The portable API and standardized ecosystem offer broad community support, ensuring that your networking aligns with your technical and organizational needs. {._abstract}
 
 ## Benefits {id="gateway-api-benefits_{{ context }}"}
 
@@ -15,6 +15,6 @@ Gateway API provides the following benefits:
 
 Gateway API has the following limitations:
 
-*   Version incompatibilities: The Gateway API ecosystem changes rapidly, and some implementations do not work with others because their featureset is based on differing versions of Gateway API.
+*   Version incompatibilities: Gateway API ecosystem changes rapidly, and some implementations do not work with others because their featureset is based on differing versions of Gateway API.
 *   Resource overhead: While more flexible, Gateway API uses multiple resource types to achieve an outcome. For smaller applications, the simplicity of traditional Ingress might be a better fit.
 *   On-premise infrastructure dependencies: On-premise deployments, such as bare metal or {{ vmw_first }} environments, do not automatically provision network load balancers or manage external DNS records. To use Gateway API on an on-premise platform, you must explicitly deploy a load balancer controller, such as MetalLB, and manually map your DNS records to the provisioned gateway address.

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting cluster creation with an AWSInsufficientPermissions error {id="rosa-troubleshooting-awsinsufficientpermission-failure-deployment_{{ context }}"}
+# Troubleshoot cluster creation with an AWSInsufficientPermissions error {id="rosa-troubleshooting-awsinsufficientpermission-failure-deployment_{{ context }}"}
 
 If a cluster creation action fails, you might receive the following error message. {._abstract}
 

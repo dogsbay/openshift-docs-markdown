@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # User-provisioned infrastructure installation of {{ product_title }} on {{ ibm_z_title }} {id="ibm-z-upi-installation-overview_{{ context }}"}
 
-User-provisioned infrastructure requires you to provision and manage all resources that {{ product_title }} needs, including networking, load balancing, storage, and compute. This approach suits organizations that have specific infrastructure requirements or that operate in air-gapped or restricted networks. {._abstract}
+User-provisioned infrastructure requires that you manage all resources that {{ product_title }} needs, including networking, load balancing, storage, and compute. This approach suits organizations with specific needs or those in air-gapped networks. {._abstract}
 
 
 :::important

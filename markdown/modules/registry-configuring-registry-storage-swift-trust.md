@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring Image Registry Operator redirects {id="registry-configuring-registry-storage-swift-trust_{{ context }}"}
 
-By disabling redirects, you can configure the Image Registry Operator to control whether clients such as {{ product_title }} cluster builds or external systems like developer machines are redirected to pull images directly from {{ rh_openstack_first }} Swift storage. This configuration is optional and depends on whether the clients trust the storage’s SSL/TLS certificates. {._abstract}
+You can disable Image Registry Operator redirects to prevent clients from pulling images directly from {{ rh_openstack_first }} Swift storage. This optional configuration is useful when clients do not trust the storage SSL/TLS certificates. {._abstract}
 
 
 :::note

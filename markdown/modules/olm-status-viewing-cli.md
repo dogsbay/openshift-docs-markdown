@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing Operator subscription status by using the CLI {id="olm-status-viewing-cli_{{ context }}"}
+# View Operator subscription status by using the CLI {id="olm-status-viewing-cli_{{ context }}"}
 
 You can view Operator subscription status by using the CLI. {._abstract}
 

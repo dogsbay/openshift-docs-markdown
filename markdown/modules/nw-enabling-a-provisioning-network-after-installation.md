@@ -2,9 +2,9 @@
 
 # Enabling a provisioning network after installation {id="enabling-a-provisioning-network-after-installation_{{ context }}"}
 
-The {{ ai_full }} and installer-provisioned installation for bare-metal clusters provide the ability to deploy a cluster without a `provisioning` network. This capability is for scenarios such as proof-of-concept clusters or deploying exclusively with Redfish virtual media when each node’s baseboard management controller is routable via the `bare-metal` network. {._abstract}
+You can enable a `provisioning` network after installation by using the Cluster Baremetal Operator (CBO) for bare-metal clusters that were deployed without one. {._abstract}
 
-You can enable a `provisioning` network after installation using the Cluster Baremetal Operator (CBO).
+This is useful for clusters that were initially deployed as proof-of-concept or exclusively with Redfish virtual media when each node’s baseboard management controller is routable via the `bare-metal` network.
 
 **Prerequisites**
 

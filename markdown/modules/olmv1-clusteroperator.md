@@ -41,3 +41,7 @@ The `olm` cluster Operator informs cluster administrators if there are any insta
 *   See the following projects in the _Additional resources_ section:
     *   `operator-framework/operator-controller`
     *   `operator-framework/catalogd`
+
+{% if context == "cluster-capabilities" %}
+{%- set cluster_caps = "" -%}
+{% endif %}

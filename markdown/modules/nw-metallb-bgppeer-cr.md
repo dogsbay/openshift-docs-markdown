@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # About the BGP peer custom resource {id="nw-metallb-bgppeer-cr_{{ context }}"}
 
-To establish network connectivity and advertise routes for load-balancer services, configure the properties of the MetalLB Border Gateway Protocol (BGP) peer custom resource (CR). Establishing these parameters ensures that your cluster authorizes specific routing peers to direct external traffic correctly to your application workloads. {._abstract}
+Configure the MetalLB Border Gateway Protocol (BGP) peer custom resource (CR) to establish network connectivity and advertise routes for load-balancer services. {._abstract}
 
 The following table describes the parameters for the BGP peer CR:
 

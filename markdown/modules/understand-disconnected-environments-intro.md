@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understand disconnected environments {id="understand-disconnected-environments-intro_{{ context }}"}
+# Disconnected environment concepts {id="understand-disconnected-environments-intro_{{ context }}"}
 
 A disconnected environment is an environment that does not have full access to the internet.  {._abstract}
 

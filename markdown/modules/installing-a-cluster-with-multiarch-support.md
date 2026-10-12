@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing a cluster with multi-architecture support {id="installing-a-cluster-with-multiarch-support_{{ context }}"}
+# Install a cluster with multi-architecture support {id="installing-a-cluster-with-multiarch-support_{{ context }}"}
 
 You can install a cluster with multi-architecture support to use compute machines with different Central Processing Unit (CPU) architectures. Modifying your configuration file helps ensure your control plane and worker nodes deploy with the correct architecture. {._abstract}
 

@@ -13,23 +13,12 @@
 
 Verify that your cluster was installed and is running effectively on {{ oci_edge_no_rt }}. {._abstract}
 
-**Prerequisites**
-
-*   You created all the required {{ oci_first_no_rt }} resources and services. See the "Creating {{ oci }} infrastructure resources and services" section.
-*   You created `install-config.yaml` and `agent-config.yaml` configuration files. See the "Creating configuration files for installing a cluster on {{ oci_edge_no_rt }}" section.
-*   You uploaded the agent ISO image to a default Oracle Object Storage bucket, and you created a compute instance on {{ oci_edge_no_rt }}. For more information, see "Running a cluster on {{ oci_edge_no_rt }}".
 {% endif %}
 
 {% if pca %}
 # Verifying that your Agent-based cluster installation runs on {{ oci_pca_short }} {id="verifying-cluster-install-oci-agent-based_{{ context }}"}
 
 Verify that your cluster was installed and is running effectively on {{ oci_pca_short }}. {._abstract}
-
-**Prerequisites**
-
-*   You created all the required {{ oci_pca }} resources and services. See the "Creating {{ oci_pca_no_rt }} infrastructure resources and services" section.
-*   You created `install-config.yaml` and `agent-config.yaml` configuration files. See the "Creating configuration files for installing a cluster on {{ oci_pca_short }}" section.
-*   You uploaded the agent ISO image to a default Oracle Object Storage bucket, and you created a compute instance on {{ oci_pca_short }}. For more information, see "Running a cluster on {{ oci_pca_short }}".
 {% endif %}
 
 {% if not (pca or c3) %}
@@ -37,11 +26,30 @@ Verify that your cluster was installed and is running effectively on {{ oci_pca_
 
 Verify that your cluster was installed and is running effectively on {{ oci_distributed }}. {._abstract}
 
+{% endif %}
+
 **Prerequisites**
+
+{% if c3 %}
+
+*   You created all the required {{ oci_first_no_rt }} resources and services. See the "Creating {{ oci }} infrastructure resources and services" section.
+*   You created `install-config.yaml` and `agent-config.yaml` configuration files. See the "Creating configuration files for installing a cluster on {{ oci_edge_no_rt }}" section.
+*   You uploaded the agent ISO image to a default Oracle Object Storage bucket, and you created a compute instance on {{ oci_edge_no_rt }}. For more information, see "Running a cluster on {{ oci_edge_no_rt }}".
+{% endif %}
+
+{% if pca %}
+
+*   You created all the required {{ oci_pca }} resources and services. See the "Creating {{ oci_pca_no_rt }} infrastructure resources and services" section.
+*   You created `install-config.yaml` and `agent-config.yaml` configuration files. See the "Creating configuration files for installing a cluster on {{ oci_pca_short }}" section.
+*   You uploaded the agent ISO image to a default Oracle Object Storage bucket, and you created a compute instance on {{ oci_pca_short }}. For more information, see "Running a cluster on {{ oci_pca_short }}".
+{% endif %}
+
+{% if not (pca or c3) %}
 
 *   You created all the required {{ oci }} resources and services. See the "Creating {{ oci_distributed_no_rt }} infrastructure resources and services" section.
 *   You created `install-config.yaml` and `agent-config.yaml` configuration files. See the "Creating configuration files for installing a cluster on {{ oci_distributed_no_rt }}" section.
 *   You uploaded the agent ISO image to a default Oracle Object Storage bucket, and you created a compute instance on {{ oci_distributed_no_rt }}. For more information, see "Running a cluster on {{ oci_distributed_no_rt }}".
+
 {% endif %}
 
 **Procedure**

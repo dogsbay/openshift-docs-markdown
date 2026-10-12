@@ -14,11 +14,7 @@ To disable HTTP/2 for Ingress Controllers in {{ product_title }}, you can annota
     ```terminal
     $ oc annotate ingresses.config/cluster ingress.operator.openshift.io/default-enable-http2=false
     ```
-
-
-    :::tip
-
-    Alternatively, you can apply the following YAML code to disable HTTP/2:
+*   Alternatively, apply the following YAML to disable HTTP/2:
     ```yaml
     apiVersion: config.openshift.io/v1
     kind: Ingress
@@ -27,5 +23,3 @@ To disable HTTP/2 for Ingress Controllers in {{ product_title }}, you can annota
       annotations:
         ingress.operator.openshift.io/default-enable-http2: "false"
     ```
-    
-    :::

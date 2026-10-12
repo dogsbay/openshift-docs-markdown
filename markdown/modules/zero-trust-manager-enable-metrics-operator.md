@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure metrics collection for the Operator by using a ServiceMonitor {id="zero-trust-manager-enable-metrics-operator_{{ context }}"}
 
-The {{ zero_trust_full }} exposes metrics by default on port 8443 at the `/metrics` service endpoint. You can configure metrics collection for the Operator by creating a `ServiceMonitor` custom resource (CR) that enables the Prometheus Operator to collect custom metrics. For more information, see "Configuring user workload monitoring". {._abstract}
+The {{ zero_trust_full }} exposes metrics by default on port 8443 at the `/metrics` service endpoint. You can configure metrics collection by creating a `ServiceMonitor` custom resource (CR) that enables the Prometheus Operator to collect custom metrics. {._abstract}
 
 The SPIRE Server operand exposes metrics by default on port `9402` at the `/metrics` endpoint. You can configure metrics collection for the SPIRE Server by creating a `ServiceMonitor` custom resource (CR) that enables the Prometheus Operator to collect custom metrics.
 

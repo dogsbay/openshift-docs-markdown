@@ -7,7 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About the mirror registry {id="installation-about-mirror-registry_{{ context }}"}
+# Mirror registry {id="installation-about-mirror-registry_{{ context }}"}
 
 You must have access to the internet to obtain the necessary container images. Using an alternative registry means that you place the mirror registry on a mirror host that has access to both your network and the internet. {._abstract}
 

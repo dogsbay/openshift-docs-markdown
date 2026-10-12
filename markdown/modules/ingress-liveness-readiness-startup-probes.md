@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Configuring Ingress Controller liveness, readiness, and startup probes {id="ingress-liveness-readiness-startup-probes_{{ context }}"}
 
-As a cluster administrator, you can configure the timeout values for the kubelet liveness, readiness, and startup probes for router deployments that are managed by the {{ product_title }} Ingress Controller (router). The ability to set larger timeout values can reduce the risk of unnecessary and unwanted restarts. {._abstract}
+As a cluster administrator, you can configure the timeout values for the kubelet liveness, readiness, and startup probes for router deployments that are managed by the {{ product_title }} Ingress Controller (router). {._abstract}
+
+The ability to set larger timeout values can reduce the risk of unnecessary and unwanted restarts.
 
 The liveness and readiness probes of the router use the default timeout value of 1 second, which is too brief when networking or runtime performance is severely degraded. Probe timeouts can cause unwanted router restarts that interrupt application connections.
 

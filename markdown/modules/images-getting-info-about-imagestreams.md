@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Get information about image streams {id="images-getting-info-about-imagestreams_{{ context }}"}
 
-To efficiently manage and monitor your image streams in {{ product_title }}, retrieve information about their versions. You can get general information about the image stream and detailed information about all the tags it is pointing to, ensuring your deployed applications rely on the correct image versions. {._abstract}
+To efficiently manage and monitor your image streams in {{ product_title }}, you can get general information about the image stream and detailed information about all the tags it is pointing to, ensuring your deployed applications rely on the correct image versions. {._abstract}
 
 **Procedure**
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a user-role IAM role {id="rosa-sts-user-role-iam-basic-role_{{ context }}"}
+# Create a user-role IAM role {id="rosa-sts-user-role-iam-basic-role_{{ context }}"}
 
 You can create your `user-role` IAM roles by using the {{ rosa_cli_first }}. {._abstract}
 

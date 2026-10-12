@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting cluster creation with an AWSNATGatewayLimitExceeded error {id="rosa-troubleshooting-awsnatgatewaylimitexceeded-failure-deployment_{{ context }}"}
+# Troubleshoot cluster creation with an AWSNATGatewayLimitExceeded error {id="rosa-troubleshooting-awsnatgatewaylimitexceeded-failure-deployment_{{ context }}"}
 
 If a cluster creation action fails, you might receive the following error messages. {._abstract}
 

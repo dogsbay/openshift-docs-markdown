@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Determining why user-defined project metrics are unavailable {id="troubleshooting-monitoring-issues_{{ context }}"}
+# Determine why user-defined project metrics are unavailable {id="troubleshooting-monitoring-issues_{{ context }}"}
 
 You can determine why user-defined project metrics are unavailable by checking metric endpoints, verifying monitor configurations, and validating service-to-pod label matching. {._abstract}
 

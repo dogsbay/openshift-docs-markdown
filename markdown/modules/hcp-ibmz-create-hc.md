@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating a hosted cluster on bare metal for {{ ibm_z_title }} {id="hcp-ibmz-create-hc_{{ context }}"}
 
-On bare-metal infrastructure, you can create or import a hosted cluster. After you enable the Assisted Installer as an add-on to {{ mce_short }} and you create a hosted cluster with the Agent platform, the HyperShift Operator installs the Agent Cluster API provider in the hosted control plane namespace. The Agent Cluster API provider connects a management cluster that hosts the control plane and a hosted cluster that consists of only the compute nodes.  {._abstract}
+On bare-metal infrastructure, after you enable the Assisted Installer as an add-on to {{ mce_short }} and create a hosted cluster with the Agent platform, the HyperShift Operator installs the Agent Cluster API provider in the hosted control plane namespace. {._abstract}
+
+The Agent Cluster API provider connects a management cluster that hosts the control plane and a hosted cluster that consists of only the compute nodes. 
 
 **Prerequisites**
 

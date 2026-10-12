@@ -110,7 +110,7 @@ You can install {{ sno }} with z/VM on {{ ibm_z_title }} and {{ ibm_linuxone_tit
     ```terminal
     $ ./openshift-install --dir=ocp create single-node-ignition-config
     ```
-1.  Obtain the {{ op_system_base }} `kernel`, `initramfs`, and `rootfs`  artifacts from the [Product Downloads](https://access.redhat.com/downloads/content/290) page on the Red Hat Customer Portal or from the [{{ op_system }} image mirror](https://mirror.openshift.com/pub/openshift-v4/s390x/dependencies/rhcos/latest/) page.
+1.  Obtain the {{ op_system_base }} `kernel`, `initramfs`, and `rootfs`  artifacts from the "Product Downloads" page on the Red Hat Customer Portal or from the "{{ op_system }} image mirror" page.
 
     :::important
 
@@ -165,7 +165,7 @@ You can install {{ sno }} with z/VM on {{ ibm_z_title }} and {{ ibm_linuxone_tit
     *   Parameter files
     *   {{ op_system }} images
 
-        For details about how to transfer the files with FTP and boot from the virtual reader, see [Installing under Z/VM](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/sect-installing-zvm-s390).
+        For details about how to transfer the files with FTP and boot from the virtual reader, see "Installing under Z/VM" in the {{ op_system }} documentation.
 1.  Punch the files to the virtual reader of the z/VM guest virtual machine that is to become your bootstrap node.
 1.  Log in to CMS on the bootstrap machine.
 1.  IPL the bootstrap machine from the reader by running the following command:
@@ -212,7 +212,7 @@ You can install {{ sno }} with z/VM on {{ ibm_z_title }} and {{ ibm_linuxone_tit
         `<APPEND|NEW>`
         :   Optional: Specify `APPEND` to append kernel parameters to existing SCPDATA. This is the default. Specify `NEW` to replace existing SCPDATA.
 
-            ```terminal title="Example"
+            ```terminal
             $ cp set loaddev scpdata 'rd.zfcp=0.0.8001,0x500507630a0350a4,0x4000409D00000000
             ip=encbdd0:dhcp::02:00:00:02:34:02 rd.neednet=1'
             ```
@@ -226,3 +226,10 @@ You can install {{ sno }} with z/VM on {{ ibm_z_title }} and {{ ibm_linuxone_tit
 
 
             Replace `<devno>` with the device number of the boot device as seen by the guest.
+
+**Additional resources**
+{._additional-resources}
+
+*   [Product Downloads](https://access.redhat.com/downloads/content/290)
+*   [{{ op_system }} image mirror](https://mirror.openshift.com/pub/openshift-v4/s390x/dependencies/rhcos/latest/)
+*   [Installing under Z/VM](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/sect-installing-zvm-s390)

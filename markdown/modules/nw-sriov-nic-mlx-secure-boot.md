@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure the SR-IOV Network Operator on Mellanox cards when Secure Boot is enabled {id="nw-sriov-nic-mlx-secure-boot_{{ context }}"}
 
-The SR-IOV Network Operator supports an option to skip the firmware configuration for Mellanox devices. This option allows you to create virtual functions by using the SR-IOV Network Operator when the system has secure boot enabled. You must manually configure and allocate the number of virtual functions in the firmware before switching the system to secure boot. {._abstract}
+The SR-IOV Network Operator supports skipping firmware configuration for Mellanox devices, allowing you to create virtual functions when secure boot is enabled. {._abstract}
+
+You must manually configure and allocate the number of virtual functions in the firmware before switching the system to secure boot.
 
 
 :::note

@@ -14,11 +14,7 @@ To enable HTTP/2 for Ingress Controllers in {{ product_title }}, you can annotat
     ```terminal
     $ oc annotate ingresses.config/cluster ingress.operator.openshift.io/default-enable-http2=true
     ```
-
-
-    :::tip
-
-    Alternatively, you can apply the following YAML code to enable HTTP/2:
+*   Alternatively, apply the following YAML to enable HTTP/2:
     ```yaml
     apiVersion: config.openshift.io/v1
     kind: Ingress
@@ -27,5 +23,3 @@ To enable HTTP/2 for Ingress Controllers in {{ product_title }}, you can annotat
       annotations:
         ingress.operator.openshift.io/default-enable-http2: "true"
     ```
-    
-    :::

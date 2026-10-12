@@ -25,7 +25,7 @@ Web server with images
     *   `http://example.com/rhel9.qcow2.sha512sum`
     *   `http://example.com/stream9.qcow2`
     *   `http://example.com/stream9.qcow2.sha512sum`
-    *   `oci://quay.io/example/image:version`
+    *   `\oci://quay.io/example/image:version`
 
 These prerequisites ensure that {{ bmaas_first }} can provision and manage bare-metal hosts effectively.
 

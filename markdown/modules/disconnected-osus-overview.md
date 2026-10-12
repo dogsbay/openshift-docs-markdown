@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Using the OpenShift Update Service in a disconnected environment {id="update-service-overview_{{ context }}"}
+# Use the OpenShift Update Service in a disconnected environment {id="update-service-overview_{{ context }}"}
 
 The OpenShift Update Service (OSUS) provides update recommendations to {{ product_title }} clusters. Red&#160;Hat publicly hosts the OpenShift Update Service, and clusters in a connected environment can connect to the service through public APIs to retrieve update recommendations. {._abstract}
 

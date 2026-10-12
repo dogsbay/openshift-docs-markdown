@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Setting up a management cluster for {{ hcp }} in a disconnected environment {id="hcp-dc-mgmt-cluster_{{ context }}"}
 
-An important part of a {{ hcp }} deployment is the {{ product_title }} management cluster. To set up an management cluster for a disconnected environment, you must install {{ mce }} on it. The {{ mce_short }} plays a crucial role in deploying clusters across providers. {._abstract}
+An important part of a {{ hcp }} deployment is the {{ product_title }} management cluster. To set up an management cluster for a disconnected environment, you must install {{ mce }} on it. {._abstract}
+
+The {{ mce_short }} plays a crucial role in deploying clusters across providers.
 
 **Prerequisites**
 

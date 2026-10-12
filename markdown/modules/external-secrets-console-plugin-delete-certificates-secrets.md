@@ -3,6 +3,9 @@
 
 You can delete certificates and secrets from installed secrets management Operators across your clusters by using the {{ product_title }} web console. {._abstract}
 
+{%- set FeatureName = "{{ external_secrets_console_plugin }}" %}
+{% include "./snippets/technology-preview.md" %}
+
 **Prerequisites**
 
 *   You have access to the {{ product_title }} cluster as a user with the `cluster-admin` role.

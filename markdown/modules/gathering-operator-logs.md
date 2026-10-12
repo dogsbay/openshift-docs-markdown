@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Gathering Operator logs {id="gathering-operator-logs_{{ context }}"}
+# Gather Operator logs {id="gathering-operator-logs_{{ context }}"}
 
 If you experience Operator issues, you can gather detailed diagnostic information from Operator pod logs. {._abstract}
 

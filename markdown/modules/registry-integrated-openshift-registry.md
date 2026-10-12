@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Integrated {{ product_registry }} {id="registry-integrated-openshift-registry_{{ context }}"}
 
-{{ product_title }} provides a built-in container image registry that runs as a standard workload on the cluster. The registry is configured and managed by an infrastructure Operator. The registry provides an out-of-the-box solution that runs on top of existing cluster infrastructure, so that you can manage the images that run workloads.  {._abstract}
+{{ product_title }} provides a built-in container image registry that runs as a standard workload on the cluster. An infrastructure Operator configures and manages the registry on top of existing cluster infrastructure. {._abstract}
 
 You can scale the registry up or down like any other cluster workload and the registry does not require specific infrastructure provisioning. The registry also integrates into the cluster user authentication and authorization system, which means that defining user permissions on image resources controls access to create and retrieve images.
 

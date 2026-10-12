@@ -11,6 +11,8 @@ The Security Profiles Operator provides a way to define secure computing (seccom
 
 These release notes track the development of the Security Profiles Operator in {{ product_title }}.
 
+{% leveloffset +1 %}{% include "./modules/spo-rn-0-10-1.md" %}{% endleveloffset %}
+
 {% leveloffset +1 %}{% include "./modules/spo-rn-0-10-0.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/spo-rn-0-9-0.md" %}{% endleveloffset %}

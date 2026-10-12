@@ -12,19 +12,28 @@ You can use the following Day 2 operations to manage {{ product_title }} cluster
 
 Updating an {{ product_title }} cluster
 :   Updating your cluster is a critical task that ensures that bugs and potential security vulnerabilities are patched.
-    For more information, see [Updating an {{ product_title }} cluster](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-welcome#update-welcome).
+
+
+Upgrading {{ product_title }} clusters with {{ rh_rhacm }} and {{ cgu_operator }}
+:   You can use {{ rh_rhacm_first }} and the {{ cgu_operator_full }} ({{ cgu_operator }}) to update spoke clusters that are managed from a hub cluster, including z-stream, y-stream, and EUS-to-EUS updates.
 
 
 Troubleshooting and maintaining {{ product_title }} clusters
-:   To maintain and troubleshoot a bare-metal environment where high-bandwidth network throughput is required, see [Troubleshooting and maintaining {{ product_title }} clusters](/post_installation_configuration/day_2_core_cnf_clusters/troubleshooting/troubleshooting-intro#troubleshooting-intro).
+:   To maintain and troubleshoot a bare-metal environment where high-bandwidth network throughput is required.
 
 
 Observability in {{ product_title }} clusters
 :   {{ product_title }} generates a large amount of data, such as performance metrics and logs from the platform and the workloads running on it.
     As an administrator, you can use tools to collect and analyze the available data.
-    For more information, see [Observability in {{ product_title }}](/post_installation_configuration/day_2_core_cnf_clusters/observability/observability#observability).
 
 
 Security
 :   You can enhance security for high-bandwidth network deployments by following key security considerations.
-    For more information, see [Security basics](/post_installation_configuration/day_2_core_cnf_clusters/security/security-basics#security-basics).
+
+## Additional resources {id="additional-resources_telco-day-2-welcome" ._additional-resources}
+
+*   [Updating an {{ product_title }} cluster](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-welcome#update-welcome)
+*   [About cluster updates with {{ rh_rhacm }} and {{ cgu_operator }}](/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-overview#core-cluster-upgrades-overview)
+*   [Troubleshooting and maintaining {{ product_title }} clusters](/post_installation_configuration/day_2_core_cnf_clusters/troubleshooting/troubleshooting-intro#troubleshooting-intro)
+*   [Observability in {{ product_title }}](/post_installation_configuration/day_2_core_cnf_clusters/observability/observability#observability)
+*   [Security basics](/post_installation_configuration/day_2_core_cnf_clusters/security/security-basics#security-basics)

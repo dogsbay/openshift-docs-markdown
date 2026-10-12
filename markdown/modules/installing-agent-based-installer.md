@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Installing a cluster with the Agent-based Installer {id="installing-agent_{{ context }}"}
+# Install a cluster with the Agent-based Installer {id="installing-agent_{{ context }}"}
 
 You can install an {{ product_title }} cluster in a disconnected environment with the Agent-based Installer. {._abstract}
 

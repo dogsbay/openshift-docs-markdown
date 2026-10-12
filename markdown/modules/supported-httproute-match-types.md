@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Supported HTTPRoute match types {id="supported-httproute-match-types_{{ context }}"}
 
-Matches define conditions used for matching the rule against incoming HTTP requests. If no match is specified, then all HTTP requests are matched, depending on the hostname. Each match is independent, i.e. this rule will be matched if any single match of the type is satisfied. A rule may have up to 64 matches, but most rules don’t need to be this complex. You may combine multiple match types (path and headers, for example), all of which must be true in order for the HTTP request to match. {._abstract}
+Matches define conditions for matching rules against incoming HTTP requests. Each match is independent, meaning that any single satisfied match triggers the rule. You can combine multiple match types, all of which must be true for the request to match. {._abstract}
 
 You can configure the following match types:
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Creating a horizontal pod autoscaler by using the CLI {id="nodes-pods-autoscaling-creating-cpu_{{ context }}"}
 
-By using the {{ product_title }} CLI, you can create a horizontal pod autoscaler (HPA) to automatically scale an existing `Deployment`, `DeploymentConfig`, `ReplicaSet`, `ReplicationController`, or `StatefulSet` object. The HPA scales the pods associated with that object to maintain the CPU or memory resources that you specify. {._abstract}
+You can create a horizontal pod autoscaler (HPA) to automatically scale an existing `Deployment`, `DeploymentConfig`, `ReplicaSet`, `ReplicationController`, or `StatefulSet` object to maintain specified CPU or memory usage. {._abstract}
 
 You can autoscale based on CPU or memory use by specifying a percentage of resource usage or a specific value, as described in the following sections.
 

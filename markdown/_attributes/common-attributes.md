@@ -104,7 +104,7 @@
 {%- set opp = "OpenShift Platform Plus" %}
 {%- set VirtProductName = "OpenShift Virtualization" -%}
 {%- set VirtVersion = "4.22" -%}
-{%- set HCOVersion = "4.22.6" -%}
+{%- set HCOVersion = "4.22.9" -%}
 {%- set HCOVersionPrev = "4.21.0" -%}
 {%- set HCOCliKind = "hyperconvergeds.v1beta1.hco.kubevirt.io" -%}
 {%- set CNVNamespace = "openshift-cnv" -%}
@@ -346,4 +346,4 @@
 {%- set attribute_based_full = "Attribute-Based GPU Allocation" -%}
 {%- set attribute_based_short = "Attribute-Based GPU Allocation" %}
 {%- set support_log_gather = "Support Log Gather" -%}
-{%- set bmaas_first = "Red&#160;Hat Bare Metal as a Service for OpenShift" -%}
+{%- set bmaas_first = "Red&#160;Hat Bare-Metal-as-a-Service for OpenShift" -%}

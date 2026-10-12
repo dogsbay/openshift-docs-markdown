@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Cluster update status using oc adm upgrade status {id="update-upgrading-oc-adm-upgrade-status_{{ context }}"}
 
-When updating your cluster, the `oc adm upgrade` command returns limited information about the status of your update. The cluster administrator can use the `oc adm upgrade status` command to return specific information regarding a cluster update, including the status of the control plane and worker node updates. Worker is also known as compute. {._abstract}
+You can use the `oc adm upgrade status` command to get detailed cluster update information, including control plane and worker node status, beyond what the standard `oc adm upgrade` command provides. {._abstract}
 
 The `oc adm upgrade status` command is read-only and does not alter any state in your cluster.
 

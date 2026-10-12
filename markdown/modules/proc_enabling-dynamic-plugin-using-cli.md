@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Enable a dynamic plugin with the CLI {id="enabling-a-dynamic-plugin-by-using-the-cli_{{ context }}"}
 
-You can enable a dynamic plugin to extend the core web console with more features, such as additional pages, perspectives, or dashboard items. Use the {{ oc_first }} after a scripted installation, such as an Operator or Helm-based install. Add the `ConsolePlugin` name to `spec.plugins` in the console Operator configuration (`console.operator.openshift.io/cluster`) so the web console loads it. {._abstract}
+You can enable a dynamic plugin to extend the web console with additional pages, perspectives, or dashboard items. Add the `ConsolePlugin` name to `spec.plugins` in the console Operator configuration so the web console loads it. {._abstract}
 
 **Prerequisites**
 

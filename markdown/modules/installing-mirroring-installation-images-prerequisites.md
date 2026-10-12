@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Prerequisites {id="prerequisites_{{ context }}"}
+# Prerequisites for mirroring images with the oc adm command {id="prerequisites_{{ context }}"}
 
 You must meet several prerequisites before you can mirror images using the `oc adm release mirror` command. {._abstract}
 

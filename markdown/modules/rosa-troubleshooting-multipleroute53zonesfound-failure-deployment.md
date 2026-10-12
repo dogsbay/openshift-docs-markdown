@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting cluster creation with a MultipleRoute53ZonesFound error {id="rosa-troubleshooting-multipleroute53zonesfound-failure-deployment_{{ context }}"}
+# Troubleshoot cluster creation with a MultipleRoute53ZonesFound error {id="rosa-troubleshooting-multipleroute53zonesfound-failure-deployment_{{ context }}"}
 
 If a cluster creation action fails, you might receive the following error message: {._abstract}
 

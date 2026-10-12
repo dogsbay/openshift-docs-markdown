@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure SSL/TLS when importing manifest lists {id="images-imagestream-ssl-import-list_{{ context }}"}
 
-To control connection security and access policies for manifest lists sourced from external repositories, configure SSL/TLS settings during image importing. To configure SSL/TLS when importing a manifest list, you can use the `--insecure` flag to bypass standard certificate validation requirements if necessary. {._abstract}
+To control connection security and access policies for manifest lists sourced from external repositories, configure SSL/TLS settings during image importing. {._abstract}
+
+To configure SSL/TLS when importing a manifest list, you can use the `--insecure` flag to bypass standard certificate validation requirements if necessary.
 
 **Procedure**
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Prerequisites {id="prerequisites_installing-mirroring-disconnected"}
+# Prerequisites for disconnected installation mirroring {id="prerequisites_installing-mirroring-disconnected"}
 
 Before you can mirror images using the oc-mirror plugin, you must meet several prerequisites. {._abstract}
 

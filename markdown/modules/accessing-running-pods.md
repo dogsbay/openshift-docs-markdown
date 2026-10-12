@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accessing running pods {id="accessing-running-pods_{{ context }}"}
+# Access running pods {id="accessing-running-pods_{{ context }}"}
 
 You can review running pods dynamically by opening a shell inside a pod or by gaining network access through port forwarding. {._abstract}
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Understanding listener routing conflicts {id="resolving-listener-routing-conflicts_{{ context }}"}
 
-When you configure a `Gateway` custom resource (CR) with multiple listeners, you must establish clear rules for overlapping hostnames and ports to ensure your traffic does not get misrouted. To avoid ambiguity, the Gateway API uses specific conflict management rules. {._abstract}
+When you configure a `Gateway` custom resource (CR) with multiple listeners, you must establish clear rules for overlapping hostnames and ports to ensure your traffic does not get misrouted. To avoid ambiguity, Gateway API uses specific conflict management rules. {._abstract}
 
 If your listener configurations violate these rules, the affected listener receives a `Conflicted` status condition and cannot route traffic correctly.
 
@@ -15,6 +15,6 @@ To resolve or prevent routing conflicts, ensure that your listeners adhere to th
 
     :::note
 
-    In the Gateway API, wildcards match one or more complete DNS labels. For example, `+++*+++.<example.com>` matches `<www.example.com>` and `<sub.domain.example.com>`, but does not match the root domain `<example.com>`.
+    In Gateway API, wildcards match one or more complete DNS labels. For example, `+++*+++.<example.com>` matches `<www.example.com>` and `<sub.domain.example.com>`, but does not match the root domain `<example.com>`.
     
     :::

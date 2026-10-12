@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Prerequisites {id="prerequisites_oc-mirror-v2_{{ context }}"}
+# Prerequisites for mirroring images with oc-mirror plugin v2 {id="prerequisites_oc-mirror-v2_{{ context }}"}
 
 Before you can mirror images with the oc-mirror plugin v2, you must meet several prerequisites. {._abstract}
 

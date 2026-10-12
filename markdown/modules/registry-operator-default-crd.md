@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Enable the Image Registry default route by using a CRD {id="registry-operator-default-crd_{{ context }}"}
 
-In {{ product_title }}, the `Registry` Operator controls the {{ product_registry }} feature and you define this Operator in the `configs.imageregistry.operator.openshift.io` Custom Resource Definition (CRD). If you need to automatically enable the Image Registry default route, patch the Image Registry Operator CRD. {._abstract}
+In {{ product_title }}, the `Registry` Operator controls the {{ product_registry }} feature by using the `configs.imageregistry.operator.openshift.io` CRD. Patch this CRD to automatically enable the Image Registry default route. {._abstract}
 
 **Procedure**
 

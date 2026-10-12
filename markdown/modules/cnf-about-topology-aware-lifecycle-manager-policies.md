@@ -19,4 +19,9 @@ Using the `PolicyGentemplate` CRD is the recommended method for automatic policy
 
 For policies that update an Operator subscription with manual approval, {{ cgu_operator }} provides additional functionality that approves the installation of the updated Operator.
 
-For more information about managed policies, see [Policy Overview](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/{{ rh_rhacm_version }}/html-single/governance/index#policy-overview) in the {{ rh_rhacm }} documentation.
+For more information about managed policies, "Policy Overview" in the {{ rh_rhacm }} documentation.
+
+**Additional resources**
+{._additional-resources}
+
+*   [Policy Overview](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/{{ rh_rhacm_version }}/html-single/governance/index#policy-overview)

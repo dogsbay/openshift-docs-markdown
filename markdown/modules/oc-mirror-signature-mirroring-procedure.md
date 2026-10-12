@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Disabling signature mirroring for oc-mirror plugin v2 {id="oc-mirror-signature-mirroring-procedure_{{ context }}"}
 
-You can disable signature mirroring for all images by providing the `--remove-signatures` flag for the `oc mirror` command. You can disable signature mirroring when your destination registry does not support signature storage or when you need to bypass failures caused by invalid or expired signatures at the source. {._abstract}
+You can disable signature mirroring for all images by providing the `--remove-signatures` flag for the `oc mirror` command when the destination registry does not support signature storage or when you need to bypass invalid or expired source signatures. {._abstract}
 
 **Procedure**
 

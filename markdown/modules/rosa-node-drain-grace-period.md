@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configure node drain grace periods {id="rosa-node-drain-grace-period_{{ context }}"}
+# Set node drain grace periods for workload migration {id="rosa-node-drain-grace-period_{{ context }}"}
 
 You can configure the node drain grace period for machine pools in your cluster. This setting controls how long the cluster respects Pod Disruption Budget protected workloads during upgrades or replacements. After this period, remaining workloads are forcibly evicted. {._abstract}
 

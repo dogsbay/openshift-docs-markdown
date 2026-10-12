@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the Elastic Load Balancing (ELB) service-linked role {id="rosa-troubleshooting-elb-service-role_{{ context }}"}
+# Create the Elastic Load Balancing (ELB) service-linked role {id="rosa-troubleshooting-elb-service-role_{{ context }}"}
 
 If you have not created a load balancer in your AWS account, it is possible that the service-linked role for Elastic Load Balancing (ELB) might not exist yet. You might receive the following error: {._abstract}
 

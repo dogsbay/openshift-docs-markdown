@@ -8,7 +8,7 @@ To ensure successful deployment of {{ hcp }} on {{ aws_first }}, your environmen
     ```terminal
     $ oc get managedclusters local-cluster
     ```
-*   You installed the [`aws` command-line interface (CLI)](https://aws.amazon.com/cli/).
+*   You installed the "`aws` command-line interface (CLI)".
 *   You installed the hosted control plane CLI, `hcp`.
 
 
@@ -20,3 +20,9 @@ To ensure successful deployment of {{ hcp }} on {{ aws_first }}, your environmen
 *   Do not create a hosted cluster in the namespace of a {{ mce_short }} managed cluster.
 
 :::
+
+
+**Additional resources**
+{._additional-resources}
+
+*   [`aws` command-line interface (CLI)](https://aws.amazon.com/cli/)

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Use SPIRE federation with manual certificate management {id="zero-trust-manager-manual-management_{{ context }}"}
 
-You can use SPIRE federation with custom certificate management using cert-manager or other certificate providers. This approach provides flexibility for organizations that require control over certificate issuance, support for internal certificate authorities (CAs), or integration with existing certificate management infrastructure. {._abstract}
+You can use SPIRE federation with custom certificate management by using cert-manager or other certificate providers for control over certificate issuance and integration with internal certificate authorities (CAs). {._abstract}
 
 **Prerequisites**
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Associating your AWS account with IAM roles {id="rosa-associating-account_{{ context }}"}
+# Associate your AWS account with IAM roles {id="rosa-associating-account_{{ context }}"}
 
 You can associate or link your AWS account with existing IAM roles by using the {{ rosa_cli_first }}. {._abstract}
 

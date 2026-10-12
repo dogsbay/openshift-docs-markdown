@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Private clusters in {{ gcp_short }} {id="private-clusters-about-gcp_{{ context }}"}
 
-To create a private cluster on {{ gcp_first }}, you must provide an existing VPC network and subnets to host the cluster, and you must specify `publish: Internal` in your `install-config.yaml` file. The installation program must also be able to resolve the DNS records that the cluster requires. The installation program configures the Ingress Operator and API server for only internal traffic. {._abstract}
+To create a private cluster on {{ gcp_first }}, provide an existing VPC network and subnets, and specify `publish: Internal` in your `install-config.yaml` file. The installation program resolves required DNS records and configures the Ingress Operator and API server for internal traffic only. {._abstract}
 
 The cluster still requires access to internet to access the {{ gcp_short }} APIs.
 

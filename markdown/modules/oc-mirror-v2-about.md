@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About oc-mirror plugin v2 {id="installation-oc-mirror-v2-about_{{ context }}"}
+# oc-mirror plugin v2 {id="installation-oc-mirror-v2-about_{{ context }}"}
 
 The oc-mirror OpenShift CLI (`oc`) plugin is a single tool that mirrors all required {{ product_title }} content and other images to your mirror registry. {._abstract}
 

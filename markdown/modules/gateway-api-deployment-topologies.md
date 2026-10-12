@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Gateway API deployment topologies {id="gateway-api-deployment-topologies_{{ context }}"}
 
-To effectively organize and secure your routing infrastructure, you must choose an appropriate deployment topology for your cluster. Gateway API is designed to accommodate two topologies: shared gateways or dedicated gateways. You can choose a topology based on its own advantages and different security implications. {._abstract}
+Select an appropriate cluster deployment topology to organize and secure your routing infrastructure. Gateway API accommodates shared gateways or dedicated gateways. Choose a topology based on its distinct advantages and security implications. {._abstract}
 
 ## Dedicated gateway {id="dedicated-gateway_{{ context }}"}
 Routes and any load balancers or proxies are served from the same namespace. The `Gateway` object restricts routes to a particular application namespace. This is the default topology when deploying a Gateway API resource in {{ product_title }}.

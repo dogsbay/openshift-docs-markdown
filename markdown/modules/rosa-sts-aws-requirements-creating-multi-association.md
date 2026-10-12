@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Associating multiple AWS accounts with your Red&#160;Hat organization {id="rosa-associating-multiple-account_{{ context }}"}
+# Associate multiple AWS accounts with your Red&#160;Hat organization {id="rosa-associating-multiple-account_{{ context }}"}
 
 You can associate multiple AWS accounts with your Red&#160;Hat organization. Associating multiple accounts lets you create {{ product_title }} clusters on any of the associated AWS accounts from your Red&#160;Hat organization. {._abstract}
 

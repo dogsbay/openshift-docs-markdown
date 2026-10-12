@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Troubleshooting {{ product_title }} on {{ gcp_short }} installation error codes {id="osd-on-gcp-troubleshoot-cluster-install_{{ context }}"}
+# Troubleshoot {{ product_title }} on {{ gcp_short }} installation error codes {id="osd-on-gcp-troubleshoot-cluster-install_{{ context }}"}
 
 The following table lists {{ product_title }} on {{ gcp_first }} installation error codes and what you can do to resolve these errors. {._abstract}
 

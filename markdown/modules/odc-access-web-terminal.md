@@ -1,9 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Accessing the web terminal {id="odc-access-web-terminal_{{ context }}"}
 
-After the {{ web_terminal_op }} is installed, you can access the web terminal. After the web terminal is initialized, you can use the preinstalled CLI tools such as `oc`, `kubectl`, `odo`, `kn`, `tkn`, `helm`, and `subctl` in the web terminal.
-You can re-run commands by selecting them from the list of commands you have run in the terminal. These commands persist across multiple terminal sessions.
-The web terminal remains open until you close it or until you close the browser window or tab. {._abstract}
+After the {{ web_terminal_op }} is installed, you can access the web terminal and use preinstalled CLI tools such as `oc`, `kubectl`, `odo`, `kn`, `tkn`, `helm`, and `subctl`. {._abstract}
+
+You can re-run commands by selecting them from the list of commands you have run in the terminal. These commands persist across multiple terminal sessions. The web terminal remains open until you close it or until you close the browser window or tab.
 
 **Prerequisites**
 

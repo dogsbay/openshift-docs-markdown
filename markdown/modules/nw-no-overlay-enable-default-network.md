@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Enable underlay routing for the default cluster network {id="nw-no-overlay-enable-default-network_{{ context }}"}
 
-To steer default network’s east-west traffic over the underlay network instead of Geneve, configure the Cluster Network Operator (CNO) for `NoOverlay` transport and set the source network address translation (SNAT) and routing. If you use unmanaged routing, apply `FRRConfiguration` and `RouteAdvertisements` custom resources (CRs) so your routers exchange pod routes. {._abstract}
+To steer east-west traffic over the underlay network instead of Geneve, configure the Cluster Network Operator (CNO) for `NoOverlay` transport and set SNAT and routing. {._abstract}
+
+If you use unmanaged routing, apply `FRRConfiguration` and `RouteAdvertisements` CRs so your routers exchange pod routes.
 
 **Prerequisites**
 

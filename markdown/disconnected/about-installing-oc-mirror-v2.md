@@ -42,7 +42,7 @@ You can use oc-mirror plugin v2 to mirror images to a mirror registry in your fu
 
 {% leveloffset +3 %}{% include "./modules/oc-mirror-disk-to-mirror-v2.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/oc-mirror-IDMS-ITMS-about.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/oc-mirror-idms-itms-about.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}

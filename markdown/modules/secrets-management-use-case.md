@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Secrets management use cases {id="secrets-management-scenarios_{{ context }}"}
 
-Using secrets management tools with other Red&#160;Hat products can protect sensitive data across your {{ product_title }} cluster. You can integrate secrets management Operators with other {{ product_title }} components to securely manage, automate, and consume credentials across various infrastructure and application workflows. {._abstract}
+You can integrate secrets management Operators with other {{ product_title }} components to securely manage, automate, and consume credentials across infrastructure and application workflows. {._abstract}
 
 ## {{ external_secrets_operator }} use cases {id="secrets-management-scenarios-eso_{{ context }}"}
 

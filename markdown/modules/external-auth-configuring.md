@@ -27,7 +27,7 @@ Configure {{ product_title }} to use an external OIDC identity provider for dire
 1.  Create a secret that allows you to authenticate with the web console by running the following command:
     ```terminal
     $ oc create secret generic console-secret \
-        --from-literal=clientSecret=<secret_value> \//
+        --from-literal=clientSecret=<secret_value> \
         -n openshift-config
     ```
 

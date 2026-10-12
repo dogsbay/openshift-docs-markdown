@@ -50,6 +50,6 @@ Upon deletion of the samples resource, the Cluster Samples Operator recreates th
 {%- set operator_ref = "" -%}
 {% endif %}
 
-{% if context == "cluster-caps" %}
+{% if context == "cluster-capabilities" %}
 {%- set cluster_caps = "" -%}
 {% endif %}

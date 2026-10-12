@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Preparing your cluster for workloads {id="installing-preparing-cluster-for-workloads_{{ context }}"}
+# Prepare your cluster for workloads {id="installing-preparing-cluster-for-workloads_{{ context }}"}
 
 Take extra steps to prepare your cluster before deploying applications, depending on your workload needs. {._abstract}
 

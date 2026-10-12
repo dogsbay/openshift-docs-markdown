@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Add node labels to a machine pool {id="rosa-adding-node-labels_{{ context }}"}
+# Add node labels to control scheduling {id="rosa-adding-node-labels_{{ context }}"}
 
 Add or edit labels for compute nodes at any time to manage the nodes in a manner that is relevant to you. For example, you can assign types of workloads to specific nodes. Each key must be unique to the object it is assigned to. {._abstract}
 

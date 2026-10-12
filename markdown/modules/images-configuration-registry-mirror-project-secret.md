@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring project-scoped image pull secrets for mirrored registries {id="images-configuration-registry-mirror-project-secret_{{ context }}"}
 
-As a cluster administrator, you can edit the cluster-wide `CRIOCredentialProviderConfig` object, named `cluster`, to enable project-scoped image pull secrets that you can use with mirrored repositories. By using project-scoped secrets, you can maintain security isolation between projects without exposing credentials in a global pull secret. {._abstract}
+As a cluster administrator, you can edit the cluster-wide `CRIOCredentialProviderConfig` object, named `cluster`, to enable project-scoped image pull secrets that you can use with mirrored repositories. {._abstract}
+
+By using project-scoped secrets, you can maintain security isolation between projects without exposing credentials in a global pull secret.
 
 By default, if your cluster uses an `ImageDigestMirrorSet`, `ImageTagMirrorSet`, or `ImageContentSourcePolicy` object to configure repository mirroring, you must use a global pull secret for mirrored registries. You cannot add an image pull secret to a project. However, you can use the cluster-wide `CRIOCredentialProviderConfig` object to configure the kubelet to trigger the CRI-O credential provider, which enables project-scoped image pull secrets.
 

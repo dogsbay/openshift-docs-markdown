@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Specifying OpenShift CLI (`oc`) log levels {id="specifying-oc-log-levels_{{ context }}"}
+# Specify OpenShift CLI (`oc`) log levels {id="specifying-oc-log-levels_{{ context }}"}
 
 You can investigate OpenShift CLI (`oc`) issues by increasing the command’s log level. {._abstract}
 

@@ -23,6 +23,6 @@ The Cluster CSI Snapshot Controller Operator installs and maintains the CSI Snap
 {%- set operator_ref = "" -%}
 {% endif %}
 
-{% if context == "cluster-caps" %}
+{% if context == "cluster-capabilities" %}
 {%- set cluster_caps = "" -%}
 {% endif %}

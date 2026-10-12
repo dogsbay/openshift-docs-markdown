@@ -60,6 +60,6 @@ The `marketplace` capability depends on the `OperatorLifecycleManager` capabilit
 {%- set operators = "" -%}
 {% endif %}
 
-{% if context == "cluster-caps" %}
+{% if context == "cluster-capabilities" %}
 {%- set cluster_caps = "" -%}
 {% endif %}

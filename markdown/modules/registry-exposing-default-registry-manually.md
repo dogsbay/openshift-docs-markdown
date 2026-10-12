@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Expose a default registry manually {id="registry-exposing-default-registry-manually_{{ context }}"}
 
-Instead of logging in to the default {{ product_registry }} from within the cluster, you can gain external access to the {{ product_registry }} by exposing the registry with a route. With this external access, you can log in to the registry from outside the cluster by using the route address. You can then tag and push images to an existing project by using the route host. {._abstract}
+You can gain external access to the default {{ product_registry }} by exposing it with a route. External access lets you log in from outside the cluster and tag and push images to an existing project by using the route host. {._abstract}
 
 **Prerequisites**
 

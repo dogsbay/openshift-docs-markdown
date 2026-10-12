@@ -1,11 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Azure government regions {id="installation-azure-about-government-region_{{ context }}"}
 
-Microsoft Azure Government (MAG) is a cloud environment designed for US government agencies for US government agencies at the federal,
-state, and local level, as well as contractors, educational institutions, and
-other US customers that must run sensitive workloads on Azure. MAG is composed
-of government-only data center regions, all granted an
-Impact Level 5 Provisional Authorization. {._abstract}
+Microsoft Azure Government (MAG) is a cloud environment designed for US government agencies for US government agencies at the federal, state, and local level, as well as contractors, educational institutions, and other US customers that must run sensitive workloads on Azure. {._abstract}
+
+MAG is composed of government-only data center regions, all granted an Impact Level 5 Provisional Authorization.
 
 Deploying a {{ product_title }} cluster to a Microsoft Azure Government (MAG) region requires manually configuring the Azure Government cloud instance and region in the `install-config.yaml` file before you install the cluster. You must also update your service principal to reference the appropriate government environment.
 

@@ -26,7 +26,7 @@ If you are using an OSA network device in Processor Resource/Systems Manager (PR
     
     :::
 
-    ```terminal title="Example .parm file"
+    ```terminal
     rd.neednet=1 cio_ignore=all,!condev
     console=ttysclp0
     coreos.live.rootfs_url=<coreos_url>

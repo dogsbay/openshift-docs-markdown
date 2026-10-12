@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Troubleshooting {{ product_title }} installation error codes {id="rosa-troubleshoot-hcp-install_{{ context }}"}
+# Troubleshoot {{ product_title }} installation error codes {id="rosa-troubleshoot-hcp-install_{{ context }}"}
 
 The following table lists {{ product_title }} installation error codes and what you can do to troubleshoot these errors. {._abstract}
 

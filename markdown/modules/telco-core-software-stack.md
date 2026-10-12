@@ -10,15 +10,13 @@ The Red&#160;Hat telco core {{ product_version }} solution has been validated us
 | {{ rh_rhacm_first }} | 2.17 |
 | {{ gitops_title }} | 1.20 |
 | cert-manager Operator | 1.19 |
-| Cluster Logging Operator | 6.5 |
+| Cluster Logging Operator | 6.6 |
 | {{ rh_storage }} | 4.22 |
 | SR-IOV Network Operator | 4.22 |
 | MetalLB | 4.22 |
 | NMState Operator | 4.22 |
 | NUMA-aware scheduler | 4.22 |
 
-*   {{ rh_storage }} is expected to be updated to 4.22 when the aligned {{ rh_storage }} version is released.
-*   The Cluster Logging Operator is expected to be updated to 6.6 when the aligned version is released.
 *   The cert-manager Operator and {{ gitops_title }} Operator are platform-agnostic operators.
 The support lifecycle for these operators is independent from the support lifecycle for {{ product_title }}.
 You might need to update to a newer minor version of these operators at the end of an operator lifecycle, or when planning to update the {{ product_title }} cluster to continue support.

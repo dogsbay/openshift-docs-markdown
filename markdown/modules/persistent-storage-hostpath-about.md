@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Overview of hostPath {id="persistent-storage-hostpath-about_{{ context }}"}
 
-A hostPath volume mounts files or directories from the host node’s filesystem into pods for development and testing on single-node clusters. Because hostPath requires privileged pods and must be statically provisioned, it is not recommended for production. Use network storage with dynamic provisioning instead. {._abstract}
+A hostPath volume mounts files or directories from the host node’s filesystem into pods. Because hostPath requires privileged pods and static provisioning, it is recommended for development and testing only. {._abstract}
 
 
 :::important

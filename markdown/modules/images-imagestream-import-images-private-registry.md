@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Import images and image streams from private registries {id="images-imagestream-import-images-private-registry_{{ context }}"}
 
-To securely manage content from external sources, configure your image streams to import tag and image metadata from private registries requiring authentication. This procedure is essential if you change the registry that the Cluster Samples Operator uses for pulling content to something other than the default [registry.redhat.io](https://registry.redhat.io). {._abstract}
+To securely manage content from external sources, configure your image streams to import tag and image metadata from private registries requiring authentication. {._abstract}
+
+This procedure is essential if you change the registry that the Cluster Samples Operator uses for pulling content to something other than the default [registry.redhat.io](https://registry.redhat.io).
 
 
 :::note

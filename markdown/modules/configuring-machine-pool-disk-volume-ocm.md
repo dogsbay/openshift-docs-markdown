@@ -1,8 +1,5 @@
-{%- set _mod_docs_content_type = "PROCEDURE" -%}
-{% if openshift_rosa %}
+{%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure machine pool disk volume using {{ cluster_manager }} {id="configuring-machine-pool-disk-volume-ocm_{{ context }}"}
-
-{% endif %}
 
 Configure the disk volume size for machine pools during cluster creation or when adding new machine pools by using {{ cluster_manager_first }}. {._abstract}
 

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 {% if not (openshift_rosa or openshift_rosa_hcp) %}
-# Creating a machine pool {id="creating_machine_pools_ocm_{{ context }}"}
+# Create a machine pool {id="creating_machine_pools_ocm_{{ context }}"}
 
 {% endif %}
 {% if openshift_rosa or openshift_rosa_hcp %}

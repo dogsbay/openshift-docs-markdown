@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# ROSA CLI commands {id="rosa-cli-commands_{{ context }}"}
+# {{ rosa_cli_title }} commands {id="rosa-cli-commands_{{ context }}"}
 
 {{ rosa_cli_first }} offers the following options for interacting with your cluster. {._abstract}
 

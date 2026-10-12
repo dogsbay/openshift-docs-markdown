@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Repairing a cluster that cannot be deleted {id="rosa-troubleshooting-cluster-deletion_{{ context }}"}
+# Repair a cluster that cannot be deleted {id="rosa-troubleshooting-cluster-deletion_{{ context }}"}
 
 In specific cases, the following error is displayed in {{ cluster_manager_url }} if you attempt to delete your cluster: {._abstract}
 

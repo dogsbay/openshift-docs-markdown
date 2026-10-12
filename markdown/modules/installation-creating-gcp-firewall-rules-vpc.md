@@ -5,8 +5,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating firewall rules and IAM roles in {{ gcp_short }} {id="installation-creating-gcp-firewall-rules-vpc_{{ context }}"}
 
-You must create firewall rules and IAM roles in {{ gcp_first }} for your {{ product_title }} cluster to use. One way to create these components is to modify the provided Infrastructure Manager template.
-If you are installing a cluster into a shared VPC and the host project already has the necessary firewall rules and IAM roles, you can skip creating these resources. {._abstract}
+You must create firewall rules and IAM roles in {{ gcp_first }} for your {{ product_title }} cluster to use. One way to create these components is to modify the provided Infrastructure Manager template. {._abstract}
+
+If you are installing a cluster into a shared VPC and the host project already has the necessary firewall rules and IAM roles, you can skip creating these resources.
 
 
 :::note

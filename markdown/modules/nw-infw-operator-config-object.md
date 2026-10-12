@@ -34,7 +34,7 @@ The fields for the Ingress Node Firewall configuration object are described in t
 <tr>
   <td><code>spec.ebpfProgramManagerMode</code></td>
   <td><code>boolean</code></td>
-  <td>Specifies if the Node Ingress Firewall Operator uses the eBPF Manager Operator or not to manage eBPF programs. This capability is a Technology Preview feature.<br><br>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</td>
+  <td>Specifies if the Node Ingress Firewall Operator uses the eBPF Manager Operator or not to manage eBPF programs. This capability is a Technology Preview feature.<br><br>For more information about the support scope of Red Hat Technology Preview features, see "Technology Preview Features Support Scope".</td>
 </tr>
 </tbody>
 </table>
@@ -76,3 +76,9 @@ EOF
 The Operator consumes the CR object and creates an ingress node firewall daemon set on all the nodes that match the `nodeSelector`.
 
 :::
+
+
+**Additional resources**
+{._additional-resources}
+
+*   [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/)

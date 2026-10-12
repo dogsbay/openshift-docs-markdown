@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Quotas and limits on {{ ibm_power_server_title }} {id="quotas-and-limits-ibm-power-vs_{{ context }}"}
 
-The {{ product_title }} cluster uses several {{ ibm_cloud_name }} and {{ ibm_power_server_name }} components. Default quotas and limits affect your ability to install clusters, so you might need to request additional resources for your {{ ibm_cloud_name }} account depending on your configuration, region, or number of clusters. {._abstract}
+Default {{ ibm_cloud_name }} and {{ ibm_power_server_name }} quotas and limits affect your ability to install {{ product_title }} clusters. You might need to request additional resources depending on your configuration, region, or number of clusters. {._abstract}
 
 ## Virtual private cloud {id="_virtual_private_cloud"}
 

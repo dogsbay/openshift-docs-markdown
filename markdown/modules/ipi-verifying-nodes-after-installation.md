@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Verifying node state after installation {id="ipi-verifying-nodes-after-installation_{{ context }}"}
+# Verify node state after installation {id="ipi-verifying-nodes-after-installation_{{ context }}"}
 
 The {{ product_title }} installation completes when the following installation health checks are successful: {._abstract}
 

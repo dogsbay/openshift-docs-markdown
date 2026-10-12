@@ -1,4 +1,4 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
+{%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create a custom Ingress Controller {id="nw-create-custom-ingress-controller_{{ context }}"}
 
 As a cluster administrator, you can create a new custom Ingress Controller.  {._abstract}

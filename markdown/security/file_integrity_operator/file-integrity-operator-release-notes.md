@@ -11,6 +11,8 @@ The File Integrity Operator for {{ product_title }} continually runs file integr
 
 These release notes track the development of the File Integrity Operator in the {{ product_title }}.
 
+{% leveloffset +1 %}{% include "./modules/fio-rn-1-5-0.md" %}{% endleveloffset %}
+
 {% leveloffset +1 %}{% include "./modules/fio-rn-1-4-1.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/fio-rn-1-4-0.md" %}{% endleveloffset %}

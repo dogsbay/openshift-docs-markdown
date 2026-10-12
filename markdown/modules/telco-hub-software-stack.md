@@ -9,16 +9,14 @@ The following y-stream versions were used in validation of the telco hub solutio
 | {{ rh_rhacm_first }} | 2.17 |
 | Local Storage Operator | 4.22 |
 | cert-manager Operator | 1.19 |
-| {{ odf_first }} | 4.21 |
+| {{ odf_first }} | 4.22 |
 | {{ gitops_title }} | 1.20 |
 | {{ ztp_first }} plugins | 4.22 |
 | {{ mce_short }} PolicyGenerator plugin | 2.17 |
 | {{ cgu_operator_first }} | 4.22 |
-| Cluster Logging Operator | 6.5 |
+| Cluster Logging Operator | 6.6 |
 | {{ oadp_first }} | The version aligned with the {{ rh_rhacm }} release. |
 
-*   {{ odf_short }} will be updated to 4.22 when the aligned {{ odf_short }} version is released.
-*   Cluster Logging Operator will be updated to 6.6 when the aligned Cluster Logging Operator version is released.
 *   The cert-manager Operator and {{ gitops_title }} Operator are platform agnostic operators. 
 The support lifecycle for these operators is independent from the support lifecycle for {{ product_title }}. 
 You might need to update to a newer minor version of these operators at the end of an operator lifecycle, or when planning to update the {{ product_title }} cluster to continue support. 

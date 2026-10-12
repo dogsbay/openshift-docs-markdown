@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Add taints to a machine pool {id="rosa-adding-taints_{{ context }}"}
+# Add node taints to restrict workloads {id="rosa-adding-taints_{{ context }}"}
 
 You can add taints for compute nodes in a machine pool to control which pods are scheduled to them. When you apply a taint to a machine pool, the scheduler cannot place a pod on the nodes in the pool unless the pod specification includes a toleration for the taint. {._abstract}
 

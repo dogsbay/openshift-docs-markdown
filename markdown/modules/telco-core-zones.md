@@ -1,12 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Zones {id="telco-core-zones_{{ context }}"}
 
-Designing the cluster to support disruption of multiple nodes simultaneously is critical for high availability (HA) and reduced upgrade times.
-{{ product_title }} and Kubernetes use the label `topology.kubernetes.io/zone` to create pools of nodes which are subject to a common failure domain.
-Annotating nodes for topology (availability) zones allows high-availability workloads to spread such that each zone holds only one replica from a set of HA replicated pods.
-With this spread the loss of a single zone will not violate HA constraints and minimum service availability will be maintained.
-{{ product_title }} and Kubernetes apply a default TopologySpreadConstraint to all replica constructs, such as `Service`, `ReplicaSet`, `StatefulSet` or `ReplicationController` resources, which spreads the replicas based on the `topology.kubernetes.io/zone` label.
-This default allows zone based spread to apply without any change to your workload pod specs. {._abstract}
+{{ product_title }} uses the `topology.kubernetes.io/zone` label to spread replicas across failure domains so that the loss of a single zone does not violate high-availability constraints. {._abstract}
+
+Annotating nodes for topology zones allows high-availability workloads to spread so that each zone holds only one replica from a set of replicated pods. {{ product_title }} applies a default `TopologySpreadConstraint` to all replica constructs, such as `Service`, `ReplicaSet`, `StatefulSet`, or `ReplicationController` resources.
 
 Cluster upgrades typically result in node disruption as the underlying OS is updated.
 In large clusters it is necessary to update multiple nodes concurrently in order to complete upgrades quickly and in as few maintenance windows as possible.

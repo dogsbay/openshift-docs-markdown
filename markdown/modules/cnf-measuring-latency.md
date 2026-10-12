@@ -17,6 +17,17 @@ cyclictest
 oslat
 :   Behaves similarly to a CPU-intensive DPDK application and measures all the interruptions and disruptions to the busy loop that simulates CPU heavy data processing.
 
+
+:::note
+
+The `cnf-tests` image supports both `x86_64` and `aarch64` architectures.
+On `aarch64` nodes, RAN distributed unit (DU) systems run the non-real-time (non-RT) 64k page-size kernel because the real-time (`PREEMPT_RT`) kernel is available only on `x86_64`.
+Because `cyclictest` targets the real-time kernel scheduler, latency measurements from `cyclictest` on `aarch64` nodes that run the non-RT kernel are non-deterministic.
+On these nodes, use `hwlatdetect` and `oslat` for platform verification, and adjust the latency threshold parameters, such as `MAXIMUM_LATENCY`, to account for the expected variance.
+
+:::
+
+
 The tests introduce the following environment variables:
 
 **Latency test environment variables**

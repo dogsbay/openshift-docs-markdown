@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create the managed bare-metal host secrets {id="ztp-creating-the-site-secrets_{{ context }}"}
 
-Add the required `Secret` custom resources (CRs) for the managed bare-metal host to the hub cluster. You need a secret for the {{ ztp_first }} pipeline to access the Baseboard Management Controller (BMC) and a secret for the assisted installer service to pull cluster installation images from the registry. {._abstract}
+Add the required `Secret` custom resources (CRs) for the managed bare-metal host to the hub cluster. You need a secret for the {{ ztp_first }} pipeline to access the Baseboard Management Controller (BMC) and a pull secret for the Assisted Installer service. {._abstract}
 
 
 :::note

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Reviewing pod status {id="reviewing-pod-status_{{ context }}"}
+# Review pod status {id="reviewing-pod-status_{{ context }}"}
 
 You can query pod status and error states. You can also query a pod’s associated deployment configuration and review base image availability. {._abstract}
 

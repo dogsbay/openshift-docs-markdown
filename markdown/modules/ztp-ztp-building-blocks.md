@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Overview of deploying managed clusters with {{ ztp }} {id="ztp-ztp-building-blocks_{{ context }}"}
 
-{{ rh_rhacm_first }} uses {{ ztp_first }} to deploy single-node {{ product_title }} clusters, three-node clusters, and standard clusters. You manage site configuration data as {{ product_title }} custom resources (CRs) in a Git repository. {{ ztp }} uses a declarative GitOps approach for a develop once, deploy anywhere model to deploy the managed clusters. {._abstract}
+{{ rh_rhacm_first }} uses {{ ztp_first }} to deploy single-node {{ product_title }} clusters, three-node clusters, and standard clusters. You manage site configuration data as {{ product_title }} CRs in a Git repository. {._abstract}
+
+{{ ztp }} uses a declarative GitOps approach for a develop-once, deploy-anywhere model to deploy the managed clusters.
 
 The deployment of the clusters includes:
 

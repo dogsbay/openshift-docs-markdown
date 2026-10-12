@@ -66,4 +66,5 @@
 {%- set egress_zero_title = "{{ product_title }} clusters with {{ egress_zero }}" -%}
 {%- set classic_short = "{{ rosa_classic_short }}" -%}
 {%- set rosa_cli_first = "ROSA command-line interface (CLI) (`rosa`)" -%}
-{%- set rosa_cli = "ROSA CLI" -%}
+{%- set rosa_cli = "`rosa` CLI" -%}
+{%- set rosa_cli_title = "ROSA CLI" -%}

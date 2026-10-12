@@ -2,7 +2,7 @@
 
 # Find API groups and resources exposed by a cluster extension {id="olmv1-finding-ce-resources_{{ context }}"}
 
-To create appropriate RBAC policies for granting user access to cluster extension resources, you must know which API groups and resources are exposed by the installed extension. As an administrator, you can inspect custom resource definitions (CRDs) installed on the cluster by using {{ oc_first }}. {._abstract}
+To create appropriate RBAC policies for user access to cluster extension resources, you must know which API groups and resources the extension exposes. You can inspect installed CRDs by using the {{ oc_first }}. {._abstract}
 
 **Prerequisites**
 

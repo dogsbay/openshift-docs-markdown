@@ -49,7 +49,7 @@ You can use the Cloud Credential Operator (CCO) utility (`ccoctl`) to create the
     ```
 {% endif %}
 {% if ibm_power_vs %}
-    ```yaml title="Example install-config.yaml configuration file"
+    ```yaml
     apiVersion: v1
     baseDomain: cluster1.example.com
     credentialsMode: Manual

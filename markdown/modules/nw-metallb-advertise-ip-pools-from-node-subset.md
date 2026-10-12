@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Advertise an IP address pool from a subset of nodes {id="nw-metallb-advertise-ip-pools-to-node-subset_{{ context }}"}
 
-To advertise an IP address from an IP addresses pool, from a specific set of nodes only, use the `.spec.nodeSelector` specification in the `BGPAdvertisement` custom resource (CR). This specification associates a pool of IP addresses with a set of nodes in the cluster. This is useful when you have nodes on different subnets in a cluster and you want to advertise an IP addresses from an address pool from a specific subnet, for example a public-facing subnet only. {._abstract}
+You can use the `.spec.nodeSelector` field in the `BGPAdvertisement` CR to advertise IP addresses from a pool on a specific set of nodes, such as nodes on a public-facing subnet. {._abstract}
 
 **Prerequisites**
 

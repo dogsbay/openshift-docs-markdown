@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # When not to use image short names {id="images-configuration-shortname-when-not-to-use_{{ context }}"}
 
-To avoid deployment failures and security risks when using public registries in {{ product_title }}, use fully-qualified image names instead of short names. Short names work with Red&#160;Hat internal or private registries, but public registries that require authentication might not deploy images with short names. {._abstract}
+To avoid deployment failures and security risks in {{ product_title }}, use fully-qualified image names instead of short names. Short names work with Red&#160;Hat internal registries, but public registries that require authentication might fail to deploy them. {._abstract}
 
 You cannot list multiple public registries under the `containerRuntimeSearchRegistries` parameter if each public registry requires different credentials and a cluster does not list the public registry in the global pull secret.
 

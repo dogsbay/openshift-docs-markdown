@@ -1,9 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Installer-provisioned infrastructure installation {id="preparing-to-install-on-vsphere-installer-provisioned-reference_{{ context }}"}
 
-You can install {{ product_title }} on vSphere by using installer-provisioned infrastructure.
-Installer-provisioned infrastructure allows the installation program to preconfigure and automate the provisioning of resources required by {{ product_title }}.
-Installer-provisioned infrastructure is useful for installing in environments with disconnected networks, where the installation program provisions the underlying infrastructure for the cluster. {._abstract}
+You can install {{ product_title }} on vSphere by using installer-provisioned infrastructure, which automates the provisioning of cluster resources and supports disconnected network environments. {._abstract}
 
 *   **Installing a cluster on vSphere**: You can install {{ product_title }} on vSphere by using installer-provisioned infrastructure installation with no customization.
 *   **Installing a cluster on vSphere with customizations**: You can install {{ product_title }} on vSphere by using installer-provisioned infrastructure installation with the default customization options.

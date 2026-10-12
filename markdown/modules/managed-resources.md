@@ -1238,6 +1238,27 @@ addon-namespaces:
     "documentString": "Managed OpenShift Customers may not change CustomResourceDefinitions managed by Red Hat."
   },
   {
+    "webhookName": "hcpnamespace-validation",
+    "rules": [
+      {
+        "operations": [
+          "DELETE"
+        ],
+        "apiGroups": [
+          ""
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "namespaces"
+        ],
+        "scope": "Cluster"
+      }
+    ],
+    "documentString": "Validates that only authorized users and service accounts can delete protected HCP namespaces"
+  },
+  {
     "webhookName": "hiveownership-validation",
     "rules": [
       {
@@ -1263,6 +1284,48 @@ addon-namespaces:
       }
     },
     "documentString": "Managed OpenShift customers may not edit certain managed resources. A managed resource has a \"hive.openshift.io/managed\": \"true\" label."
+  },
+  {
+    "webhookName": "hostedcluster-validation",
+    "rules": [
+      {
+        "operations": [
+          "DELETE"
+        ],
+        "apiGroups": [
+          "hypershift.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "hostedclusters"
+        ],
+        "scope": "Namespaced"
+      }
+    ],
+    "documentString": "Validates HostedCluster deletion operations are only performed by authorized service accounts"
+  },
+  {
+    "webhookName": "hostedcontrolplane-validation",
+    "rules": [
+      {
+        "operations": [
+          "DELETE"
+        ],
+        "apiGroups": [
+          "hypershift.openshift.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "hostedcontrolplanes"
+        ],
+        "scope": "Namespaced"
+      }
+    ],
+    "documentString": "Validates HostedControlPlane deletion operations are only performed by authorized service accounts"
   },
   {
     "webhookName": "imagecontentpolicies-validation",
@@ -1350,6 +1413,27 @@ addon-namespaces:
     "documentString": "Managed OpenShift Customer may create IngressControllers without necessary taints. This can cause those workloads to be provisioned on master nodes."
   },
   {
+    "webhookName": "manifestworks-validation",
+    "rules": [
+      {
+        "operations": [
+          "DELETE"
+        ],
+        "apiGroups": [
+          "work.open-cluster-management.io"
+        ],
+        "apiVersions": [
+          "*"
+        ],
+        "resources": [
+          "manifestworks"
+        ],
+        "scope": "Namespaced"
+      }
+    ],
+    "documentString": "Validates ManifestWorks deletion operations are only performed by authorized service accounts"
+  },
+  {
     "webhookName": "namespace-validation",
     "rules": [
       {
@@ -1392,7 +1476,7 @@ addon-namespaces:
         "scope": "Cluster"
       }
     ],
-    "documentString": "Managed OpenShift customers may not modify critical fields in the network.operator CRD (such as spec.migration.networkType) because it can disrupt Cluster Network Operator operations and CNI migrations. Even cluster-admin users are blocked from modifying these critical fields."
+    "documentString": "Managed OpenShift customers may not modify critical fields in the network.operator CRD (such as spec.migration.networkType) because it can disrupt Cluster Network Operator operations and CNI migrations. Only backplane-cluster-admin, SRE, Cluster Network Operator (CNO), and Managed Upgrade Operator (MUO) service accounts are allowed to modify these critical fields. Regular cluster-admin users (system:admin) are explicitly blocked."
   },
   {
     "webhookName": "networkpolicies-validation",
@@ -1649,7 +1733,7 @@ addon-namespaces:
         "scope": "*"
       }
     ],
-    "documentString": "Managed OpenShift customers may not manage any objects in the following APIGroups [splunkforwarder.managed.openshift.io autoscaling.openshift.io ocmagent.managed.openshift.io upgrade.managed.openshift.io config.openshift.io machineconfiguration.openshift.io operator.openshift.io network.openshift.io cloudcredential.openshift.io machine.openshift.io admissionregistration.k8s.io addons.managed.openshift.io cloudingress.managed.openshift.io managed.openshift.io], nor may Managed OpenShift customers alter the APIServer, KubeAPIServer, OpenShiftAPIServer, ClusterVersion, Proxy or SubjectPermission objects."
+    "documentString": "Managed OpenShift customers may not manage any objects in the following APIGroups [config.openshift.io machineconfiguration.openshift.io operator.openshift.io cloudcredential.openshift.io addons.managed.openshift.io cloudingress.managed.openshift.io managed.openshift.io autoscaling.openshift.io network.openshift.io machine.openshift.io admissionregistration.k8s.io ocmagent.managed.openshift.io splunkforwarder.managed.openshift.io upgrade.managed.openshift.io], nor may Managed OpenShift customers alter the APIServer, KubeAPIServer, OpenShiftAPIServer, ClusterVersion, Proxy or SubjectPermission objects. On CCS clusters, when the trimmed enableCCSCPMSResize configuration value is exactly true, cluster administrators and dedicated administrators may update a ControlPlaneMachineSet AWS instance type from a non-metal m5 or m6i type to an equivalent or larger non-metal m5 or m6i type."
   },
   {
     "webhookName": "scc-validation",

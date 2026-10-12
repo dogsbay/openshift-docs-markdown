@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Destroying a hosted cluster by using the CLI {id="hosted-clusters-openstack-destroy_{{ context }}"}
+# Destroying a hosted cluster on {{ rh_openstack }} by using the CLI {id="hosted-clusters-openstack-destroy_{{ context }}"}
 
 You can destroy a hosted cluster and its associated resources on {{ rh_openstack_first }} by using the `hcp` CLI tool. {._abstract}
 

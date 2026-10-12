@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create an IP over InfiniBand interface on nodes {id="virt-creating-infiniband-interface-on-nodes_{{ context }}"}
 
-On the {{ product_title }} web console, you can install a Red&#160;Hat certified third-party Operator, such as the NVIDIA Network Operator, that supports IP over InfiniBand (IPoIB) mode. Typically, you would use the third-party Operator with other vendor infrastructure to manage resources in an {{ product_title }} cluster. {._abstract}
+You can install a Red&#160;Hat certified third-party Operator, such as the NVIDIA Network Operator, that supports IP over InfiniBand (IPoIB) mode to manage InfiniBand resources in your {{ product_title }} cluster. {._abstract}
 
 To create an IPoIB interface on nodes in your cluster, you must define an InfiniBand (IPoIB) interface in a `NodeNetworkConfigurationPolicy` (NNCP) manifest file.
 

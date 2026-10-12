@@ -15,7 +15,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Requirements for using your VNet {id="installation-about-custom-azure-vnet-requirements_{{ context }}"}
 
-When you deploy a cluster by using an existing VNet, you must perform additional network configuration before you install the cluster. In installer-provisioned infrastructure clusters, the installation program usually creates the following components, but it does not create them when you install into an existing VNet: {._abstract}
+When you deploy a cluster by using an existing VNet, you must perform additional network configuration before you install the cluster. {._abstract}
+
+In installer-provisioned infrastructure clusters, the installation program usually creates the following components, but it does not create them when you install into an existing VNet:
 
 *   Subnets
 *   Route tables

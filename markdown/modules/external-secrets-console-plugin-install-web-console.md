@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ external_secrets_console_plugin }} {id="external-secrets-console-plugin-install-web-console_{{ context }}"}
+# Installing the {{ external_secrets_console_plugin }} by using the web console {id="external-secrets-console-plugin-install-web-console_{{ context }}"}
 
 You can use the web console to install the {{ external_secrets_console_plugin }}. {._abstract}
 

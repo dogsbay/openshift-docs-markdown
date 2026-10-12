@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Investigating why user-defined project metrics are unavailable {id="investigating-why-user-defined-metrics-are-unavailable_{{ context }}"}
+# Investigate why user-defined project metrics are unavailable {id="investigating-why-user-defined-metrics-are-unavailable_{{ context }}"}
 
 `ServiceMonitor` resources enable you to determine how to use the metrics exposed by a service in user-defined projects. Follow the steps outlined in this procedure if you have created a `ServiceMonitor` resource but cannot see any corresponding metrics in the Metrics UI. {._abstract}
 

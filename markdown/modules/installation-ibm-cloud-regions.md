@@ -8,12 +8,14 @@
 {%- set _mod_docs_content_type = "REFERENCE" -%}
 {% if ibm_vpc %}
 # Supported {{ ibm_cloud_title }} regions {id="installation-ibm-cloud-regions_{{ context }}"}
+
+When installing {{ product_title }}, you must choose a supported region or zone for your cloud provider deployment.
 {% endif %}
 {% if ibm_power_vs %}
-# Supported {{ ibm_power_server_title }} regions and zones {id="installation-ibm-power-vs-regions_{{ context }}"}
-{% endif %}
+# Supported {{ ibm_power_server_title }} regions and zones {id="installation-ibm-power-vs-regions_{{ context }}" ._abstract}
 
 When installing {{ product_title }}, you must choose a supported region or zone for your cloud provider deployment. {._abstract}
+{% endif %}
 
 You can deploy an {{ product_title }} cluster to the following regions:
 

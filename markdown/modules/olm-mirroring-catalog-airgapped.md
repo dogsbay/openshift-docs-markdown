@@ -40,7 +40,7 @@ If your mirror registry is on a completely disconnected, or airgapped, host, tak
 
     `<platform>/<arch>`
     :   Specifies which platform and architecture of the index image to select when multiple variants are available. This is optional. Images are specified as `'<platform>/<arch>[/<variant>]'`. This does not apply to images referenced by the index. Valid values are `linux/amd64`, `linux/ppc64le`, `linux/s390x`, `linux/arm64`, and `.*`
-    ```terminal title="Example output"
+    ```terminal
     ...
     info: Mirroring completed in 5.93s (5.915MB/s)
     wrote mirroring manifests to manifests-my-index-1614985528
