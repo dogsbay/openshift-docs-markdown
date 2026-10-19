@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an alerting rule {id="creating-alerting-rules_{{ context }}"}
+# Create an alerting rule {id="creating-alerting-rules_{{ context }}"}
 
 Create a `PrometheusRule` resource to configure alerting rules for {{ oadp_short }} backup operations. This helps you receive notifications when backup failures or other issues occur in your environment. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Restoring data to a virtual machine by using the VMDP CLI {id="oadp-vmdp-restoring-data_{{ context }}"}
+# Restore data to a virtual machine by using the VMDP CLI {id="oadp-vmdp-restoring-data_{{ context }}"}
 
 Restore data from a backup to your virtual machine (VM) by using the {{ oadp_full }} VM data protection (VMDP) command-line interface (CLI). This helps you to recover files to the original location or to a different directory. {._abstract}
 

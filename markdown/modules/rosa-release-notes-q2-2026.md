@@ -29,10 +29,10 @@ New version of {{ product_title }} available
 Upgrade channels are available
 :   You can select the new channels option for more precise, version-specific control over your cluster updates. You can target exact minor version paths, such as `stable-4.20` or `fast-4.21`, instead of relying on broader channel groups, which are being deprecated. For more information, see
 {%- if openshift_rosa_hcp %}
-     [Channels in {{ product_title }} clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/upgrading/index#rosa-hcp-upgrading-channels_rosa-hcp-upgrading).
+     [Channels in {{ product_title }} clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/upgrading/index#sd-upgrading-channels_rosa-hcp-upgrading).
 {%- endif %}
 {%- if openshift_rosa %}
-    [Channels in {{ product_title }} clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html/upgrading/rosa-upgrading-sts#rosa-upgrading-channels_rosa-upgrading-sts).
+    [Channels in {{ product_title }} clusters](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html/upgrading/rosa-upgrading-sts#sd-upgrading-channels_rosa-upgrading-sts).
 {%- endif %}
 
 

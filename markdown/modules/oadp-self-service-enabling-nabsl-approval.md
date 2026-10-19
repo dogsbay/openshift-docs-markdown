@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling NonAdminBackupStorageLocation administrator approval workflow {id="oadp-self-service-enabling-nabsl-approval_{{ context }}"}
+# Enable NonAdminBackupStorageLocation administrator approval workflow {id="oadp-self-service-enabling-nabsl-approval_{{ context }}"}
 
 Enable the administrator approval workflow for `NonAdminBackupStorageLocation` custom resource to review backup storage location requests from namespace administrators before they are applied. This helps you maintain control over backup storage configurations. {._abstract}
 

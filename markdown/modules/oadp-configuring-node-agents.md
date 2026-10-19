@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring node agents and node labels {id="oadp-configuring-node-agents_{{ context }}"}
+# Configure node agents and node labels {id="oadp-configuring-node-agents_{{ context }}"}
 
 The Data Protection Application (DPA) uses the `nodeSelector` field to select which nodes can run the node agent. The `nodeSelector` field is the recommended form of node selection constraint. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a private {{ product_title }} cluster using the ROSA CLI {id="rosa-hcp-aws-private-create-cluster_{{ context }}"}
+# Create a private {{ product_title }} cluster using the ROSA CLI {id="rosa-hcp-aws-private-create-cluster_{{ context }}"}
 
 You can create a private cluster with multiple availability zones (Multi-AZ) on {{ product_title }} using the ROSA command-line interface (CLI), `rosa`. {._abstract}
 

@@ -1,9 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create an OpenID Connect configuration {id="rosa-sts-byo-oidc_{{ context }}"}
 
-{{ product_title }} clusters use OpenID Connect (OIDC) and the AWS Security Token Service (STS) to authenticate Operator access to required AWS resources. {._abstract}
-
-Each production cluster requires its own OIDC configuration. When creating a {{ product_title }} cluster, you can create the OIDC configuration before creating your cluster.
+Create an OpenID Connect (OIDC) configuration before creating your {{ product_title }} cluster to authenticate Operator access to required AWS resources by using the AWS Security Token Service (STS). Each production cluster requires its own OIDC configuration. {._abstract}
 
 **Prerequisites**
 
@@ -19,8 +17,8 @@ Each production cluster requires its own OIDC configuration. When creating a {{ 
     ```terminal title="Example output"
     ? Would you like to create a Managed (Red{nbsp}Hat hosted) OIDC Configuration Yes
     I: Setting up managed OIDC configuration
-    I: To create Operator Roles for this OIDC Configuration, run the following command and remember to replace <user-defined> with a prefix of your choice:
-    	rosa create operator-roles --prefix <user-defined> --oidc-config-id 13cdr6b
+    I: To create Operator Roles for this OIDC Configuration, run the following command and remember to replace <user_defined> with a prefix of your choice:
+    	rosa create operator-roles --prefix <user_defined> --oidc-config-id 13cdr6b
     If you are going to create a Hosted Control Plane cluster please include '--hosted-cp'
     I: Creating OIDC provider using 'arn:aws:iam::4540112244:user/userName'
     ? Create the OIDC provider? Yes

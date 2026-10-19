@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Network policy configuration for cert-manager Operator {id="cert-manager-nw-policy-con_{{ context }}"}
 
-The {{ cert_manager_operator }} provides predefined `NetworkPolicy` resources to enhance security by controlling the ingress and egress traffic for its components. By default, this feature is disabled to prevent connectivity issues or breaking changes during an upgrade. To use this feature, you must enable it in the `CertManager` custom resource (CR). {._abstract}
+The {{ cert_manager_operator }} provides predefined `NetworkPolicy` resources to enhance security by controlling the ingress and egress traffic for its components.  {._abstract}
+
+By default, this feature is disabled to prevent connectivity issues or breaking changes during an upgrade. To use this feature, you must enable it in the `CertManager` custom resource (CR).
 
 After enabling the default policies, you must manually configure additional egress rules to allow outbound traffic. These rules are required for {{ cert_manager_operator }} to communicate with external services beyond the API server and internal DNS.
 

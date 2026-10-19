@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Troubleshooting Restic permission errors for NFS data volumes {id="restic-permission-error-for-nfs-data-volumes-with-root-squash-enabled_{{ context }}"}
+# Troubleshoot Restic permission errors for NFS data volumes {id="restic-permission-error-for-nfs-data-volumes-with-root-squash-enabled_{{ context }}"}
 
 Create a supplemental group and add its group ID to the `DataProtectionApplication` customer resource CR to resolve `Restic` permission errors on NFS data volumes with `root_squash` enabled. This helps you to restore backup functionality for NFS volumes without disabling root squash. {._abstract}
 

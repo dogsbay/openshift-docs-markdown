@@ -85,7 +85,7 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
         :   Specify a custom ARN path for your {{ cluster_manager }} role. The path must contain alphanumeric characters only and start and end with `/`, for example `/test/path/dev/`. For more information, see _ARN path customization for IAM roles and policies_.
 
         Role creation mode
-        :   Select the role creation mode. You can use `auto` mode to automatically create the {{ cluster_manager }} IAM role and link it to your Red&#160;Hat organization account. In `manual` mode, the ROSA CLI generates the `aws` commands needed to create and link the role. In `manual` mode, the corresponding policy JSON files are also saved to the current directory. `manual` mode enables you to review the details before running the `aws` commands manually.
+        :   Select the role creation mode. You can use `auto` mode to automatically create the {{ cluster_manager }} IAM role and link it to your Red&#160;Hat organization account. In `manual` mode, the {{ rosa_cli }} generates the `aws` commands needed to create and link the role. In `manual` mode, the corresponding policy JSON files are also saved to the current directory. `manual` mode enables you to review the details before running the `aws` commands manually.
 
         Link role prompt
         :   Link the {{ cluster_manager }} IAM role to your Red&#160;Hat organization account.
@@ -131,7 +131,7 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
         :   Specify a custom ARN path for your user role. The path must contain alphanumeric characters only and start and end with `/`, for example `/test/path/dev/`. For more information, see _ARN path customization for IAM roles and policies_.
 
         Role creation mode
-        :   Select the role creation mode. You can use `auto` mode to automatically create the user role and link it to your {{ cluster_manager }} user account. In `manual` mode, the ROSA CLI generates the `aws` commands needed to create and link the role. In `manual` mode, the corresponding policy JSON files are also saved to the current directory. `manual` mode enables you to review the details before running the `aws` commands manually.
+        :   Select the role creation mode. You can use `auto` mode to automatically create the user role and link it to your {{ cluster_manager }} user account. In `manual` mode, the {{ rosa_cli }} generates the `aws` commands needed to create and link the role. In `manual` mode, the corresponding policy JSON files are also saved to the current directory. `manual` mode enables you to review the details before running the `aws` commands manually.
 
         Link role prompt
         :   Link the user role to your {{ cluster_manager }} user account.
@@ -197,7 +197,7 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
         :   Specify a custom ARN path for your account-wide roles. The path must contain alphanumeric characters only and start and end with `/`, for example `/test/path/dev/`. For more information, see _ARN path customization for IAM roles and policies_.
 
         Role creation mode
-        :   Select the role creation mode. You can use `auto` mode to automatically create the account wide roles and policies. In `manual` mode, the ROSA CLI generates the `aws` commands needed to create the roles and policies. In `manual` mode, the corresponding policy JSON files are also saved to the current directory. `manual` mode enables you to review the details before running the `aws` commands manually.
+        :   Select the role creation mode. You can use `auto` mode to automatically create the account wide roles and policies. In `manual` mode, the {{ rosa_cli }} generates the `aws` commands needed to create the roles and policies. In `manual` mode, the corresponding policy JSON files are also saved to the current directory. `manual` mode enables you to review the details before running the `aws` commands manually.
 
         Create role prompts
         :   Creates the account-wide installer, control plane, worker and support roles and corresponding IAM policies. For more information, see _Account-wide IAM role and policy reference_.
@@ -206,7 +206,7 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
             :::note
 
 
-            In this step, the ROSA CLI also automatically creates the account-wide Operator IAM policies that are used by the cluster-specific Operator policies to permit the ROSA cluster Operators to carry out core OpenShift functionality. For more information, see _Account-wide IAM role and policy reference_.
+            In this step, the {{ rosa_cli }} also automatically creates the account-wide Operator IAM policies that are used by the cluster-specific Operator policies to permit the ROSA cluster Operators to carry out core OpenShift functionality. For more information, see _Account-wide IAM role and policy reference_.
             
             :::
 
@@ -385,7 +385,7 @@ Private API endpoint
 
 1.  Under the **Cluster roles and policies** page, select your preferred cluster-specific Operator IAM role and OIDC provider creation mode.
 
-    With **Manual** mode, you can use either the `rosa` CLI commands or the `aws` CLI commands to generate the required Operator roles and OIDC provider for your cluster. **Manual** mode enables you to review the details before using your preferred option to create the IAM resources manually and complete your cluster installation.
+    With **Manual** mode, you can use either the {{ rosa_cli }} commands or the `aws` CLI commands to generate the required Operator roles and OIDC provider for your cluster. **Manual** mode enables you to review the details before using your preferred option to create the IAM resources manually and complete your cluster installation.
 
     Alternatively, you can use **Auto** mode to automatically create the Operator roles and OIDC provider. To enable **Auto** mode, the {{ cluster_manager }} IAM role must have administrator capabilities.
 

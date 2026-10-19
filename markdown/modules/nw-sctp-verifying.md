@@ -7,7 +7,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Verifying Stream Control Transmission Protocol (SCTP) is enabled {id="nw-sctp-verifying_{{ context }}"}
 
-You can verify that SCTP is working on a cluster by creating a pod with an application that listens for SCTP traffic, associating it with a service, and then connecting to the exposed service.
+You can verify that SCTP is working on a cluster by creating a pod with an application that listens for SCTP traffic, associating it with a service, and then connecting to the exposed service. {._abstract}
 
 **Prerequisites**
 

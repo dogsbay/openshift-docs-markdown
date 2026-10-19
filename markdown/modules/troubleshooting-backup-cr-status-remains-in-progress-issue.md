@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Troubleshooting issue where backup CR status remains in progress {id="troubleshooting-backup-cr-status-remains-in-progress-issue_{{ context }}"}
+# Troubleshoot issue where backup CR status remains in progress {id="troubleshooting-backup-cr-status-remains-in-progress-issue_{{ context }}"}
 
 Resolve the issue where an interrupted backup causes the `Backup` CR status to remain in the `InProgress` phase. This helps you clear stalled backups and create new ones to complete your backup operations. {._abstract}
 

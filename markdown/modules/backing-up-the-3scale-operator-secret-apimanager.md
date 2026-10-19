@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Backing up the 3scale API Management operator, secret, and APIManager {id="backing-up-the-3scale-operator-secret-apimanager_{{ context }}"}
+# Back up the 3scale API Management operator, secret, and APIManager {id="backing-up-the-3scale-operator-secret-apimanager_{{ context }}"}
 
 Back up the Red&#160;Hat 3scale API Management operator resources, including the `Secret` and APIManager custom resources (CRs), by creating backup CRs. This helps you preserve your 3scale operator configuration for recovery scenarios. {._abstract}
 

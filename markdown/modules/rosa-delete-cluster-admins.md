@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Revoking `cluster-admin` access using the ROSA CLI {id="rosa-delete-cluster-admins_{{ context }}"}
+# Revoking `cluster-admin` access using the {{ rosa_cli_title }} {id="rosa-delete-cluster-admins_{{ context }}"}
 
 Only the user who created the cluster can revoke access for `cluster-admin` users. {._abstract}
 

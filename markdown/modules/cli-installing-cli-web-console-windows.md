@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the OpenShift CLI on Windows using the web console {id="cli-installing-cli-web-console-macos-windows_{{ context }}"}
+# Install the OpenShift CLI on Windows using the web console {id="cli-installing-cli-web-console-macos-windows_{{ context }}"}
 
 To manage your cluster and deploy applications from the command line on Windows, install the {{ oc_first }} binary. You can download the {{ oc_first }} from the web console. {._abstract}
 

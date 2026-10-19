@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Converting ImageContentSourcePolicy (ICSP) files for image registry repository mirroring {id="images-configuration-registry-mirror-convert_{{ context }}"}
+# Convert ImageContentSourcePolicy (ICSP) files for image registry repository mirroring {id="images-configuration-registry-mirror-convert_{{ context }}"}
 
 You can convert existing `ImageContentSourcePolicy` (ICSP) files to `ImageDigestMirrorSet` files to configure image registry repository mirroring. {._abstract}
 

@@ -3,7 +3,7 @@
 
 You can use the {{ oadp_short }} command-line interface (CLI) to create, view, describe, and delete non-admin backups in your namespace. {._abstract}
 
-## Prerequisites {id="oadp-cli-nonadmin-backups-prereqs_{{ context }}"}
+**Prerequisites**
 
 *   The {{ oadp_short }} CLI plugin is installed and configured in non-admin mode.
 *   You are logged in to the {{ product_title }} cluster and your current namespace context is set to the namespace you want to back up.

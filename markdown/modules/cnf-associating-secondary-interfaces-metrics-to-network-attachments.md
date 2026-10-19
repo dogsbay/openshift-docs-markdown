@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Extend secondary network metrics for monitoring {id="cnf-associating-secondary-interfaces-metrics-to-network-attachments_{{ context }}"}
 
-To monitor and manage network traffic effectively, you can extend secondary network metrics with identifying information. By using the `pod_network_name_info` metric to label interfaces based on their `NetworkAttachmentDefinition` resource, you can classify interface types to enable precise metric aggregation and alerting. {._abstract}
+To monitor and manage network traffic effectively, you can extend secondary network metrics with identifying information.  {._abstract}
+
+By using the `pod_network_name_info` metric to label interfaces based on their `NetworkAttachmentDefinition` resource, you can classify interface types to enable precise metric aggregation and alerting.
 
 Secondary devices, or interfaces, are used for different purposes. Metrics from secondary network interfaces need to be classified to allow for effective aggregation and monitoring.
 

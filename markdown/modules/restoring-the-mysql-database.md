@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Restoring a MySQL database {id="restoring-the-mysql-database_{{ context }}"}
+# Restore a MySQL database {id="restoring-the-mysql-database_{{ context }}"}
 
 Restore a MySQL database by scaling down Red&#160;Hat 3scale API Management components and creating a Velero `Restore` custom resource (CR). This helps you to recover your 3scale MySQL data, persistent volumes, and associated resources. {._abstract}
 

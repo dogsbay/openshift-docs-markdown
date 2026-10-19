@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create an ocm-role IAM role {id="rosa-sts-ocm-roles-and-permissions-iam-basic-role_{{ context }}"}
 
-You create your `ocm-role` IAM roles by using the {{ rosa_cli_first }}. If you want to create and manage clusters by using only the {{ rosa_cli_first }} and the OpenShift CLI (`oc`), you can use the `--no-console` profile for the `ocm-role` IAM resource. For more information about the `ocm-role` IAM resource permissions profile, see the _Additional resources_. {._abstract}
+Create the `ocm-role` Identity and Access Management (IAM) roles by using the {{ rosa_cli_first }} to grant {{ cluster_manager }} the permissions needed to install and manage your {{ product_title }} clusters. {._abstract}
+
+If you want to create and manage clusters by using only the {{ rosa_cli }} and the {{ oc_first }}, you can use the `--no-console` profile for the `ocm-role` IAM resource. For more information about the `ocm-role` IAM resource permissions profile, see the _Additional resources_.
 
 
 :::important

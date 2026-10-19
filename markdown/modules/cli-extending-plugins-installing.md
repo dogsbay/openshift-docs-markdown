@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing and using CLI plugins {id="cli-installing-plugins_{{ context }}"}
+# Install and use a CLI plugin {id="cli-installing-plugins_{{ context }}"}
 
 After you write a custom plugin for the {{ oc_first }}, you must install the plugin before you can use it. {._abstract}
 

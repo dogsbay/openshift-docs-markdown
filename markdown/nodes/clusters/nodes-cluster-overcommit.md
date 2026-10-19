@@ -85,5 +85,5 @@ The scheduler attempts to optimize the compute resource use across all nodes in 
 *   [Restrict resource consumption with limit ranges](/nodes/clusters/nodes-cluster-limit-ranges#nodes-cluster-limit-ranges)
 {%- endif %}
 {%- if not (openshift_rosa_hcp or openshift_enterprise or openshift_dedicated) %}
-*   [Red Hat Managed resources](/rosa_architecture/rosa_policy_service_definition/rosa-policy-responsibility-matrix#sd-managed-resources-overview_sd-managed-resources)
+*   [Red Hat-managed resources](/rosa_architecture/rosa_policy_service_definition/rosa-policy-responsibility-matrix#sd-redhat-managed-resources_rosa-policy-responsibility-matrix)
 {%- endif %}

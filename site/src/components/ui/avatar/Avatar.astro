@@ -30,16 +30,20 @@ const initials =
     .join("")
     .slice(0, 2)
     .toUpperCase();
+// The name is on the avatar itself, so it is read whether the image loads, fails or was never given:
+// the initials stand in visually only, and a failed image is hidden with its alt.
+// An author's own aria-label wins (an empty one does not); the role is ours, as in render-html.
+const label = alt ? { role: "img", "aria-label": (rest["aria-label"] as string | undefined) || alt } : {};
 ---
 
-<span class={avatar({ class: className })} {...rest}>
+<span class={avatar({ class: className })} {...rest} {...label}>
   {
     src ? (
       <>
         <img
           class={avatarImage()}
           src={src}
-          alt={alt}
+          alt=""
           width="40"
           height="40"
           onerror="this.hidden=true;this.nextElementSibling.hidden=false"

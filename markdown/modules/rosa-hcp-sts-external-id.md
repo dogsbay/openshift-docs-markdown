@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About external ID {id="rosa-hcp-sts-external-id_{{ context }}"}
+# External ID {id="rosa-hcp-sts-external-id_{{ context }}"}
 
 An external ID functions as a unique, separate, identifier embedded within your {{ product_title }} account-wide roles, blocking unauthorized third-party access. {._abstract}
 

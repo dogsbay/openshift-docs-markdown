@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling {{ js_operator }} resources {id="js-remove-resources_{{ context }}"}
+# Uninstall {{ js_operator }} resources {id="js-remove-resources_{{ context }}"}
 
 Optionally, after uninstalling the {{ js_operator }}, you can remove its related resources from your cluster. {._abstract}
 
@@ -19,6 +19,6 @@ Optionally, after uninstalling the {{ js_operator }}, you can remove its related
     1.  In the confirmation dialog, click **Delete**.
 1.  Delete the `openshift-jobset-operator` namespace.
     1.  Navigate to **Administration** → **Namespaces**.
-    1.  Fine `openshift-jobset-operator` in the list of namespaces.
+    1.  Find `openshift-jobset-operator` in the list of namespaces.
     1.  Click the Options menu {{ kebab }} next to the **openshift-jobset-operator** entry and select **Delete Namespace**.
     1.  In the confirmation dialog, enter `openshift-jobset-operator` and click **Delete**.

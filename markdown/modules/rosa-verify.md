@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Verify AWS settings with the {{ rosa_cli }} {id="rosa-verify_{{ context }}"}
+# Verify AWS settings with the {{ rosa_cli_title }} {id="rosa-verify_{{ context }}"}
 
 Verify AWS permissions and quotas by using the {{ rosa_cli_first }}. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling the node agent in DataProtectionApplication {id="oadp-about-disable-node-agent-dpa_{{ context }}"}
+# Disable the node agent in DataProtectionApplication {id="oadp-about-disable-node-agent-dpa_{{ context }}"}
 
 If you are not using `Restic`, `Kopia`, or `DataMover` for your backups, you can disable the `nodeAgent` field in the `DataProtectionApplication` custom resource (CR). Before you disable `nodeAgent`, ensure the {{ oadp_short }} Operator is idle and not running any backups. {._abstract}
 

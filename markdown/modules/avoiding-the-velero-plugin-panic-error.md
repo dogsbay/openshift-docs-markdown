@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Avoiding the Velero plugin panic error {id="avoiding-the-velero-plugin-panic-error_{{ context }}"}
+# Avoid the Velero plugin panic error {id="avoiding-the-velero-plugin-panic-error_{{ context }}"}
 
 Label a custom Backup Storage Location (BSL) to resolve Velero plugin panic errors during `imagestream` backups. This helps you to ensure the {{ oadp_short }} controller creates the required registry secret when you manage the BSL outside the `DataProtectionApplication` (DPA) CR. {._abstract}
 

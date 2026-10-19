@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring OVN-Kubernetes to use a secondary OVS bridge {id="configuring-ovnk-use-second-ovs-bridge_{{ context }}"}
 
-You can create an additional or _secondary_ Open vSwitch (OVS) bridge, `br-ex1`, that OVN-Kubernetes manages and the Multiple External Gateways (MEG) implementation uses for defining external gateways for an {{ product_title }} node. You can define a MEG in an `AdminPolicyBasedExternalRoute` custom resource (CR). The MEG implementation provides a pod with access to multiple gateways, equal-cost multipath (ECMP) routes, and the Bidirectional Forwarding Detection (BFD) implementation. {._abstract}
+You can create an additional or _secondary_ Open vSwitch (OVS) bridge, `br-ex1`, that OVN-Kubernetes manages and the Multiple External Gateways (MEG) implementation uses for defining external gateways for an {{ product_title }} node.  {._abstract}
+
+You can define a MEG in an `AdminPolicyBasedExternalRoute` custom resource (CR). The MEG implementation provides a pod with access to multiple gateways, equal-cost multipath (ECMP) routes, and the Bidirectional Forwarding Detection (BFD) implementation.
 
 Consider a use case for pods impacted by the Multiple External Gateways (MEG) feature and you want to egress traffic to a different interface, for example `br-ex1`, on a node. Egress traffic for pods not impacted by MEG get routed to the default OVS `br-ex` bridge.
 

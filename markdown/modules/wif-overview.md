@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Workload Identity Federation overview {id="workload-identity-federation-overview_{{ context }}"}
+# Workload Identity Federation {id="workload-identity-federation-overview_{{ context }}"}
 
 Workload Identity Federation (WIF) is a {{ GCP }} Identity and Access Management (IAM) feature that provides third parties a secure method to access resources on a customer’s cloud account. WIF eliminates the need for service account keys, and is {{ gcp_full }}'s preferred method of credential authentication. {._abstract}
 

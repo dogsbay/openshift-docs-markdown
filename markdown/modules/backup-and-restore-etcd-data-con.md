@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Backing up and restoring etcd data {id="backup-and-restore-etcd-data-con_{{ context }}"}
+# Back up and restore etcd data {id="backup-and-restore-etcd-data-con_{{ context }}"}
 
 Back up etcd data regularly and store it in a secure location so you can restore your cluster to a previous state, using a snapshot from the same z-stream release. {._abstract}
 

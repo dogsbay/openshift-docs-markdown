@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Capturing flows {id="network-observability-cli-capturing-flows_{{ context }}"}
+# Capture flows {id="network-observability-cli-capturing-flows_{{ context }}"}
 
 Capture network flows and apply filters based on resources or zones directly in the CLI. This helps you solve complex use cases, such as visualizing the Round-Trip Time (RTT) between two different zones. {._abstract}
 

@@ -1,10 +1,10 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 {% if not (openshift_rosa or openshift_rosa_hcp) %}
-# Cleaning up a cluster after a backup with OADP and ROSA STS {id="cleanup-a-backup-oadp-rosa-sts_{{ context }}"}
+# Clean up a cluster after a backup with OADP and ROSA STS {id="cleanup-a-backup-oadp-rosa-sts_{{ context }}"}
 
 {% endif %}
 {% if openshift_rosa or openshift_rosa_hcp %}
-# Cleaning up a cluster after a backup with OADP {id="_cleaning_up_a_cluster_after_a_backup_with_oadp"}
+# Clean up a cluster after a backup with OADP {id="_clean_up_a_cluster_after_a_backup_with_oadp"}
 
 {% endif %}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Reviewing NAB and NAR logs {id="oadp-self-service-nab-nar-logs_{{ context }}"}
+# Review NAB and NAR logs {id="oadp-self-service-nab-nar-logs_{{ context }}"}
 
 Create a `NonAdminDownloadRequest` (NADR) custom resource (CR) to access and review detailed logs for `NonAdminBackup` (NAB) and `NonAdminRestore` (NAR) operations. This helps you troubleshoot backup and restore issues independently. {._abstract}
 

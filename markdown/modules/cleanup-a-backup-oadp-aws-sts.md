@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Cleaning up a cluster after a backup with OADP and AWS STS {id="cleanup-a-backup-oadp-aws-sts_{{ context }}"}
+# Clean up a cluster after a backup with OADP and AWS STS {id="cleanup-a-backup-oadp-aws-sts_{{ context }}"}
 
 Uninstall the {{ oadp_first }} Operator together with the backups and the S3 bucket from the `hello-world` example. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Overriding the imagePullPolicy setting in the DPA  {id="oadp-configuring-imagepullpolicy_{{ context }}"}
+# Override the imagePullPolicy setting in the DPA  {id="oadp-configuring-imagepullpolicy_{{ context }}"}
 
 In {{ oadp_short }} 1.4.0 or earlier, the Operator sets the `imagePullPolicy` field of the Velero and node agent pods to `Always` for all images. {._abstract}
 

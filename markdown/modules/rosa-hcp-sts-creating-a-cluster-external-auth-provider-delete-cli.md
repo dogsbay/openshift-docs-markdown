@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting an external authentication provider {id="rosa-hcp-sts-creating-a-cluster-external-auth-provider-delete-cli_{{ context }}"}
+# Delete an external authentication provider {id="rosa-hcp-sts-creating-a-cluster-external-auth-provider-delete-cli_{{ context }}"}
 {%- set source_highlighter = "pygments" -%}
 {%- set pygments_style = "emacs" -%}
 {%- set icons = "font" %}

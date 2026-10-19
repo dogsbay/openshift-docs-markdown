@@ -1,11 +1,11 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Account-wide IAM role and policy AWS CLI reference {id="rosa-sts-account-wide-role-and-policy-aws-cli_{{ context }}"}
 
-This section lists the `aws` CLI commands that the `rosa` command generates in the terminal. You can run the command in either manual or automatic mode.
+The following `aws` CLI commands are generated when you run the `rosa create account-roles` command. You can run the command in either manual or automatic mode. {._abstract}
 
 ## Using manual mode for account role creation {id="rosa-sts-account-wide-role-and-policy-aws-cli-manual-mode_{{ context }}"}
 
-The manual role creation mode generates the `aws` commands for you to review and run. The following command starts that process, where `<openshift_version>` refers to your version of {{ product_title }} (ROSA), such as `{{ product_version }}`{minja}.
+The manual role creation mode generates the `aws` commands for you to review and run. The following command starts that process, where `<openshift_version>` refers to your version of {{ product_title }}, such as `{{ product_version }}`{minja}.
 
 ```terminal
 $ rosa create account-roles --mode manual

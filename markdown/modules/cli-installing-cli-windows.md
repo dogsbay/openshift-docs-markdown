@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the OpenShift CLI on Windows {id="cli-installing-cli-windows_{{ context }}"}
+# Install the OpenShift CLI on Windows {id="cli-installing-cli-windows_{{ context }}"}
 
 To manage your cluster and deploy applications from the command line on Windows, install the {{ oc_first }} binary. You can download the {{ oc_first }} from the Red&#160; Customer Portal. {._abstract}
 

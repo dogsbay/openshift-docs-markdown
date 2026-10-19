@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Known issues {id="hcp-release-notes-known-issues_{{ context }}"}
 
-This section includes several known issues for {{ hcp }} for {{ product_title }} {{ product_version }}.
+This section includes several known issues for {{ hcp }} for {{ product_title }} {{ product_version }}. {._abstract}
 
 *   If the annotation and the `ManagedCluster` resource name do not match, the {{ mce }} console displays the cluster as `Pending import`. The cluster cannot be used by the {{ mce_short }}. The same issue happens when there is no annotation and the `ManagedCluster` name does not match the `Infra-ID` value of the `HostedCluster` resource.
 *   When you use the {{ mce }} console to add a new node pool to an existing hosted cluster, the same version of {{ product_title }} might appear more than once in the list of options. You can select any instance in the list for the version that you want.

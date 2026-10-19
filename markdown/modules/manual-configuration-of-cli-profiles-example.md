@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Manually configuring CLI profiles {id="manual-configuration-of-cli-profiles-example_{{ context }}"}
+# Configure CLI profiles manually {id="manual-configuration-of-cli-profiles-example_{{ context }}"}
 
 If you want to manually configure your CLI configuration files, you can use the `oc config` command instead of directly modifying the files. {._abstract}
 

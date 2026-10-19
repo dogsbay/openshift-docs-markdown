@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Monitoring pending workloads on demand {id="monitoring-pending-workloads-on-demand_{{ context }}"}
 
-To test the monitoring of pending workloads, you must correctly configure both the `ClusterQueue` and the `LocalQueue` resources. After that, you can create jobs on that `LocalQueue`. Kueue manages the workload object created from the job so, when a job is submitted and saturates the `ClusterQueue`, its corresponding workloads can be seen in the list of pending workloads. {._abstract}
+To test the monitoring of pending workloads, you must correctly configure both the `ClusterQueue` and the `LocalQueue` resources. After that, you can create jobs on that `LocalQueue`.  {._abstract}
+
+Kueue manages the workload object created from the job so, when a job is submitted and saturates the `ClusterQueue`, its corresponding workloads can be seen in the list of pending workloads.
 
 **Prerequisites**
 

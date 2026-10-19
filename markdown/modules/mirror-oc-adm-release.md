@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Mirroring images using the oc adm release mirror command {id="update-mirror-repository-adm-release-mirror_{{ context }}"}
+# Mirror images using the oc adm release mirror command {id="update-mirror-repository-adm-release-mirror_{{ context }}"}
 
 You can use the `oc adm release mirror` command to mirror images to your mirror registry. {._abstract}
 

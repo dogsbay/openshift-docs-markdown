@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ oadp_short }} virtual machine data protection CLI {id="oadp-vmdp-installing-cli_{{ context }}"}
+# Install the {{ oadp_short }} virtual machine data protection CLI {id="oadp-vmdp-installing-cli_{{ context }}"}
 
 Install the {{ oadp_full }} virtual machine data protection (VMDP) command-line interface (CLI) inside your VM to back up and restore data. This helps you to download the correct binary for your VM guest operating system. {._abstract}
 

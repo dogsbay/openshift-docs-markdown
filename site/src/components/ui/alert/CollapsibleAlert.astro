@@ -81,9 +81,12 @@ interface Props {
   /** Whether the details starts open */
   open?: boolean;
   class?: string;
+  /** id, data-*, aria-*: passed to the <details> (an `id` is a link target) */
+  [key: string]: unknown;
 }
 
-const { variant = "note", title, open = false, class: className } = Astro.props;
+// `icon` is accepted (the serializer passes it) but not drawn: the variant sets the icon
+const { variant = "note", title, open = false, class: className, icon: _icon, ...rest } = Astro.props;
 const v = variant || "note";
 
 // `plain` is chrome — a disclosure, nothing more. No role at all:
@@ -104,6 +107,7 @@ const icon = contentVariants.has(v) ? icons[v] : null;
   class:list={[wrapper({ variant, class: className }), "group/collapsible"]}
   data-variant={variant}
   open={open}
+  {...rest}
 >
   <summary class:list={[
     "flex cursor-pointer items-center gap-2 px-4 py-3 text-sm font-semibold select-none",

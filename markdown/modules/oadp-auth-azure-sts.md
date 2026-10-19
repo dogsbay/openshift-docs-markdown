@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using OADP with Azure Security Token Service authentication {id="oadp-auth-azure-STS_{{ context }}"}
+# Use OADP with Azure Security Token Service authentication {id="oadp-auth-azure-STS_{{ context }}"}
 
 You can use Microsoft Entra Workload ID to access Azure storage for {{ oadp_short }} backup and restore operations. This approach uses the signed Kubernetes service account tokens of the OpenShift cluster. These token are automatically rotated every hour and exchanged with the Azure Active Directory (AD) access tokens, eliminating the need for long-term client secrets. {._abstract}
 

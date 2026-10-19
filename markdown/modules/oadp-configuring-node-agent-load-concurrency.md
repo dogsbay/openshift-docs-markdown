@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Configuring node agent load concurrency {id="oadp-configuring-node-agent-load-concurrency_{{ context }}"}
+# Configure node agent load concurrency {id="oadp-configuring-node-agent-load-concurrency_{{ context }}"}
 
 You can control the maximum number of node agent operations that can run simultaneously on each node within your cluster. {._abstract}
 

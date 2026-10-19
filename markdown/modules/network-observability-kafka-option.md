@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Installing Kafka (optional) {id="network-observability-kafka-option_{{ context }}"}
+# Install Kafka (optional) {id="network-observability-kafka-option_{{ context }}"}
 
 The Kafka Operator is supported for large-scale environments. Kafka provides high-throughput and low-latency data feeds for forwarding network flow data in a more resilient, scalable way. {._abstract}
 

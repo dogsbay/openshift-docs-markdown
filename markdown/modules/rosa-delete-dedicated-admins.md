@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Revoking `dedicated-admin` access using the ROSA CLI {id="rosa-delete-dedicated-admins_{{ context }}"}
+# Revoking `dedicated-admin` access using the {{ rosa_cli_title }} {id="rosa-delete-dedicated-admins_{{ context }}"}
 
 You can revoke access for a `dedicated-admin` user if you are the user who created the cluster, the organization administrator user, or the super administrator user. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating your Terraform files locally {id="rosa-classic-cluster-terraform-file-creation_{{ context }}"}
+# Create your Terraform files locally {id="rosa-classic-cluster-terraform-file-creation_{{ context }}"}
 
 After you set up your [offline {{ cluster_manager_first }} token](https://console.redhat.com/openshift/token/rosa), you need to create the Terraform files locally to build your cluster. You can create these files by using the following code templates. {._abstract}
 

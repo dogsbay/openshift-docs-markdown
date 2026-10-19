@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Disaster recovery {id="rosa-policy-disaster-recovery_{{ context }}"}
 
-Disaster recovery includes backing up data and configurations, replicating them to a disaster recovery environment, and failing over during a disaster event. {._abstract}
+Disaster recovery for {{ product_title }} includes backing up data and configurations, replicating them to a disaster recovery environment, and failing over during a disaster event. {._abstract}
 
 The effectiveness of disaster recovery depends on the architecture. Deploy highly available applications, storage, and clusters to achieve your required level of resilience, for example:
 
@@ -30,12 +30,12 @@ The following responsibility matrix provides details about disaster recovery pra
 </tr>
 <tr>
   <td>Virtual storage management</td>
-  <td><strong>Red&#160;Hat</strong><br><br> {% if openshift_rosa %} <ul><li>For {{ product_title }} clusters created with IAM user credentials, back up all Kubernetes objects on the cluster through hourly, daily, and weekly volume snapshots. Hourly backups are retained for 24 hrs (1 day), daily backups are retained for 168 hrs (1 week), and weekly backups are retained for 720 hrs (30 days).</li></ul> {% endif %}</td>
+  <td><strong>Red&#160;Hat</strong><br><br> {% if openshift_rosa %} <ul><li>For {{ product_title }} clusters created with Identity and Access Management (IAM) user credentials, back up all Kubernetes objects on the cluster through hourly, daily, and weekly volume snapshots. Hourly backups are retained for 24 hrs (1 day), daily backups are retained for 168 hrs (1 week), and weekly backups are retained for 720 hrs (30 days).</li></ul> {% endif %}</td>
   <td><ul><li>Back up customer applications and application data.</li></ul></td>
 </tr>
 <tr>
   <td>Virtual compute management</td>
-  <td><strong>Red&#160;Hat</strong> {% if openshift_rosa %} <ul><li>Monitor the cluster and replace failed Amazon EC2 control plane or infrastructure nodes.</li></ul> {% endif %} <br><br><ul><li>Provide the ability for the customer to manually or automatically replace failed worker nodes.</li></ul></td>
+  <td><strong>Red&#160;Hat</strong> {% if openshift_rosa %} <ul><li>Monitor the cluster and replace failed Amazon Elastic Compute Cloud (EC2) control plane or infrastructure nodes.</li></ul> {% endif %} <br><br><ul><li>Provide the ability for the customer to manually or automatically replace failed worker nodes.</li></ul></td>
   <td><ul><li>Replace failed Amazon EC2 worker nodes by editing the machine pool configuration through {{ cluster_manager }} or the {{ rosa_cli_first }}.</li></ul></td>
 </tr>
 <tr>
@@ -50,8 +50,8 @@ The following responsibility matrix provides details about disaster recovery pra
 </tr>
 <tr>
   <td>AWS software (public AWS services)</td>
-  <td><strong>AWS</strong><br><br><strong>Compute:</strong> Provide Amazon EC2 features that support data resiliency such as Amazon EBS snapshots and Amazon EC2 Auto Scaling. For more information, see "Resilience in Amazon EC2" in <em>Additional resources</em>.<br><br><strong>Storage:</strong> Provide the ability for the {{ product_title }} service and customers to back up the Amazon EBS volume on the cluster through Amazon EBS volume snapshots.<br><br><strong>Storage:</strong> For information about Amazon S3 features that support data resiliency, see "Resilience in Amazon S3" in <em>Additional resources</em>.<br><br><strong>Networking:</strong> For information about Amazon VPC features that support data resiliency, see "Resilience in Amazon Virtual Private Cloud" in <em>Additional resources</em>.</td>
-  <td><ul><li>Configure {{ product_title }} clusters with multiple machine pools across multiple AZs to improve fault tolerance and cluster availability.</li><li>Provision persistent volumes using the Amazon EBS CSI driver to enable volume snapshots.</li><li>Create CSI volume snapshots of Amazon EBS persistent volumes.</li></ul></td>
+  <td><strong>AWS</strong><br><br><strong>Compute:</strong> Provide Amazon EC2 features that support data resiliency such as Amazon Elastic Block Store (EBS) snapshots and Amazon EC2 Auto Scaling. For more information, see "Resilience in Amazon EC2" in <em>Additional resources</em>.<br><br><strong>Storage:</strong> Provide the ability for the {{ product_title }} service and customers to back up the Amazon EBS volume on the cluster through Amazon EBS volume snapshots.<br><br><strong>Storage:</strong> For information about Amazon S3 features that support data resiliency, see "Resilience in Amazon S3" in <em>Additional resources</em>.<br><br><strong>Networking:</strong> For information about Amazon virtual private cloud (VPC) features that support data resiliency, see "Resilience in Amazon Virtual Private Cloud" in <em>Additional resources</em>.</td>
+  <td><ul><li>Configure {{ product_title }} clusters with multiple machine pools across multiple AZs to improve fault tolerance and cluster availability.</li><li>Provision persistent volumes using the Amazon EBS Container Storage Interface (CSI) driver to enable volume snapshots.</li><li>Create CSI volume snapshots of Amazon EBS persistent volumes.</li></ul></td>
 </tr>
 <tr>
   <td>Hardware/AWS global infrastructure</td>

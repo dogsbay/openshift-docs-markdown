@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a network policy for network observability {id="network-observability-network-policy_{{ context }}"}
+# Create a network policy for network observability {id="network-observability-network-policy_{{ context }}"}
 
 Customize network policies for the `netobserv` and `netobserv-privileged` namespaces by disabling the managed installation in the FlowCollector resource. Use the default managed policies as a template to create manual network policy configurations that meet specific security requirements. {._abstract}
 

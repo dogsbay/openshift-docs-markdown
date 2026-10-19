@@ -1,8 +1,11 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Incident and operations management {id="rosa-policy-incident_{{ context }}"}
 
-Red&#160;Hat is responsible for overseeing the service components required for default platform networking.
-AWS is responsible for protecting the hardware infrastructure that runs all of the services offered in the AWS Cloud. The customer is responsible for incident and operations management of customer application data and any custom networking the customer has configured for the cluster network or virtual network. {._abstract}
+Red&#160;Hat, AWS, and the customer share incident and operations management responsibilities for {{ product_title }}, covering platform networking, cloud infrastructure, and customer applications and data. {._abstract}
+
+*   Red&#160;Hat is responsible for overseeing the service components required for default platform networking.
+*   AWS is responsible for protecting the hardware infrastructure that runs all of the services offered in the AWS Cloud.
+*   The customer is responsible for incident and operations management of customer application data and any custom networking the customer has configured for the cluster network or virtual network.
 
 <table>
 <thead>
@@ -15,13 +18,13 @@ AWS is responsible for protecting the hardware infrastructure that runs all of t
 <tbody>
 <tr>
   <td>Application networking</td>
-  <td><strong>Red&#160;Hat</strong> - Monitor native OpenShift router service, and respond to alerts.</td>
+  <td><strong>Red&#160;Hat</strong> - Monitor native {{ OCP_short }} router service, and respond to alerts.</td>
   <td>- Monitor health of application routes, and the endpoints behind them. - Report outages to Red&#160;Hat and AWS.</td>
 </tr>
 <tr>
   <td>Cluster networking</td>
   <td><strong>Red&#160;Hat</strong> - Monitor, alert, and address incidents related to cluster DNS, network plugin connectivity between cluster components, and the default Ingress Controller.</td>
-  <td>- Monitor and address incidents related to optional Ingress Controllers, additional Operators installed through the software catalog, and network plugins replacing the default OpenShift Container Network Interface (CNI) plugins.</td>
+  <td>- Monitor and address incidents related to optional Ingress Controllers, additional Operators installed through the software catalog, and network plugins replacing the default {{ OCP_short }} Container Network Interface (CNI) plugins.</td>
 </tr>
 <tr>
   <td>Virtual networking management</td>

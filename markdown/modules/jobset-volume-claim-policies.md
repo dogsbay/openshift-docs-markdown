@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring volume claim policies for {{ js_operator }} {id="js-volume-claim-policies_{{ context }}"}
+# Configure volume claim policies for {{ js_operator }} {id="js-volume-claim-policies_{{ context }}"}
 
 You can configure a JobSet to automatically create and manage shared persistent volume claims (PVCs) across multiple replicated jobs. This is useful for workloads that require shared access to datasets, models, or checkpoints. {._abstract}
 

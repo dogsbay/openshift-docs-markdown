@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing pod details {id="getting-started-cli-examining-pod_{{ context }}"}
+# View pod details {id="getting-started-cli-examining-pod_{{ context }}"}
 
 Retrieve detailed pod information to confirm the running status and resource configuration of the applications in this tutorial. {._abstract}
 

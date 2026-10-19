@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the DPA to override Kopia hashing, encryption, and splitter algorithms {id="oadp-kopia-configuring-algorithms_{{ context }}"}
+# Configure the DPA to override Kopia hashing, encryption, and splitter algorithms {id="oadp-kopia-configuring-algorithms_{{ context }}"}
 
 Configure the Data Protection Application (DPA) to override the default Kopia hashing, encryption, and splitter algorithms by setting environment variables in the Velero pod configuration. This helps you improve Kopia performance and compare performance metrics for your backup operations. {._abstract}
 

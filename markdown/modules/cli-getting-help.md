@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Getting help {id="cli-getting-help_{{ context }}"}
+# Get help through the CLI {id="cli-getting-help_{{ context }}"}
 
-Review the ways to  get help with CLI commands and {{ product_title }} resources. {._abstract}
+Review the ways to get help with CLI commands and {{ product_title }} resources. {._abstract}
 
 **Procedure**
 

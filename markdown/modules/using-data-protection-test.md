@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the DataProtectionTest custom resource {id="using-data-protection-test_{{ context }}"}
+# Use the DataProtectionTest custom resource {id="using-data-protection-test_{{ context }}"}
 
 Configure and run the `DataProtectionTest` (DPT) custom resource (CR) to verify Container Storage Interface (CSI) snapshot readiness and data upload performance to your storage bucket. This helps you validate your {{ oadp_short }} environment before performing backup and restore operations. {._abstract}
 

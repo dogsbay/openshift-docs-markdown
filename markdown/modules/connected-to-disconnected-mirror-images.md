@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Mirroring the images {id="connected-to-disconnected-mirror-images_{{ context }}"}
+# Mirror the images {id="connected-to-disconnected-mirror-images_{{ context }}"}
 
 After the cluster is properly configured, you can mirror the images from your external repositories to the mirror repository. {._abstract}
 

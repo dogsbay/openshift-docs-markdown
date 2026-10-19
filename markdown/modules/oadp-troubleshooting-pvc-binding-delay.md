@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Troubleshooting PVC binding failures with the waitForFirstConsumer storage class {id="oadp-troubleshooting-pvc-binding-delay_{{ context }}"}
+# Troubleshoot PVC binding failures with the waitForFirstConsumer storage class {id="oadp-troubleshooting-pvc-binding-delay_{{ context }}"}
 
 To ensure that restored persistent volume claims (PVCs) successfully bind to PVs when node affinity is configured, adjust the storage class binding mode settings during restore operations. {._abstract}
 

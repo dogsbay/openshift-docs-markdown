@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the cluster for the mirror registry {id="connected-to-disconnected-config-registry_{{ context }}"}
+# Configure the cluster for the mirror registry {id="connected-to-disconnected-config-registry_{{ context }}"}
 
 After creating and mirroring the images to the mirror registry, you must modify your cluster so that pods can pull images from the mirror registry. {._abstract}
 

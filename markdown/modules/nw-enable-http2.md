@@ -7,9 +7,10 @@ To enable HTTP/2 for Ingress Controllers in {{ product_title }}, you can annotat
 
 *   To enable HTTP/2 on a specific Ingress Controller, enter the `oc annotate` command:
     ```terminal
-    $ oc -n openshift-ingress-operator annotate ingresscontrollers/<ingresscontroller_name> ingress.operator.openshift.io/default-enable-http2=true (1)
+    $ oc -n openshift-ingress-operator annotate ingresscontrollers/<ingresscontroller_name> ingress.operator.openshift.io/default-enable-http2=true
     ```
-    1.  Replace `<ingresscontroller_name>` with the name of an Ingress Controller to enable HTTP/2.
+
+    Replace `<ingresscontroller_name>` with the name of an Ingress Controller to enable HTTP/2.
 *   To enable HTTP/2 for the entire cluster, enter the `oc annotate` command:
     ```terminal
     $ oc annotate ingresses.config/cluster ingress.operator.openshift.io/default-enable-http2=true

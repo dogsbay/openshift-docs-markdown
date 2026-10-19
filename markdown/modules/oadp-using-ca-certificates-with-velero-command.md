@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using CA certificates with the velero command aliased for Velero deployment {id="oadp-using-ca-certificates-with-velero-command-aliased-for-velero-deployment_{{ context }}"}
+# Use CA certificates with the velero command aliased for Velero deployment {id="oadp-using-ca-certificates-with-velero-command-aliased-for-velero-deployment_{{ context }}"}
 
 You might want to use the Velero CLI without installing it locally on your system by creating an alias for it. {._abstract}
 

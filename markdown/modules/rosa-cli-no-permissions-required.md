@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# {{ rosa_cli }} commands with no required permissions {id="rosa-cli-no-permissions-required_{{ context }}"}
+# {{ rosa_cli_title }} commands with no required permissions {id="rosa-cli-no-permissions-required_{{ context }}"}
 
 These {{ rosa_cli_first }} commands do not need the Identity and Access Management (IAM) policies. They need an access key, a secret key, or an attached role. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Mirroring images to a mirror registry {id="update-mirroring-images-to-registry_{{ context }}"}
+# Mirror images to a mirror registry {id="update-mirroring-images-to-registry_{{ context }}"}
 
 Before you can update a cluster in a disconnected environment, you must mirror the required {{ product_title }} release images onto a local registry mirror. {._abstract}
 

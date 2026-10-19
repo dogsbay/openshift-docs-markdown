@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Rejecting a NonAdminBackupStorageLocation request {id="oadp-self-service-rejecting-nabsl_{{ context }}"}
+# Reject a NonAdminBackupStorageLocation request {id="oadp-self-service-rejecting-nabsl_{{ context }}"}
 
 Reject `NonAdminBackupStorageLocation` (NABSL) custom resource (CR) requests from namespace administrators to deny access to backup storage locations that do not meet requirements. This helps you maintain security and compliance standards. {._abstract}
 

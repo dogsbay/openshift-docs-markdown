@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a restorePVC for a Data Mover restore {id="configuring-restore-pvc_{{ context }}"}
+# Configure a restorePVC for a Data Mover restore {id="configuring-restore-pvc_{{ context }}"}
 
 Configure restore persistent volume claim (PVC) settings in the `DataProtectionApplication` (DPA) to optimize Data Mover restore operations and enable parallel volume restores. This improves restore performance by distributing restore pods across nodes. {._abstract}
 

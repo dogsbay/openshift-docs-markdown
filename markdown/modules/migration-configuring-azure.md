@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring {{ azure_full }} {id="migration-configuring-azure_{{ context }}"}
+# Configure {{ azure_full }} {id="migration-configuring-azure_{{ context }}"}
 
 Configure Microsoft Azure storage and service principal credentials for backup storage with {{ oadp_short }}. This provides the necessary authentication and storage infrastructure for data protection operations. {._abstract}
 

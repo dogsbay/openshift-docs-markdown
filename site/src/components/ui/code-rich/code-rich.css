@@ -2,7 +2,9 @@
 
 /* ── All lines ────────────────────────────────────────── */
 .code-rich-body .line {
-  display: inline-flex;
+  /* inline-block, not inline-flex: a flex line makes each token span a flex item, and
+     browsers then copy a hand-made selection with a line break between tokens. */
+  display: inline-block;
   width: 100%;
 }
 

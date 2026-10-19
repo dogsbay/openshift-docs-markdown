@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Upgrading the {{ oadp_short }} Operator {id="oadp-upgrading-dpa-operator-1-6-0_{{ context }}"}
+# Upgrade the {{ oadp_short }} Operator {id="oadp-upgrading-dpa-operator-1-6-0_{{ context }}"}
 
 You can upgrade the {{ oadp_first }} Operator by using the following procedure.  {._abstract}
 

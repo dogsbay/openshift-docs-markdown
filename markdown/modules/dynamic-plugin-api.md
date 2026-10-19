@@ -3,9 +3,11 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Dynamic plugin API {id="dynamic-plugin-api_{{ context }}"}
 
+The dynamic plugin API provides hooks, components, and utilities for extending the {{ product_title }} web console. You can use these APIs to manage cluster resources, perform access control checks, build customized list pages and overlays, query Prometheus, and make authenticated console requests. {._abstract}
+
 ## `useActivePerspective` {id="_useactiveperspective"}
 
-Hook that provides the currently active perspective and a callback for setting the active perspective. It returns a tuple containing the current active perspective and setter callback. {._abstract}
+Hook that provides the currently active perspective and a callback for setting the active perspective. It returns a tuple containing the current active perspective and setter callback.
 
 **Example**
 ```tsx

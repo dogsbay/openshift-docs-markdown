@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an external authentication provider {id="rosa-hcp-sts-creating-a-cluster-external-auth-provider-cli_{{ context }}"}
+# Create an external authentication provider {id="rosa-hcp-sts-creating-a-cluster-external-auth-provider-cli_{{ context }}"}
 {%- set source_highlighter = "pygments" -%}
 {%- set pygments_style = "emacs" -%}
 {%- set icons = "font" %}

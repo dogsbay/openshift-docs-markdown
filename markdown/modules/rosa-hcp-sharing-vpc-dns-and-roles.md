@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Step Two - Cluster Creator: Reserving your DNS entries and creating cluster Operator roles {id="rosa-hcp-sharing-vpc-dns-and-roles_{{ context }}"}
+# Step Two - Cluster Creator: Reserve your DNS entries and create cluster Operator roles {id="rosa-hcp-sharing-vpc-dns-and-roles_{{ context }}"}
 
 After the **VPC Owner** creates a VPC, subnets, and an Identity and Access Management (IAM) role, reserve an `openshiftapps.com` DNS domain and create Operator roles. {._abstract}
 

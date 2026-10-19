@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Authenticate the {{ rosa_cli }} with a single sign-on device code {id="rosa-login-sso-device-code_{{ context }}"}
+# Authenticate the {{ rosa_cli_title }} with a single sign-on device code {id="rosa-login-sso-device-code_{{ context }}"}
 
 If you are working with containers, remote hosts, and other environments without a web browser, you can use a Red&#160;Hat single sign-on device code for secure authentication. To do this, you must use a second device that has a web browser to approve the login. {._abstract}
 

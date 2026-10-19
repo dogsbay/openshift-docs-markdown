@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Log out of the {{ rosa_cli }} {id="rosa-logout_{{ context }}"}
+# Log out of the {{ rosa_cli_title }} {id="rosa-logout_{{ context }}"}
 
 Log out of `rosa`. Logging out also removes the `rosa` configuration file. {._abstract}
 

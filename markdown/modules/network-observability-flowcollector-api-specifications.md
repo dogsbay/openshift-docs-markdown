@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # FlowCollector API specifications {id="network-observability-flowcollector-api-specifications_{{ context }}"}
 
+`FlowCollector` is the schema for the network flows collection API, which pilots and configures the underlying deployments. {._abstract}
+
 
 Description
 :   `FlowCollector` is the schema for the network flows collection API, which pilots and configures the underlying deployments.

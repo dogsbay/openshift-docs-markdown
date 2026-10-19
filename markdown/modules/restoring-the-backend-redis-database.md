@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Restoring the back-end Redis database {id="restoring-the-backend-redis-database_{{ context }}"}
+# Restore the back-end Redis database {id="restoring-the-backend-redis-database_{{ context }}"}
 
 Restore the back-end Redis database by creating a `Restore` custom resource (CR) that excludes non-essential cluster resources. This helps you to recover the Redis data store as part of the Red&#160;Hat 3scale API Management restoration process. {._abstract}
 

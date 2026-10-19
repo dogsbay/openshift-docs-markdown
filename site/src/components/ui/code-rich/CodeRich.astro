@@ -33,6 +33,10 @@ interface Props {
   lang?: string;
   /** Optional title/filename displayed in the header bar */
   title?: string;
+  /*
+   * A `caption` slot makes the block a figure: the header bar is its
+   * <figcaption>, showing the caption with the language beside it.
+   */
   /** Show copy button (default: true) */
   copy?: boolean;
   /** Show line numbers (default: false) */
@@ -212,21 +216,36 @@ const html = await codeToHtml(highlightCode, {
 });
 
 // Show header bar only when there's a title or a declared language
-const hasLabel = !!title || (lang !== "plaintext");
+const hasCaption = Astro.slots.has("caption");
+const Wrapper = hasCaption ? "figure" : "div";
+const Header = hasCaption ? "figcaption" : "div";
+const hasLabel = hasCaption || !!title || (lang !== "plaintext");
 const showHeader = hasLabel;
 // When no header, copy button floats inside the code body
 const floatingCopy = copy && !showHeader;
 ---
 
-<div
-  class={codeRichWrapper({ class: className })}
+<Wrapper
+  class={codeRichWrapper({ class: [hasCaption && "m-0", className] })}
   data-component="code-rich"
   data-line-numbers={lineNumbers || undefined}
   {...rest}
 >
   {showHeader && (
-    <div class={codeRichHeader()}>
-      <span class="select-none">{title || lang}</span>
+    <Header class={codeRichHeader()}>
+      {/*
+        Left: what the code is (caption or filename title), or the language when that is
+        all there is. Right: the language beside the copy button, as secondary detail
+      */}
+      {hasCaption ? (
+        <span class="min-w-0 font-medium text-code-fg" data-part="caption"><slot name="caption" /></span>
+      ) : title ? (
+        <span class="min-w-0 font-medium text-code-fg" data-part="title">{title}</span>
+      ) : (
+        <span class="select-none">{lang}</span>
+      )}
+      <span class="flex shrink-0 items-center gap-2">
+      {(hasCaption || title) && lang !== "plaintext" && <span class="select-none" data-part="language">{lang}</span>}
       {copy && (
         <button
           class={codeRichCopy()}
@@ -269,7 +288,8 @@ const floatingCopy = copy && !showHeader;
           </svg>
         </button>
       )}
-    </div>
+      </span>
+    </Header>
   )}
   <div class="code-rich-body relative overflow-x-auto [&_pre]:!m-0 [&_pre]:!rounded-none [&_pre]:!border-0 [&_pre]:!bg-transparent [&_pre]:px-4 [&_pre]:py-3">
     <Fragment set:html={html} />
@@ -291,7 +311,7 @@ const floatingCopy = copy && !showHeader;
       </button>
     )}
   </div>
-</div>
+</Wrapper>
 
 <script>
   function setupCodeRichCopy() {

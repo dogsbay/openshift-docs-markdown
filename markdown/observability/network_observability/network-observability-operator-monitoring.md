@@ -1,10 +1,10 @@
 ---
-title: Monitoring the Network Observability Operator
+title: Monitor the Network Observability Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
-# Monitoring the Network Observability Operator {id="network-observability-operator-monitoring"}
+# Monitor the Network Observability Operator {id="network-observability-operator-monitoring"}
 {%- set context = "network_observability" %}
 
 Use the {{ product_title }} web console to monitor alerts related to the Network Observability Operator’s health. This helps you maintain system stability and quickly detect operational issues. {._abstract}

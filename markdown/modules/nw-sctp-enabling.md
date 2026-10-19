@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Enabling Stream Control Transmission Protocol (SCTP) {id="nw-sctp-enabling_{{ context }}"}
 
-As a cluster administrator, you can load and enable the blacklisted SCTP kernel module on worker nodes in your cluster.
+As a cluster administrator, you can load and enable the blacklisted SCTP kernel module on worker nodes in your cluster. {._abstract}
 
 **Prerequisites**
 

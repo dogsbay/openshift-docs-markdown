@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Restarting the cluster gracefully {id="graceful-restart-cluster-intro_{{ context }}"}
+# Restart the cluster gracefully {id="graceful-restart-cluster-intro_{{ context }}"}
 
 You can restart your {{ product_title }} cluster after a graceful shutdown by powering on nodes and verifying cluster health. The cluster returns to normal operations when nodes and Operators are healthy. {._abstract}
 

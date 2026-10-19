@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the Cluster Version Operator (CVO) {id="update-service-configure-cvo"}
+# Configure the Cluster Version Operator (CVO) {id="update-service-configure-cvo"}
 
 After the OpenShift Update Service Operator has been installed and the OpenShift Update Service application has been created, the Cluster Version Operator (CVO) can be updated to pull graph data from the OpenShift Update Service installed in your environment. {._abstract}
 

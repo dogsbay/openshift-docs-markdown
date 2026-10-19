@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Exposing the back-end service {id="getting-started-cli-creating-route-backend_{{ context }}"}
+# Expose the back-end service {id="getting-started-cli-creating-route-backend_{{ context }}"}
 
 To expose the back-end service so that it is accessible externally, create a route. {._abstract}
 

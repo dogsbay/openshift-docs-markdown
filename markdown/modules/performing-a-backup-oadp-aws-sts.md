@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Performing a backup with OADP and AWS STS {id="performing-a-backup-oadp-aws-sts_{{ context }}"}
+# Perform a backup with OADP and AWS STS {id="performing-a-backup-oadp-aws-sts_{{ context }}"}
 
 Perform a backup by using {{ oadp_first }} with {{ aws_first }} (AWS STS). The following `hello-world` example application has no persistent volumes (PVs) attached. {._abstract}
 

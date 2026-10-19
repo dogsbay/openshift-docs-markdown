@@ -56,6 +56,7 @@ The following AWS S3 compatible object storage providers are known to work with 
 
 *   Swift - It works for use as a backup storage location for backup storage, but is not compatible with Restic for filesystem-based volume backup and restore.
 
-## Additional resources {id="_additional_resources" ._additional-resources}
+**Additional resources**
+{._additional-resources}
 
 *   [Scality ARTESCA S3 object storage (Scality documentation)](https://downloads.scality.com/artesca-ova/doc/general_introduction.html#)

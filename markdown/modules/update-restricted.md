@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Updating the disconnected cluster {id="update-disconnected_{{ context }}"}
+# Update the disconnected cluster {id="update-disconnected_{{ context }}"}
 
 Update the disconnected cluster to the {{ product_title }} version that you downloaded the release images for. {._abstract}
 

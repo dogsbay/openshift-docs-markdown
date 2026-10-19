@@ -1,4 +1,5 @@
-# Configuring an htpasswd identity provider {id="config-htpasswd-idp_{{ context }}"}
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Configure an htpasswd identity provider {id="config-htpasswd-idp_{{ context }}"}
 
 Configure an htpasswd identity provider to create static users. You can log in to your cluster as the user to troubleshoot problems. You can use the web user interface (UI) or your command-line interface (CLI) to create an htpasswd identity provider. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using a service principal or a storage account access key {id="oadp-auth-azure-secret-based_{{ context }}"}
+# Use a service principal or a storage account access key {id="oadp-auth-azure-secret-based_{{ context }}"}
 
 You create a default `Secret` object and reference it in the backup storage location custom resource. The credentials file for the `Secret` object can contain information about the Azure service principal or a storage account access key. {._abstract}
 

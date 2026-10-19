@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Mirroring on a local host with mirror registry for Red Hat OpenShift {id="mirror-registry-localhost_{{ context }}"}
+# Mirror on a local host with mirror registry for Red Hat OpenShift {id="mirror-registry-localhost_{{ context }}"}
 
 You can install the _mirror registry for Red&#160;Hat OpenShift_ on a local host by using the `mirror-registry` installer tool. By doing so, users can create a local host registry running on port 443 for the purpose of storing a mirror of {{ product_title }} images. {._abstract}
 

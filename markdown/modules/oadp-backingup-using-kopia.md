@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Backing up applications with File System Backup {id="oadp-backingup-file-system-backup_{{ context }}"}
+# Back up applications with File System Backup {id="oadp-backingup-file-system-backup_{{ context }}"}
 
 Create a `Backup` custom resource (CR) to back up applications by using File System Backup (FSB) with Kopia as the uploader. This helps you to protect Kubernetes volumes attached to pods when snapshots are not available or when using NFS data volumes. {._abstract}
 

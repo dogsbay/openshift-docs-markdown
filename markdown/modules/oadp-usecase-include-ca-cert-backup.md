@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Backing up an application and its self-signed CA certificate {id="oadp-usecase-include-ca-cert-backup_{{ context }}"}
+# Back up an application and its self-signed CA certificate {id="oadp-usecase-include-ca-cert-backup_{{ context }}"}
 
 The `s3.openshift-storage.svc` service, provided by {{ odf_short }}, uses a Transport Layer Security protocol (TLS) certificate that is signed with the self-signed service CA. {._abstract}
 

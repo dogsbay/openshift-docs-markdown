@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting up the environment for STS {id="rosa-sts-setting-up-environment_{{ context }}"}
+# Set up the environment for STS {id="rosa-sts-setting-up-environment_{{ context }}"}
 
 Before you create a {{ product_title }} cluster that uses the AWS Security Token Service (STS), complete the following steps to set up your environment. {._abstract}
 

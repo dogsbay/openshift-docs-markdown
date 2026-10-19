@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting a {{ product_title }} cluster {id="rosa-deleting-cluster-non-sts_{{ context }}"}
+# Delete a {{ product_title }} cluster {id="rosa-deleting-cluster-non-sts_{{ context }}"}
 
 You can delete a {{ product_title }} cluster using the {{ rosa_cli_first }}. {._abstract}
 

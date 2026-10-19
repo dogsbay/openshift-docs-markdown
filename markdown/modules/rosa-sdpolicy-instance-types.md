@@ -2,10 +2,10 @@
 # Instance types {id="rosa-sdpolicy-instance-types_{{ context }}"}
 
 {% if openshift_rosa_hcp %}
-All {{ product_title }} clusters require a minimum of two worker nodes. Shutting down the underlying (EC2 instance) infrastructure through the cloud provider console is unsupported and can lead to data loss and other risks.
+All {{ product_title }} clusters require a minimum of two worker nodes. Shutting down the underlying (Amazon Elastic Compute Cloud (EC2) instance) infrastructure through the cloud provider console is unsupported and can lead to data loss and other risks.
 {% endif %}
 {% if not openshift_rosa_hcp %}
-Single availability zone clusters require a minimum of three control plane nodes, two infrastructure nodes, and two worker nodes deployed to a single availability zone.
+Single availability zone clusters require a minimum of three control plane nodes, two infrastructure nodes, and two worker nodes deployed to a single availability zone. {._abstract}
 
 Multiple availability zone clusters require a minimum of three control plane nodes, three infrastructure nodes, and three worker nodes.
 
@@ -35,8 +35,12 @@ See the following Red&#160;Hat Operator support section for more information abo
 
 Approximately one vCPU core and 1 GiB of memory are reserved on each worker node and removed from allocatable resources. This reservation of resources is necessary to run processes required by the underlying platform. These processes include system daemons such as udev, kubelet, and container runtime among others. The reserved resources also account for kernel reservations.
 
-{{ product_title }} core systems such as audit log aggregation, metrics collection, DNS, image registry, CNI/OVN-Kubernetes, and others might consume additional allocatable resources to maintain the stability and maintainability of the cluster. The additional resources consumed might vary based on usage.
-
-For additional information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#system-reserved).
+{{ product_title }} core systems such as audit log aggregation, metrics collection, Domain Name System (DNS), image registry, the OVN-Kubernetes Container Network Interface (CNI) plugin, and others might consume additional allocatable resources to maintain the stability and maintainability of the cluster. The additional resources consumed might vary based on usage. For details, see Kubernetes documentation on the `systemReserved` setting.
 
 :::
+
+
+**Additional resources**
+{._additional-resources}
+
+*   [`systemReserved` setting (Kubernetes documentation)](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#system-reserved)

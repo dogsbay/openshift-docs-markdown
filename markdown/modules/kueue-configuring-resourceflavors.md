@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring a resource flavor {id="configuring-resourceflavors_{{ context }}"}
 
-After you have configured a `ClusterQueue` object, you can configure a `ResourceFlavor` object.
+After you have configured a `ClusterQueue` object, you can configure a `ResourceFlavor` object. {._abstract}
 
 Resources in a cluster are typically not homogeneous. If the resources in your cluster are homogeneous, you can use an empty `ResourceFlavor` instead of adding labels to custom resource flavors.
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the DPA with more than one VSL {id="oadp-configuring-dpa-multiple-vsl_{{ context }}"}
+# Configure the DPA with more than one VSL {id="oadp-configuring-dpa-multiple-vsl_{{ context }}"}
 
 Configure the `DataProtectionApplication` (DPA) custom resource (CR) with multiple Volume Snapshot Locations (VSLs) using provider-specific credentials in the same region as your persistent volumes. This provides volume snapshot distribution across different storage targets. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Backing up a single VM {id="oadp-backup-single-vm_{{ context }}"}
+# Back up a single VM {id="oadp-backup-single-vm_{{ context }}"}
 
 If you have a namespace with multiple virtual machines (VMs), and want to back up only one of them, you can use the label selector to filter the VM that needs to be included in the backup. You can filter the VM by using the `app: vmname` label. {._abstract}
 

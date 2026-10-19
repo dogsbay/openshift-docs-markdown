@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Backing up the DPA configuration {id="oadp-backing-up-dpa-configuration-1-6-0_{{ context }}"}
+# Back up the DPA configuration {id="oadp-backing-up-dpa-configuration-1-6-0_{{ context }}"}
 
 You must back up your current `DataProtectionApplication` (DPA) configuration. {._abstract}
 

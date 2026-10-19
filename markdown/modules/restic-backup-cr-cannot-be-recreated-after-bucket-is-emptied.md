@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Troubleshooting Restic Backup CR issue that cannot be re-created after bucket is emptied {id="restic-backup-cr-cannot-be-recreated-after-bucket-is-emptied_{{ context }}"}
+# Troubleshoot Restic Backup CR issue that cannot be re-created after bucket is emptied {id="restic-backup-cr-cannot-be-recreated-after-bucket-is-emptied_{{ context }}"}
 
 Resolve the `Backup` custom resource (CR) re-creation failure that occurs after you empty the object storage bucket. This failure occurs because Velero does not automatically re-create the Restic repository from the `ResticRepository` manifest.  {._abstract}
 

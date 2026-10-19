@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the legacy-aws Velero plugin in the DataProtectionApplication CR {id="oadp-using-legacy-aws-plugin_{{ context }}"}
+# Use the legacy-aws Velero plugin in the DataProtectionApplication CR {id="oadp-using-legacy-aws-plugin_{{ context }}"}
 
 In the following use case, you configure the `DataProtectionApplication` CR with the `legacy-aws` Velero plugin and then back up an application. {._abstract}
 

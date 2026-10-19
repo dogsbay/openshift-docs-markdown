@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configure the FlowCollectorSlice as a project administrator {id="network-observability-per-tenant-flowcollector-slice-configure-project-administrator_{{ context }}"}
+# Configure FlowCollectorSlice as a project administrator {id="network-observability-per-tenant-flowcollector-slice-configure-project-administrator_{{ context }}"}
 
 Project administrators can manage flow collection and data enrichment within their own namespaces by configuring a `FlowCollectorSlice` custom resource for decentralized network traffic analysis. {._abstract}
 

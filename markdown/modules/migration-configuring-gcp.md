@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring {{ gcp_full }} {id="migration-configuring-gcp_{{ context }}"}
+# Configure {{ gcp_full }} {id="migration-configuring-gcp_{{ context }}"}
 
 You configure {{ gcp_first }} for the OpenShift API for Data Protection (OADP). {._abstract}
 

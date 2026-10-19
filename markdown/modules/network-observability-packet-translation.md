@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Working with endpoint translation (xlat) {id="network-observability-packet-translation_{{ context }}"}
+# Work with endpoint translation (xlat) {id="network-observability-packet-translation_{{ context }}"}
 
 Enable endpoint translation (xlat) in the `FlowCollector` resource to enrich network flows with translated packet information. You can use this information to identify the specific pods and objects serving service traffic through dedicated xlat columns. {._abstract}
 

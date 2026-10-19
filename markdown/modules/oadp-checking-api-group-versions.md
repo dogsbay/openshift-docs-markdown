@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Listing the Kubernetes API group versions on a cluster {id="oadp-checking-api-group-versions_{{ context }}"}
+# List the Kubernetes API group versions on a cluster {id="oadp-checking-api-group-versions_{{ context }}"}
 
 Identify the preferred Kubernetes API group versions on your source cluster. This helps you select the correct API version when multiple API versions are available for a single API. {._abstract}
 

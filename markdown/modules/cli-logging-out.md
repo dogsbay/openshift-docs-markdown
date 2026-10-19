@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Logging out of the OpenShift CLI {id="cli-logging-out_{{ context }}"}
+# Log out of the OpenShift CLI {id="cli-logging-out_{{ context }}"}
 
 You can log out the {{ oc_first }} to end your current session. {._abstract}
 

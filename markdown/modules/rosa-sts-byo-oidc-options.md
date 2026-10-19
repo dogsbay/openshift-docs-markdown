@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Parameter options for creating your own OpenID Connect configuration {id="rosa-sts-byo-oidc-options_{{ context }}"}
 
-The `rosa create oidc-config` command accepts several optional parameters. Running the `rosa create oidc-config` command without parameters creates an unmanaged OpenID Connect (OIDC) configuration. {._abstract}
+The `rosa create oidc-config` command accepts several optional parameters. Running this command without parameters creates an unmanaged OpenID Connect (OIDC) configuration. {._abstract}
 
 
 :::note

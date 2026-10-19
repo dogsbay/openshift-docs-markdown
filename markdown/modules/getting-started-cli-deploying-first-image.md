@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying the front-end application {id="getting-started-cli-deploying-first-image_{{ context }}"}
+# Deploy the front-end application {id="getting-started-cli-deploying-first-image_{{ context }}"}
 
 Deploy the front-end application that provides the external-facing web component for the tutorial. {._abstract}
 

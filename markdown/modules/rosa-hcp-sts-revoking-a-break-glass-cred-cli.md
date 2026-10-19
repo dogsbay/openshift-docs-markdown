@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Revoking a break glass credential for a {{ product_title }} cluster {id="rosa-hcp-sts-revoking-a-break-glass-cred-cli_{{ context }}"}
+# Revoke a break glass credential for a {{ product_title }} cluster {id="rosa-hcp-sts-revoking-a-break-glass-cred-cli_{{ context }}"}
 
 You can revoke access to any break glass credentials that you have provisioned at any time by using the `revoke break-glass-credentials` command. {._abstract}
 

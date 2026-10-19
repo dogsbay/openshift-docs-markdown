@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring rootless Podman networking {id="configuring-rootless-podman_{{ context }}"}
+# Configure rootless Podman networking {id="configuring-rootless-podman_{{ context }}"}
 
 To restore rootless Podman networking when the default `pasta` stack fails on {{ product_title }} mirror or install hosts, you can set the default rootless network back to `slirp4netns` in the `/etc/containers/containers.conf` file, or in the user’s `~/.config/containers/container.conf` file.  {._abstract}
 

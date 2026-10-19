@@ -1,0 +1,21 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Configure catalog source pod scheduling {id="catalog-source-pod-scheduling_{{ context }}"}
+
+When a `grpc` type catalog source defines the `spec.image` field, the Catalog Operator creates a pod to serve that image. {._abstract}
+
+By default, the pod specification configures the following default settings:
+
+*   Node selector: `kubernetes.io/os=linux`
+*   Priority class name: `system-cluster-critical`
+*   Tolerations: None
+
+As an administrator, you can override these defaults by configuring fields in the optional `spec.grpcPodConfig` section of the `CatalogSource` object.
+
+
+:::important
+
+The Marketplace Operator, `openshift-marketplace`, manages the default `OperatorHub` custom resource (CR). This CR manages `CatalogSource` objects. If you change fields in the `CatalogSource` object’s `spec.grpcPodConfig` section, the Marketplace Operator automatically reverts these changes.
+
+To apply persistent changes to a `CatalogSource` object, you must first disable a default `CatalogSource` object.
+
+:::

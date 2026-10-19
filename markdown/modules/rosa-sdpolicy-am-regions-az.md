@@ -1,12 +1,12 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Regions and availability zones {id="rosa-sdpolicy-regions-az_{{ context }}"}
 
-The following AWS regions are currently available for Red&#160;Hat OpenShift 4 and are supported for {{ product_title }}.
+The following AWS regions are currently available for Red&#160;Hat {{ OCP }} 4 and are supported for {{ product_title }}. {._abstract}
 
 
 :::note
 
-Regions in China are not supported, regardless of their support on OpenShift Container Platform.
+Regions in China are not supported, regardless of their support on {{ OCP }}.
 
 :::
 
@@ -267,7 +267,9 @@ into a single availability zone (Single-AZ) or across multiple availability zone
 {%- if openshift_rosa_hcp %}
 up to the total number of availability zones for the given region.
 {%- endif %}
-This provides cluster-level network and resource isolation, and enables cloud-provider VPC settings, such as VPN connections and VPC Peering. Persistent volumes (PVs) are backed by Amazon Elastic Block Storage (Amazon EBS), and are specific to the availability zone in which they are provisioned. Persistent volume claims (PVCs) do not bind to a volume until the associated pod resource is assigned into a specific availability zone to prevent unschedulable pods. Availability zone-specific resources are only usable by resources in the same availability zone.
+This provides cluster-level network and resource isolation, and enables cloud-provider VPC settings, such as VPN connections and VPC Peering.
+
+Persistent volumes (PVs) are backed by Amazon Elastic Block Storage (Amazon EBS), and are specific to the availability zone in which they are provisioned. Persistent volume claims (PVCs) do not bind to a volume until the associated pod resource is assigned into a specific availability zone to prevent unschedulable pods. Availability zone-specific resources are only usable by resources in the same availability zone.
 
 
 :::warning

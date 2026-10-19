@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Minor versions (x.Y.z) {id="rosa-minor-versions_{{ context }}"}
 
-Starting with the 4.8 OpenShift Container Platform minor version, Red&#160;Hat supports all minor versions for at least a 16 month period following general availability of the given minor version. Patch versions are not affected by the support period. {._abstract}
+Starting with the 4.8 {{ OCP }} minor version, Red&#160;Hat supports all minor versions for at least a 16 month period following general availability of the given minor version. Patch versions are not affected by the support period. {._abstract}
 
 Customers are notified 60, 30, and 15 days before the end of the support period. Clusters must be upgraded to the latest patch version of the oldest supported minor version before the end of the support period, or
 {%- if openshift_rosa_hcp %}

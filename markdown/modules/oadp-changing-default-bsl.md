@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Changing the default backup storage location in a DPA {id="oadp-changing-default-bsl_{{ context }}"}
+# Change the default backup storage location in a DPA {id="oadp-changing-default-bsl_{{ context }}"}
 
 Understand why the `default` field of the `backupLocations` object in a `DataProtectionApplication` (DPA) does not change the default `BackupStorageLocation` (BSL) when you configure multiple backup locations. This helps you to identify the root cause and apply the correct workaround. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing pod logs {id="cli-using-cli-pod-logs_{{ context }}"}
+# View pod logs {id="cli-using-cli-pod-logs_{{ context }}"}
 
 Use the `oc logs` command to view logs for a particular pod. {._abstract}
 

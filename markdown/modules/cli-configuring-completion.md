@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling tab completion for Bash {id="cli-enabling-tab-completion_{{ context }}"}
+# Enable tab completion for Bash {id="cli-enabling-tab-completion_{{ context }}"}
 
 After you install the OpenShift CLI (`oc`), you can enable tab completion to automatically complete `oc` commands or suggest options when you press Tab. The following procedure enables tab completion for the Bash shell. {._abstract}
 

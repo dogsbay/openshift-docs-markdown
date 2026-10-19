@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring node agent load affinity {id="oadp-configuring-node-agent-load-affinity_{{ context }}"}
+# Configure node agent load affinity {id="oadp-configuring-node-agent-load-affinity_{{ context }}"}
 
 You can schedule the node agent pods on specific nodes by using the `spec.podConfig.nodeSelector` object of the `DataProtectionApplication` (DPA) custom resource (CR).  {._abstract}
 

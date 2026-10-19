@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the image set configuration {id="oc-mirror-building-image-set-config-v2_{{ context }}"}
+# Create the image set configuration {id="oc-mirror-building-image-set-config-v2_{{ context }}"}
 
 Before you can use the oc-mirror plugin v2 to mirror images, you must create an image set configuration file.
 This image set configuration file defines which {{ product_title }} releases, Operators, and other images to mirror, along with other configuration settings for the oc-mirror plugin v2. {._abstract}

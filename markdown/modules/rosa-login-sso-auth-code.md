@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Authenticate the {{ rosa_cli }} with a single sign-on authorization code {id="rosa-login-sso-auth-code_{{ context }}"}
+# Authenticate the {{ rosa_cli_title }} with a single sign-on authorization code {id="rosa-login-sso-auth-code_{{ context }}"}
 
 You can log in to your account with the {{ rosa_cli }} by using a Red&#160;Hat single sign-on authorization code. {._abstract}
 

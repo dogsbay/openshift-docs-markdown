@@ -150,7 +150,7 @@ where:
 :   Provides reverse DNS resolution for the bootstrap machine.
 
 `control-plane0.ocp4.example.com.`
-:   Provides rebootstrap.ocp4.example.com.verse DNS resolution for the control plane machines.
+:   Provides reverse DNS resolution for the control plane machines.
 {%- if context != "installing-two-node-fencing" %}
 
 `compute0.ocp4.example.com.`

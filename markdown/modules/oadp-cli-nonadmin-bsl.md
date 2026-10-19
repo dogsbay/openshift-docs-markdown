@@ -11,7 +11,7 @@ Updating or deleting NABSLs after creation is not supported for non-administrato
 :::
 
 
-## Prerequisites {id="oadp-cli-nonadmin-bsl-prereqs_{{ context }}"}
+**Prerequisites**
 
 *   The {{ oadp_short }} CLI plugin is installed and configured in non-administrator mode.
 *   You are logged in to the {{ product_title }} cluster and your current namespace context is set to the target namespace.

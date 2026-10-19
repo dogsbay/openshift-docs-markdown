@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling the {{ lws_operator }} {id="lws-uninstall_{{ context }}"}
+# Uninstall the {{ lws_operator }} {id="lws-uninstall_{{ context }}"}
 
 You can use the web console to uninstall the {{ lws_operator }} if you no longer need the Operator in your cluster. {._abstract}
 

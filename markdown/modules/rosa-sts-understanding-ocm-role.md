@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Understanding the {{ cluster_manager }} role {id="rosa-sts-understanding-ocm-role_{{ context }}"}
 
-Creating {{ product_title }} clusters in {{ cluster_manager_url }} requires an `ocm-role` IAM role. The standard `ocm-role` IAM role permissions let you perform cluster maintenance within {{ cluster_manager }}. To automatically create the Operator roles and OpenID Connect (OIDC) provider, you must add the `--admin` option to the `rosa create` command. This command creates an `ocm-role` resource with additional permissions needed for administrative tasks. If you do not need to use {{ cluster_manager }}, the `--no-console` profile creates an `ocm-role` IAM role with the minimum required permissions to create and manage clusters by using the CLI.
+Creating {{ product_title }} clusters in {{ cluster_manager_url }} requires an `ocm-role` Identity and Access Management (IAM) role. The standard `ocm-role` IAM role permissions let you perform cluster maintenance within {{ cluster_manager }}. {._abstract}
+
+To automatically create the Operator roles and OpenID Connect (OIDC) provider, you must add the `--admin` option to the `rosa create` command. This command creates an `ocm-role` resource with additional permissions needed for administrative tasks. If you do not need to use {{ cluster_manager }}, the `--no-console` profile creates an `ocm-role` IAM role with the minimum required permissions to create and manage clusters by using the CLI.
 
 
 :::note

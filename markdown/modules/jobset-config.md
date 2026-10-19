@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying a JobSet {id="js-config_{{ context }}"}
+# Deploy a JobSet {id="js-config_{{ context }}"}
 
 You can use the {{ js_operator }} to deploy a JobSet to manage and run large-scale, coordinated workloads. {._abstract}
 

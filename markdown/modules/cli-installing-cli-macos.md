@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the OpenShift CLI on macOS {id="cli-installing-cli-macos_{{ context }}"}
+# Install the OpenShift CLI on macOS {id="cli-installing-cli-macos_{{ context }}"}
 
 To manage your cluster and deploy applications from the command line on macOS, install the {{ oc_first }} binary. You can download the {{ oc_first }} from the Red&#160; Customer Portal. {._abstract}
 

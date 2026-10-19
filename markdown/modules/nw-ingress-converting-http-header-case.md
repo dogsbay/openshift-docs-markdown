@@ -31,12 +31,13 @@ As a cluster administrator, you can convert the HTTP header case by entering the
         kind: Route
         metadata:
           annotations:
-            haproxy.router.openshift.io/h1-adjust-case: true (1)
+            haproxy.router.openshift.io/h1-adjust-case: true
           name: <application_name>
           namespace: <application_name>
         # ...
         ```
-        1.  Set `haproxy.router.openshift.io/h1-adjust-case` so that the Ingress Controller can adjust the `host` request header as specified. 
+
+        You must set `haproxy.router.openshift.io/h1-adjust-case` to `true` so that the Ingress Controller can adjust the `host` request header as specified.
 *   Specify adjustments by configuring the `HeaderNameCaseAdjustments` field in the Ingress Controller YAML configuration file.
     1.  The following example Ingress Controller YAML file adjusts the `host` header to `Host` for HTTP/1 requests to appropriately annotated routes:
         ```yaml title="Example Ingress Controller YAML"
@@ -56,7 +57,7 @@ As a cluster administrator, you can convert the HTTP header case by entering the
         kind: Route
         metadata:
           annotations:
-            haproxy.router.openshift.io/h1-adjust-case: true (1)
+            haproxy.router.openshift.io/h1-adjust-case: true
           name: my-application
           namespace: my-application
         spec:
@@ -64,4 +65,5 @@ As a cluster administrator, you can convert the HTTP header case by entering the
             kind: Service
             name: my-application
         ```
-        1.  Set `haproxy.router.openshift.io/h1-adjust-case` to true.
+
+        Set `haproxy.router.openshift.io/h1-adjust-case` to `true`.

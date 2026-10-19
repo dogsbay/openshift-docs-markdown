@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the OpenShift Update Service Operator by using the web console {id="update-service-install-web-console_{{ context }}"}
+# Install the OpenShift Update Service Operator by using the web console {id="update-service-install-web-console_{{ context }}"}
 
 You can use the web console to install the OpenShift Update Service Operator. {._abstract}
 

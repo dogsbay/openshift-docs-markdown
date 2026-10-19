@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 
-# Overview of Spot instances on {{ product_title }} {id="rosa-hcp-config-spot-instance-overview_{{ context }}"}
+# Spot instances on {{ product_title }} {id="rosa-hcp-config-spot-instance-overview_{{ context }}"}
 
 AWS Spot instances allow you to use spare EC2 capacity at significantly reduced costs compared to on-demand instances. {{ product_title }} supports Spot instances for worker node machine pools, enabling cost optimization for fault-tolerant and stateless workloads. {._abstract}
 

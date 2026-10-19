@@ -1,8 +1,10 @@
 ---
 import { tv } from "tailwind-variants";
+import Icon from "../icon/Icon.astro";
 
 const linkCard = tv({
-  base: "group flex flex-col gap-1 rounded-lg border bg-card p-4 text-card-foreground shadow-sm transition-colors hover:bg-accent/50",
+  // not-prose: the page's link underline would otherwise run under every line of the card
+  base: "not-prose group flex flex-col gap-1 rounded-lg border bg-card p-4 text-card-foreground no-underline shadow-sm transition-colors hover:bg-accent/50",
 });
 
 const linkCardTitle = tv({
@@ -17,16 +19,21 @@ interface Props {
   title: string;
   description?: string;
   href: string;
+  /** An icon before the title: a name (`rocket`, `mdi:home`) as the Icon component takes. */
+  icon?: string;
   class?: string;
   [key: string]: unknown;
 }
 
-const { title, description, href, class: className, ...rest } = Astro.props;
+const { title, description, href, icon, class: className, ...rest } = Astro.props;
 ---
 
 <a href={href} class={linkCard({ class: className })} {...rest}>
   <div class="flex items-center justify-between">
-    <span class={linkCardTitle()}>{title}</span>
+    <span class="flex min-w-0 items-center gap-2">
+      {icon && <Icon name={icon} class="size-4 shrink-0 text-muted-foreground" />}
+      <span class={linkCardTitle()}>{title}</span>
+    </span>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"

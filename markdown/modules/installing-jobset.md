@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ js_operator }} {id="js-install_{{ context }}"}
+# Install the {{ js_operator }} {id="js-install_{{ context }}"}
 
 Install the {{ js_operator }} on {{ product_title }} using the web console to begin managing large-scale, coordinated computing workloads. {._abstract}
 

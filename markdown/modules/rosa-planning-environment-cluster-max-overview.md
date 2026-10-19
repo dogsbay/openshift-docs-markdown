@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Planning your environment based on tested cluster maximums {id="planning-environment-cluster-maximums_{{ context }}"}
+# Plan your environment based on tested cluster maximums {id="planning-environment-cluster-maximums_{{ context }}"}
 
 You can use tested cluster maximums when you size {{ product_title }} clusters and namespaces. These values are not hard limits or Red&#160;Hat supported ceilings for production. {._abstract}
 

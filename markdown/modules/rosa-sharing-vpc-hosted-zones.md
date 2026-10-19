@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Step Three - VPC Owner: Updating the shared VPC role and creating hosted zones {id="rosa-sharing-vpc-hosted-zones_{{ context }}"}
+# Step Three - VPC Owner: Update the shared VPC role and create hosted zones {id="rosa-sharing-vpc-hosted-zones_{{ context }}"}
 
 After the **Cluster Creator** provides the DNS domain and the IAM roles, create a private hosted zone and update the trust policy on the IAM role that was created for sharing the VPC. {._abstract}
 

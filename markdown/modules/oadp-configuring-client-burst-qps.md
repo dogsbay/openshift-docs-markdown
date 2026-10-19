@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the DPA with client burst and QPS settings {id="oadp-configuring-client-burst-qps_{{ context }}"}
+# Configure the DPA with client burst and QPS settings {id="oadp-configuring-client-burst-qps_{{ context }}"}
 
 The burst setting determines how many requests can be sent to the `velero` server before the limit is applied. After the burst limit is reached, the queries per second (QPS) setting determines how many additional requests can be sent per second. {._abstract}
 

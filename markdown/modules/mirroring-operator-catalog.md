@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Mirroring an Operator catalog {id="olm-mirror-catalog_{{ context }}"}
+# Mirror an Operator catalog {id="olm-mirror-catalog_{{ context }}"}
 
 For instructions about mirroring Operator catalogs for use with disconnected clusters, see "Mirroring Operator catalogs for use with disconnected clusters". {._abstract}
 

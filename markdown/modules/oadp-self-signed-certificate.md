@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling self-signed CA certificates {id="oadp-self-signed-certificate_{{ context }}"}
+# Enable self-signed CA certificates {id="oadp-self-signed-certificate_{{ context }}"}
 
 You must enable a self-signed CA certificate for object storage by editing the `DataProtectionApplication` custom resource (CR) manifest to prevent a `certificate signed by unknown authority` error. {._abstract}
 

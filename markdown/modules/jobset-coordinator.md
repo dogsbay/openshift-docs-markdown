@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Specifying a JobSet coordinator {id="js-coordinator_{{ context }}"}
+# Specify a JobSet coordinator {id="js-coordinator_{{ context }}"}
 
 To manage communication between JobSet pods, you can assign a specific JobSet coordinator pod. This ensures that your distributed workloads can reference a stable network endpoint as a central point of coordination for task synchronization and data exchange. {._abstract}
 

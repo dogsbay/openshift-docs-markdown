@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling the OpenShift Update Service Operator by using the CLI {id="update-service-uninstall-cli_{{ context }}"}
+# Uninstall the OpenShift Update Service Operator by using the CLI {id="update-service-uninstall-cli_{{ context }}"}
 
 You can use the OpenShift CLI (`oc`) to uninstall the OpenShift Update Service Operator. {._abstract}
 

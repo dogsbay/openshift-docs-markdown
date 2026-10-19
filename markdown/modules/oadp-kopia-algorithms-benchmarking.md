@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Benchmarking Kopia hashing, encryption, and splitter algorithms {id="oadp-kopia-algorithms-benchmarking_{{ context }}"}
+# Benchmark Kopia hashing, encryption, and splitter algorithms {id="oadp-kopia-algorithms-benchmarking_{{ context }}"}
 
 Run Kopia commands to benchmark the hashing, encryption, and splitter algorithms. Based on the benchmarking results, you can select the most suitable algorithm for your workload. You run the Kopia benchmarking commands from a pod on the cluster. The benchmarking results can vary depending on CPU speed, available RAM, disk speed, current I/O load, and so on. {._abstract}
 

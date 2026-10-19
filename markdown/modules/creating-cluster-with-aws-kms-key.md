@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a {{ product_title }} cluster using a custom AWS KMS key {id="creating-cluster-with-aws-kms-key_{{ context }}"}
+# Create a {{ product_title }} cluster using a custom AWS KMS key {id="creating-cluster-with-aws-kms-key_{{ context }}"}
 
 You can create a {{ product_title }} cluster with a customer-provided Key Management Service (KMS) key that is used to encrypt either node root volumes, the etcd database, or both. A different KMS key ARN can be provided for each option. {._abstract}
 

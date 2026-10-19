@@ -10,14 +10,18 @@
 # Insights Operator {id="insights-operator_{{ context }}"}
 
 {% if operator_ref %}
-The {{ insights_operator }} is an optional cluster capability that can be disabled by cluster administrators during installation. For more information about optional cluster capabilities, see "Cluster capabilities" in _Installing_. {._abstract}
+The {{ insights_operator }} is an optional cluster capability that can be disabled by cluster administrators during installation.  {._abstract}
+
+For more information about optional cluster capabilities, see "Cluster capabilities" in _Installing_.
 {% endif %}
 
 {% if cluster_caps %}
 The {{ insights_operator }} provides the features for the `Insights` capability.
 {% endif %}
 
-The {{ insights_operator }} gathers {{ product_title }} configuration data and sends it to Red&#160;Hat. The data is used to produce proactive insights recommendations about potential issues that a cluster might be exposed to. These insights are communicated to cluster administrators through the {{ red_hat_lightspeed }} advisor service on [console.redhat.com](https://console.redhat.com/).
+The {{ insights_operator }} gathers {{ product_title }} configuration data and sends it to Red&#160;Hat. 
+
+The data is used to produce proactive insights recommendations about potential issues that a cluster might be exposed to. These insights are communicated to cluster administrators through the {{ red_hat_lightspeed }} advisor service on [console.redhat.com](https://console.redhat.com/).
 
 {% if operator_ref %}
 

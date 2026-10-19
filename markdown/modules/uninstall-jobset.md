@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling the {{ js_operator }} {id="js-uninstall_{{ context }}"}
+# Uninstall the {{ js_operator }} {id="js-uninstall_{{ context }}"}
 
 Uninstall the {{ js_operator }} by using the {{ product_title }} web console to remove the Operator instance. {._abstract}
 

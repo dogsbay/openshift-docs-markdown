@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Capturing metrics {id="network-observability-cli-capturing-metrics_{{ context }}"}
+# Capture metrics {id="network-observability-cli-capturing-metrics_{{ context }}"}
 
 Generate on-demand network observability dashboards in Prometheus using a service monitor. This allows you to quickly view and analyze network metrics. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Mirroring on a remote host with mirror registry for Red Hat OpenShift {id="mirror-registry-remote_{{ context }}"}
+# Mirror on a remote host with mirror registry for Red Hat OpenShift {id="mirror-registry-remote_{{ context }}"}
 
 You can install the _mirror registry for Red&#160;Hat OpenShift_ on a remote host by using the `mirror-registry` tool. By doing so, users can create a registry to hold a mirror of {{ product_title }} images. {._abstract}
 

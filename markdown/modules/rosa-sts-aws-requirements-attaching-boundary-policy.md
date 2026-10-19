@@ -1,7 +1,9 @@
-{%- set _mod_docs_content_type = "PROCEDURE" %}
+{%- set _mod_docs_content_type = "CONCEPT" %}
 # Permission boundaries for the installer role {id="rosa-sts-aws-requirements-attaching-boundary-policy_{{ context }}"}
 
-You can apply a policy as a _permissions boundary_ on an installer role. You can use an AWS-managed policy or a customer-managed policy to set the boundary for an Amazon Web Services (AWS) Identity and Access Management (IAM) entity (user or role). The combination of policy and boundary policy limits the maximum permissions for the user or role. {{ product_title }} includes a set of three prepared permission boundary policy files, with which you can restrict permissions for the installer role since changing the installer policy itself is not supported. {._abstract}
+You can apply a policy as a _permissions boundary_ on an installer role. You can use an AWS-managed policy or a customer-managed policy to set the boundary for an Amazon Web Services (AWS) Identity and Access Management (IAM) entity (user or role). {._abstract}
+
+The combination of policy and boundary policy limits the maximum permissions for the user or role. {{ product_title }} includes a set of three prepared permission boundary policy files, with which you can restrict permissions for the installer role since changing the installer policy itself is not supported.
 
 
 :::note
@@ -15,7 +17,7 @@ The permission boundary policy files are as follows:
 
 *   The _Core_ boundary policy file contains the minimum permissions needed for {{ product_title }} installer to install an {{ product_title }} cluster.
 The installer does not have permissions to create a virtual private cloud (VPC) or PrivateLink (PL). A VPC needs to be provided.
-*   The _VPC_ boundary policy file contains the minimum permissions needed for {{ product_title }} installer to create/manage the VPC. It does not include permissions for PL or core installation. If you need to install a cluster with enough permissions for the installer to install the cluster and create/manage the VPC, but you do not need to set up PL, then use the core and VPC boundary files together with the installer role.
+*   The _VPC_ boundary policy file contains the minimum permissions needed for {{ product_title }} installer to create or manage the VPC. It does not include permissions for PL or core installation. If you need to install a cluster with enough permissions for the installer to install the cluster and create or manage the VPC, but you do not need to set up PL, then use the core and VPC boundary files together with the installer role.
 *   The _PrivateLink (PL)_ boundary policy file contains the minimum permissions needed for {{ product_title }} installer to create the AWS PL with a cluster. It does not include permissions for VPC or core installation. Provide a pre-created VPC for all PL clusters during installation.
 
 When using the permission boundary policy files, the following combinations apply:
@@ -32,10 +34,9 @@ When using the permission boundary policy files, the following combinations appl
     *   You must have a customer-provided VPC.
     *   This is for a private cluster with PL.
 
-This example procedure is applicable for an installer role and policy with the most restriction of permissions, using only the _core_ installer permission boundary policy for {{ product_title }}. You can complete this with the AWS console or the AWS CLI. This example uses the AWS CLI and the following policy:
+## Examples of permission boundary policy files {id="_examples_of_permission_boundary_policy_files"}
 
-The following example shows `sts_installer_core_permission_boundary_policy.json`:
-```json
+```json title="Example sts_installer_core_permission_boundary_policy.json"
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -241,73 +242,7 @@ The following example shows `sts_installer_core_permission_boundary_policy.json`
 }
 ```
 
-
-:::important
-
-To use the permission boundaries, you will need to prepare the permission boundary policy and add it to your relevant installer role in AWS IAM. While the {{ rosa_cli_first }} offers a permission boundary function, it applies to all roles and not just the installer role, which means it does not work with the provided permission boundary policies (which are only for the installer role).
-
-:::
-
-
-**Prerequisites**
-
-*   You have an AWS account.
-*   You have the permissions required to administer AWS roles and policies.
-*   You have installed and configured the latest AWS (`aws`) CLI and {{ rosa_cli }} on your workstation.
-*   You have already prepared your {{ product_title }} account-wide roles, includes the installer role, and the corresponding policies. If these do not exist in your AWS account, see "Creating the account-wide STS roles and policies" in _Additional resources_.
-
-**Procedure**
-
-1.  Prepare the policy file by entering the following command in the {{ rosa_cli }}:
-    ```terminal
-    $ curl -o ./rosa-installer-core.json https://raw.githubusercontent.com/openshift/managed-cluster-config/master/resources/sts/4.21/sts_installer_core_permission_boundary_policy.json
-    ```
-1.  Create the policy in AWS and gather its Amazon Resource Name (ARN) by entering the following command:
-    ```terminal
-    $ aws iam create-policy \
-    --policy-name rosa-core-permissions-boundary-policy \
-    --policy-document file://./rosa-installer-core.json \
-    --description "ROSA installer core permission boundary policy, the minimum permission set, allows BYO-VPC, disallows PrivateLink"
-    ```
-
-    For example:
-    ```terminal
-    {
-        "Policy": {
-            "PolicyName": "rosa-core-permissions-boundary-policy",
-            "PolicyId": "<Policy ID>",
-            "Arn": "arn:aws:iam::<account ID>:policy/rosa-core-permissions-boundary-policy",
-            "Path": "/",
-            "DefaultVersionId": "v1",
-            "AttachmentCount": 0,
-            "PermissionsBoundaryUsageCount": 0,
-            "IsAttachable": true,
-            "CreateDate": "<CreateDate>",
-            "UpdateDate": "<UpdateDate>"
-        }
-    }
-    ```
-1.  Add the permission boundary policy to the installer role you want to restrict by entering the following command:
-    ```terminal
-    $ aws iam put-role-permissions-boundary \
-    --role-name ManagedOpenShift-Installer-Role \
-    --permissions-boundary arn:aws:iam::<account ID>:policy/rosa-core-permissions-boundary-policy
-    ```
-1.  Display the installer role to validate attached policies (including permissions boundary) by entering the following command in the {{ rosa_cli }}:
-    ```terminal
-    $ aws iam get-role --role-name ManagedOpenShift-Installer-Role \
-    --output text | grep PERMISSIONSBOUNDARY
-    ```
-
-    For example:
-    ```terminal
-    PERMISSIONSBOUNDARY	arn:aws:iam::<account ID>:policy/rosa-core-permissions-boundary-policy	Policy
-    ```
-
-    For more examples of PL and VPC permission boundary policies see:
-
-    The following example shows `sts_installer_privatelink_permission_boundary_policy.json`:
-    ```json
+```json title="Example sts_installer_privatelink_permission_boundary_policy.json"
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -326,10 +261,9 @@ To use the permission boundaries, you will need to prepare the permission bounda
     }
   ]
 }
-    ```
+```
 
-    The following example shows `sts_installer_vpc_permission_boundary_policy.json`:
-    ```json
+```json title="Example sts_installer_vpc_permission_boundary_policy.json"
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -361,4 +295,4 @@ To use the permission boundaries, you will need to prepare the permission bounda
         }
     ]
 }
-    ```
+```

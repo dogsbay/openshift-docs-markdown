@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Writing CLI plugins {id="cli-writing-plugins_{{ context }}"}
+# Write a CLI plugin {id="cli-writing-plugins_{{ context }}"}
 
 You can write a plugin for the {{ oc_first }} in any programming language or script that allows you to write command-line commands. Note that you cannot use a plugin to overwrite an existing `oc` command. {._abstract}
 

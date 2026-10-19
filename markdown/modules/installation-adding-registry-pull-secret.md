@@ -18,7 +18,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring credentials that allow images to be mirrored {id="installation-adding-registry-pull-secret_{{ context }}"}
+# Configure credentials that allow images to be mirrored {id="installation-adding-registry-pull-secret_{{ context }}"}
 
 Create a container image registry credentials file so that you can mirror images from Red&#160;Hat to your mirror. Complete the following steps on the installation host. {._abstract}
 

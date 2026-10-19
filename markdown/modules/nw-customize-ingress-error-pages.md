@@ -45,9 +45,10 @@ If you use the {{ product_title }} default 503 error code page as a template for
     ```
     ```text title="Example output"
     NAME                       DATA   AGE
-    default-errorpages         2      25s  (1)
+    default-errorpages         2      25s
     ```
-    1.  The example config map name is `default-errorpages` because the `default` Ingress Controller custom resource (CR) was patched.
+
+    The example config map name is `default-errorpages` because the `default` Ingress Controller custom resource (CR) was patched.
 1.  Confirm that the config map containing the custom error response page mounts on the router volume where the config map key is the filename that has the custom HTTP error code response:
     *   For 503 custom HTTP custom error code response:
         ```terminal

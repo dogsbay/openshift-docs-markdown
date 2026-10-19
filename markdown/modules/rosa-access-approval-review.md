@@ -1,7 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 
 # Access approval and review {id="rosa-policy-access-approval_{{ context }}"}
-New Red&#160;Hat SRE user access requires management approval. Separated or transferred SRE accounts are removed as authorized users through an automated process. Additionally, the SRE performs periodic access review, including management sign-off of authorized user lists.
+
+New Red&#160;Hat Site Reliability Engineering (SRE) user access requires management approval. Separated or transferred SRE accounts are removed as authorized users through an automated process. Additionally, the SRE performs periodic access review, including management sign-off of authorized user lists. {._abstract}
 
 The access and identity authorization table includes responsibilities for managing authorized access to clusters, applications, and infrastructure resources. This includes tasks such as providing access control mechanisms, authentication, authorization, and managing access to resources.
 
@@ -36,18 +37,18 @@ The access and identity authorization table includes responsibilities for managi
 </tr>
 <tr>
   <td>Virtual storage management</td>
-  <td><strong>Red&#160;Hat</strong><br><br><ul><li>Provide customer access controls through</li></ul>Red&#160;Hat OpenShift Cluster Manager.</td>
-  <td><ul><li>Manage optional user access to AWS components through {{ cluster_manager }}.</li><li>Create AWS IAM roles and attached policies necessary to enable ROSA service access.</li></ul></td>
+  <td><strong>Red&#160;Hat</strong><br><br><ul><li>Provide customer access controls through</li></ul>{{ cluster_manager_first }}.</td>
+  <td><ul><li>Manage optional user access to AWS components through {{ cluster_manager }}.</li><li>Create AWS IAM roles and attached policies necessary to enable {{ product_title }} service access.</li></ul></td>
 </tr>
 <tr>
   <td>Virtual compute management</td>
-  <td><strong>Red&#160;Hat</strong><br><br><ul><li>Provide customer access controls through</li></ul>Red&#160;Hat OpenShift Cluster Manager.</td>
-  <td><ul><li>Manage optional user access to AWS components through {{ cluster_manager }}.</li><li>Create AWS IAM roles and attached policies necessary to enable ROSA service access.</li></ul></td>
+  <td><strong>Red&#160;Hat</strong><br><br><ul><li>Provide customer access controls through</li></ul>{{ cluster_manager_first }}.</td>
+  <td><ul><li>Manage optional user access to AWS components through {{ cluster_manager }}.</li><li>Create AWS IAM roles and attached policies necessary to enable {{ product_title }} service access.</li></ul></td>
 </tr>
 <tr>
   <td>AWS software (public AWS services)</td>
-  <td><strong>AWS</strong><br><br><strong>Compute:</strong> Provide the Amazon EC2 service, {% if openshift_rosa_hcp %} used for ROSA control plane and worker nodes. {% endif %} {% if not openshift_rosa_hcp %} used for ROSA control plane, infrastructure, and worker nodes. {% endif %} <br><br><strong>Storage:</strong> Provide Amazon EBS, used to allow ROSA to provision local node storage and persistent volume storage for the cluster.<br><br><strong>Storage:</strong> Provide Amazon S3, used for the service's built-in image registry.<br><br><strong>Networking:</strong> Provide AWS Identity and Access Management (IAM), used by customers to control access to ROSA resources running on customer accounts.</td>
-  <td><ul><li>Create AWS IAM roles and attached policies necessary to enable ROSA service access.</li><li>Use IAM tools to apply the appropriate permissions to AWS</li></ul>resources in the customer account.<br><br><ul><li>To enable ROSA across your AWS organization, the customer is</li></ul>responsible for managing AWS Organizations administrators.<br><br><ul><li>To enable ROSA across your AWS organization, the customer is</li></ul>responsible for distributing the ROSA entitlement grant using AWS License Manager.</td>
+  <td><strong>AWS</strong><br><br><strong>Compute:</strong> Provide the Amazon EC2 service, {% if openshift_rosa_hcp %} used for {{ product_title }} control plane and worker nodes. {% endif %} {% if not openshift_rosa_hcp %} used for {{ product_title }} control plane, infrastructure, and worker nodes. {% endif %} <br><br><strong>Storage:</strong> Provide Amazon Elastic Block Store (EBS), used to allow {{ product_title }} to provision local node storage and persistent volume storage for the cluster.<br><br><strong>Storage:</strong> Provide Amazon S3, used for the service's built-in image registry.<br><br><strong>Networking:</strong> Provide AWS Identity and Access Management (IAM), used by customers to control access to ROSA resources running on customer accounts.</td>
+  <td><ul><li>Create AWS IAM roles and attached policies necessary to enable {{ product_title }} service access.</li><li>Use IAM tools to apply the appropriate permissions to AWS resources in the customer account.</li><li>To enable {{ product_title }} across your AWS organization, the customer is responsible for managing AWS Organizations administrators.</li><li>To enable {{ product_title }} across your AWS organization, the customer is responsible for distributing the {{ product_title }} entitlement grant by using AWS License Manager.</li></ul></td>
 </tr>
 <tr>
   <td>Hardware and AWS global infrastructure</td>

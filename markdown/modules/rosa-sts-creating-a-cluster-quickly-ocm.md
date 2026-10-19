@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Creating a cluster quickly using {{ cluster_manager }} {id="rosa-sts-creating-a-cluster-quickly-ocm_{{ context }}"}
+# Create a cluster quickly using {{ cluster_manager }} {id="rosa-sts-creating-a-cluster-quickly-ocm_{{ context }}"}
 
 When using {{ cluster_manager_first }} to create a {{ product_title }} cluster that uses the AWS Security Token Service (STS), you can select the default options to create the cluster quickly. {._abstract}
 

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Enabling BGP EVPN on a primary ClusterUserDefinedNetwork CR {id="nw-enabling-bgp-evpn-primary-cudn_{{ context }}"}
 
-To connect primary `ClusterUserDefinedNetwork` (CUDN) custom resource (CR) traffic to an external BGP EVPN fabric in {{ product_title }}, you create `FRRConfiguration`, `VTEP`, `RouteAdvertisements`, and `ClusterUserDefinedNetwork` resources. Use these resources to establish BGP EVPN toward peers on your provider network and to advertise labeled CUDNs that use EVPN transport. {._abstract}
+To connect primary `ClusterUserDefinedNetwork` (CUDN) custom resource (CR) traffic to an external BGP EVPN fabric in {{ product_title }}, you create `FRRConfiguration`, `VTEP`, `RouteAdvertisements`, and `ClusterUserDefinedNetwork` resources.  {._abstract}
+
+Use these resources to establish BGP EVPN toward peers on your provider network and to advertise labeled CUDNs that use EVPN transport.
 
 **Prerequisites**
 

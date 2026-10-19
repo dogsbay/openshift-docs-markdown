@@ -6,22 +6,33 @@ const tableContainer = tv({
 });
 
 const table = tv({
-  base: "w-full caption-bottom text-sm",
+  base: "w-full caption-top text-sm",
 });
 
 interface Props {
   class?: string;
-  /** Optional table caption, rendered as a `<caption>` (bottom-aligned). */
+  /**
+   * Optional table caption, rendered as a `<caption>`: the table's title,
+   * above it and left-aligned.
+   * For a caption with markup, use the `caption` slot instead.
+   */
   caption?: string;
   [key: string]: unknown;
 }
 
 const { class: className, caption, ...rest } = Astro.props;
+
+// A table's caption is its title: above the table, left-aligned, in the body color
+const captionClass = "mb-2 text-left text-sm font-medium text-foreground";
 ---
 
 <div class={tableContainer()}>
   <table class={table({ class: className })} {...rest}>
-    {caption && <caption class="text-sm text-muted-foreground mt-2">{caption}</caption>}
+    {Astro.slots.has("caption") ? (
+      <caption class={captionClass}><slot name="caption" /></caption>
+    ) : (
+      caption && <caption class={captionClass}>{caption}</caption>
+    )}
     <slot />
   </table>
 </div>

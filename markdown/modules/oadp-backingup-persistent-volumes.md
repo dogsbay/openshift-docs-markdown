@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Backing up persistent volumes with CSI snapshots {id="backingup-persistent-volumes_{{ context }}"}
+# Back up persistent volumes with CSI snapshots {id="backingup-persistent-volumes_{{ context }}"}
 
 Configure the `VolumeSnapshotClass` custom resource (CR) to back up persistent volumes with Container Storage Interface (CSI) snapshots. This helps you to prepare your cloud storage for CSI-based backup operations. {._abstract}
 

@@ -18,7 +18,9 @@ For more information about optional cluster capabilities, see "Cluster capabilit
 The Cluster Baremetal Operator provides the features for the `baremetal` capability.
 {% endif %}
 
-The Cluster Baremetal Operator (CBO) deploys all the components necessary to take a bare-metal server to a fully functioning worker node ready to run {{ product_title }} compute nodes. The CBO ensures that the metal3 deployment, which consists of the Bare Metal Operator (BMO) and Ironic containers, runs on one of the control plane nodes within the {{ product_title }} cluster. The CBO also listens for {{ product_title }} updates to resources that it watches and takes appropriate action.
+The Cluster Baremetal Operator (CBO) deploys all the components necessary to take a bare-metal server to a fully functioning worker node ready to run {{ product_title }} compute nodes. 
+
+The CBO ensures that the metal3 deployment, which consists of the Bare Metal Operator (BMO) and Ironic containers, runs on one of the control plane nodes within the {{ product_title }} cluster. The CBO also listens for {{ product_title }} updates to resources that it watches and takes appropriate action.
 
 {% if cluster_caps %}
 The bare-metal capability is required for deployments using installer-provisioned infrastructure. Disabling the bare-metal capability can result in unexpected problems with these deployments.

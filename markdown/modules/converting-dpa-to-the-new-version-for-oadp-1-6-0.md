@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Converting DPA to the new version for {{ oadp_short }} 1.6.0 {id="converting-dpa-to-the-new-version-for-oadp-1-6-0_{{ context }}"}
+# Convert DPA to the new version for {{ oadp_short }} 1.6.0 {id="converting-dpa-to-the-new-version-for-oadp-1-6-0_{{ context }}"}
 
 {{ oadp_first }} 1.5 is not supported on {{ OCP_short }} 4.22. You can convert {{ oadp_short }} to the new 1.6 version by using the new `spec.configuration.nodeAgent` field and its sub-fields. {._abstract}
 

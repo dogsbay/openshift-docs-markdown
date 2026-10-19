@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring AWS PrivateLink DNS forwarding {id="osd-aws-privatelink-config-dns-forwarding_{{ context }}"}
+# Configure AWS PrivateLink DNS forwarding {id="osd-aws-privatelink-config-dns-forwarding_{{ context }}"}
 
 Configure DNS forwarding to enable resolution of cluster DNS records from outside the VPC. {._abstract}
 

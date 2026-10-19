@@ -7,7 +7,7 @@ title: Optimizing routing
 # Optimizing routing {id="routing-optimization"}
 {%- set context = "routing-optimization" %}
 
-You can scale or configure the {{ product_title }} HAProxy router to optimize routing performance. {._abstract}
+Scale the router tier or adjust HAProxy reload behavior so that you can match routing behavior to your applications and cluster capacity. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/baseline-router-performance.md" %}{% endleveloffset %}
 

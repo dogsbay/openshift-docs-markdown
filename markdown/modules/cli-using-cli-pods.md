@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing pods {id="cli-using-cli-pods_{{ context }}"}
+# View pods {id="cli-using-cli-pods_{{ context }}"}
 
 Use the `oc get pods` command to view the pods for the current project. {._abstract}
 

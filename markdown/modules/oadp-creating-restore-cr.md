@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a Restore CR {id="oadp-creating-restore-cr_{{ context }}"}
+# Create a Restore CR {id="oadp-creating-restore-cr_{{ context }}"}
 
 Restore a `Backup` custom resource (CR) by creating a `Restore` CR. {._abstract}
 

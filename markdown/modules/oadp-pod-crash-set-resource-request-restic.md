@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting resource requests for a Restic pod {id="oadp-pod-crash-resource-request-retics_{{ context }}"}
+# Set resource requests for a Restic pod {id="oadp-pod-crash-resource-request-retics_{{ context }}"}
 
 Use the `configuration.restic.podConfig.resourceAllocations` specification field to set specific resource requests for a `Restic` pod. {._abstract}
 

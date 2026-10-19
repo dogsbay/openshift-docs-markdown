@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accessing kubeconfig by using the oc CLI {id="cli-accessing-kubeconfig-using-cli_{{ context }}"}
+# Access kubeconfig by using the oc CLI {id="cli-accessing-kubeconfig-using-cli_{{ context }}"}
 
 You can use the `oc` CLI to log in to your OpenShift cluster and retrieve a kubeconfig file for accessing the cluster from the command line. {._abstract}
 

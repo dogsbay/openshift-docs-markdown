@@ -1,10 +1,10 @@
 ---
-title: Monitoring Transport Layer Security traffic
+title: Monitor Transport Layer Security traffic
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
-# Monitoring Transport Layer Security traffic {id="network-observability-monitoring-tls-traffic"}
+# Monitor Transport Layer Security traffic {id="network-observability-monitoring-tls-traffic"}
 {%- set context = "network-observability-monitoring-tls-traffic" %}
 
 Monitor TLS traffic to identify insecure protocols, detect security risks, and maintain compliance without decrypting traffic. {._abstract}

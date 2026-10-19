@@ -17,7 +17,8 @@ Review the version relationship between {{ oadp_short }}, Velero, and {{ product
 | 1.4.3 | 1.14 | 4.14-4.18 |
 | 1.5.0 | 1.16 | 4.19 |
 
-## Additional resources {id="_additional_resources" ._additional-resources}
+**Additional resources**
+{._additional-resources}
 
 *   [Velero 1.12 documentation](https://{{ velero_domain }}/docs/v1.12/)
 *   [Velero 1.14 documentation](https://{{ velero_domain }}/docs/v1.14/)

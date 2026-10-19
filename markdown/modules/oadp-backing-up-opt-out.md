@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Backing up pod volumes by using the opt-out method {id="oadp-backing-up-opt-out_{{ context }}"}
+# Back up pod volumes by using the opt-out method {id="oadp-backing-up-opt-out_{{ context }}"}
 
 Use the opt-out method to exclude specific pod volumes from your default File System Backup (FSB). While this approach automatically backs up all pod volumes, to customize your backup operations you can use annotations to skip specific ones. {._abstract}
 

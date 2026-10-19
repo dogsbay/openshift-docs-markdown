@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Downloading the Velero CLI tool {id="velero-obtaining-by-downloading_{{ context }}"}
+# Download the Velero CLI tool {id="velero-obtaining-by-downloading_{{ context }}"}
 
 Download and install the `velero` CLI tool from the Velero documentation page, which provides instructions for macOS by using Homebrew, GitHub, and Windows by using Chocolatey. This helps you to access the `velero` CLI for debugging backup and restore operations. {._abstract}
 

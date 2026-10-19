@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a {{ product_title }} cluster using FIPS encryption in {{ cluster_manager_first }} {id="creating-cluster-with-fips-encryption-ui_{{ context }}"}
+# Create a {{ product_title }} cluster using FIPS encryption in {{ cluster_manager_first }} {id="creating-cluster-with-fips-encryption-ui_{{ context }}"}
 
 You can create a {{ product_title }} cluster with Federal Information Processing Standards (FIPS) encryption and a customer-provided KMS key in {{ cluster_manager_url }}. {._abstract}
 

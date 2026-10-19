@@ -35,7 +35,7 @@ This Operator is installed on {{ product_title }} clusters by default.
 
 {% leveloffset +1 %}{% include "./modules/nw-dns-cache-tuning.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/nw-dns-operator-managementState.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/nw-dns-operator-management-state.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/nw-controlling-dns-pod-placement.md" %}{% endleveloffset %}
 

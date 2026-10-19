@@ -13,8 +13,6 @@ The `status.addresses` field is populated automatically by the gateway controlle
 :::
 
 
-## Address types {id="_address_types"}
-
 When the controller dynamically assigns an address to your gateway and populates the `status.addresses` field, it uses one of the following primary types to reflect the underlying load balancer:
 
 

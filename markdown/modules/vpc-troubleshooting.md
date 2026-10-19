@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 
-# Troubleshooting cluster creation {id="troubleshooting_shared-vpc-hcp_vpc-creation_{{ context }}"}
+# Troubleshoot cluster creation {id="troubleshooting_shared-vpc-hcp_vpc-creation_{{ context }}"}
 
 If your cluster fails to install, common virtual private cloud (VPC) configuration issues might be the cause. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Overview of the {{ product_title }} with STS deployment workflow {id="rosa-sts-overview-of-the-deployment-workflow_{{ context }}"}
+# {{ product_title }} deployment workflow with STS {id="rosa-sts-overview-of-the-deployment-workflow_{{ context }}"}
 
 The AWS Security Token Service (STS) is a global web service that provides short-term credentials for IAM or federated users. You can use AWS STS with {{ product_title }} to allocate temporary, limited-privilege credentials for component-specific IAM roles. The service enables cluster components to make AWS API calls using secure cloud resource management practices. {._abstract}
 

@@ -62,8 +62,6 @@ The {{ loki_op }} integrates a gateway that implements multi-tenancy and authent
 *   [Troubleshooting network observability controller manager pod runs out of memory](/observability/network_observability/troubleshooting-network-observability#controller-manager-pod-runs-out-of-memory_network-observability-troubleshooting)
 *   [Network observability architecture](/observability/network_observability/understanding-network-observability-operator#network-observability-architecture_nw-network-observability-operator)
 
-{% leveloffset +1 %}{% include "./modules/network-observability-updating-migrating.md" %}{% endleveloffset %}
-
 {% leveloffset +1 %}{% include "./modules/network-observability-multitenancy.md" %}{% endleveloffset %}
 
 **Additional resources**

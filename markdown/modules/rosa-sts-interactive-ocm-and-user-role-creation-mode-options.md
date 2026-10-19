@@ -33,7 +33,7 @@ The following tables describe the interactive {{ cluster_manager }} role creatio
 </tr>
 <tr>
   <td><code>Role creation mode</code></td>
-  <td>Select the role creation mode. You can use <code>auto</code> mode to automatically create the {{ cluster_manager }} role and link it to your Red&#160;Hat organization account. In <code>manual</code> mode, the ROSA CLI (<code>rosa</code>) generates the <code>aws</code> commands needed to create and link the role. In <code>manual</code> mode, the corresponding policy JSON files are also saved to the current directory. <code>manual</code> mode enables you to review the details before running the <code>aws</code> commands manually.</td>
+  <td>Select the role creation mode. You can use <code>auto</code> mode to automatically create the {{ cluster_manager }} role and link it to your Red&#160;Hat organization account. In <code>manual</code> mode, the {{ rosa_cli_first }} generates the <code>aws</code> commands needed to create and link the role. In <code>manual</code> mode, the corresponding policy JSON files are also saved to the current directory. <code>manual</code> mode enables you to review the details before running the <code>aws</code> commands manually.</td>
 </tr>
 <tr>
   <td><code>Create the '&lt;ocm_role_name&gt;' role?</code></td>
@@ -72,7 +72,7 @@ The following tables describe the interactive user role creation mode options:
 </tr>
 <tr>
   <td><code>Role creation mode</code></td>
-  <td>Selects the role creation mode. You can use <code>auto</code> mode to automatically create the user role and link it to your {{ cluster_manager }} user account. In <code>manual</code> mode, the ROSA CLI generates the <code>aws</code> commands needed to create and link the role. In <code>manual</code> mode, the corresponding policy JSON files are also saved to the current directory. <code>manual</code> mode enables you to review the details before running the <code>aws</code> commands manually.</td>
+  <td>Selects the role creation mode. You can use <code>auto</code> mode to automatically create the user role and link it to your {{ cluster_manager }} user account. In <code>manual</code> mode, the {{ rosa_cli }} generates the <code>aws</code> commands needed to create and link the role. In <code>manual</code> mode, the corresponding policy JSON files are also saved to the current directory. <code>manual</code> mode enables you to review the details before running the <code>aws</code> commands manually.</td>
 </tr>
 <tr>
   <td><code>Create the '&lt;user_role_name&gt;' role?</code></td>

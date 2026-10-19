@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accessing a {{ product_title }} cluster by using a break glass credential {id="rosa-hcp-sts-accessing-a-break-glass-cred-cli_{{ context }}"}
+# Access a {{ product_title }} cluster by using a break glass credential {id="rosa-hcp-sts-accessing-a-break-glass-cred-cli_{{ context }}"}
 
 Use the new `kubeconfig` from the break glass credential to gain temporary admin access to a {{ product_title }} cluster. {._abstract}
 

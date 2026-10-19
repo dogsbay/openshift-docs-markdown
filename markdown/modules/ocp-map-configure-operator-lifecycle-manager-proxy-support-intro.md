@@ -1,0 +1,5 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+
+# Configure Operator proxy support with {{ olmv0 }} {id="ocp-map-configure-operator-lifecycle-manager-proxy-support-intro_{{ context }}"}
+
+If a global proxy is configured on your {{ product_title }} cluster, Operator Lifecycle Manager (OLM) automatically configures Operators that it manages with the cluster-wide proxy. However, you can also configure installed Operators to override the global proxy or inject a custom CA certificate.

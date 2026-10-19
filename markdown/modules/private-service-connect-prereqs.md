@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Prerequisites {id="private-service-connect-prereqs"}
+# Private Service Connect prerequisites {id="private-service-connect-prereqs"}
 
 In addition to the prerequisites that you need to complete before deploying any {{ product_title }} on {{ GCP }} cluster, you must also complete the following prerequisites to deploy a private cluster using Private Service Connect (PSC): {._abstract}
 

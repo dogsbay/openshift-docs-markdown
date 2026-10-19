@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting environment variables for cluster creation {id="rosa-hcp-egress-zero-set-environment-variables_{{ context }}"}
+# Set environment variables for cluster creation {id="rosa-hcp-egress-zero-set-environment-variables_{{ context }}"}
 
 You can set environment variables to streamline resource creation for your {{ product_title }} cluster. {._abstract}
 

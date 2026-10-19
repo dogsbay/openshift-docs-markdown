@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the OpenShift Update Service graph data container image {id="update-service-graph-data_{{ context }}"}
+# Create the OpenShift Update Service graph data container image {id="update-service-graph-data_{{ context }}"}
 
 The OpenShift Update Service requires a graph data container image, from which the OpenShift Update Service retrieves information about channel membership and blocked update edges.  {._abstract}
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Command-line arguments for ovn-nbctl to examine northbound database contents {id="nw-ovn-kubernetes-examine-nb-database-contents-ref_{{ context }}"}
 
-The following table describes the command-line arguments that can be used with `ovn-nbctl` to examine the contents of the northbound database.
+The following table describes the command-line arguments that can be used with `ovn-nbctl` to examine the contents of the northbound database. {._abstract}
 
 
 :::note

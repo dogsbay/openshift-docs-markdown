@@ -16,7 +16,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a catalog source to a cluster {id="olm-creating-catalog-from-index_{{ context }}"}
+# Add a catalog source to a cluster {id="olm-creating-catalog-from-index_{{ context }}"}
 
 To make Operators from a custom index image available for installation, create a catalog source that adds the catalog content to your cluster. {._abstract}
 

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # OpenShift Local overview {id="installation-openshift-local_{{ context }}"}
 
-OpenShift Local supports rapid application development to get started building {{ product_title }} clusters. OpenShift Local is designed to run on a local computer to simplify setup and testing, and to emulate the cloud development environment locally with all of the tools needed to develop container-based applications. {._abstract}
+OpenShift Local supports rapid application development to get started building {{ product_title }} clusters.  {._abstract}
+
+OpenShift Local is designed to run on a local computer to simplify setup and testing, and to emulate the cloud development environment locally with all of the tools needed to develop container-based applications.
 
 Regardless of the programming language you use, OpenShift Local hosts your application and brings a minimal, preconfigured Red Hat {{ product_title }} cluster to your local PC without the need for a server-based infrastructure.
 

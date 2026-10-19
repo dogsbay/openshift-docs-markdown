@@ -21,6 +21,10 @@ interface Props {
   lang?: string;
   /** Optional title displayed in the header bar */
   title?: string;
+  /*
+   * A `caption` slot makes the block a figure: the header bar is its
+   * <figcaption>, showing the caption with the language beside it.
+   */
   /** Show copy button (default: true) */
   copy?: boolean;
   /** Show the header title bar. true = always, false = never, "auto" = only when title prop is set (default: true) */
@@ -55,22 +59,38 @@ const shikiLang = LANG_ALIASES[lang.toLowerCase()] ?? lang.toLowerCase();
 // - true: show when there's a title or a declared language (default, original behavior)
 // - false: never show
 // - "auto": only show when an explicit title is provided (not lang-only)
+const hasCaption = Astro.slots.has("caption");
+const Wrapper = hasCaption ? "figure" : "div";
+const Header = hasCaption ? "figcaption" : "div";
 const showHeader =
-  showTitle === false ? false
+  hasCaption ? true
+  : showTitle === false ? false
   : showTitle === "auto" ? !!title
   : !!title || lang !== "plaintext";
 // When no header, copy button floats inside the code body
 const floatingCopy = copy && !showHeader;
 ---
 
-<div
-  class={codeBlockWrapper({ class: className })}
+<Wrapper
+  class={codeBlockWrapper({ class: [hasCaption && "m-0", className] })}
   data-component="code-block"
   {...rest}
 >
   {showHeader && (
-    <div class={codeBlockHeader()}>
-      <span class="select-none">{title || lang}</span>
+    <Header class={codeBlockHeader()}>
+      {/*
+        Left: what the code is (caption or filename title), or the language when that is
+        all there is. Right: the language beside the copy button, as secondary detail
+      */}
+      {hasCaption ? (
+        <span class="min-w-0 font-medium text-code-fg" data-part="caption"><slot name="caption" /></span>
+      ) : title ? (
+        <span class="min-w-0 font-medium text-code-fg" data-part="title">{title}</span>
+      ) : (
+        <span class="select-none">{lang}</span>
+      )}
+      <span class="flex shrink-0 items-center gap-2">
+      {(hasCaption || title) && lang !== "plaintext" && <span class="select-none" data-part="language">{lang}</span>}
       {copy && (
         <button
           class={codeBlockCopy()}
@@ -113,7 +133,8 @@ const floatingCopy = copy && !showHeader;
           </svg>
         </button>
       )}
-    </div>
+      </span>
+    </Header>
   )}
   <div class="relative overflow-x-auto [&_pre]:!m-0 [&_pre]:!rounded-none [&_pre]:!border-0 [&_pre]:px-4 [&_pre]:py-3">
     <Code code={code} lang={shikiLang} themes={{ light: "github-light-default", dark: theme }} defaultColor={false} />
@@ -135,7 +156,7 @@ const floatingCopy = copy && !showHeader;
       </button>
     )}
   </div>
-</div>
+</Wrapper>
 
 <script>
   function setupCodeBlockCopy() {

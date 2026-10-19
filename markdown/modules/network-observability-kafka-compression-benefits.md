@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Reducing network bandwidth for flow telemetry {id="network-observability-kafka-compression-benefits_{{ context }}"}
+# Kafka compression benefits for network flow telemetry {id="network-observability-kafka-compression-benefits_{{ context }}"}
 
 Enable Kafka compression for flow records to optimize network traffic. This configuration reduces network bandwidth consumption while increasing the CPU load on the eBPF agent. {._abstract}
 

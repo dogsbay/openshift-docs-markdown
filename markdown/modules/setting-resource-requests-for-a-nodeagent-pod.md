@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Setting resource requests for a nodeAgent pod {id="setting-resource-requests-for-a-nodeagent-pod_{{ context }}"}
+# Set resource requests for a nodeAgent pod {id="setting-resource-requests-for-a-nodeagent-pod_{{ context }}"}
 
 Use the `configuration.nodeAgent.podConfig.resourceAllocations` specification field to set specific resource requests for a `nodeAgent` pod. {._abstract}
 

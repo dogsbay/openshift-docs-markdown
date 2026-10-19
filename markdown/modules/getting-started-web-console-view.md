@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing the application in a web browser {id="getting-started-web-console-view_{{ context }}"}
+# View the application in a web browser {id="getting-started-web-console-view_{{ context }}"}
 
 After you have deployed the necessary applications and loaded data into the database, you are now ready view your application through a browser. You can access the application by opening the URL for the front-end application. {._abstract}
 

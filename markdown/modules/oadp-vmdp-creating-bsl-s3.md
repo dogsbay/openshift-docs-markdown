@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a backup storage location with S3-compatible storage by using the VMDP CLI {id="oadp-vmdp-creating-bsl-s3_{{ context }}"}
+# Create a backup storage location with S3-compatible storage by using the VMDP CLI {id="oadp-vmdp-creating-bsl-s3_{{ context }}"}
 
 Create a backup storage location (BSL) with S3-compatible storage to set up an encrypted repository for storing your virtual machine (VM) backups. This helps you to configure remote S3-compatible storage for your data. {._abstract}
 

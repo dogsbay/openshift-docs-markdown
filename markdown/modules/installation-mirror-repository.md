@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Mirroring the {{ product_title }} image repository {id="installation-mirror-repository_{{ context }}"}
+# Mirror the {{ product_title }} image repository {id="installation-mirror-repository_{{ context }}"}
 
 Mirror the {{ product_title }} image repository to your registry to use during cluster installation or upgrade. Complete the following steps on the mirror host. {._abstract}
 

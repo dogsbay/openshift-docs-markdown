@@ -56,9 +56,14 @@ TLS security profiles provide a way for servers to regulate which ciphers a conn
 
 {% leveloffset +2 %}{% include "./modules/nw-autoscaling-ingress-controller.md" %}{% endleveloffset %}
 
+{% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
+{% leveloffset +2 %}{% include "./modules/ingress-controller-router-timeout.md" %}{% endleveloffset %}
+{% endif %}
+
 **Additional resources**
 {._additional-resources}
 
+*   [Configuring the HAProxy reload interval](/scalability_and_performance/optimization/routing-optimization#configuring-haproxy-interval_routing-optimization)
 *   [Installing the custom metrics autoscaler](/nodes/cma/nodes-cma-autoscaling-custom-install#nodes-cma-autoscaling-custom-install_nodes-cma-autoscaling-custom-install)
 *   [Enabling monitoring for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm#enabling-monitoring-for-user-defined-projects-uwm_preparing-to-configure-the-monitoring-stack-uwm)
 *   [Understanding custom metrics autoscaler trigger authentications](/nodes/cma/nodes-cma-autoscaling-custom-trigger-auth#nodes-cma-autoscaling-custom-trigger-auth)

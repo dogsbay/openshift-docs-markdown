@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Replacing an unhealthy etcd member {id="replace-unhealthy-etcd-member-intro_{{ context }}"}
+# Replace an unhealthy etcd member {id="replace-unhealthy-etcd-member-intro_{{ context }}"}
 
 To restore etcd quorum when a single member is unhealthy, identify the member and determine whether its machine is stopped, its node is not ready, or its pod is crashlooping. You can then follow the replacement procedure that matches that state. {._abstract}
 
@@ -13,3 +13,6 @@ If the control plane certificates are not valid on the member being replaced, th
 If a control plane node is lost and a new one is created, the etcd cluster Operator handles generating the new TLS certificates and adding the node as an etcd member.
 
 :::
+
+
+Take an etcd backup before replacing an unhealthy etcd member. For more information see, "Backing up etcd data".

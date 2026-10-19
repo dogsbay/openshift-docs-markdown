@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing metrics using the Observe UI {id="viewing-metrics-observe-ui_{{ context }}"}
+# View metrics using the Observe UI {id="viewing-metrics-observe-ui_{{ context }}"}
 
 Review metrics in the {{ product_title }} web console from the **Administrator** or **Developer** perspective, which must have access to the `openshift-adp` project. {._abstract}
 

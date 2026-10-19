@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Exposing the front-end service {id="getting-started-cli-creating-route_{{ context }}"}
+# Expose the front-end service {id="getting-started-cli-creating-route_{{ context }}"}
 
 By default, services running on {{ product_title }} are not accessible externally. To expose your service so that external clients can access it, you can create a _route_. {._abstract}
 

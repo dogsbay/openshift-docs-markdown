@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting cluster deletion {id="rosa-deleting-cluster-troubleshooting_{{ context }}"}
+# Troubleshoot cluster deletion {id="rosa-deleting-cluster-troubleshooting_{{ context }}"}
 
 Troubleshooting issues that prevent cluster deletion involves verifying IAM configurations and confirming the removal of resource dependencies. {._abstract}
 

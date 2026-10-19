@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Keycloak as an external provider {id="rosa-hcp-sts-example-keycloak-configuration_{{ context }}"}
+# Configure Keycloak as an external provider {id="rosa-hcp-sts-example-keycloak-configuration_{{ context }}"}
 
 You can configure Keycloak as an external authentication provider for your {{ product_title }} cluster by using the {{ rosa_cli_first }}. Before you configure this provider, you must have a Keycloak server already set up. {._abstract}
 

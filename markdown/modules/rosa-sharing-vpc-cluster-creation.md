@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Step Four - Cluster Creator: Creating your cluster in a shared VPC {id="rosa-sharing-vpc-cluster-creation_{{ context }}"}
+# Step Four - Cluster Creator: Create your cluster in a shared VPC {id="rosa-sharing-vpc-cluster-creation_{{ context }}"}
 
 To create a cluster in a shared VPC, complete the following steps. {._abstract}
 

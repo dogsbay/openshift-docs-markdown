@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Restoring {{ ibm_title }} AppConnect resources {id="migration-debugging-velero-admission-webhooks-ibm-appconnect_{{ context }}"}
+# Restore {{ ibm_title }} AppConnect resources {id="migration-debugging-velero-admission-webhooks-ibm-appconnect_{{ context }}"}
 
 Troubleshoot Velero restore failures for {{ ibm_name }} AppConnect resources that use admission webhooks. Verify your webhook rules and check that the installed Operator supports the backup’s version to successfully complete the restore. {._abstract}
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Removing {{ cli_manager }} resources {id="cli-manager-remove-resources_{{ context }}"}
 
-Optionally, after you uninstall the {{ cli_manager }}, you can remove its related resources from your cluster.
+Optionally, after you uninstall the {{ cli_manager }}, you can remove its related resources from your cluster. {._abstract}
 
 **Prerequisites**
 

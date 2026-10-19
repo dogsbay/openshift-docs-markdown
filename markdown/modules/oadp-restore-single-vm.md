@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Restoring a single VM {id="oadp-restore-single-vm_{{ context }}"}
+# Restore a single VM {id="oadp-restore-single-vm_{{ context }}"}
 
 After you have backed up a single virtual machine (VM) by using the label selector in the `Backup` custom resource (CR), you can create a `Restore` CR and point it to the backup. This restore operation restores a single VM. {._abstract}
 

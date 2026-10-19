@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Using Terraform to create your {{ product_title }} cluster {id="rosa-sts-cluster-terraform-execute_{{ context }}"}
+# Use Terraform to create your {{ product_title }} cluster {id="rosa-sts-cluster-terraform-execute_{{ context }}"}
 
 After you create the Terraform files, you must initiate Terraform to provide all of the required dependencies. Then apply the Terraform plan. {._abstract}
 

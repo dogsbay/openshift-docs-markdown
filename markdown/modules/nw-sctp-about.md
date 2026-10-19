@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Support for SCTP on {{ product_title }} {id="nw-sctp-about_{{ context }}"}
 
-As a cluster administrator, you can enable SCTP on the hosts in the cluster. On {{ op_system_first }}, the SCTP module is disabled by default.
+As a cluster administrator, you can enable SCTP on the hosts in the cluster. On {{ op_system_first }}, the SCTP module is disabled by default. {._abstract}
 
 SCTP is a reliable message based protocol that runs on top of an IP network.
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About logging in to the {{ rosa_cli }} {id="rosa-login_{{ context }}"}
+# About logging in to the {{ rosa_cli_title }} {id="rosa-login_{{ context }}"}
 
 You can log in to the {{ rosa_cli_first }} with Red&#160;Hat single sign-on or with an offline authentication token. Red&#160;Hat recommends using the {{ rosa_cli }} with Red&#160;Hat single sign-on, instead of using an offline authentication token. {._abstract}
 

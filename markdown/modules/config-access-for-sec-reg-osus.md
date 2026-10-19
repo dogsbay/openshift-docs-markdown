@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring access to a secured registry for the OpenShift Update Service {id="registry-configuration-for-update-service_{{ context }}"}
+# Configure access to a secured registry for the OpenShift Update Service {id="registry-configuration-for-update-service_{{ context }}"}
 
 If your release images are contained in a registry whose HTTPS X.509 certificate is signed by a custom certificate authority, you must configure additional trust stores for image registry access for the update service. {._abstract}
 

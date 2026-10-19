@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a  backup PVC for a Data Mover backup {id="configuring-backup-pvc_{{ context }}"}
+# Configure a  backup PVC for a Data Mover backup {id="configuring-backup-pvc_{{ context }}"}
 
 Configure backup persistent volume claim (PVC) settings in the `DataProtectionApplication` (DPA) to optimize Data Mover backup performance for different storage classes. The feature gives you read-only access modes for faster data movement. {._abstract}
 

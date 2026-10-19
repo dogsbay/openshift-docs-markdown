@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying the database application {id="getting-started-web-console-connecting-database_{{ context }}"}
+# Deploy the database application {id="getting-started-web-console-connecting-database_{{ context }}"}
 
 Deploy a MongoDB database application to contain the information that your application requires. For this tutorial, you will deploy a database application called `mongodb-nationalparks` that holds the national park location information. {._abstract}
 

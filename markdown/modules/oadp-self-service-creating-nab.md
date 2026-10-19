@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a NonAdminBackup CR {id="oadp-self-service-creating-nab_{{ context }}"}
+# Create a NonAdminBackup CR {id="oadp-self-service-creating-nab_{{ context }}"}
 
 Create a `NonAdminBackup` (NAB) custom resource (CR) to back up application resources in your authorized namespace. This helps you to protect your application data and configuration without requiring cluster administrator privileges. {._abstract}
 

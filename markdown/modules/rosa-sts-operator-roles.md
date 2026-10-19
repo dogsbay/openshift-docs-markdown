@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Cluster-specific Operator IAM role reference {id="rosa-sts-operator-roles_{{ context }}"}
 
-Use Operator roles to authenticate to your AWS resources through an OpenID Connect (OIDC) provider, and obtain temporary permissions for cluster operations. Securing these permissions helps you successfully manage capabilities like back-end storage, cloud ingress controllers, and external cluster access. {._abstract}
+Use Operator roles to authenticate to your AWS resources through an OpenID Connect (OIDC) provider, and obtain temporary permissions for cluster operations. Securing these permissions helps you successfully manage capabilities such as back-end storage, cloud ingress controllers, and external cluster access. {._abstract}
 
 When you create the Operator roles, the account-wide Operator policies for the matching cluster version are attached to the roles.
 {%- if openshift_rosa %}
@@ -21,16 +21,16 @@ If more than one matching policy is available in your account for an Operator ro
 
 {% if openshift_rosa %}
 
-**ROSA cluster-specific Operator roles**
+**Cluster-specific Operator roles**
 
 | Resource | Description |
 | --- | --- |
 | `<cluster_name>-<hash>-openshift-cluster-csi-drivers-ebs-cloud-credentials` | An IAM role required by {{ product_title }} to manage back-end storage through the Container Storage Interface (CSI). |
-| `<cluster_name>-<hash>-openshift-machine-api-aws-cloud-credentials` | An IAM role required by the ROSA Machine Config Operator to perform core cluster functionality. |
-| `<cluster_name>-<hash>-openshift-cloud-credential-operator-cloud-credentials` | An IAM role required by the ROSA Cloud Credential Operator to manage cloud provider credentials. |
+| `<cluster_name>-<hash>-openshift-machine-api-aws-cloud-credentials` | An IAM role required by the {{ product_title }} Machine Config Operator to perform core cluster functionality. |
+| `<cluster_name>-<hash>-openshift-cloud-credential-operator-cloud-credentials` | An IAM role required by the {{ product_title }} Cloud Credential Operator to manage cloud provider credentials. |
 | `<cluster_name>-<hash>-openshift-cloud-network-config-controller-credentials` | An IAM role required by the cloud network config controller to manage cloud network configuration for a cluster. |
-| `<cluster_name>-<hash>-openshift-image-registry-installer-cloud-credentials` | An IAM role required by the ROSA Image Registry Operator to manage the {{ product_registry }} storage in AWS S3 for a cluster. |
-| `<cluster_name>-<hash>-openshift-ingress-operator-cloud-credentials` | An IAM role required by the ROSA Ingress Operator to manage external access to a cluster. |
+| `<cluster_name>-<hash>-openshift-image-registry-installer-cloud-credentials` | An IAM role required by the {{ product_title }} Image Registry Operator to manage the {{ product_registry }} storage in AWS S3 for a cluster. |
+| `<cluster_name>-<hash>-openshift-ingress-operator-cloud-credentials` | An IAM role required by the {{ product_title }} Ingress Operator to manage external access to a cluster. |
 | `<cluster_name>-<hash>-openshift-cloud-network-config-controller-cloud-credentials` | An IAM role required by the cloud network config controller to manage cloud network credentials for a cluster. |
 
 {% endif %}

@@ -26,18 +26,17 @@ For more information, see the {{ gcp_short }} documentation for [global access](
         $ oc -n openshift-ingress-operator edit ingresscontroller/default
         ```
     1.  Edit the YAML file:
-        ```yaml title="Sample clientAccess configuration to Global"
+        ```yaml title="Sample clientAccess configuration set to Global"
           spec:
             endpointPublishingStrategy:
               loadBalancer:
                 providerParameters:
                   gcp:
-                    clientAccess: Global (1)
+                    clientAccess: Global
                   type: GCP
                 scope: Internal
               type: LoadBalancerService
         ```
-        1.  Set `gcp.clientAccess` to `Global`.
     1.  Save the file to apply the changes.
 1.  Run the following command to verify that the service allows global access:
     ```terminal

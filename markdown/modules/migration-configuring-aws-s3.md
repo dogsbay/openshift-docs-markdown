@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Amazon Web Services {id="migration-configuring-aws-s3_{{ context }}"}
+# Configure Amazon Web Services {id="migration-configuring-aws-s3_{{ context }}"}
 
 Configure Amazon Web Services (AWS) S3 storage and Identity and Access Management (IAM) credentials for backup storage with {{ oadp_short }}. This provides the necessary permissions and storage infrastructure for data protection operations. {._abstract}
 

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Backing up a MySQL database {id="backing-up-the-mysql-database_{{ context }}"}
+# Back up a MySQL database {id="backing-up-the-mysql-database_{{ context }}"}
 
 Back up a MySQL database by creating a persistent volume claim (PVC) to store the database dump. This helps you preserve your 3scale system database data for recovery scenarios. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# The {{ product_title }} installation {id="installation-overview_{{ context }}"}
+# {{ product_title }} installation options {id="installation-overview_{{ context }}"}
 
 The {{ product_title }} installation program offers four methods for deploying a cluster.
 Each method has unique characteristics so that you can choose a method that meets your needs. {._abstract}

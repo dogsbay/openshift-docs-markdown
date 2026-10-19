@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Backing up data from a virtual machine by using the VMDP CLI {id="oadp-vmdp-backing-up-data_{{ context }}"}
+# Back up data from a virtual machine by using the VMDP CLI {id="oadp-vmdp-backing-up-data_{{ context }}"}
 
 Back up files and directories from within your virtual machine (VM) by using the {{ oadp_full }} VM data protection (VMDP) command-line interface (CLI). This helps you to protect user data, including data accessible over network file systems such as CIFS and NFS shares. {._abstract}
 

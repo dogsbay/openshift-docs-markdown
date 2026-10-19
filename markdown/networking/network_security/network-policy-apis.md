@@ -1,10 +1,10 @@
 ---
-title: Understanding network policy APIs
+title: Understand network policy APIs
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
-# Understanding network policy APIs {id="network-policy-apis"}
+# Understand network policy APIs {id="network-policy-apis"}
 {%- set context = "network-policy-apis" %}
 
 Network policy is defined using both cluster-scoped and namespace-scoped network policy APIs. By defining network policy across these different levels, you can create sophisticated network security configurations for your clusters, including full multi-tenant isolation. {._abstract}

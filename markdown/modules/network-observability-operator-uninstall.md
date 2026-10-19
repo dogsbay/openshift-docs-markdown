@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling the Network Observability Operator {id="network-observability-operator-uninstall_{{ context }}"}
+# Uninstall the Network Observability Operator {id="network-observability-operator-uninstall_{{ context }}"}
 
 Uninstall the Network Observability Operator using the {{ product_title }} web console Operator Hub, working in the **Ecosystem** → **Installed Operators** area. {._abstract}
 

@@ -1,12 +1,12 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About custom Operator IAM role prefixes {id="rosa-sts-about-operator-role-prefixes_{{ context }}"}
+# Custom Operator IAM role prefixes {id="rosa-sts-about-operator-role-prefixes_{{ context }}"}
 
-Each {{ product_title }} (ROSA) cluster
+Each {{ product_title }} cluster
 {%- if openshift_rosa_hcp %}
-requires cluster-specific Operator IAM roles.
+requires cluster-specific Operator Identity and Access Management (IAM) roles.
 {%- endif %}
 {%- if not openshift_rosa_hcp %}
-that uses the AWS Security Token Service (STS) requires cluster-specific Operator IAM roles.
+that uses the AWS Security Token Service (STS) requires cluster-specific Operator Identity and Access Management (IAM) roles. {._abstract}
 {%- endif %}
 
 By default, the Operator role names are prefixed with the cluster name and a random 4-digit hash. For example, the Ingress Cloud Credentials Operator IAM role for a cluster named `mycluster` has the default name `mycluster-<hash>-openshift-ingress-operator-cloud-credentials`, where `<hash>` is a random 4-digit string.

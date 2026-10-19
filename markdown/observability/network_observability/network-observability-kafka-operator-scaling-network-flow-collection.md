@@ -1,10 +1,10 @@
 ---
-title: Scaling network flow collection with Kafka
+title: Scale network flow collection with Kafka
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
-# Scaling network flow collection with Kafka {id="network-observability-kafka-operator-scaling-network-flow-collection"}
+# Scale network flow collection with Kafka {id="network-observability-kafka-operator-scaling-network-flow-collection"}
 {%- set context = "network-observability-kafka-operator-scaling-network-flow-collection" %}
 
 Scale your network flow collection by using the Kafka Operator to manage high-volume telemetry. Configure compression to reduce network bandwidth while balancing CPU overhead in large-scale cluster environments. {._abstract}

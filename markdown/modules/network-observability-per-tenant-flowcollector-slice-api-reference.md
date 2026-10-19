@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # FlowCollectorSlice [flows.netobserv.io/v1alpha1] {id="flowcollectorslice-flows-netobserv-io-v1alpha1_{{ context }}"}
 
+`FlowCollectorSlice` is the API allowing to decentralize some of the `FlowCollector` configuration per namespace tenant. {._abstract}
+
 
 Description
 :   FlowCollectorSlice is the API allowing to decentralize some of the FlowCollector configuration per namespace tenant.

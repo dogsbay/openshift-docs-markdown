@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring repository maintenance {id="oadp-configuring-repository-maintenance_{{ context }}"}
+# Configure repository maintenance {id="oadp-configuring-repository-maintenance_{{ context }}"}
 
 {{ oadp_short }} repository maintenance is a background job, you can configure it independently of the node agent pods. This means that you can schedule the repository maintenance pod on a node where the node agent is or is not running. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the OpenShift CLI by using Homebrew {id="cli-installing-cli-brew_{{ context }}"}
+# Install the OpenShift CLI by using Homebrew {id="cli-installing-cli-brew_{{ context }}"}
 
 For macOS, you can install the OpenShift CLI (`oc`) by using the [Homebrew](https://brew.sh) package manager. {._abstract}
 

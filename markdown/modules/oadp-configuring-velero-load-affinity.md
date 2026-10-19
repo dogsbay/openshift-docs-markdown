@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Velero load affinity {id="oadp-configuring-velero-load-affinity_{{ context }}"}
+# Configure Velero load affinity {id="oadp-configuring-velero-load-affinity_{{ context }}"}
 
 With each {{ oadp_short }} deployment, there is one Velero pod and its main purpose is to schedule Velero workloads. To schedule the Velero pod, you can use the `velero.podConfig.nodeSelector` and the `velero.loadAffinity` objects in the `DataProtectionApplication` (DPA) custom resource (CR) spec. {._abstract}
 

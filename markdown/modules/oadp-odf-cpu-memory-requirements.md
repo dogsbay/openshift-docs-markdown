@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Adjusting Ceph CPU and memory requirements based on collected data {id="oadp-odf-cpu-memory-requirements_{{ context }}"}
+# Adjust Ceph CPU and memory requirements based on collected data {id="oadp-odf-cpu-memory-requirements_{{ context }}"}
 
 The following recommendations are based on observations of performance made in the scale and performance lab. The changes are specifically related to {{ odf_first }}. If working with {{ odf_short }}, consult the appropriate tuning guides for official recommendations. {._abstract}
 

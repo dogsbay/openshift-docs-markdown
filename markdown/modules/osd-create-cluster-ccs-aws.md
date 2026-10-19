@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Creating a cluster on AWS {id="osd-create-aws-cluster-ccs_{{ context }}"}
+# Create a cluster on AWS {id="osd-create-aws-cluster-ccs_{{ context }}"}
 
 Deploy a {{ product_title }} cluster with the Customer Cloud Subscription (CCS) or Red&#160;Hat cloud account billing model to get more financial control. By configuring AWS Identity and Access Management (IAM) roles, Virtual Private Clouds (VPC) networking, and PrivateLink, you integrate your clusters into existing infrastructure while ensuring security.   {._abstract}
 

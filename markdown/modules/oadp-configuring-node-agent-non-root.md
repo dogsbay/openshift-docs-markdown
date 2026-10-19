@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the node agent as a non-root and non-privileged user {id="oadp-configuring-node-agent-non-root_{{ context }}"}
+# Configure the node agent as a non-root and non-privileged user {id="oadp-configuring-node-agent-non-root_{{ context }}"}
 
 To enhance the node agent security, you can configure the {{ oadp_short }} Operator node agent daemonset to run as a non-root and non-privileged user by using the `spec.configuration.velero.disableFsBackup` setting in the `DataProtectionApplication` (DPA) custom resource (CR). {._abstract}
 

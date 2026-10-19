@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # condition {id="eso-condition_{{ context }}"}
 
-The `condition` object reports the current health and operational state of the {{ external_secrets_operator }} deployment. It provides a standardized status check by detailing the specific type of condition, its current status, and a message to verify deployment success or troubleshooting errors. {._abstract}
+The `condition` object reports the current health and operational state of the {{ external_secrets_operator }} deployment.  {._abstract}
+
+It provides a standardized status check by detailing the specific type of condition, its current status, and a message to verify deployment success or troubleshooting errors.
 
 | Field | Type | Description |
 | --- | --- | --- |

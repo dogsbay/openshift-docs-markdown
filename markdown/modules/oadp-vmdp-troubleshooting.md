@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Troubleshooting {{ oadp_short }} virtual machine data protection {id="oadp-vmdp-troubleshooting_{{ context }}"}
+# Troubleshoot {{ oadp_short }} virtual machine data protection {id="oadp-vmdp-troubleshooting_{{ context }}"}
 
 Troubleshoot common issues and solutions for the {{ oadp_full }} virtual machine data protection (VMDP) command-line interface (CLI). This helps you to resolve connection and configuration problems. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating secrets for different credentials {id="oadp-secrets-for-different-credentials_{{ context }}"}
+# Create secrets for different credentials {id="oadp-secrets-for-different-credentials_{{ context }}"}
 
 Create separate `Secret` objects when your backup and snapshot locations require different credentials. This allows you to configure distinct authentication for each storage location while maintaining secure credential management. {._abstract}
 

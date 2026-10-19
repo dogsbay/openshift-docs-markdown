@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an Object Bucket Claim for disaster recovery on {{ rh_storage }} {id="oadp-creating-object-bucket-claim_{{ context }}"}
+# Create an Object Bucket Claim for disaster recovery on {{ rh_storage }} {id="oadp-creating-object-bucket-claim_{{ context }}"}
 
 If you use cluster storage for your Multicloud Object Gateway (MCG) bucket `backupStorageLocation` on {{ rh_storage }}, create an Object Bucket Claim (OBC) using the OpenShift Web Console. {._abstract}
 

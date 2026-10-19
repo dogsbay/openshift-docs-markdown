@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Verifying the upgrade {id="verifying-upgrade-1-6-0_{{ context }}"}
+# Verify the upgrade {id="verifying-upgrade-1-6-0_{{ context }}"}
 
 You can verify the {{ oadp_first }} upgrade by using the following procedure. {._abstract}
 

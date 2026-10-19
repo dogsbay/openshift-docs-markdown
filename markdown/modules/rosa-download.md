@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Download CLI tools with the {{ rosa_cli }} {id="rosa-download_{{ context }}"}
+# Download CLI tools with the {{ rosa_cli_title }} {id="rosa-download_{{ context }}"}
 
 Download and verify the `rosa` and `oc` CLI tools by using the {{ rosa_cli_first }}. {._abstract}
 

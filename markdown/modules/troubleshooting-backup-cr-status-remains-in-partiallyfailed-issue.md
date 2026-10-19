@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Troubleshooting issue where backup CR status remains partially failed {id="troubleshooting-backup-cr-status-remains-in-partiallyfailed-issue_{{ context }}"}
+# Troubleshoot issue where backup CR status remains partially failed {id="troubleshooting-backup-cr-status-remains-in-partiallyfailed-issue_{{ context }}"}
 
 Resolve the `PartiallyFailed` status that occurs when a `Backup` CR cannot create a CSI snapshot due to a missing label on the `VolumeSnapshotClass`. This helps you ensure successful backups by properly labeling the snapshot class. {._abstract}
 

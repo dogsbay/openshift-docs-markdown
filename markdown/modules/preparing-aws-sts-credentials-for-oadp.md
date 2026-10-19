@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Preparing AWS STS credentials for OADP {id="preparing-aws-sts-credentials-for-oadp_{{ context }}"}
+# Prepare AWS STS credentials for OADP {id="preparing-aws-sts-credentials-for-oadp_{{ context }}"}
 
 Configure an {{ aws_full }} account to install the {{ oadp_first }}. Prepare the {{ aws_short }} credentials by using the following procedure. {._abstract}
 

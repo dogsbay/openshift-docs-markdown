@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating restore hooks {id="oadp-creating-restore-hooks_{{ context }}"}
+# Create restore hooks {id="oadp-creating-restore-hooks_{{ context }}"}
 
 Create restore hooks to run commands in a container in a pod by editing the `Restore` custom resource (CR). {._abstract}
 

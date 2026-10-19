@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a NonAdminBackupStorageLocation CR {id="oadp-self-service-creating-nabsl_{{ context }}"}
+# Create a NonAdminBackupStorageLocation CR {id="oadp-self-service-creating-nabsl_{{ context }}"}
 
 Create a `NonAdminBackupStorageLocation` (NABSL) custom resource (CR) to define backup storage locations in your authorized namespace. With this feature, you can store backups in a cloud storage that meets your application requirements. {._abstract}
 

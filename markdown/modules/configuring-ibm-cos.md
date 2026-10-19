@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the COS instance {id="configuring-ibm-cos_{{ context }}"}
+# Configure the COS instance {id="configuring-ibm-cos_{{ context }}"}
 
 You create an {{ ibm_cloud_object_storage }} instance to store the {{ oadp_short }} backup data. After you create the COS instance, configure the `HMAC` service credentials. {._abstract}
 

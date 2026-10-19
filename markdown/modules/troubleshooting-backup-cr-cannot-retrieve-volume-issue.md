@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Troubleshooting issue where backup CR cannot retrieve volume {id="troubleshooting-backup-cr-cannot-retrieve-volume-issue_{{ context }}"}
+# Troubleshoot issue where backup CR cannot retrieve volume {id="troubleshooting-backup-cr-cannot-retrieve-volume-issue_{{ context }}"}
 
 Resolve the `InvalidVolume.NotFound` error that occurs when the persistent volume (PV) and snapshot locations are in different regions. This helps you ensure the `Backup` CR can successfully retrieve volumes. {._abstract}
 

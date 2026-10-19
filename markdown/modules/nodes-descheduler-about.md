@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About the descheduler {id="nodes-descheduler-about_{{ context }}"}
+# Maintain cluster balance by rescheduling pods {id="nodes-descheduler-about_{{ context }}"}
 
 You can use the descheduler to evict pods based on specific strategies so that the pods are rescheduled onto more appropriate nodes. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a project {id="getting-started-web-console-creating-new-project_{{ context }}"}
+# Create a project {id="getting-started-web-console-creating-new-project_{{ context }}"}
 
 Create a new project to contain all required resources and application components for the tutorial. {._abstract}
 

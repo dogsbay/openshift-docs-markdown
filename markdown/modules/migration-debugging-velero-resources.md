@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Debugging backups and restores using the OADP CLI {id="migration-debugging-velero-resources_{{ context }}"}
+# Debug backups and restores using the OADP CLI {id="migration-debugging-velero-resources_{{ context }}"}
 
 Use the {{ oadp_short }} CLI plugin to retrieve logs and descriptions of backup and restore custom resources (CRs). Use the following information to interpret the output. {._abstract}
 

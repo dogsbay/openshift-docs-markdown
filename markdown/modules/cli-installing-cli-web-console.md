@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Installing the OpenShift CLI by downloading the binary from the web console {id="cli-installing-cli-web-console_{{ context }}"}
+# Install the OpenShift CLI by downloading the binary from the web console {id="cli-installing-cli-web-console_{{ context }}"}
 
 You can download the {{ oc_first }} from the web {{ product_title }} console and install it to interact with {{ product_title }} clusters from a terminal on Linux, Windows, or macOS. {._abstract}
 

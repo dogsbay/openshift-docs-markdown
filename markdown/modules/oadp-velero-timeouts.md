@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Implementing velero resource timeout {id="velero-timeout_{{ context }}"}
+# Implement velero resource timeout {id="velero-timeout_{{ context }}"}
 
 Configure the `resourceTimeout` parameter in the `DataProtectionApplication` custom resource (CR) to define how long Velero waits for resource availability. Adjusting this timeout helps you prevent errors during large backups, repository readiness checks, and restore operations. {._abstract}
 

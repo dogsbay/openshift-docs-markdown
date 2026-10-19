@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a {{ product_title }} cluster using FIPS encryption in the CLI {id="creating-cluster-with-fips-encryption-cli_{{ context }}"}
+# Create a {{ product_title }} cluster using FIPS encryption in the CLI {id="creating-cluster-with-fips-encryption-cli_{{ context }}"}
 
 You can create a {{ product_title }} cluster with Federal Information Processing Standards (FIPS) encryption and a customer-provided Key Management Service (KMS) key by using {{ rosa_cli_first }}. {._abstract}
 

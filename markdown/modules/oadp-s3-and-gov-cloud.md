@@ -20,7 +20,8 @@ AWS GovCloud (US) is an Amazon storage solution developed to meet the stringent 
 *   In AWS GovCloud (US) regions, use the endpoints listed in the **AWS GovCloud (US-East)** and **AWS GovCloud (US-West)** rows of the "Amazon S3 endpoints" table. If you are processing export-controlled data, use one of the SSL/TLS endpoints. If you have FIPS requirements, use a FIPS 140-2 endpoint such as `https://s3-fips.us-gov-west-1.amazonaws.com` or `https://s3-fips.us-gov-east-1.amazonaws.com`.
 *   To find other AWS-imposed restrictions, see the AWS documentation.
 
-## Additional resources {id="_additional_resources" ._additional-resources}
+**Additional resources**
+{._additional-resources}
 
 *   [Amazon Simple Storage Service endpoints and quotas ({{ aws_short }} documentation)](https://docs.aws.amazon.com/general/latest/gr/s3.html)
 *   [How Amazon Simple Storage Service Differs for AWS GovCloud (US) ({{ aws_short }} documentation)](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-s3.html#govcloud-S3-diffs)

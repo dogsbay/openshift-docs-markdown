@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Comparing {{ hcp_title_first }} and {{ rosa_classic_title }} {id="rosa-hcp-classic-comparison_{{ context }}"}
+# Compare {{ hcp_title_first }} and {{ rosa_classic_title }} {id="rosa-hcp-classic-comparison_{{ context }}"}
 
 {{ hcp_title_first }} and {{ rosa_classic_title }} differ in how they host the control plane, deploy infrastructure, and handle upgrades. {._abstract}
 

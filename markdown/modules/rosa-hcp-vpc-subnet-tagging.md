@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Tagging your subnets {id="rosa-hcp-vpc-subnet-tagging_{{ context }}"}
+# Tag your subnets {id="rosa-hcp-vpc-subnet-tagging_{{ context }}"}
 
 If you created your own virtual private cloud (VPC) to create a {{ product_title }} cluster, you must tag your VPC subnets. Automated service preflight checks verify that these resources are tagged correctly before you can use these resources for a cluster. {._abstract}
 

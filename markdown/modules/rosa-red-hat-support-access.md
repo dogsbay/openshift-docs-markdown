@@ -1,7 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 
 # Red&#160;Hat support access {id="rosa-policy-rh-access_{{ context }}"}
-Members of the Red&#160;Hat Customer Experience and Engagement (CEE) team typically have read-only access to parts of the cluster. Specifically, CEE has limited access to the core and product namespaces and does not have access to the customer namespaces.
+
+Members of the Red&#160;Hat Customer Experience and Engagement (CEE) team typically have read-only access to parts of the cluster. Specifically, CEE has limited access to the core and product namespaces and does not have access to the customer namespaces. {._abstract}
 
 | Role | Core namespace | Layered product namespace | Customer namespace | AWS account^*^ |
 | --- |

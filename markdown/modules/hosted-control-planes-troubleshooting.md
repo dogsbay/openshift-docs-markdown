@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Gathering information to troubleshoot {{ hcp }} {id="hosted-control-planes-troubleshooting_{{ context }}"}
+# Gather information to troubleshoot {{ hcp }} {id="hosted-control-planes-troubleshooting_{{ context }}"}
 
 When you need to troubleshoot an issue with hosted clusters, you can gather information by running the `must-gather` command. The command generates output for the management cluster and the hosted cluster. {._abstract}
 

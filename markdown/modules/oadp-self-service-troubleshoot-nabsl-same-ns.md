@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Resolving error NonAdminBackupStorageLocation not found in the namespace {id="oadp-self-service-troubleshoot-nabsl-same-ns_{{ context }}"}
+# Resolve error NonAdminBackupStorageLocation not found in the namespace {id="oadp-self-service-troubleshoot-nabsl-same-ns_{{ context }}"}
 
 Resolve the `NonAdminBackupStorageLocation not found in the namespace` error by using a backup storage location that belongs to the same namespace as your backup. This helps ensure successful backup operations. {._abstract}
 

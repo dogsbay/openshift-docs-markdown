@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting a backup by creating a DeleteBackupRequest CR {id="oadp-deleting-backups-using-oc_{{ context }}"}
+# Delete a backup by creating a DeleteBackupRequest CR {id="oadp-deleting-backups-using-oc_{{ context }}"}
 
 Delete a backup by creating a `DeleteBackupRequest` custom resource (CR). This helps you to remove specific backups and their associated volume artifacts from storage. {._abstract}
 

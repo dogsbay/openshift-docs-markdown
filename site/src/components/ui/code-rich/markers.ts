@@ -36,6 +36,8 @@ const BARE_MARKER = /[ \t]*\[!code[^\]]*\]/g;
  * @param isPlainGrammar true when highlighting falls back to plaintext
  */
 export function stripUnprocessableMarkers(code: string, isPlainGrammar: boolean): string {
+  // Every marker has "[!code"; without one there is nothing to strip, and MARKER's leading [ \t]* is quadratic on a long run of spaces.
+  if (!code.includes("[!code")) return code;
   return code
     .split("\n")
     .map((line) => {

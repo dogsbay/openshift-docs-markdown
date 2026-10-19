@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a {{ product_title }} cluster using the CLI {id="rosa-hcp-sts-creating-a-cluster-cli_{{ context }}"}
+# Create a {{ product_title }} cluster using the CLI {id="rosa-hcp-sts-creating-a-cluster-cli_{{ context }}"}
 
 You can create a {{ product_title }} cluster quickly by using the {{ rosa_cli_first }} with default options. {._abstract}
 
@@ -8,8 +8,8 @@ You can create a {{ product_title }} cluster quickly by using the {{ rosa_cli_fi
 *   You have completed the AWS prerequisites for {{ product_title }}.
 *   You have available AWS service quotas.
 *   You have enabled the {{ product_title }} in the AWS Console.
-*   You have installed and configured the latest ROSA CLI (`rosa`) on your installation host. Run `rosa version` to see your currently installed version of the ROSA CLI. If a newer version is available, the CLI provides a link to download this upgrade.
-*   You have logged in to your Red&#160;Hat account by using the ROSA CLI.
+*   You have installed and configured the latest {{ rosa_cli }} on your installation host. Run `rosa version` to see your currently installed version of the {{ rosa_cli }}. If a newer version is available, the CLI provides a link to download this upgrade.
+*   You have logged in to your Red&#160;Hat account by using the {{ rosa_cli }}.
 *   You have created an OpenID Connect (OIDC) configuration.
 *   You have verified that the AWS Elastic Load Balancing (ELB) service role exists in your AWS account.
 

@@ -1,22 +1,15 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-{% include "./_attributes/attributes-openshift-dedicated.md" %}
-# Red&#160;Hat managed resources {id="sd-redhat-managed-resources_{{ context }}"}
+# Red&#160;Hat-managed resources {id="sd-redhat-managed-resources_{{ context }}"}
 
-{%- set context = "sd-managed-resources" %}
-
-## Overview {id="sd-managed-resources-overview_{{ context }}"}
-
-The following covers all {{ product_title }} resources that are managed or protected by the Service Reliability Engineering Platform (SRE-P) Team. Customers should not try to change these resources because doing so can lead to cluster instability.
+{{ product_title }} includes resources that are managed or protected by the Service Reliability Engineering Platform (SRE-P) Team. Do not change these resources because doing so can lead to cluster instability. {._abstract}
 
 ## Managed resources {id="sd-managed-resources-all_{{ context }}"}
 
-The following list displays the {{ product_title }} resources managed by OpenShift Hive, the centralized fleet configuration management system. These resources are in addition to the OpenShift/ROSA platform resources created during installation. OpenShift Hive continually reconciles consistency across all {{ product_title }} clusters. Changes to {{ product_title }} resources should be made through {{ cluster_manager }} so that {{ cluster_manager }} and Hive are synchronized. Contact ocm-feedback@redhat.com if {{ cluster_manager }} does not support modifying the resources in question.
+The following list displays the {{ product_title }} resources managed by {{ OCP_short }} Hive, the centralized fleet configuration management system. These resources are in addition to the {{ OCP_short }} and {{ product_title }} platform resources created during installation. {{ OCP_short }} Hive continually reconciles consistency across all {{ product_title }} clusters. Changes to {{ product_title }} resources should be made through {{ cluster_manager }} so that {{ cluster_manager }} and Hive are synchronized. Contact ocm-feedback@redhat.com if {{ cluster_manager }} does not support modifying the resources in question.
 
-**List of Red&#160;Hat managed resources**
+Note that the following resources might not be visible in your {{ product_title }} cluster:
 
-(Note that the following may not be visible in your ROSA cluster)
-:::details{title="Details"}
-```yaml
+```yaml title="List of Red&#160;Hat-managed resources"
 Resources:
   ConfigMap:
   - namespace: openshift-config
@@ -1027,18 +1020,14 @@ Resources:
   - namespace: openshift-velero
     name: weekly-full-backup
 ```
-:::
 
 ## {{ product_title }} core namespaces {id="sd-core-namespaces_{{ context }}"}
 
 {{ product_title }} core namespaces are installed by default during cluster installation.
 
-**List of core namespaces**
+Note that the following core namespaces might not be visible in your {{ product_title }} cluster.
 
-(Note that the following may not be visible in your ROSA cluster)
-
-:::details{title="Details"}
-```yaml
+```yaml title="List of core namespaces"
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -1113,14 +1102,12 @@ data:
       - name: openshift-vsphere-infra
 
 ```
-:::
 
 ## {{ product_title }} add-on namespaces {id="sd-add-on-managed-namespaces_{{ context }}"}
 
-{{ product_title }} add-ons are services available for installation after cluster installation. These additional services include {{ openshift_dev_spaces_productname }}, Red&#160;Hat OpenShift API Management, and Cluster Logging Operator. Any changes to resources within the following namespaces can be overridden by the add-on during upgrades, which can lead to unsupported configurations for the add-on functionality.
+{{ product_title }} add-ons are services available for installation after cluster installation. These additional services include {{ openshift_dev_spaces_productname }}, Red&#160;Hat {{ OCP_short }} API Management, and Cluster Logging Operator. Any changes to resources within the following namespaces can be overridden by the add-on during upgrades, which can lead to unsupported configurations for the add-on functionality.
 
-:::details{title="List of add-on managed namespaces"}
-```yaml
+```yaml title="List of add-on managed namespaces"
 addon-namespaces:
   ocs-converged-dev: openshift-storage
   managed-api-service-internal: redhat-rhoami-operator
@@ -1141,14 +1128,12 @@ addon-namespaces:
   reference-addon: redhat-reference-addon
   ocm-addon-test-operator: redhat-ocm-addon-test-operator
 ```
-:::
 
 ## {{ product_title }} validating webhooks {id="sd-validating-webhooks_{{ context }}"}
 
-{{ product_title }} validating webhooks are a set of dynamic admission controls maintained by the OpenShift SRE team. These HTTP callbacks, also known as webhooks, are called for various types of requests to ensure cluster stability. The following list describes the various webhooks with rules containing the registered operations and resources that are controlled. Any attempt to circumvent these validating webhooks could affect the stability and supportability of the cluster.
+{{ product_title }} validating webhooks are a set of dynamic admission controls maintained by the {{ OCP_short }} SRE team. These HTTP callbacks, also known as webhooks, are called for various types of requests to ensure cluster stability. The following list describes the various webhooks with rules containing the registered operations and resources that are controlled. Any attempt to circumvent these validating webhooks could affect the stability and supportability of the cluster.
 
-:::details{title="List of validating webhooks"}
-```json
+```json title="List of validating webhooks"
 [
   {
     "webhookName": "clusterlogging-validation",
@@ -1845,4 +1830,3 @@ addon-namespaces:
   }
 ]
 ```
-:::

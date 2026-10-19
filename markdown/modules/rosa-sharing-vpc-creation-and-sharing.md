@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Step One - VPC Owner: Configuring a VPC to share within your AWS organization {id="rosa-sharing-vpc-creation-and-sharing_{{ context }}"}
+# Step One - VPC Owner: Configure a VPC to share within your AWS organization {id="rosa-sharing-vpc-creation-and-sharing_{{ context }}"}
 
 You can share subnets within a configured VPC with another AWS user account if that account is within your current AWS organization. {._abstract}
 

@@ -1,0 +1,28 @@
+---
+/**
+ * DetailsSheet — wraps a CollapsibleAlert (a <details>) so it opens as a
+ * side sheet. The markup stays a working <details>: with no script the
+ * content is a normal collapsible block. `<db-details-sheet>` (from
+ * @dogsbay/elements) moves the body into a native modal <dialog> on the right
+ * while it is open.
+ *
+ * Usage:
+ *   <DetailsSheet>
+ *     <CollapsibleAlert title="Advanced options">…</CollapsibleAlert>
+ *   </DetailsSheet>
+ */
+interface Props {
+  /** The close button's accessible name */
+  closeLabel?: string;
+}
+
+const { closeLabel = "Close" } = Astro.props;
+---
+
+<db-details-sheet close-label={closeLabel}>
+  <slot />
+</db-details-sheet>
+
+<script>
+  import "@dogsbay/elements/db-details-sheet";
+</script>

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accessing your cluster with an IDP account {id="rosa-accessing-your-cluster_{{ context }}"}
+# Access your cluster with an IDP account {id="rosa-accessing-your-cluster_{{ context }}"}
 
 To log in to your cluster, you can configure an identity provider (IDP). This procedure uses GitHub as an example IDP. To view other supported IDPs, run the `rosa create idp --help` command. {._abstract}
 

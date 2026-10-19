@@ -20,7 +20,7 @@ You can use {{ oadp_short }} self-service to complete the following tasks:
 *   `ResourceModifiers` and volume policies are not supported for non-administrator backup and restore operations.
 *   Backup and restore logs by using a `NonAdminDownloadRequest` object are not supported for default backup storage locations (BSLs). To access logs, you must create a `NonAdminBackupStorageLocation` object.
 
-## Prerequisites for non-administrator users {id="oadp-cli-nonadmin-about-prereqs_{{ context }}"}
+**Prerequisites**
 
 Before you use {{ oadp_short }} self-service, a cluster administrator must complete the following tasks:
 

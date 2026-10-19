@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Cluster self-service {id="rosa-sdpolicy-cluster-self-service_{{ context }}"}
 
-Customers can self-service their clusters, including, but not limited to:
+Customers can self-service their clusters, including, but not limited to: {._abstract}
 
 *   Create a cluster
 *   Delete a cluster
@@ -11,4 +11,4 @@ Customers can self-service their clusters, including, but not limited to:
 *   Add or remove machine pools and configure autoscaling
 *   Define upgrade policies
 
-You can perform these self-service tasks using the {{ product_title }} (ROSA) CLI, `rosa`.
+You can perform these self-service tasks by using the {{ rosa_cli_first }}.

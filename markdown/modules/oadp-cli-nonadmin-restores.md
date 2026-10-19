@@ -3,7 +3,7 @@
 
 You can use the {{ oadp_short }} command-line interface (CLI) to create, view, describe, and delete non-administrator restores in your namespace. {._abstract}
 
-## Prerequisites {id="oadp-cli-nonadmin-restores-prereqs_{{ context }}"}
+**Prerequisites**
 
 *   The {{ oadp_short }} CLI plugin is installed and configured in non-administrator mode.
 *   You are logged in to the {{ product_title }} cluster and your current namespace context is set to the namespace you want to restore into.

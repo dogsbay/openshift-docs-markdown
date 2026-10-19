@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Deleting the account-wide IAM resources {id="rosa-deleting-sts-resources-account-wide_{{ context }}"}
+# Delete the account-wide IAM resources {id="rosa-deleting-sts-resources-account-wide_{{ context }}"}
 
 You can delete the account-wide AWS Identity and Access Management (IAM) resources. First, delete all {{ product_title }} clusters that depend on these resources. {._abstract}
 

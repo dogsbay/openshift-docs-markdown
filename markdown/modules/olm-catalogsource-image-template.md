@@ -16,16 +16,16 @@ Operator compatibility with the underlying cluster can be expressed by a catalog
 {{ product_title }}. {._abstract}
 {%- endif %}
 
-During a cluster upgrade, the index image tag for the default Red Hat-provided catalog sources are updated automatically by the Cluster Version Operator (CVO) so that Operator Lifecycle Manager (OLM) pulls the updated version of the catalog. For example during an upgrade from {{ product_title }} {{ ocp_nminus1 }} to {{ product_version }}, the `spec.image` field in the `CatalogSource` object for the `redhat-operators` catalog is updated from:
+During a cluster upgrade, the index image tag for the default Red Hat-provided catalog sources are updated automatically by the Cluster Version Operator (CVO) so that Operator Lifecycle Manager (OLM) pulls the updated version of the catalog. For example during an upgrade from {{ product_title }} {{ ocp_nminus1 }} to {{ product_version }} {{ product_version }}, the `spec.image` field in the `CatalogSource` object for the `redhat-operators` catalog is updated from:
 
-```terminal
-registry.redhat.io/redhat/redhat-operator-index:v4.22
+```terminal {minja}
+registry.redhat.io/redhat/redhat-operator-index:v{{ ocp_nminus1 }}
 ```
 
 to:
 
-```terminal
-registry.redhat.io/redhat/redhat-operator-index:v4.22
+```terminal {minja}
+registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }}
 ```
 
 However, the CVO does not automatically update image tags for custom catalogs. To ensure users are left with a compatible and supported Operator installation after a cluster upgrade, custom catalogs should also be kept updated to reference an updated index image.

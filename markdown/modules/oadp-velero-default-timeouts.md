@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Implementing velero default item operation timeout {id="velero-default-item-operation-timeout_{{ context }}"}
+# Implement velero default item operation timeout {id="velero-default-item-operation-timeout_{{ context }}"}
 
 Configure the `defaultItemOperationTimeout` parameter in the `DataProtectionApplication`ccustom resource (CR) to define how long Velero waits for backup and restore operations to finish. Adjusting this timeout helps you prevent errors during Container Storage Interface (CSI) Data Mover tasks. {._abstract}
 

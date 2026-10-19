@@ -1,10 +1,10 @@
 ---
-title: About network observability
+title: Network observability overview
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
-# About network observability {id="network-observability-overview"}
+# Network observability overview {id="network-observability-overview"}
 {%- set context = "network-observability-overview" %}
 
 Use the Network Observability Operator to observe network traffic via `eBPF` technology, providing troubleshooting insights through Prometheus metrics and Loki logs. {._abstract}

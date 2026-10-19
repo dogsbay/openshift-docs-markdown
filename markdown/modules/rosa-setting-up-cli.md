@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting up the {{ rosa_cli }} {id="rosa-setting-up-cli_{{ context }}"}
+# Setting up the {{ rosa_cli_title }} {id="rosa-setting-up-cli_{{ context }}"}
 
 Put the {{ rosa_cli_first }} on the computer you use to run cluster commands. {._abstract}
 

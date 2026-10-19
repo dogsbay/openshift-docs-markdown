@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Restoring an application to a different namespace using {{ oadp_short }} {id="oadp-usecase-restore_{{ context }}"}
+# Restore an application to a different namespace using {{ oadp_short }} {id="oadp-usecase-restore_{{ context }}"}
 
 Restore a backup of an application by using {{ oadp_short }} to a new target namespace, `test-restore-application`. To restore a backup, you create a restore custom resource (CR) as shown in the following example. In the restore CR, the source namespace refers to the application namespace that you included in the backup. You then verify the restore by changing your project to the new restored namespace and verifying the resources. {._abstract}
 

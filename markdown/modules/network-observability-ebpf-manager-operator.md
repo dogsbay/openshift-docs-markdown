@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Working with the eBPF Manager Operator {id="network-observability-ebpf-manager-operator_{{ context }}"}
+# Work with the eBPF Manager Operator {id="network-observability-ebpf-manager-operator_{{ context }}"}
 
 Integrate the eBPF Manager Operator with Network Observability to manage eBPF programs and reduce the need for privileged agent permissions. {._abstract}
 

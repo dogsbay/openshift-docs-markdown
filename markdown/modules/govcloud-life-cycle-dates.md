@@ -1,0 +1,28 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Life cycle dates for {{ product_title }} in AWS GovCloud {id="govcloud-life-cycle-dates_{{ context }}"}
+
+{{ product_title }} in AWS GovCloud is subject to FedRAMP high security controls which require the use of cryptographic modules that have received a validation status of active or implementation under test from the Cryptographic Module Validation Program (CMVP). {._abstract}
+
+As a result, OpenSSL which is the module that is applicable to {{ op_system_base_full }} CoreOS in an {{ OCP_short }} implementation is the determining factor for what {{ OCP_short }} versions {{ product_title }} in AWS GovCloud offers, which may create drift from the standard OpenShift support lifecycle.
+
+| Version | General availability | Maintenance support ends | Extended Update Support Add-On - Term 1 ends |
+| --- | --- | --- | --- |
+| 4.22 * | Jun  9, 2026 | Dec 31, 2027 | Jun 30, 2028 |
+| 4.21 * | Feb  4, 2026 | Aug  3, 2027 |  |
+| 4.20 * | Oct 21, 2025 | Apr 21, 2027 | Oct 21, 2027 |
+| 4.19 * | Jun 17, 2025 | Dec 17, 2026 |  |
+| 4.18 | Feb 25, 2025 | Aug 25, 2026 | Feb 25, 2027 |
+
+
+:::note
+
+As of October 31, 2026, {{ product_title }} in AWS GovCloud supports {{ ocp }} versions 4.19, 4.20, 4.21, and 4.22. These {{ ocp }} versions use cryptographic modules with strong algorithms per the Federal Information Processing Standards (FIPS) standard but are awaiting formal Cryptographic Module Validation Program (CMVP) approval. For more information, see the [{{ product_title }} in AWS GovCloud and FIPS-validated cryptography KCS article](https://access.redhat.com/articles/7148666).
+
+:::
+
+
+The Extended Update Support Add-On - Term 1 is available for {{ product_title }} in AWS GovCloud customers using even-numbered versions, starting with 4.16, and is included with your {{ product_title }} in AWS GovCloud subscription.
+
+The Extended Update Support Add-On - Term 1 provides the key benefit of extending the support lifecycle for an eligible minor release from 18 months to a total of 24 months. This 6-month extension allows organizations to maintain stability for mission-critical applications, meet complex regulatory validation schedules, and manage limited maintenance windows by providing continued access to critical and important security updates and urgent-priority bug fixes without requiring a full version upgrade.
+
+To apply Extended Update Support Add-On - Term 1 to your {{ product_title }} in AWS GovCloud cluster, you must update the channel group to `eus`.

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring two backup BSLs with different cloud credentials {id="oadp-multiple-bsl-use-case_{{ context }}"}
+# Configure two backup BSLs with different cloud credentials {id="oadp-multiple-bsl-use-case_{{ context }}"}
 
 Configure two backup storage locations with different cloud credentials to back up applications to multiple storage targets. With this setup, you can distribute backups across different storage providers for redundancy. {._abstract}
 

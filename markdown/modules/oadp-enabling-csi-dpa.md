@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling CSI in the DataProtectionApplication CR {id="oadp-enabling-csi-dpa_{{ context }}"}
+# Enable CSI in the DataProtectionApplication CR {id="oadp-enabling-csi-dpa_{{ context }}"}
 
 You enable the Container Storage Interface (CSI) in the `DataProtectionApplication` custom resource (CR) in order to back up persistent volumes with CSI snapshots. {._abstract}
 

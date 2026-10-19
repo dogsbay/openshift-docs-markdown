@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the backup storage location with a MD5 checksum algorithm {id="oadp-configuring-aws-md5sum_{{ context }}"}
+# Configure the backup storage location with a MD5 checksum algorithm {id="oadp-configuring-aws-md5sum_{{ context }}"}
 
 You can configure the Backup Storage Location (BSL) in the Data Protection Application (DPA) to use a MD5 checksum algorithm for both Amazon Simple Storage Service (Amazon S3) and S3-compatible storage providers. The checksum algorithm calculates the checksum for uploading and downloading objects to Amazon S3. You can use one of the following options to set the `checksumAlgorithm` field in the `spec.backupLocations.velero.config.checksumAlgorithm` section of the DPA. {._abstract}
 

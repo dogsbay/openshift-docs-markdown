@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # globalConfig {id="eso-global-config_{{ context }}"}
 
-The `globalConfig` field defines the baseline behavior and deployment parameters for the {{ external_secrets_operator }}. Use this section to apply labels to all managed resources and configure the logging verbosity. It also provides infrastructure-level controls to govern where and how the Operator is scheduled, alongside proxy settings for network compatibility. {._abstract}
+The `globalConfig` field defines the baseline behavior and deployment parameters for the {{ external_secrets_operator }}.  {._abstract}
+
+Use this section to apply labels to all managed resources and configure the logging verbosity. It also provides infrastructure-level controls to govern where and how the Operator is scheduled, alongside proxy settings for network compatibility.
 
 | Field | Type | Description | Default | Validation |
 | --- | --- | --- | --- | --- |

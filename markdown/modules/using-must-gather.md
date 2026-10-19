@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the must-gather tool {id="oadp-running-must-gather_{{ context }}"}
+# Use the must-gather tool {id="oadp-running-must-gather_{{ context }}"}
 
 Run the `must-gather` tool with the default configuration, timeout, and insecure TLS options. To use an option, add a flag corresponding to that option in the `must-gather` command. {._abstract}
 

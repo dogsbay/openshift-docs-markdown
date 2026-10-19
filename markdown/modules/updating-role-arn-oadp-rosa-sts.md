@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Updating the IAM role ARN in the {{ oadp_short }} Operator subscription {id="updating-role-arn-oadp-rosa-sts_{{ context }}"}
+# Update the IAM role ARN in the {{ oadp_short }} Operator subscription {id="updating-role-arn-oadp-rosa-sts_{{ context }}"}
 
 Update the {{ oadp_short }} Operator subscription to fix an installation error due to incorrect IAM role Amazon Resource Name (ARN). {._abstract}
 

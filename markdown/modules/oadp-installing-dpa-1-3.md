@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Data Protection Application {id="oadp-installing-dpa_{{ context }}"}
+# Install the Data Protection Application {id="oadp-installing-dpa_{{ context }}"}
 
 You install the Data Protection Application (DPA) by creating an instance of the `DataProtectionApplication` API. {._abstract}
 

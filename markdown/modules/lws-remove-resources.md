@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling {{ lws_operator }} resources {id="lws-remove-resources_{{ context }}"}
+# Uninstall {{ lws_operator }} resources {id="lws-remove-resources_{{ context }}"}
 
 Optionally, remove custom resources (CRs) and the associated namespace after the {{ lws_operator }} is uninstalled. This cleans up all remaining Leader Worker Set artifacts. {._abstract}
 

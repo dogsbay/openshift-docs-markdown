@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring the CA certificate for the Istio server {id="cert-manager-istio-csr-config-ca-cert_{{ context }}"}
 
-You can configure the `ConfigMap` that contains the CA bundle used by Istio workloads to verify the Istio server certificate. If not configured, the {{ cert_manager_operator }} looks for the CA certificate in the configured issuer and in the Kubernetes Secret that contains the Istio certificates. {._abstract}
+You can configure the `ConfigMap` that contains the CA bundle used by Istio workloads to verify the Istio server certificate.  {._abstract}
+
+If not configured, the {{ cert_manager_operator }} looks for the CA certificate in the configured issuer and in the Kubernetes Secret that contains the Istio certificates.
 
 **Prerequisites**
 

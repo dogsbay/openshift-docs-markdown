@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting Velero CPU and memory resource allocations {id="oadp-setting-resource-limits-and-requests_{{ context }}"}
+# Set Velero CPU and memory resource allocations {id="oadp-setting-resource-limits-and-requests_{{ context }}"}
 
 You set the CPU and memory resource allocations for the `Velero` pod by editing the  `DataProtectionApplication` custom resource (CR) manifest. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Listing supported API resources {id="cli-using-cli-list-api-resources_{{ context }}"}
+# List supported API resources {id="cli-using-cli-list-api-resources_{{ context }}"}
 
 Use the `oc api-resources` command to view the list of supported API resources on the server. {._abstract}
 

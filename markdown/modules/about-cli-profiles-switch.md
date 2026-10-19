@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About switching between CLI profiles {id="about-switches-between-cli-profiles_{{ context }}"}
+# Switch between CLI profiles {id="about-switches-between-cli-profiles_{{ context }}"}
 
 You can use contexts to easily switch between users across multiple {{ product_title }} clusters when using the {{ oc_first }}. You specify a nickname to make managing CLI configurations easier by providing short-hand references to contexts, user credentials, and cluster details. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting restic restore partially failed issue on {{ ocp }} 4.14 onward due to changed PSA policy {id="oadp-restic-restore-failing-psa-policy_{{ context }}"}
+# Troubleshoot restic restore partially failed issue on {{ ocp }} 4.14 onward due to changed PSA policy {id="oadp-restic-restore-failing-psa-policy_{{ context }}"}
 
 Resolve a partial failure of Restic restore on {{ ocp }} 4.14 onward caused by Pod Security Admission (PSA) policy enforcement by adjusting the `restore-resource-priorities` field in your `DataProtectionApplication` (DPA) custom resource (CR). By doing so, you ensure that `SecurityContextConstraints` (SCC) resources are restored before pods. This helps you to complete restore operations successfully when PSA policies deny pod admission due to Velero resource restore order. {._abstract}
 

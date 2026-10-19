@@ -28,7 +28,7 @@ The BlueField {{ product_title }} layer image that the Operator resolves automat
     ```terminal
     $ oc create secret generic $PULL_SECRET_NAME \
         --from-file=.dockerconfigjson=$OPENSHIFT_PULL_SECRET \
-        --type=Opaque \
+        --type=kubernetes.io/dockerconfigjson \
         -n $CLUSTERS_NAMESPACE
     ```
 1.  Create the SSH key secret:

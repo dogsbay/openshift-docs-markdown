@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the OpenShift Update Service Operator by using the CLI {id="update-service-install-cli_{{ context }}"}
+# Install the OpenShift Update Service Operator by using the CLI {id="update-service-install-cli_{{ context }}"}
 
 You can use the OpenShift CLI (`oc`) to install the OpenShift Update Service Operator. {._abstract}
 

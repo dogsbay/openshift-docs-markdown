@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying the back-end application {id="getting-started-web-console-deploying-python-app_{{ context }}"}
+# Deploy the back-end application {id="getting-started-web-console-deploying-python-app_{{ context }}"}
 
 Deploy the back-end application that provides the service that queries the database to return the national park data required for your application. {._abstract}
 

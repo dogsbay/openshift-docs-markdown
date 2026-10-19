@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a project {id="cli-using-cli-project_{{ context }}"}
+# Create a project {id="cli-using-cli-project_{{ context }}"}
 
 Use the `oc new-project` command to create a new project. {._abstract}
 

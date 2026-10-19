@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the OpenShift CLI on macOS using the web console {id="cli-installing-cli-web-console-macos_{{ context }}"}
+# Install the OpenShift CLI on macOS using the web console {id="cli-installing-cli-web-console-macos_{{ context }}"}
 
 {% if context == "updating-restricted-network-cluster" %}
 {%- set restricted = true -%}

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Mirroring an image set in a partially disconnected environment {id="oc-mirror-workflows-partially-disconnected-v2_{{ context }}"}
+# Mirror an image set in a partially disconnected environment {id="oc-mirror-workflows-partially-disconnected-v2_{{ context }}"}
 
 You can mirror image sets to a registry using the oc-mirror plugin v2 in environments with restricted internet access. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Working with user-defined networks {id="network-observability-working-with-udn_{{ context }}"}
+# Work with user-defined networks {id="network-observability-working-with-udn_{{ context }}"}
 
 Configure the `FlowCollector` custom resource to enable user-defined network (UDN) mapping, providing visibility into traffic across custom network interfaces within the web console. {._abstract}
 

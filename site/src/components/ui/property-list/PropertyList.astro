@@ -47,9 +47,10 @@ const groups = locationOrder
 <div class={className}>
   {groups.map((group) => (
     <div class="mb-4 last:mb-0">
-      <h4 class="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+      {/* A label, not a heading: under an embed's tag h2 an h4 skipped a level (axe heading-order). */}
+      <p class="mb-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
         {group.label}
-      </h4>
+      </p>
       <div class="rounded-lg border bg-card">
         {group.params.map((param) => (
           <PropertyItem

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Implementing CSI snapshot timeout {id="csisnapshot-timeout_{{ context }}"}
+# Implement CSI snapshot timeout {id="csisnapshot-timeout_{{ context }}"}
 
 Configure the `CSISnapshotTimeout` parameter in the `Backup` custom resource (CR) to define how long to wait for a CSI snapshot to become ready. Adjusting this timeout prevents errors when using the CSI plugin to take snapshots of large storage volumes that require more time. The default value is `10m`. {._abstract}
 

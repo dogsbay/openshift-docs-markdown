@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Resolving silent failure of the OADP Operator {id="resolving-oadp-operator-fails-silently-issue_{{ context }}"}
+# Resolve silent failure of the OADP Operator {id="resolving-oadp-operator-fails-silently-issue_{{ context }}"}
 
 Resolve the silent failure issue where the {{ oadp_short }} Operator reports a `Running` status but the {{ aws_short }} S3 buckets remain empty due to incorrect cloud credentials permissions. This helps you identify and fix credential permission problems in your backup storage locations. {._abstract}
 

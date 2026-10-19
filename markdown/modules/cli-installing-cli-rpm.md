@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the OpenShift CLI by using an RPM {id="cli-installing-cli-rpm_{{ context }}"}
+# Install the OpenShift CLI by using an RPM {id="cli-installing-cli-rpm_{{ context }}"}
 
 For {{ op_system_base_full }}, you can install the {{ oc_first }} as an RPM if you have an active {{ product_title }} subscription on your Red Hat account. {._abstract}
 

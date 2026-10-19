@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Preparing AWS credentials for OADP {id="preparing-aws-credentials-for-oadp_{{ context }}"}
+# Prepare AWS credentials for OADP {id="preparing-aws-credentials-for-oadp_{{ context }}"}
 
 Prepare and configure an {{ aws_full }} account to install {{ oadp_first }}. {._abstract}
 

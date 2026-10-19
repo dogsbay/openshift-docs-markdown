@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting a {{ product_title }} cluster and the cluster-specific IAM resources {id="rosa-hcp-deleting-cluster_{{ context }}"}
+# Delete a {{ product_title }} cluster and the cluster-specific IAM resources {id="rosa-hcp-deleting-cluster_{{ context }}"}
 
 If you no longer need a {{ product_title }} cluster, you can delete it to stop incurring costs. After deleting the cluster, you must also remove the cluster-specific Operator roles and OpenID Connect (OIDC) provider to avoid leaving unused IAM resources in your AWS account. {._abstract}
 

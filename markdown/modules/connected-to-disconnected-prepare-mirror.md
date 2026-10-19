@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Preparing the cluster for mirroring {id="connected-to-disconnected-prepare-mirror_{{ context }}"}
+# Prepare the cluster for mirroring {id="connected-to-disconnected-prepare-mirror_{{ context }}"}
 
 Before disconnecting your cluster, you must mirror, or copy, the images to a mirror registry that is reachable by every node in your disconnected cluster. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ lws_operator }} {id="lws-install-operator_{{ context }}"}
+# Install the {{ lws_operator }} {id="lws-install-operator_{{ context }}"}
 
 You can install the {{ lws_operator }} through the {{ product_title }} web console to begin managing distributed AI workloads. {._abstract}
 

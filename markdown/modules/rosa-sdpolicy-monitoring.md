@@ -1,11 +1,11 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Monitoring {id="rosa-sdpolicy-monitoring_{{ context }}"}
 
-This section provides information about the service definition for {{ product_title }} monitoring.
+{{ product_title }} clusters include an integrated monitoring stack and cluster notification system. {._abstract}
 
 ## Cluster metrics {id="rosa-sdpolicy-cluster-metrics_{{ context }}"}
 
-{{ product_title }} clusters come with an integrated Prometheus stack for cluster monitoring including CPU, memory, and network-based metrics. This is accessible through the web console. These metrics also allow for horizontal pod autoscaling based on CPU or memory metrics provided by a ROSA user.
+{{ product_title }} clusters come with an integrated Prometheus stack for cluster monitoring including CPU, memory, and network-based metrics. This is accessible through the web console. These metrics also allow for horizontal pod autoscaling based on CPU or memory metrics provided by a {{ product_title }} user.
 
 ## Cluster notifications {id="rosa-sdpolicy-cluster-status-notifications_{{ context }}"}
 

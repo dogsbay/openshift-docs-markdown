@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a backup storage location with file system storage by using the VMDP CLI {id="oadp-vmdp-creating-bsl-filesystem_{{ context }}"}
+# Create a backup storage location with file system storage by using the VMDP CLI {id="oadp-vmdp-creating-bsl-filesystem_{{ context }}"}
 
 Create a backup storage location (BSL) with file system storage to set up an encrypted repository for storing your virtual machine (VM) backups. This helps you to configure local file system storage for your data. {._abstract}
 

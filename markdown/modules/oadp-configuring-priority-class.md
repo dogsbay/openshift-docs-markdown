@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a priority class for node agent and Velero pods {id="oadp-configuring-priority-class_{{ context }}"}
+# Configure a priority class for node agent and Velero pods {id="oadp-configuring-priority-class_{{ context }}"}
 
 Configure a `priorityClassName` field for the node agent and Velero pods by editing the `DataProtectionApplication` (DPA) custom resource (CR). This helps you ensure that the Kubernetes scheduler prioritizes {{ oadp_short }} pods during resource contention. {._abstract}
 

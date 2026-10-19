@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting a backup repository {id="oadp-deleting-backup-repository_{{ context }}"}
+# Delete a backup repository {id="oadp-deleting-backup-repository_{{ context }}"}
 
 Delete the `backuprepository` custom resource (CR) to complete the backup deletion process. This helps you to ensure that all backup metadata and artifacts are fully removed from storage. {._abstract}
 

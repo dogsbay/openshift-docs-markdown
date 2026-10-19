@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating OADP service monitor {id="oadp-creating-service-monitor_{{ context }}"}
+# Create OADP service monitor {id="oadp-creating-service-monitor_{{ context }}"}
 
 Create a `ServiceMonitor` resource to scrape Velero metrics from the {{ oadp_short }} service endpoint. This helps you collect metrics for monitoring backup and restore operations in the {{ product_title }} monitoring stack. {._abstract}
 

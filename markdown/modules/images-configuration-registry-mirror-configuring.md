@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring image registry repository mirroring {id="images-configuration-registry-mirror-configuring_{{ context }}"}
+# Configure image registry repository mirroring {id="images-configuration-registry-mirror-configuring_{{ context }}"}
 
 You can create postinstallation mirror configuration custom resources (CR) to redirect image pull requests from a source image registry to a mirrored image registry. {._abstract}
 

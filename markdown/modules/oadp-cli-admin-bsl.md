@@ -3,7 +3,7 @@
 
 You can use the {{ oadp_short }} command-line interface (CLI) to create, view, set, and delete backup storage locations (BSLs). Backup storage locations define where backup data is stored, such as an object storage bucket. {._abstract}
 
-## Prerequisites {id="oadp-cli-admin-bsl-prereqs_{{ context }}"}
+**Prerequisites**
 
 *   The {{ oadp_short }} CLI plugin is installed and configured in admin mode.
 *   You are logged in to the {{ product_title }} cluster as a user with `cluster-admin` privileges.

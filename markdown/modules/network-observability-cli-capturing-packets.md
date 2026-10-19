@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Capturing packets {id="network-observability-cli-capturing-packets_{{ context }}"}
+# Capture packets {id="network-observability-cli-capturing-packets_{{ context }}"}
 
 Use the Network Observability CLI to capture network packets. You can apply filters and refine them live in the terminal for accurate, real-time debugging. {._abstract}
 

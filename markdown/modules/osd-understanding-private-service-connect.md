@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding Private Service Connect {id="osd-understanding-private-service-connect_{{ context }}"}
+# Private Service Connect connectivity model {id="osd-understanding-private-service-connect_{{ context }}"}
 
 Private Service Connect (PSC), a capability of {{ gcp_full }} networking, enables private communication between services across different projects or organizations within {{ gcp_short }}. Users that implement PSC as part of their network connectivity can deploy {{ product_title }} clusters in a private and secured environment within {{ GCP }} without any public-facing cloud resources. {._abstract}
 

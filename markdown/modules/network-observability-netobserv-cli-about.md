@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About the Network Observability CLI {id="network-observability-netoberv-cli-about_{{ context }}"}
+# Network Observability CLI overview {id="network-observability-netoberv-cli-about_{{ context }}"}
 
 Use the Network Observability CLI (`oc netobserv`) to quickly debug and troubleshoot networking issues. This tool provides instant, live insight into flows and packets without installing the Network Observability Operator. {._abstract}
 

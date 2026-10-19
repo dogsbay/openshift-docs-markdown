@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling the built-in Data Mover {id="enabling-oadp-data-mover_{{ context }}"}
+# Enable the built-in Data Mover {id="enabling-oadp-data-mover_{{ context }}"}
 
 Enable the built-in Data Mover by configuring the CSI plugin and node agent in the `DataProtectionApplication` custom resource (CR). This provides volume-level backup and restore operations by using the Kopia uploader. {._abstract}
 

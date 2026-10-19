@@ -1,7 +1,7 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # AWS Arm-based Graviton instance types {id="rosa-sdpolicy-aws-instance-types-graviton_{{ context }}"}
 
-In addition to x86-based architecture, {{ hcp_title }} offers the following Arm-based Graviton worker node instance types and sizes:
+In addition to x86-based architecture, {{ product_title }} offers the following Arm-based Graviton worker node instance types and sizes. {._abstract}
 
 
 :::note
@@ -11,7 +11,8 @@ Graviton instance types are only available for new clusters created after 24 Jul
 :::
 
 
-:::details{title="General purpose"}
+## General purpose {id="rosa-sdpolicy-graviton-general-purpose_{{ context }}"}
+
 *   a1.xlarge (2 vCPU, 4 GiB)
 *   a1.2xlarge (4 vCPU, 8 GiB)
 *   a1.4xlarge (8 vCPU, 16 GiB)
@@ -84,14 +85,14 @@ Graviton instance types are only available for new clusters created after 24 Jul
 *   m8gn.48xlarge (192 vCPU, 768 GiB)
 *   m8gn.metal-24xl (96 vCPU, 384 GiB)
 *   m8gn.metal-48xl (192 vCPU, 768 GiB)
-:::
 
-:::details{title="Burstable general purpose"}
+## Burstable general purpose {id="rosa-sdpolicy-graviton-burstable-general-purpose_{{ context }}"}
+
 *   t4g.xlarge (4 vCPU, 16 GiB)
 *   t4g.2xlarge (8 vCPU, 32 GiB)
-:::
 
-:::details{title="Memory intensive"}
+## Memory intensive {id="rosa-sdpolicy-graviton-memory-intensive_{{ context }}"}
+
 *   x2gd.xlarge (2 vCPU, 64 GiB)
 *   x2gd.2xlarge (4 vCPU, 128 GiB)
 *   x2gd.4xlarge (8 vCPU, 256 GiB)
@@ -109,9 +110,9 @@ Graviton instance types are only available for new clusters created after 24 Jul
 *   x8g.48xlarge (192 vCPU, 3,072 GiB)
 *   x8g.metal-24xl (96 vCPU, 1,536 GiB)
 *   x8g.metal-48xl (192 vCPU, 3,072 GiB)
-:::
 
-:::details{title="Memory optimized"}
+## Memory optimized {id="rosa-sdpolicy-graviton-memory-optimized_{{ context }}"}
+
 *   r6g.xlarge (4 vCPU, 32 GiB)
 *   r6g.2xlarge (8 vCPU, 64 GiB)
 *   r6g.4xlarge (16 vCPU, 128 GiB)
@@ -150,18 +151,18 @@ Graviton instance types are only available for new clusters created after 24 Jul
 *   r8g.48xlarge (192 vCPU, 1,536 GiB)
 *   r8g.metal-24xl (96 vCPU, 768 GiB)
 *   r8g.metal-48xl (192 vCPU, 1,536 GiB)
-:::
 
-:::details{title="Accelerated computing"}
+## Accelerated computing {id="rosa-sdpolicy-graviton-accelerated-computing_{{ context }}"}
+
 *   g5g.xlarge (4 vCPU, 8 GiB)
 *   g5g.2xlarge (8 vCPU, 16 GiB)
 *   g5g.4xlarge (16 vCPU, 32 GiB)
 *   g5g.8xlarge (32 vCPU, 64 GiB)
 *   g5g.16xlarge (64 vCPU, 128 GiB)
 *   g5g.metal (64 vCPU, 128 GiB)
-:::
 
-:::details{title="Compute optimized"}
+## Compute optimized {id="rosa-sdpolicy-graviton-compute-optimized_{{ context }}"}
+
 *   c6g.xlarge (4 vCPU, 8 GiB)
 *   c6g.2xlarge (8 vCPU, 16 GiB)
 *   c6g.4xlarge (16 vCPU, 32 GiB)
@@ -223,9 +224,9 @@ Graviton instance types are only available for new clusters created after 24 Jul
 *   c8gd.48xlarge (192 vCPU, 384 GiB)
 *   c8gd.metal-24xl (96 vCPU, 192 GiB)
 *   c8gd.metal-48xl (192 vCPU, 384 GiB)
-:::
 
-:::details{title="Storage optimized"}
+## Storage optimized {id="rosa-sdpolicy-graviton-storage-optimized_{{ context }}"}
+
 *   i4g.xlarge (4 vCPU, 32 GiB)
 *   i4g.2xlarge (8 vCPU, 64 GiB)
 *   i4g.4xlarge (16 vCPU, 128 GiB)
@@ -240,10 +241,9 @@ Graviton instance types are only available for new clusters created after 24 Jul
 *   im4gn.4xlarge (16 vCPU, 64 GiB)
 *   im4gn.8xlarge (32 vCPU, 128 GiB)
 *   im4gn.16xlarge (64 vCPU, 256 GiB)
-:::
 
-:::details{title="High performance computing (HPC)"}
+## High performance computing (HPC) {id="rosa-sdpolicy-graviton-hpc_{{ context }}"}
+
 *   hpc7g.4xlarge (16 vCPU, 128 GiB)
 *   hpc7g.8xlarge (32 vCPU, 128 GiB)
 *   hpc7g.16xlarge (64 vCPU, 128 GiB)
-:::

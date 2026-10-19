@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing and configuring {{ oadp_short }} with {{ VirtProductName }} {id="install-and-configure-oadp-kubevirt_{{ context }}"}
+# Install and configure {{ oadp_short }} with {{ VirtProductName }} {id="install-and-configure-oadp-kubevirt_{{ context }}"}
 
 As a cluster administrator, you can install the {{ oadp_first }} with {{ VirtProductName }} by installing the {{ oadp_short }} Operator and configuring a backup location. You can then install the Data Protection Application. {._abstract}
 

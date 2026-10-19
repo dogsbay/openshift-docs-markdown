@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the OpenShift CLI on Linux using the web console {id="cli-installing-cli-web-console-macos-linux_{{ context }}"}
+# Install the OpenShift CLI on Linux using the web console {id="cli-installing-cli-web-console-macos-linux_{{ context }}"}
 
 To manage your cluster and deploy applications from the command line on Linux, install the {{ oc_first }} binary. You can download the {{ oc_first }} from the web console. {._abstract}
 

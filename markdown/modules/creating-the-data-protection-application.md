@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Creating the Data Protection Application {id="creating-the-data-protection-application_{{ context }}"}
+# Create the Data Protection Application {id="creating-the-data-protection-application_{{ context }}"}
 
 Create a Data Protection Application (DPA) custom resource (CR) to configure backup storage and Velero settings for Red&#160;Hat 3scale API Management. This helps you set up the backup infrastructure required for protecting your 3scale components. {._abstract}
 

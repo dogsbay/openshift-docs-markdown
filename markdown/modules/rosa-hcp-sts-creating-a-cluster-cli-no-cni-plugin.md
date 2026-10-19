@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the cluster without a CNI plugin {id="rosa-hcp-sts-creating-a-cluster-cli_{{ context }}-no-cni"}
+# Create the cluster without a CNI plugin {id="rosa-hcp-sts-creating-a-cluster-cli_{{ context }}-no-cni"}
 
 You can create a {{ product_title }} cluster without a CNI plugin by using the `--no-cni` flag with the {{ rosa_cli_first }}. {._abstract}
 

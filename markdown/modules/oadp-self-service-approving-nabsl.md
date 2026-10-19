@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Approving a NonAdminBackupStorageLocation request {id="oadp-self-service-approving-nabsl_{{ context }}"}
+# Approve a NonAdminBackupStorageLocation request {id="oadp-self-service-approving-nabsl_{{ context }}"}
 
 Approve `NonAdminBackupStorageLocation` (NABSL) custom resource requests from namespace administrators to grant access to their specified backup storage locations. This enables self-service backup and restore operations for namespace resources. {._abstract}
 

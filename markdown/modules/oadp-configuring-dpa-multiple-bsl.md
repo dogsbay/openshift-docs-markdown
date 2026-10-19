@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the DPA with more than one BSL {id="oadp-configuring-dpa-multiple-bsl_{{ context }}"}
+# Configure the DPA with more than one BSL {id="oadp-configuring-dpa-multiple-bsl_{{ context }}"}
 
 Configure the `DataProtectionApplication` (DPA) custom resource (CR) with multiple `BackupStorageLocation` (BSL) resources to store backups across different locations using provider-specific credentials. This provides backup distribution and location-specific restore capabilities. {._abstract}
 

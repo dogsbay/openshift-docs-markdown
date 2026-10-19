@@ -27,27 +27,40 @@ The following procedure modifies the Ingress Controller to set the X-Forwarded-C
       namespace: openshift-ingress-operator
     spec:
       httpHeaders:
-        actions: (1)
-          request: (2)
-          - name: X-Forwarded-Client-Cert (3)
+        actions:
+          request:
+          - name: X-Forwarded-Client-Cert
             action:
-              type: Set (4)
+              type: Set
               set:
-               value: "%{+Q}[ssl_c_der,base64]" (5)
+               value: "%{+Q}[ssl_c_der,base64]"
           - name: X-SSL-Client-Der
             action:
               type: Delete
     ```
-    1.  The list of actions you want to perform on the HTTP headers.
-    1.  The type of header you want to change. In this case, a request header.
-    1.  The name of the header you want to change. For a list of available headers you can set or delete, see _HTTP header configuration_.
-    1.  The type of action being taken on the header. This field can have the value `Set` or `Delete`.
-    1.  When setting HTTP headers, you must provide a `value`. The value can be a string from a list of available directives for that header, for example `DENY`, or it can be a dynamic value that will be interpreted using HAProxy’s dynamic value syntax. In this case, a dynamic value is added.
+
+    where:
+
+    `spec.httpHeaders.actions`
+    :   Specifies the list of actions you want to perform on the HTTP headers.
+
+    `spec.httpHeaders.actions.request`
+    :   Specifies the type of header you want to change. In this case, a request header.
+
+    `spec.httpHeaders.actions.request.name`
+    :   Specifies the name of the header you want to change. For a list of available headers you can set or delete, see _HTTP header configuration_.
+
+    `spec.httpHeaders.actions.request.action.type`
+    :   Specifies the type of action being taken on the header. This field can have the value `Set` or `Delete`.
+
+    `spec.httpHeaders.actions.request.action.set.value`
+    :   Specifies a `value` when setting HTTP headers. The value can be a string from a list of available directives for that header, for example `DENY`, or it can be a dynamic value that will be interpreted using HAProxy’s dynamic value syntax. In this case, a dynamic value is added.
 
     :::note
 
     For setting dynamic header values for HTTP responses, allowed sample fetchers are `res.hdr` and `ssl_c_der`. For setting dynamic header values for HTTP requests, allowed sample fetchers are `req.hdr` and `ssl_c_der`. Both request and response dynamic values can use the `lower` and `base64` converters.
     
     :::
+
 
 1.  Save the file to apply the changes.

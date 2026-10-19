@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running a data protection test by configuring a backup storage location specification {id="oadp-dpt-use-case-bsl-spec_{{ context }}"}
+# Run a data protection test by configuring a backup storage location specification {id="oadp-dpt-use-case-bsl-spec_{{ context }}"}
 
 Configure and run the `DataProtectionTest` (DPT) custom resource (CR) by specifying an inline backup storage location (BSL) specification instead of referencing an existing BSL name. This helps you test data upload performance and CSI snapshot readiness without creating a separate BSL resource. {._abstract}
 

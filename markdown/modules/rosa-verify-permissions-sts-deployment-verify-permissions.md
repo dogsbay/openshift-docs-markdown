@@ -6,7 +6,7 @@ Run the permissions verification script to check whether your AWS account has th
 **Prerequisites**
 
 *   The [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) is installed.
-*   The [ROSA CLI](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cli_tools/index#rosa-get-started-cli) v1.2.6 or later is installed.
+*   The [{{ rosa_cli_first }}](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cli_tools/index#rosa-get-started-cli) v1.2.6 or later is installed.
 *   The [jq](https://jqlang.github.io/jq/) CLI tool is installed.
 *   You have an [AWS role with the required permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html).
 

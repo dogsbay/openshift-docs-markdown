@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a new application {id="cli-using-cli-new-app_{{ context }}"}
+# Create a new application {id="cli-using-cli-new-app_{{ context }}"}
 
 Use the `oc new-app` command to create a new application. {._abstract}
 

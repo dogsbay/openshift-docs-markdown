@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running a data protection test on an Azure object storage {id="oadp-dpt-use-case-azure_{{ context }}"}
+# Run a data protection test on an Azure object storage {id="oadp-dpt-use-case-azure_{{ context }}"}
 
 Run the `DataProtectionTest` (DPT) custom resource (CR) on Azure object storage by configuring the required Azure credentials, including the `STORAGE_ACCOUNT_ID` parameter in the secret object. This helps you validate your {{ oadp_short }} configuration and verify CSI snapshot readiness on Azure clusters. {._abstract}
 

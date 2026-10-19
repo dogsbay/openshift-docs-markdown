@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an OpenShift Update Service application by using the web console {id="update-service-create-service-web-console_{{ context }}"}
+# Create an OpenShift Update Service application by using the web console {id="update-service-create-service-web-console_{{ context }}"}
 
 You can use the {{ product_title }} web console to create an OpenShift Update Service application by using the OpenShift Update Service Operator. {._abstract}
 

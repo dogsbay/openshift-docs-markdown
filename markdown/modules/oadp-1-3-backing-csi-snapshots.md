@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Backing up persistent volumes with CSI snapshots {id="oadp-1-3-backing-csi-snapshots_{{ context }}"}
+# Back up persistent volumes with CSI snapshots {id="oadp-1-3-backing-csi-snapshots_{{ context }}"}
 
 You can use the OADP Data Mover to back up Container Storage Interface (CSI) volume snapshots to a remote object store. {._abstract}
 

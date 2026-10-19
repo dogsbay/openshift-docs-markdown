@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating {{ egress_zero_title }} using the CLI {id="rosa-hcp-sts-creating-a-cluster-egress-lockdown-cli_{{ context }}"}
+# Create {{ egress_zero_title }} using the CLI {id="rosa-hcp-sts-creating-a-cluster-egress-lockdown-cli_{{ context }}"}
 
 You can create a {{ product_title }} cluster with {{ egress_zero }} by using the {{ rosa_cli_first }}. {._abstract}
 

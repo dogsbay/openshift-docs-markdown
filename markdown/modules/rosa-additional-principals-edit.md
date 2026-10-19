@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding additional principals to your existing {{ product_title }} cluster {id="rosa-additional-principals-edit_{{ context }}"}
+# Add additional principals to your existing {{ product_title }} cluster {id="rosa-additional-principals-edit_{{ context }}"}
 
 If you did not specify additional allowed principals when you created your cluster, or if your access requirements have changed, you can add additional principals to an existing cluster by using the {{ rosa_cli_first }}. {._abstract}
 

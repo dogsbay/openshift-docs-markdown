@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Scaling up the 3scale API Management operator and deployment {id="scaling-up-the-3scale-api-management-operator-and-deployment_{{ context }}"}
+# Scale up the 3scale API Management operator and deployment {id="scaling-up-the-3scale-api-management-operator-and-deployment_{{ context }}"}
 
 Scale up the Red&#160;Hat 3scale API Management operator and any deployment that was manually scaled down during the restore process. This helps you to bring your 3scale installation back to a fully functional state matching the backed-up configuration. {._abstract}
 

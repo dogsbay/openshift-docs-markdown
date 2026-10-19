@@ -7,7 +7,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the oc-mirror OpenShift CLI plugin {id="installation-oc-mirror-installing-plugin_{{ context }}"}
+# Install the oc-mirror OpenShift CLI plugin {id="installation-oc-mirror-installing-plugin_{{ context }}"}
 
 You can install the oc-mirror OpenShift CLI plugin to manage image sets in disconnected environments. {._abstract}
 

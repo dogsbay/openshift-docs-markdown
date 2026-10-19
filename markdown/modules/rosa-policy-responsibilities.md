@@ -1,12 +1,12 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Shared responsibilities for {{ product_title }} {id="rosa-policy-responsibilities_{{ context }}"}
 
-While Red&#160;Hat and Amazon Web Services (AWS) manage the {{ product_title }} services, the customer shares certain responsibilities. The {{ product_title }} services are accessed remotely, hosted on public cloud resources, created in customer-owned AWS accounts, and have underlying platform and data security that is owned by Red&#160;Hat.
+While Red&#160;Hat and Amazon Web Services (AWS) manage the {{ product_title }} services, the customer shares certain responsibilities. The {{ product_title }} services are accessed remotely, hosted on public cloud resources, created in customer-owned AWS accounts, and have underlying platform and data security that is owned by Red&#160;Hat. {._abstract}
 
 
 :::important
 
-If the `cluster-admin` role is added to a user, see the responsibilities and exclusion notes in the [Red&#160;Hat Enterprise Agreement Appendix 4 (Online Subscription Services)](https://www.redhat.com/en/about/agreements).
+If the `cluster-admin` role is added to a user, see the responsibilities and exclusion notes in the Red&#160;Hat Enterprise Agreement Appendix 4 (Online Subscription Services) linked in the _Additional resources_.
 
 :::
 
@@ -73,11 +73,11 @@ If the `cluster-admin` role is added to a user, see the responsibilities and exc
 </tr>
 <tr>
   <td>Cluster networking</td>
-  <td>Red Hat <sup>[1]</sup></td>
-  <td>Red Hat and Customer <sup>[2]</sup></td>
-  <td>Red Hat and Customer</td>
-  <td>Red Hat <sup>[1]</sup></td>
-  <td>Red Hat <sup>[1]</sup></td>
+  <td>Red&#160;Hat <sup>[1]</sup></td>
+  <td>Red&#160;Hat and Customer <sup>[2]</sup></td>
+  <td>Red&#160;Hat and Customer</td>
+  <td>Red&#160;Hat <sup>[1]</sup></td>
+  <td>Red&#160;Hat <sup>[1]</sup></td>
 </tr>
 <tr>
   <td>Virtual networking management</td>
@@ -139,4 +139,4 @@ If the `cluster-admin` role is added to a user, see the responsibilities and exc
 </table>
 
 1.  If the customer chooses to use their own CNI plugin, the responsibility shifts to the customer.
-1.  The customer must configure their firewall to grant access to the required OpenShift and AWS domains and ports before the cluster is provisioned. For more information, see "AWS firewall prerequisites".
+1.  The customer must configure their firewall to grant access to the required {{ OCP_short }} and AWS domains and ports before the cluster is provisioned. For more information, see "AWS firewall prerequisites".

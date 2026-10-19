@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Metrics with network name {id="cnf-metrics-secondary-interfaces-by-name_{{ context }}"}
 
-To simplify the monitoring of secondary networks, you can use the `pod_network_name_info` metric to correlate network performance data with specific network names. By joining this metric with container network metrics, you can identify traffic patterns and errors across distinct network attachment definitions. {._abstract}
+To simplify the monitoring of secondary networks, you can use the `pod_network_name_info` metric to correlate network performance data with specific network names.  {._abstract}
+
+By joining this metric with container network metrics, you can identify traffic patterns and errors across distinct network attachment definitions.
 
 ```bash title="Example of pod_network_name_info"
 pod_network_name_info{interface="net0",namespace="namespacename",network_name="nadnamespace/firstNAD",pod="podname"} 0

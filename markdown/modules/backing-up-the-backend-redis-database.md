@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Backing up the back-end Redis database {id="backing-up-the-backend-redis-database_{{ context }}"}
+# Back up the back-end Redis database {id="backing-up-the-backend-redis-database_{{ context }}"}
 
 Back up the back-end Redis database by configuring Velero annotations and creating a backup CR with the required resources. This helps you preserve your 3scale back-end Redis data for recovery scenarios. {._abstract}
 

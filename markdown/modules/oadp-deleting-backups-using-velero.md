@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting a backup by using the OADP CLI {id="oadp-deleting-backups-using-velero_{{ context }}"}
+# Delete a backup by using the OADP CLI {id="oadp-deleting-backups-using-velero_{{ context }}"}
 
 Delete a backup by using the OADP CLI to run the `oc oadp backup delete` command. This helps you to quickly remove backups and their associated volume artifacts from storage. {._abstract}
 

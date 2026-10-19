@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Backing up an application using {{ oadp_short }} and {{ odf_short }} {id="oadp-usecase-backup-odf_{{ context }}"}
+# Back up an application using {{ oadp_short }} and {{ odf_short }} {id="oadp-usecase-backup-odf_{{ context }}"}
 
 In this use case, you back up an application by using {{ oadp_short }} and store the backup in an object storage provided by {{ odf_first }}. {._abstract}
 

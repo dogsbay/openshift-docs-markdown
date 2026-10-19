@@ -1,11 +1,11 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create account roles with an external ID {id="create-account-roles-with-external-id_{{ context }}"}
 
-Configure {{ product_title }} account roles with an external ID to ensure that {{ cluster_manager_first }} assumes your account-wide IAM roles only when the unique identifier matches your {{ aws_first }} trust policy configuration. {._abstract}
+Configure {{ product_title }} account roles with an external ID to ensure that {{ cluster_manager_first }} assumes your account-wide Identity and Access Management (IAM) roles only when the unique identifier matches your {{ aws_first }} trust policy configuration. {._abstract}
 
 **Prerequisites**
 
-*   You installed version 1.2.65 or higher of the {{ product_title }} CLI (`rosa`).
+*   You installed version 1.2.65 or higher of the {{ rosa_cli_first }}.
 *   You are logged in to your Red&#160;Hat account by running the `rosa login` command.
 *   Your AWS CLI credentials are configured with permissions to create IAM roles and policies.
 

@@ -5,7 +5,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Satisfying Ignition configuration requirements {id="machineset-upi-reqs-ignition-config_{{ context }}"}
 
-For the Machine API to provision virtual machines (VMs) with the correct initial configuration using Ignition, a valid Ignition configuration is required. The Ignition configuration contains the `machine-config-server` address and a system trust bundle for obtaining further Ignition configurations from the Machine Config Operator. {._abstract}
+For the Machine API to provision virtual machines (VMs) with the correct initial configuration using Ignition, a valid Ignition configuration is required.  {._abstract}
+
+The Ignition configuration contains the `machine-config-server` address and a system trust bundle for obtaining further Ignition configurations from the Machine Config Operator.
 
 By default, this configuration is stored in the `worker-user-data` secret in the `machine-api-operator` namespace. Compute machine sets reference the secret during the machine creation process.
 

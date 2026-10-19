@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing the status of the current project {id="cli-using-cli-project-status_{{ context }}"}
+# View the status of the current project {id="cli-using-cli-project-status_{{ context }}"}
 
 Use the `oc status` command to view information about the current project, such as services, deployments, and build configs. {._abstract}
 

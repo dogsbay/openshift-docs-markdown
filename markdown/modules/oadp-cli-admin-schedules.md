@@ -3,7 +3,7 @@
 
 You can use the {{ oadp_short }} command-line interface (CLI) to create, view, describe, and delete backup schedules. Schedules automate the creation of backups at specified intervals by using a cron expression. {._abstract}
 
-## Prerequisites {id="oadp-cli-admin-schedules-prereqs_{{ context }}"}
+**Prerequisites**
 
 *   The {{ oadp_short }} CLI plugin is installed and configured in admin mode.
 *   You are logged in to the {{ product_title }} cluster as a user with `cluster-admin` privileges.

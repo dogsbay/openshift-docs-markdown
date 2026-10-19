@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling Border Gateway Protocol (BGP) routing {id="nw-bgp-routing-config_{{ context }}"}
+# Disabling Border Gateway Protocol (BGP) routing {id="nw-bgp-routing-disable_{{ context }}"}
 
 Disable Border Gateway Protocol (BGP) routing for your cluster by removing additional routing capabilities from the network configuration. {._abstract}
 

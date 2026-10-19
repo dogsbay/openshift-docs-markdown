@@ -1,4 +1,7 @@
-/* API Symbol badges — colored by kind */
+/* API Symbol badges, coloured by kind. Text on its own 20% tint must reach
+   WCAG AA (4.5:1) on the page background: the light colours were L 0.5–0.6
+   (3.2–4.0:1) and are L 0.44 (5.0:1 or more); render-html's
+   tests/contrast.test.ts measures every kind in both modes. */
 .api-badge {
   display: inline-flex;
   align-items: center;
@@ -13,8 +16,8 @@
 }
 
 .api-badge-class {
-  background-color: oklch(0.55 0.18 265 / 0.2);
-  color: oklch(0.55 0.18 265);
+  background-color: oklch(0.44 0.18 265 / 0.2);
+  color: oklch(0.44 0.18 265);
 }
 .dark .api-badge-class {
   background-color: oklch(0.7 0.15 265 / 0.2);
@@ -22,8 +25,8 @@
 }
 
 .api-badge-meth {
-  background-color: oklch(0.55 0.15 155 / 0.2);
-  color: oklch(0.55 0.15 155);
+  background-color: oklch(0.44 0.15 155 / 0.2);
+  color: oklch(0.44 0.15 155);
 }
 .dark .api-badge-meth {
   background-color: oklch(0.7 0.15 155 / 0.2);
@@ -31,8 +34,8 @@
 }
 
 .api-badge-attr {
-  background-color: oklch(0.6 0.15 55 / 0.2);
-  color: oklch(0.6 0.15 55);
+  background-color: oklch(0.44 0.15 55 / 0.2);
+  color: oklch(0.44 0.15 55);
 }
 .dark .api-badge-attr {
   background-color: oklch(0.75 0.15 55 / 0.2);
@@ -40,8 +43,8 @@
 }
 
 .api-badge-func {
-  background-color: oklch(0.55 0.18 330 / 0.2);
-  color: oklch(0.55 0.18 330);
+  background-color: oklch(0.44 0.18 330 / 0.2);
+  color: oklch(0.44 0.18 330);
 }
 .dark .api-badge-func {
   background-color: oklch(0.7 0.15 330 / 0.2);
@@ -49,8 +52,8 @@
 }
 
 .api-badge-module {
-  background-color: oklch(0.5 0.12 200 / 0.2);
-  color: oklch(0.5 0.12 200);
+  background-color: oklch(0.44 0.12 200 / 0.2);
+  color: oklch(0.44 0.12 200);
 }
 .dark .api-badge-module {
   background-color: oklch(0.65 0.12 200 / 0.2);

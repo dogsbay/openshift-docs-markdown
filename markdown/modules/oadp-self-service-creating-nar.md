@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a NonAdminRestore CR {id="oadp-self-service-creating-nar_{{ context }}"}
+# Create a NonAdminRestore CR {id="oadp-self-service-creating-nar_{{ context }}"}
 
 Create a `NonAdminRestore` (NAR) custom resource (CR) to restore application resources from a backup to your authorized namespace. This provides an ability to recover your application data and configuration without requiring cluster administrator privileges. {._abstract}
 

@@ -1,0 +1,4 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Configuring DPU network services {id="nw-dpf-configure-dpu-network-services_{{ context }}"}
+
+You configure the network services that run on DPU nodes, including the Host Bridge Network (HBN) service, OVN-Kubernetes service, DOCA Telemetry Service (DTS), and the associated service interfaces, network attachment definitions, and IP address management resources.

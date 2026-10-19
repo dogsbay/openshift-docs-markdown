@@ -55,9 +55,10 @@ const content = code || (json !== undefined && json !== null ? JSON.stringify(js
 
 {content && (
   <div class={className}>
-    <h3 class="mb-3 text-xs font-semibold uppercase tracking-wider text-white/60">
+    {/* A label, not a heading: on an operation page it followed the h1 (axe heading-order). */}
+    <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-white/60">
       {title}
-    </h3>
+    </p>
     <CodeBlock code={content} lang={resolvedLang} copy={true} />
   </div>
 )}

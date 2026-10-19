@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Implementing restic timeout {id="restic-timeout_{{ context }}"}
+# Implement restic timeout {id="restic-timeout_{{ context }}"}
 
 Configure the Restic timeout parameter to prevent backup failures for large persistent volumes or long-running backup operations. This helps you avoid timeout errors when backing up data greater than 500GB or when backups exceed the default one-hour limit. {._abstract}
 

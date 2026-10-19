@@ -1,7 +1,10 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # AWS x86-based instance types {id="rosa-sdpolicy-aws-instance-types_{{ context }}"}
 
-:::details{title="General purpose"}
+The following x86-based instance types and sizes are available for {{ product_title }} worker nodes. {._abstract}
+
+## General purpose {id="rosa-sdpolicy-general-purpose_{{ context }}"}
+
 *   m5.xlarge (4 vCPU, 16 GiB)
 *   m5.2xlarge (8 vCPU, 32 GiB)
 *   m5.4xlarge (16 vCPU, 64 GiB)
@@ -20,7 +23,7 @@ These instance types offer 96 logical processors on 48 physical cores. They run 
 *   m5a.24xlarge (96 vCPU, 384 GiB)
 *   m5dn.metal (96 vCPU, 384 GiB)
 *   m5zn.metal (48 vCPU, 192 GiB)
-*   m5d.metal (96&#8224;  vCPU, 384 GiB)
+*   m5d.metal (96&#42; vCPU, 384 GiB)
 *   m5n.metal (96 vCPU, 384 GiB)
 *   m6a.xlarge (4 vCPU, 16 GiB)
 *   m6a.2xlarge (8 vCPU, 32 GiB)
@@ -139,17 +142,17 @@ These instance types offer 96 logical processors on 48 physical cores. They run 
 *   m8azn.metal-12xl (48 vCPU, 192 GiB)
 *   m8azn.metal-24xl (96 vCPU, 384 GiB)
 
-&#8224; These instance types offer 96 logical processors on 48 physical cores. They run on single servers with two physical Intel sockets.
-:::
+&#42; These instance types offer 96 logical processors on 48 physical cores. They run on single servers with two physical Intel sockets.
 
-:::details{title="Burstable general purpose"}
+## Burstable general purpose {id="rosa-sdpolicy-burstable-general-purpose_{{ context }}"}
+
 *   t3.xlarge (4 vCPU, 16 GiB)
 *   t3.2xlarge (8 vCPU, 32 GiB)
 *   t3a.xlarge (4 vCPU, 16 GiB)
 *   t3a.2xlarge (8 vCPU, 32 GiB)
-:::
 
-:::details{title="Memory intensive"}
+## Memory intensive {id="rosa-sdpolicy-memory-intensive_{{ context }}"}
+
 *   u7i-6tb.112xlarge (448 vCPU, 6,144 GiB)
 *   u7i-8tb.112xlarge (448 vCPU, 6,144 GiB)
 *   u7i-12tb.224xlarge (896 vCPU, 12,288 GiB)
@@ -203,9 +206,9 @@ These instance types offer 96 logical processors on 48 physical cores. They run 
 *   x8i.96xlarge (384 vCPU, 6,144 GiB)
 *   x8i.metal-48xl (192 vCPU, 3,072 GiB)
 *   x8i.metal-96xl (384 vCPU, 6,144 GiB)
-:::
 
-:::details{title="Memory optimized"}
+## Memory optimized {id="rosa-sdpolicy-memory-optimized_{{ context }}"}
+
 *   r4.xlarge (4 vCPU, 30.5 GiB)
 *   r4.2xlarge (8 vCPU, 61 GiB)
 *   r4.4xlarge (16 vCPU, 122 GiB)
@@ -375,8 +378,9 @@ These instance types offer 96 logical processors on 48 physical cores. They run 
 *   z1d.12xlarge (48 vCPU, 384 GiB)
 *   z1d.metal (48 vCPU, 384 GiB)
 This instance type offers 48 logical processors on 24 physical cores.
-:::
-:::details{title="Accelerated computing"}
+
+## Accelerated computing {id="rosa-sdpolicy-accelerated-computing_{{ context }}"}
+
 *   p3.2xlarge (8 vCPU, 61 GiB)
 *   p3.8xlarge (32 vCPU, 244 GiB)
 *   p3.16xlarge (64 vCPU, 488 GiB)
@@ -414,7 +418,7 @@ This instance type offers 48 logical processors on 24 physical cores.
 *   g7e.24xlarge (96 vCPU, 1024 GiB)
 *   g7e.48xlarge (192 vCPU, 2048 GiB)
 *   dl1.24xlarge (96 vCPU, 768 GiB)
-Intel specific; not covered by Nvidia.
+Intel specific; not covered by NVIDIA.
 *   g6.xlarge (4 vCPU, 16 GiB)
 *   g6.2xlarge (8 vCPU, 32 GiB)
 *   g6.4xlarge (16 vCPU,	64 GiB)
@@ -437,11 +441,8 @@ Intel specific; not covered by Nvidia.
 *   p6-b300.48xlarge (192 vCPU, 4,096 GiB)
 
 Support for the GPU instance type software stack is provided by AWS. Ensure that your AWS service quotas can accommodate the desired GPU instance types.
-:::
 
-:::details{title="Accelerated computing - AWS Trainium and Inferentia"}
-:::
-For more information about AWS Trainium and Inferentia instance types, see [Inferentia & Trainium instances on ROSA](https://access.redhat.com/articles/7117097).
+## Accelerated computing - AWS Trainium and Inferentia {id="rosa-sdpolicy-accelerated-computing-trainium-inferentia_{{ context }}"}
 
 *   trn1.2xlarge (8 vCPU, 32 GiB)
 *   trn1.32xlarge (128 vCPU, 512 GiB)
@@ -457,7 +458,10 @@ For more information about AWS Trainium and Inferentia instance types, see [Infe
 *   inf2.24xlarge (96 vCPU, 384 GiB)
 *   inf2.48xlarge (192 vCPU, 768 GiB)
 
-:::details{title="Compute optimized"}
+For more information about AWS Trainium and Inferentia instance types, see [Inferentia & Trainium instances on {{ product_title }}](https://access.redhat.com/articles/7117097).
+
+## Compute optimized {id="rosa-sdpolicy-compute-optimized_{{ context }}"}
+
 *   c5.xlarge (4 vCPU, 8 GiB)
 *   c5.2xlarge (8 vCPU, 16 GiB)
 *   c5.4xlarge (16 vCPU, 32 GiB)
@@ -605,9 +609,9 @@ For more information about AWS Trainium and Inferentia instance types, see [Infe
 *   m5zn.3xlarge (16 vCPU, 48 GiB)
 *   m5zn.6xlarge (32 vCPU, 96 GiB)
 *   m5zn.xlarge (4 vCPU, 16 GiB)
-:::
 
-:::details{title="Storage optimized"}
+## Storage optimized {id="rosa-sdpolicy-storage-optimized_{{ context }}"}
+
 *   c5ad.12xlarge (48 vCPU, 96 GiB)
 *   c5ad.16xlarge (64 vCPU, 128 GiB)
 *   c5ad.24xlarge (96 vCPU, 192 GiB)
@@ -672,7 +676,6 @@ This instance type offers 72 logical processors on 36 physical cores.
 *   m5d.12xlarge (48 vCPU, 192 GiB)
 *   m5d.16xlarge (64 vCPU, 256 GiB)
 *   m5d.24xlarge (96 vCPU, 384 GiB)
-:::
 
 
 :::note
@@ -682,7 +685,8 @@ Virtual instance types initialize faster than ".metal" instance types.
 :::
 
 
-:::details{title="High memory"}
+## High memory {id="rosa-sdpolicy-high-memory_{{ context }}"}
+
 *   u-3tb1.56xlarge (224 vCPU, 3,072 GiB)
 *   u-6tb1.56xlarge (224 vCPU, 6,144 GiB)
 *   u-6tb1.112xlarge (448 vCPU, 6,144 GiB)
@@ -694,9 +698,9 @@ Virtual instance types initialize faster than ".metal" instance types.
 *   u-18tb1.metal (448 vCPU, 18,432 GiB)
 *   u-24tb1.metal (448 vCPU, 24,576 GiB)
 *   u-24tb1.112xlarge (448 vCPU, 24,576 GiB)
-:::
 
-:::details{title="Network Optimized"}
+## Network optimized {id="rosa-sdpolicy-network-optimized_{{ context }}"}
+
 *   c5n.xlarge (4 vCPU, 10.5 GiB)
 *   c5n.2xlarge (8 vCPU, 21 GiB)
 *   c5n.4xlarge (16 vCPU, 42 GiB)
@@ -716,4 +720,3 @@ Virtual instance types initialize faster than ".metal" instance types.
 *   m5n.2xlarge (8 vCPU, 32 GiB)
 *   m5n.4xlarge (16 vCPU, 64 GiB)
 *   m5n.8xlarge (32 vCPU, 128 GiB)
-:::

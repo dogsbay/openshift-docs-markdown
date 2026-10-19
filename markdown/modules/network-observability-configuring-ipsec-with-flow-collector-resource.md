@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring IPsec with the FlowCollector custom resource {id="network-observability-configuring-ipsec-with-flow-collector-resource_{{ context }}"}
+# Configure IPsec with the FlowCollector custom resource {id="network-observability-configuring-ipsec-with-flow-collector-resource_{{ context }}"}
 
 Enable IPsec tracking in the `FlowCollector` resource to monitor encrypted traffic, adding an IPsec status column to the traffic flow view and generating a dedicated encryption dashboard. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Resolving error NonAdminBackupStorageLocation cannot be set as default {id="oadp-self-service-troubleshoot-nabsl-default_{{ context }}"}
+# Resolve error NonAdminBackupStorageLocation cannot be set as default {id="oadp-self-service-troubleshoot-nabsl-default_{{ context }}"}
 
 Resolve the error that occurs when you set a `NonAdminBackupStorageLocation` (NABSL) custom resource (CR) as the default backup storage location. This helps you resolve validation errors and configure backup storage locations correctly. {._abstract}
 

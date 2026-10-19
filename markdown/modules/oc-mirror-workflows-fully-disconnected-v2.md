@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Mirroring an image set in a fully disconnected environment {id="oc-mirror-workflows-fully-disconnected-v2_{{ context }}"}
+# Mirror an image set in a fully disconnected environment {id="oc-mirror-workflows-fully-disconnected-v2_{{ context }}"}
 
 You can mirror image sets in a fully disconnected environment where the {{ product_title }} cluster cannot access the public internet. {._abstract}
 

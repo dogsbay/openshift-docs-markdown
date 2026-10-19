@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Retrieving Multicloud Object Gateway credentials {id="migration-configuring-mcg_{{ context }}"}
+# Retrieve Multicloud Object Gateway credentials {id="migration-configuring-mcg_{{ context }}"}
 
 Retrieve the Multicloud Object Gateway (MCG) bucket credentials to create a `Secret` custom resource (CR) for {{ oadp_first }}. {._abstract}
 

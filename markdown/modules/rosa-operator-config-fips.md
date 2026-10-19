@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating Operator roles and policies {id="rosa-operator-config-fips_{{ context }}"}
+# Create Operator roles and policies {id="rosa-operator-config-fips_{{ context }}"}
 
 When you deploy a {{ product_title }} cluster, you must create the Operator IAM roles. The cluster Operators use the Operator roles and policies to obtain temporary permissions to perform cluster operations, such as managing storage and external access. {._abstract}
 

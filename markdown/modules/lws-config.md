@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying a leader worker set {id="lws-config_{{ context }}"}
+# Deploy a leader worker set {id="lws-config_{{ context }}"}
 
 You can use the {{ lws_operator }} to deploy a leader worker set to assist with managing distributed workloads across nodes. {._abstract}
 

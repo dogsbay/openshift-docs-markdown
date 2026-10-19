@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 
-# Learn about FedRAMP Rev5 Secure Configuration Guidance (SCG) requirements {id="rosa-fedramp-overview_{{ context }}"}
+# FedRAMP Rev5 Secure Configuration Guidance (SCG) requirements {id="rosa-fedramp-overview_{{ context }}"}
 
 Federal Risk and Authorization Management Program (FedRAMP) Rev5 Secure Configuration Guidance (SCG) gives you complete coverage for all your administrative tasks. {{ product_title }} completes all the SCG requirements for you, so you can focus on configuring your accounts to your needs. {._abstract}
 

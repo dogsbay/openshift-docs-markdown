@@ -55,6 +55,7 @@
   --color-code-fg: var(--code-foreground);
 
   /* API reference — HTTP method, type, status, role colors */
+  --color-api-field: var(--api-field);
   --color-api-get: var(--api-get);
   --color-api-post: var(--api-post);
   --color-api-put: var(--api-put);
@@ -138,6 +139,9 @@
   --api-head: oklch(0.47 0.222 286);
   --api-required: oklch(0.45 0.179 22);
   --api-deprecated: oklch(0.455 0.105 63);
+  /* A field name in an operation's description (`id`, `name`): the JSON
+     key colour of the highlighted examples (github-light-default #0550ae). */
+  --api-field: oklch(0.47 0.16 254);
   --api-type-string: oklch(0.435 0.095 162);
   --api-type-number: oklch(0.45 0.174 259);
   --api-type-boolean: oklch(0.455 0.105 63);
@@ -194,6 +198,7 @@
   --api-head: oklch(0.740 0.182 286);
   --api-required: oklch(0.805 0.194 22);
   --api-deprecated: oklch(0.745 0.15 63);
+  --api-field: oklch(0.79 0.11 245); /* github-dark-default #79c0ff */
   --api-type-string: oklch(0.690 0.135 162);
   --api-type-number: oklch(0.725 0.174 259);
   --api-type-boolean: oklch(0.720 0.15 63);

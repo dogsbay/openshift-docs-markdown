@@ -55,10 +55,10 @@ const embedUrl = `https://${domain}/embed/${id}?autoplay=1${params ? "&" + param
   tabindex="0"
   aria-label={`Play: ${title}`}
 >
-  {/* Thumbnail */}
+  {/* Thumbnail: decorative, the button's label already says "Play: <title>" (axe image-redundant-alt) */}
   <img
     src={posterUrl}
-    alt={title}
+    alt=""
     loading="lazy"
     class="absolute inset-0 h-full w-full object-cover transition-opacity duration-300 group-hover/yt:opacity-80"
   />

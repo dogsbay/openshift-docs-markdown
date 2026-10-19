@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Minimum set of effective permissions for service control policies (SCP) {id="rosa-minimum-scp_{{ context }}"}
+# Minimum set of effective permissions for service control policies {id="rosa-minimum-scp_{{ context }}"}
 
-Service control policies (SCP) are a type of organization policy that manages permissions within your organization. SCPs ensure that accounts within your organization stay within your defined access control guidelines. These policies are maintained in AWS organizations and control the services that are available within the attached AWS accounts. SCP management is the responsibility of the customer. {._abstract}
+Review a minimum set of permissions that your AWS organization’s service control policies (SCPs) must allow for {{ product_title }} to work correctly. {._abstract}
+
+SCPs are a type of organization policy that manages permissions within your organization. SCPs ensure that accounts within your organization stay within your defined access control guidelines. These policies are maintained in AWS organizations and control the services that are available within the attached AWS accounts. SCP management is the responsibility of the customer.
 
 
 :::note

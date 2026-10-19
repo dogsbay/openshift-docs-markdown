@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Mirroring Operator catalogs for use with disconnected clusters {id="olm-mirror-catalog_{{ context }}"}
+# Mirror Operator catalogs for use with disconnected clusters {id="olm-mirror-catalog_{{ context }}"}
 
 You can mirror the Operator contents of a Red Hat-provided catalog, or a custom catalog, into a container image registry using the `oc adm catalog mirror` command.  {._abstract}
 

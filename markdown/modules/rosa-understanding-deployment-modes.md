@@ -5,7 +5,7 @@ When installing a {{ product_title }} cluster that uses the AWS Security Token S
 
 
 `auto` mode
-:   With this mode, the ROSA CLI (`rosa`) immediately creates the required IAM roles and policies, and an OpenID Connect (OIDC) provider in your AWS account.
+:   With this mode, the {{ rosa_cli_first }} immediately creates the required IAM roles and policies, and an OpenID Connect (OIDC) provider in your AWS account.
 
 
 `manual` mode

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Implementing Data Mover timeout {id="datamover-timeout_{{ context }}"}
+# Implement Data Mover timeout {id="datamover-timeout_{{ context }}"}
 
 Configure the Data Mover `timeout` parameter in the `DataProtectionApplication` custom resource (CR) to define how long backup and restore operations run. Adjusting this value helps prevent timeouts in large environments over 500GB or when using the `VolumeSnapshotMover` plugin. The default value is `10m`. {._abstract}
 

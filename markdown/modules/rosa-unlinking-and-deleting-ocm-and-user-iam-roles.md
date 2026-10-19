@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Unlinking and deleting the {{ cluster_manager }} and user IAM roles {id="rosa-unlinking-and-deleting-ocm-and-user-iam-roles_{{ context }}"}
+# Unlink and delete the {{ cluster_manager }} and user IAM roles {id="rosa-unlinking-and-deleting-ocm-and-user-iam-roles_{{ context }}"}
 
 When you install a {{ product_title }} cluster by using {{ cluster_manager_first }}, you also create {{ cluster_manager }} and user Identity and Access Management (IAM) roles linked to your Red&#160;Hat organization. After deleting your cluster, you can unlink and delete the roles by using the {{ rosa_cli_first }}. {._abstract}
 
@@ -14,7 +14,7 @@ The {{ cluster_manager }} and user IAM roles are required to install and manage 
 **Prerequisites**
 
 *   You created {{ cluster_manager }} and user IAM roles and linked them to your Red&#160;Hat organization.
-*   You have installed and configured the latest ROSA CLI (`rosa`) on your installation host.
+*   You have installed and configured the latest {{ rosa_cli }} on your installation host.
 *   You have organization administrator privileges in your Red&#160;Hat organization.
 
 **Procedure**
@@ -61,7 +61,7 @@ The {{ cluster_manager }} and user IAM roles are required to install and manage 
         I: Successfully deleted the OCM role
         ```
 
-        The `OCM role deletion mode` field specifies the deletion mode. You can use `auto` mode to automatically delete the {{ cluster_manager }} IAM role and policies. In `manual` mode, the ROSA CLI generates the `aws` commands needed to delete the role and policies. `manual` mode enables you to review the details before running the `aws` commands manually.
+        The `OCM role deletion mode` field specifies the deletion mode. You can use `auto` mode to automatically delete the {{ cluster_manager }} IAM role and policies. In `manual` mode, the {{ rosa_cli }} generates the `aws` commands needed to delete the role and policies. `manual` mode enables you to review the details before running the `aws` commands manually.
 1.  Unlink the user IAM role from your Red&#160;Hat organization and delete the role:
     1.  List the user IAM roles in your AWS account:
         ```terminal
@@ -95,4 +95,4 @@ The {{ cluster_manager }} and user IAM roles are required to install and manage 
         I: Successfully deleted the user role
         ```
 
-        The `User role deletion mode` field specifies the deletion mode. You can use `auto` mode to automatically delete the user IAM role. In `manual` mode, the ROSA CLI generates the `aws` command needed to delete the role. `manual` mode enables you to review the details before running the `aws` command manually.
+        The `User role deletion mode` field specifies the deletion mode. You can use `auto` mode to automatically delete the user IAM role. In `manual` mode, the {{ rosa_cli }} generates the `aws` command needed to delete the role. `manual` mode enables you to review the details before running the `aws` command manually.

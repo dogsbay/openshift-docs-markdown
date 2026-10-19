@@ -2,7 +2,7 @@
 # Disable overcommitment for a project {id="nodes-cluster-overcommit-project-disable_{{ context }}"}
 
 {% if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
-If overcommitment is enabled on a project, you can disable overcommitment for that projects. This allows infrastructure components to be configured independently of overcommitment.
+If overcommitment is enabled on a project, you can disable overcommitment for that project. This allows infrastructure components to be configured independently of overcommitment.
 {% endif %}
 {% if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 If required by your use case, you can disable overcommitment on any project that is not managed by Red Hat. For a list of projects that cannot be modified, see "Red Hat Managed resources" in _Support_. {._abstract}

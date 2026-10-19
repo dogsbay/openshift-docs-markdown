@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the OADP Operator and providing the IAM role {id="installing-oadp-aws-sts_{{ context }}"}
+# Install the OADP Operator and provide the IAM role {id="installing-oadp-aws-sts_{{ context }}"}
 
 Install {{ oadp_first }} on an {{ aws_short }} {{ sts_short }} cluster. AWS Security Token Service (AWS STS) is a global web service that provides short-term credentials for IAM or federated users.  {._abstract}
 

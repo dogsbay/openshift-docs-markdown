@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an OpenShift Update Service application by using the CLI {id="update-service-create-service-cli_{{ context }}"}
+# Create an OpenShift Update Service application by using the CLI {id="update-service-create-service-cli_{{ context }}"}
 
 You can use the OpenShift CLI (`oc`) to create an OpenShift Update Service application. {._abstract}
 

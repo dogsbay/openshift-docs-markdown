@@ -13,7 +13,7 @@ New version of {{ product_title }} available
 
 
 Upgrade channels are available
-:   You can choose the new channels option for more precise, version-specific control over your cluster updates. You can target exact minor version paths, such as `stable-4.20` or `fast-4.21`, instead of relying on broader channel groups, which are being deprecated. For more information, see [Channels in {{ product_title }} clusters](https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/upgrading/osd-upgrades#osd-upgrading-channels_osd-upgrades).
+:   You can choose the new channels option for more precise, version-specific control over your cluster updates. You can target exact minor version paths, such as `stable-4.20` or `fast-4.21`, instead of relying on broader channel groups, which are being deprecated. For more information, see [Channels in {{ product_title }} clusters](https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/upgrading/osd-upgrades#sd-upgrading-channels_osd-upgrades).
 
 
 The `fast` upgrade channel is available as an update option

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Multicloud Object Gateway (MCG) for disaster recovery on {{ rh_storage }} {id="oadp-configuring-noobaa-for-dr_{{ context }}"}
+# Configure Multicloud Object Gateway (MCG) for disaster recovery on {{ rh_storage }} {id="oadp-configuring-noobaa-for-dr_{{ context }}"}
 
 If you use cluster storage for your MCG bucket `backupStorageLocation` on {{ rh_storage }}, configure MCG as an external object store. {._abstract}
 

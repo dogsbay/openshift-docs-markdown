@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Creating a Virtual Private Cloud for your {{ product_title }} clusters {id="rosa-hcp-creating-vpc_{{ context }}"}
+# Create a Virtual Private Cloud for your {{ product_title }} clusters {id="rosa-hcp-creating-vpc_{{ context }}"}
 
 You must have a Virtual Private Cloud (VPC) to create a {{ product_title }} cluster. {._abstract}
 

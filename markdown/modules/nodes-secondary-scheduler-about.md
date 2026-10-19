@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About the {{ secondary_scheduler_operator }} {id="nodes-secondary-scheduler-about_{{ context }}"}
+# Extend scheduling behavior with a secondary scheduler {id="nodes-secondary-scheduler-about_{{ context }}"}
 
 The {{ secondary_scheduler_operator_full }} provides a way to deploy a custom secondary scheduler in {{ product_title }}. The secondary scheduler runs alongside the default scheduler to schedule pods. Pod configurations can specify which scheduler to use. {._abstract}
 

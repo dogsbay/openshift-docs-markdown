@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating an OADP SSE-C encryption key for additional data security {id="oadp-ssec-encrypted-backups_{{ context }}"}
+# Create an OADP SSE-C encryption key for additional data security {id="oadp-ssec-encrypted-backups_{{ context }}"}
 
 Configure server-side encryption with customer-provided keys (SSE-C) to add an additional layer of encryption for backup data stored in {{ aws_first }} S3. This protects backup data if AWS credentials become exposed. {._abstract}
 

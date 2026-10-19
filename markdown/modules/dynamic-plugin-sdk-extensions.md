@@ -1,6 +1,10 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Dynamic plugin extension types {id="dynamic-plugin-sdk-extensions_{{ context }}"}
 
+Dynamic plugin extension types define the contracts for extending the {{ product_title }} web console with custom actions, navigation, pages, dashboards, topology views, and catalog items.  {._abstract}
+
+You can declare these extension types in your plugin to contribute new functionality that loads into the console at runtime.
+
 ## `console.action/filter` {id="_consoleactionfilter"}
 
 `ActionFilter` can be used to filter an action. {._abstract}

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Restoring CSI volume snapshots {id="oadp-1-3-restoring-csi-snapshots_{{ context }}"}
+# Restore CSI volume snapshots {id="oadp-1-3-restoring-csi-snapshots_{{ context }}"}
 
 You can restore a volume snapshot by creating a `Restore` CR. {._abstract}
 

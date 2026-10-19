@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Installing the OpenShift Update Service Operator {id="update-service-install_{{ context }}"}
+# Install the OpenShift Update Service Operator {id="update-service-install_{{ context }}"}
 
 To install the OpenShift Update Service, you must first install the OpenShift Update Service Operator by using the {{ product_title }} web console or CLI. {._abstract}
 

@@ -3,7 +3,12 @@
 
 {{ product_title }} clusters are tested against specific object maximums. Adhering to these supported limits helps you successfully architect and deploy a scalable, reliable environment. {._abstract}
 
+{% if not openshift_rosa_hcp %}
 These guidelines are based on a cluster of 249 compute (also known as worker) nodes in a multiple availability zone configuration. For smaller clusters, the maximums are lower.
+{% endif %}
+{% if openshift_rosa_hcp %}
+These guidelines are based on a cluster of 500 compute (also known as worker) nodes. For smaller clusters, the maximums are lower.
+{% endif %}
 
 **Tested cluster maximums**
 

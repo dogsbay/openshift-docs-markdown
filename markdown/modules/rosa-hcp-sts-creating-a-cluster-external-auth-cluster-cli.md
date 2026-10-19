@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a {{ product_title }} cluster that uses external authentication {id="rosa-hcp-sts-creating-a-cluster-external-auth-cluster-cli_{{ context }}"}
+# Create a {{ product_title }} cluster that uses external authentication {id="rosa-hcp-sts-creating-a-cluster-external-auth-cluster-cli_{{ context }}"}
 {%- set source_highlighter = "pygments" -%}
 {%- set pygments_style = "emacs" -%}
 {%- set icons = "font" %}

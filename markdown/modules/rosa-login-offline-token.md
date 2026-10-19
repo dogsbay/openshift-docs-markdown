@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Authenticate the {{ rosa_cli }} with an offline token {id="rosa-login-offline-token_{{ context }}"}
+# Authenticate the {{ rosa_cli_title }} with an offline token {id="rosa-login-offline-token_{{ context }}"}
 
 Log in to your Red&#160;Hat account, saving the credentials to the `rosa` configuration file. {._abstract}
 

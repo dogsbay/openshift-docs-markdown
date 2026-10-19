@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Scaling up the application {id="getting-started-web-console-scaling-app_{{ context }}"}
+# Scale up the application {id="getting-started-web-console-scaling-app_{{ context }}"}
 
 Scale the application deployment up or down to meet workload demands. {._abstract}
 

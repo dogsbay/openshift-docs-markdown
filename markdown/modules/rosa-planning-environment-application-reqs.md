@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Planning your environment based on application requirements {id="planning-environment-application-requirements_{{ context }}"}
+# Plan your environment based on application requirements {id="planning-environment-application-requirements_{{ context }}"}
 
 This document describes how to plan your {{ product_title }} environment based on your application requirements. {._abstract}
 

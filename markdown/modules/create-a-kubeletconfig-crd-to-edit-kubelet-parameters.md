@@ -11,6 +11,13 @@ As the fields in the `kubeletConfig` object are passed directly to the kubelet f
 :::
 
 
+You can set most kubelet configuration options. You cannot overwrite the following options:
+
+*   `CgroupDriver`
+*   `ClusterDNS`
+*   `ClusterDomain`
+*   `StaticPodPath`
+
 Consider the following guidance:
 
 *   Edit an existing `KubeletConfig` CR to modify existing settings or add new settings, instead of creating a CR for each change. It is recommended that you create a CR only to modify a different machine config pool, or for changes that are intended to be temporary, so that you can revert the changes.
@@ -174,6 +181,7 @@ Perform one of the following steps:
         *   Use `podPidsLimit` to set the maximum number of PIDs in any pod.
         *   Use `containerLogMaxSize` to set the maximum size of the container log file before it is rotated.
         *   Use `maxPods` to set the maximum pods per node.
+        *   Use `nodeStatusMaxImages` to set how many images the node reports. If a node contains more than 50 images, pod scheduling might be imbalanced because the image list is shortened to 50 by default. Set `nodeStatusMaxImages` to `-1` to disable that limit.
 
             :::note
 

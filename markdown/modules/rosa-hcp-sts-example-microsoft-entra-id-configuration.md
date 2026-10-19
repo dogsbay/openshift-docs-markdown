@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Microsoft Entra ID as an external provider {id="rosa-hcp-sts-example-microsoft-entra-id-configuration_{{ context }}"}
+# Configure Microsoft Entra ID as an external provider {id="rosa-hcp-sts-example-microsoft-entra-id-configuration_{{ context }}"}
 {%- set source_highlighter = "pygments" -%}
 {%- set pygments_style = "emacs" -%}
 {%- set icons = "font" %}

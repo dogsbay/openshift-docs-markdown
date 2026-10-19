@@ -1,16 +1,17 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Change management {id="rosa-policy-change-management_{{ context }}"}
 
-This section describes the policies about how cluster and configuration changes, patches, and releases are managed. {._abstract}
+Change management covers how cluster and configuration changes, patches, and releases are applied to {{ product_title }} clusters and who is responsible for each type of change. {._abstract}
 
-Red&#160;Hat is responsible for enabling changes to the cluster infrastructure and services that the customer will control, as well as maintaining versions for the control plane nodes, infrastructure nodes and services, and worker nodes. AWS is responsible for protecting the hardware infrastructure that runs all of the services offered in the
-AWS Cloud. The customer is responsible for initiating infrastructure change requests and installing and maintaining optional services and networking configurations on the cluster, as well as all changes to customer data and customer applications.
+*   Red&#160;Hat is responsible for enabling changes to the cluster infrastructure and services that the customer will control, as well as maintaining versions for the control plane nodes, infrastructure nodes and services, and worker nodes.
+*   AWS is responsible for protecting the hardware infrastructure that runs all of the services offered in the AWS Cloud.
+*   The customer is responsible for initiating infrastructure change requests and installing and maintaining optional services and networking configurations on the cluster, as well as all changes to customer data and customer applications.
 
 ## Customer-initiated changes {id="rosa-policy-customer-initiated-changes_{{ context }}"}
 
 You can initiate changes using self-service capabilities such as cluster deployment, worker node scaling, or cluster deletion.
 
-Change history is captured in the **Cluster History** section in the OpenShift Cluster Manager **Overview tab**, and is available for you to view. The change history includes, but is not limited to, logs from the following changes:
+Change history is captured in the **Cluster History** section in the {{ cluster_manager }} **Overview tab**, and is available for you to view. The change history includes, but is not limited to, logs from the following changes:
 
 *   Adding or removing identity providers
 *   Adding or removing users to or from the `dedicated-admins` group
@@ -50,7 +51,7 @@ Some changes are released to production incrementally, using feature flags to co
 
 ## Patch management {id="rosa-policy-patch-management_{{ context }}"}
 
-OpenShift Container Platform software and the underlying immutable Red&#160;Hat CoreOS (RHCOS) operating system image are patched for bugs and vulnerabilities in regular z-stream upgrades. Read more about [RHCOS architecture](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.6/html/architecture/architecture-rhcos) in the OpenShift Container Platform documentation.
+{{ OCP }} software and the underlying immutable Red&#160;Hat CoreOS (RHCOS) operating system image are patched for bugs and vulnerabilities in regular z-stream upgrades. Read more about [RHCOS architecture](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/architecture/architecture-rhcos) in the {{ OCP }} documentation.
 
 ## Release management {id="rosa-policy-release-management_{{ context }}"}
 
@@ -91,23 +92,23 @@ The following table defines the responsibilities for cluster resources.
 </tr>
 <tr>
   <td>Application networking</td>
-  <td><strong>Red&#160;Hat</strong><br><br><ul><li>Set up public load balancers. Provide the ability to set up private load balancers and up to one additional load balancer when required.</li><li>Set up native OpenShift router service. Provide the ability to set the router as private and add up to one additional router shard.</li><li>Install, configure, and maintain OVN-Kubernetes components for default internal pod traffic.</li><li>Provide the ability for the customer to manage <code>NetworkPolicy</code> and <code>EgressNetworkPolicy</code> (firewall) objects.</li></ul></td>
+  <td><strong>Red&#160;Hat</strong><br><br><ul><li>Set up public load balancers. Provide the ability to set up private load balancers and up to one additional load balancer when required.</li><li>Set up native {{ OCP_short }} router service. Provide the ability to set the router as private and add up to one additional router shard.</li><li>Install, configure, and maintain OVN-Kubernetes components for default internal pod traffic.</li><li>Provide the ability for the customer to manage <code>NetworkPolicy</code> and <code>EgressNetworkPolicy</code> (firewall) objects.</li></ul></td>
   <td><ul><li>Configure non-default pod network permissions for project and pod networks, pod ingress, and pod egress using <code>NetworkPolicy</code> objects.</li><li>Use {{ cluster_manager }} to request a private load balancer for default application routes.</li><li>Use {{ cluster_manager }} to configure up to one additional public or private router shard and corresponding load balancer.</li><li>Request and configure any additional service load balancers for specific services.</li><li>Configure any necessary DNS forwarding rules.</li></ul></td>
 </tr>
 <tr>
   <td>Cluster networking</td>
-  <td><strong>Red&#160;Hat</strong><br><br><ul><li>Set up cluster management components, such as public or private service endpoints and necessary integration with Amazon VPC components.</li><li>Set up internal networking components required for internal cluster communication between worker</li></ul>clusters and control planes.</td>
-  <td><ul><li>Configure your firewall to grant access to the required OpenShift and AWS domains and ports before the cluster is provisioned. For more information, see "AWS firewall prerequisites".</li><li>Provide optional non-default IP address ranges for machine CIDR, service CIDR, and pod CIDR if needed through {{ cluster_manager }} when the cluster is provisioned.</li><li>Request that the API service endpoint be made public or private on cluster creation or after cluster creation through {{ cluster_manager }}.</li><li>Create additional Ingress Controllers to publish additional application routes.</li><li>Install, configure, and upgrade optional CNI plugins if clusters are installed without the default OpenShift CNI plugins.</li></ul></td>
+  <td><strong>Red&#160;Hat</strong><br><br><ul><li>Set up cluster management components, such as public or private service endpoints and necessary integration with Amazon virtual private cloud (VPC) components.</li><li>Set up internal networking components required for internal cluster communication between worker clusters and control planes.</li></ul></td>
+  <td><ul><li>Configure your firewall to grant access to the required {{ OCP_short }} and AWS domains and ports before the cluster is provisioned. For more information, see "AWS firewall prerequisites".</li><li>Provide optional non-default IP address ranges for machine Classless Inter-Domain Routing (CIDR), service CIDR, and pod CIDR if needed through {{ cluster_manager }} when the cluster is provisioned.</li><li>Request that the API service endpoint be made public or private on cluster creation or after cluster creation through {{ cluster_manager }}.</li><li>Create additional Ingress Controllers to publish additional application routes.</li><li>Install, configure, and upgrade optional Container Network Interface (CNI) plugins if clusters are installed without the default {{ OCP_short }} CNI plugins.</li></ul></td>
 </tr>
 <tr>
   <td>Virtual networking management</td>
-  <td><strong>Red&#160;Hat</strong><br><br><ul><li>Set up and configure Amazon VPC components required to provision the cluster, such as subnets, load balancers, internet gateways, and NAT gateways.</li><li>Provide the ability for the customer to</li></ul>manage AWS VPN connectivity with on-premise resources, Amazon VPC-to-VPC connectivity, and AWS Direct Connect as required through  {{ cluster_manager }}.<br><br><ul><li>Enable customers to create and deploy AWS load balancers for use with service load balancers.</li></ul></td>
+  <td><strong>Red&#160;Hat</strong><br><br><ul><li>Set up and configure Amazon VPC components required to provision the cluster, such as subnets, load balancers, internet gateways, and NAT gateways.</li><li>Provide the ability for the customer to manage AWS VPN connectivity with on-premise resources, Amazon VPC-to-VPC connectivity, and AWS Direct Connect as required through  {{ cluster_manager }}.</li><li>Enable customers to create and deploy AWS load balancers for use with service load balancers.</li></ul></td>
   <td><ul><li>Set up and maintain optional Amazon VPC components, such as Amazon VPC-to-VPC connection, AWS VPN connection, or AWS Direct Connect.</li><li>Request and configure any additional service load balancers for specific services.</li></ul></td>
 </tr>
 <tr>
   <td>Virtual compute management</td>
-  <td><strong>Red&#160;Hat</strong><br><br><ul><li>Set up and configure the ROSA control plane and data plane to use Amazon EC2 instances for cluster compute.</li><li>Monitor and manage the deployment of Amazon EC2 control plane and infrastructure nodes on the cluster.</li></ul></td>
-  <td><ul><li>Monitor and manage Amazon EC2 worker nodes by creating a</li></ul>machine pool using the OpenShift Cluster Manager or the ROSA CLI (<code>rosa</code>).<ul><li>Manage changes to customer-deployed applications and application data.</li></ul></td>
+  <td><strong>Red&#160;Hat</strong><br><br><ul><li>Set up and configure the {{ product_title }} control plane and data plane to use Amazon EC2 instances for cluster compute.</li><li>Monitor and manage the deployment of Amazon EC2 control plane and infrastructure nodes on the cluster.</li></ul></td>
+  <td><ul><li>Monitor and manage Amazon EC2 worker nodes by creating a machine pool using the {{ cluster_manager }} or the {{ rosa_cli_first }}.</li><li>Manage changes to customer-deployed applications and application data.</li></ul></td>
 </tr>
 <tr>
   <td>Cluster version</td>
@@ -121,18 +122,18 @@ The following table defines the responsibilities for cluster resources.
 </tr>
 <tr>
   <td>Virtual storage management</td>
-  <td><strong>Red&#160;Hat</strong><br><br><ul><li>Set up and configure Amazon EBS to provision local node storage and persistent volume storage for the cluster.</li><li>Set up and configure the built-in image registry to use Amazon S3 bucket storage. <sup>[1]</sup></li><li>Regularly prune image registry resources in</li></ul>Amazon S3 to optimize Amazon S3 usage and cluster performance. <sup>[2]</sup></td>
-  <td><ul><li>Optionally configure the Amazon EBS CSI driver or the Amazon</li></ul>EFS CSI driver to provision persistent volumes on the cluster.</td>
+  <td><strong>Red&#160;Hat</strong><br><br><ul><li>Set up and configure Amazon Elastic Block Store (EBS) to provision local node storage and persistent volume storage for the cluster.</li><li>Set up and configure the built-in image registry to use Amazon S3 bucket storage. <sup>[1]</sup></li><li>Regularly prune image registry resources in Amazon S3 to optimize Amazon S3 usage and cluster performance. <sup>[2]</sup></li></ul></td>
+  <td><ul><li>Optionally configure the Amazon EBS Container Storage Interface (CSI) driver or the Amazon Elastic File System (EFS) CSI driver to provision persistent volumes on the cluster.</li></ul></td>
 </tr>
 <tr>
   <td>AWS software (public AWS services)</td>
-  <td><strong>AWS</strong><br><br><strong>Compute:</strong> Provide the Amazon EC2 service, used for ROSA relevant resources.<br><br><strong>Storage:</strong> Provide Amazon EBS, used by ROSA to provision local node storage and persistent volume storage for the cluster.<br><br><strong>Storage:</strong> Provide Amazon S3, used for the ROSA built-in image registry.<br><br><strong>Networking:</strong> Provide the following AWS Cloud services, used by ROSA to satisfy virtual networking infrastructure needs:<br><br><ul><li><ul><li>Amazon VPC</li><li>Elastic Load Balancing</li><li>AWS IAM</li><li>AWS STS</li></ul></li></ul><strong>Networking:</strong> Provide the following AWS services, which customers can optionally integrate with ROSA:<br><br><ul><li>AWS VPN</li><li>AWS Direct Connect</li><li>AWS PrivateLink</li><li>AWS Transit Gateway</li></ul></td>
-  <td><ul><li>Sign requests using an access key ID and secret access key</li></ul>associated with an IAM principal or STS temporary security credentials.<ul><li>Specify VPC subnets for the cluster to use during cluster</li></ul>creation.<ul><li>Optionally configure a customer-managed VPC for use with ROSA clusters (required for PrivateLink and HCP clusters).</li></ul></td>
+  <td><strong>AWS</strong><br><br><strong>Compute:</strong> Provide the Amazon EC2 service, used for {{ product_title }} relevant resources.<br><br><strong>Storage:</strong> Provide Amazon EBS, used by {{ product_title }} to provision local node storage and persistent volume storage for the cluster.<br><br><strong>Storage:</strong> Provide Amazon S3, used for the {{ product_title }} built-in image registry.<br><br><strong>Networking:</strong> Provide the following AWS Cloud services, used by {{ product_title }} to satisfy virtual networking infrastructure needs:<br><br><ul><li><ul><li>Amazon VPC</li><li>Elastic Load Balancing</li><li>AWS IAM</li><li>AWS STS</li></ul></li></ul><strong>Networking:</strong> Provide the following AWS services, which customers can optionally integrate with {{ product_title }}:<br><br><ul><li>AWS VPN</li><li>AWS Direct Connect</li><li>AWS PrivateLink</li><li>AWS Transit Gateway</li></ul></td>
+  <td><ul><li>Sign requests using an access key ID and secret access key associated with an IAM principal or STS temporary security credentials.</li><li>Specify VPC subnets for the cluster to use during cluster creation.</li><li>Optionally configure a customer-managed VPC for use with {{ product_title }} clusters (required for PrivateLink and HCP clusters).</li></ul></td>
 </tr>
 <tr>
   <td>Hardware/AWS global infrastructure</td>
-  <td><strong>AWS</strong><br><br><ul><li>For information regarding  management controls for AWS data centers, see <a href="https://aws.amazon.com/compliance/data-center/controls">Our Controls</a> on the AWS Cloud Security page.</li><li>For information regarding change management best practices, see <a href="https://aws.amazon.com/solutions/guidance/change-management-on-aws/">Guidance for Change Management on AWS</a> in the AWS Solutions Library.</li></ul></td>
-  <td><ul><li>Implement change management best practices for customer</li></ul>applications and data hosted on the AWS Cloud.</td>
+  <td><strong>AWS</strong><br><br><ul><li>For information regarding  management controls for AWS data centers, see <a href="https://aws.amazon.com/compliance/data-center/controls">AWS data center controls</a> on the AWS Cloud Security page.</li><li>For information regarding change management best practices, see <a href="https://aws.amazon.com/solutions/guidance/change-management-on-aws/">Guidance for Change Management on AWS</a> in the AWS Solutions Library.</li></ul></td>
+  <td><ul><li>Implement change management best practices for customer applications and data hosted on the AWS Cloud.</li></ul></td>
 </tr>
 </tbody>
 </table>

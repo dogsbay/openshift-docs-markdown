@@ -1,4 +1,6 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Configuring network policy for the operand {id="external-secrets-operator-config-net-policy-con_{{ context }}"}
 
-The {{ external_secrets_operator }} for {{ product_title }} includes pre-defined `NetworkPolicies` for security that rejects all egress traffic and allows traffic towards services that are required for the operand functionality. You must configure additional custom policies to allow the `external-secrets` controller to egress traffic towards external providers. These configurable policies are set through the `ExternalSecretsConfig` custom resource to establish the egress allow policy.
+The {{ external_secrets_operator }} for {{ product_title }} includes pre-defined `NetworkPolicies` for security that rejects all egress traffic and allows traffic towards services that are required for the operand functionality.  {._abstract}
+
+You must configure additional custom policies to allow the `external-secrets` controller to egress traffic towards external providers. These configurable policies are set through the `ExternalSecretsConfig` custom resource to establish the egress allow policy.

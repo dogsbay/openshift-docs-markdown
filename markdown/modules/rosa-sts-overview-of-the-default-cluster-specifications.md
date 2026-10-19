@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Overview of the default cluster specifications {id="rosa-sts-overview-of-the-default-cluster-specifications_{{ context }}"}
+# Default cluster specifications {id="rosa-sts-overview-of-the-default-cluster-specifications_{{ context }}"}
 
 You can quickly create a {{ product_title }} cluster by using the default installation options. {._abstract}
 

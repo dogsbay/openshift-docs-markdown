@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a Virtual Private Cloud using Terraform {id="rosa-hcp-vpc-terraform_{{ context }}"}
+# Create a Virtual Private Cloud using Terraform {id="rosa-hcp-vpc-terraform_{{ context }}"}
 
 Terraform is a tool that allows you to create various resources using an established template. You can use Terraform with default options to create a virtual private cloud (VPC) for your {{ product_title }} cluster. {._abstract}
 

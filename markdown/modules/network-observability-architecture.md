@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Network Observablity Operator architecture {id="network-observability-architecture_{{ context }}"}
+# Network Observability Operator architecture {id="network-observability-architecture_{{ context }}"}
 
 Review the Network Observability Operator architecture, detailing how the `FlowCollector` resource manages the `eBPF agent`, which collects and enriches flows, sending the data to Loki for storage or Prometheus for metrics. {._abstract}
 

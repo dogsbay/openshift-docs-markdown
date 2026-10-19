@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Uninstalling the {{ cli_manager }} {id="cli-manager-uninstalling_{{ context }}"}
 
-You can uninstall the {{ cli_manager }} by using the web console.
+You can uninstall the {{ cli_manager }} by using the web console. {._abstract}
 
 **Prerequisites**
 

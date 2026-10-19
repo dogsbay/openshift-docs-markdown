@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Important FlowCollector configuration considerations {id="network-observability-important-flowcollector-configuration-considerations_{{ context }}"}
+# Important FlowCollector configuration considerations {id="network-observability-important-flowcollector-configuration-consideration_{{ context }}"}
 
 Review essential `FlowCollector` configuration options before initial deployment to avoid pod disruptions caused by later reconfiguration. Key settings include Kafka integration, enriched flow data exports, SR-IOV traffic monitoring, and advanced tracking for DNS and packet drops. {._abstract}
 

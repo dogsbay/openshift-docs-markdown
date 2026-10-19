@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Logging in to the OpenShift CLI using a web browser {id="cli-logging-in-web_{{ context }}"}
+# Log in to the OpenShift CLI using a web browser {id="cli-logging-in-web_{{ context }}"}
 
 You can log in to the {{ oc_first }} with the help of a web browser to access and manage your cluster. This allows you to avoid inserting your access token into the command line. {._abstract}
 

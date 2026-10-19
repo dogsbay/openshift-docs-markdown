@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Debugging Velero resources with the OpenShift CLI tool {id="oadp-debugging-oc-cli_{{ context }}"}
+# Debug Velero resources with the OpenShift CLI tool {id="oadp-debugging-oc-cli_{{ context }}"}
 
 Debug a failed backup or restore by checking Velero custom resources (CRs) and the `Velero` pod log with the OpenShift CLI tool. {._abstract}
 

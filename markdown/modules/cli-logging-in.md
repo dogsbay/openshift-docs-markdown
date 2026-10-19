@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Logging in to the OpenShift CLI {id="cli-logging-in_{{ context }}"}
+# Log in to the OpenShift CLI {id="cli-logging-in_{{ context }}"}
 
 You can log in to the OpenShift CLI (`oc`) to access and manage your cluster. {._abstract}
 

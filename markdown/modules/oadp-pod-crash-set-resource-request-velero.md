@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting resource requests for a Velero pod {id="oadp-pod-crash-resource-request-velero_{{ context }}"}
+# Set resource requests for a Velero pod {id="oadp-pod-crash-resource-request-velero_{{ context }}"}
 
 Use the `configuration.velero.podConfig.resourceAllocations` specification field in the `oadp_v1alpha1_dpa.yaml` file to set specific resource requests for a `Velero` pod. {._abstract}
 

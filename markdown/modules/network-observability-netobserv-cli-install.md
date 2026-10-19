@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Network Observability CLI {id="network-observability-cli-install_{{ context }}"}
+# Install the Network Observability CLI {id="network-observability-cli-install_{{ context }}"}
 
 The Network Observability CLI gives you a lightweight way to quickly debug and troubleshoot network observability. It must be installed separately. {._abstract}
 

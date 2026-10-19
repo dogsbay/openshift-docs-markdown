@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Mapping storage classes with OADP {id="oadp-storage-class-mapping-oadp_{{ context }}"}
+# Map storage classes with OADP {id="oadp-storage-class-mapping-oadp_{{ context }}"}
 
 Change the storage class of a persistent volume (PV) during a restore by configuring a storage class mapping in the Velero namespace. This helps you customize storage destinations when recovering applications with {{ oadp_short }}. {._abstract}
 

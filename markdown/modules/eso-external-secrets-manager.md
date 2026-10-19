@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # externalSecretsManager {id="eso-external-secrets-manager_{{ context }}"}
 
-The `externalSecretsManager` object defines the configuration and information of deployments managed by the {{ external_secrets_operator_short }}. Set the name to `cluster` as this allows only one instance of `externalSecretsManager` per cluster. You can configure global options by using `externalSecretsManager`. This serves as a centralized configuration for managing multiple controllers of the Operator. The Operator automatically creates the `externalSecretsManager` object during installation. {._abstract}
+The `externalSecretsManager` object defines the configuration and information of deployments managed by the {{ external_secrets_operator_short }}.  {._abstract}
+
+Set the name to `cluster` as this allows only one instance of `externalSecretsManager` per cluster. You can configure global options by using `externalSecretsManager`. This serves as a centralized configuration for managing multiple controllers of the Operator. The Operator automatically creates the `externalSecretsManager` object during installation.
 
 | Field | Type | Description |
 | --- | --- | --- |

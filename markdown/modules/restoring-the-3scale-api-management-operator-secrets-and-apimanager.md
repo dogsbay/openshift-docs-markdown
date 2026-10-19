@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Restoring the 3scale API Management operator, secrets, and APIManager {id="restoring-the-3scale-api-management-operator-secrets-and-apimanager_{{ context }}"}
+# Restore the 3scale API Management operator, secrets, and APIManager {id="restoring-the-3scale-api-management-operator-secrets-and-apimanager_{{ context }}"}
 
 Restore the Red&#160;Hat 3scale API Management operator resources, including the `Secret` and APIManager custom resources (CRs). This helps you to recover your 3scale operator configuration on the same or a different cluster. {._abstract}
 

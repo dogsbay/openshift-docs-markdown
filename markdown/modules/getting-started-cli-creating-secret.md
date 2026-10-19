@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Providing access to the database by creating a secret {id="getting-started-cli-creating-secret_{{ context }}"}
+# Provide access to the database by creating a secret {id="getting-started-cli-creating-secret_{{ context }}"}
 
 Create a `Secret` resource to securely provide the back-end application with the sensitive database connection credentials. {._abstract}
 

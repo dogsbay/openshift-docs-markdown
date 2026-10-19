@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Updating the {{ rosa_cli }} {id="rosa-updating-the-rosa-cli_{{ context }}"}
+# Updating the {{ rosa_cli_title }} {id="rosa-updating-the-rosa-cli_{{ context }}"}
 
 Update the {{ rosa_cli_first }} to the latest version that works with your cluster. {._abstract}
 

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Resolving incorrect {{ aws_short }} credentials {id="resolving-incorrect-aws-credentials-issue_{{ context }}"}
+# Resolve incorrect {{ aws_short }} credentials {id="resolving-incorrect-aws-credentials-issue_{{ context }}"}
 
 Resolve credential errors such as `InvalidAccessKeyId` or `NoCredentialProviders` that occur when the `credentials-velero` file is incorrectly formatted. This helps you configure valid {{ aws_short }} credentials for {{ oadp_short }} backup operations. {._abstract}
 

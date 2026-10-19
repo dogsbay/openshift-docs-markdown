@@ -1,13 +1,21 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure HAProxy reload interval {id="configuring-haproxy-interval_{{ context }}"}
 
-You can configure the HAProxy reload interval, so that when HAProxy reloads it generates a new process that handles new connections by using the updated configuration. {._abstract}
+To reduce how often the router reloads HAProxy, change the minimum reload interval on the Ingress Controller. By doing this task, you can spread reload work over time and limit resource use from long-lived connections. {._abstract}
 
-When you update a route or an endpoint associated with a route, the {{ product_title }} router updates the configuration for HAProxy. The HAProxy then reloads the updated configuration for those changes to take effect.
 
-HAProxy keeps the old process running to handle existing connections until those connections are all closed. When old processes have long-lived connections, these processes can accumulate and consume resources.
+:::note
 
-The default minimum HAProxy reload interval is 5 seconds. You can configure an Ingress Controller using its `spec.tuningOptions.reloadInterval` field to set a longer minimum reload interval.
+The higher the reload interval, the longer a route update takes.
+
+:::
+
+
+When you update a route or an endpoint associated with a route, the {{ product_title }} router updates the configuration for HAProxy and reloads it so those changes take effect. Each reload starts a new HAProxy process for new connections while the old process handles existing connections until they close.
+
+When connections last a long time, old processes can accumulate and consume resources.
+
+The default minimum HAProxy reload interval is 5 seconds. You can configure an Ingress Controller by using its `spec.tuningOptions.reloadInterval` field to set a longer minimum reload interval.
 
 
 :::warning

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Operator IAM role AWS CLI reference {id="rosa-sts-operator-role-aws-cli_{{ context }}"}
 
-This section lists the `aws` CLI commands that are shown in the terminal when you run the following `rosa` command using `manual` mode:
+In manual mode, you can review and modify the generated commands before running them, giving you full control over the Identity and Access Management (IAM) resources created in your AWS account. {._abstract}
+
+Running the following `rosa` command generates the `aws` CLI commands that create your Operator IAM roles:
 
 ```terminal
 $ rosa create operator-roles --mode manual --cluster <cluster_name>

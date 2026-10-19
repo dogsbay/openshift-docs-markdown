@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling and disabling {{ oadp_short }} Self-Service {id="oadp-self-service-admin-enable-disable_{{ context }}"}
+# Enable and disable {{ oadp_short }} Self-Service {id="oadp-self-service-admin-enable-disable_{{ context }}"}
 
 Enable or disable the {{ oadp_short }} Self-Service feature to allow namespace administrators to manage their own backup and restore operations without cluster admin privileges. This helps you delegate backup responsibilities while maintaining administrative control. {._abstract}
 

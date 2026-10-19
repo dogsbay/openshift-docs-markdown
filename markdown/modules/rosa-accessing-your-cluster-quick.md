@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accessing your cluster quickly {id="rosa-accessing-your-cluster-quick_{{ context }}"}
+# Access your cluster quickly {id="rosa-accessing-your-cluster-quick_{{ context }}"}
 
 Access your cluster by using the required administrative credentials and the {{ oc_first }}. {._abstract}
 

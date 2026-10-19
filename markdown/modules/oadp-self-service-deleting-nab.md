@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting a NonAdminBackup CR {id="oadp-self-service-deleting-nab_{{ context }}"}
+# Delete a NonAdminBackup CR {id="oadp-self-service-deleting-nab_{{ context }}"}
 
 As a namespace admin user, you can delete a `NonAdminBackup` (NAB) custom resource (CR). {._abstract}
 

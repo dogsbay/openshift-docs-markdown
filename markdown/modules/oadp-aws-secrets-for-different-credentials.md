@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating profiles for different credentials {id="oadp-aws-secrets-for-different-credentials_{{ context }}"}
+# Create profiles for different credentials {id="oadp-aws-secrets-for-different-credentials_{{ context }}"}
 
 If your backup and snapshot locations use different credentials, you create separate profiles in the `credentials-velero` file. {._abstract}
 

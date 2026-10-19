@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Granting view permissions {id="getting-started-cli-granting-permissions_{{ context }}"}
+# Grant view permissions {id="getting-started-cli-granting-permissions_{{ context }}"}
 
 Configure the necessary permissions for the application to access the required cluster resources. {._abstract}
 

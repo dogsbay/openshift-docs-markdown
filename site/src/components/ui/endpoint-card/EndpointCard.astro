@@ -51,10 +51,68 @@ const { method, path, baseUrl, summary, description, deprecated = false, class: 
 
   {summary && <p class="text-sm text-muted-foreground">{summary}</p>}
   {description && description !== summary && (
-    <div class="text-sm text-muted-foreground" set:html={description} />
+    <div class="api-description text-sm text-muted-foreground" set:html={description} />
   )}
 
   <div class="space-y-3">
     <slot />
   </div>
 </div>
+
+<style is:global>
+  /* An operation's description is Markdown rendered to HTML (lists, code,
+     paragraphs), placed where the page's prose styles do not reach: without
+     these a bulleted field list reads as loose lines. */
+  .api-description > * + * {
+    margin-top: 0.5rem;
+  }
+  .api-description ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+  .api-description ol {
+    list-style: decimal;
+    padding-left: 1.25rem;
+  }
+  .api-description li + li,
+  .api-description li > ul,
+  .api-description li > ol {
+    margin-top: 0.125rem;
+  }
+  .api-description ul ul {
+    list-style: circle;
+  }
+  /* Field names (`id`, `scm_type`) stand out in the JSON key colour,
+     on a faint tint of it. Override --api-field in the theme to change it; a site
+     scaffolded before the token existed gets --api-post, the same blue. */
+  .api-description code {
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 0.85em;
+    font-weight: 600;
+    color: var(--api-field, var(--api-post, var(--foreground)));
+    background-color: color-mix(in oklab, var(--api-field, var(--api-post, var(--foreground))) 8%, transparent);
+    border-radius: 0.25rem;
+    padding: 0.0625rem 0.3rem;
+  }
+  /* A code block in a description (a JSON shape, `?order_by=`) is one
+     full-width block, as Swagger UI shows it: the chip styling above,
+     applied per line, read as a stack of separate highlights. */
+  .api-description pre {
+    overflow-x: auto;
+    border-radius: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    background-color: var(--code-background, color-mix(in oklab, var(--foreground) 6%, transparent));
+  }
+  .api-description pre code {
+    display: block;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    white-space: pre;
+  }
+  .api-description a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>

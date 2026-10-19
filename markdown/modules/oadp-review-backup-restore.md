@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Previewing resources before running backup and restore {id="oadp-review-backup-restore_{{ context }}"}
+# Preview resources before running backup and restore {id="oadp-review-backup-restore_{{ context }}"}
 
 Preview the backup and restore resources in advance by doing a dry run of the backup and restore operations. This helps you to verify which resources will be included before committing to a full backup or restore. {._abstract}
 

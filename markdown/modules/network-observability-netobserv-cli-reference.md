@@ -2,7 +2,7 @@
 
 # Network Observability CLI usage {id="network-observability-netobserv-cli-reference_{{ context }}"}
 
-You can use the Network Observability CLI (`oc netobserv`) to pass command line arguments to capture flows data, packets data, and metrics for further analysis and enable features supported by the Network Observability Operator.
+You can use the Network Observability CLI (`oc netobserv`) to pass command line arguments to capture flows data, packets data, and metrics for further analysis and enable features supported by the Network Observability Operator. {._abstract}
 
 ## Syntax {id="cli-syntax_{{ context }}"}
 The basic syntax for `oc netobserv` commands:

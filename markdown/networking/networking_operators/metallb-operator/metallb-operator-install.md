@@ -23,7 +23,7 @@ MetalLB and IP failover are incompatible. If you configured IP failover for your
 
 {% leveloffset +2 %}{% include "./modules/nw-metallb-operator-setting-pod-priority-affinity.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/nw-metallb-operator-setting-pod-CPU-limits.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/nw-metallb-operator-setting-pod-cpu-limits.md" %}{% endleveloffset %}
 
 ## Additional resources {id="additional-resources_metallb-operator-install" ._additional-resources}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a default Secret {id="oadp-creating-default-secret_{{ context }}"}
+# Create a default Secret {id="oadp-creating-default-secret_{{ context }}"}
 
 You create a default `Secret` if your backup and snapshot locations use the same credentials or if you do not require a snapshot location. {._abstract}
 

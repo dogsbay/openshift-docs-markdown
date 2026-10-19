@@ -5,7 +5,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Obtaining the infrastructure ID {id="machineset-upi-reqs-infra-id_{{ context }}"}
 
-To ensure the Machine API correctly identifies and manages virtual machines (VMs) that belong to a specific cluster, you must add the unique infrastructure ID to the `MachineSet` YAML file to label and link resources. To create compute machine sets, you must be able to supply the infrastructure ID for your cluster. {._abstract}
+To ensure the Machine API correctly identifies and manages virtual machines (VMs) that belong to a specific cluster, you must add the unique infrastructure ID to the `MachineSet` YAML file to label and link resources.  {._abstract}
+
+To create compute machine sets, you must be able to supply the infrastructure ID for your cluster.
 
 **Procedure**
 

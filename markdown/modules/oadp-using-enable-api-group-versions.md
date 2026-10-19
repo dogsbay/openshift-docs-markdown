@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using Enable API Group Versions {id="oadp-using-enable-api-group-versions_{{ context }}"}
+# Use Enable API Group Versions {id="oadp-using-enable-api-group-versions_{{ context }}"}
 
 Configure the `EnableAPIGroupVersions` feature flag to back up all Kubernetes API group versions that are supported on a cluster, not only the preferred one. This helps you maintain compatibility across different API groups in your cluster. {._abstract}
 

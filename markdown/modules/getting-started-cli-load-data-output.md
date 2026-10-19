@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Loading data into the database {id="getting-started-cli-load-data-output_{{ context }}"}
+# Load data into the database {id="getting-started-cli-load-data-output_{{ context }}"}
 
 After you have deployed the `mongodb-nationalparks` database application, load the national park location information into the database. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the OADP Operator {id="installing-operator-oadp_{{ context }}"}
+# Install the OADP Operator {id="installing-operator-oadp_{{ context }}"}
 
 Install the {{ oadp_short }} Operator by using the {{ product_title }} web console. {._abstract}
 

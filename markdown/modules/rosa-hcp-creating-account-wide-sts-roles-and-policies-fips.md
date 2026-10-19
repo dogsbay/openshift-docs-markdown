@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the account-wide STS roles and policies {id="rosa-sts-creating-account-wide-sts-roles-and-policies-fips_{{ context }}"}
+# Create the account-wide STS roles and policies {id="rosa-sts-creating-account-wide-sts-roles-and-policies-fips_{{ context }}"}
 
 Before you create a {{ product_title }} cluster, you must create the required account-wide IAM roles and policies by using the {{ rosa_cli_first }}. {._abstract}
 

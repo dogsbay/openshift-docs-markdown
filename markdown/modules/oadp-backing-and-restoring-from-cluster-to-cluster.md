@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Backing up data from one cluster and restoring it to another cluster {id="oadp-backing-and-restoring-from-cluster-to-cluster_{{ context }}"}
+# Back up data from one cluster and restore it to another cluster {id="oadp-backing-and-restoring-from-cluster-to-cluster_{{ context }}"}
 
 Review the specific prerequisites and procedure differences to successfully back up data on one cluster and restore it to another. This helps you adapt standard {{ oadp_short }} tasks for cross-cluster data recovery. {._abstract}
 
