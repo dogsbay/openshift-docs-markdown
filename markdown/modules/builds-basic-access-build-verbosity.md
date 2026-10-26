@@ -39,10 +39,8 @@ Level 5
 **Procedure**
 
 *   To enable more verbose output, pass the `BUILD_LOGLEVEL` environment variable as part of the `sourceStrategy`
-    {%- if not openshift_online %}
-    or `dockerStrategy`
-    {%- endif %}
-    in a `BuildConfig`:
+or `dockerStrategy`
+in a `BuildConfig`:
     ```yaml
     sourceStrategy:
     ...

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a namespace for user-defined networks by using the CLI {id="virt-creating-udn-namespace-cli_{{ context }}"}
+# Create a namespace for overlay networks by using the CLI {id="virt-creating-udn-namespace-cli_{{ context }}"}
 
 You can create a namespace to be used with primary user-defined networks (UDNs) by using the {{ oc_first }}. {._abstract}
 

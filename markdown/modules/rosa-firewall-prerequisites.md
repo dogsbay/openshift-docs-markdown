@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Firewall prerequisites for {{ product_title }} {id="rosa-firewall-prerequisites_{{ context }}"}
 
-If you are using a firewall to control egress traffic from {{ product_title }}, your Virtual Private Cloud (VPC) must be able to complete requests from the cluster to the Amazon S3 service, for example, via an Amazon S3 gateway. You must also configure your firewall to grant access to the following domain and port combinations. {._abstract}
+If you are using a firewall to control egress traffic from {{ product_title }}, your Virtual Private Cloud (VPC) must be able to complete requests from the cluster to the Amazon S3 service, for example, via an Amazon S3 gateway. {._abstract}
+
+You must also configure your firewall to grant access to the following domain and port combinations.
 
 ## Domains for installation packages and tools {id="_domains_for_installation_packages_and_tools"}
 | Domain | Port | Function |

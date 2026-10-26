@@ -19,7 +19,7 @@ The following steps apply to both GitHub and GitHub Enterprise unless noted.
 :::
 
 
-{% if openshift_origin or openshift_enterprise or openshift_webscale %}
+{% if openshift_origin or openshift_enterprise %}
 {% leveloffset +1 %}{% include "./modules/identity-provider-overview.md" %}{% endleveloffset %}
 
 {% endif %}
@@ -28,7 +28,7 @@ The following steps apply to both GitHub and GitHub Enterprise unless noted.
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-registering-github.md" %}{% endleveloffset %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 {% leveloffset +1 %}{% include "./modules/identity-provider-secret.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-config-map.md" %}{% endleveloffset %}

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Verify access to {{ product_title }} web console for {{ product_title }} cluster in ready state {id="rosa-hcp-ready-no-console-access_{{ context }}"}
 
-{{ product_title }} clusters return a `ready` status when the control plane hosted in the {{ product_title }} service account becomes ready. Cluster console workloads are deployed on the cluster’s worker nodes. The {{ product_title }} web console will not be available and accessible until the worker nodes have joined the cluster and console workloads are running. {._abstract}
+Even when a {{ product_title }} cluster returns a `ready` status, the web console is not accessible until the worker nodes have joined the cluster and the console workloads are running. {._abstract}
+
+{{ product_title }} clusters return a `ready` status when the control plane hosted in the {{ product_title }} service account becomes ready. Cluster console workloads are deployed on the cluster’s worker nodes.
 
 **Procedure**
 

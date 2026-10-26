@@ -140,7 +140,7 @@ Fleet Management supersedes Selectable Cluster Inventory in {{ product_title }} 
 | VRF specification in `BGPPeer` custom resource | Technology Preview | Technology Preview |  |
 | OVN-Kubernetes customized `br-ex` bridge on {{ vmw_short }} and {{ rh_openstack }} | Technology Preview | Technology Preview | Technology Preview |
 | Live migration to OVN-Kubernetes from {{ product_title }} SDN | Not Available | Not Available |  |
-| Dynamic configuration manager | Technology Preview | Technology Preview |  |
+| Dynamic Configuration Manager (DCM) | Technology Preview | Technology Preview | General Availability |
 | SR-IOV Network Operator support for Intel C741 Emmitsburg Chipset | Technology Preview | Technology Preview | General Availability |
 | Dual-port NIC for PTP ordinary clock | General Availability | General Availability |  |
 | DPU Operator | Technology Preview | Technology Preview | Technology Preview |

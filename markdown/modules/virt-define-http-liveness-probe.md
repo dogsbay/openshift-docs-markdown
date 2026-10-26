@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Defining an HTTP liveness probe {id="virt-define-http-liveness-probe_{{ context }}"}
+# Define an HTTP liveness probe {id="virt-define-http-liveness-probe_{{ context }}"}
 
 Define an HTTP liveness probe by setting the `spec.livenessProbe.httpGet` field of the virtual machine (VM) configuration. You can define both HTTP and TCP tests for liveness probes in the same way as readiness probes. This procedure configures a sample liveness probe with an HTTP GET test. {._abstract}
 

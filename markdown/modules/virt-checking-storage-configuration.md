@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running a storage checkup by using the CLI {id="virt-checking-storage-configuration_{{ context }}"}
+# Run a storage checkup by using the CLI {id="virt-checking-storage-configuration_{{ context }}"}
 
 Use a predefined checkup to verify that the {{ product_title }} cluster storage is configured optimally to run {{ VirtProductName }} workloads. {._abstract}
 

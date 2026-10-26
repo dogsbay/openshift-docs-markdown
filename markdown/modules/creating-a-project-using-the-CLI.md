@@ -36,11 +36,8 @@ For {{ product_title }} clusters that use the Customer Cloud Subscription (CCS) 
     :::note
 
     The number of projects that you can create
-{%- if openshift_enterprise or openshift_webscale or openshift_origin or openshift_dedicated or openshift_rosa %}
+{%- if openshift_enterprise or openshift_origin or openshift_dedicated or openshift_rosa %}
     might be limited by the system administrator.
-{%- endif %}
-{%- if openshift_online %}
-    is limited.
 {%- endif %}
     After your limit is reached, you might have to delete an existing project to create a new one.
     

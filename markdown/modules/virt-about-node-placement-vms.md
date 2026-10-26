@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About node placement for virtual machines {id="virt-about-node-placement-vms_{{ context }}"}
+# Node placement rules for VMs {id="virt-about-node-placement-vms_{{ context }}"}
 
-To ensure that virtual machines (VMs) run on appropriate nodes, you can configure node placement rules. {._abstract}
+Node placement rules control which nodes a virtual machine (VM) can run on. Use them to spread VMs across nodes for fault tolerance, to keep related VMs together, or to place a VM on a node with hardware that the VM requires. {._abstract}
 
 You might want to do this if:
 

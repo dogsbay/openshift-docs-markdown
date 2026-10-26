@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Connecting to a VM attached to a secondary network by using SSH {id="virt-connecting-secondary-network-ssh_{{ context }}"}
+# Connect to a VM on a secondary network by using SSH {id="virt-connecting-secondary-network-ssh_{{ context }}"}
 
 You can connect to a virtual machine (VM) attached to a secondary network by using SSH. {._abstract}
 

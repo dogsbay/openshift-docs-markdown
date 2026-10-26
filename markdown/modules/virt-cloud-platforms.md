@@ -46,9 +46,7 @@
 </tbody>
 </table>
 
-{% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 Bare-metal instances or servers offered by other cloud providers are not supported.
-{% endif %}
 
 
 :::tip

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling USB host passthrough {id="virt-enabling-usb-host-passthrough_{{ context }}"}
+# Enable USB host passthrough {id="virt-enabling-usb-host-passthrough_{{ context }}"}
 
 To attach a USB device to a virtual machine (VM), you must first enable USB host passthrough at the cluster level. {._abstract}
 

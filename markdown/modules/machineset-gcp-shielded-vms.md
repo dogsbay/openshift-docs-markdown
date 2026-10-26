@@ -3,7 +3,7 @@
 {% endif %}
 
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring Shielded VM options by using machine sets {id="machineset-gcp-shielded-vms_{{ context }}"}
+# Configuring Shielded VM options by using machine sets on Google Cloud {id="machineset-gcp-shielded-vms_{{ context }}"}
 
 To help secure your cluster instances, you can configure Shielded Virtual Machine (VM) options for your machine sets on {{ gcp_first }} by editing the `MachineSet` YAML file. {._abstract}
 

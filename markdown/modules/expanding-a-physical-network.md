@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Expanding a {{ product_title }} physical network to include new nodes {id="expanding-physical-network_{{ context }}"}
+# Expand a physical network to include new nodes {id="expanding-physical-network_{{ context }}"}
 
 You can add one or more {{ product_title }} worker nodes to an existing physical network if you want to expand access to that network.
 Expanding a physical network creates a new configuration under the same logical physical network. {._abstract}

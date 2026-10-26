@@ -1,15 +1,14 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring huge pages for virtual machines {id="virt-configuring-huge-pages-for-vms_{{ context }}"}
+# Map VM memory more efficiently with huge pages {id="virt-configuring-huge-pages-for-vms_{{ context }}"}
 
-You can configure virtual machines to use pre-allocated huge pages by including the
-`memory.hugepages.pageSize` and `resources.requests.memory` parameters in your virtual machine configuration. {._abstract}
+Configure a virtual machine (VM) to use pre-allocated huge pages so that the VM’s memory is mapped more efficiently than with standard 4Ki pages. {._abstract}
 
 The memory request must be divisible by the page size. For example, you cannot request `500Mi` memory with a page size of `1Gi`.
 
 
 :::note
 
-The memory layouts of the host and the guest OS are unrelated.
+The memory layouts of the host and the guest operating system are unrelated.
 Huge pages requested in the virtual machine manifest apply to QEMU.
 Huge pages inside the guest can only be configured based on the amount of available memory of the virtual machine instance.
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing PCI host devices from the cluster using the CLI {id="virt-removing-pci-device-from-cluster_{{ context }}"}
+# Remove PCI host devices from the cluster {id="virt-removing-pci-device-from-cluster_{{ context }}"}
 
 To remove a PCI host device from the cluster, delete the information for that device from the `HyperConverged` custom resource (CR). {._abstract}
 

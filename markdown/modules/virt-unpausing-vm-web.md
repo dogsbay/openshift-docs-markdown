@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Unpausing a virtual machine {id="virt-unpausing-vm-web_{{ context }}"}
+# Unpause a VM {id="virt-unpausing-vm-web_{{ context }}"}
 
-You can unpause a paused virtual machine (VM) from the web console. {._abstract}
+You can unpause a paused virtual machine (VM) from the **VirtualMachines** page, the tree view, or the **VirtualMachine details** page of the {{ product_title }} web console. {._abstract}
 
 **Prerequisites**
 

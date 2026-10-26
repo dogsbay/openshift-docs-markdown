@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring cluster networking and access {id="virt-install-ibm-cloud-cluster-network-access_{{ context }}"}
+# Configure cluster networking and access {id="virt-install-ibm-cloud-cluster-network-access_{{ context }}"}
 
 Configure networking and access to allow for remote management of the cluster. {._abstract}
 

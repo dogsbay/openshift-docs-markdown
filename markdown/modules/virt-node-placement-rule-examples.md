@@ -6,13 +6,18 @@ Examples of node placement rules for different objects that determine where {{ V
 {% if not (openshift_rosa or openshift_dedicated) %}
 ## Subscription object node placement rule examples {id="subscription-object-node-placement-rules_{{ context }}"}
 
-To specify the nodes where OLM deploys the {{ VirtProductName }} Operators, edit the `Subscription` object during {{ VirtProductName }} installation.
+To specify the nodes where OLM deploys the {{ VirtProductName }} Operators, edit the `Subscription` object during {{ VirtProductName }} installation. {._abstract}
 
-Currently, you cannot configure node placement rules for the `Subscription` object by using the web console.
 
-The `Subscription` object does not support the `affinity` node placement rule.
+:::note
 
-Example `Subscription` object with `nodeSelector` rule:
+*   You cannot configure node placement rules for the `Subscription` object by using the web console.
+*   The `Subscription` object does not support the `affinity` node placement rule.
+
+:::
+
+
+**Example `Subscription` object with `nodeSelector` rule:**
 
 ```yaml {minja}
 apiVersion: operators.coreos.com/v1alpha1
@@ -46,7 +51,7 @@ The following pods are affected by the `Subscription` object node placement rule
 *   `ssp-operator`
 *   `virt-operator`
 
-Example `Subscription` object with `tolerations` rule:
+**Example `Subscription` object with `tolerations` rule:**
 
 ```yaml {minja}
 apiVersion: operators.coreos.com/v1alpha1
@@ -73,91 +78,92 @@ OLM deploys {{ VirtProductName }} Operators on nodes labeled `key = virtualizati
 
 ## HyperConverged object node placement rule example {id="hyperconverged-object-node-placement-rules_{{ context }}"}
 
-To specify the nodes where {{ VirtProductName }} deploys its components, you can edit the `nodePlacement` object in the `HyperConverged` custom resource (CR) file that you create during {{ VirtProductName }} installation.
+To specify the nodes where {{ VirtProductName }} deploys its components, you can edit the `nodePlacement` object in the `HyperConverged` custom resource (CR) file that you create during {{ VirtProductName }} installation. {._abstract}
 
-Example `HyperConverged` object with `nodeSelector` rule:
+**Example `HyperConverged` object with `nodeSelector` rule:**
 
 ```yaml {minja}
-apiVersion: hco.kubevirt.io/v1beta1
+apiVersion: hco.kubevirt.io/v1
 kind: HyperConverged
 metadata:
   name: kubevirt-hyperconverged
   namespace: {{ CNVNamespace }}
 spec:
-  infra:
-    nodePlacement:
-      nodeSelector:
-        example.io/example-infra-key: example-infra-value
-  workloads:
-    nodePlacement:
-      nodeSelector:
-        example.io/example-workloads-key: example-workloads-value
+  deployment:
+    nodePlacements:
+      infra:
+        nodeSelector:
+          example.io/example-infra-key: example-infra-value
+      workload:
+        nodeSelector:
+          example.io/example-workloads-key: example-workloads-value
 ```
 
 *   Infrastructure resources are placed on nodes labeled `example.io/example-infra-key = example-infra-value`.
 *   Workloads are placed on nodes labeled `example.io/example-workloads-key = example-workloads-value`.
 
-Example `HyperConverged` object with `affinity` rule:
+**Example `HyperConverged` object with `affinity` rule:**
 
 ```yaml {minja}
-apiVersion: hco.kubevirt.io/v1beta1
+apiVersion: hco.kubevirt.io/v1
 kind: HyperConverged
 metadata:
   name: kubevirt-hyperconverged
   namespace: {{ CNVNamespace }}
 spec:
-  infra:
-    nodePlacement:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: example.io/example-infra-key
-                operator: In
-                values:
-                - example-infra-value
-  workloads:
-    nodePlacement:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: example.io/example-workloads-key
-                operator: In
-                values:
-                - example-workloads-value
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            preference:
-              matchExpressions:
-              - key: example.io/num-cpus
-                operator: Gt
-                values:
-                - 8
+  deployment:
+    nodePlacements:
+      infra:
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: example.io/example-infra-key
+                  operator: In
+                  values:
+                  - example-infra-value
+      workload:
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: example.io/example-workloads-key
+                  operator: In
+                  values:
+                  - example-workloads-value
+            preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                - key: example.io/num-cpus
+                  operator: Gt
+                  values:
+                  - 8
 ```
 
 *   Infrastructure resources are placed on nodes labeled `example.io/example-infra-key = example-value`.
 *   Workloads are placed on nodes labeled `example.io/example-workloads-key = example-workloads-value`.
 *   Nodes that have more than eight CPUs are preferred for workloads, but if they are not available, pods are still scheduled.
 
-Example `HyperConverged` object with `tolerations` rule:
+**Example `HyperConverged` object with `tolerations` rule:**
 
 ```yaml {minja}
-apiVersion: hco.kubevirt.io/v1beta1
+apiVersion: hco.kubevirt.io/v1
 kind: HyperConverged
 metadata:
   name: kubevirt-hyperconverged
   namespace: {{ CNVNamespace }}
 spec:
-  workloads:
-    nodePlacement:
-      tolerations:
-      - key: "key"
-        operator: "Equal"
-        value: "virtualization"
-        effect: "NoSchedule"
+  deployment:
+    nodePlacements:
+      workload:
+        tolerations:
+        - key: "key"
+          operator: "Equal"
+          value: "virtualization"
+          effect: "NoSchedule"
 ```
 
 Nodes reserved for {{ VirtProductName }} components are labeled with the `key = virtualization:NoSchedule` taint. Only pods with matching tolerations are scheduled on reserved nodes.
@@ -180,7 +186,7 @@ The following pods are affected by the `HyperConverged` object node placement ru
 
 ## HostPathProvisioner object node placement rule example {id="hostpathprovisioner-object-node-placement-rules_{{ context }}"}
 
-You can edit the `HostPathProvisioner` object directly or by using the web console.
+You can edit the `HostPathProvisioner` object directly or by using the web console. {._abstract}
 
 
 :::warning
@@ -194,7 +200,7 @@ After you deploy a virtual machine (VM) with the HPP storage class, you can remo
 
 You can configure node placement rules by specifying `nodeSelector`, `affinity`, or `tolerations` for the `spec.workload` field of the `HostPathProvisioner` object that you create when you install the hostpath provisioner.
 
-Example `HostPathProvisioner` object with `nodeSelector` rule:
+**Example `HostPathProvisioner` object with `nodeSelector` rule:**
 
 ```yaml
 apiVersion: hostpathprovisioner.kubevirt.io/v1beta1

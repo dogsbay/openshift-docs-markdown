@@ -22,11 +22,28 @@ Shutting down the underlying infrastructure through the cloud provider console i
 :::
 
 
-For more information about Red&#160;Hat workloads that must be deployed on worker nodes, see the _Red&#160;Hat Operator support_ section below.
+For more information about Red&#160;Hat workloads that must be deployed on worker nodes, see the _Red&#160;Hat Operator support_ section.
 
 
 :::note
 
-Approximately 1 vCPU core and 1 GiB of memory are reserved on each worker node and removed from allocatable resources. This is necessary to run [processes required by the underlying platform](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#system-reserved). This includes system daemons such as udev, kubelet, container runtime, and so on, and also accounts for kernel reservations. {{ OCP }} core systems such as audit log aggregation, metrics collection, DNS, image registry, software-defined networking (SDN), and so on might consume additional allocatable resources to maintain the stability and maintainability of the cluster. The additional resources consumed might vary based on usage.
+Approximately 1 vCPU core and 1 GiB of memory are reserved on each worker node and removed from allocatable resources. This is necessary to run processes required by the underlying platform. For details, see "Reserve compute resources for system daemons". This includes system daemons such as udev, kubelet, container runtime, and so on, and also accounts for kernel reservations. {{ OCP }} core systems such as audit log aggregation, metrics collection, DNS, image registry, software-defined networking (SDN), and so on might consume additional allocatable resources to maintain the stability and maintainability of the cluster. The additional resources consumed might vary based on usage.
 
 :::
+
+
+
+:::important
+
+As of {{ product_title }} 4.11, the default per-pod PID limit is `4096`. If you want to enable this PID limit, you must upgrade your {{ product_title }} clusters to this version or later. {{ product_title }} clusters running versions earlier than 4.11 use a default PID limit of `1024`.
+
+You cannot configure the per-pod PID limit on any {{ product_title }} cluster.
+
+:::
+
+
+**Additional resources**
+{._additional-resources}
+
+*   [Network verification](https://docs.redhat.com/en/documentation/openshift_dedicated/4/html/network_security/osd-network-verification_multitenant-network-policy#network-verification)
+*   [Reserve compute resources for system daemons](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#system-reserved)

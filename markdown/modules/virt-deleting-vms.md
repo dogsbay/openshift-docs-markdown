@@ -1,8 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Deleting a virtual machine by using the CLI {id="virt-deleting-vms_{{ context }}"}
+# Delete a VM by using the CLI {id="virt-deleting-vms_{{ context }}"}
 
-You can delete a virtual machine (VM) by using the `oc` command-line interface (CLI). The `oc` client enables you to perform actions on multiple VMs. {._abstract}
+You can delete a virtual machine (VM) by using the {{ oc_first }}. The command deletes a VM in the current project unless you specify another namespace. {._abstract}
 
 **Prerequisites**
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Grant token generation permission for the VNC console by using the cluster role {id="virt-grant-token-generation-permission-VNC_{{ context }}"}
+# Grant permission to generate VNC console tokens {id="virt-grant-token-generation-permission-VNC_{{ context }}"}
 
-As a cluster administrator, you can install a cluster role and bind it to a user or service account to allow access to the endpoint that generates tokens for the VNC console. {._abstract}
+You can install a cluster role and bind it to a user or a service account to allow access to the endpoint that generates tokens for the VNC console. {._abstract}
 
 **Procedure**
 

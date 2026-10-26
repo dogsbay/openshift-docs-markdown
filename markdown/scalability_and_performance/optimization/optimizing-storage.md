@@ -11,7 +11,7 @@ title: Optimizing storage
 {%- set gluster_install_link = "https://docs.gluster.org/en/latest/Install-Guide/Overview/" -%}
 {%- set gluster_admin_link = "https://docs.gluster.org/en/latest/Administrator%20Guide/overview/" -%}
 {%- set gluster_role_link = "https://github.com/openshift/openshift-ansible/tree/master/roles/openshift_storage_glusterfs" -%}
-{% if openshift_enterprise or openshift_webscale %}
+{% if openshift_enterprise %}
 {%- set gluster = "Red Hat Gluster Storage" -%}
 {%- set gluster_native = "converged mode" -%}
 {%- set gluster_external = "independent mode" -%}

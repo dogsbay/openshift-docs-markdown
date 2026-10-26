@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling or disabling the downward metrics feature gate in a YAML file {id="virt-enabling-disabling-downward-metrics-feature-gate-yaml_{{ context }}"}
+# Enable or disable downward metrics by editing the HyperConverged CR {id="virt-enabling-disabling-downward-metrics-feature-gate-yaml_{{ context }}"}
 
 To expose downward metrics for a host virtual machine, you can enable the `downwardMetrics` feature gate by editing a YAML file. {._abstract}
 

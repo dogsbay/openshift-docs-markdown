@@ -6,19 +6,21 @@ Create separate `Secret` objects when your backup and snapshot locations require
 **Procedure**
 
 1.  Create a `credentials-velero` file for the snapshot location in the appropriate format for your cloud provider.
-1.  Create a `Secret` for the snapshot location with the default name:
-    ```terminal {minja}
-    $ oc create secret generic {{ credentials }} -n openshift-adp --from-file cloud=credentials-velero
+1.  Create a `Secret` for the snapshot location with the default name for your provider:
+    ```terminal
+    $ oc create secret generic <default_secret_name> -n openshift-adp --from-file cloud=credentials-velero
     ```
+
+    Replace `<default_secret_name>` with `cloud-credentials` for AWS, Multicloud Object Gateway (MCG), {{ rh_storage_first }} (ODF), {{ ibm_cloud_title }}, or KubeVirt; `cloud-credentials-azure` for Azure; or `cloud-credentials-gcp` for GCP.
 1.  Create a `credentials-velero` file for the backup location in the appropriate format for your object storage.
 1.  Create a `Secret` for the backup location with a custom name:
     ```terminal
     $ oc create secret generic <custom_secret> -n openshift-adp --from-file cloud=credentials-velero
     ```
-1.  Add the `Secret` with the custom name to the `DataProtectionApplication` CR, as in the following example:
+1.  Add the `Secret` with the custom name to the `DataProtectionApplication` CR, as in the following example for your provider:
 
-{% if installing_oadp_azure %}
-    ```yaml {minja}
+Azure
+:   ```yaml
     apiVersion: oadp.openshift.io/v1alpha1
     kind: DataProtectionApplication
     metadata:
@@ -47,16 +49,15 @@ Create separate `Secret` objects when your backup and snapshot locations require
               resourceGroup: <azure_resource_group>
               subscriptionId: <azure_subscription_id>
               incremental: "true"
-            provider: {{ provider }}
+            provider: azure
     ```
-
-    where:
 
     `custom_secret`
     :   Specifies the backup location `Secret` with custom name.
-{% endif %}
-{% if installing_oadp_gcp %}
-    ```yaml {minja}
+
+
+GCP
+:   ```yaml
     apiVersion: oadp.openshift.io/v1alpha1
     kind: DataProtectionApplication
     metadata:
@@ -66,7 +67,7 @@ Create separate `Secret` objects when your backup and snapshot locations require
     ...
       backupLocations:
         - velero:
-            provider: {{ provider }}
+            provider: gcp
             default: true
             credential:
               key: cloud
@@ -76,20 +77,19 @@ Create separate `Secret` objects when your backup and snapshot locations require
               prefix: <prefix>
       snapshotLocations:
         - velero:
-            provider: {{ provider }}
+            provider: gcp
             default: true
             config:
               project: <project>
               snapshotLocation: us-west1
     ```
 
-    where:
-
     `custom_secret`
     :   Specifies the backup location `Secret` with custom name.
-{% endif %}
-{% if installing_oadp_mcg %}
-    ```yaml {minja}
+
+
+MCG
+:   ```yaml
     apiVersion: oadp.openshift.io/v1alpha1
     kind: DataProtectionApplication
     metadata:
@@ -105,7 +105,7 @@ Create separate `Secret` objects when your backup and snapshot locations require
               s3Url: <url>
               insecureSkipTLSVerify: "true"
               s3ForcePathStyle: "true"
-            provider: {{ provider }}
+            provider: aws
             default: true
             credential:
               key: cloud
@@ -115,16 +115,15 @@ Create separate `Secret` objects when your backup and snapshot locations require
               prefix: <prefix>
     ```
 
-    where:
-
     `region_name`
     :   Specifies the region, following the naming convention of the documentation of your object storage server.
 
     `custom_secret`
     :   Specifies the backup location `Secret` with custom name.
-{% endif %}
-{% if installing_oadp_ibm_cloud or installing_oadp_ocs %}
-    ```yaml
+
+
+{{ ibm_cloud_title }} or {{ rh_storage }}
+:   ```yaml
     apiVersion: oadp.openshift.io/v1alpha1
     kind: DataProtectionApplication
     metadata:
@@ -144,8 +143,5 @@ Create separate `Secret` objects when your backup and snapshot locations require
               prefix: <prefix>
     ```
 
-    where:
-
     `custom_secret`
     :   Specifies the backup location `Secret` with custom name.
-{% endif %}

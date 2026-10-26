@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding kernel arguments to enable the IOMMU driver {id="virt-adding-kernel-arguments-enable-IOMMU_{{ context }}"}
+# Add kernel arguments to enable the IOMMU driver {id="virt-adding-kernel-arguments-enable-IOMMU_{{ context }}"}
 
 You must enable the Input-Output Memory Management Unit (IOMMU) driver before you can configure mediated devices. To enable the IOMMU driver in the kernel, create the `MachineConfig` object and add the kernel arguments. {._abstract}
 

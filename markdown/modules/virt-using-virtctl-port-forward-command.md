@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the virtctl port-forward command {id="virt-using-virtctl-port-forward-command_{{ context }}"}
+# Connect to a VM by using the virtctl port-forward command {id="virt-using-virtctl-port-forward-command_{{ context }}"}
 
-You can use your local OpenSSH client and the `virtctl port-forward` command to connect to a running virtual machine (VM). You can use this method with Ansible to automate the configuration of VMs. {._abstract}
+You can use your local OpenSSH client and the `virtctl port-forward` command to connect to a running virtual machine (VM). Use this method with Ansible to automate the configuration of VMs. {._abstract}
 
 This method is recommended for low-traffic applications because port-forwarding traffic is sent over the control plane. This method is not recommended for high-traffic applications such as Rsync or Remote Desktop Protocol because it places a heavy burden on the API server.
 

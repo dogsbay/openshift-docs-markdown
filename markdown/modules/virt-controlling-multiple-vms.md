@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Controlling the state of multiple virtual machines {id="virt-controlling-multiple-vms-web_{{ context }}"}
+# Control the state of multiple VMs {id="virt-controlling-multiple-vms-web_{{ context }}"}
 
-You can start, stop, restart, pause, and unpause multiple virtual machines (VMs) from the web console. {._abstract}
+You can start, stop, restart, pause, and unpause several virtual machines (VMs) at once from the {{ product_title }} web console. The action applies to every VM in a project or only to the VMs that you select. {._abstract}
 
 **Procedure**
 

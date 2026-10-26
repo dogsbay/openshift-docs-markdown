@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring descheduler evictions for virtual machines {id="virt-configuring-descheduler-evictions_{{ context }}"}
+# Control which VMs the descheduler evicts {id="virt-configuring-descheduler-evictions_{{ context }}"}
 
-After the descheduler is installed and configured, all migratable virtual machines (VMs) are eligible for eviction by default. You can configure the descheduler to manage VM evictions across the cluster and optionally exclude specific VMs from eviction. {._abstract}
+After the descheduler is installed, all migratable virtual machines (VMs) are eligible for eviction by default. You can exclude specific VMs from eviction, and limit how many VMs are evicted at once. {._abstract}
 
 **Prerequisites**
 

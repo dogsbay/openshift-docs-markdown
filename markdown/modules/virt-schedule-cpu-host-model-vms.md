@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Scheduling virtual machines with the host model {id="virt-schedule-cpu-host-model-vms_{{ context }}"}
+# Set a VM to inherit the node CPU model {id="virt-schedule-cpu-host-model-vms_{{ context }}"}
 
-When the CPU model for a virtual machine (VM) is set to `host-model`, the VM inherits the CPU model of the node where it is scheduled. {._abstract}
+Set the CPU model of a virtual machine (VM) to `host-model` so that the VM inherits the CPU model of the node where it is scheduled, and can use the CPU features that the node provides. {._abstract}
 
 **Procedure**
 

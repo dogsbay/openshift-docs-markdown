@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Unlink and delete the {{ cluster_manager }} and user IAM roles {id="rosa-unlinking-and-deleting-ocm-and-user-iam-roles_{{ context }}"}
 
-When you install a {{ product_title }} cluster by using {{ cluster_manager_first }}, you also create {{ cluster_manager }} and user Identity and Access Management (IAM) roles linked to your Red&#160;Hat organization. After deleting your cluster, you can unlink and delete the roles by using the {{ rosa_cli_first }}. {._abstract}
+After deleting a {{ product_title }} cluster, you can unlink and delete the {{ cluster_manager }} and user Identity and Access Management (IAM) roles that were created with the cluster by using the {{ rosa_cli_first }}. {._abstract}
+
+When you install a {{ product_title }} cluster by using {{ cluster_manager_first }}, you also create {{ cluster_manager }} and user Identity and Access Management (IAM) roles linked to your Red&#160;Hat organization.
 
 
 :::important

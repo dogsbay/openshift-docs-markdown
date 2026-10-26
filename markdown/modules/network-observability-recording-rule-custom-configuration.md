@@ -35,7 +35,7 @@ Custom `PrometheusRule` resources are not owned by the `FlowCollector` resource.
             "my_metric_per_namespace": {
               "summary": "Custom metric is {{ $value }} in the namespace {{ $labels.namespace }}",
               "description": "Custom metric is {{ $value }} in the namespace {{ $labels.namespace }}",
-              "netobserv_io_network_health": "{\"unit\":\"%\",\"upperBound\":\"100\",\"namespaceLabels\":[\"namespace\"],\"recordingThresholds\":{\"info\":\"10\",\"warning\":\"25\",\"critical\":\"50\"}}"
+              "netobserv_io_network_health": "{\"unit\":\"%\",\"upperBound\":\"100\",\"namespaceLabels\":[\"namespace\"],\"recordingThresholds\":{\"info\":\"10\",\"warning\":\"25\",\"critical\":\"50\"},\"contextTab\":\"netobserv\",\"displayName\":\"Custom Namespace Metric\"}"
             }
           }
     spec:
@@ -59,4 +59,4 @@ Custom `PrometheusRule` resources are not owned by the `FlowCollector` resource.
     ```terminal
     $ oc get prometheusrules my-recording-rules -n openshift-monitoring -o yaml
     ```
-1.  Confirm the recording rule appears in the {{ product_title }} web console by navigating to **Observe** → **Network Health**.
+1.  Confirm the recording rule is displayed in the {{ product_title }} web console by navigating to **Observe** → **Network Health**.

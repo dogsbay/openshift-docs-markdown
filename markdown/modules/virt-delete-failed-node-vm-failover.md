@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Delete a failed node to trigger virtual machine failover {id="virt-delete-failed-node-vm-failover_{{ context }}"}
+# Trigger VM failover by deleting the failed node {id="virt-delete-failed-node-vm-failover_{{ context }}"}
 
 If a node fails and machine health checks are not deployed on your cluster, virtual machines (VMs) with `runStrategy: Always` configured are not automatically relocated to healthy nodes. To trigger VM failover, you must manually delete the `Node` object. {._abstract}
 

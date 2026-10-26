@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Connecting to a VM exposed by a service by using SSH {id="virt-connecting-service-ssh_{{ context }}"}
+# Connect to a VM through a service {id="virt-connecting-service-ssh_{{ context }}"}
 
 You can connect to a virtual machine (VM) that a service exposes by using SSH. {._abstract}
 

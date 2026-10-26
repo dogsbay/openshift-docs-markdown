@@ -1,10 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Deleting a virtual machine using the web console {id="virt-delete-vm-web_{{ context }}"}
+# Delete a VM by using the web console {id="virt-delete-vm-web_{{ context }}"}
 
-Deleting a virtual machine (VM) permanently removes it from the cluster. {._abstract}
-
-If the VM is delete protected, the **Delete** action is disabled in the VM’s **Actions** menu.
+You can permanently remove a virtual machine (VM) from the cluster by using the {{ product_title }} web console. The **Delete** action is disabled while the VM is delete protected. {._abstract}
 
 **Prerequisites**
 

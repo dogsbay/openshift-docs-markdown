@@ -6,10 +6,10 @@ You can view the cluster and components time series data captured by Telemetry. 
 **Prerequisites**
 
 *   You have installed the
-{%- if openshift_enterprise or openshift_webscale or openshift_origin %}
+{%- if openshift_enterprise or openshift_origin %}
 {{ product_title }}
 {%- endif %}
-{%- if not (openshift_enterprise or openshift_webscale or openshift_origin) %}
+{%- if not (openshift_enterprise or openshift_origin) %}
 OpenShift Container Platform
 {%- endif %}
 CLI (`oc`).

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing {{ VirtProductName }} pod logs with the CLI {id="virt-viewing-logs-cli_{{ context }}"}
+# View {{ VirtProductName }} pod logs with the CLI {id="virt-viewing-logs-cli_{{ context }}"}
 
-To diagnose issues and monitor {{ VirtProductName }} pods, you can view logs by using the {{ oc_first }}.  {._abstract}
+To diagnose issues and monitor {{ VirtProductName }} pods, you can view logs by using the {{ oc_first }}. {._abstract}
 
 **Prerequisites**
 

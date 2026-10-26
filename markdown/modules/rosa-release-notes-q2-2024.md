@@ -58,7 +58,7 @@ Permission boundaries for the installer role policy
 
 
 Cluster delete protection
-:   You can now enable the cluster delete protection option, which helps to prevent you from accidentally deleting a cluster. For more information on using the cluster delete protection option with the ROSA CLI, see [edit cluster](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cli_tools/index#rosa-edit-cluster_rosa-managing-objects-cli). For more information on using the cluster delete protection option in the UI, see [Creating a cluster with the default options using OpenShift Cluster Manager](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/install_rosa_classic_clusters/index#rosa-sts-creating-a-cluster-using-defaults-ocm_rosa-sts-creating-a-cluster-quickly).
+:   You can now enable the cluster delete protection option, which helps to prevent you from accidentally deleting a cluster. For more information on using the cluster delete protection option with the ROSA CLI, see [edit cluster](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/cli_tools/index#rosa-edit-cluster_rosa-managing-objects-cli). For more information on using the cluster delete protection option in the UI, see [Creating a cluster with the default options using OpenShift Cluster Manager](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws_classic_architecture/4/html-single/install_rosa_classic_clusters/index#rosa-creating-a-cluster-using-defaults-ocm_rosa-sts-creating-a-cluster-quickly).
 {% endif %}
 {% if openshift_rosa_hcp %}
 

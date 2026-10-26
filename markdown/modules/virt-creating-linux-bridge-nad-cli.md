@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a Linux bridge NAD by using the CLI {id="virt-creating-linux-bridge-nad-cli_{{ context }}"}
+# Create a Linux bridge NAD by using the CLI {id="virt-creating-linux-bridge-nad-cli_{{ context }}"}
 
 You can create a network attachment definition (NAD) to provide layer-2 networking to pods and virtual machines (VMs) by using the command line. {._abstract}
 

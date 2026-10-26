@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Listing standalone virtual machine instances using the web console {id="virt-listing-vmis-web_{{ context }}"}
+# List standalone VMIs by using the web console {id="virt-listing-vmis-web_{{ context }}"}
 
-Using the web console, you can list and view standalone virtual machine instances (VMIs) in your cluster that are not owned by virtual machines (VMs). {._abstract}
+You can list the standalone virtual machine instances (VMIs) in your cluster by using the {{ product_title }} web console. The console does not show VMIs that are owned by a virtual machine (VM). {._abstract}
 
 
 :::note

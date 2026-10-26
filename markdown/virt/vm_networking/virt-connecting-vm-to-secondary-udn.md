@@ -1,7 +1,3 @@
----
-title: Connecting a virtual machine to a secondary localnet user-defined network
----
-
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
 # Connecting a virtual machine to a secondary localnet user-defined network {id="virt-connecting-vm-to-secondary-udn"}

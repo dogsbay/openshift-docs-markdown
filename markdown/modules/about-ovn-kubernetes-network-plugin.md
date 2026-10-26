@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # OVN-Kubernetes network plugin {id="about-ovn-kubernetes-network-plugin_{{ context }}"}
 
-{{ product_title }} clusters use a virtualized network for pod and service networks by default. The OVN-Kubernetes network plugin is the default provider that implements this virtualized overlay network by transforming configurations into OpenFlow rules to enable advanced routing and security features. {._abstract}
+{{ product_title }} clusters use a virtualized network for pod and service networks by default. The OVN-Kubernetes network plugin is the default provider that implements this virtualized overlay network and enables advanced routing and security features. {._abstract}
 
 Part of {{ openshift_networking }}, OVN-Kubernetes is based on Open Virtual Network (OVN) and provides an overlay-based networking implementation. A cluster that uses the OVN-Kubernetes plugin also runs Open vSwitch (OVS) on each node. OVN configures OVS on each node to implement the declared network configuration.
 

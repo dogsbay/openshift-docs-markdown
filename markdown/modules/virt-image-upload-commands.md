@@ -4,7 +4,7 @@
 
 # Image upload commands {id="image-upload-commands_{{ context }}"}
 
-You can use the following `virtctl image-upload` commands to upload a VM image to a data volume. {._abstract}
+You can use the following `virtctl image-upload` commands to upload a virtual machine (VM) image to a new or existing data volume. {._abstract}
 
 **Image upload commands**
 

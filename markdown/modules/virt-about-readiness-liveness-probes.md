@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 
-# About readiness and liveness probes {id="virt-about-readiness-liveness-probes_{{ context }}"}
+# Readiness and liveness probes for VM health {id="virt-about-readiness-liveness-probes_{{ context }}"}
 
 Use readiness and liveness probes to detect and handle unhealthy virtual machines (VMs). You can include one or more probes in the specification of the VM to ensure that traffic does not reach a VM that is not ready for it and that a new VM is created when a VM becomes unresponsive. {._abstract}
 

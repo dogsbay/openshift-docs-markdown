@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Querying metrics for all projects with the {{ product_title }} web console {id="querying-metrics-for-all-projects-with-mon-dashboard_{{ context }}"}
+# Query metrics for all projects by using the {{ product_title }} web console {id="querying-metrics-for-all-projects-with-mon-dashboard_{{ context }}"}
 
 Monitor the state of a cluster and any user-defined workloads by using the {{ product_title }} metrics query browser. The query browser uses Prometheus Query Language (PromQL) queries to examine metrics visualized on a plot. {._abstract}
 

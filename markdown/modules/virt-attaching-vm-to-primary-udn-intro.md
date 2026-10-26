@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Attach a virtual machine to the primary user-defined network {id="virt-attaching-vm-to-primary-udn-intro_{{ context }}"}
+# VM attachment to the primary overlay network {id="virt-attaching-vm-to-primary-udn-intro_{{ context }}"}
 
 You can connect a virtual machine (VM) to the primary user-defined network (UDN) by requesting the pod network attachment and configuring the interface binding. {._abstract}
 

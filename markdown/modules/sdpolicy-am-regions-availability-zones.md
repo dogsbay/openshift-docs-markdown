@@ -66,7 +66,7 @@ The following {{ gcp_full }} regions are currently supported:
 *   me-central1, Doha, Qatar
 *   me-central2, Dammam, Saudi Arabia
 
-Clusters that are deployed across multiple Availability Zones (Multi-AZ) can only be deployed in regions with at least 3 availability zones (see [AWS](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) and [{{ gcp_full }}](https://cloud.google.com/compute/docs/regions-zones)).
+Clusters that are deployed across multiple Availability Zones (Multi-AZ) can only be deployed in regions with at least 3 availability zones. For details, see linked "Regions and zones" resources for AWS and {{ gcp_full }}.
 
 Each new {{ product_title }} cluster is installed within a dedicated Virtual Private Cloud (VPC) in a single Region, with the option to deploy into a single Availability Zone (Single-AZ) or Multi-AZ. This provides cluster-level network and resource isolation, and enables cloud-provider VPC settings, such as virtual private network (VPN) connections and VPC Peering. Persistent volumes are backed by cloud block storage and are specific to the availability zone in which they are provisioned. Persistent volumes do not bind to a volume until the associated pod resource is assigned into a specific availability zone in order to prevent unschedulable pods. Availability zone-specific resources are only usable by resources in the same availability zone.
 
@@ -76,3 +76,10 @@ Each new {{ product_title }} cluster is installed within a dedicated Virtual Pri
 The region and the choice of single or multi availability zone cannot be changed once a cluster has been deployed.
 
 :::
+
+
+**Additional resources**
+{._additional-resources}
+
+*   [AWS regions and availability zones](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/)
+*   [{{ gcp_full }} regions and zones](https://cloud.google.com/compute/docs/regions-zones)

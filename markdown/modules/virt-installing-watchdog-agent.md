@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the watchdog agent on the guest {id="virt-installing-watchdog-agent_{{ context }}"}
+# Install the watchdog agent on the guest {id="virt-installing-watchdog-agent_{{ context }}"}
 
 You can install the watchdog agent on the guest and start the `watchdog` service. {._abstract}
 

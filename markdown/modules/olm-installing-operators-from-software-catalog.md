@@ -8,9 +8,11 @@
 
 The software catalog in {{ product_title }} is the interface for discovering Operators that Operator Lifecycle Manager (OLM) installs and manages on your cluster. You can choose installation settings such as install mode, namespace, and approval strategy during subscription. {._abstract}
 
+{% include "./snippets/olmv0-failed-install-cluster-role-bindings.md" %}
+
 {% if not (olm_user or openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 As a cluster administrator, you can install an Operator from the software catalog by using the {{ product_title }}
-{%- if openshift_enterprise or openshift_webscale or openshift_origin %}
+{%- if openshift_enterprise or openshift_origin %}
 web console or CLI. Subscribing an Operator to one or more namespaces makes the Operator available to developers on your cluster.
 {%- endif %}
 {% endif %}
@@ -26,7 +28,7 @@ As a user with the proper permissions, you can install an Operator from the soft
 During installation, you must determine the following initial settings for the Operator:
 
 {% if not olm_user %}
-{% if openshift_enterprise or openshift_webscale or openshift_origin or openshift_rosa or openshift_dedicated or openshift_rosa_hcp %}
+{% if openshift_enterprise or openshift_origin or openshift_rosa or openshift_dedicated or openshift_rosa_hcp %}
 
 Installation Mode
 :   Choose **All namespaces on the cluster (default)** to have the Operator installed on all namespaces or choose individual namespaces, if available, to only install the Operator on selected namespaces. This example chooses **All namespaces...** to make the Operator available to all users and projects.
@@ -54,3 +56,7 @@ Approval Strategy
     `dedicated-admin`,
 {%- endif %}
     you must then manually approve that update request to have the Operator updated to the new version.
+
+{% if context == "olm-installing-operators-in-namespace" %}
+{%- set olm_user = "" -%}
+{% endif %}

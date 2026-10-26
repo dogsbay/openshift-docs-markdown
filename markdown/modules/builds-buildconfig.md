@@ -46,14 +46,10 @@ spec:
 1.  The `runPolicy` field controls whether builds created from this build configuration can be run simultaneously. The default value is `Serial`, which means new builds run sequentially, not simultaneously.
 1.  You can specify a list of triggers, which cause a new build to be created.
 1.  The `source` section defines the source of the build. The source type determines the primary source of input, and can be either `Git`, to point to a code repository location,
-{%- if not openshift_online %}
 `Dockerfile`, to build from an inline Dockerfile,
-{%- endif %}
-or `Binary`, to accept binary payloads. It is possible to have multiple sources at once. See the documentation for each source type for details.
+or `Binary`, to accept binary payloads. It is possible to have multiple sources at once. For more information about each source type, see "Creating build inputs".
 1.  The `strategy` section describes the build strategy used to execute the build. You can specify a `Source`
-{%- if not openshift_online %}
 , `Docker`, or `Custom`
-{%- endif %}
 strategy here. This example uses the `ruby-20-centos7` container image that Source-to-image (S2I) uses for the application build.
 1.  After the container image is successfully built, it is pushed into the repository described in the `output` section.
 1.  The `postCommit` section defines an optional build hook.

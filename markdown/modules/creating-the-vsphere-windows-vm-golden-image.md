@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the vSphere Windows VM golden image {id="creating-the-vsphere-windows-vm-golden-image_{{ context }}"}
+# Create a Windows VM golden image for vSphere {id="creating-the-vsphere-windows-vm-golden-image_{{ context }}"}
 
 You must prepare your vSphere environment for Windows container workloads by creating the vSphere Windows VM golden image. {._abstract}
 

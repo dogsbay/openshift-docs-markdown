@@ -1,4 +1,4 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # {{ product_title }} deployment workflow {id="rosa-overview-of-the-deployment-workflow_{{ context }}"}
 
 You can follow the workflow stages outlined in this section to set up and access a {{ product_title }} cluster. {._abstract}

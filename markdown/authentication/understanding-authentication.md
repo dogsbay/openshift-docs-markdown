@@ -9,7 +9,7 @@ title: Understanding authentication
 
 To interact with {{ product_title }}, log in so the authentication layer can verify your identity. The authorization layer then uses your identity to determine which actions and resources you can access. {._abstract}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 As an administrator, you can configure authentication for {{ product_title }}.
 {% endif %}
 
@@ -23,7 +23,7 @@ As an administrator, you can configure authentication for {{ product_title }}.
 
 {% leveloffset +2 %}{% include "./modules/oauth-token-requests.md" %}{% endleveloffset %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 {% leveloffset +3 %}{% include "./modules/authentication-api-impersonation.md" %}{% endleveloffset %}
 
 **Additional resources**

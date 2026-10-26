@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a headless service in a project by using the CLI {id="virt-creating-headless-services_{{ context }}"}
+# Create a headless service by using the CLI {id="virt-creating-headless-services_{{ context }}"}
 
 To create a headless service in a namespace, add the `clusterIP: None` parameter to the service YAML definition. {._abstract}
 

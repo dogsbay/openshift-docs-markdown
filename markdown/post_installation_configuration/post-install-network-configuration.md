@@ -27,7 +27,7 @@ For more information, see "Cluster Network Operator in {{ product_title }}".
 *   Optimizing routing
 *   Understanding multiple networks
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 ## Creating default network policies for a new project {id="post-install-network-configuration-default-network-policies"}
 
 As a cluster administrator, you can modify the new project template to automatically include `NetworkPolicy` objects when you create a new project.

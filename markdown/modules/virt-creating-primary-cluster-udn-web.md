@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a primary cluster-scoped user-defined network by using the web console {id="virt-creating-primary-cluster-udn-web_{{ context }}"}
+# Create a cluster-scoped primary overlay network in the web console {id="virt-creating-primary-cluster-udn-web_{{ context }}"}
 
 You can connect multiple namespaces to the same primary user-defined network (UDN) by creating a `ClusterUserDefinedNetwork` custom resource in the {{ product_title }} web console. {._abstract}
 

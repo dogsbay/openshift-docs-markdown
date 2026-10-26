@@ -40,7 +40,7 @@ and a set of individual Operators.
 
 {% leveloffset +1 %}{% include "./modules/operators-overview.md" %}{% endleveloffset %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 {% leveloffset +2 %}{% include "./modules/arch-cluster-operators.md" %}{% endleveloffset %}
 
 **Additional resources**

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Connecting to a virtual machine by using its internal FQDN {id="virt-connecting-vm-internal-fqdn_{{ context }}"}
+# Connect to a VM by using its internal FQDN {id="virt-connecting-vm-internal-fqdn_{{ context }}"}
 
 You can connect to a virtual machine (VM) by using its internal fully qualified domain name (FQDN). {._abstract}
 

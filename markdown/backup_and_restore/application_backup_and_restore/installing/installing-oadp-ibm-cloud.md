@@ -15,6 +15,8 @@ You install the {{ oadp_first }} Operator on an {{ ibm_cloud_title }} cluster to
 {% leveloffset +1 %}{% include "./modules/oadp-creating-default-secret.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/oadp-secrets-for-different-credentials.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/oadp-installing-dpa-1-3.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/oadp-dpa-configuration-by-provider.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/oadp-setting-resource-limits-and-requests.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/oadp-configuring-node-agents.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/oadp-configuring-client-burst-qps.md" %}{% endleveloffset %}

@@ -18,7 +18,7 @@ base image(s), or both. Pods are also treated as expendable, and do not
 maintain state when recreated. Therefore pods should usually be managed by
 higher-level controllers, rather than directly by users.
 
-{% if openshift_enterprise or openshift_webscale %}
+{% if openshift_enterprise %}
 
 :::note
 

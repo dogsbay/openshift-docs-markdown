@@ -71,7 +71,7 @@ build environments and create secrets.
 
 {% leveloffset +2 %}{% include "./modules/builds-source-to-image.md" %}{% endleveloffset %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 
 {% leveloffset +2 %}{% include "./modules/builds-docker-strategy.md" %}{% endleveloffset %}
 

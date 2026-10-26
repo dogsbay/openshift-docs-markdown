@@ -21,11 +21,13 @@
 
 To install and subscribe to an Operator from the software catalog, you can use the {{ product_title }} web console. The console guides you through selecting an install mode, namespace, and approval strategy. {._abstract}
 
+{% include "./snippets/olmv0-failed-install-cluster-role-bindings.md" %}
+
 **Prerequisites**
 
 {% if olm_admin %}
 *   Access to an {{ product_title }} cluster using an account with
-{%- if openshift_enterprise or openshift_webscale or openshift_origin %}
+{%- if openshift_enterprise or openshift_origin %}
 `cluster-admin` permissions.
 {%- endif %}
 {%- if openshift_dedicated or openshift_rosa %}

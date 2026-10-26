@@ -5,7 +5,8 @@ title: "Installing {{ VirtProductName }}"
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
 # Installing {{ VirtProductName }} {id="installing-virt"}
-{%- set context = "installing-virt" %}
+{%- set context = "installing-virt" -%}
+{%- set toclevels = "3" %}
 
 Install {{ VirtProductName }} to add virtualization functionality to your {{ product_title }} cluster. {._abstract}
 

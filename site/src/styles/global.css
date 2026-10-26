@@ -69,7 +69,10 @@
   & li > * + *:not(.dba-api *) { margin-top: 0.75rem; }
 
   & ul:not(.dba-api *) { list-style: disc; padding-left: 1.5rem; margin: 0.75rem 0; }
-  & ol:not(.dba-api *) { list-style: decimal; padding-left: 1.5rem; margin: 0.75rem 0; }
+  /* Not a step list, nor a list inside one: Steps.astro draws their numbers as circles, and this
+     rule (one class and an element) outranked its .steps-list { list-style: none }, so each step
+     showed its "2." beside its circle */
+  & ol:not(.dba-api *):not(.steps-list, .sub-steps-list, .steps-list ol) { list-style: decimal; padding-left: 1.5rem; margin: 0.75rem 0; }
   & li:not(.dba-api *) { margin: 0.25rem 0; }
   & li > ul:not(.dba-api *), & li > ol:not(.dba-api *) { margin: 0.25rem 0; }
   /* A file tree draws its own folder and file icons (files/markup.ts): the list rules above gave it bullets too */

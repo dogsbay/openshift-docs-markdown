@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About {{ autonode }} troubleshooting {id="autonode-troubleshooting-overview_{{ context }}"}
 
-The {{ autonode }} uses the Karpenter controller to provide automated node provisioning in OpenShift clusters. When the {{ autonode }} fails to provision nodes or reports configuration errors, you can diagnose and resolve issues by examining Karpenter resource status, AWS infrastructure tags, and AWS Identity and Access Management (IAM) permissions. {._abstract}
+The {{ autonode }} uses the Karpenter controller to provision nodes automatically. When provisioning fails or configuration errors occur, you can diagnose and resolve them by checking Karpenter resource status, AWS infrastructure tags, and IAM permissions. {._abstract}
 
 {{ autonode }} troubleshooting addresses the main failure categories:
 

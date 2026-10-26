@@ -25,6 +25,8 @@ Red Hat supports using {{ VirtProductName }} 4.14 or later with {{ oadp_short }}
 {% leveloffset +1 %}{% include "./modules/install-and-configure-oadp-kubevirt.md" %}{% endleveloffset %}
 {% leveloffset +1 %}{% include "./modules/oadp-installing-dpa-1-3.md" %}{% endleveloffset %}
 
+{% leveloffset +2 %}{% include "./modules/oadp-dpa-configuration-by-provider.md" %}{% endleveloffset %}
+
 {% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Application backup and restore operations](/backup_and_restore/index#application-backup-restore-operations-overview_backup-restore-overview)

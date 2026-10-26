@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About live migration permissions {id="virt-about-live-migration-permissions_{{ context }}"}
+# Live migration permissions {id="virt-about-live-migration-permissions_{{ context }}"}
 
 In {{ VirtProductName }} 4.19 and later, live migration operations are restricted to users who are explicitly granted the `kubevirt.io:migrate` cluster role. Users with this role can create, delete, and update virtual machine (VM) live migration requests. {._abstract}
 

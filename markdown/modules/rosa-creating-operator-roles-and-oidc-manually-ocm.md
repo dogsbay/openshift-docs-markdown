@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Create the Operator roles and OIDC provider using {{ cluster_manager }} {id="rosa-creating-operator-roles-and-oidc-manually-ocm_{{ context }}"}
 
-If you use {{ cluster_manager_first }} to install your cluster and opt to create the required AWS IAM Operator roles and the OIDC provider using `manual` mode, you are prompted to select one of the following methods to install the resources. The options are provided to enable you to choose a resource creation method that suits the needs of your organization: {._abstract}
+If you use {{ cluster_manager_first }} to install your cluster and opt to create the required AWS IAM Operator roles and the OIDC provider using `manual` mode, you are prompted to select one of the following methods to install the resources. {._abstract}
+
+The options are provided to enable you to choose a resource creation method that suits the needs of your organization:
 
 
 AWS CLI (`aws`)

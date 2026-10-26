@@ -11,7 +11,7 @@ You can use the `oc` CLI to view local roles and bindings by using the
 *   Install the `oc` CLI.
 *   Obtain permission to view the local roles and bindings:
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
     *   Users with the `cluster-admin` default cluster role bound cluster-wide can
     perform any action on any resource, including viewing local roles and bindings.
 {% endif %}

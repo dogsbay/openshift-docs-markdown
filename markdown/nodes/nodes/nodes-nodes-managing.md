@@ -26,11 +26,6 @@ Logging in to remote machines for the purpose of changing their configuration is
 
 {% leveloffset +1 %}{% include "./modules/nodes-nodes-kernel-arguments.md" %}{% endleveloffset %}
 
-{% if openshift_webscale %}
-{% leveloffset +1 %}{% include "./modules/nodes-nodes-rtkernel-arguments.md" %}{% endleveloffset %}
-
-{% endif %}
-
 {% leveloffset +1 %}{% include "./modules/nodes-nodes-parallel-container-pulls-about.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/nodes-nodes-parallel-container-pulls-configure.md" %}{% endleveloffset %}

@@ -59,14 +59,14 @@ after you install your cluster.
 
 {% leveloffset +2 %}{% include "./modules/rbac-creating-local-role.md" %}{% endleveloffset %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 {% leveloffset +2 %}{% include "./modules/rbac-creating-cluster-role.md" %}{% endleveloffset %}
 
 {% endif %}
 
 {% leveloffset +2 %}{% include "./modules/rbac-local-role-binding-commands.md" %}{% endleveloffset %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 {% leveloffset +2 %}{% include "./modules/rbac-cluster-role-binding-commands.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/rbac-creating-cluster-admin.md" %}{% endleveloffset %}
@@ -99,15 +99,13 @@ after you install your cluster.
 *   [Image template for custom catalog sources](/operators/understanding/olm/olm-understanding-olm#olm-catalogsource-image-template_olm-understanding-olm)
 *   [Image pull policy](/openshift_images/managing_images/image-pull-policy#image-pull-policy)
 
-{% leveloffset +1 %}{% include "./modules/olm-installing-operators-from-software-catalog.md" %}{% endleveloffset %}
-
 {% if openshift_origin %}
 {% leveloffset +2 %}{% include "./modules/olm-installing-operators-from-software-catalog-configure.md" %}{% endleveloffset %}
 
 {%- endif %}
 {% leveloffset +2 %}{% include "./modules/olm-installing-from-software-catalog-using-web-console.md" %}{% endleveloffset %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 {% leveloffset +2 %}{% include "./modules/olm-installing-from-software-catalog-using-cli.md" %}{% endleveloffset %}
 
 **Additional resources**

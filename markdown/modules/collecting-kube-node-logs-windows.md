@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Collecting Kubernetes node logs for Windows containers {id="collecting-kube-node-logs-windows_{{ context }}"}
+# Collect Kubernetes node logs for Windows containers {id="collecting-kube-node-logs-windows_{{ context }}"}
 
 Windows container logging works differently from Linux container logging; the Kubernetes node logs for Windows workloads are streamed to the `C:\var\logs` directory by default. Therefore, you must gather the Windows node logs from that directory. {._abstract}
 

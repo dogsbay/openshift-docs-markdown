@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the must-gather tool for {{ VirtProductName }} {id="virt-using-virt-must-gather_{{ context }}"}
+# Use the must-gather tool for {{ VirtProductName }} {id="virt-using-virt-must-gather_{{ context }}"}
 
 You can collect data about {{ VirtProductName }} resources by running the `must-gather` command with the {{ VirtProductName }} image. {._abstract}
 

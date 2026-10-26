@@ -1,5 +1,5 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
-# Analyzing data volume conditions and events {id="virt-analyzing-datavolume-conditions-and-events_{{ context }}"}
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Data volume condition and event analysis {id="virt-analyzing-datavolume-conditions-and-events_{{ context }}"}
 
 To determine the state of a data volume in relation to a Persistent Volume Claim (PVC) and whether or not an operation is actively running on the data volume, inspect the `Conditions` and `Events` section of the `oc describe` command output. {._abstract}
 

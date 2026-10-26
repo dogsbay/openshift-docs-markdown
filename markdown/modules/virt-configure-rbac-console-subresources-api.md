@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring RBAC permissions for managing VM states by using the web console {id="virt-configure-rbac-console-subresources-api_{{ context }}"}
+# Configure RBAC permissions for managing VM states {id="virt-configure-rbac-console-subresources-api_{{ context }}"}
 
-To allow users to manage virtual machine (VM) states by using the {{ product_title }} web console, you must create an RBAC cluster role and cluster role binding.
-The cluster role uses the `subresources.kubevirt.io` API to define which resources can be controlled by certain users or groups. {._abstract}
+You can grant users permission to start and stop virtual machines (VMs) from the {{ product_title }} web console. Create a role-based access control (RBAC) cluster role and a cluster role binding to apply the permission. {._abstract}
 
 **Prerequisites**
 

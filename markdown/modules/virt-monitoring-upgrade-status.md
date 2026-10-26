@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Monitoring update status {id="virt-monitoring-upgrade-status_{{ context }}"}
+# Monitor update status {id="virt-monitoring-upgrade-status_{{ context }}"}
 
 To monitor the status of a {{ CNVOperatorDisplayName }} update, watch the cluster service version (CSV) `PHASE`. You can also monitor the CSV conditions in the web console or by using the CLI. {._abstract}
 

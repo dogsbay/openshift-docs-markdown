@@ -9,6 +9,8 @@ title: Installing Operators in your namespace
 
 If a cluster administrator has delegated Operator installation permissions to your account, you can install and subscribe an Operator to your namespace in a self-service manner. {._abstract}
 
+{% include "./snippets/olmv0-cluster-scoped-rbac-warning.md" %}
+
 ## Prerequisites {id="olm-installing-operators-in-namespace-prereqs"}
 
 *   A cluster administrator must add certain permissions to your {{ product_title }} user account to allow self-service Operator installation to a namespace.
@@ -29,7 +31,7 @@ If a cluster administrator has delegated Operator installation permissions to yo
 
 {% leveloffset +1 %}{% include "./modules/olm-installing-from-software-catalog-using-web-console.md" %}{% endleveloffset %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 {% leveloffset +1 %}{% include "./modules/olm-installing-from-software-catalog-using-cli.md" %}{% endleveloffset %}
 
 **Additional resources**

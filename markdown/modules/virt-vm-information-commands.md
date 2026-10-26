@@ -4,7 +4,7 @@
 
 # VM information commands {id="vm-information-commands_{{ context }}"}
 
-You can use `virtctl` to view information about virtual machines (VMs) and virtual machine instances (VMIs). {._abstract}
+You can use the following `virtctl` commands to view the file systems, operating systems, and logged-in users of a guest machine. {._abstract}
 
 **VM information commands**
 

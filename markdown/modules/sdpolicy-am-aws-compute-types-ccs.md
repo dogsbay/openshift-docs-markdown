@@ -4,7 +4,7 @@
 {{ product_title }} offers the following worker node instance types and sizes on AWS: {._abstract}
 
 :::details{title="General purpose"}
-*   m5.metal (96&#8224;  vCPU, 384 GiB)
+*   m5.metal (96&#42;  vCPU, 384 GiB)
 *   m5.xlarge (4 vCPU, 16 GiB)
 *   m5.2xlarge (8 vCPU, 32 GiB)
 *   m5.4xlarge (16 vCPU, 64 GiB)
@@ -26,7 +26,7 @@
 *   m5ad.12xlarge (48 vCPU, 192 GiB)
 *   m5ad.16xlarge (64 vCPU, 256 GiB)
 *   m5ad.24xlarge (96 vCPU, 384 GiB)
-*   m5d.metal (96&#8224;  vCPU, 384 GiB)
+*   m5d.metal (96&#42;  vCPU, 384 GiB)
 *   m5d.xlarge (4 vCPU, 16 GiB)
 *   m5d.2xlarge (8 vCPU, 32 GiB)
 *   m5d.4xlarge (16 vCPU, 64 GiB)
@@ -155,7 +155,7 @@
 *   m8azn.metal-12xl (48 vCPU, 192 GiB)
 *   m8azn.metal-24xl (96 vCPU, 384 GiB)
 
-&#8224; These instance types provide 96 logical processors on 48 physical cores. They run on single servers with two physical Intel sockets.
+&#42; These instance types provide 96 logical processors on 48 physical cores. They run on single servers with two physical Intel sockets.
 :::
 
 :::details{title="Burstable general purpose"}
@@ -227,7 +227,7 @@
 *   r4.4xlarge (16 vCPU, 122 GiB)
 *   r4.8xlarge (32 vCPU, 244 GiB)
 *   r4.16xlarge (64 vCPU, 488 GiB)
-*   r5.metal (96&#8224; vCPU, 768 GiB)
+*   r5.metal (96&#42; vCPU, 768 GiB)
 *   r5.xlarge (4 vCPU, 32 GiB)
 *   r5.2xlarge (8 vCPU, 64 GiB)
 *   r5.4xlarge (16 vCPU, 128 GiB)
@@ -249,7 +249,7 @@
 *   r5ad.12xlarge (48 vCPU, 384 GiB)
 *   r5ad.16xlarge (64 vCPU, 512 GiB)
 *   r5ad.24xlarge (96 vCPU, 768 GiB)
-*   r5d.metal (96&#8224; vCPU, 768 GiB)
+*   r5d.metal (96&#42; vCPU, 768 GiB)
 *   r5d.xlarge (4 vCPU, 32 GiB)
 *   r5d.2xlarge (8 vCPU, 64 GiB)
 *   r5d.4xlarge (16 vCPU, 128 GiB)
@@ -364,7 +364,7 @@
 *   r8id.metal-48xl (192 vCPU, 1,536 GiB)
 *   r8id.metal-96xl (384 vCPU, 3,072 GiB)
 
-&#8224; These instance types provide 96 logical processors on 48 physical cores. They run on single servers with two physical Intel sockets.
+&#42; These instance types provide 96 logical processors on 48 physical cores. They run on single servers with two physical Intel sockets.
 
 &#135; This instance type provides 48 logical processors on 24 physical cores.
 :::
@@ -399,7 +399,7 @@
 *   g5.12xlarge (48 vCPU, 192 GiB)
 *   g5.24xlarge (96 vCPU, 384 GiB)
 *   g5.48xlarge (192 vCPU, 768 GiB)
-*   dl1.24xlarge  (96 vCPU, 768 GiB)&#8224;
+*   dl1.24xlarge  (96 vCPU, 768 GiB)&#42;
 *   g6.xlarge (4 vCPU, 16 GiB)
 *   g6.2xlarge (8 vCPU, 32 GiB)
 *   g6.4xlarge (16 vCPU,	64 GiB)
@@ -426,7 +426,7 @@
 *   g7e.48xlarge (192 vCPU, 2048 GiB)
 *   dl1.24xlarge (96 vCPU, 768 GiB)
 
-&#8224; Intel specific; not covered by Nvidia
+&#42; Intel specific; not covered by Nvidia
 
 Support for the GPU instance type software stack is provided by AWS. Ensure that your AWS service quotas can accommodate the desired GPU instance types.
 :::
@@ -568,7 +568,7 @@ Support for the GPU instance type software stack is provided by AWS. Ensure that
 :::
 
 :::details{title="Storage optimized"}
-*   i3.metal (72&#8224; vCPU, 512 GiB)
+*   i3.metal (72&#42; vCPU, 512 GiB)
 *   i3.xlarge	(4 vCPU, 30.5 GiB)
 *   i3.2xlarge (8 vCPU, 61 GiB)
 *   i3.4xlarge (16 vCPU, 122 GiB)
@@ -591,7 +591,7 @@ Support for the GPU instance type software stack is provided by AWS. Ensure that
 *   i4i.32xlarge (128 vCPU, 1024 GiB)
 *   i4i.metal (128 vCPU, 1024 GiB)
 
-&#8224; This instance type provides 72 logical processors on 36 physical cores.
+&#42; This instance type provides 72 logical processors on 36 physical cores.
 :::
 
 
@@ -615,6 +615,11 @@ Virtual instance types initialize faster than ".metal" instance types.
 *   u-24tb1.metal (448 vCPU, 24,576 GiB)
 :::
 
-:::details{title="High performance compute	"}
+:::details{title="High performance compute"}
 *   hpc6a.48xlarge (96 vCPU, 384 GiB)
 :::
+
+**Additional resources**
+{._additional-resources}
+
+*   [AWS Instance Types](https://aws.amazon.com/ec2/instance-types)

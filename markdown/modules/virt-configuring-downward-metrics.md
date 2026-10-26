@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a downward metrics device {id="virt-configuring-downward-metrics_{{ context }}"}
+# Configure a downward metrics device {id="virt-configuring-downward-metrics_{{ context }}"}
 
 You can enable the capturing of downward metrics for a host VM by creating a configuration file that includes a `downwardMetrics` device. Adding this device establishes that the metrics are exposed through a `virtio-serial` port. {._abstract}
 

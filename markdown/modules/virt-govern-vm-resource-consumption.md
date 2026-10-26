@@ -1,4 +1,6 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Govern VM resource consumption {id="virt-govern-vm-resource-consumption_{{ context }}"}
 
-Govern how much CPU and memory each project can consume by using the Application Aware Quota (AAQ) Operator, which measures the resources allocated to virtual machines rather than the total consumption of the pod, so that tenants stay within budget and VMs can still live migrate.
+Limit CPU and memory resources available to projects to reduce resource contention. {._abstract}
+
+You can use the Application Aware Quota (AAQ) Operator to evaluate resources allocated to a virtual machine (VM) instead of a whole VM pod, so that quota constraints do not block live migration or an upgrade. You can enable and configure the AAQ Operator from the web console or the command line, and then create, view, and edit quotas on the **Quotas** page. You can also set resource limits on individual VMs when a namespace enforces a quota that requires limits.

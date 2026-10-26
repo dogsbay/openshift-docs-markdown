@@ -42,7 +42,7 @@ The `provider.challengeURL` and `provider.loginURL` parameters can include the f
 
 ## Security Support Provider Interface connection support on Microsoft Windows {id="sspi-windows_{{ context }}"}
 
-{% if openshift_enterprise or openshift_webscale %}
+{% if openshift_enterprise %}
 
 {%- set FeatureName = "Using Security Support Provider Interface connection support on Microsoft Windows" %}
 {% leveloffset +1 %}{% include "./snippets/technology-preview.md" %}{% endleveloffset %}

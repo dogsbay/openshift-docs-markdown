@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" -%}
-{% if openshift_enterprise or openshift_webscale or openshift_origin or openshift_dedicated or openshift_rosa %}
+{% if openshift_enterprise or openshift_origin or openshift_dedicated or openshift_rosa %}
 # Cluster role binding commands {id="cluster-role-binding-commands_{{ context }}"}
 
 You can use cluster role binding commands to grant or remove roles for users and groups across all projects in the cluster. {._abstract}

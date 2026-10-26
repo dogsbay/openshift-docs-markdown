@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Supported cluster versions for {{ VirtProductName }} {id="virt-supported-cluster-version-osd_{{ context }}"}
+# Supported cluster versions on {{ gcp_short }} {id="virt-supported-cluster-version-osd_{{ context }}"}
 
 {{ VirtProductName }} on {{ gcp_short }} is supported on {{ product_title }} using either {{ gcp_short }} Hyperdisk or {{ gcp_short }} NetApp Volumes (GCNV) for persistent storage. {._abstract}
 

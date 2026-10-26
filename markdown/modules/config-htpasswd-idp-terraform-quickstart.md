@@ -1,3 +1,4 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure an htpasswd identity provider with Terraform {id="config-htpasswd-idp-terraform_{{ context }}"}
 
 After creating your cluster with Terraform, you can permit users access to your cluster by using an htpasswd identity provider (IDP) with the Terraform tool. {._abstract}
@@ -22,10 +23,10 @@ After creating your cluster with Terraform, you can permit users access to your 
             idp_type           = "htpasswd"
             htpasswd_idp_users = [{ username = "pej-user-d1", password = random_password.password.result }]
           }
-          
+
           resource "aws_secretsmanager_secret" "idp_password" {
           name        = "idp-password-secret"
-          description = "Any description here" 
+          description = "Any description here"
           }
 
           resource "random_password" "password" {
@@ -40,7 +41,7 @@ After creating your cluster with Terraform, you can permit users access to your 
               value     = random_password.password.result
               sensitive = true
           }
-          
+
           # This section sends your credentials to your AWS Secrets Manager to enable you to log in to your cluster.
           resource "aws_secretsmanager_secret_version" "idp_password_val" {
           secret_id     = aws_secretsmanager_secret.idp_password.id

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Connect to the provider’s physical network {id="virt-nw-overview-connect-vm-to-physical-nw_{{ context }}"}
+# VM physical network access methods {id="virt-nw-overview-connect-vm-to-physical-nw_{{ context }}"}
 
 To give virtual machines (VMs) access to the internet or other physical devices, you configure the node network, define the secondary network, and attach the VM to the secondary network. {._abstract}
 
@@ -51,7 +51,7 @@ Connect a VM to the physical network by using an SR-IOV device
 
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 
-Connect a VM to the physical network by using DPDK drivers with SR-IOV hardware
+VM connectivity with DPDK and SR-IOV
 :   The Data Plane Development Kit (DPDK) provides a set of libraries and drivers for fast packet processing. You can configure clusters and VMs to run DPDK workloads over SR-IOV networks by performing the following steps:
 
 1.  Configure the node hardware.

@@ -88,7 +88,7 @@ aws iam create-policy \
 
 ## Using auto mode for role creation {id="rosa-sts-account-wide-role-and-policy-aws-cli-auto-mode_{{ context }}"}
 
-When you add the `--mode auto` argument, the {{ product_title }} (ROSA) CLI, `rosa`, creates your roles and policies. The following command starts that process:
+When you add the `--mode auto` argument, the {{ rosa_cli_first }} creates your roles and policies. The following command starts that process:
 
 ```terminal
 $ rosa create account-roles --mode auto
@@ -102,7 +102,7 @@ The provided command examples include the `ManagedOpenShift` prefix. The `Manage
 :::
 
 
-```terminal title="Command output"
+```terminal title="Example output"
 I: Creating roles using 'arn:aws:iam::<ARN>:user/<UserID>'
 ? Create the 'ManagedOpenShift-Installer-Role' role? Yes
 I: Created role 'ManagedOpenShift-Installer-Role' with ARN 'arn:aws:iam::<ARN>:role/ManagedOpenShift-Installer-Role'

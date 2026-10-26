@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting a policy attribute and CPU feature {id="virt-setting-policy-attributes_{{ context }}"}
+# Set a policy attribute and CPU feature {id="virt-setting-policy-attributes_{{ context }}"}
 
-You can set a policy attribute and CPU feature for each virtual machine (VM) to ensure that it is scheduled on a node according to policy and feature. The CPU feature that you set is verified to ensure that it is supported by the host CPU or emulated by the hypervisor. {._abstract}
+Set a CPU feature and a policy attribute on a virtual machine (VM) so that the VM runs only where the feature is available. The feature must be supported by the host CPU or emulated by the hypervisor. {._abstract}
 
 **Procedure**
 

@@ -27,7 +27,7 @@ The following sections provide an overview of the concepts of containers, images
 
 {% leveloffset +1 %}{% include "./modules/images-imagestream-trigger.md" %}{% endleveloffset %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 
 ## Additional resources {id="additional-resources_images-understand" ._additional-resources}
 

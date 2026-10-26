@@ -21,7 +21,7 @@ When providing information to Red Hat Support, it is helpful to provide the uniq
     1.  Click on the name of the cluster you need to open a support case for.
     1.  Find the value in the **Cluster ID** field of the **Details** section of the **Overview** tab.
 {%- endif %}
-{%- if openshift_enterprise or openshift_webscale or openshift_dedicated or openshift_rosa %}
+{%- if openshift_enterprise or openshift_dedicated or openshift_rosa %}
 *   To open a support case and have your cluster ID autofilled using the web console:
     1.  From the toolbar, navigate to **(?) Help** and select **Share Feedback** from the list.
     1.  Click **Open a support case** from the **Tell us about your experience** window.

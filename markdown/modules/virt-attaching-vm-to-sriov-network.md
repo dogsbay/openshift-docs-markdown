@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Connecting a virtual machine to an SR-IOV network by using the CLI {id="virt-attaching-vm-to-sriov-network_{{ context }}"}
+# Connect a VM to an SR-IOV network by using the CLI {id="virt-attaching-vm-to-sriov-network_{{ context }}"}
 
 You can connect the virtual machine (VM) to the SR-IOV network by including the network details in the VM configuration. {._abstract}
 

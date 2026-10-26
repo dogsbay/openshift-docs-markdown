@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Defining an HTTP readiness probe {id="virt-define-http-readiness-probe_{{ context }}"}
+# Define an HTTP readiness probe {id="virt-define-http-readiness-probe_{{ context }}"}
 
 You can define an HTTP readiness probe by setting the `spec.readinessProbe.httpGet` field of the virtual machine (VM) configuration. {._abstract}
 

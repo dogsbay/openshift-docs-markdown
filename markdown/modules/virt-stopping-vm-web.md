@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Stopping a virtual machine {id="virt-stopping-vm-web_{{ context }}"}
+# Stop a VM {id="virt-stopping-vm-web_{{ context }}"}
 
-You can stop a virtual machine (VM) from the web console. {._abstract}
+You can stop a virtual machine (VM) from the **VirtualMachines** page, the tree view, or the **VirtualMachine details** page of the {{ product_title }} web console. {._abstract}
 
 **Procedure**
 

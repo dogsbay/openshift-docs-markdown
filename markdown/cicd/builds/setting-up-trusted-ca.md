@@ -12,7 +12,7 @@ title: Setting up additional trusted certificate authorities for builds
 {%- endif %}
 {%- set context = "setting-up-trusted-ca" %}
 
-{% if openshift_enterprise or openshift_rosa or openshift_dedicated or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_rosa or openshift_dedicated or openshift_origin %}
 Use the following sections to set up additional certificate authorities (CA) to be trusted by builds when pulling images from an image registry.
 
 The procedure requires a cluster administrator to create a `ConfigMap` and add additional CAs as keys in the `ConfigMap`.

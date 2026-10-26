@@ -16,7 +16,6 @@ wget http://repository.example.com/app/app-$APP_VERSION.jar -O app.jar
 exec java -jar app.jar
 ```
 
-{% if not openshift_online %}
 For a Docker build strategy, you must modify the Dockerfile and invoke
 shell commands with the [`RUN` instruction](https://docs.docker.com/engine/reference/builder/#run):
 
@@ -29,12 +28,9 @@ RUN wget http://repository.example.com/app/app-$APP_VERSION.jar -O app.jar
 EXPOSE 8080
 CMD [ "java", "-jar", "app.jar" ]
 ```
-{% endif %}
 
 In practice, you may want to use an environment variable for the file location so that the specific file to be downloaded can be customized using an environment variable defined on the `BuildConfig`, rather than updating the
-{%- if not openshift_online %}
 Dockerfile or
-{%- endif %}
 `assemble` script.
 
 You can choose between different methods of defining environment variables:

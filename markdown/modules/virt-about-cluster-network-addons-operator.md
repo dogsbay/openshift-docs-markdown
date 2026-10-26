@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About the Cluster Network Addons Operator {id="virt-about-cluster-network-addons-operator_{{ context }}"}
+# Cluster Network Addons Operator {id="virt-about-cluster-network-addons-operator_{{ context }}"}
 
 The Cluster Network Addons Operator, `cluster-network-addons-operator`, deploys networking components on a cluster and manages the related resources for extended network functionality. {._abstract}
 

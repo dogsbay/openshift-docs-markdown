@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Migrating VMs in a single cluster to a different storage class by using the web console {id="virt-migrating-bulk-vms-different-storage-class-web_{{ context }}"}
+# Migrate VM disks to a different storage class {id="virt-migrating-bulk-vms-different-storage-class-web_{{ context }}"}
 
 By using the {{ product_title }} web console, you can migrate single-cluster VMs in bulk from one storage class to another storage class. {._abstract}
 

@@ -11,7 +11,7 @@ title: Troubleshooting
 
 To diagnose and resolve issues with virtual machine (VM) and cluster components, you can troubleshoot {{ VirtProductName }} by using the web console or the {{ oc_first }}. These practices help ensure your virtualized infrastructure remains healthy. {._abstract}
 
-{% leveloffset +1 %}{% include "./modules/virt-troubleshooting-events.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/virt-view-vm-and-resource-events.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/virt-troubleshooting-pod-logs.md" %}{% endleveloffset %}
 
@@ -52,6 +52,8 @@ To diagnose and resolve issues with virtual machine (VM) and cluster components,
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [{{ product_title }} events](/nodes/clusters/nodes-containers-events#nodes-containers-events)
 *   [List of events](/nodes/clusters/nodes-containers-events#nodes-containers-events-list_nodes-containers-events)
-*   [Aggregated logs](/virt/support/virt-troubleshooting#virt-viewing-logs-loki_virt-troubleshooting)
+*   [View aggregated {{ VirtProductName }} logs with Loki](/virt/support/virt-troubleshooting#virt-viewing-logs-loki_virt-troubleshooting)
 *   [Connecting to virtual machine consoles](/virt/managing_vms/virt-accessing-vm-consoles#virt-accessing-vm-consoles)
+*   [List of known Windows BSOD issues on {{ VirtProductName }} and RHEL KVM](https://access.redhat.com/articles/7141237)
+*   [Recommendations when investigating Windows BSOD issues](https://access.redhat.com/articles/7129390)
 *   [LogQL log queries](https://grafana.com/docs/loki/latest/logql/log_queries/)

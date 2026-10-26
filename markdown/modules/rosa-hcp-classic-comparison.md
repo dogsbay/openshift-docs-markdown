@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Compare {{ hcp_title_first }} and {{ rosa_classic_title }} {id="rosa-hcp-classic-comparison_{{ context }}"}
+# Hosted Control Planes and Classic architecture comparison {id="rosa-hcp-classic-comparison_{{ context }}"}
 
 {{ hcp_title_first }} and {{ rosa_classic_title }} differ in how they host the control plane, deploy infrastructure, and handle upgrades. {._abstract}
 
@@ -8,7 +8,7 @@
 <table>
 <thead>
 <tr>
-  <th>&#160; +</th>
+  <th></th>
   <th><strong>Hosted Control Plane (HCP)</strong></th>
   <th><strong>Classic</strong></th>
 </tr>

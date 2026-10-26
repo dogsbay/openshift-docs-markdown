@@ -31,4 +31,4 @@ The `vm-dump-metrics` tool is not supported on the Red Hat Enterprise Linux (RHE
 
 ## Additional resources {id="additional-resources_virt-exposing-downward-metrics-for-vms" ._additional-resources}
 
-*   [Viewing downward metrics by using the command line](/virt/monitoring/virt-exposing-downward-metrics#virt-viewing-downward-metrics-cli_virt-exposing-downward-metrics)
+*   [View downward metrics by using the CLI](/virt/monitoring/virt-exposing-downward-metrics#virt-viewing-downward-metrics-cli_virt-exposing-downward-metrics)

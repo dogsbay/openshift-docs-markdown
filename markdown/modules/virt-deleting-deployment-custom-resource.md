@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting the HyperConverged custom resource {id="virt-deleting-deployment-custom-resource_{{ context }}"}
+# Delete the HyperConverged custom resource {id="virt-deleting-deployment-custom-resource_{{ context }}"}
 
 To uninstall {{ VirtProductName }}, you first delete the `HyperConverged` custom resource (CR). {._abstract}
 

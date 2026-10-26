@@ -75,6 +75,6 @@ These release notes track the development of the Compliance Operator in the {{ p
 
 ## Additional resources {id="compliance-operator-release-notes_additional-resources" ._additional-resources}
 
-*   [Understanding the Compliance Operator](/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)
+*   [About the Compliance Operator](/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)
 *   [Updating the Compliance Operator](/security/compliance_operator/co-management/compliance-operator-updating#olm-preparing-upgrade_compliance-operator-updating)
 *   [Product Compliance](https://access.redhat.com/compliance)

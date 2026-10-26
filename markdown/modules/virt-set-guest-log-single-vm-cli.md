@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting guest system log access for a single VM with the CLI {id="virt-set-guest-log-single-vm-cli_{{ context }}"}
+# Set per-VM guest system log access with the CLI {id="virt-set-guest-log-single-vm-cli_{{ context }}"}
 
-To troubleshoot a specific virtual machine (VM) without changing global settings, you can configure the guest system log access by editing the `VirtualMachine` CR.  {._abstract}
+To troubleshoot a specific virtual machine (VM) without changing global settings, you can configure the guest system log access by editing the `VirtualMachine` CR. {._abstract}
 
 **Prerequisites**
 

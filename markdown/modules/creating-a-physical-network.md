@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a physical network by using the {{ product_title }} web console {id="creating-a-physical-network_{{ context }}"}
+# Create a physical network in the web console {id="creating-a-physical-network_{{ context }}"}
 
-You can create physical networks for {{ VirtProductName }} using the {{ product_title }} web console to create a network with direct layer 2 connectivity to your data center. {._abstract}
+You can create physical networks for {{ VirtProductName }} using the {{ product_title }} web console for direct layer 2 connectivity to your data center. {._abstract}
 
 **Prerequisites**
 

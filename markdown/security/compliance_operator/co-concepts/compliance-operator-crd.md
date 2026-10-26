@@ -1,10 +1,10 @@
 ---
-title: Understanding the Custom Resource Definitions
+title: About the Compliance Operator custom resource definitions
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
-# Understanding the Custom Resource Definitions {id="custom-resource-definitions"}
+# About the Compliance Operator custom resource definitions {id="custom-resource-definitions"}
 {%- set context = "compliance-crd" %}
 
 You can use the Custom Resource Definitions (CRDs) provided by the Compliance Operator to run compliance scans and get remediation for the issues found. {._abstract}

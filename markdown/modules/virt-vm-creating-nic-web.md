@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a VM network interface by using the web console {id="virt-vm-creating-nic-web_{{ context }}"}
+# Add a VM network interface in the web console {id="virt-vm-creating-nic-web_{{ context }}"}
 
-You can configure a network interface for a virtual machine (VM) by using the {{ product_title }} web console. {._abstract}
+You can add a network interface to a virtual machine (VM) from the {{ product_title }} web console and attach it to an existing network attachment definition. Restart or live migrate the VM to apply the change. {._abstract}
 
 **Prerequisites**
 

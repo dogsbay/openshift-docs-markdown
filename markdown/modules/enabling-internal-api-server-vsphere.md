@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling communication with the internal API server for the WMCO on vSphere {id="enabling-internal-api-server-vsphere_{{ context }}"}
+# Enable internal API server communication for the WMCO on vSphere {id="enabling-internal-api-server-vsphere_{{ context }}"}
 
 You must enable communication with the internal API server so that your Windows virtual machine (VM) can download the Ignition config files, and the kubelet on the configured VM can only communicate with the internal API server. {._abstract}
 

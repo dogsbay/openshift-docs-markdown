@@ -2,7 +2,9 @@
 
 # Create a new {{ product_title }} cluster with Spot instances (Day 0) using Terraform {id="rosa-hcp-config-spot-instance-terraform-create-cluser_{{ context }}"}
 
-After you create or update your Terrform variables file, you can add the cluster resource to your main file and initiate Terraform. The process for simple mode and enhanced mode differ by the omission or inclusion respectively of the `termination_handler_queue_url` attribute. The machine pool configuration is identical for both simple and enhanced modes. {._abstract}
+After you create or update your Terraform variables file, you can add the cluster resource to your main file and initiate Terraform. {._abstract}
+
+The process for simple mode and enhanced mode differ by the omission or inclusion respectively of the `termination_handler_queue_url` attribute. The machine pool configuration is identical for both simple and enhanced modes.
 
 
 :::important

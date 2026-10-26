@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Verify log delivery to destination targets {id="rosa-verify-karpenter-log-forwarding_{{ context }}"}
 
-After you configure the {{ product_title }} clusters to use your selected log forwarder, such as `S3` or `CloudWatch`, verify that Karpenter logs are arriving at your specified destination. Confirming that Karpenter log data is present ensures that your node provisioning and scaling decisions are captured, which supports troubleshooting and capacity planning for your cluster. {._abstract}
+After you configure the {{ product_title }} clusters to use your selected log forwarder, such as `S3` or `CloudWatch`, verify that Karpenter logs are arriving at your specified destination. {._abstract}
+
+Confirming that Karpenter log data is present ensures that your node provisioning and scaling decisions are captured, which supports troubleshooting and capacity planning for your cluster.
 
 **Procedure**
 

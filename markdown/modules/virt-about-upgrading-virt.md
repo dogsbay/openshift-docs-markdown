@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 
-# About updating {{ VirtProductName }} {id="virt-about-upgrading-virt_{{ context }}"}
+# {{ VirtProductName }} update behavior {id="virt-about-upgrading-virt_{{ context }}"}
 
 When you install {{ VirtProductName }}, you select an update channel and an approval strategy. Both settings affect supportability. {._abstract}
 

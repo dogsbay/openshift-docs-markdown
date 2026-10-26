@@ -1,11 +1,11 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Limitations of NUMA for {{ VirtProductName }} {id="virt-NUMA-limitations_{{ context }}"}
 
-When you use NUMA topology with {{ VirtProductName }} VMs, certain limitations can impact performance and VM management. {._abstract}
+NUMA topology for {{ VirtProductName }} VMs has limitations that affect rescheduling, live migration, and PCI devices such as GPUs. Review them before you enable NUMA for a workload. {._abstract}
 
 
 Asymmetrical topology
-:   The host scheduler cannot guarantee assigning specific NUMA nodes to a VM. For example, if a VM is rescheduled to a different host machine because of a restart or maintenance, the new host might have a different physical NUMA layout. This means that the VM could be presented with an asymmetrical NUMA topology that reflects the new host’s configuration, rather than its original or desired layout. This change can have a negative impact on the VM’s performance.
+:   The host scheduler cannot guarantee assigning specific NUMA nodes to a VM. For example, if a VM is rescheduled to a different host machine because of a restart or maintenance, the new host might have a different physical NUMA layout. This means that the VM could be presented with an asymmetrical NUMA topology that reflects the new host’s configuration, rather than its original or intended layout. This change can have a negative impact on the VM’s performance.
 
 
 Live migration challenges

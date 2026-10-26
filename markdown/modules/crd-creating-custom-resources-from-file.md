@@ -5,7 +5,7 @@ After you add a custom resource definition (CRD) to the cluster, you can create 
 
 **Prerequisites**
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 *   CRD added to the cluster by a cluster administrator.
 {% endif %}
 

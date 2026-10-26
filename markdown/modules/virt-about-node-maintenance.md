@@ -1,0 +1,24 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# Node maintenance mode {id="virt-about-node-maintenance_{{ context }}"}
+
+Place nodes into maintenance mode to remove workloads and prepare the host for updates or hardware servicing. Using maintenance mode ensures your virtual machines do not experience downtime during maintenance. A node in maintenance mode cannot be scheduled and has no virtual machines or pods on it. {._abstract}
+
+
+:::important
+
+{% if openshift_dedicated %}
+Virtual machines (VMs) must use persistent volume claims (PVCs) with storage that supports live migration to be live migrated.
+{% endif %}
+
+{% if not openshift_dedicated %}
+Virtual machines (VMs) must have a persistent volume claim (PVC) with a shared `ReadWriteMany` (RWX) access mode to be live migrated.
+{% endif %}
+
+:::
+
+
+Place nodes into maintenance mode by using the `NodeMaintenance` custom resource (CR). The Node Maintenance Operator (NMO) watches for new or deleted `NodeMaintenance` CRs. When a new `NodeMaintenance` CR is added, new workloads are not scheduled for the applicable node and the node is separated from the cluster. Additionally, all pods that can be evicted from the node are evicted.
+
+When a `NodeMaintenance` CR is deleted, the reference node is made available for new workloads.
+
+The NMO is deployed as a standalone Operator from the software catalog in the {{ product_title }} web console or by using the {{ oc_first }}.

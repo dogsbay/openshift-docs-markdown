@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Dual-stack support {id="virt-dual-stack-support-services_{{ context }}"}
+# Dual-stack support for services {id="virt-dual-stack-support-services_{{ context }}"}
 
 If IPv4 and IPv6 dual-stack networking is enabled for your cluster, you can create a service that uses IPv4, IPv6, or both, by defining the `spec.ipFamilyPolicy` and the `spec.ipFamilies` fields in the `Service` object. {._abstract}
 

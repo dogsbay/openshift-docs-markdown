@@ -16,8 +16,8 @@ You can use SSH to securely access your virtual machines (VMs) from the command 
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 *   [Connecting a virtual machine to a Linux bridge network](/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)
 *   [Connecting a virtual machine to an SR-IOV network](/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov)
-*   [Creating a Linux bridge NAD by using the web console](/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-creating-linux-bridge-nad-web_virt-connecting-vm-to-linux-bridge)
-*   [Configuring SR-IOV additional network](/virt/vm_networking/virt-connecting-vm-to-sriov#nw-sriov-additional-network_virt-connecting-vm-to-sriov)
+*   [Create a Linux bridge NAD by using the web console](/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-creating-linux-bridge-nad-web_virt-connecting-vm-to-linux-bridge)
+*   [Configure an SR-IOV additional network](/virt/vm_networking/virt-connecting-vm-to-sriov#nw-sriov-additional-network_virt-connecting-vm-to-sriov)
 *   [Accessing a virtual machine by using its external FQDN](/virt/vm_networking/virt-accessing-vm-secondary-network-fqdn#virt-accessing-vm-secondary-network-fqdn)
 {%- endif %}
 {%- if openshift_rosa or openshift_dedicated or openshift_rosa_hcp %}

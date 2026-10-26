@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Customizing the MAC pool range {id="virt-custom-kubemacpool-range_{{ context }}"}
+# Customize the MAC pool range {id="virt-custom-kubemacpool-range_{{ context }}"}
 
 KubeMacPool works by allocating MAC addresses to VMs from a range. The `rangeStart` and `rangeEnd` parameters in the `HyperConverged` custom resource (CR) define the MAC pool range. {._abstract}
 

@@ -23,4 +23,6 @@ Cancel a scheduled cluster upgrade by using the {{ rosa_cli_first }}. You might 
     I: Successfully canceled scheduled upgrade on cluster 'my-cluster'
     ```
 
-You will receive an email notification confirming that the scheduled upgrade has been canceled.
+**Verification**
+
+*   Check that you received an email notification confirming that the scheduled upgrade has been canceled.

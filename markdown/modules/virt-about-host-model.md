@@ -1,9 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Host-model CPU {id="virt-about-host-model_{{ context }}"}
+# Host-model CPU for homogeneous clusters {id="virt-about-host-model_{{ context }}"}
 
-`host-model` is the default CPU configuration. When a virtual machine instance (VMI) is created, libvirt selects the CPU model closest to the physical node’s CPU, including required features in the VMI’s domain definition. {._abstract}
+By default, a virtual machine instance (VMI) uses the `host-model` CPU configuration, which selects the CPU model closest to the node’s physical CPU. This gives the VMI all CPU features that the node provides, and suits homogeneous clusters. {._abstract}
 
-The CPU model chosen by `host-model` is often not a standard named model supported by libvirt, which may  include additional CPU features. Libvirt creates a CPU definition that only includes the available features on the initial node. This approach ensures:
+The CPU model chosen by `host-model` is often not a standard named model supported by libvirt, which can include additional CPU features. Libvirt creates a CPU definition that only includes the available features on the initial node. This approach ensures:
 
 *   The VMI can start successfully on the initial node.
 *   Future live migrations only require the subset of CPU features used in the host-model, even if target nodes have different or additional features.
@@ -31,6 +31,6 @@ This approach guarantees that VM migrations only target nodes that provide the C
 
 :::important
 
-Target nodes may support more CPU features than required, but they must support at minimum all features used by the VMI.
+Target nodes might support more CPU features than required, but they must support at minimum all features used by the VMI.
 
 :::

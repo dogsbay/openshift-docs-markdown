@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Example: VM node placement with tolerations {id="virt-example-vm-node-placement-tolerations_{{ context }}"}
+# VM node placement with tolerations {id="virt-example-vm-node-placement-tolerations_{{ context }}"}
 
-In this example, nodes that are reserved for virtual machines are already labeled with the `key=virtualization:NoSchedule` taint. Because this virtual machine has matching `tolerations`, it can schedule onto the tainted nodes. {._abstract}
+Use tolerations to let a virtual machine (VM) run on nodes that are reserved by a taint, such as nodes set aside for virtualization workloads. {._abstract}
+
+In this example, nodes that are reserved for virtual machines are already tainted with `key=virtualization:NoSchedule`. Because this virtual machine has matching `tolerations`, it can schedule onto the tainted nodes.
 
 
 :::note

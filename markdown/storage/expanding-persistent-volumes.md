@@ -9,7 +9,7 @@ title: Expanding persistent volumes
 
 Expand persistent volumes to increase storage capacity as your application data grows. You can resize volumes without recreating volumes or disrupting running workloads. {._abstract}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin or openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
+{% if openshift_enterprise or openshift_origin or openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
 {% leveloffset +1 %}{% include "./modules/storage-expanding-add-volume-expansion.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/storage-expanding-csi-volumes.md" %}{% endleveloffset %}

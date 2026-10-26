@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configure PCI passthrough for Network Express RoCE adapters on {{ ibm_z_title }} {id="virt-configuring-pci-passthrough-roce-ibm-z_{{ context }}"}
+# Configure RoCE adapter passthrough on {{ ibm_z_title }} {id="virt-configuring-pci-passthrough-roce-ibm-z_{{ context }}"}
 
 On {{ ibm_z_name }} and {{ ibm_linuxone_name }}, you can configure PCI passthrough for Network Express RoCE adapters by using `vfio-pci`. This procedure applies only when the adapter is configured in RoCE mode through the Hardware Management Console (HMC). {._abstract}
 

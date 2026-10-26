@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About the HyperConverged Operator (HCO) {id="virt-about-hco-operator_{{ context }}"}
+# HyperConverged Operator (HCO) {id="virt-about-hco-operator_{{ context }}"}
 
 The HCO, `hco-operator`, provides a single entry point for deploying and managing {{ VirtProductName }} and several helper operators with opinionated defaults. It also creates custom resources (CRs) for those operators. {._abstract}
 

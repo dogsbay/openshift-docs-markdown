@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring {{ ibm_cloud_title }} for the new cluster {id="virt-install-ibm-cloud-config-new-cluster_{{ context }}"}
+# Configure {{ ibm_cloud_title }} for the new cluster {id="virt-install-ibm-cloud-config-new-cluster_{{ context }}"}
 
 Configure and provision the {{ ibm_cloud_title }} environment to establish the operational framework and nodes for your {{ VirtProductName }} cluster. {._abstract}
 

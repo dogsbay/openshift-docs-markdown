@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a virtual machine to a service mesh {id="virt-adding-vm-to-service-mesh_{{ context }}"}
+# Connect a virtual machine to a service mesh {id="virt-adding-vm-to-service-mesh_{{ context }}"}
 
 To add a virtual machine (VM) workload to a service mesh, enable automatic sidecar injection in the VM configuration file by setting the `sidecar.istio.io/inject` annotation to `true`. Then expose your VM as a service to view your application in the mesh. {._abstract}
 

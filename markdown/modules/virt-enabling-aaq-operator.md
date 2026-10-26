@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling the Application Aware Quota Operator {id="virt-enabling-aaq-operator_{{ context }}"}
+# Enable the Application Aware Quota Operator {id="virt-enabling-aaq-operator_{{ context }}"}
 
-Enable the Application Aware Quota (AAQ) operator to manage resource quotas to extend native resource management capabilities. Enabling AAQ from the web console eliminates the need to manually edit the HyperConverged custom resource by using the CLI. {._abstract}
+Enable the Application Aware Quota (AAQ) Operator and choose a quota calculation method in the web console. Using the web console avoids editing the `HyperConverged` custom resource (CR) by hand. {._abstract}
 
 **Prerequisites**
 
@@ -17,8 +17,8 @@ Enable the Application Aware Quota (AAQ) operator to manage resource quotas to e
 1.  Optional: Click the **Edit** icon next to the **Quota calculation method** field to change the calculation method.
 
     A modal dialog is displayed with the following options:
-    *   **Virtual resources**: Measures only the virtual CPU and memory allocated to virtual machines (VMs), excluding pod runtime overhead. This is the default option for virtualization workloads.
-    *   **Virtual Machine Instance (VMI) pod usage**: Measures the total virtual CPU and memory consumption of the VM pod, including both the virtual machine and pod runtime overhead.
+    *   **Virtual resources**: Measures only the virtual CPU and memory allocated to virtual machines (VMs), excluding the CPU and memory that the pod runtime consumes. This is the default option for virtualization workloads.
+    *   **Virtual Machine Instance (VMI) pod usage**: Measures the total virtual CPU and memory consumption of the VM pod, including both the virtual machine and the pod runtime.
     *   **Dedicated virtual resources**: Measures the virtual CPU and memory resources assigned to virtual machines and their associated pods, tracking quota usage separately for each type.
 1.  Select your preferred quota calculation method and click **Save**.
 

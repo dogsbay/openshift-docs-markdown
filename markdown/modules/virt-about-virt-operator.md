@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About the {{ VirtProductName }} Operator {id="virt-about-virt-operator_{{ context }}"}
+# {{ VirtProductName }} Operator {id="virt-about-virt-operator_{{ context }}"}
 
 The {{ VirtProductName }} Operator, `virt-operator`, deploys, upgrades, and manages {{ VirtProductName }} without disrupting current virtual machine (VM) workloads. In addition, the {{ VirtProductName }} Operator deploys the common instance types and common preferences. {._abstract}
 

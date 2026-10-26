@@ -4,7 +4,7 @@
 
 # VM connection commands {id="vm-connection-commands_{{ context }}"}
 
-You use can use the following `virtctl` commands to expose ports and connect to virtual machines (VMs) and VM instances (VMIs). {._abstract}
+You can use the following `virtctl` commands to connect to the console of a virtual machine (VM), open an SSH connection, copy files, and expose a port as a service. {._abstract}
 
 **VM connection commands**
 

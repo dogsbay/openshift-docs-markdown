@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Shared responsibilities for {{ product_title }} {id="rosa-policy-responsibilities_{{ context }}"}
 
-While Red&#160;Hat and Amazon Web Services (AWS) manage the {{ product_title }} services, the customer shares certain responsibilities. The {{ product_title }} services are accessed remotely, hosted on public cloud resources, created in customer-owned AWS accounts, and have underlying platform and data security that is owned by Red&#160;Hat. {._abstract}
+While Red&#160;Hat and Amazon Web Services (AWS) manage the {{ product_title }} services, the customer shares certain responsibilities. {._abstract}
+
+The {{ product_title }} services are accessed remotely, hosted on public cloud resources, created in customer-owned AWS accounts, and have underlying platform and data security that is owned by Red&#160;Hat.
 
 
 :::important

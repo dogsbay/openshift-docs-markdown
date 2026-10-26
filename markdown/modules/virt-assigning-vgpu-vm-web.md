@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Assigning a vGPU to a VM by using the web console {id="virt-assigning-vgpu-vm-web_{{ context }}"}
+# Assign a vGPU to a VM by using the web console {id="virt-assigning-vgpu-vm-web_{{ context }}"}
 
 You can assign virtual GPUs to virtual machines by using the {{ product_title }} web console. {._abstract}
 

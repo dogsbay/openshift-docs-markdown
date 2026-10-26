@@ -26,7 +26,6 @@ To schedule a workload on specific nodes, use label selectors in the `Pod` custo
     metadata:
       name: dynamic-low-latency-pod
       annotations:
-        cpu-quota.crio.io: "disable"
         cpu-load-balancing.crio.io: "disable"
         irq-load-balancing.crio.io: "disable"
     spec:
@@ -51,14 +50,10 @@ To schedule a workload on specific nodes, use label selectors in the `Pod` custo
             drop: [ALL]
       nodeSelector:
         node-role.kubernetes.io/worker-cnf: ""
-      runtimeClassName: performance-dynamic-low-latency-profile (5)
+      runtimeClassName: performance-dynamic-low-latency-profile
     # ...
     ```
     where
-
-
-    `metadata.annotations.cpu-quota.crio.io`
-    :   Disables the CPU completely fair scheduler (CFS) quota at the pod run time.
 
 
     `metadata.annotations.cpu-load-balancing.crio.io`

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Availability {id="availability_{{ context }}"}
 
-Availability and disaster avoidance are extremely important aspects of any application platform. Although {{ product_title }} provides many protections against failures at several levels, customer-deployed applications must be appropriately configured for high availability. {._abstract}
+Availability and disaster avoidance are important aspects of any application platform. Although {{ product_title }} provides many protections against failures at several levels, customer-deployed applications must be configured for high availability. {._abstract}
 
 **Additional resources**
 {._additional-resources}

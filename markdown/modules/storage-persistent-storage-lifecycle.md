@@ -10,7 +10,7 @@ The interaction between PVs and PVCs has the following lifecycle.
 ## Provision storage {id="provisioning_{{ context }}"}
 In response to requests from a developer defined in a PVC, a cluster administrator configures one or more dynamic provisioners that provision storage and a matching PV.
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 Alternatively, a cluster administrator can create a number of PVs in advance that carry the details of the real storage that is available for use. PVs exist in the API and are available for use.
 {% endif %}
 
@@ -35,7 +35,7 @@ more information, see the Red&#160;Hat Knowledgebase article "When using Persist
 :::
 
 
-{% if openshift_origin or openshift_enterprise or openshift_webscale %}
+{% if openshift_origin or openshift_enterprise %}
 
 ## Storage Object in Use Protection {id="pvcprotection_{{ context }}"}
 The Storage Object in Use Protection feature ensures that PVCs in active use by a pod and PVs that are bound to PVCs are not removed from the system, as this can result in data loss.

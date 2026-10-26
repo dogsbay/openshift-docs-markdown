@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring KSM activation by using the CLI {id="virt-configure-ksm-cli_{{ context }}"}
+# Configure KSM activation with CLI {id="virt-configure-ksm-cli_{{ context }}"}
 
 You can enable or disable {{ VirtProductName }}'s kernel samepage merging (KSM) activation feature by editing the `HyperConverged` custom resource (CR). Use this method if you want {{ VirtProductName }} to activate KSM on only a subset of nodes. {._abstract}
 

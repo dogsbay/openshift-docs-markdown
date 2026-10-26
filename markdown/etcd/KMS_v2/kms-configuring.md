@@ -12,15 +12,15 @@ You can configure external KMS encryption for etcd to centralize key management 
 {%- set FeatureName = "{{ KMS }}" %}
 {% include "./snippets/technology-preview.md" %}
 
-{% leveloffset +1 %}{% include "./modules/proc_kms-configuring.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/proc-kms-configuring.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/proc_kms-rotating-encryption-key.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/proc-kms-rotating-encryption-key.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/proc_kms-migrating-from-local-encryption.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/proc-kms-migrating-from-local-encryption.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/proc_kms-monitoring-status.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/proc-kms-monitoring-status.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/ref_kms-troubleshooting.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/ref-kms-troubleshooting.md" %}{% endleveloffset %}
 
 ## Additional resources {id="additional-resources_kms-configuring" ._additional-resources}
 

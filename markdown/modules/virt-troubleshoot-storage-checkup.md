@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Troubleshooting a failed storage checkup {id="virt-troubleshoot-storage-checkup_{{ context }}"}
+# Troubleshoot a failed storage checkup {id="virt-troubleshoot-storage-checkup_{{ context }}"}
 
 If a storage checkup fails, there are steps that you can take to identify the reason for failure. {._abstract}
 

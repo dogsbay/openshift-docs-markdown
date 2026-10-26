@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a secret for the Windows Machine Config Operator {id="configuring-secret-for-wmco_{{ context }}"}
+# Configure a secret for the Windows Machine Config Operator {id="configuring-secret-for-wmco_{{ context }}"}
 
 Before you can use the Windows Machine Config Operator (WMCO), you must create a secret in the same WMCO namespace as your private key.  {._abstract}
 

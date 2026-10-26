@@ -9,6 +9,10 @@ You can configure graphical representation of network flow records with packet l
 *   Root cause analysis: Examine the data collected by the eBPF program to understand the causes of packet drops. For example, are they a result of congestion, buffer issues, or specific network events?
 *   Performance optimization: With a clearer picture of packet drops, you can take steps to optimize network performance, such as adjust buffer sizes, reconfigure routing paths, or implement Quality of Service (QoS) measures.
 
+## Packet Drops feature view {id="network-observability-pktdrop-feature-view_{{ context }}"}
+
+When packet-drop tracking is enabled, you can select the **Packet Drops** preconfigured feature view from the view selector in the **Network Traffic** page. This view automatically displays packet drop-specific panels and columns, simplifying packet drop analysis without manual configuration.
+
 When packet drop tracking is enabled, you can see the following panels in the **Overview** by default:
 
 *   **Top X packet dropped state stacked with total**
@@ -21,9 +25,11 @@ Other packet drop panels are available to add in **Manage panels**:
 *   **Top X average dropped bytes rates**
 *   **Top X dropped bytes rates stacked with total**
 
-## Types of packet drops {id="_types_of_packet_drops"}
+## Types of packet drops {id="types-of-packet-drops_{{ context }}"}
 
-Two kinds of packet drops are detected by network observability: host drops and OVS drops. Host drops are prefixed with `SKB_DROP` and OVS drops are prefixed with `OVS_DROP`. Dropped flows are shown in the side panel of the **Traffic flows** table along with a link to a description of each drop type. Examples of host drop reasons are as follows:
+Two kinds of packet drops are detected by network observability: host drops and OVS drops. Host drops are prefixed with `SKB_DROP` and OVS drops are prefixed with `OVS_DROP`. Dropped flows are shown in the side panel of the **Traffic flows** table along with a link to a description of each drop type.
+
+Examples of host drop reasons are as follows:
 
 *   `SKB_DROP_REASON_NO_SOCKET`: the packet dropped due to a missing socket.
 *   `SKB_DROP_REASON_TCP_CSUM`: the packet dropped due to a TCP checksum error.
@@ -33,4 +39,4 @@ Examples of OVS drops reasons are as follows:
 *   `OVS_DROP_LAST_ACTION`: OVS packets dropped due to an implicit drop action, for example due to a configured network policy.
 *   `OVS_DROP_IP_TTL`: OVS packets dropped due to an expired IP TTL.
 
-See the _Additional resources_ of this section for more information about enabling and working with packet drop tracking.
+See the "Additional resources" of this section for more information about enabling and working with packet drop tracking.

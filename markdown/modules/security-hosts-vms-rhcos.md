@@ -10,7 +10,7 @@ In Linux, containers are just a special type of process, so securing containers 
 Because {{ product_title }} {{ product_version }} runs on {{ op_system }} hosts, with the option of using {{ op_system_base_full }} as worker nodes, the following concepts apply by default to any deployed {{ product_title }} cluster. These {{ op_system_base }} security features are at the core of what makes running containers in {{ product_title }} more secure:
 
 *   _Linux namespaces_ enable creating an abstraction of a particular global system resource to make it appear as a separate instance to processes within a namespace. Consequently, several containers can use the same computing resource simultaneously without creating a conflict. Container namespaces that are separate from the host by default include mount table, process table, network interface, user, control group, UTS, and IPC namespaces. Those containers that need direct access to host namespaces need to have elevated permissions to request that access.
-{%- if openshift_enterprise or openshift_webscale or openshift_aro %}
+{%- if openshift_enterprise or openshift_aro %}
 See Building, running, and managing containers from the {{ op_system_base }} 9 container documentation for details on the types of namespaces.
 {%- endif %}
 *   _SELinux_ provides an additional layer of security to keep containers isolated from each other and from the host. SELinux allows administrators to enforce mandatory access controls (MAC) for every user, application, process, and file.

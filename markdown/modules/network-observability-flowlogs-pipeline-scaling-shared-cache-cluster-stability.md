@@ -1,0 +1,32 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+# How the shared cache improves cluster stability {id="network-observability-flowlogs-pipeline-scaling-shared-cache-cluster-stability_{{ context }}"}
+
+The `flowlogs-pipeline` shared cache architecture improves cluster stability and performance in large-scale deployments by centralizing metadata retrieval. {._abstract}
+
+In the default deployment model, each `flowlogs-pipeline` (`flowlogs-pipeline`) instance independently queries the Kubernetes API server to enrich network flows with cluster metadata, such as pod names and labels. At scale, this can result in a high volume of redundant requests that impact the API server performance.
+
+When you enable the shared cache, a centralized component queries the API server and shares the cached metadata with all `flowlogs-pipeline` instances.
+
+## High availability with leader election {id="shared-cache-high-availability_{{ context }}"}
+
+The shared cache architecture uses leader election to ensure continuous operation when multiple replicas are deployed. Among the cache replicas, one pod is elected as the active leader that queries the Kubernetes API server and distributes updates. The remaining replicas remain on standby.
+
+If the leader pod fails or is terminated, the remaining replicas automatically elect a new leader, typically within seconds. During this change, flow enrichment continues using cached metadata, though new resource changes might not be reflected until the new leader is established.
+
+The Operator enforces a minimum of 2 replicas to ensure high availability. Deploying only a single replica creates a single point of failure where flow enrichment would be lost if that pod becomes unavailable.
+
+## When to use the shared cache {id="when-to-use-shared-cache_{{ context }}"}
+
+Enable the shared cache architecture in environments with any of the following characteristics:
+
+*   High pod churn rates where applications scale often.
+*   Large numbers of namespaces and services.
+*   Many `flowlogs-pipeline` instances deployed to handle high network traffic volumes.
+
+## Considerations {id="shared-cache-considerations_{{ context }}"}
+
+Before modifying the shared cache configuration, consider the following trade-offs:
+
+*   Data freshness: There might be a minor delay in flow enrichment updates as metadata propagates from the API server through the cache to the `flowlogs-pipeline` instances.
+*   Cluster-wide memory: While individual `flowlogs-pipeline` pods consume fewer resources, the addition of shared cache replicas increases the total memory allocated to the network observability namespace.
+*   Port allocation: The shared cache uses port `9402` for internal gRPC communication between the informer cache proxy and `flowlogs-pipeline` instances.

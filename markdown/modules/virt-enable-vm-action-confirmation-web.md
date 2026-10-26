@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling confirmations of virtual machine actions {id="virt-enable-vm-action-confirmation-web_{{ context }}"}
+# Enable confirmations of VM actions {id="virt-enable-vm-action-confirmation-web_{{ context }}"}
 
-The **Stop**, **Restart**, and **Pause** actions can display confirmation dialogs if confirmation is enabled. By default, confirmation is disabled. {._abstract}
+You can require a confirmation dialog before the **Stop**, **Restart**, and **Pause** actions run on a virtual machine (VM). Confirmation is disabled by default. {._abstract}
 
 **Procedure**
 

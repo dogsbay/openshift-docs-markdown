@@ -1,8 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Deleting a standalone virtual machine instance using the CLI {id="virt-deleting-vmis-cli_{{ context }}"}
+# Delete a standalone VMI by using the CLI {id="virt-deleting-vmis-cli_{{ context }}"}
 
-You can delete a standalone virtual machine instance (VMI) by using the `oc` command-line interface (CLI). {._abstract}
+You can delete a standalone virtual machine instance (VMI) by using the {{ oc_first }}. A standalone VMI has no owning VM, so no other object deletes it for you. {._abstract}
 
 **Prerequisites**
 

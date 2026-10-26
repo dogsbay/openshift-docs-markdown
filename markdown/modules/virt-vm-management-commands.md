@@ -4,7 +4,7 @@
 
 # VM management commands {id="vm-management-commands_{{ context }}"}
 
-You can use the following `virtctl` commands to manage and migrate virtual machines (VMs) and VM instances (VMIs). {._abstract}
+You can use the following `virtctl` commands to start, stop, pause, restart, and migrate virtual machines (VMs). {._abstract}
 
 **VM management commands**
 

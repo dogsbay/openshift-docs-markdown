@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Comparing {{ VirtProductName }} to {{ vmw_full }} {id="virt-vmware-comparison_{{ context }}"}
+# {{ vmw_full }} to {{ VirtProductName }} concept mapping {id="virt-vmware-comparison_{{ context }}"}
 
-If you are familiar with {{ vmw_first }}, the following table lists {{ VirtProductName }} components that you can use to accomplish similar tasks. {._abstract}
+If you are familiar with {{ vmw_first }}, you can map its concepts to the {{ VirtProductName }} components that accomplish similar tasks. {._abstract}
 
 However, because {{ VirtProductName }} is conceptually different from {{ vmw_short }}, and much of its functionality comes from the underlying {{ product_title }}, {{ VirtProductName }} does not have direct alternatives for all {{ vmw_short }} concepts or components.
 
@@ -15,9 +15,13 @@ However, because {{ VirtProductName }} is conceptually different from {{ vmw_sho
   <td>Explanation</td>
 </tr>
 <tr>
-  <td>Datastore</td>
-  <td>Persistent volume (PV)<br><br>Persistent volume claim (PVC)</td>
+  {% if openshift_dedicated %}<td>Datastore</td>{% endif %}
+  {% if openshift_dedicated %}<td>Persistent volume (PV)<br><br>Persistent volume claim (PVC)</td>{% endif %}
   {% if openshift_dedicated %}<td>Stores VM disks. A PV represents existing storage and is attached to a VM through a PVC. When configured for shared access, PVCs can be mounted by multiple VMs simultaneously.</td>{% endif %}
+</tr>
+<tr>
+  {% if not openshift_dedicated %}<td>Datastore</td>{% endif %}
+  {% if not openshift_dedicated %}<td>Persistent volume (PV)<br><br>Persistent volume claim (PVC)</td>{% endif %}
   {% if not openshift_dedicated %}<td>Stores VM disks. A PV represents existing storage and is attached to a VM through a PVC. When created with the <code>ReadWriteMany</code> (RWX) access mode, PVCs can be mounted by multiple VMs simultaneously.</td>{% endif %}
 </tr>
 <tr>
@@ -26,24 +30,31 @@ However, because {{ VirtProductName }} is conceptually different from {{ vmw_sho
   <td>Provides active resource balancing. A combination of pod eviction policies and a descheduler allows VMs to be live migrated to more appropriate nodes to keep node resource utilization manageable.</td>
 </tr>
 <tr>
-  <td>NSX</td>
-  <td>{% if not openshift_dedicated %} Multus {% endif %} OVN-Kubernetes<br><br> {% if not openshift_dedicated %} Third-party container network interface (CNI) plug-ins {% endif %}</td>
-  <td>Provides an overlay network configuration. There is no direct equivalent for NSX in {{ VirtProductName }}, but you can use the OVN-Kubernetes network provider {% if openshift_dedicated %}.{% endif %} {% if not openshift_dedicated %}or install certified third-party CNI plug-ins.{% endif %}</td>
+  {% if openshift_dedicated %}<td>NSX</td>{% endif %}
+  {% if openshift_dedicated %}<td>OVN-Kubernetes</td>{% endif %}
+  {% if openshift_dedicated %}<td>Provides an overlay network configuration. There is no direct equivalent for NSX in {{ VirtProductName }}, but you can use the OVN-Kubernetes network provider.</td>{% endif %}
+  {% if not openshift_dedicated %}<td>NSX</td>{% endif %}
 </tr>
 <tr>
+  {% if not openshift_dedicated %}<td>Multus OVN-Kubernetes<br><br>Third-party container network interface (CNI) plug-ins</td>{% endif %}
+  {% if not openshift_dedicated %}<td>Provides an overlay network configuration. There is no direct equivalent for NSX in {{ VirtProductName }}, but you can use the OVN-Kubernetes network provider or install certified third-party CNI plug-ins.</td>{% endif %}
   <td>Storage Policy Based Management (SPBM)</td>
+</tr>
+<tr>
   <td>Storage class</td>
   <td>Provides policy-based storage selection. Storage classes represent various storage types and describe storage capabilities, such as quality of service, backup policy, reclaim policy, and whether volume expansion is allowed. A PVC can request a specific storage class to satisfy application requirements.</td>
+  <td>vCenter<br><br>vRealize Operations</td>
 </tr>
 <tr>
-  <td>vCenter<br><br>vRealize Operations</td>
   <td>OpenShift Metrics and Monitoring</td>
   <td>Provides host and VM metrics. You can view metrics and monitor the overall health of the cluster and VMs by using the {{ product_title }} web console.</td>
+  {% if openshift_dedicated %}<td>vMotion</td>{% endif %}
 </tr>
 <tr>
-  <td>vMotion</td>
-  <td>Live migration</td>
+  {% if openshift_dedicated %}<td>Live migration</td>{% endif %}
   {% if openshift_dedicated %}<td>Moves a running VM to another node without interruption. For live migration to be available, the PVC attached to the VM must use storage that supports live migration.</td>{% endif %}
+  {% if not openshift_dedicated %}<td>vMotion</td>{% endif %}
+  {% if not openshift_dedicated %}<td>Live migration</td>{% endif %}
   {% if not openshift_dedicated %}<td>Moves a running VM to another node without interruption. For live migration to be available, the PVC attached to the VM must have the <code>ReadWriteMany</code> (RWX) access mode.</td>{% endif %}
 </tr>
 <tr>

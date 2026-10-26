@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Exposing PCI host devices in the cluster using the CLI {id="virt-exposing-pci-device-in-cluster-cli_{{ context }}"}
+# Expose PCI host devices in the cluster {id="virt-exposing-pci-device-in-cluster-cli_{{ context }}"}
 
 To expose PCI host devices in the cluster, add details about the PCI devices to the `spec.permittedHostDevices.pciHostDevices` array of the `HyperConverged` custom resource (CR). {._abstract}
 

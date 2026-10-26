@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Understanding how {{ product_title }} differs from {{ OCP }} {id="sd-vs-ocp_{{ context }}"}
+# Differences between {{ product_title }} and {{ OCP }} {id="sd-vs-ocp_{{ context }}"}
 
 {{ product_title }} delivers the {{ OCP }} code base as an optimized, fully managed service that automates standard component configurations. {._abstract}
 
@@ -21,11 +21,11 @@ Review the following differences between {{ product_title }} and a standard inst
 </tr>
 <tr>
   <td>Customers can choose their computing resources.</td>
-  <td> {% if openshift_dedicated %}{{ product_title }} is hosted and managed in a public cloud (Amazon Web Services or {{ gcp_full }}) either owned by Red&#160;Hat or provided by the customer.{% endif %} {% if openshift_rosa %}{{ product_title }} is hosted and managed in a public cloud (Amazon Web Services) provided by the customer.{% endif %}</td>
+  <td> {% if openshift_dedicated %}{{ product_title }} is hosted and managed in a public cloud (Amazon Web Services or {{ gcp_full }}) either owned by Red&#160;Hat or provided by the customer.{% endif %} {% if openshift_rosa or openshift_rosa_hcp %}{{ product_title }} is hosted and managed in a public cloud (Amazon Web Services) provided by the customer.{% endif %}</td>
 </tr>
 <tr>
   <td>Customers have top-level administrative access to the infrastructure.</td>
-  <td> {% if openshift_dedicated %}Customers have a built-in administrator group (<code>dedicated-admin</code>), though the top-level administration access is available when cloud accounts are provided by the customer.{% endif %} {% if openshift_rosa %}Customers have a built-in administrator group (<code>dedicated-admin</code>), though the top-level administration access is available.{% endif %}</td>
+  <td> {% if openshift_dedicated %}Customers have a built-in administrator group (<code>dedicated-admin</code>), though the top-level administration access is available when cloud accounts are provided by the customer.{% endif %} {% if openshift_rosa or openshift_rosa_hcp %}Customers have a built-in administrator group (<code>dedicated-admin</code>), though the top-level administration access is available.{% endif %}</td>
 </tr>
 <tr>
   <td>Customers can use all supported features and configuration settings available in {{ OCP }}.</td>
@@ -41,7 +41,12 @@ Review the following differences between {{ product_title }} and a standard inst
 </tr>
 <tr>
   <td>Support is provided based on the terms of your Red Hat subscription or cloud provider.</td>
-  <td>Engineered, operated, and supported by Red Hat with a 99.95% uptime SLA and 24x7 coverage. For details, see <a href="https://www.redhat.com/licenses/Appendix-4-Red-Hat-Online-Services-20230523.pdf">Red Hat Enterprise Agreement Appendix 4 (Online Subscription Services)</a>.</td>
+  <td>Engineered, operated, and supported by Red Hat with a 99.95% uptime SLA and 24x7 coverage. For details, see "Red Hat Enterprise Agreement Appendix 4".</td>
 </tr>
 </tbody>
 </table>
+
+**Additional resources**
+{._additional-resources}
+
+*   [Red Hat Enterprise Agreement Appendix 4 (Online Subscription Services)](https://www.redhat.com/licenses/Appendix-4-Red-Hat-Online-Services-20230523.pdf)

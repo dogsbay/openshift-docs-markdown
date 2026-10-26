@@ -43,7 +43,7 @@ Review platform compatibility information before you install {{ VirtProductName 
 *   [Installing a FIPS-compliant cluster](/installing/overview/installing-fips#installing-fips-mode_installing-fips)
 *   [Configure CPU models](/virt/managing_vms/cpu_models/virt-configuring-default-cpu-model#virt-configuring-default-cpu-model)
 *   [Deleting a virtual machine by using the web console](/virt/managing_vms/virt-delete-vms#virt-delete-vm-web_virt-delete-vms)
-*   [Configuring a downward metrics device](/virt/monitoring/virt-exposing-downward-metrics#virt-configuring-downward-metrics_virt-exposing-downward-metrics)
+*   [Configure a downward metrics device](/virt/monitoring/virt-exposing-downward-metrics#virt-configuring-downward-metrics_virt-exposing-downward-metrics)
 *   [Instance types](/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)
 {%- endif %}
 *   [Networking overview](/virt/vm_networking/virt-networking-overview#virt-networking)

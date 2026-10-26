@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Overview of AWS Capacity Reservations {id="rosa-capacity-reservations-overview_{{ context }}"}
 
-If you have reserved compute capacity using AWS Capacity Reservations for a specific instance type and Availability Zone (AZ), you can use it for your {{ product_title }} worker nodes. Both On-Demand Capacity Reservations and Capacity Blocks for machine learning (ML) workloads are supported. {._abstract}
+If you have reserved compute capacity using AWS Capacity Reservations for a specific instance type and Availability Zone (AZ), you can use it for your {{ product_title }} worker nodes. {._abstract}
+
+Both On-Demand Capacity Reservations and Capacity Blocks for machine learning (ML) workloads are supported.
 
 Purchase and manage a Capacity Reservation directly with AWS. After reserving the capacity, add a Capacity Reservation ID to a new machine pool when you create it in your {{ product_title }} cluster. You can also use a Capacity Reservation shared with you from another AWS account within your AWS Organization.
 

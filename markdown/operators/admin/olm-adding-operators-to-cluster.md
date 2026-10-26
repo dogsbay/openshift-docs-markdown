@@ -9,13 +9,9 @@ title: Adding Operators to a cluster
 
 You can install OLM-based Operators on your {{ product_title }} cluster by using Operator Lifecycle Manager (OLM). {._abstract}
 
-
-:::note
+{% include "./snippets/olmv0-cluster-scoped-rbac-warning.md" %}
 
 For information on how OLM handles updates for installed Operators colocated in the same namespace, as well as an alternative method for installing Operators with custom global Operator groups, see "Multitenancy and Operator colocation".
-
-:::
-
 
 {% if openshift_origin %}
 ## Prerequisites {id="olm-adding-operators-to-a-cluster-prereqs"}
@@ -39,7 +35,7 @@ For information on how OLM handles updates for installed Operators colocated in 
 
 *   [Manually approving a pending Operator update](/operators/admin/olm-upgrading-operators#olm-approving-pending-upgrade_olm-upgrading-operators)
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{% if openshift_enterprise or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 
 {% leveloffset +1 %}{% include "./modules/olm-installing-from-software-catalog-using-cli.md" %}{% endleveloffset %}
 

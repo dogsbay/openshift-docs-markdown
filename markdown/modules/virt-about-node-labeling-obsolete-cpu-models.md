@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About node labeling for obsolete CPU models {id="virt-about-node-labeling-obsolete-cpu-models_{{ context }}"}
+# Node labeling for obsolete CPU models {id="virt-about-node-labeling-obsolete-cpu-models_{{ context }}"}
 
 The {{ VirtProductName }} Operator uses a predefined list of obsolete CPU models to ensure that a node supports only valid CPU models for scheduled VMs. {._abstract}
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating the long-lived service account and token to use with MTV providers {id="virt-creating-long-lived-account-and-token_{{ context }}"}
+# Create a service account and token for MTV providers {id="virt-creating-long-lived-account-and-token_{{ context }}"}
 
-When you register an {{ VirtProductName }} provider in the {{ mtv_first }} web console, you must create a service account and cluster role binding, which gives MTV persistent permissions to read and create virtual machine resources during migration. {._abstract}
+When you register an {{ VirtProductName }} provider in the Migration Toolkit for Virtualization (MTV) web console, you must create a service account and cluster role binding. This gives MTV persistent permissions to read and create virtual machine resources during migration. {._abstract}
 
 **Procedure**
 
@@ -157,4 +157,4 @@ When you register an {{ VirtProductName }} provider in the {{ mtv_first }} web c
       echo "$TOKEN"
     ```
 1.  Copy the printed token.
-1.  In the {{ mtv_first }} web console, when you create a provider and select **{{ VirtProductName }}**, paste the token into the **Service account bearer token** field.
+1.  In the Migration Toolkit for Virtualization (MTV) web console, when you create a provider and select **{{ VirtProductName }}**, paste the token into the **Service account bearer token** field.

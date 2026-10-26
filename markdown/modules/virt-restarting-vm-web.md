@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Restarting a virtual machine {id="virt-restarting-vm-web_{{ context }}"}
+# Restart a VM {id="virt-restarting-vm-web_{{ context }}"}
 
-You can restart a running virtual machine (VM) from the web console. {._abstract}
+You can restart a running virtual machine (VM) from the {{ product_title }} web console. The **Restart** action shuts down the VM and starts a new pod for it. {._abstract}
 
 
 :::important

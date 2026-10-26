@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Disable Cloud Controller Manager firewall management {id="cloud-experts-osd-gcp-byo-firewall-disabling-ccm_{{ context }}"}
 
-With bring your own (BYO) firewall rules, you own every firewall rule for your cluster. Configure the Cloud Controller Manager (CCM) so that it no longer creates or deletes firewall rules when you create or delete `LoadBalancer` services. The CCM continues to manage load balancer resources such as forwarding rules and target pools, so this change affects firewall operations only. {._abstract}
+With bring your own (BYO) firewall rules, you own every firewall rule for your cluster. Configure the Cloud Controller Manager (CCM) so that it no longer creates or deletes firewall rules when you create or delete `LoadBalancer` services. {._abstract}
+
+The CCM continues to manage load balancer resources such as forwarding rules and target pools, so this change affects firewall operations only.
 
 The CCM reads its cloud config from the `cloud-conf` config map in the `openshift-cloud-controller-manager` namespace. A sync controller manages this config map. If you patch the config map directly, the sync controller reverts your change within seconds.
 

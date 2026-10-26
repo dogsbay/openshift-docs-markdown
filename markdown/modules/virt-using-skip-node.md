@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using skip-node annotation {id="virt-using-skip-node_{{ context }}"}
+# Skip node labeling reconciliation {id="virt-using-skip-node_{{ context }}"}
 
 If you want the `node-labeller` to skip a node, annotate that node by using the {{ oc_first }}. {._abstract}
 

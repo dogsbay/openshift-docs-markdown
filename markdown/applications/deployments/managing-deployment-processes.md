@@ -45,12 +45,9 @@ The following procedures show CLI usage unless otherwise stated.
 
 {% leveloffset +2 %}{% include "./modules/deployments-accessing-private-repos.md" %}{% endleveloffset %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 {% leveloffset +2 %}{% include "./modules/deployments-assigning-pods-to-nodes.md" %}{% endleveloffset %}
 
 {% endif %}
 
-{% if not openshift_online %}
 {% leveloffset +2 %}{% include "./modules/deployments-running-pod-svc-acct.md" %}{% endleveloffset %}
-
-{% endif %}

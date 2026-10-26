@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deploying libguestfs by using virtctl {id="virt-deploying-libguestfs-with-virtctl_{{ context }}"}
+# Deploy libguestfs by using virtctl {id="virt-deploying-libguestfs-with-virtctl_{{ context }}"}
 
-You can use the `virtctl guestfs` command to deploy an interactive container with `libguestfs-tools` and a persistent volume claim (PVC) attached to it. {._abstract}
+You can use the `virtctl guestfs` command to deploy an interactive container that has `libguestfs-tools` installed and a persistent volume claim (PVC) attached. Use the container to inspect and modify the VM disk on the PVC. {._abstract}
 
 **Procedure**
 

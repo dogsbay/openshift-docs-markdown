@@ -1,9 +1,15 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a storage class for the CSI driver with the storagePools stanza {id="virt-creating-storage-class-csi-driver_{{ context }}"}
+# Create a storage class for the CSI driver with the storagePools stanza {id="virt-creating-storage-class-csi-driver_{{ context }}"}
 
 To use the hostpath provisioner (HPP) you must create an associated storage class for the Container Storage Interface (CSI) driver. {._abstract}
 
+
+:::note
+
 When you create a storage class, you set parameters that affect the dynamic provisioning of persistent volumes (PVs) that belong to that storage class. You cannot update a `StorageClass` object’s parameters after you create it.
+
+:::
+
 
 {% if openshift_rosa or openshift_dedicated %}
 

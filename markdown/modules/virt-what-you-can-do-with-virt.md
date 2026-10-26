@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# What you can do with {{ VirtProductName }} {id="virt-what-you-can-do-with-virt_{{ context }}"}
+# {{ VirtProductName }} capabilities {id="virt-what-you-can-do-with-virt_{{ context }}"}
 
 {{ VirtProductName }} provides scalable, enterprise-grade virtualization functionality for your cluster. You can use it to manage virtual machines (VMs) exclusively or alongside container workloads. {._abstract}
 
@@ -57,13 +57,7 @@ When you deploy {{ VirtProductName }} with {{ rh_storage }}, you must create a d
 You can use {{ VirtProductName }} with OVN-Kubernetes or one of the other certified network plug-ins listed in "Certified OpenShift CNI Plug-ins".
 {% endif %}
 
-{%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 You can check your {{ VirtProductName }} cluster for compliance issues by installing the Compliance Operator and running a scan with the `ocp4-moderate` and `ocp4-moderate-node` profiles. The Compliance Operator uses OpenSCAP, a NIST-certified tool, to scan and enforce security policies.
-{%- endif %}
-
-{% if openshift_rosa or openshift_dedicated or openshift_rosa_hcp %}
-You can check your {{ VirtProductName }} cluster for compliance issues by installing the Compliance Operator and running a scan with the `ocp4-moderate` and `ocp4-moderate-node` profiles. The Compliance Operator uses OpenSCAP, a NIST-certified tool, to scan and enforce security policies.
-{% endif %}
 
 {% if not openshift_dedicated %}
 For information about partnering with Independent Software Vendors (ISVs) and Services partners for specialized storage, networking, backup, and additional functionality, see the Red Hat Ecosystem Catalog.

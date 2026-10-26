@@ -14,7 +14,7 @@ Cluster administrators that want to grant access to the CRD to other users can u
 {% endif %}
 
 Operators in particular make use of CRDs by packaging them with any required RBAC policy and other software-specific logic.
-{%- if openshift_enterprise or openshift_webscale or openshift_origin %}
+{%- if openshift_enterprise or openshift_origin %}
 Cluster administrators can also add CRDs manually to the cluster outside of the lifecycle of an Operator, making them available to all users.
 
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # About static and dynamic SSH key management {id="virt-about-static-and-dynamic-ssh-keys_{{ context }}"}
 
-You can add public SSH keys to virtual machines (VMs) statically at first boot or dynamically at runtime. {._abstract}
+You can add public SSH keys to virtual machines (VMs) statically at first boot or dynamically at runtime. A dynamically managed key can also be updated or revoked while the VM runs. {._abstract}
 
 
 :::note

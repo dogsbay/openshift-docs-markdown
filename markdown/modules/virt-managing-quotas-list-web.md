@@ -1,12 +1,12 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Managing virtual machine quotas using the list view {id="virt-managing-quotas-list-web_{{ context }}"}
+# Manage VM quotas by using the list view {id="virt-managing-quotas-list-web_{{ context }}"}
 
-The Application Aware Quota (AAQ) quotas page in the {{ product_title }} web console provides a centralized view of all quotas managed by the AAQ operator. From this page, you can view quota status, usage, and perform management actions such as editing and deleting quotas. {._abstract}
+You can use the **Quotas** page in the {{ product_title }} web console to view the status and usage of every Application Aware Quota (AAQ) in your cluster, and to create, edit, or delete a quota, without searching through individual projects. {._abstract}
 
 **Prerequisites**
 
 *   You have cluster administrator privileges.
-*   The Application Aware Quota operator is enabled in your cluster.
+*   The Application Aware Quota Operator is enabled in your cluster.
 *   At least one Application Aware Quota exists in a namespace that matches the label selector configured in the HyperConverged Operator (HCO).
 
 **Procedure**

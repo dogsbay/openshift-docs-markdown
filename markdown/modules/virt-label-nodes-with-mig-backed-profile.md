@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Labeling nodes with a MIG-backed vGPU profile {id="virt-label-nodes-with-mig-backed-profile_{{ context }}"}
+# Label nodes with a MIG-backed vGPU profile {id="virt-label-nodes-with-mig-backed-profile_{{ context }}"}
 
 If you have GPUs that support NVIDIA Multi-Instance GPU (MIG), you can select a MIG-backed vGPU instance instead of time-sliced vGPU instances. When you use MIG, you give a partition of dedicated hardware to selected VMs. {._abstract}
 

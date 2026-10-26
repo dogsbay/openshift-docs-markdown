@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a project for DPDK workloads {id="virt-configuring-vm-project-dpdk_{{ context }}"}
+# Configure a project for DPDK workloads {id="virt-configuring-vm-project-dpdk_{{ context }}"}
 
 You can configure the project to run DPDK workloads on SR-IOV hardware. {._abstract}
 

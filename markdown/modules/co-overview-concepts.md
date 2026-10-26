@@ -3,6 +3,6 @@
 
 Learn about the Compliance Operator and the custom resource definitions it uses. {._abstract}
 
-[Understanding the Compliance Operator](/security/compliance_operator/co-concepts/compliance-operator-understanding#compliance-operator-understanding)
+[About the Compliance Operator](/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)
 
-[Understanding the Custom Resource Definitions](/security/compliance_operator/co-concepts/compliance-operator-crd#custom-resource-definitions)
+[About the Compliance Operator custom resource definitions](/security/compliance_operator/co-concepts/compliance-operator-crd#custom-resource-definitions)

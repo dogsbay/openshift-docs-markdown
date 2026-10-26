@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a service by using the CLI {id="virt-creating-service-cli_{{ context }}"}
+# Expose a VM as a service by using the CLI {id="virt-creating-service-cli_{{ context }}"}
 
-You can create a service and associate it with a virtual machine (VM) by using the command line. {._abstract}
+You can use the command line to create a service and associate it with a virtual machine (VM). You must create a label on the VM that matches the selector in the `Service` manifest. {._abstract}
 
 **Prerequisites**
 

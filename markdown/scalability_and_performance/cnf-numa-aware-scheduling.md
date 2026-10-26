@@ -68,6 +68,18 @@ NUMA Resources Operator deploys resources that allow you to schedule NUMA-aware 
 
 {% leveloffset +2 %}{% include "./modules/cnf-deploying-the-numa-aware-scheduler.md" %}{% endleveloffset %}
 
+{% leveloffset +2 %}{% include "./modules/cnf-understanding-numa-image-validation.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/cnf-extending-trusted-numa-images.md" %}{% endleveloffset %}
+
+{% leveloffset +3 %}{% include "./modules/cnf-extending-trusted-scheduler-images.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/cnf-disabling-numa-image-validation.md" %}{% endleveloffset %}
+
+{% leveloffset +3 %}{% include "./modules/cnf-disabling-scheduler-image-validation.md" %}{% endleveloffset %}
+
+{% leveloffset +3 %}{% include "./modules/cnf-disabling-rte-image-validation.md" %}{% endleveloffset %}
+
 **Additional resources**
 {._additional-resources}
 

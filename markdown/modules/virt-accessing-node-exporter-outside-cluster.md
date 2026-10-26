@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accessing the node exporter service outside the cluster {id="virt-accessing-node-exporter-outside-cluster_{{ context }}"}
+# Access the node exporter service outside the cluster {id="virt-accessing-node-exporter-outside-cluster_{{ context }}"}
 
 You can access the node-exporter service outside the cluster and view the exposed metrics. {._abstract}
 

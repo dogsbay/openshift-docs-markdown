@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting the VM interface link state by using the CLI {id="virt-configuring-interface-link-state_{{ context }}"}
+# Set the VM interface link state by using the CLI {id="virt-configuring-interface-link-state_{{ context }}"}
 
 You can set the link state of a primary or secondary virtual machine (VM) network interface by using the CLI. {._abstract}
 

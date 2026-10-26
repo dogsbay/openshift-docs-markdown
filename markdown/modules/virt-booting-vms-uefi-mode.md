@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Booting virtual machines in UEFI mode {id="virt-booting-vms-uefi-mode_{{ context }}"}
+# Boot virtual machines in UEFI mode {id="virt-booting-vms-uefi-mode_{{ context }}"}
 
 You can configure a virtual machine to boot in UEFI mode by editing the `VirtualMachine` manifest. {._abstract}
 

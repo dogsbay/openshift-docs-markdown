@@ -2,7 +2,7 @@
 
 # Organize virtual machines by using the web console {id="virt-organize-vms-web_{{ context }}"}
 
-In addition to creating virtual machines (VMs) in different projects, you can use the tree view to further organize them in folders. {._abstract}
+You can move virtual machines (VMs) into folders in the tree view of the {{ product_title }} web console. Folders give you finer organization than projects alone. {._abstract}
 
 
 :::important

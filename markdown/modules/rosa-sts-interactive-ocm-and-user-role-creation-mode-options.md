@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Interactive {{ cluster_manager }} and user role creation mode options {id="rosa-sts-interactive-ocm-and-user-role-creation-mode-options_{{ context }}"}
 
-Before you can use {{ cluster_manager_first }} to create {{ product_title }} clusters that use the AWS Security Token Service (STS), you must associate your AWS account with your Red&#160;Hat organization by creating and linking the {{ cluster_manager }} and user roles. You can enable interactive mode by specifying the `--interactive` option when you run the `rosa create ocm-role` command or the `rosa create user-role` command. {._abstract}
+You can enable interactive mode by specifying the `--interactive` option when you run the `rosa create ocm-role` command or the `rosa create user-role` command. {._abstract}
+
+Before you can use {{ cluster_manager_first }} to create {{ product_title }} clusters that use the AWS Security Token Service (STS), you must associate your AWS account with your Red&#160;Hat organization by creating and linking the {{ cluster_manager }} and user roles.
 
 The following tables describe the interactive {{ cluster_manager }} role creation mode options:
 

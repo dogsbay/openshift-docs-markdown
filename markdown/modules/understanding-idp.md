@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Supported identity providers {id="understanding-idp_{{ context }}"}
 
-{{ product_title }} includes a built-in OAuth server. Developers and administrators obtain OAuth access tokens to authenticate themselves to the API. As an administrator, you can configure OAuth to specify an identity provider after you install your cluster. After you configure identity providers, users can log in and access the cluster. {._abstract}
+{{ product_title }} includes a built-in OAuth server. Developers and administrators obtain OAuth access tokens to authenticate themselves to the API. As an administrator, you can configure OAuth to specify an identity provider after you install your cluster. {._abstract}
+
+After you configure identity providers, users can log in and access the cluster.
 
 You can configure the following types of identity providers:
 

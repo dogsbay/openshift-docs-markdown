@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a primary namespace-scoped user-defined network by using the CLI {id="virt-creating-a-primary-udn_{{ context }}"}
+# Create a namespace-scoped primary overlay network by using the CLI {id="virt-creating-a-primary-udn_{{ context }}"}
 
 You can create an isolated primary network in your project namespace by using the CLI. You must use the OVN-Kubernetes layer 2 topology and enable persistent IP address allocation in the user-defined network (UDN) configuration to ensure VM live migration support. {._abstract}
 

@@ -51,7 +51,7 @@ where:
 
 `metadata.annotations.tags`
 :   Specifies the tags to be associated with the template for searching and grouping. Add tags that group the template into one of the provided catalog categories. Refer to the `id` and `categoryAliases` in `CATALOG_CATEGORIES` in the console constants file.
-{%- if openshift_enterprise or openshift_webscale or openshift_origin %}
+{%- if openshift_enterprise or openshift_origin %}
     The categories can also be customized for the whole cluster.
 {%- endif %}
 

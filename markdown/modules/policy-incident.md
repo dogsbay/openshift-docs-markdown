@@ -1,9 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Incident and operations management {id="policy-incident_{{ context }}"}
 
-This documentation details the Red&#160;Hat responsibilities for the {{ product_title }} managed service.
-The cloud provider is responsible for protecting the hardware infrastructure that runs the services offered by the cloud provider.
-The customer is responsible for incident and operations management of customer application data and any custom networking the customer has configured for the cluster network or virtual network. {._abstract}
+Red&#160;Hat, the cloud provider, and the customer share responsibility for incident and operations management of the {{ product_title }} managed service. {._abstract}
+
+The cloud provider is responsible for protecting the hardware infrastructure that runs the services offered by the cloud provider. The customer is responsible for incident and operations management of customer application data and any custom networking the customer has configured for the cluster network or virtual network.
 
 ## Platform monitoring {id="platform-monitoring_{{ context }}"}
 A Red&#160;Hat Site Reliability Engineer (SRE) maintains a centralized monitoring and alerting system for all {{ product_title }} cluster components, SRE services, and underlying cloud provider accounts. Platform audit logs are securely forwarded to a centralized SIEM (Security Information and Event Monitoring) system, where they might trigger configured alerts to the SRE team and are also subject to manual review. Audit logs are retained in the SIEM for one year. Audit logs for a given cluster are not deleted at the time the cluster is deleted.

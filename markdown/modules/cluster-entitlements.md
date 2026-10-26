@@ -54,7 +54,7 @@ You must have internet access to perform the following actions:
 *   Access {{ hybrid_console }} to download the installation program and perform subscription management. If the cluster has internet access and you do not disable Telemetry, that service automatically entitles your cluster.
 *   Access Quay.io to obtain the packages that are required to install your cluster.
 *   Obtain the packages that are required to perform cluster updates.
-{%- if openshift_enterprise or openshift_webscale %}
+{%- if openshift_enterprise %}
 
 {% if not restricted %}
 

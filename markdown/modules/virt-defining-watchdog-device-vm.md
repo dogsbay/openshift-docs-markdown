@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a watchdog device for the virtual machine {id="virt-defining-watchdog-device-vm"}
+# Configure a watchdog device for a virtual machine {id="virt-defining-watchdog-device-vm"}
 
 You configure a watchdog device for the virtual machine (VM). {._abstract}
 

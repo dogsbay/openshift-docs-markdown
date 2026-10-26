@@ -4,7 +4,7 @@
 
 # VM export commands {id="vm-export-commands_{{ context }}"}
 
-Use `virtctl vmexport` commands to create, download, or delete a volume exported from a VM, VM snapshot, or persistent volume claim (PVC). Certain manifests also contain a header secret, which grants access to the endpoint to import a disk image in a format that {{ VirtProductName }} can use. {._abstract}
+You can use the following `virtctl vmexport` commands to export a volume from a virtual machine (VM), a VM snapshot, or a persistent volume claim (PVC). These commands create the export, download the volume, and retrieve the manifest. {._abstract}
 
 **VM export commands**
 

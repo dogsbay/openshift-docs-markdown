@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a DNS server for secondary networks {id="virt-configuring-secondary-dns-server_{{ context }}"}
+# Configure a DNS server for secondary networks {id="virt-configuring-secondary-dns-server_{{ context }}"}
 
 The Cluster Network Addons Operator (CNAO) deploys a Domain Name Server (DNS) server and monitoring components when you enable the `deployKubeSecondaryDNS` feature gate in the `HyperConverged` custom resource (CR). {._abstract}
 

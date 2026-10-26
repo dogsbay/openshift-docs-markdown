@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Manage VM network interface configuration {id="virt-nw-overview-manage-vm-nw-config_{{ context }}"}
+# VM network interface management options {id="virt-nw-overview-manage-vm-nw-config_{{ context }}"}
 
 Manage virtual machine (VM) network configuration to scale connectivity without incurring application downtime, troubleshoot network latency, define and automate management of MAC address pools, configure IP addresses, and isolate live migration traffic. {._abstract}
 
@@ -44,3 +44,7 @@ Manage MAC address pools for VM network interfaces
 Configure a dedicated network for live migration
 :   You can configure a dedicated Multus network for live migration. A dedicated network minimizes the effects of network saturation on tenant workloads during live migration.
 {% endif %}
+
+
+View network details in the web console
+:   On the **VirtualMachine details** page, the **Configuration** → **Network** tab lists the VM’s network interfaces. Each network name is a link that opens the details page for the associated network resource, such as a network attachment definition (NAD), user-defined network (UDN), or cluster user-defined network (CUDN). Networks that use the default pod network display "Pod networking" as plain text because there is no corresponding network resource to go to.

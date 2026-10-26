@@ -3,7 +3,7 @@
 
 You can configure the cluster scheduler to apply affinity and anti-affinity policies across customizable infrastructure topological levels to meet application latency and high-availability requirements. {._abstract}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 
 
 Infrastructure topological levels

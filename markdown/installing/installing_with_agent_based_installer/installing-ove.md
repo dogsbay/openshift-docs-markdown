@@ -11,9 +11,6 @@ You can deploy an {{ product_title }} cluster without the need for an external i
 
 Although the method supports general clusters, the downloaded media contains an Operator bundle that is curated specifically for {{ ove_first }}, meaning additional Operators must be retrieved separately if required for other use cases.
 
-{%- set FeatureName = "Installing a cluster without an external registry" %}
-{% include "./snippets/technology-preview.md" %}
-
 {% leveloffset +1 %}{% include "./modules/installing-ove-advantages.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/installing-ove-iso.md" %}{% endleveloffset %}
@@ -33,3 +30,4 @@ Although the method supports general clusters, the downloaded media contains an 
 *   [Managing VM templates](/virt/creating_vm/virt-creating-vms-from-templates#virt-creating-vms-from-templates)
 *   [Migrating virtual machines from VMware vSphere (Migration Toolkit for Virtualization documentation)](https://docs.redhat.com/en/documentation/migration_toolkit_for_virtualization/2.8/html/installing_and_using_the_migration_toolkit_for_virtualization/migrating-vmware)
 *   [Migrating virtual machines from Red&#160;Hat Virtualization (Migration Toolkit for Virtualization documentation)](https://docs.redhat.com/en/documentation/migration_toolkit_for_virtualization/2.8/html/installing_and_using_the_migration_toolkit_for_virtualization/migrating-rhv_rhv)
+*   [Configuring your cluster to use an external registry](/disconnected/configuring-registry-external#configuring-registry-external)

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Searching for standalone virtual machine instances by using the web console {id="virt-searching-vmis-web_{{ context }}"}
+# Search for standalone VMIs by using the web console {id="virt-searching-vmis-web_{{ context }}"}
 
-You can search for virtual machine instances (VMIs) by using the search bar on the **VirtualMachines** page. Use the advanced search to apply additional filters. {._abstract}
+You can search for standalone virtual machine instances (VMIs) from the search bar on the **VirtualMachines** page of the {{ product_title }} web console. Advanced search filters narrow the results by name, project, labels, and IP address. {._abstract}
 
 **Procedure**
 

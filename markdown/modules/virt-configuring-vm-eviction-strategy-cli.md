@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a VM eviction strategy using the CLI {id="virt-configuring-vm-eviction-strategy-cli_{{ context }}"}
+# Configure VM eviction strategy {id="virt-configuring-vm-eviction-strategy-cli_{{ context }}"}
 
 You can configure an eviction strategy for a virtual machine (VM) by using the command line. {._abstract}
 

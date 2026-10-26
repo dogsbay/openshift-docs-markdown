@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Collecting Windows application event logs {id="collecting-windows-application-event-logs_{{ context }}"}
+# Collect Windows application event logs {id="collecting-windows-application-event-logs_{{ context }}"}
 
 The `Get-WinEvent` shim on the kubelet `logs` endpoint can be used to collect application event logs from Windows machines. {._abstract}
 

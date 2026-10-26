@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Assigning a vGPU to a VM by using the CLI {id="virt-assigning-mdev-vm-cli_{{ context }}"}
+# Assign a vGPU to a VM by using the CLI {id="virt-assigning-mdev-vm-cli_{{ context }}"}
 
-Assign mediated devices such as virtual GPUs (vGPUs) to virtual machines (VMs). {._abstract}
+After mediated devices are configured in the cluster, you can assign them to individual VMs so that VMs can access shared GPU resources. {._abstract}
 
 **Prerequisites**
 

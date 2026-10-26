@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting the CPU allocation ratio {id="virt-setting-cpu-allocation-ratio_{{ context }}"}
+# Overcommit CPUs to raise VM density {id="virt-setting-cpu-allocation-ratio_{{ context }}"}
 
-The CPU Allocation Ratio specifies the degree of overcommitment by mapping vCPUs to time slices of physical CPUs. {._abstract}
+Set the CPU allocation ratio to control how many virtual CPUs map to each physical CPU. A higher ratio increases overcommitment, so each virtual machine (VM) pod requests fewer physical CPUs. {._abstract}
 
 For example, a mapping or ratio of 10:1 maps 10 virtual CPUs to 1 physical CPU by using time slices.
 

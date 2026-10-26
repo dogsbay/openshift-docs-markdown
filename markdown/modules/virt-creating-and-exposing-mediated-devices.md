@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating and exposing mediated devices {id="virt-creating-exposing-mediated-devices_{{ context }}"}
+# Create and expose mediated devices {id="virt-creating-exposing-mediated-devices_{{ context }}"}
 
 As an administrator, you can create mediated devices and expose them to the cluster by editing the `HyperConverged` custom resource (CR). Before you edit the CR, explore a worker node to find the configuration values that are specific to your hardware devices. {._abstract}
 

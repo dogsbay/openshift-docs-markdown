@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Access configuration considerations {id="virt-access-configuration-considerations_{{ context }}"}
+# Options for connecting to VMs {id="virt-access-configuration-considerations_{{ context }}"}
 
-Each method for configuring access to a virtual machine (VM) has advantages and limitations, depending on the traffic load and client requirements. {._abstract}
+Your goal determines the best way to connect to a virtual machine (VM), whether troubleshooting, automating configuration with Ansible, or providing access to clients outside the cluster. {._abstract}
 
 
 :::note
@@ -19,7 +19,7 @@ If the internal cluster network cannot handle the traffic load, you can configur
     *   Recommended for troubleshooting VMs.
     *   `virtctl port-forwarding` recommended for automated configuration of VMs with Ansible.
     *   Dynamic public SSH keys can be used to provision VMs with Ansible.
-    *   Not recommended for high-traffic applications like Rsync or Remote Desktop Protocol because of the burden on the API server.
+    *   Not recommended for high-traffic applications such as Rsync or Remote Desktop Protocol because of the burden on the API server.
     *   The API server must be able to handle the traffic load.
     *   The clients must be able to access the API server.
     *   The clients must have access credentials for the cluster.

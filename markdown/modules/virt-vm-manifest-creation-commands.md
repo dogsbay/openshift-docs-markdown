@@ -4,7 +4,7 @@
 
 # VM manifest creation commands {id="vm-manifest-creation-commands_{{ context }}"}
 
-You can use the following `virtctl create` commands to create manifests for virtual machines, instance types, and preferences. {._abstract}
+You can use the following `virtctl create` commands to create manifests for virtual machines (VMs), instance types, and preferences. {._abstract}
 
 **VM manifest creation commands**
 

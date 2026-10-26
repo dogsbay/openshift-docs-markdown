@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deploy a {{ product_title }} cluster {id="rosa-hcp-sts-deploying-cluster_{{ context }}"}
 
-During the cluster creation process, the {{ rosa_cli_first }} creates the required JSON files for you and outputs the commands you need, and if necessary, it can also run the commands for you. The {{ rosa_cli }} can automatically create the roles, or you can manually create them by using the `--mode manual` or `--mode auto` flags. {._abstract}
+During the cluster creation process, the {{ rosa_cli_first }} creates the required JSON files for you and outputs the commands you need, and if necessary, it can also run the commands for you. {._abstract}
+
+The {{ rosa_cli }} can automatically create the roles, or you can manually create them by using the `--mode manual` or `--mode auto` flags.
 
 Deploying a {{ product_title }} cluster consists of the following general steps.
 

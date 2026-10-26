@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing the IP address of a virtual machine by using the CLI {id="virt-viewing-vmi-ip-cli_{{ context }}"}
+# View a VM IP address by using the CLI {id="virt-viewing-vmi-ip-cli_{{ context }}"}
 
 You can view the IP address of a virtual machine (VM) by using the command line. {._abstract}
 

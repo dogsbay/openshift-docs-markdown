@@ -11,4 +11,5 @@ Navigate to the network traffic **Overview** view in the {{ product_title }} con
 
 1.  Navigate to **Observe** → **Network Traffic**.
 1.  In the **Network Traffic** page, click the **Overview** tab.
+1.  Optional: When analyzing specific network features, select a preconfigured feature view from the view selector to instantly display feature-specific panels and columns.
 1.  Click the menu icon to configure the scope of each flow rate data.

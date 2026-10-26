@@ -25,7 +25,7 @@ You can perform any of the following tasks to manage application memory:
 
 {% leveloffset +1 %}{% include "./modules/nodes-cluster-resource-configure-evicted.md" %}{% endleveloffset %}
 
-{% if openshift_origin or openshift_online or openshift_webscale or openshift_enterprise %}
+{% if openshift_origin or openshift_enterprise %}
 
 **Additional resources**
 {._additional-resources}

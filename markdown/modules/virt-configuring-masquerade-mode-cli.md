@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring masquerade mode from the CLI {id="virt-configuring-masquerade-mode-cli_{{ context }}"}
+# Configure masquerade mode by using the CLI {id="virt-configuring-masquerade-mode-cli_{{ context }}"}
 
 You can use masquerade mode to hide a virtual machine’s outgoing traffic behind
 the pod IP address. Masquerade mode uses Network Address Translation (NAT) to

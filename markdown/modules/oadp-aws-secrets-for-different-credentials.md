@@ -18,11 +18,11 @@ Then, you create a `Secret` object and specify the profiles in the `DataProtecti
     aws_secret_access_key=<AWS_SECRET_ACCESS_KEY>
     ```
 1.  Create a `Secret` object with the `credentials-velero` file:
-    ```terminal {minja}
-    $ oc create secret generic {{ credentials }} -n openshift-adp --from-file cloud=credentials-velero (1)
+    ```terminal
+    $ oc create secret generic cloud-credentials -n openshift-adp --from-file cloud=credentials-velero (1)
     ```
 1.  Add the profiles to the `DataProtectionApplication` CR, as in the following example:
-    ```yaml {minja}
+    ```yaml
     apiVersion: oadp.openshift.io/v1alpha1
     kind: DataProtectionApplication
     metadata:
@@ -33,7 +33,7 @@ Then, you create a `Secret` object and specify the profiles in the `DataProtecti
       backupLocations:
         - name: default
           velero:
-            provider: {{ provider }}
+            provider: aws
             default: true
             objectStorage:
               bucket: <bucket_name>
@@ -43,10 +43,10 @@ Then, you create a `Secret` object and specify the profiles in the `DataProtecti
               profile: "backupStorage"
             credential:
               key: cloud
-              name: {{ credentials }}
+              name: cloud-credentials
       snapshotLocations:
         - velero:
-            provider: {{ provider }}
+            provider: aws
             config:
               region: us-west-2
               profile: "volumeSnapshot"

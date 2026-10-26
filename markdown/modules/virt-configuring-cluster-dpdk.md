@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a cluster for DPDK workloads {id="virt-configuring-cluster-dpdk_{{ context }}"}
+# Prepare a cluster for DPDK workloads {id="virt-configuring-cluster-dpdk_{{ context }}"}
 
 You can configure an {{ product_title }} cluster to run Data Plane Development Kit (DPDK) workloads for improved network performance. {._abstract}
 

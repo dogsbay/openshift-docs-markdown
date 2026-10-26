@@ -45,8 +45,7 @@ $ oc adm policy add-cluster-role-to-group self-provisioner system:authenticated:
 See the _Security and control certifications for {{ product_title }}_ table in _Understanding process and security for {{ product_title }}_ for the latest compliance information.
 
 ## Network security {id="network-security_{{ context }}"}
-Each {{ product_title }} cluster is protected by a secure network configuration at the cloud infrastructure level using firewall rules (AWS Security Groups or {{ gcp_full }} Compute Engine firewall rules). {{ product_title }} customers on AWS are also protected against distributed denial-of-service (DDoS) attacks with [AWS Shield Standard](https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html).
-Similarly, all {{ gcp_short }} load balancers and public IP addresses used by {{ product_title }} on {{ gcp_short }} are protected against DDoS attacks with [{{ gcp_full }} Armor Standard](https://cloud.google.com/armor/docs/managed-protection-overview).
+Each {{ product_title }} cluster is protected by a secure network configuration at the cloud infrastructure level using firewall rules (AWS Security Groups or {{ gcp_full }} Compute Engine firewall rules). {{ product_title }} customers on AWS are also protected against distributed denial-of-service (DDoS) attacks with AWS Shield Standard. Similarly, all {{ gcp_short }} load balancers and public IP addresses used by {{ product_title }} on {{ gcp_short }} are protected against DDoS attacks with {{ gcp_full }} Armor Standard.
 
 ## etcd encryption {id="etcd-encryption_{{ context }}"}
 
@@ -68,3 +67,10 @@ The etcd encryption feature is not enabled by default and it can be enabled only
 By enabling etcd encryption for the key values in etcd, you will incur a performance overhead of approximately 20%. The overhead is a result of introducing this second layer of encryption, in addition to the default control plane storage encryption that encrypts the etcd volumes. Red Hat recommends that you enable etcd encryption only if you specifically require it for your use case.
 
 :::
+
+
+**Additional resources**
+{._additional-resources}
+
+*   [AWS Shield Standard](https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html)
+*   [{{ gcp_full }} Armor Standard](https://cloud.google.com/armor/docs/managed-protection-overview)

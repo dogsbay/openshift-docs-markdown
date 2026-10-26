@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Editing a standalone virtual machine instance using the web console {id="virt-editing-vmis-web_{{ context }}"}
+# Edit a standalone VMI by using the web console {id="virt-editing-vmis-web_{{ context }}"}
 
-You can edit the annotations and labels of a standalone virtual machine instance (VMI) using the web console. Other fields are not editable. {._abstract}
+You can edit the annotations and labels of a standalone virtual machine instance (VMI) by using the {{ product_title }} web console. No other fields are editable. {._abstract}
 
 **Procedure**
 

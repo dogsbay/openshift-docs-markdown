@@ -26,7 +26,7 @@ The Network Observability Operator uses the `flowlogs-pipeline` component to gen
 **Additional resources**
 {._additional-resources}
 
-*   [Network Flows format reference](/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)
+*   [Network Flows format reference](/observability/network_observability/network-observability-api-reference#network-flows-format_network_observability)
 
 {% leveloffset +1 %}{% include "./modules/network-observability-flowmetrics-charts.md" %}{% endleveloffset %}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About custom component routes on {{ product_title }} {id="about-custom-component-routes-rosa-hcp_{{ context }}"}
+# Custom component routes on {{ product_title }} {id="about-custom-component-routes-rosa-hcp_{{ context }}"}
 
 By default, {{ product_title }} clusters use service-generated default subdomains for core cluster routes. You can customize these component routes to use personalized, company-owned fully qualified domain names (FQDNs) to satisfy corporate branding and enterprise security requirements. {._abstract}
 

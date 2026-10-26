@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Delete the account-wide IAM roles and policies {id="rosa-deleting-account-wide-iam-roles-and-policies_{{ context }}"}
 
-You can delete the account-wide IAM roles and policies that you created for {{ product_title }} deployments, along with the account-wide Operator policies. You can delete the account-wide IAM roles and policies only after deleting all {{ product_title }} clusters that depend on them. {._abstract}
+You can delete the account-wide IAM roles and policies that you created for {{ product_title }} deployments, along with the account-wide Operator policies. You can delete them only after deleting all clusters that depend on them. {._abstract}
 
 
 :::important

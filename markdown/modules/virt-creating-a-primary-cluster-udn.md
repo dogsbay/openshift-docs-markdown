@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a primary cluster-scoped user-defined network by using the CLI {id="virt-creating-a-primary-cluster-udn_{{ context }}"}
+# Create a cluster-scoped primary overlay network by using the CLI {id="virt-creating-a-primary-cluster-udn_{{ context }}"}
 
 You can connect multiple namespaces to the same primary user-defined network (UDN) to achieve native tenant isolation by using the CLI. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# About volume and access modes for virtual machine disks {id="virt-about-storage-volumes-for-vm-disks_{{ context }}"}
+# Volume and access modes for VM disks {id="virt-about-storage-volumes-for-vm-disks_{{ context }}"}
 
 If you use the storage API with known storage providers, the volume and access modes are selected automatically. However, if you use a storage class that does not have a storage profile, you must configure the volume and access mode. {._abstract}
 

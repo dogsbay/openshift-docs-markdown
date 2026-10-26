@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Querying the node-exporter service for metrics {id="virt-querying-the-node-exporter-service-for-metrics-_{{ context }}"}
+# Query the node-exporter service for metrics {id="virt-querying-the-node-exporter-service-for-metrics-_{{ context }}"}
 
 Metrics are exposed for virtual machines through an HTTP service endpoint under the `/metrics` canonical name. When you query for metrics, Prometheus directly scrapes the metrics from the metrics endpoint exposed by the virtual machines and presents these metrics for viewing. {._abstract}
 

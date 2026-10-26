@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Example: VM node placement with node affinity {id="virt-example-vm-node-placement-node-affinity_{{ context }}"}
+# VM node placement with node affinity {id="virt-example-vm-node-placement-node-affinity_{{ context }}"}
 
-In this example, the VM must be scheduled on a node that has the label `example.io/example-key = example-value-1` or the label `example.io/example-key = example-value-2`. The constraint is met if only one of the labels is present on the node. If neither label is present, the VM is not scheduled. {._abstract}
+Use a node affinity rule to run a virtual machine (VM) on nodes that match the labels you specify, as either a hard requirement or a preference. {._abstract}
+
+In this example, the VM must be scheduled on a node that has the label `example.io/example-key = example-value-1` or the label `example.io/example-key = example-value-2`. The constraint is met if only one of the labels is present on the node. If neither label is present, the VM is not scheduled.
 
 If possible, the scheduler avoids nodes that have the label `example-node-label-key = example-node-label-value`. However, if all candidate nodes have this label, the scheduler ignores this constraint.
 

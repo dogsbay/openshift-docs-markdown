@@ -4,7 +4,7 @@
 {{ product_title }} provides enterprise-ready enhancements to Kubernetes. 
 You can use the powerful and flexible platform management tools of {{ product_title }} to better manage your applications. {._abstract}
 
-{% if openshift_origin or openshift_enterprise or openshift_webscale %}
+{% if openshift_origin or openshift_enterprise %}
 *   Hybrid cloud deployments. You can deploy {{ product_title }} clusters to a variety of public cloud platforms or in your data center.
 {%- endif %}
 * Integrated Red Hat technology. Major components in {{ product_title }} come from {{ op_system_base_full }} and related Red Hat technologies. {{ product_title }} benefits from the intense testing and certification initiatives for Red Hat’s enterprise quality software.

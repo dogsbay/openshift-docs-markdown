@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Initializing the new cluster configuration {id="virt-install-ibm-cloud-initialize-new-cluster_{{ context }}"}
+# Initialize the new cluster configuration {id="virt-install-ibm-cloud-initialize-new-cluster_{{ context }}"}
 
 Initialize the new cluster configuration using the {{ VirtProductName }} Assisted Installer service and Samba on the Bastion virtual server instance. {._abstract}
 

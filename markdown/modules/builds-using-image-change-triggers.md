@@ -74,7 +74,7 @@ imageChange:
   paused: true
 ```
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 In addition to setting the image field for all `Strategy` types, for custom builds, the `OPENSHIFT_CUSTOM_BUILD_BASE_IMAGE` environment variable is checked.
 If it does not exist, then it is created with the immutable image reference. If it does exist, then it is updated with the immutable image reference.
 {% endif %}

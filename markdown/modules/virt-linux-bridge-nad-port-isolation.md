@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling port isolation for a Linux bridge NAD {id="virt-linux-bridge-nad-port-isolation_{{ context }}"}
+# Enable port isolation for a Linux bridge NAD {id="virt-linux-bridge-nad-port-isolation_{{ context }}"}
 
 You can enable port isolation for a Linux bridge network attachment definition (NAD) so that virtual machines (VMs) or pods that run on the same virtual LAN (VLAN) can operate in isolation from one another. {._abstract}
 

@@ -42,7 +42,13 @@ Follow the steps in this procedure to create an {{ product_title }} cluster on {
         :::
 
     1.  Select a channel from the **Channel** drop-down menu.
-        {% include "./snippets/rosa-osd-channel-group-options.md" %}
+
+        :::note
+
+        Channel options include **Stable-4.y** (default option), **Fast-4.y**, and **EUS-4.y**. For more information about the Stable, Fast, and EUS channel options, see "Understanding update channels and releases".
+        
+        :::
+
     1.  Select a cloud provider region from the **Region** drop-down menu.
     1.  Select a **Single zone** or **Multi-zone** configuration.
     1.  Optional: Select **Enable Secure Boot support for Shielded VMs** to use Shielded VMs when installing your cluster. Once you create your cluster, the **Enable Secure Boot support for Shielded VMs** setting cannot be changed. For more information, see [Shielded VMs](https://cloud.google.com/security/products/shielded-vm).
@@ -125,7 +131,13 @@ Follow the steps in this procedure to create an {{ product_title }} cluster on {
         For more information about custom application ingress settings, click on the information icon provided for each setting.
 1.  Click **Next**.
 1.  Optional: To install the cluster into a {{ gcp_short }} Shared VPC, follow these steps.
-    {% include "./snippets/snip_install-cluster-in-vpc.md" %}
+
+    :::note
+
+    Installing a new {{ product_title }} cluster into a VPC that was automatically created by the installer for a different cluster is not supported.
+    
+    :::
+
     1.  Select **Install into {{ gcp_short }} Shared VPC**.
     1.  Specify the **Host project ID**. If the specified host project ID is incorrect, cluster creation fails.
 

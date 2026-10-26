@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About the Containerized Data Importer (CDI) Operator {id="virt-about-cdi-operator_{{ context }}"}
+# Containerized Data Importer (CDI) Operator {id="virt-about-cdi-operator_{{ context }}"}
 
 The CDI Operator, `cdi-operator`, manages CDI and its related resources, which imports a virtual machine (VM) image into a persistent volume claim (PVC) by using a data volume. {._abstract}
 

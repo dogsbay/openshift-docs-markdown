@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # ARN path customization for IAM roles and policies {id="rosa-sts-arn-path-customization-for-iam-roles-and-policies_{{ context }}"}
 
-When you create the AWS IAM roles and policies required for {{ product_title }} clusters that use the AWS Security Token Service (STS), you can specify custom Amazon Resource Name (ARN) paths. This enables you to use role and policy ARN paths that meet the security requirements of your organization. {._abstract}
+When you create the AWS IAM roles and policies required for {{ product_title }} clusters that use the AWS Security Token Service (STS), you can specify custom Amazon Resource Name (ARN) paths. {._abstract}
+
+This enables you to use role and policy ARN paths that meet the security requirements of your organization.
 
 You can specify custom ARN paths when you create your {{ cluster_manager }} role, user role, and account-wide roles and policies.
 
@@ -18,4 +20,7 @@ If you define a custom ARN path when you create a set of account-wide roles and 
 
 When you create the cluster-specific Operator roles, the ARN path for the relevant account-wide installer role is automatically detected and applied to the Operator roles.
 
-For more information about ARN paths, see [Amazon Resource Names (ARNs)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) in the AWS documentation.
+**Additional resources**
+{._additional-resources}
+
+*   [Amazon Resource Names (AWS documentation)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)

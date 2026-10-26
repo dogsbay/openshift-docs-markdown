@@ -9,7 +9,7 @@ title: Syncing LDAP groups
 
 Sync LDAP groups with {{ product_title }} so you can manage user membership and permissions using groups stored in your LDAP directory. {._abstract}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 As an administrator,
 {% endif %}
 {% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
@@ -31,7 +31,7 @@ For more information on configuring LDAP, see "Configuring an LDAP identity prov
 For more information on configuring LDAP, see "Configuring an LDAP identity provider".
 {% endif %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 
 :::note
 

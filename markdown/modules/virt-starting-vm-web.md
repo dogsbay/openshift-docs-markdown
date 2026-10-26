@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Starting a virtual machine {id="virt-starting-vm-web_{{ context }}"}
+# Start a VM {id="virt-starting-vm-web_{{ context }}"}
 
-You can start a virtual machine (VM) from the web console. {._abstract}
+You can start a virtual machine (VM) from the **VirtualMachines** page, the tree view, or the **VirtualMachine details** page of the {{ product_title }} web console. {._abstract}
 
 **Procedure**
 

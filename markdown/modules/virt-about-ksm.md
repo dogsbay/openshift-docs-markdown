@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About using {{ VirtProductName }} to activate KSM {id="virt-about-ksm_{{ context }}"}
+# KSM activation for memory optimization {id="virt-about-ksm_{{ context }}"}
 
 You can configure {{ VirtProductName }} to activate kernel samepage merging (KSM) when nodes experience memory overload. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Changing update settings {id="virt-changing-update-settings_{{ context }}"}
+# Change update settings {id="virt-changing-update-settings_{{ context }}"}
 
 You can control how and when updates are installed by changing the update channel and approval strategy for the {{ CNVOperatorDisplayName }} subscription. {._abstract}
 

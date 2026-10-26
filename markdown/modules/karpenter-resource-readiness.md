@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Karpenter resource readiness conditions {id="karpenter-resource-readiness-conditions_{{ context }}"}
 
-The `EC2NodeClass` resource reports readiness through status conditions that indicate whether Karpenter successfully discovered and validated AWS resources. Each condition reports a boolean status and explains why the condition is true or false. Understanding these conditions helps you identify which AWS resources require configuration changes. {._abstract}
+The `EC2NodeClass` resource reports readiness through status conditions that indicate whether Karpenter successfully discovered and validated AWS resources. Each condition reports a boolean status and explains why the condition is true or false. {._abstract}
 
 **EC2NodeClass status conditions**
 

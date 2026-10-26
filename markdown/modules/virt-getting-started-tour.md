@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Getting started tour {id="virt-getting-started-tour_{{ context }}"}
+# Take the Getting started tour {id="virt-getting-started-tour_{{ context }}"}
 
 The **Getting started** tour introduces several key aspects of using {{ VirtProductName }}. There are two ways to start the tour. {._abstract}
 

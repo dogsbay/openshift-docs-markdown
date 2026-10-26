@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Hot swapping a virtual machine secondary network by using the command line {id="virt-live-updating-vm-nad-udn_{{ context }}"}
+# Hot swap a VM secondary network by using the CLI {id="virt-live-updating-vm-nad-udn_{{ context }}"}
 
 You can hot swap a virtual machine (VM) secondary network by using the command line. {._abstract}
 

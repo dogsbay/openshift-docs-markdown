@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using the virtctl ssh command {id="virt-using-virtctl-ssh-command_{{ context }}"}
+# Connect to a VM by using the virtctl ssh command {id="virt-using-virtctl-ssh-command_{{ context }}"}
 
-You can use the `virtctl ssh` command to access a running virtual machine instance (VMI). The command accepts VM or VMI targets. {._abstract}
+You can open an SSH session to a running virtual machine (VM) by using the `virtctl ssh` command. The command accepts a VM or a virtual machine instance (VMI) as the target. {._abstract}
 
 **Prerequisites**
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a VM network interface by using the CLI {id="virt-attaching-vm-secondary-network-cli_{{ context }}"}
+# Configure a VM network interface by using the CLI {id="virt-attaching-vm-secondary-network-cli_{{ context }}"}
 
 You can configure a virtual machine (VM) network interface for a bridge network by using the command line. {._abstract}
 

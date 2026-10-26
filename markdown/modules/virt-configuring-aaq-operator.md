@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the AAQ Operator by using the CLI {id="virt-configuring-aaq-operator_{{ context }}"}
+# Configure the AAQ Operator by using the CLI {id="virt-configuring-aaq-operator_{{ context }}"}
 
-You can configure the AAQ Operator by specifying the fields of the `spec.applicationAwareConfig` object in the `HyperConverged` custom resource (CR). {._abstract}
+Configure the Application Aware Quota (AAQ) Operator to control how AAQ counts virtual machine (VM) resources and which namespaces it applies to, so that quota enforcement matches how your teams use the cluster. {._abstract}
 
 **Prerequisites**
 

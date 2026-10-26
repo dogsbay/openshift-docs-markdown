@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling the CPU hot plug by instance type {id="virt-disable-CPU-VM-hotplug-instancetype_{{ context }}"}
+# Disable CPU hot plug for an instance type {id="virt-disable-CPU-VM-hotplug-instancetype_{{ context }}"}
 
-As a cluster administrator, you can disable the CPU hot plug by instance type.
-This is the recommended approach to standardize VM configurations and ensure NUMA-aware CPU allocation without hot plugs for specific instance types. {._abstract}
+You can disable the CPU hot plug for an instance type. Every VM created from that instance type inherits the setting, which standardizes VM configurations and keeps CPU allocation NUMA-aware. {._abstract}
 
 When a VM is created by using an instance type where the CPU hot plug is disabled, the VM inherits these settings and the CPU hot plug is disabled for that VM.
 

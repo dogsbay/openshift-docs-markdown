@@ -4,7 +4,7 @@
 
 # virtctl information commands {id="virtctl-information-commands_{{ context }}"}
 
-You can use the following `virtctl` information commands to view information about the `virtctl` client. {._abstract}
+You can use the following `virtctl` commands to view the client and server versions and to list the commands and options that are available. {._abstract}
 
 **Information commands**
 

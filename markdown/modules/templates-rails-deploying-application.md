@@ -11,7 +11,7 @@ Deploying your application on {{ product_title }} takes three steps:
 
 **Procedure**
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 *   Create a project for your Rails application by running the following command:
     ```terminal
     $ oc new-project rails-app --description="My Rails application" --display-name="Rails Application"

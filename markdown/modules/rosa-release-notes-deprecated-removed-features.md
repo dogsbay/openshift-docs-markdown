@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Deprecated and removed features {id="rosa-deprecated-removed-features_{{ context }}"}
 
-Some features available in previous releases have been deprecated or removed. Deprecated functionality is still included in {{ product_title }} and continues to be supported; however, it will be removed in a future release of this product and is not recommended for new deployments. {._abstract}
+Some features available in previous releases have been deprecated or removed. Deprecated functionality is still included in {{ product_title }} and remains supported; however, it will be removed in a future release and is not recommended for new deployments. {._abstract}
 
 {% if openshift_rosa_hcp %}
 

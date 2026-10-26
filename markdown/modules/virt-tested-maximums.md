@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Tested maximums for {{ VirtProductName }} {id="virt-tested-maximums_{{ context }}"}
+# Tested resource limits {id="virt-tested-maximums_{{ context }}"}
 
 Maximums are based on a single cluster of the largest possible size for a {{ VirtProductName }} 4.x environment. Approaching the maximum values can reduce performance and increase latency. Consider using multiple smaller clusters if possible to improve performance. {._abstract}
 

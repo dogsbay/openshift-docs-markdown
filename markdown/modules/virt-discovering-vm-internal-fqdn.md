@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Mapping a virtual machine to a headless service by using the CLI {id="virt-discovering-vm-internal-fqdn_{{ context }}"}
+# Map a VM to a headless service by using the CLI {id="virt-discovering-vm-internal-fqdn_{{ context }}"}
 
 To connect to a virtual machine (VM) from within the cluster by using its internal fully qualified domain name (FQDN), you must first map the VM to a headless service. Set the `spec.hostname` and `spec.subdomain` parameters in the VM configuration file. {._abstract}
 

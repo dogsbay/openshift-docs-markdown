@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About workload security {id="virt-about-workload-security_{{ context }}"}
+# Workload security {id="virt-about-workload-security_{{ context }}"}
 
 By default, virtual machine (VM) workloads do not run with root privileges in {{ VirtProductName }}, and there are no supported {{ VirtProductName }} features that require root privileges. {._abstract}
 

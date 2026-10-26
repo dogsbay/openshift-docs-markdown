@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About services {id="virt-about-services_{{ context }}"}
+# Service types for VM network access {id="virt-about-services_{{ context }}"}
 
-A Kubernetes service exposes network access for clients to an application running on a set of pods. Services offer abstraction, load balancing, and, in the case of the `NodePort` and `LoadBalancer` types, exposure to the outside world. {._abstract}
+A Kubernetes service exposes an application running on a set of pods to network clients. Services provide abstraction and load balancing, and the `NodePort` and `LoadBalancer` types also expose the application outside the cluster. {._abstract}
 
 
 `ClusterIP`

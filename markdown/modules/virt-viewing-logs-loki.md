@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing aggregated {{ VirtProductName }} logs with Loki {id="virt-viewing-logs-loki_{{ context }}"}
+# View aggregated {{ VirtProductName }} logs with Loki {id="virt-viewing-logs-loki_{{ context }}"}
 
 You can use the Loki logging component to view aggregated logs for {{ VirtProductName }} pods and containers in the web console. This is useful for troubleshooting issues and monitoring your {{ VirtProductName }} environment. {._abstract}
 

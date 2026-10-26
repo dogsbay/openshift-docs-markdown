@@ -15,23 +15,8 @@ These release notes track the development of the Network Observability Operator 
 
 Some referenced tickets are not linked. This means that the ticket is not accessible without Red Hat credentials.
 
-{% leveloffset +1 %}{% include "./modules/network-observability-operator-release-notes-1-12-3-advisory.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/network-observability-operator-release-notes-2-0-advisory.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/network-observability-operator-release-notes-1-12-3-fixed-issues.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/network-observability-operator-release-notes-2-0-new-features-enhancements.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/network-observability-operator-release-notes-1-12-2-advisory.md" %}{% endleveloffset %}
-
-{% leveloffset +1 %}{% include "./modules/network-observability-operator-release-notes-1-12-2-fixed-issues.md" %}{% endleveloffset %}
-
-{% leveloffset +1 %}{% include "./modules/network-observability-operator-release-notes-1-12-1-advisory.md" %}{% endleveloffset %}
-
-{% leveloffset +1 %}{% include "./modules/network-observability-operator-release-notes-1-12-advisory.md" %}{% endleveloffset %}
-
-{% leveloffset +1 %}{% include "./modules/network-observability-operator-release-notes-1-12-new-features-enhancements.md" %}{% endleveloffset %}
-
-{% leveloffset +1 %}{% include "./modules/network-observability-operator-release-notes-1-12-fixed-issues.md" %}{% endleveloffset %}
-
-{% leveloffset +1 %}{% include "./modules/network-observability-operator-release-notes-1-12-known-issues.md" %}{% endleveloffset %}
-
-## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
-*   [Grant permissions for custom namespace and secret access](/observability/network_observability/configuring-operator#network-observability-grant-permissions-custom-namespace-and-secret-access_network_observability)
+{% leveloffset +1 %}{% include "./modules/network-observability-operator-release-notes-2-0-fixed-issues.md" %}{% endleveloffset %}

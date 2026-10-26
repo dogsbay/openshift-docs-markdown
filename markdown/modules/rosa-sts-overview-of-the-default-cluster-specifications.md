@@ -35,7 +35,7 @@ You can quickly create a {{ product_title }} cluster by using the default instal
 </tr>
 <tr>
   <td>Compute node machine pool</td>
-  <td>{% if openshift_rosa %} <ul><li>Compute node instance type: m5.xlarge (4 vCPU, 16 GiB RAM)</li></ul> {% endif %} {% if not openshift_rosa %} <ul><li>Compute node instance type: m7i.xlarge (4 vCPU, 16 GiB RAM)</li></ul><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>The <code>m7i</code> instance type is not available in every AWS region. In regions where <code>m7i</code> is not offered, you must specify a supported instance type when you create a cluster or cluster creation fails. For a complete list of supported regions, see <a href="https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-regions.html"><em>Amazon EC2 instance types by Region</em></a>.</dd></dl> {% endif %} <ul><li>Compute node count: 2</li><li>Autoscaling: Not enabled</li><li>No additional node labels</li></ul></td>
+  <td>{% if openshift_rosa %} <ul><li>Compute node instance type: m5.xlarge (4 vCPU, 16 GiB RAM)</li></ul> {% endif %} {% if not openshift_rosa %} <ul><li>Compute node instance type: m7i.xlarge (4 vCPU, 16 GiB RAM)</li></ul><dl class="db-admonition db-admonition-note"><dt>Note</dt><dd>The <code>m7i</code> instance type is not available in every AWS region. In regions where <code>m7i</code> is not offered, you must specify a supported instance type when you create a cluster or cluster creation fails. For a complete list of supported regions, see "Amazon EC2 instance types by Region".</dd></dl> {% endif %} <ul><li>Compute node count: 2</li><li>Autoscaling: Not enabled</li><li>No additional node labels</li></ul></td>
 </tr>
 <tr>
   <td>Networking configuration</td>
@@ -59,3 +59,8 @@ You can quickly create a {{ product_title }} cluster by using the default instal
 </tr>
 </tbody>
 </table>
+
+**Additional resources**
+{._additional-resources}
+
+*   [Amazon EC2 instance types by Region](https://docs.aws.amazon.com/ec2/latest/instancetypes/ec2-instance-regions.html)

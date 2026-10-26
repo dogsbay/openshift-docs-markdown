@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Workload Identity Federation {id="workload-identity-federation-overview_{{ context }}"}
 
-Workload Identity Federation (WIF) is a {{ GCP }} Identity and Access Management (IAM) feature that provides third parties a secure method to access resources on a customer’s cloud account. WIF eliminates the need for service account keys, and is {{ gcp_full }}'s preferred method of credential authentication. {._abstract}
+Workload Identity Federation (WIF) is a {{ GCP }} Identity and Access Management (IAM) feature that provides third parties a secure method to access resources on a customer’s cloud account. {._abstract}
+
+WIF eliminates the need for service account keys, and is {{ gcp_full }}'s preferred method of credential authentication.
 
 While service account keys can provide powerful access to your {{ gcp_full }} resources, they must be maintained by the user and can be a security risk if they are not managed properly. WIF does not use service keys as an access method for your {{ gcp_full }} resources. Instead, WIF grants access by using credentials from external identity providers to generate short-lived credentials for workloads. The workloads can then use these credentials to temporarily impersonate service accounts and access {{ gcp_full }} resources. This removes the burden of having to properly maintain service account keys, and removes the risk of unauthorized users gaining access to service account keys.
 
@@ -14,7 +16,7 @@ The following bulleted items provide a basic overview of the Workload Identity F
 
 Operators also need access to cloud resources. By using WIF instead of service account keys to grant this access, cluster security is further strengthened, as service account keys are no longer stored in the cluster. Instead, operators are given temporary access tokens that impersonate the service accounts. These tokens are short-lived and regularly rotated.
 
-For more information about Workload Identity Federation, see the [{{ gcp_full }} documentation](https://cloud.google.com/iam/docs/workload-identity-federation).
+For more information about Workload Identity Federation, see "Workload Identity Federation".
 
 
 :::important
@@ -22,3 +24,9 @@ For more information about Workload Identity Federation, see the [{{ gcp_full }}
 Workload Identity Federation (WIF) is only available on {{ product_title }} version 4.17 and later, and is only supported by the Customer Cloud Subscription (CCS) infrastructure type.
 
 :::
+
+
+**Additional resources**
+{._additional-resources}
+
+*   [Workload Identity Federation ({{ gcp_full }} documentation)](https://cloud.google.com/iam/docs/workload-identity-federation)

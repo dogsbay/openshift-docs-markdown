@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling dynamic SSH key injection by using the web console {id="virt-editing-vm-dynamic-key-injection_{{ context }}"}
+# Enable dynamic SSH key injection by using the web console {id="virt-editing-vm-dynamic-key-injection_{{ context }}"}
 
-You can enable dynamic key injection for a virtual machine (VM) by using the {{ product_title }} web console. Then, you can update the public SSH key at runtime. {._abstract}
+You can enable dynamic SSH key injection in the {{ product_title }} web console for a virtual machine (VM) that runs {{ op_system_base_full }} 9, and then update the public SSH key while the VM is running. {._abstract}
 
 The key is added to the VM by the QEMU guest agent, which is installed with {{ op_system_base_full }} 9 and later. 
 

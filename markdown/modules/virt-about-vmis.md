@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About virtual machine instances {id="virt-about-vmis_{{ context }}"}
+# Virtual machine instances {id="virt-about-vmis_{{ context }}"}
 
-A virtual machine instance (VMI) is a representation of a running virtual machine (VM). When a VMI is owned by a VM or by another object, you manage it through its owner in the web console or by using the `oc` command-line interface (CLI). {._abstract}
+In {{ VirtProductName }}, a virtual machine instance (VMI) is an active, powered-on virtual instance, as opposed to a virtual machine, which is the saved configuration. You can create standalone VMIs independently without a parent template, and you can manage them directly. {._abstract}
 
 A standalone VMI is created and started independently with a script, through automation, or by using other methods in the CLI. In your environment, you might have standalone VMIs that were developed and started outside of the {{ VirtProductName }} environment. You can continue to manage those standalone VMIs by using the CLI. You can also use the web console for specific tasks associated with standalone VMIs:
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Scheduling virtual machines with a custom scheduler {id="virt-vm-custom-scheduler_{{ context }}"}
+# Schedule VMs with a custom scheduler {id="virt-vm-custom-scheduler_{{ context }}"}
 
-You can use a custom scheduler to schedule a virtual machine (VM) on a node. {._abstract}
+You can run a virtual machine (VM) under a custom scheduler instead of the default scheduler, so that your own scheduling logic decides which node runs the VM. {._abstract}
 
 **Prerequisites**
 

@@ -68,6 +68,7 @@ The provided {{ cp_template_first }} ({{ cp_template }}) templates contain refer
 The Ignition config files contain a unique cluster identifier that you can use to uniquely identify your cluster in {{ cp_first }}. If you plan to use the cluster identifier as the name of your virtual machine folder, you must extract it.
 {% endif %}
 
+{% if gcp %}
 
 :::warning
 
@@ -75,6 +76,7 @@ Do not run the `openshift-install create manifests` command again after creating
 
 :::
 
+{% endif %}
 
 **Prerequisites**
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Apply node tuning to automatically provisioned nodes {id="rosa-node-tuning-autonode_{{ context }}"}
 
-You can apply `sysctl` node tuning configurations to nodes that the {{ autonode }} provisions. To apply a `TuningConfig` to {{ autonode }}-managed nodes, create a Karpenter node pool with a label that maps it to a {{ product_title }} machine pool that has the `TuningConfig` applied. {._abstract}
+You can apply `sysctl` node tuning configurations to nodes that the {{ autonode }} provisions. {._abstract}
 
 
 :::important

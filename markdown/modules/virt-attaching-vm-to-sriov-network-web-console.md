@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Connecting a VM to an SR-IOV network by using the web console {id="virt-attaching-vm-to-sriov-network-web-console_{{ context }}"}
+# Attach a VM to an SR-IOV network in the web console {id="virt-attaching-vm-to-sriov-network-web-console_{{ context }}"}
 
 You can connect a VM to the SR-IOV network by including the network details in the VM configuration. {._abstract}
 

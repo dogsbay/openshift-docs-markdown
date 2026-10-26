@@ -3,10 +3,12 @@
 
 To remove an installed Operator from a namespace, cluster administrators can delete its subscription and cluster service version (CSV) by using the CLI. {._abstract}
 
+{% include "./snippets/olmv0-failed-install-cluster-role-bindings.md" %}
+
 **Prerequisites**
 
 *   You have access to the {{ product_title }} cluster using an account with
-{%- if openshift_enterprise or openshift_webscale or openshift_origin %}
+{%- if openshift_enterprise or openshift_origin %}
 `cluster-admin` permissions.
 {%- endif %}
 {%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}

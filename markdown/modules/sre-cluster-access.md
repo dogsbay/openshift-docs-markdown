@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # SRE cluster access {id="sre-cluster-access_{{ context }}"}
 
-Red&#160;Hat Site Reliability Engineering (SRE) access to {{ product_title }} clusters is controlled through several layers of required authentication, all of which are managed by strict company policy. All authentication attempts to access a cluster and changes made within a cluster are recorded within audit logs, along with the specific account identity of the SRE responsible for those actions. These audit logs help ensure that all changes made by SREs to a customer’s cluster adhere to the strict policies and procedures that make up Red&#160;Hat’s managed services guidelines. {._abstract}
+Red&#160;Hat Site Reliability Engineering (SRE) access to {{ product_title }} clusters is controlled through several layers of required authentication, all of which are managed by strict company policy. {._abstract}
+
+All authentication attempts to access a cluster and changes made within a cluster are recorded within audit logs, along with the specific account identity of the SRE responsible for those actions. These audit logs help ensure that all changes made by SREs to a customer’s cluster adhere to the strict policies and procedures that make up Red&#160;Hat’s managed services guidelines.
 
 The information presented below is an overview of the process an SRE must perform to access a customer’s cluster.
 

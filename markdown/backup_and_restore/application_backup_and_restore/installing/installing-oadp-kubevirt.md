@@ -40,6 +40,8 @@ Red Hat only supports the combination of {{ oadp_short }} versions 1.3.0 and lat
 
 {% leveloffset +1 %}{% include "./modules/oadp-installing-dpa-1-3.md" %}{% endleveloffset %}
 
+{% leveloffset +2 %}{% include "./modules/oadp-dpa-configuration-by-provider.md" %}{% endleveloffset %}
+
 {% include "./snippets/oadp-windows-vm-backup-fails.md" %}
 
 {% leveloffset +1 %}{% include "./modules/oadp-backup-single-vm.md" %}{% endleveloffset %}

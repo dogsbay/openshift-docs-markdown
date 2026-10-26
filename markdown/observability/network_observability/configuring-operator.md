@@ -9,7 +9,7 @@ title: Configuring the Network Observability Operator
 
 Configure the Network Observability Operator by updating the cluster-wide `FlowCollector` API resource (cluster) to manage component configurations and flow collection settings. {._abstract}
 
-The `FlowCollector` is explicitly created during installation. Since this resource operates cluster-wide, only a single `FlowCollector` is allowed, and it must be named `cluster`. For more information, see the "FlowCollector API reference".
+The `FlowCollector` is explicitly created during installation. Since this resource operates cluster-wide, only a single `FlowCollector` is allowed, and it must be named `cluster`. For more information, see the "`FlowCollector` API reference".
 
 {% leveloffset +1 %}{% include "./modules/network-observability-flowcollector-view.md" %}{% endleveloffset %}
 
@@ -18,8 +18,10 @@ The `FlowCollector` is explicitly created during installation. Since this resour
 **Additional resources**
 {._additional-resources}
 
-*   [FlowCollector API reference](/observability/network_observability/flowcollector-api#network-observability-flowcollector-api-specifications_network_observability)
+*   [`FlowCollector` API reference](/observability/network_observability/network-observability-api-reference#flowcollector-api_network_observability)
 *   [Working with conversation tracking](/observability/network_observability/observing-network-traffic#network-observability-working-with-conversations_nw-observe-network-traffic)
+
+{% leveloffset +1 %}{% include "./modules/network-observability-openshift-tls-security-profile-support.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/network-observability-grant-permissions-custom-namespace-and-secret-access.md" %}{% endleveloffset %}
 
@@ -36,7 +38,7 @@ The `FlowCollector` is explicitly created during installation. Since this resour
 **Additional resources**
 {._additional-resources}
 
-*   [Network flows format reference](/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)
+*   [Network flows format reference](/observability/network_observability/network-observability-api-reference#network-flows-format_network_observability)
 
 {% leveloffset +1 %}{% include "./modules/network-observability-configuring-flp-sampling.md" %}{% endleveloffset %}
 
@@ -60,4 +62,4 @@ The `FlowCollector` is explicitly created during installation. Since this resour
 
 *   [Observing the network traffic from the traffic flows view](/observability/network_observability/observing-network-traffic#network-observability-trafficflow_nw-observe-network-traffic)
 *   [Network observability without Loki](/observability/network_observability/installing-operators#network-observability-without-loki_network_observability)
-*   [Network Flows format reference](/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)
+*   [Network Flows format reference](/observability/network_observability/network-observability-api-reference#network-flows-format_network_observability)

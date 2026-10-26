@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Create a service with the web console {id="virt-creating-service-web_{{ context }}"}
+# Create a service by using the web console {id="virt-creating-service-web_{{ context }}"}
 
-You can create a node port or load balancer service for a virtual machine (VM) by using the {{ product_title }} web console. {._abstract}
+You can create a node port or load balancer service for a virtual machine (VM) from the {{ product_title }} web console. A service gives clients outside the cluster a way to reach the VM over SSH. {._abstract}
 
 **Prerequisites**
 

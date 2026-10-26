@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Manage dynamic keys {id="virt-adding-dynamic-key-vm_{{ context }}"}
 
-You can enable dynamic key injection for a virtual machine (VM) by using the {{ product_title }} web console or the command line. Then, you can update the key at runtime. {._abstract}
+You can enable dynamic SSH key injection for a virtual machine (VM) that runs {{ op_system_base_full }} 9, and then update the public SSH key while the VM is running. {._abstract}
 
 
 :::note

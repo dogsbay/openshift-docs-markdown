@@ -19,8 +19,6 @@ Use the `FlowCollectorSlice` resource to delegate network traffic analysis manag
 
 {% leveloffset +1 %}{% include "./modules/network-observability-per-tenant-flowcollector-slice-configure-project-administrator.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/network-observability-per-tenant-flowcollector-slice-api-reference.md" %}{% endleveloffset %}
-
 ## Additional resources {id="additional-resources-per-tenand-configuration_{{ context }}" ._additional-resources}
 
-*   [FlowCollector API reference](/observability/network_observability/flowcollector-api#network-observability-flowcollector-api-specifications_network_observability)
+*   [FlowCollector API reference](/observability/network_observability/network-observability-api-reference#flowcollector-api_network_observability)

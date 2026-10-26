@@ -2,7 +2,7 @@
 
 # List virtual machines by using the CLI {id="virt-listing-vms-cli_{{ context }}"}
 
-You can either list all of the virtual machines (VMs) in your cluster or limit the list to VMs in a specified namespace by using the {{ oc_first }}. {._abstract}
+You can list all of the virtual machines (VMs) in your cluster by using the {{ oc_first }}, or limit the list to a single namespace. {._abstract}
 
 **Prerequisites**
 

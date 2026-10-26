@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Managing virtual machine quota details using the web console {id="virt-managing-quota-details-web_{{ context }}"}
+# Manage VM quota details by using the web console {id="virt-managing-quota-details-web_{{ context }}"}
 
-The quota details page in the {{ product_title }} web console provides information about an Application Aware Quota (AAQ), including resource limits, current usage, and visualizations of how quota capacity is being consumed. {._abstract}
+You can use the **Quota details** page in the {{ product_title }} web console to review the resource limits, current usage, and utilization charts for an Application Aware Quota (AAQ), so you can tell how close a project is to its limits. {._abstract}
 
 
 :::note
@@ -14,7 +14,7 @@ Cluster scoped quotas show only the YAML definition due to the complexity that t
 **Prerequisites**
 
 *   You have cluster administrator privileges.
-*   The Application Aware Quota operator is enabled in your cluster.
+*   The Application Aware Quota Operator is enabled in your cluster.
 *   An Application Aware Quota exists in your cluster.
 
 **Procedure**

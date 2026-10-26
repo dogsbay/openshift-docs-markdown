@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Generate a temporary token for the VNC console {id="virt-generate-temporary-token-VNC_{{ context }}"}
 
-To access the VNC of a virtual machine (VM), generate a temporary authentication bearer token for the Kubernetes API. {._abstract}
+You can generate a temporary authentication bearer token for the Kubernetes API to access the VNC console of a virtual machine (VM). The token expires after a duration that you set, with a minimum of 10 minutes. {._abstract}
 
 
 :::note

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring debug-level logging for the Windows Machine Config Operator {id="wmco-configure-debug-logging_{{ context }}"}
+# Configure debug-level logging for the Windows Machine Config Operator {id="wmco-configure-debug-logging_{{ context }}"}
 
 You can edit the WMCO `Subscription` object to change the Windows Machine Config Operator (WMCO) log level to `debug`, if you need more verbose output. {._abstract}
 

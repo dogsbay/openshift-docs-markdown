@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing downward metrics by using the vm-dump-metrics tool {id="virt-viewing-downward-metrics-tool_{{ context }}"}
+# View downward metrics by using the vm-dump-metrics tool {id="virt-viewing-downward-metrics-tool_{{ context }}"}
 
 To view downward metrics, install the `vm-dump-metrics` tool and then use the tool to expose the metrics results. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accessing a Windows node using RDP {id="accessing-windows-node-using-rdp_{{ context }}"}
+# Access a Windows node by using RDP {id="accessing-windows-node-using-rdp_{{ context }}"}
 
 You can access a Windows node by using a Remote Desktop Protocol (RDP). {._abstract}
 

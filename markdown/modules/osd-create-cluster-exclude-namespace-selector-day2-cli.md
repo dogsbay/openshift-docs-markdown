@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Changing namespace exclusions for the default ingress on your cluster in the CLI {id="osd-create-cluster-exclude-namespace-selector-day2-cli_{{ context }}"}
+# Change namespace exclusions for the default ingress on your cluster in the CLI {id="osd-create-cluster-exclude-namespace-selector-day2-cli_{{ context }}"}
 
 Use the `ocm` CLI to pass namespace exclusions for the default ingress to your {{ product_title }} cluster. {._abstract}
 

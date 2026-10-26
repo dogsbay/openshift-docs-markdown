@@ -5,16 +5,6 @@ You can set specific resource limits for a pod, container, image, image stream, 
 
 All requests to create and modify resources are evaluated against each `LimitRange` object in the project. If the resource violates any of the enumerated constraints, the resource is rejected.
 
-{% if openshift_online %}
-
-:::important
-
-For {{ product_title }} Pro, the maximum pod memory is 3Gi. The minimum pod or container memory that you can specify is 100Mi.
-
-:::
-
-{% endif %}
-
 The following shows a limit range object for all components: pod, container, image, image stream, or PVC. You can configure limits for any or all of these components in the same object. You create a different limit range object for each project where you want to control resources.
 
 ```yaml title="Sample limit range object for a container"

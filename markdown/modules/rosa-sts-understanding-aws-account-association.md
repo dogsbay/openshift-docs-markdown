@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # AWS account association {id="rosa-sts-understanding-aws-account-association_{{ context }}"}
 
-Before you can use {{ cluster_manager_first }} on the {{ hybrid_console_url }} to create {{ product_title }} clusters that use the AWS Security Token Service (STS), you must associate your AWS account with your Red&#160;Hat organization. You can associate your account by creating and linking the following IAM roles. {._abstract}
+Before you can use {{ cluster_manager_first }} on the {{ hybrid_console_url }} to create {{ product_title }} clusters that use the AWS Security Token Service (STS), you must associate your AWS account with your Red&#160;Hat organization. {._abstract}
+
+You can associate your account by creating and linking the following IAM roles.
 
 
 {{ cluster_manager }} role

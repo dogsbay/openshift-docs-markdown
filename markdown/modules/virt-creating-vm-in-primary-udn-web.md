@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a virtual machine in a namespace with a primary user-defined network by using the web console {id="virt-creating-vm-in-primary-udn-web_{{ context }}"}
+# Create a VM with primary overlay access in the web console {id="virt-creating-vm-in-primary-udn-web_{{ context }}"}
 
 You can create a virtual machine (VM) in a namespace that is configured to use a primary user-defined network (UDN) by using the {{ product_title }} web console. {._abstract}
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure full physical core allocation for virtual machines {id="virt-CPU-manager-policy_{{ context }}"}
 
-You can configure full physical core allocation by modifying the `cpuManagerPolicy` and `cpuManagerPolicyOptions` settings in the `KubeletConfig` custom resource (CR). {._abstract}
+You can configure full physical core allocation by modifying the `cpuManagerPolicy` and `cpuManagerPolicyOptions` settings in the `KubeletConfig` custom resource (CR). Whole-core allocation gives a VM exclusive use of its cores, which prevents contention with other workloads on the node. {._abstract}
 
 **Prerequisites**
 

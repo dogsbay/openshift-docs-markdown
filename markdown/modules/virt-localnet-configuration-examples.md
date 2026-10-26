@@ -1,0 +1,182 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Localnet VM network configuration examples {id="virt-localnet-configuration-examples_{{ context }}"}
+
+The following examples show complete end-to-end configurations for connecting a virtual machine (VM) to a localnet network by using the machine network or dedicated network interfaces. {._abstract}
+
+
+Connecting through the machine network
+:   While it is recommended to use a dedicated network interface to separate VM traffic from management, you can also share a single uplink. In this example, the machine network belongs to the native VLAN.
+    ```yaml title="Example NodeNetworkConfigurationPolicy manifest"
+    apiVersion: nmstate.io/v1
+    kind: NodeNetworkConfigurationPolicy
+    metadata:
+      name: network-config
+    spec:
+      desiredState:
+        ovn:
+          bridge-mappings:
+          - localnet: provider-network
+            bridge: br-ex
+            state: present
+    ```
+    *   `spec.desiredState.ovn.bridge-mappings.localnet` specifies the localnet identifier. This value must match the `spec.network.localnet.physicalNetworkName` field in the `ClusterUserDefinedNetwork` manifest.
+    *   `spec.desiredState.ovn.bridge-mappings.bridge` specifies the name of the existing OVS bridge on the node.
+    *   `spec.desiredState.ovn.bridge-mappings.state` specifies the state of the mapping.
+
+    ```yaml title="Example ClusterUserDefinedNetwork manifest to request access to VLAN 100 on the physical network"
+    apiVersion: k8s.ovn.org/v1
+    kind: ClusterUserDefinedNetwork
+    metadata:
+      name: provider-network-100
+    spec:
+      namespaceSelector:
+        matchLabels:
+          provider-network-vlan: "100"
+      network:
+        topology: Localnet
+        localnet:
+          role: Secondary
+          physicalNetworkName: provider-network
+          ipam:
+            mode: Disabled
+          mtu: 1500
+          vlan:
+            mode: Access
+            access:
+              id: 100
+    ```
+
+    ```yaml title="Example Namespace manifest"
+    apiVersion: v1
+    kind: Namespace
+    metadata:
+      name: red
+      labels:
+        provider-network-vlan: "100"
+    ```
+
+    ```yaml title="Example VirtualMachine manifest"
+    apiVersion: kubevirt.io/v1
+    kind: VirtualMachine
+    metadata:
+      name: example-vm
+      namespace: red
+    spec:
+      template:
+        spec:
+          domain:
+            devices:
+              interfaces:
+                - name: provider-network
+                  bridge: {}
+          networks:
+          - name: provider-network
+            multus:
+              networkName: provider-network-100
+    # ...
+    ```
+
+
+Connecting through dedicated interfaces
+:   To prevent network congestion and isolate the traffic, you can use dedicated network interface controllers (NICs) for the VM network. The following example uses two interfaces bonded with OVS `balance-slb` mode, to provide VM-friendly link redundancy without requiring switch-side link-aggregation configuration.
+    ```yaml title="Example NodeNetworkConfigurationPolicy manifest"
+    apiVersion: nmstate.io/v1
+    kind: NodeNetworkConfigurationPolicy
+    metadata:
+      name: network-config
+    spec:
+      desiredState:
+        interfaces:
+        - name: eno1np0
+          type: ethernet
+          state: up
+          mtu: 1500
+        - name: eno2np1
+          type: ethernet
+          state: up
+          mtu: 1500
+        - name: br1
+          type: ovs-bridge
+          state: up
+          bridge:
+            allow-extra-patch-ports: true
+            options:
+              stp: false
+              mcast-snooping-enable: true
+            port:
+            - name: bond1
+              link-aggregation:
+                mode: balance-slb
+                port:
+                  - name: eno1np0
+                  - name: eno2np1
+            - name: br1
+        - name: br1
+          type: ovs-interface
+          state: up
+          ipv4:
+            enabled: false
+          ipv6:
+            enabled: false
+        ovn:
+          bridge-mappings:
+          - localnet: provider-network
+            bridge: br1
+            state: present
+    ```
+    *   `spec.desiredState.ovn.bridge-mappings.localnet` specifies the localnet identifier. This value must match the `spec.network.localnet.physicalNetworkName` field in the `ClusterUserDefinedNetwork` manifest.
+    *   `spec.desiredState.ovn.bridge-mappings.bridge` specifies the name of the OVS bridge on the node.
+    *   `spec.desiredState.ovn.bridge-mappings.state` specifies the state of the mapping.
+
+    ```yaml title="Example ClusterUserDefinedNetwork manifest to request access to VLAN 100 on the physical network"
+    apiVersion: k8s.ovn.org/v1
+    kind: ClusterUserDefinedNetwork
+    metadata:
+      name: provider-network-100
+    spec:
+      namespaceSelector:
+        matchLabels:
+          provider-network-vlan: "100"
+      network:
+        topology: Localnet
+        localnet:
+          role: Secondary
+          physicalNetworkName: provider-network
+          ipam:
+            mode: Disabled
+          mtu: 1500
+          vlan:
+            mode: Access
+            access:
+              id: 100
+    ```
+
+    ```yaml title="Example Namespace manifest"
+    apiVersion: v1
+    kind: Namespace
+    metadata:
+      name: red
+      labels:
+        provider-network-vlan: "100"
+    ```
+
+    ```yaml title="Example VirtualMachine manifest"
+    apiVersion: kubevirt.io/v1
+    kind: VirtualMachine
+    metadata:
+      name: example-vm
+      namespace: red
+    spec:
+      template:
+        spec:
+          domain:
+            devices:
+              interfaces:
+                - name: provider-network
+                  bridge: {}
+          networks:
+          - name: provider-network
+            multus:
+              networkName: provider-network-100
+    # ...
+    ```

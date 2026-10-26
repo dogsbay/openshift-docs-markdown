@@ -1,8 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Removing the VM delete protection option {id="virt-removing-vm-delete-protection_{{ context }}"}
+# Remove the VM delete protection option from the cluster {id="virt-removing-vm-delete-protection_{{ context }}"}
 
-When you enable delete protection on a virtual machine (VM), you ensure that the VM cannot be inadvertently deleted. You can also disable the protection for a VM. {._abstract}
+You can make the delete protection option unavailable on your cluster by applying a `ValidatingAdmissionPolicy`. A virtual machine (VM) that already has delete protection keeps the setting, but you cannot enable protection on a new VM. {._abstract}
 
 As a cluster administrator, you can choose not to make the VM delete protection option available. VMs with delete protection already enabled retain that setting; for any new VMs that are created, enabling the option is not allowed.
 

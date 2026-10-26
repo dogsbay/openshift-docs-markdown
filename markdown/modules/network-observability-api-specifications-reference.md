@@ -20,7 +20,7 @@ The `FlowMetric` resource creates custom metrics from collected flow logs.
 
 ## FlowCollectorSlice API {id="flowcollector-slice-api_{{ context }}"}
 
-The `FlowCollectorSlice`` resource enables per-tenant flow collection configuration.
+The `FlowCollectorSlice` resource enables per-tenant flow collection configuration.
 
 *   [FlowCollectorSlice API for network observability 2.0](https://github.com/openshift/network-observability-operator/blob/release-2.0/docs/FlowCollectorSlice.md)
 *   [FlowCollectorSlice API for network observability 1.12](https://github.com/openshift/network-observability-operator/blob/release-1.12/docs/FlowCollectorSlice.md)

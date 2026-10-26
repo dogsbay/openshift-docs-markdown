@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Managing KubeMacPool by using the CLI {id="virt-managing-kubemacpool-cli_{{ context }}"}
+# Manage KubeMacPool by using the CLI {id="virt-managing-kubemacpool-cli_{{ context }}"}
 
 You can disable and re-enable KubeMacPool by using the command line. {._abstract}
 

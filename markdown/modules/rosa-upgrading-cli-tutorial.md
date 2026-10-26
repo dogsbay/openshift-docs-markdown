@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Upgrade a cluster with the {{ rosa_cli }} {id="rosa-upgrading-cli_{{ context }}"}
 
-You can use the {{ rosa_cli_first }} to upgrade a cluster either immediately within 10 minutes or at a future time. For {{ sts_first }} clusters, the {{ rosa_cli }} automatically upgrades Identity and Access Management (IAM) policies to match the target version of the upgrade. {._abstract}
+You can use the {{ rosa_cli_first }} to upgrade a cluster either immediately within 10 minutes or at a future time. For {{ sts_first }} clusters, the {{ rosa_cli }} automatically upgrades Identity and Access Management (IAM) policies to match the target version. {._abstract}
 
 **Prerequisites**
 

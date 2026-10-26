@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Create a custom Ingress Controller {id="nw-create-custom-ingress-controller_{{ context }}"}
+# Creating a custom Ingress Controller {id="nw-create-custom-ingress-controller_{{ context }}"}
 
 As a cluster administrator, you can create a new custom Ingress Controller.  {._abstract}
 
@@ -9,7 +9,7 @@ This example provides a minimal spec for a custom Ingress Controller. To further
 
 **Prerequisites**
 
-*   Install the OpenShift CLI (`oc`).
+*   Install the {{ oc_first }}.
 *   Log in as a user with `cluster-admin` privileges.
 
 **Procedure**
@@ -31,16 +31,16 @@ This example provides a minimal spec for a custom Ingress Controller. To further
     where:
 
     `metadata.name`
-    :   Specifies a custom `name` for the `IngressController` object.
+    :   Specifies the custom `name` for the `IngressController` object.
 
     `spec.defaultCertificate.name`
     :   Specifies the name of the secret with the custom wildcard certificate.
 
     `spec.replicas`
-    :   Specifies the number of replicas. Minimum replica needs to be ONE.
+    :   Specifies a minimum replica. The minimum value must be at least `1`.
 
     `spec.domain`
-    :   Specifies the domain to your domain name. The domain specified on the IngressController object and the domain used for the certificate must match. For example, if the domain value is "custom_domain.mycompany.com", then the certificate must have SAN \*.custom_domain.mycompany.com (with the `*.` added to the domain).
+    :   Specifies the domain to your domain name. The domain specified on the `IngressController` object and the domain used for the certificate must match. For example, if the domain value is "custom_domain.mycompany.com", then the certificate must have SAN \*.custom_domain.mycompany.com (with the `*.` added to the domain).
 
 1.  Create the object by running the following command:
     ```terminal

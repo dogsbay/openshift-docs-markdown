@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing outdated VM workloads {id="virt-viewing-outdated-workloads_{{ context }}"}
+# View outdated VM workloads {id="virt-viewing-outdated-workloads_{{ context }}"}
 
 You can view a list of outdated virtual machine (VM) workloads by using the CLI. {._abstract}
 

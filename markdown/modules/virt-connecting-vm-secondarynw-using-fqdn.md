@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Connecting to a VM on a secondary network by using the cluster FQDN {id="virt-connecting-vm-secondarynw-fqdn_{{ context }}"}
+# Connect to a secondary network VM by using the FQDN {id="virt-connecting-vm-secondarynw-fqdn_{{ context }}"}
 
 You can access a running virtual machine (VM) attached to a secondary network interface by using the fully qualified domain name (FQDN) of the cluster. {._abstract}
 

@@ -19,5 +19,5 @@ Learn how DNS resolution analysis uses eBPF-based decoding to identify service d
 **Additional resources**
 {._additional-resources}
 
-*   [Network flows format reference](/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)
+*   [Network flows format reference](/observability/network_observability/network-observability-api-reference#network-flows-format_network_observability)
 *   [Network Observability Operator runbooks](https://github.com/openshift/runbooks/tree/master/alerts/network-observability-operator)

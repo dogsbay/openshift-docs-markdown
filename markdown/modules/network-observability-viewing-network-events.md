@@ -52,8 +52,9 @@ You can edit the `FlowCollector` to view information about network traffic event
 
 **Verification**
 
-1.  Navigate to the **Network Traffic** view and select the **Traffic flows** table.
-1.  You should see the new column, **Network Events**, where you can view information about impacts of one of the following network APIs you have enabled: `NetworkPolicy`, `AdminNetworkPolicy`, `BaselineAdminNetworkPolicy`, `UserDefinedNetwork` isolation, multicast, or egress firewalls.
+1.  Navigate to the **Network Traffic** view.
+1.  Select the **Network Events** feature view from the view selector to display preconfigured network event panels and columns, or select the **Traffic flows** table to manually view network event columns.
+1.  The **Network Events** column displays information about impacts of one of the following network APIs you have enabled: `NetworkPolicy`, `AdminNetworkPolicy`, `BaselineAdminNetworkPolicy`, `UserDefinedNetwork` isolation, multicast, or egress firewalls.
 
     An example of the kind of events you could see in this column is as follows:
     ```text title="Example of Network Events output"

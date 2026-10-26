@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Listing all virtual machine instances using the CLI {id="virt-listing-vmis-cli_{{ context }}"}
+# List all VMIs by using the CLI {id="virt-listing-vmis-cli_{{ context }}"}
 
-You can list all virtual machine instances (VMIs) in your cluster, including standalone VMIs and those owned by virtual machines, by using the {{ oc_first }}. {._abstract}
+You can use the {{ oc_first }} to list all virtual machine instances (VMIs) in your cluster. The list includes standalone VMIs and VMIs that are owned by virtual machines (VMs). {._abstract}
 
 **Prerequisites**
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Canceling live migration by using the web console {id="virt-canceling-vm-migration-web_{{ context }}"}
+# Cancel live migration by using the web console {id="virt-canceling-vm-migration-web_{{ context }}"}
 
 You can cancel the live migration of a virtual machine (VM) by using the {{ product_title }} web console. {._abstract}
 

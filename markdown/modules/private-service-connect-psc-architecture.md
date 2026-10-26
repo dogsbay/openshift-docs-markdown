@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Private Service Connect architecture {id="psc-architecture_{{ context }}"}
 
-The Private Service Connect (PSC) architecture includes producer services and consumer services. Using PSC, the consumers can access producer services privately from inside their VPC network. Similarly, it allows producers to host services in their own separate VPC networks and offer a private connect to their consumers. {._abstract}
+The Private Service Connect (PSC) architecture includes producer services and consumer services. Using PSC, the consumers can access producer services privately from inside their VPC network. {._abstract}
+
+Similarly, it allows producers to host services in their own separate VPC networks and offer a private connect to their consumers.
 
 The following image depicts how Red HAT SREs and other internal resources access and support clusters created using PSC.
 

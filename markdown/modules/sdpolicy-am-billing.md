@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Billing options {id="billing_{{ context }}"}
 
-Customers have the option to buy annual subscriptions of {{ product_title }} or consume on-demand through cloud marketplaces. Customers can decide to bring their own cloud infrastructure account, referred to as Customer Cloud Subscription (CCS), or deploy in cloud provider accounts owned by Red Hat. The table below provides additional information regarding billing and the corresponding supported deployment options.
+Customers have the option to buy annual subscriptions of {{ product_title }} or consume on-demand through cloud marketplaces. Customers can decide to bring their own cloud infrastructure account, referred to as Customer Cloud Subscription (CCS), or deploy in cloud provider accounts owned by Red&#160;Hat. {._abstract}
+
+The table below provides additional information regarding billing and the corresponding supported deployment options.
 <table>
 <thead>
 <tr>

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a virtual machine with the node exporter service {id="virt-configuring-vm-with-node-exporter-service_{{ context }}"}
+# Configure a virtual machine with the node exporter service {id="virt-configuring-vm-with-node-exporter-service_{{ context }}"}
 
 Download the `node-exporter` file on to the virtual machine. Then, create a `systemd` service that runs the node-exporter service when the virtual machine boots. {._abstract}
 

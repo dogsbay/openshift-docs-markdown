@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating a Backup CR {id="oadp-creating-backup-cr_{{ context }}"}
 
-To back up Kubernetes resources, internal images, and persistent volumes (PVs), create a Backup custom resource (CR).
+To back up Kubernetes resources, internal images, and persistent volumes (PVs), create a Backup custom resource (CR). {._abstract}
 
 **Prerequisites**
 

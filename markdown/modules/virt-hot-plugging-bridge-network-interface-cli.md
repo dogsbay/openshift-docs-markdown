@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Hot plugging a secondary network interface by using the CLI {id="virt-hot-plugging-bridge-network-interface_{{ context }}"}
+# Hot plug a secondary network interface by using the CLI {id="virt-hot-plugging-bridge-network-interface_{{ context }}"}
 
 You can hot plug a secondary network interface to a virtual machine (VM) while the VM is running. {._abstract}
 

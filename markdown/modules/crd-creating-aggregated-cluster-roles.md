@@ -13,7 +13,7 @@ You must explicitly assign permissions to each of these roles. The roles with mo
 
 **Prerequisites**
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 *   Create a CRD.
 {% endif %}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Preserving pre-4.19 live migration permissions during update {id="virt-preserving-lm-perms_{{ context }}"}
+# Preserve pre-4.19 live migration permissions during update {id="virt-preserving-lm-perms_{{ context }}"}
 
 Before you update to {{ VirtProductName }} {{ VirtVersion }}, you can create a temporary cluster role to preserve the previous live migration permissions until you are ready for the more restrictive default permissions to take effect. {._abstract}
 

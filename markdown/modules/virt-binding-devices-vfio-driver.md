@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Binding PCI devices to the VFIO driver {id="virt-binding-devices-vfio-driver_{{ context }}"}
+# Bind PCI devices to the VFIO driver {id="virt-binding-devices-vfio-driver_{{ context }}"}
 
 To bind PCI devices to the VFIO (Virtual Function I/O) driver, obtain the values for the vendor ID and the device ID from each device and create a list with the values. Add this list to the `MachineConfig` object. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running a storage checkup by using the web console {id="virt-storage-checkup-web-console_{{ context }}"}
+# Run a storage checkup by using the web console {id="virt-storage-checkup-web-console_{{ context }}"}
 
 You can run a storage checkup to validate that storage is working correctly for virtual machines. {._abstract}
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling dynamic key injection by using the CLI {id="virt-enabling-dynamic-key-injection-cli_{{ context }}"}
+# Enable dynamic SSH key injection by using the CLI {id="virt-enabling-dynamic-key-injection-cli_{{ context }}"}
 
-You can enable dynamic key injection for a virtual machine (VM) by using the command line. Then, you can update the public SSH key at runtime. {._abstract}
+You can enable dynamic SSH key injection from the command line for a virtual machine (VM) that runs {{ op_system_base_full }} 9, and then update the public SSH key while the VM is running. {._abstract}
 
 
 :::note

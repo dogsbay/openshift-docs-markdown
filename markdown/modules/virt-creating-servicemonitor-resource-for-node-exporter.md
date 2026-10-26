@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a ServiceMonitor resource for the node exporter service {id="virt-creating-servicemonitor-resource-for-node-exporter_{{ context }}"}
+# Create a ServiceMonitor resource for the node exporter service {id="virt-creating-servicemonitor-resource-for-node-exporter_{{ context }}"}
 
 You can use a Prometheus client library and scrape metrics from the `/metrics` endpoint to access and view the metrics exposed by the node-exporter service. Use a `ServiceMonitor` custom resource definition (CRD) to monitor the node exporter service. {._abstract}
 

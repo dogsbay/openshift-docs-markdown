@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a virtual machine network from a physical network {id="creating-vm-network-localnet_{{ context }}"}
+# Create a VM network from a physical network {id="creating-vm-network-localnet_{{ context }}"}
 
 If your use case does not permit the use of network address translation (NAT), you can give VMs direct layer 2 access by creating a VM network that uses a physical network. {._abstract}
 

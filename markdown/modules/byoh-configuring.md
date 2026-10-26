@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a BYOH Windows instance {id="configuring-byoh-windows-instance"}
+# Configure a bring-your-own-host Windows instance {id="configuring-byoh-windows-instance_{{ context }}"}
 
 To create a Bring-Your-Own-Host (BYOH) Windows instance, you must create a config map in the Windows Machine Config Operator (WMCO) namespace. {._abstract}
 

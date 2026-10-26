@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Connect to the VNC console by using the web console {id="virt-connecting-vnc-console-web_{{ context }}"}
 
-You can connect to the VNC console of a virtual machine (VM) by using the {{ product_title }} web console. {._abstract}
+You can open the VNC console of a virtual machine (VM) from the {{ product_title }} web console without installing a local client. If the VM runs Windows with a vGPU assigned as a mediated device, you can switch between the default display and the vGPU display. {._abstract}
 
 
 :::note

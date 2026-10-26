@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Verifying vNUMA status of a VM {id="virt-numa-check-config_{{ context }}"}
+# Check whether a VM is configured for vNUMA {id="virt-numa-check-config_{{ context }}"}
 
-VM administrators might need to confirm whether non-uniform memory access (NUMA) is configured for a VM, to verify the VM’s resource allocation setup for high-performance, latency-sensitive workloads that rely on memory locality. {._abstract}
+Check whether a virtual machine (VM) is configured for virtual non-uniform memory access (vNUMA), so you can confirm that a latency-sensitive workload is getting the memory locality it depends on. {._abstract}
 
 You can verify whether an already deployed VM is configured for vNUMA by checking the `spec.domain.cpu.numa` attribute. This is displayed as a **vNUMA** badge in the {{ product_title }} web console.
 

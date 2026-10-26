@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting a specific machine {id="machine-delete_{{ context }}"}
+# Delete a specific machine {id="machine-delete_{{ context }}"}
 
 To remove a machine from your cluster, or restart a machine that is part of a machine set, you can use the {{ oc_first }} to delete a specific machine. {._abstract}
 

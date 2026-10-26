@@ -35,5 +35,5 @@ Creating a VM from an instance type in {{ VirtProductName }} 4.15 and higher is 
 
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
-*   [Configuring a downward metrics device](/virt/monitoring/virt-exposing-downward-metrics#virt-configuring-downward-metrics_virt-exposing-downward-metrics)
+*   [Configure a downward metrics device](/virt/monitoring/virt-exposing-downward-metrics#virt-configuring-downward-metrics_virt-exposing-downward-metrics)
 {%- endif %}

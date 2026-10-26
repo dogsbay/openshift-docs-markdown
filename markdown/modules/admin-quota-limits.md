@@ -7,18 +7,6 @@ All requests to create and modify resources are evaluated against each `LimitRan
 
 For CPU and memory limits, if you specify a maximum value but do not specify a minimum limit, the resource can consume more CPU and memory resources than the maximum value.
 
-{% if openshift_online %}
-
-:::important
-
-For {{ product_title }} Pro, the maximum pod memory is 3Gi. The minimum pod or container memory that you can specify is 100Mi.
-
-For {{ product_title }} Starter, the maximum pod memory is 1Gi. The minimum pod or container memory that you can specify is 200Mi.
-
-:::
-
-{% endif %}
-
 ```yaml title="Core limit range object definition"
 apiVersion: "v1"
 kind: "LimitRange"

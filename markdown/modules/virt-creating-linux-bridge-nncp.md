@@ -1,9 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a Linux bridge NNCP {id="virt-creating-linux-bridge-nncp_{{ context }}"}
+# Create a Linux bridge node network configuration policy {id="virt-creating-linux-bridge-nncp_{{ context }}"}
 
-After you install the Kubernetes NMState Operator, you can configure a Linux bridge network for live migration or external access to virtual machines (VMs). {._abstract}
-
-You can create a `NodeNetworkConfigurationPolicy` (NNCP) manifest for a Linux bridge network.
+You can configure a Linux bridge network for live migration or external access to virtual machines (VMs) by creating a `NodeNetworkConfigurationPolicy` (NNCP) manifest. {._abstract}
 
 **Prerequisites**
 
@@ -11,7 +9,7 @@ You can create a `NodeNetworkConfigurationPolicy` (NNCP) manifest for a Linux br
 
 **Procedure**
 
-*   Create the `NodeNetworkConfigurationPolicy` manifest. This example includes sample values that you must replace with your own information.
+1.  Configure the `NNCP` manifest. This example includes sample values that you must replace with your own information.
     ```yaml
     apiVersion: nmstate.io/v1
     kind: NodeNetworkConfigurationPolicy
@@ -33,15 +31,14 @@ You can create a `NodeNetworkConfigurationPolicy` (NNCP) manifest for a Linux br
               port:
                 - name: eth1
     ```
-    *   `metadata.name` defines the name of the node network configuration policy.
-    *   `spec.desiredState.interfaces.name` defines the name of the new Linux bridge.
-    *   `spec.desiredState.interfaces.description` is an optional field that can be used to define a human-readable description for the bridge.
-    *   `spec.desiredState.interfaces.type` defines the interface type. In this example, the type is a Linux bridge.
-    *   `spec.desiredState.interfaces.state` defines the requested state for the interface after creation.
-    *   `spec.desiredState.interfaces.ipv4.enabled` defines whether the ipv4 protocol is active. Setting this to `false` disables IPv4 addressing on this bridge.
-    *   `spec.desiredState.interfaces.bridge.options.stp.enabled` defines whether Spanning Tree Protocol (STP) is active. Setting this to `false` disables STP on this bridge.
-    *   `spec.desiredState.interfaces.bridge.port.name` defines the node NIC that the bridge is attached to.
-{% if not openshift_dedicated %}
+    *   `metadata.name`: Defines the name of the node network configuration policy.
+    *   `spec.desiredState.interfaces.name`: Defines the name of the new Linux bridge.
+    *   `spec.desiredState.interfaces.description`: Optional field that can be used to define a human-readable description for the bridge.
+    *   `spec.desiredState.interfaces.type`: Defines the interface type. In this example, the type is a Linux bridge.
+    *   `spec.desiredState.interfaces.state`: Defines the requested state for the interface after creation.
+    *   `spec.desiredState.interfaces.ipv4.enabled`: Defines whether the ipv4 protocol is active. Setting this to `false` disables IPv4 addressing on this bridge.
+    *   `spec.desiredState.interfaces.bridge.options.stp.enabled`: Defines whether Spanning Tree Protocol (STP) is active. Setting this to `false` disables STP on this bridge.
+    *   `spec.desiredState.interfaces.bridge.port.name`: Defines the node NIC that the bridge is attached to.
 
         :::note
 
@@ -55,4 +52,7 @@ You can create a `NodeNetworkConfigurationPolicy` (NNCP) manifest for a Linux br
         
         :::
 
-{% endif %}
+1.  Create the `NNCP` manifest:
+    ```
+    $ oc apply -f linux-bridge-nncp.yaml
+    ```

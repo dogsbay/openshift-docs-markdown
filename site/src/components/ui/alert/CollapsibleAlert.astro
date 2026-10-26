@@ -6,12 +6,15 @@
  * Composes with the same variant tokens as Alert.
  *
  * Usage:
- *   <CollapsibleAlert variant="warning" title="Warning" open>
+ *   <CollapsibleAlert variant="warning" title="Warning" icon="lucide:rocket" open>
  *     <p>Body content here.</p>
  *   </CollapsibleAlert>
+ *
+ * A title with markup goes in the `title` slot: `<Fragment slot="title">Run <code>init</code></Fragment>`.
  */
 import { tv, type VariantProps } from "tailwind-variants";
 import { contentVariants, icons, chevronSvg } from "./variants.js";
+import { resolveIcon } from "./icon.js";
 
 const wrapper = tv({
   base: "relative w-full rounded-lg border overflow-hidden [&>summary]:list-none [&>summary::-webkit-details-marker]:hidden",
@@ -80,20 +83,23 @@ interface Props {
   title?: string;
   /** Whether the details starts open */
   open?: boolean;
+  /** An icon name in place of the variant's (`lucide:rocket`, `compass`, an emoji shortcode); unknown names keep the variant's. */
+  icon?: string;
   class?: string;
   /** id, data-*, aria-*: passed to the <details> (an `id` is a link target) */
   [key: string]: unknown;
 }
 
-// `icon` is accepted (the serializer passes it) but not drawn: the variant sets the icon
-const { variant = "note", title, open = false, class: className, icon: _icon, ...rest } = Astro.props;
+const { variant = "note", title, open = false, class: className, icon: iconName, ...rest } = Astro.props;
 const v = variant || "note";
 
 // `plain` is chrome — a disclosure, nothing more. No role at all:
 // role="note"/"status" on collapsed context misinforms assistive tech
 // (and "status" would make it a live region).
 const role = v === "plain" ? undefined : contentVariants.has(v) ? "note" : "status";
-const icon = contentVariants.has(v) ? icons[v] : null;
+// The author's icon, as Alert draws it; else the variant's (`plain` has none)
+const icon = (iconName ? resolveIcon(iconName) : null) ?? (contentVariants.has(v) ? icons[v] : null);
+const fallbackTitle = title || v.charAt(0).toUpperCase() + v.slice(1);
 ---
 
 {/*
@@ -114,7 +120,7 @@ const icon = contentVariants.has(v) ? icons[v] : null;
     titleBg[v],
   ]}>
     {icon && <span class:list={["shrink-0 [&>svg]:size-4", iconColor[v]]} set:html={icon} />}
-    <span class="flex-1 text-foreground" data-part="title">{title || v.charAt(0).toUpperCase() + v.slice(1)}</span>
+    <span class="flex-1 text-foreground" data-part="title"><slot name="title">{fallbackTitle}</slot></span>
     <span class="shrink-0 text-muted-foreground group-open/collapsible:rotate-180 transition-transform duration-200" set:html={chevronSvg} />
   </summary>
   <div class:list={["px-4 py-3 text-sm [&_p]:leading-relaxed", bodyBg[v]]} role={role}>

@@ -5,7 +5,7 @@ Image tag naming conventions in {{ product_title }} provide guidelines for creat
 
 Tags that are too specific effectively pin the tag to a single image revision that is never updated. For example, if you create a tag named `v2.0.1-may-2019`, the tag points to just one revision of an image and is never updated. If you use default image pruning options, such an image is never removed.
 
-{% if openshift_origin or openshift_enterprise or openshift_webscale %}
+{% if openshift_origin or openshift_enterprise %}
 In very large clusters, the schema of creating new tags for every revised image could eventually fill up the etcd datastore with excess tag metadata for images that are long outdated. If the tag is named `v2.0`, image revisions are more likely. This results in longer tag history and, therefore, the image pruner is more likely to remove old and unused images.
 {% endif %}
 

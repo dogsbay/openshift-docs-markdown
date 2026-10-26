@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Windows Machine Config Operator using the CLI {id="installing-wmco-using-cli_{{ context }}"}
+# Install the Windows Machine Config Operator by using the CLI {id="installing-wmco-using-cli_{{ context }}"}
 
 You can use the OpenShift CLI (`oc`) to install the Windows Machine Config Operator (WMCO). {._abstract}
 

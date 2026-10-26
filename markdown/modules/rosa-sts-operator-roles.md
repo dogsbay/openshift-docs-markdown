@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Cluster-specific Operator IAM role reference {id="rosa-sts-operator-roles_{{ context }}"}
 
-Use Operator roles to authenticate to your AWS resources through an OpenID Connect (OIDC) provider, and obtain temporary permissions for cluster operations. Securing these permissions helps you successfully manage capabilities such as back-end storage, cloud ingress controllers, and external cluster access. {._abstract}
+Use Operator roles to authenticate to your AWS resources through an OpenID Connect (OIDC) provider, and obtain temporary permissions for cluster operations. Securing these permissions helps you manage capabilities such as back-end storage, cloud ingress controllers, and external cluster access. {._abstract}
 
 When you create the Operator roles, the account-wide Operator policies for the matching cluster version are attached to the roles.
 {%- if openshift_rosa %}

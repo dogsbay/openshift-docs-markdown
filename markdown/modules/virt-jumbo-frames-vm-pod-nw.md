@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About jumbo frames support {id="virt-jumbo-frames-vm-pod-nw_{{ context }}"}
+# Jumbo frames support {id="virt-jumbo-frames-vm-pod-nw_{{ context }}"}
 
 When using the OVN-Kubernetes CNI plugin, you can send unfragmented jumbo frame packets between two virtual machines (VMs) that are connected on the default pod network. Jumbo frames have a maximum transmission unit (MTU) value greater than 1500 bytes. {._abstract}
 

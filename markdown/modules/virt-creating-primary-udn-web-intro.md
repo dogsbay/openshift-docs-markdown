@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Create a primary user-defined network by using the web console {id="virt-creating-primary-udn-web-intro_{{ context }}"}
+# Primary overlay network creation in the web console {id="virt-creating-primary-udn-web-intro_{{ context }}"}
 
 You can use the {{ product_title }} web console to create a primary namespace-scoped `UserDefinedNetwork` (UDN) or a cluster-scoped `ClusterUserDefinedNetwork` custom resource definition (CRD). {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a cluster eviction strategy by using the CLI {id="virt-configuring-cluster-eviction-strategy-cli_{{ context }}"}
+# Configure cluster eviction strategy {id="virt-configuring-cluster-eviction-strategy-cli_{{ context }}"}
 
 You can configure an eviction strategy for a cluster by using the command line. {._abstract}
 

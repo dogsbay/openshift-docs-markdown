@@ -2,7 +2,9 @@
 
 # Red&#160;Hat {{ OCP }} FedRAMP Rev5 Secure Configuration Guidance for top-level administrative and privileged accounts {id="rosa-fedramp-accounts-config_{{ context }}"}
 
-{{ product_title }} gives you comprehensive frameworks to find roles, isolation boundaries, and operational functions for top-level administrative or privileged accounts. These frameworks apply within a Red&#160;Hat {{ OCP }} Federal Risk and Authorization Management Program (FedRAMP) Rev5 Secure Configuration Guidance (SCG) environment. {._abstract}
+{{ product_title }} gives you comprehensive frameworks to find roles, isolation boundaries, and operational functions for top-level administrative or privileged accounts. {._abstract}
+
+These frameworks apply within a Red&#160;Hat {{ OCP }} Federal Risk and Authorization Management Program (FedRAMP) Rev5 Secure Configuration Guidance (SCG) environment.
 
 The guidance you receive addresses the SCG-CSO-RSC (Cloud Service Offering - Recommended Secure Configuration) requirement, including both cluster-wide top-level administrative accounts and namespace-scoped privileged accounts. The parameters in both administrative and privilege accounts help you deploy, operate, decommission, and secure access among your configurations.
 

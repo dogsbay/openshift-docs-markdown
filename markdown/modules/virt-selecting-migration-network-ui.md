@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Selecting a dedicated network by using the web console {id="virt-selecting-migration-network-ui_{{ context }}"}
+# Select a dedicated migration network by using the web console {id="virt-selecting-migration-network-ui_{{ context }}"}
 
 You can select a dedicated network for live migration by using the {{ product_title }} web console. {._abstract}
 

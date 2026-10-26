@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Upgrade machine pools with the {{ rosa_cli }} {id="rosa-hcp-upgrading-cli-machinepool_{{ context }}"}
 
-You can manually update one or more machine pools in a {{ product_title }} cluster by using the {{ rosa_cli_first }}. This method schedules the specified machine pool for an update if a more recent version is available, either immediately, or at a specified future time. {._abstract}
+You can manually update one or more machine pools in a {{ product_title }} cluster by using the {{ rosa_cli_first }}. This method schedules the machine pool for an update if a newer version is available, either immediately or at a specified future time. {._abstract}
 
 Updating machine pools on your preferred schedule allows you to apply feature updates and bug fixes with minimal workload disruption.
 

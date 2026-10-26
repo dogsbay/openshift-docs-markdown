@@ -25,6 +25,10 @@ Security posture assessment
 Remediation prioritization
 :   Targets workloads using deprecated protocols for updates by filtering and analyzing TLS fields to isolate problematic connections requiring immediate attention.
 
+## TLS Tracking feature view {id="network-observability-tls-feature-view_{{ context }}"}
+
+When TLS tracking is enabled, you can select the **TLS Tracking** preconfigured feature view from the view selector in the **Network Traffic** page. This view automatically displays TLS-specific panels and columns, providing faster access to TLS monitoring metrics without manual configuration.
+
 ## TLS traffic monitoring workflow phases {id="monitoring-tls-traffic-workflow_{{ context }}"}
 
 To monitor TLS traffic effectively, complete the following phases:

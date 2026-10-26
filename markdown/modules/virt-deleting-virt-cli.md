@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling {{ VirtProductName }} by using the CLI {id="virt-deleting-virt-cli_{{ context }}"}
+# Uninstall {{ VirtProductName }} by using the CLI {id="virt-deleting-virt-cli_{{ context }}"}
 
 You can uninstall {{ VirtProductName }} by using the OpenShift CLI (`oc`). {._abstract}
 

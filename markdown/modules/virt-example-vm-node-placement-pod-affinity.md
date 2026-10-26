@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Example: VM node placement with pod affinity and pod anti-affinity {id="virt-example-vm-node-placement-pod-affinity_{{ context }}"}
+# VM node placement with pod affinity and pod anti-affinity {id="virt-example-vm-node-placement-pod-affinity_{{ context }}"}
 
-In this example, the VM must be scheduled on a node that has a running pod with the label `example-key-1 = example-value-1`. If there is no such pod running on any node, the VM is not scheduled. {._abstract}
+Use pod affinity and pod anti-affinity rules to place a virtual machine (VM) on the same node as specific pods, or away from them. {._abstract}
+
+In this example, the VM must be scheduled on a node that has a running pod with the label `example-key-1 = example-value-1`. If there is no such pod running on any node, the VM is not scheduled.
 
 If possible, the VM is not scheduled on a node that has any pod with the label `example-key-2 = example-value-2`. However, if all candidate nodes have a pod with this label, the scheduler ignores this constraint.
 

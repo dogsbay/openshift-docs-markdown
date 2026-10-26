@@ -11,9 +11,9 @@ As an administrator, you can observe the network traffic in the {{ product_title
 
 {% leveloffset +1 %}{% include "./modules/network-observability-network-traffic-overview-view.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/network-observability-working-with-overview.md" %}{% endleveloffset %}
-
 {% leveloffset +2 %}{% include "./modules/network-observability-configuring-options-overview.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/network-observability-working-with-overview.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/network-observability-pktdrop-overview.md" %}{% endleveloffset %}
 

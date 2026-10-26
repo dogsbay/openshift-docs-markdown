@@ -11,7 +11,7 @@ that region. {._abstract}
 *   You created an Amazon S3 bucket with the required IAM
 [service role](https://docs.aws.amazon.com/vm-import/latest/userguide/vmie_prereqs.html#vmimport-role).
 *   You uploaded your {{ op_system }} VMDK file to Amazon S3.
-{%- if openshift_enterprise or openshift_webscale %}
+{%- if openshift_enterprise %}
 The {{ op_system }} VMDK file must be the highest version that is less than or equal to the {{ product_title }} version you are installing.
 {%- endif %}
 *   You downloaded the {{ aws_short }} CLI and installed it on your computer. See

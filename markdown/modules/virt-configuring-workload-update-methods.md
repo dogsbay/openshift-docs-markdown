@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring workload update methods {id="virt-configuring-workload-update-methods_{{ context }}"}
+# Configure workload update methods {id="virt-configuring-workload-update-methods_{{ context }}"}
 
 You can configure how virtual machine workloads are updated during cluster upgrades by editing the `HyperConverged` custom resource (CR). {._abstract}
 

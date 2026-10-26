@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create a cluster with the default options using {{ cluster_manager }} {id="rosa-sts-creating-a-cluster-using-defaults-ocm_{{ context }}"}
 
-When using {{ cluster_manager_first }} on the {{ hybrid_console_url }} to create a {{ product_title }} cluster that uses the AWS Security Token Service (STS), you can select the default options to create the cluster quickly. You can also use the admin {{ cluster_manager }} IAM role to enable automatic deployment of the cluster-specific Operator roles and the OpenID Connect (OIDC) provider. {._abstract}
+When using {{ cluster_manager_first }} on the {{ hybrid_console_url }} to create a {{ product_title }} cluster that uses the AWS Security Token Service (STS), you can select the default options to create the cluster quickly. {._abstract}
+
+You can also use the admin {{ cluster_manager }} IAM role to enable automatic deployment of the cluster-specific Operator roles and the OpenID Connect (OIDC) provider.
 
 **Procedure**
 

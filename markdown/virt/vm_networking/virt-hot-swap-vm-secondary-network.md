@@ -21,6 +21,6 @@ To hot swap a VM secondary network, you must edit the network configuration of t
 
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [About live migration](/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration)
-*   [Connecting a virtual machine to a secondary localnet user-defined network](/virt/vm_networking/virt-connecting-vm-to-secondary-udn#virt-connecting-vm-to-secondary-udn)
+*   [Connect a virtual machine to a physical network by using an Open vSwitch bridge](/virt/vm_networking/virt-connecting-vm-to-physical-network-ovs-bridge#virt-connecting-vm-to-physical-network-ovs-bridge)
 *   [Creating a Linux bridge network attachment definition](/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)
 *   [Creating an SR-IOV network attachment definition](/virt/vm_networking/virt-connecting-vm-to-sriov#nw-sriov-additional-network_virt-connecting-vm-to-sriov)

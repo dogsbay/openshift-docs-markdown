@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configure a CPU model per-VM {id="virt-per-vm-cpu-model-configuration_{{ context }}"}
+# Configure a CPU model for a single VM {id="virt-per-vm-cpu-model-configuration_{{ context }}"}
 
-You can specify a named CPU model in the virtual machine (VM) specification. This per-VM configuration takes precedence over any cluster-wide default CPU model. {._abstract}
+Set a named CPU model on a single virtual machine (VM) when that VM needs a different CPU type from the cluster-wide default. A per-VM model always takes precedence over the default. {._abstract}
 
 The VM CPU model depends on the availability of CPU models within the VM and the cluster.
 

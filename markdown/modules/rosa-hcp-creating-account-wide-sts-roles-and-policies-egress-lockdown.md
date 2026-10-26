@@ -46,7 +46,7 @@ Specific AWS-managed policies for {{ product_title }} must be attached to each r
 
         :::note
 
-        As an additional safeguard, after romodules/rosa-hcp-creating-account-wide-sts-roles-and-policies.adocle creation, you can manually update the trust policies of the Support and Installer account-wide roles to include an external ID. For more information, see _About external ID_.
+        As an additional safeguard, after role creation, you can manually update the trust policies of the Support and Installer account-wide roles to include an external ID. For more information, see _About external ID_.
         
         :::
 

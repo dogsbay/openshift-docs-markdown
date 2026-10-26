@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a live migration policy by using the CLI {id="virt-configuring-a-live-migration-policy_{{ context }}"}
+# Create a live migration policy by using the CLI {id="virt-configuring-a-live-migration-policy_{{ context }}"}
 
 You can create a live migration policy by using the command line. {._abstract}
 

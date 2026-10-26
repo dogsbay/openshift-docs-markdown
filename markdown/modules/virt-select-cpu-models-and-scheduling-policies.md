@@ -1,4 +1,6 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Select CPU models and scheduling policies {id="virt-select-cpu-models-and-scheduling-policies_{{ context }}"}
 
-Select CPU models and scheduling policies that keep virtual machines compatible with live migration.
+When you choose the CPU model for a virtual machine (VM), you determine which CPU features the VM can use and which nodes it can run on. Use the `host-model` CPU in a homogeneous cluster. Use a common named CPU model in a heterogeneous cluster to maximize the number of nodes compatible with the VM. {._abstract}
+
+You can set the CPU model for the whole cluster or for a single VM, and a per-VM model takes precedence over the cluster default. You can also set a policy attribute on an individual CPU feature to control how strictly the scheduler enforces that feature.

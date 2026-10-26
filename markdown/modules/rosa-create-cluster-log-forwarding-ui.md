@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Enable log forwarding during cluster creation in the {{ hybrid_console_second }} {id="rosa-create-cluster-log-forwarding-ui_{{ context }}"}
 
-You can set up control plane log forwarding when you create your {{ product_title }} cluster in the {{ hybrid_console }}. As you create your {{ product_title }} cluster, you have the option to forward your control plane logs to an Amazon `S3` bucket, `CloudWatch` log group, or both. {._abstract}
+You can set up control plane log forwarding when you create your {{ product_title }} cluster in the {{ hybrid_console }}. You can forward the logs to an Amazon `S3` bucket, `CloudWatch` log group, or both. {._abstract}
 
 **Procedure**
 

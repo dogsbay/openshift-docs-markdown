@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing the wasp-agent component {id="virt-removing-wasp-agent_{{ context }}"}
+# Remove the wasp-agent component {id="virt-removing-wasp-agent_{{ context }}"}
 
 If you no longer need memory overcommitment, you can remove the `wasp-agent` component and associated resources from your cluster. {._abstract}
 

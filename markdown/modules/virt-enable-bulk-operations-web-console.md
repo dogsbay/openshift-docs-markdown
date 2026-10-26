@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Enable bulk operations for virtual machines {id="virt-enable-bulk-operations-web-console_{{ context }}"}
 
-You can enable virtual machine (VM) owners to perform large-scale management tasks, such as backups and storage migrations, across many virtual machines simultaneously, by creating a dynamic plugin that enables bulk actions in the web console. {._abstract}
+Create a dynamic plugin to add custom bulk actions to the web console. VM owners can then run large-scale tasks, such as backups and storage migrations, across many virtual machines at once. {._abstract}
 
 This integration reduces manual tasks for multi-VM environments and ensures that custom actions are available as native, selectable bulk actions from within the **Virtualization** page.
 

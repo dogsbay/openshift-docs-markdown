@@ -12,7 +12,7 @@ You can disable KMS encryption and migrate to local etcd encryption to simplify 
 {%- set FeatureName = "{{ KMS }}" %}
 {% include "./snippets/technology-preview.md" %}
 
-{% leveloffset +1 %}{% include "./modules/proc_kms-disabling-encryption.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/proc-kms-disabling-encryption.md" %}{% endleveloffset %}
 
 ## Additional resources {id="additional-resources_kms-disabling" ._additional-resources}
 

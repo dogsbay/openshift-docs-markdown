@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # How to plan your environment according to tested cluster maximums {id="how-to-plan-according-to-cluster-maximums_{{ context }}"}
 
-To ensure your infrastructure meets operational requirements, plan your {{ product_title }} environment according to tested cluster maximums. Designing your cluster within these validated limits ensures that you can maintain stability and ensures your deployment remains supported {._abstract}
+Plan your {{ product_title }} environment by using tested cluster maximums as a scale guide. Designing your cluster within these validated limits helps you maintain stability. Exceeding a tested maximum is not a loss of support, though Red&#160;Hat has not validated that scale. {._abstract}
 
 
 :::important

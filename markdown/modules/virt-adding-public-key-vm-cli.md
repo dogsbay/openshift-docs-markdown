@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding a key when creating a VM by using the CLI {id="virt-adding-public-key-vm-cli_{{ context }}"}
+# Add a static SSH key by using the CLI {id="virt-adding-public-key-vm-cli_{{ context }}"}
 
-You can add a statically managed public SSH key when you create a virtual machine (VM) by using the command line. The key is added to the VM at first boot. {._abstract}
+You can add a statically managed public SSH key when you create a virtual machine (VM) by using the command line. The key is added at first boot and does not affect the cloud-init user data. {._abstract}
 
 The key is added to the VM as a cloud-init data source. This method separates the access credentials from the application data in the cloud-init user data. This method does not affect cloud-init user data.
 

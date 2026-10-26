@@ -11,4 +11,6 @@ Cancel a scheduled cluster upgrade in the {{ cluster_manager }} console. You mig
 1.  In the **Update status** pane, click **Cancel this update**.
 1.  Review the update details in the **Cancel update** dialog and click **Cancel this update**.
 
-You will receive an email notification confirming that the scheduled upgrade has been canceled.
+**Verification**
+
+*   Check that you received an email notification confirming that the scheduled upgrade has been canceled.

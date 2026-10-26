@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Completing the cluster configuration {id="virt-install-ibm-cloud-complete-cluster-config_{{ context }}"}
+# Complete the cluster configuration {id="virt-install-ibm-cloud-complete-cluster-config_{{ context }}"}
 
 Complete the cluster configuration by installing software on the control plane and compute nodes and configuring DNS for external access. {._abstract}
 

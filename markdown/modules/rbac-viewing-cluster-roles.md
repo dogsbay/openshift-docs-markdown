@@ -11,7 +11,7 @@ You can use the `oc` CLI to view cluster roles and bindings by using the
 *   Install the `oc` CLI.
 *   Obtain permission to view the cluster roles and bindings.
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 Users with the `cluster-admin` default cluster role bound cluster-wide can
 perform any action on any resource, including viewing cluster roles and bindings.
 {% endif %}
@@ -19,7 +19,7 @@ perform any action on any resource, including viewing cluster roles and bindings
 **Procedure**
 
 1.  To view the cluster roles and their associated rule sets:
-{% if openshift_enterprise or openshift_webscale or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{% if openshift_enterprise or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
     ```terminal
     $ oc describe clusterrole.rbac
     ```
@@ -213,7 +213,7 @@ perform any action on any resource, including viewing cluster roles and bindings
 {% endif %}
 1.  To view the current set of cluster role bindings, which shows the users and
     groups that are bound to various roles:
-    {% if openshift_enterprise or openshift_webscale or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+    {% if openshift_enterprise or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
     ```terminal
     $ oc describe clusterrolebinding.rbac
     ```

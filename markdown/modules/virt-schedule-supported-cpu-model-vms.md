@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Scheduling virtual machines with the supported CPU model {id="virt-schedule-supported-cpu-model-vms_{{ context }}"}
+# Set a VM to run only on nodes with a named CPU model {id="virt-schedule-supported-cpu-model-vms_{{ context }}"}
 
-You can configure a CPU model for a virtual machine (VM) to schedule it on a node where its CPU model is supported. {._abstract}
+Set a named CPU model on a virtual machine (VM) so that the scheduler places the VM only on nodes that support that model. {._abstract}
 
 **Procedure**
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a NAD for layer 2 topology by using the web console {id="virt-creating-nad-l2-overlay-console_{{ context }}"}
+# Create a layer 2 NAD by using the web console {id="virt-creating-nad-l2-overlay-console_{{ context }}"}
 
 You can create a network attachment definition (NAD) that describes how to attach a pod to the layer 2 overlay network. {._abstract}
 

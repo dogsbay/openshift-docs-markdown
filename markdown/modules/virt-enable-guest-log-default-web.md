@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling default access to guest system logs with the web console {id="virt-enable-guest-log-default-web_{{ context }}"}
+# Enable default access to guest system logs with the web console {id="virt-enable-guest-log-default-web_{{ context }}"}
 
 To troubleshoot issues more easily, you can enable default access to virtual machine (VM) guest system logs by using the web console. {._abstract}
 

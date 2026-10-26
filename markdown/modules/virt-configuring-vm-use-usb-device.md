@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Connecting a USB device to a virtual machine {id="virt-configuring-vm-use-usb-device_{{ context }}"}
+# Connect a USB device to a virtual machine {id="virt-configuring-vm-use-usb-device_{{ context }}"}
 
 You can configure virtual machine (VM) access to a USB device. This configuration enables the VM to connect to USB hardware that is attached to an {{ product_title }} node, as if the hardware and the VM are physically connected. {._abstract}
 

@@ -1,7 +1,7 @@
-{%- set _content_type = "PROCEDURE" %}
-# Enabling multi-queue functionality {id="virt-enabling-multi-queue_{{ context }}"}
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Enable multi-queue for VirtIO network interfaces {id="virt-enabling-multi-queue_{{ context }}"}
 
-You can enable multi-queue functionality for interfaces configured with a VirtIO model. {._abstract}
+You can enable multi-queue functionality for network interfaces that use a VirtIO model, so that network traffic is processed across multiple vCPUs instead of one. {._abstract}
 
 **Procedure**
 

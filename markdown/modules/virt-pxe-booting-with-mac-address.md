@@ -1,10 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# PXE booting with a specified MAC address {id="virt-pxe-booting-with-mac-address_{{ context }}"}
+# PXE boot a VM with a specified MAC address {id="virt-pxe-booting-with-mac-address_{{ context }}"}
 
-As an administrator, you can boot a client over the network by first creating a `NetworkAttachmentDefinition` object for your PXE network.
-Then, reference the network attachment definition in your virtual machine instance configuration file before you start the virtual machine instance. {._abstract}
+You can boot a virtual machine (VM) over the network by creating a `NetworkAttachmentDefinition` object for your PXE network. Then, reference the `NetworkAttachmentDefinition` in your VM instance configuration file, `VirtualMachine`, before you start the VM instance. {._abstract}
 
-You can also specify a MAC address in the virtual machine instance configuration file, if required by the PXE server.
+You can also specify a MAC address in the `VirtualMachine` configuration, if required by the PXE server.
 
 **Prerequisites**
 

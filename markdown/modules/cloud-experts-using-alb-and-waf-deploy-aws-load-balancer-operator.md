@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deploy the AWS Load Balancer Operator {id="cloud-experts-using-alb-and-waf-deploy-aws-load-balancer-operator_{{ context }}"}
 
-The AWS Load Balancer Operator is used to install, manage, and configure an instance of `aws-load-balancer-controller` in a {{ product_title }} cluster. To deploy Application Load Balancers (ALBs) in {{ product_title }}, you must first deploy the AWS Load Balancer Operator. {._abstract}
+The AWS Load Balancer Operator is used to install, manage, and configure an instance of `aws-load-balancer-controller` in a {{ product_title }} cluster. {._abstract}
+
+To deploy Application Load Balancers (ALBs) in {{ product_title }}, you must first deploy the AWS Load Balancer Operator.
 
 **Procedure**
 

@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Prerequisites {id="rosa-getting-started-prerequisites_{{ context }}"}
 
+Before you get started with {{ product_title }}, ensure that you meet the prerequisites. {._abstract}
+
 *   You reviewed the introduction to {{ product_title }}, and the documentation on {{ product_title }} architecture models and architecture concepts.
 *   You have read the documentation on the guidelines for planning your environment.
 *   You have reviewed the detailed AWS prerequisites for {{ product_title }} with STS.

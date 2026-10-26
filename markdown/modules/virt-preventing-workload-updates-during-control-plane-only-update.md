@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Preventing workload updates during a Control Plane Only update {id="virt-preventing-workload-updates-during-control-plane-only-update_{{ context }}"}
+# Prevent workload updates during a Control Plane Only update {id="virt-preventing-workload-updates-during-control-plane-only-update_{{ context }}"}
 
 When updating between Extended Update Support (EUS) versions, temporarily disable automatic workload updates. This prevents {{ VirtProductName }} from migrating or evicting virtual machines during the upgrade. {._abstract}
 

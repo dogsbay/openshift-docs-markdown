@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Important considerations for any platform {id="virt-important-considerations_{{ context }}"}
+# Deployment considerations {id="virt-important-considerations_{{ context }}"}
 
-Before installing {{ VirtProductName }}, note key considerations about installation methods, storage, IPv6, and FIPS mode. {._abstract}
+Review platform requirements and configuration constraints before installing {{ VirtProductName }} to ensure compatibility and avoid deployment issues with storage, networking, and security features. {._abstract}
 
 
 Installation method considerations

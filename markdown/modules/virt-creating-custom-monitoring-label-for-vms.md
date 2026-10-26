@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a custom monitoring label for virtual machines {id="virt-creating-custom-monitoring-label-for-vms_{{ context }}"}
+# Create a custom monitoring label for virtual machines {id="virt-creating-custom-monitoring-label-for-vms_{{ context }}"}
 
 To enable queries to multiple virtual machines from a single service, you can add a custom label in the virtual machine’s YAML file. {._abstract}
 

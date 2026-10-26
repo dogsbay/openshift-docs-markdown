@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting {{ VirtProductName }} custom resource definitions {id="virt-deleting-virt-crds-web_{{ context }}"}
+# Delete {{ VirtProductName }} custom resource definitions {id="virt-deleting-virt-crds-web_{{ context }}"}
 
 You can delete the {{ VirtProductName }} custom resource definitions (CRDs) by using the web console. {._abstract}
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a highBurst profile {id="virt-configuring-highburst-profile_{{ context }}"}
+# Configure a highBurst profile {id="virt-configuring-highburst-profile_{{ context }}"}
 
-You can use the `highBurst` profile to create and maintain a large number of virtual machines (VMs) in one cluster. {._abstract}
+Use the `highBurst` profile to create and maintain a large number of virtual machines (VMs) in one cluster. {._abstract}
 
 **Prerequisites**
 

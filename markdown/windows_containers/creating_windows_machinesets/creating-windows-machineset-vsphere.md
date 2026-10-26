@@ -28,7 +28,7 @@ For example, you might create infrastructure Windows machine sets and related ma
 
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
-*   [Configuring a secret for the Windows Machine Config Operator](/windows_containers/enabling-windows-container-workloads#configuring-secret-for-wmco_enabling-windows-container-workloads)
+*   [Configure a secret for the Windows Machine Config Operator](/windows_containers/enabling-windows-container-workloads#configuring-secret-for-wmco_enabling-windows-container-workloads)
 *   [VMware vSphere infrastructure requirements](/installing/installing_vsphere/ipi/ipi-vsphere-installation-reqs#installation-vsphere-infrastructure_ipi-vsphere-installation-reqs)
 *   [Overview of machine management](/machine_management/index#overview-of-machine-management)
 *   [Object Names and IDs specification (Kubernetes documentation)](https://kubernetes.io/docs/concepts/overview/working-with-objects/names)

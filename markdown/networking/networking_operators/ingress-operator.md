@@ -50,6 +50,10 @@ TLS security profiles provide a way for servers to regulate which ciphers a conn
 
 ## Configuring the Ingress Controller {id="configuring-ingress-controller"}
 
+{% leveloffset +2 %}{% include "./modules/about-haproxy-dynamic-configuration-manager.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/enabling-disabling-dcm.md" %}{% endleveloffset %}
+
 {% leveloffset +2 %}{% include "./modules/nw-ingress-setting-a-custom-default-certificate.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/nw-ingress-custom-default-certificate-remove.md" %}{% endleveloffset %}

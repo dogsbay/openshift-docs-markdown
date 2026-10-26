@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a namespace for user-defined networks by using the web console {id="virt-creating-udn-namespace-web_{{ context }}"}
+# Create a namespace for overlay networks by using the web console {id="virt-creating-udn-namespace-web_{{ context }}"}
 
 You can create a namespace to be used with primary user-defined networks (UDNs) by using the {{ product_title }} web console. {._abstract}
 

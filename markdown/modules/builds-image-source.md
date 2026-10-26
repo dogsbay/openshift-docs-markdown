@@ -46,7 +46,6 @@ When using an input image that requires a pull secret, you can link the pull sec
 $ oc secrets link builder dockerhub
 ```
 
-{% if not openshift_online %}
 
 :::note
 
@@ -54,7 +53,6 @@ This feature is not supported for builds using the custom strategy.
 
 :::
 
-{% endif %}
 
 **Images on mirrored registries that require pull secrets**
 

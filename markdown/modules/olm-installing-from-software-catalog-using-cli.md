@@ -10,19 +10,15 @@ To install an Operator from the software catalog without using the web console, 
 
 For `SingleNamespace` install mode, you must also ensure an appropriate Operator group exists in the related namespace. An Operator group, defined by an `OperatorGroup` object, selects target namespaces in which to generate required RBAC access for all Operators in the same namespace as the Operator group.
 
-
-:::tip
-
 In most cases, the web console method of this procedure is preferred because it automates tasks in the background, such as handling the creation of `OperatorGroup` and `Subscription` objects automatically when choosing `SingleNamespace` mode.
 
-:::
-
+{% include "./snippets/olmv0-failed-install-cluster-role-bindings.md" %}
 
 **Prerequisites**
 
 {% if not olm_user %}
 *   Access to your {{ product_title }} cluster using an account with
-{%- if openshift_enterprise or openshift_webscale or openshift_origin %}
+{%- if openshift_enterprise or openshift_origin %}
 `cluster-admin` permissions.
 {%- endif %}
 {%- if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}

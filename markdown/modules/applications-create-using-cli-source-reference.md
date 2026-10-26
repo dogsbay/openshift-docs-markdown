@@ -33,8 +33,8 @@ If you use the source build strategy, `new-app` detects the language builder fro
 </thead>
 <tbody>
 <tr>
-  {% if openshift_enterprise or openshift_webscale or openshift_aro or openshift_online %}<td><code>dotnet</code></td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_aro or openshift_online %}<td><code>project.json</code>, <code>pass:[*.csproj]</code></td>{% endif %}
+  {% if openshift_enterprise or openshift_aro %}<td><code>dotnet</code></td>{% endif %}
+  {% if openshift_enterprise or openshift_aro %}<td><code>project.json</code>, <code>pass:[*.csproj]</code></td>{% endif %}
 </tr>
 <tr>
   <td><code>jee</code></td>

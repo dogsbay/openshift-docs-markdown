@@ -46,7 +46,7 @@ CPU and memory usage increases when this feature is enabled.
 **Verification**
 
 *   When you refresh the **Network Traffic** page, the **Overview**, **Traffic Flow**, and **Topology** views display new information about packet drops:
-    1.  Select new choices in **Manage panels** to choose which graphical visualizations of packet drops to display in the **Overview**.
-    1.  Select new choices in **Manage columns** to choose which packet drop information to display in the **Traffic flows** table.
+    1.  Select the **Packet Drops** feature view from the view selector to display preconfigured packet drop panels and columns, or select new choices in **Manage panels** to select which graphical visualizations of packet drops to display in the **Overview**.
+    1.  Select new choices in **Manage columns** to select which packet drop information to display in the **Traffic flows** table.
         1.  In the **Traffic Flows** view, you can also expand the side panel to view more information about packet drops. Host drops are prefixed with `SKB_DROP` and OVS drops are prefixed with `OVS_DROP`.
-    1.  In the **Topology** view, red lines are displayed where drops are present.
+    1.  In the **Topology** view, connections with packet drops are displayed with red lines.

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About the Hostpath Provisioner (HPP) Operator {id="virt-about-hpp-operator_{{ context }}"}
+# Hostpath Provisioner (HPP) Operator {id="virt-about-hpp-operator_{{ context }}"}
 
 The HPP Operator, `hostpath-provisioner-operator`, deploys and manages the multi-node HPP and related resources. {._abstract}
 

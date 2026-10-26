@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring obsolete CPU models {id="virt-configuring-obsolete-cpu-models_{{ context }}"}
+# Configure obsolete CPU models {id="virt-configuring-obsolete-cpu-models_{{ context }}"}
 
 You can configure a list of obsolete CPU models by editing the `HyperConverged` custom resource (CR). {._abstract}
 

@@ -14,8 +14,15 @@ Persistent volumes (PVs) are backed by AWS EBS and {{ gcp_full }} persistent dis
 
 PVs can only be attached to a single node at a time and are specific to the availability zone in which they were provisioned, but they can be attached to any node in the availability zone.
 
-Each cloud provider has its own limits for how many PVs can be attached to a single node. See [AWS instance type limits](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html#instance-type-volume-limits) or [{{ gcp_full }} custom machine types ](https://cloud.google.com/compute/docs/machine-types#custom_machine_types) for details.
+Each cloud provider has its own limits for how many PVs can be attached to a single node. See "AWS instance type limits" or "{{ gcp_full }} custom machine types" for details.
 
 ## Shared storage (RWX) {id="shared-storage_{{ context }}"}
 
-The AWS Container Storage Interface (CSI) Driver can be used to provide ReadWriteMany (RWX) support for {{ product_title }} on AWS. A community Operator is provided to simplify setup. For more information, see [AWS EFS Setup for OpenShift Dedicated and Red Hat OpenShift Service on AWS](https://access.redhat.com/articles/5025181).
+The AWS Container Storage Interface (CSI) Driver can be used to provide ReadWriteMany (RWX) support for {{ product_title }} on AWS. A community Operator is provided to simplify setup. For more information, see "AWS EFS Setup for OpenShift Dedicated and Red Hat OpenShift Service on AWS".
+
+**Additional resources**
+{._additional-resources}
+
+*   [AWS instance type limits](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/volume_limits.html#instance-type-volume-limits)
+*   [{{ gcp_full }} custom machine types](https://cloud.google.com/compute/docs/machine-types#custom_machine_types)
+*   [AWS EFS Setup for OpenShift Dedicated and Red Hat OpenShift Service on AWS](https://access.redhat.com/articles/5025181)

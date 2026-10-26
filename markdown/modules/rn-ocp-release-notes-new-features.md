@@ -324,6 +324,12 @@ PTP Telecom Grandmaster on Intel Granite Rapids-D (Technology Preview)
 
     For more information, see [Telecom Grandmaster clocks on Intel Granite Rapids-D hardware](/networking/advanced_networking/ptp/configuring-ptp#nw-ptp-granite-rapids-telecom-grandmaster-clock-overview_configuring-ptp).
 
+
+Dynamic Configuration Manager General Availability
+:   With this update, the HAProxy Dynamic Configuration Manager (DCM) feature is now Generally Available. You can use DCM as an alternative update mechanism that configures a running HAProxy process through a domain socket.
+
+    For more information, see [HAProxy Dynamic Configuration Manager (DCM)](/networking/networking_operators/ingress-operator#about-haproxy-dynamic-configuration-manager_ingress-operator).
+
 ## Nodes {id="ocp-release-notes-nodes_{{ context }}"}
 
 

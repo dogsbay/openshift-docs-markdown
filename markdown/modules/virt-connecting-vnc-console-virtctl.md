@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Connect to the VNC console by using virtctl {id="virt-connecting-vnc-console-virtctl_{{ context }}"}
 
-You can use the `virtctl` command-line tool to connect to the VNC console of a running virtual machine. {._abstract}
+You can use the `virtctl` command-line tool to open the VNC console of a running virtual machine from your terminal, and preserve an existing console session when a new connection starts. {._abstract}
 
 
 :::note

@@ -9,7 +9,7 @@ title: Configuring an OpenID Connect identity provider
 
 To integrate {{ product_title }} with an external OpenID Connect (OIDC) identity provider, configure the `oidc` identity provider by using the Authorization Code Flow. Use this integration when your organization already uses OIDC for single sign-on. {._abstract}
 
-{% if openshift_origin or openshift_enterprise or openshift_webscale %}
+{% if openshift_origin or openshift_enterprise %}
 {% leveloffset +1 %}{% include "./modules/identity-provider-overview.md" %}{% endleveloffset %}
 
 {% endif %}
@@ -31,7 +31,7 @@ To integrate {{ product_title }} with an external OpenID Connect (OIDC) identity
 
 {% endif %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 {% leveloffset +1 %}{% include "./modules/identity-provider-secret.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-config-map.md" %}{% endleveloffset %}

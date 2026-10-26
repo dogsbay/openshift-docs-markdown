@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a RuntimeClass object to encapsulate scheduling mechanisms {id="creating-runtimeclass_{{ context }}"}
+# Create a RuntimeClass object for Windows scheduling {id="creating-runtimeclass_{{ context }}"}
 
 To deploy Windows workloads, you must create a `RuntimeClass` object to map your Windows pods to a base Windows OS variant. {._abstract}
 

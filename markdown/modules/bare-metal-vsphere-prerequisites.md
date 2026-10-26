@@ -13,6 +13,8 @@ Before you add bare-metal compute machines to your {{ vmw_first }} cluster, you 
 
 :::warning
 
-To use this feature, you must explicitly disable the native {{ vmw_short }} Container Storage Interface (CSI) driver for the entire cluster. This means existing {{ vmw_short }} virtual machines will lose the ability to provision or attach {{ vmw_short }} volumes. You must ensure that all workloads (virtual and physical) are migrated to an alternative storage solution before proceeding.
+Setting `spec.managementState` to `Removed` in the `ClusterCSIDriver/csi.vsphere.vmware.com` custom resource (CR) explicitly disables the native {{ vmw_short }} Container Storage Interface (CSI) driver across the entire cluster. This action triggers the CSI Operator to remove all {{ vmw_short }} `StorageClasses`, including `thin-csi`.
+
+Before proceeding, you must migrate all existing {{ vmw_short }}-backed workloads to an alternative storage solution. Removing the driver does not delete existing PersistentVolumes (PVs) or PersistentVolumeClaims (PVCs), but they cannot attach or support new pods after the CSI driver is removed.
 
 :::

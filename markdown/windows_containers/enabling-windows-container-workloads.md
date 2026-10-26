@@ -72,7 +72,7 @@ Due to a limitation within the Windows operating system, `clusterNetwork` CIDR a
 *   [Configuring hybrid networking](/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-ovnkubernetes)
 *   [Configuring the cluster-wide proxy](/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)
 *   [About disconnected installation mirroring](/disconnected/index#installing-mirroring-disconnected-about)
-*   [Using Windows containers with a mirror registry](/windows_containers/enabling-windows-container-workloads#wmco-disconnected-cluster_enabling-windows-container-workloads)
+*   [Mirror registry support for Windows containers](/windows_containers/enabling-windows-container-workloads#wmco-disconnected-cluster_enabling-windows-container-workloads)
 *   [Rebooting a {{ product_title }} node gracefully](/nodes/nodes/nodes-nodes-rebooting#nodes-nodes-rebooting-gracefully_nodes-nodes-rebooting)
 *   [Backing up etcd data](/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)
 *   [Generating a key pair for cluster node SSH access](/installing/installing_azure/ipi/installing-azure-default#ssh-agent-using_installing-azure-default)

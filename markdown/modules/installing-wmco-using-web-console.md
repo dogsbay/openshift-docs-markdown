@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the Windows Machine Config Operator using the web console {id="installing-wmco-using-web-console_{{ context }}"}
+# Install the Windows Machine Config Operator by using the web console {id="installing-wmco-using-web-console_{{ context }}"}
 
 You can use the {{ product_title }} web console to install the Windows Machine Config Operator (WMCO). {._abstract}
 

@@ -9,7 +9,7 @@ The `PrometheusRule` resource in the `netobserv` namespace can be viewed by runn
 $ oc get prometheusrules -n netobserv -o yaml
 ```
 
-## Customizing alert logic with PromQL: Incoming traffic surge {id="example-query-surge-incoming-traffic_{{ context }}"}
+## Customize alert logic with PromQL: Incoming traffic surge {id="example-query-surge-incoming-traffic_{{ context }}"}
 
 The following PromQL query calculates the byte rate from the `openshift-ingress` namespace to any workload namespace over a 30-minute interval:
 
@@ -37,11 +37,11 @@ Data filtering
 Time comparison
 :   The `offset` modifier compares data across different time periods. For example, `offset 1d` retrieves data from the previous day.
 
-    `sum(rate(netobserv_workload_ingress_bytes_total{SrcK8S_Namespace="openshift-ingress"}[30m] offset 1d)) by (DstK8S_Namespace))`
+    `sum(rate(netobserv_workload_ingress_bytes_total{SrcK8S_Namespace="openshift-ingress"}[30m] offset 1d)) by (DstK8S_Namespace)`
 
 
 Threshold application
-:   A final threshold filters increases below a specific percentage. For example, `> 100` removes increases lower than 100%.
+:   A final threshold filters increases of less than a specific percentage. For example, `> 100` removes increases lower than 100%.
 
 The following example shows a complete PromQL expression for a `PrometheusRule`:
 
@@ -92,7 +92,7 @@ spec:
 `spec.groups.rules.alert.labels.severity`
 :   Specifies the alert severity. Valid values are `critical`, `warning`, or `info`.
 
-## netobserv_io_network_health annotation fields {id="netobserv-io-network-health-annotation_{{ context }}"}
+## The netobserv_io_network_health annotation fields {id="netobserv-io-network-health-annotation_{{ context }}"}
 
 The optional `netobserv_io_network_health` annotation is a JSON string that controls how the alert renders on the **Network Health** page.
 
@@ -100,9 +100,12 @@ The optional `netobserv_io_network_health` annotation is a JSON string that cont
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `namespaceLabels` | List of strings | One or more labels containing namespaces. Alerts appear under the **Namespaces** tab. |
-| `nodeLabels` | List of strings | One or more labels containing node names. Alerts appear under the **Nodes** tab. |
-| `workloadLabels` | List of strings | One or more labels containing owner or workload names. Alerts appear under the **Owners** tab when `kindLabels` is also provided. |
+| `contextTab` | String | The context tab in which the alert is displayed. Valid values include `netobserv`, `ovn`, `kiali`, or other third-party context identifiers. If not specified, the alert is displayed in the default NetObserv tab. |
+| `displayName` | String | A custom display name for the alert shown in the **Network Health** UI. If not specified, the alert uses the default naming convention. |
+| `namespaceLabels` | List of strings | One or more labels containing namespaces. Alerts are displayed under the **Namespaces** tab. |
+| `nodeLabels` | List of strings | One or more labels containing node names. Alerts are displayed under the **Nodes** tab. |
+| `workloadLabels` | List of strings | One or more labels containing owner or workload names. Alerts are displayed under the **Owners** tab when `kindLabels` is also provided. |
+| `kindLabels` | List of strings | One or more labels containing owner or workload kinds. Must be provided alongside `workloadLabels` for the alert to be displayed under the **Owners** tab. |
 | `threshold` | String | The alert threshold. This value should match the threshold in the PromQL expression. |
 | `unit` | String | The data unit for display purposes. |
 | `upperBound` | String | An upper bound value used to calculate scores on a closed scale. Metric values exceeding this bound are clamped. |
@@ -110,6 +113,6 @@ The optional `netobserv_io_network_health` annotation is a JSON string that cont
 
 :::note
 
-The `namespaceLabels` and `nodeLabels` fields are mutually exclusive. If neither is provided, the alert appears under the **Global** tab.
+If both `namespaceLabels` and `nodeLabels` are provided, `namespaceLabels` takes priority. If neither is provided, the alert is displayed under the **Global** tab.
 
 :::

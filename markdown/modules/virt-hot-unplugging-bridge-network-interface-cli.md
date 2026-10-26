@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Hot unplugging a secondary network interface by using the CLI {id="virt-hot-unplugging-bridge-network-interface_{{ context }}"}
+# Hot unplug a secondary network interface by using the CLI {id="virt-hot-unplugging-bridge-network-interface_{{ context }}"}
 
 You can remove a secondary network interface from a running virtual machine (VM). {._abstract}
 

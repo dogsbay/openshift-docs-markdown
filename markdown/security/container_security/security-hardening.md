@@ -23,7 +23,7 @@ So, if you are setting out to harden {{ op_system }} nodes in {{ product_title }
 {% if openshift_origin %}
 *   [Red Hat Enterprise Linux 9 Security documentation](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9#Security)
 {% endif %}
-{% if openshift_enterprise or openshift_webscale or openshift_aro %}
+{% if openshift_enterprise or openshift_aro %}
 *   [Red Hat Enterprise Linux 9 Security Hardening guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/security_hardening/index#scanning-container-and-container-images-for-vulnerabilities_scanning-the-system-for-security-compliance-and-vulnerabilities)
 {% endif %}
 

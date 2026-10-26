@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About watchdogs {id="virt-defining-watchdogs_{{ context }}"}
+# Watchdog devices and recovery actions {id="virt-defining-watchdogs_{{ context }}"}
 
 Watchdog devices monitor guest operating system responsiveness and trigger recovery actions when a virtual machine becomes unresponsive. {._abstract}
 

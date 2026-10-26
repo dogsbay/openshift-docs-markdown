@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring live migration limits and timeouts {id="virt-configuring-live-migration-limits_{{ context }}"}
+# Configure live migration limits and timeouts {id="virt-configuring-live-migration-limits_{{ context }}"}
 
 Configure live migration limits and timeouts for the cluster by updating the `HyperConverged` custom resource (CR), which is located in the `{{ CNVNamespace }}`{minja} namespace. {._abstract}
 

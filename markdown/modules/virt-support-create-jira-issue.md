@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a Jira issue {id="virt-creating-jira-issue_{{ context }}"}
+# Report a bug in {{ VirtProductName }} {id="virt-creating-jira-issue_{{ context }}"}
 
 To report a bug, use the Red&#160;Hat Issue Router (RHIR), which is available in the Customer Portal Labs. {._abstract}
 

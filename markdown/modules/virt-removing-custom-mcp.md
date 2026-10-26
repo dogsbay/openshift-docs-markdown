@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing a custom machine config pool for high-availability clusters {id="virt-removing-custom-mcp_{{ context }}"}
+# Remove a custom machine config pool for high-availability clusters {id="virt-removing-custom-mcp_{{ context }}"}
 
 You can delete a custom machine config pool that you previously created for your high-availability cluster. {._abstract}
 

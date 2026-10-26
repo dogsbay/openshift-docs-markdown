@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Connect to the desktop viewer by using the web console {id="virt-connecting-desktop-viewer-web_{{ context }}"}
 
-You can connect to the desktop viewer of a Windows virtual machine (VM) by using the {{ product_title }} web console. {._abstract}
+You can connect to the desktop viewer of a Windows virtual machine (VM) from the {{ product_title }} web console. The desktop viewer uses RDP, which gives a fuller desktop experience than the VNC console. {._abstract}
 
 **Prerequisites**
 

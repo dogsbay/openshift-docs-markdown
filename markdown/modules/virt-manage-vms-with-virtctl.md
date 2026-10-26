@@ -1,4 +1,4 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Manage VMs with virtctl {id="virt-manage-vms-with-virtctl_{{ context }}"}
+# Manage the VM lifecycle {id="virt-manage-vms-with-virtctl_{{ context }}"}
 
-Use the virtctl command-line tool to manage virtual machine lifecycle operations, connect to consoles, and export virtual machines.
+You can control virtual machines (VMs) after you create them. Use the `virtctl` command-line tool, the {{ oc_first }}, or the {{ product_title }} web console to list, start, stop, delete, and export VMs.

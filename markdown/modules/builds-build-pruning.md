@@ -23,7 +23,7 @@ By default, builds that have completed their lifecycle are persisted indefinitel
 
 Builds are sorted by their creation timestamp with the oldest builds being pruned first.
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 
 :::note
 

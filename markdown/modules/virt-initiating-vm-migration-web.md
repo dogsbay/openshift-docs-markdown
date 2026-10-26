@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Initiating live migration by using the web console {id="virt-initiating-vm-migration-web_{{ context }}"}
+# Start live migration by using the web console {id="virt-initiating-vm-migration-web_{{ context }}"}
 
 You can live migrate a running virtual machine (VM) to a different node in the cluster by using the {{ product_title }} web console. {._abstract}
 

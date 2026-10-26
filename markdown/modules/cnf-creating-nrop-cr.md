@@ -1,13 +1,26 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create the NUMAResourcesOperator custom resource {id="cnf-creating-nrop-cr_{{ context }}"}
 
-After you have installed the NUMA Resources Operator, you can create the `NUMAResourcesOperator` custom resource (CR). This CR instructs the NUMA Resources Operator to install all the cluster infrastructure that is needed to support the NUMA-aware scheduler, including daemon sets and APIs. {._abstract}
+After you have installed the NUMA Resources Operator, you can create the `NUMAResourcesOperator` custom resource (CR). This CR instructs the NUMA Resources Operator to deploy the Resource Topology Exporter (RTE) as a daemon set on worker nodes and install all the cluster infrastructure that is needed to support the NUMA-aware scheduler. {._abstract}
 
 **Prerequisites**
 
-*   Installed the {{ oc_first }}.
-*   Logged in as a user with `cluster-admin` privileges.
-*   Installed the NUMA Resources Operator.
+*   You have installed the {{ oc_first }}.
+*   You have logged in as a user with `cluster-admin` privileges.
+*   You have installed the NUMA Resources Operator.
+
+
+:::important
+
+Only cluster administrators should create or modify `NUMAResourcesOperator` custom resources.
+The Resource Topology Exporter (RTE) runs as a daemon set on worker nodes with elevated read privileges that allow it to discover hardware topology information, observe node resources, and report NUMA zone details.
+
+The `spec.imageSpec` field in the `NUMAResourcesOperator` custom resource controls which container image runs with these RTE privileges on worker nodes.
+Granting non-admin users write access to the `NUMAResourcesOperator` resource creates a security risk.
+An attacker with write access could substitute a malicious container image and potentially access sensitive node information or cluster topology data.
+
+:::
+
 
 **Procedure**
 
@@ -31,6 +44,13 @@ After you have installed the NUMA Resources Operator, you can create the `NUMARe
         ```terminal
         $ oc create -f nrop.yaml
         ```
+
+        :::note
+
+        Creating the `NUMAResourcesOperator` custom resource automatically deploys the Resource Topology Exporter (RTE) as a daemon set on the configured worker nodes. The RTE collects NUMA topology information and makes it available to the NUMA-aware scheduler.
+        
+        :::
+
 1.  Optional: To enable NUMA-aware scheduling for multiple machine config pools (MCPs), define a separate `NodeGroup` for each pool. For example, define three `NodeGroups` for `worker-cnf`, `worker-ht`, and `worker-other`, in the `NUMAResourcesOperator` CR as shown in the following example:
     ```yaml title="Example YAML definition for a NUMAResourcesOperator CR with multiple NodeGroups"
     apiVersion: nodetopology.openshift.io/v1
@@ -51,6 +71,33 @@ After you have installed the NUMA Resources Operator, you can create the `NUMARe
               machineconfiguration.openshift.io/role: worker-other
     # ...
     ```
+1.  Optional: When you need to use a non-default Resource Topology Exporter (RTE) image, you can specify a custom image using the `spec.imageSpec` field:
+    ```yaml title="Example YAML definition for a NUMAResourcesOperator CR with custom RTE image"
+    apiVersion: nodetopology.openshift.io/v1
+    kind: NUMAResourcesOperator
+    metadata:
+      name: numaresourcesoperator
+    spec:
+      imageSpec: "registry.example.com/openshift4/ose-numaresources-operator@sha256:abcd1234..."
+      nodeGroups:
+      - machineConfigPoolSelector:
+          matchLabels:
+            pools.operator.machineconfiguration.openshift.io/worker: ""
+    # ...
+    ```
+    *   The `spec.imageSpec` field is optional. If not specified, the operator uses the default RTE image for your {{ product_title }} release.
+    Custom operand image override is restricted by default.
+    To enable custom image override, set `EXPORTER_IMAGE_RESTRICTION=false` in the Operator’s environment variables.
+
+        :::note
+
+        For standard deployments, including disconnected environments that use image mirroring (ICSP or IDMS), omit the `spec.imageSpec` field to use the default RTE image.
+        The cluster’s image mirroring configuration automatically redirects the default image to your internal registry.
+        Only specify `spec.imageSpec` when you need to override the default image with a different version or custom build.
+        When specifying a custom image, use a digest-based reference (SHA256) rather than a tag for security and reproducibility.
+        
+        :::
+
 
 **Verification**
 
@@ -73,3 +120,9 @@ After you have installed the NUMA Resources Operator, you can create the `NUMARe
     pod/numaresourcesoperator-worker-crsht                  2/2     Running   0          97s
     pod/numaresourcesoperator-worker-jp9mw                  2/2     Running   0          97s
     ```
+
+    :::note
+
+    The `numaresourcesoperator-worker-*` pods are the Resource Topology Exporter (RTE) daemon set instances running on each configured worker node.
+    
+    :::

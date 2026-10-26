@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Troubleshooting certificate rotation parameters {id="virt-troubleshooting-cert-rotation-parameters_{{ context }}"}
+# Troubleshoot certificate rotation parameters {id="virt-troubleshooting-cert-rotation-parameters_{{ context }}"}
 
 Deleting one or more `certConfig` values in the `HyperConverged` custom resource (CR) causes the `certConfig` values to revert to the default values. {._abstract}
 
@@ -12,20 +12,21 @@ If the default values conflict with one of the following conditions, you receive
 For example, if you remove the `server.duration` value, the default value of `24h0m0s` is greater than the value of `ca.duration`, which conflicts with the specified conditions:
 
 ```yaml {minja}
-apiVersion: hco.kubevirt.io/v1beta1
+apiVersion: hco.kubevirt.io/v1
 kind: HyperConverged
 metadata:
   name: kubevirt-hyperconverged
   namespace: {{ CNVNamespace }}
 spec:
   # ...
-  certConfig:
-    ca:
-      duration: 4h0m0s
-      renewBefore: 1h0m0s
-    server:
-      duration: 4h0m0s
-      renewBefore: 4h0m0s
+  security:
+    certConfig:
+      ca:
+        duration: 4h0m0s
+        renewBefore: 1h0m0s
+      server:
+        duration: 4h0m0s
+        renewBefore: 4h0m0s
 # ...
 ```
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a VirtualMachineExport custom resource {id="virt-creating-virtualmachineexport_{{ context }}"}
+# Create a VirtualMachineExport custom resource {id="virt-creating-virtualmachineexport_{{ context }}"}
 
-You can create a `VirtualMachineExport` custom resource (CR) to export persistent volume claims (PVCs) from a `VirtualMachine`, `VirtualMachineSnapshot`, or `PersistentVolumeClaim` CR. {._abstract}
+You can create a `VirtualMachineExport` custom resource (CR) to export the persistent volume claims (PVCs) of a virtual machine (VM), a VM snapshot, or a single PVC. The export provides links for downloading the volume. {._abstract}
 
 You can export the following objects:
 

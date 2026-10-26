@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring masquerade mode with dual-stack (IPv4 and IPv6) {id="virt-configuring-masquerade-mode-dual-stack_{{ context }}"}
+# Configure masquerade mode with dual-stack networking {id="virt-configuring-masquerade-mode-dual-stack_{{ context }}"}
 
 You can configure a new virtual machine (VM) to use both IPv6 and IPv4 on the default pod network by using cloud-init. {._abstract}
 

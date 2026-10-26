@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Considerations for accessing the serial console {id="virt-serial-console-considerations_{{ context }}"}
+# Serial console access requirements and limits {id="virt-serial-console-considerations_{{ context }}"}
 
-You can connect to the serial console of a virtual machine (VM) by using the {{ product_title }} web console or the `virtctl` command-line tool. {._abstract}
+Use a serial connection to troubleshoot a virtual machine (VM) that has lost network connectivity. You can reach the serial console from the {{ product_title }} web console or with the `virtctl` command-line tool, but only one connection to a VM is possible at a time. {._abstract}
 
 Take into account the following considerations:
 

@@ -108,7 +108,6 @@ Application layer gateway flows are broken in {{ product_title }} version 4.10, 
       namespace: default
       annotations:
         irq-load-balancing.crio.io: disable
-        cpu-quota.crio.io: disable
         k8s.v1.cni.cncf.io/resourceName: openshift.io/hwoffload9
         k8s.v1.cni.cncf.io/resourceName: openshift.io/hwoffload10
     spec:

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a virtual machine for DPDK workloads {id="virt-configuring-vm-dpdk_{{ context }}"}
+# Configure a VM for DPDK workloads {id="virt-configuring-vm-dpdk_{{ context }}"}
 
-You can run Data Packet Development Kit (DPDK) workloads on virtual machines (VMs) to achieve lower latency and higher throughput for faster packet processing in the user space. DPDK uses the SR-IOV network for hardware-based I/O sharing. {._abstract}
+You can run Data Plane Development Kit (DPDK) workloads on virtual machines (VMs) to achieve lower latency and higher throughput for faster packet processing in the user space. DPDK uses the SR-IOV network for hardware-based I/O sharing. {._abstract}
 
 **Prerequisites**
 

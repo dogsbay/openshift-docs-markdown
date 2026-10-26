@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring an IP address when creating a virtual machine by using the CLI {id="virt-configuring-ip-vm-cli_{{ context }}"}
+# Configure a VM IP address by using the CLI {id="virt-configuring-ip-vm-cli_{{ context }}"}
 
 You can configure a static or dynamic IP address when you create a virtual machine (VM). The IP address is provisioned with cloud-init. {._abstract}
 

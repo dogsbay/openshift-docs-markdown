@@ -31,6 +31,6 @@ To gather debugging information, configure Prometheus and Alertmanager and colle
 *   [Submitting a support case](/support/getting-support#support-submitting-a-case_getting-support)
 {%- if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 *   [Collecting data about your environment](/virt/support/virt-collecting-virt-data#virt-collecting-data-about-your-environment_virt-collecting-virt-data)
-*   [Using the `must-gather` tool for {{ VirtProductName }}](/virt/support/virt-collecting-virt-data#virt-using-virt-must-gather_virt-collecting-virt-data)
+*   [Use the `must-gather` tool for {{ VirtProductName }}](/virt/support/virt-collecting-virt-data#virt-using-virt-must-gather_virt-collecting-virt-data)
 *   [Red&#160;Hat Jira account](https://redhat.atlassian.net/jira)
 {%- endif %}

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating backup hooks {id="oadp-creating-backup-hooks_{{ context }}"}
 
-You create backup hooks to run commands in a container in a pod by editing the `Backup` custom resource (CR).
+You create backup hooks to run commands in a container in a pod by editing the `Backup` custom resource (CR). {._abstract}
 
 _Pre_ hooks run before the pod is backed up. _Post_ hooks run after the backup.
 

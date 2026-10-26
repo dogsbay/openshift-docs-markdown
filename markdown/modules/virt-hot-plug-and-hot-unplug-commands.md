@@ -4,7 +4,7 @@
 
 # Hot plug and hot unplug commands {id="hot-plug-and-hot-unplug-commands_{{ context }}"}
 
-You can use the following `virtctl` commands to add or remove resources from running virtual machines (VMs) and VM instances (VMIs). {._abstract}
+You can use the following `virtctl` commands to add or remove a virtual disk while a virtual machine (VM) or virtual machine instance (VMI) is running. {._abstract}
 
 **Hot plug and hot unplug commands**
 

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # An overview of {{ product_title }} {id="osd-intro_{{ context }}"}
 
-{{ product_title }} is professionally managed by Red Hat and hosted on {{ AWS }} or {{ GCP }}. Each {{ product_title }} cluster comes with a fully managed [control plane](https://access.redhat.com/documentation/en-us/openshift_container_platform/{{ ocp_version }}/html/architecture/control-plane) (Control and Infrastructure nodes), application nodes, installation and management by Red Hat Site Reliability Engineers (SRE), premium Red Hat Support, and cluster services such as logging, metrics, monitoring, notifications portal, and a cluster portal. {._abstract}
+{{ product_title }} is professionally managed by Red&#160;Hat and hosted on {{ AWS }} or {{ GCP }}. {._abstract}
+
+Each {{ product_title }} cluster includes a fully managed control plane, application nodes, installation and management by Red Hat Site Reliability Engineers (SRE), premium Red Hat Support, and cluster services such as logging, metrics, monitoring, notifications portal, and a cluster portal.
 
 {{ product_title }} provides enterprise-ready enhancements to Kubernetes, including the following enhancements:
 
@@ -9,7 +11,7 @@
 *   Integrated Red Hat technology. Major components in {{ product_title }} come from Red Hat Enterprise Linux and related Red Hat technologies. {{ product_title }} benefits from the intense testing and certification initiatives for Red Hat’s enterprise quality software.
 *   Open source development model. Development is completed in the open, and the source code is available from public software repositories. This open collaboration fosters rapid innovation and development.
 
-To learn about options for assets you can create when you build and deploy containerized Kubernetes applications in {{ OCP }}, see [Understanding {{ OCP }} development](https://docs.openshift.com/container-platform/{{ ocp_version }}/architecture/understanding-development.html).
+To learn about options for assets you can create when you build and deploy containerized Kubernetes applications in {{ OCP }}, see "Understanding {{ OCP }} development".
 
 ## Custom operating system {id="rhcos_{{ context }}"}
 {{ product_title }} uses Red Hat Enterprise Linux CoreOS (RHCOS), a container-oriented operating system that combines some of the best features and functions of the CoreOS and Red Hat Atomic Host operating systems. RHCOS is specifically designed for running containerized applications from {{ product_title }} and works with new tools to provide fast installation, Operator-based management, and simplified upgrades.
@@ -36,3 +38,9 @@ In {{ product_title }}, you require access to the internet to install and upgrad
 Through the Telemetry service, information is sent to Red Hat from {{ product_title }} clusters to enable subscription management automation, monitor the health of clusters, assist with support, and improve customer experience.
 
 The Telemetry service runs automatically and your cluster is registered to {{ cluster_manager_first }}. In {{ product_title }}, remote health reporting is always enabled and you cannot opt out. The Red Hat SRE team requires the information to provide effective support for your {{ product_title }} cluster.
+
+**Additional resources**
+{._additional-resources}
+
+*   [Control plane](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/architecture/control-plane)
+*   [Understanding {{ OCP }} development](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/architecture/understanding-development)

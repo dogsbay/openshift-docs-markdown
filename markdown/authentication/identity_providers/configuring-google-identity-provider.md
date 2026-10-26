@@ -9,14 +9,14 @@ title: Configuring a Google identity provider
 
 Configure a Google identity provider so users can authenticate to {{ product_title }} with Google accounts. When configured, sign-in is permitted only for Google accounts in that hosted domain. {._abstract}
 
-{% if openshift_origin or openshift_enterprise or openshift_webscale %}
+{% if openshift_origin or openshift_enterprise %}
 {% leveloffset +1 %}{% include "./modules/identity-provider-overview.md" %}{% endleveloffset %}
 
 {% endif %}
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-google-about.md" %}{% endleveloffset %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 {% leveloffset +1 %}{% include "./modules/identity-provider-secret.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-google-CR.md" %}{% endleveloffset %}

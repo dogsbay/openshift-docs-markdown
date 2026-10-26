@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure a GitHub identity provider {id="config-github-idp_{{ context }}"}
 
-Configure a GitHub identity provider to validate user names and passwords against the GitHub or GitHub Enterprise OAuth authentication server and access your {{ product_title }} cluster. OAuth facilitates a token exchange flow between {{ product_title }} and GitHub or GitHub Enterprise. {._abstract}
+Configure a GitHub identity provider to validate user names and passwords against the GitHub or GitHub Enterprise OAuth authentication server and access your {{ product_title }} cluster. {._abstract}
+
+OAuth facilitates a token exchange flow between {{ product_title }} and GitHub or GitHub Enterprise.
 
 
 :::warning

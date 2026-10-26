@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting guest system log access for a single VM with the web console {id="virt-set-guest-log-single-vm-web_{{ context }}"}
+# Set per-VM guest system log access with the web console {id="virt-set-guest-log-single-vm-web_{{ context }}"}
 
 To troubleshoot a specific virtual machine (VM) without changing global settings, you can configure the guest system log access by using the web console. {._abstract}
 

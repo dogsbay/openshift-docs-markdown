@@ -24,7 +24,7 @@ View and filter Transport Layer Security (TLS) metadata to identify deprecated c
     1.  Select the **TLS Cipher Suite**, **TLS Group**, and **TLS Types** checkboxes.
     1.  Click **Save**.
 1.  Filter traffic by message type to view complete TLS metadata:
-    1.  In the filter bar, select **TLS Types** and choose **ServerHello** from the dropdown menu.
+    1.  In the filter bar, select **TLS Types** and select **ServerHello** from the dropdown menu.
 
         `ServerHello` messages contain negotiated TLS metadata such as cipher suite and cryptographic group information.
 1.  Filter traffic by TLS version to identify deprecated configurations:
@@ -38,7 +38,7 @@ View and filter Transport Layer Security (TLS) metadata to identify deprecated c
             To identify all deprecated connections, filter for TLS versions 1.0 and 1.1.
 1.  Analyze TLS metrics in the overview panel:
     1.  Click the **Overview** tab.
-    1.  Review the default TLS panels, which include **TLS usage (network flows per second)** and **TLS per version (network flows per second)**.
+    1.  Select the **TLS Tracking** feature view from the view selector to display preconfigured TLS panels and columns, or review the default TLS panels, which include **TLS usage (network flows per second)** and **TLS per version (network flows per second)**.
     1.  Optional: To view additional TLS metrics, click **Manage panels** to select and display additional panels, such as **TLS per group (network flows per second)** or **TLS per cipher suite (network flows per second)**.
 1.  Identify secure connections in the **Topology** view:
     1.  Click the **Topology** tab.

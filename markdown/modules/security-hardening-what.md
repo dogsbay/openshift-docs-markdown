@@ -6,7 +6,7 @@ You can review the information on how to approach security for any {{ op_system_
 
 Use these documents to learn about managing security updates, security hardening, securing networks, and other security measures.
 {% endif %}
-{% if openshift_enterprise or openshift_webscale or openshift_aro %}
+{% if openshift_enterprise or openshift_aro %}
 You can review the information on how to approach security for any {{ op_system_base }} system in the Red&#160;Hat Enterprise Linux 9 Security Hardening guide.
 
 Use this guide to learn how to approach cryptography, evaluate vulnerabilities, and assess threats to various services. Likewise, you can learn how to scan for compliance standards, check file integrity, perform auditing, and encrypt storage devices.

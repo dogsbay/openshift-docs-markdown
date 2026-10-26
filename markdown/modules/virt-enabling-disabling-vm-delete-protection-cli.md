@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling or disabling VM delete protection by using the CLI {id="virt-enabling-disabling-vm-delete-protection-cli_{{ context }}"}
+# Enable or disable VM delete protection by using the CLI {id="virt-enabling-disabling-vm-delete-protection-cli_{{ context }}"}
 
-To prevent the inadvertent deletion of a virtual machine (VM), you can enable VM delete protection by using the command line. You can also disable delete protection for a VM. {._abstract}
+You can enable or disable delete protection on a virtual machine (VM) by using the command line. Delete protection prevents inadvertent deletion. {._abstract}
 
 By default, delete protection is not enabled for VMs. You must set the option for each individual VM.
 

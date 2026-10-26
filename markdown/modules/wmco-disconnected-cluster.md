@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Using Windows containers with a mirror registry {id="wmco-disconnected-cluster_{{ context }}"}
+# Mirror registry support for Windows containers {id="wmco-disconnected-cluster_{{ context }}"}
 
 When using the Windows Machine Config Operator (WMCO), your Windows workloads can pull images from a registry mirror rather than from a public registry by using an `ImageDigestMirrorSet` (IDMS) or `ImageTagMirrorSet` (ITMS) object to configure your cluster to pull images from the mirror registry. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a primary namespace-scoped user-defined network by using the web console {id="virt-creating-primary-udn-web_{{ context }}"}
+# Create a namespace-scoped primary overlay network in the web console {id="virt-creating-primary-udn-web_{{ context }}"}
 
 You can create an isolated primary network in your project namespace by creating a `UserDefinedNetwork` custom resource in the {{ product_title }} web console. {._abstract}
 

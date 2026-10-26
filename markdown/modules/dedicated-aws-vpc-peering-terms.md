@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # VPC peering terms {id="dedicated-aws-vpc-peering-terms"}
 
+A Virtual Private Cloud (VPC) peering connection links two VPCs that belong to separate AWS accounts. These terms identify the accounts, VPCs, and regions you work with when you configure peering. {._abstract}
+
 When setting up a Virtual Private Cloud (VPC) peering connection between two VPCs on two separate AWS accounts, the following terms are used:
 
 

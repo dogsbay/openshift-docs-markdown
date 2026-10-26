@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adjusting or disabling the CPU hot plug by VM {id="virt-disable-CPU-VM-hotplug_{{ context }}"}
+# Adjust or disable CPU hot plug for a VM {id="virt-disable-CPU-VM-hotplug_{{ context }}"}
 
-As a VM owner, you can adjust or disable the CPU hot plug for individual VMs.
-This is the simplest solution for large, performance-critical VMs where you want to ensure a fixed CPU allocation from the start. {._abstract}
+You can adjust or disable the CPU hot plug for an individual virtual machine (VM). This is the simplest option for large, performance-critical VMs that need a fixed CPU allocation from the start. {._abstract}
 
 **Prerequisites**
 

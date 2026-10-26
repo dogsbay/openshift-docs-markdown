@@ -1,12 +1,14 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Overview of responsibilities for {{ product_title }} {id="policy-responsibilities_{{ context }}"}
 
-While Red&#160;Hat manages the {{ product_title }} service, the customer shares responsibility with respect to certain aspects. The {{ product_title }} services are accessed remotely, hosted on public cloud resources, created in either Red&#160;Hat or customer-owned cloud service provider accounts, and have underlying platform and data security that is owned by Red&#160;Hat. {._abstract}
+While Red&#160;Hat manages the {{ product_title }} service, the customer shares responsibility with respect to certain aspects. {._abstract}
+
+The {{ product_title }} services are accessed remotely, hosted on public cloud resources, created in either Red&#160;Hat or customer-owned cloud service provider accounts, and have underlying platform and data security that is owned by Red&#160;Hat.
 
 
 :::important
 
-If the `cluster-admin` role is enabled on a cluster, see the responsibilities and exclusion notes in the [Red Hat Enterprise Agreement Appendix 4 (Online Subscription Services)](https://www.redhat.com/en/about/agreements).
+If the `cluster-admin` role is enabled on a cluster, see the responsibilities and exclusion notes in the "Red&#160;Hat Enterprise Agreement Appendix 4".
 
 :::
 
@@ -137,3 +139,8 @@ If the `cluster-admin` role is enabled on a cluster, see the responsibilities an
 </tr>
 </tbody>
 </table>
+
+**Additional resources**
+{._additional-resources}
+
+*   [Red&#160;Hat Enterprise Agreement Appendix 4 (Online Subscription Services)](https://www.redhat.com/en/about/agreements)

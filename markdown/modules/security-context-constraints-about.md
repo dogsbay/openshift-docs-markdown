@@ -41,7 +41,7 @@ Do not modify the default SCCs. Customizing the default SCCs can lead to issues 
 ROSA
 {%- endif %}
 is upgraded. Additionally, the default SCC values are reset to the defaults during some cluster upgrades, which discards all customizations to those SCCs.
-{%- if openshift_origin or openshift_enterprise or openshift_webscale or openshift_dedicated or openshift_rosa %}
+{%- if openshift_origin or openshift_enterprise or openshift_dedicated or openshift_rosa %}
 
 Instead of modifying the default SCCs, create and modify your own SCCs as needed. For detailed steps, see _Creating security context constraints_.
 {%- endif %}

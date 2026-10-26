@@ -15,4 +15,6 @@ Monitor TLS traffic to identify insecure protocols, detect security risks, and m
 
 {% leveloffset +1 %}{% include "./modules/network-observability-analyze-tls-traffic.md" %}{% endleveloffset %}
 
+{% leveloffset +1 %}{% include "./modules/network-observability-configuring-tls-alerts.md" %}{% endleveloffset %}
+
 {% leveloffset +1 %}{% include "./modules/network-observability-tls-tracking-fields.md" %}{% endleveloffset %}

@@ -24,12 +24,7 @@ You must complete each part of this tutorial in order to before you deploy your 
 *   You have basic Ruby on Rails knowledge.
 *   You have Ruby 2.0.0+, Rubygems, and Bundler installed locally.
 *   You have basic Git knowledge.
-{%- if not openshift_online %}
 *   You have a running instance of {{ product_title }} 4.
-{%- endif %}
-{%- if openshift_online %}
-*   You have a provisioned account in OpenShift Online.
-{%- endif %}
 *   The {{ oc_first }} installed.
 *   You are logged into a running {{ product_title }} cluster.
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Provide feedback on {{ VirtProductName }} documentation {id="virt-feedback-on-openshift-virtualization_{{ context }}"}
+# Report a {{ VirtProductName }} documentation issue {id="virt-feedback-on-openshift-virtualization_{{ context }}"}
 
 To report an error or request an enhancement in the documentation, log in to your Red&#160;Hat Jira account and submit an issue. If you do not have a Red&#160;Hat Jira account, you are prompted to create an account. {._abstract}
 

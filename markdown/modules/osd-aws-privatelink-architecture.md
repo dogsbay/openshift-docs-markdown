@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # AWS PrivateLink architecture {id="osd-aws-privatelink-architecture_{{ context }}"}
 
-The Red&#160;Hat managed infrastructure that creates AWS PrivateLink clusters is hosted on private subnets, and the connection to your infrastructure uses AWS PrivateLink Virtual Private Cloud (VPC) endpoints. Keeping cluster management traffic off the public internet provides an additional layer of security. {._abstract}
+The Red&#160;Hat managed infrastructure that creates AWS PrivateLink clusters is hosted on private subnets, and the connection to your infrastructure uses AWS PrivateLink Virtual Private Cloud (VPC) endpoints. Keeping cluster management traffic off the public internet adds a layer of security. {._abstract}
 
 
 :::note

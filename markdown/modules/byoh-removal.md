@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Removing BYOH Windows instances {id="removing-byoh-windows-instance"}
+# Bring-your-own-host Windows instance removal {id="removing-byoh-windows-instance_{{ context }}"}
 
 You can remove a Bring-Your-Own-Host (BYOH) instance that is attached to the cluster by deleting the instance’s entry in the BYOH config map. Deleting an instance reverts that instance back to its previous state, before it was added to the cluster.  {._abstract}
 

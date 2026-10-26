@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Attaching a virtual machine to the primary user-defined network by using the CLI {id="virt-attaching-vm-to-primary-udn_{{ context }}"}
+# Attach a VM to a primary overlay network {id="virt-attaching-vm-to-primary-udn_{{ context }}"}
 
 You can connect a virtual machine (VM) to the primary user-defined network (UDN) by using the {{ oc_first }}. {._abstract}
 

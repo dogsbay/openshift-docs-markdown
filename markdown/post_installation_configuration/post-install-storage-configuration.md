@@ -9,7 +9,7 @@ title: Postinstallation storage configuration
 {%- set gluster = "GlusterFS" -%}
 {%- set gluster_native = "Containerized GlusterFS" -%}
 {%- set gluster_external = "External GlusterFS" -%}
-{% if openshift_enterprise or openshift_webscale %}
+{% if openshift_enterprise %}
 {%- set gluster = "Red Hat Gluster Storage" -%}
 {%- set gluster_native = "converged mode" -%}
 {%- set gluster_external = "independent mode" -%}
@@ -42,12 +42,12 @@ Static provisioning
 *   [Dynamic provisioning](/storage/dynamic-provisioning#dynamic-provisioning)
 *   [{{ rh_storage_first }} documentation](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation)
 *   [Red Hat OpenShift Data Foundation Supportability and Interoperability Guide](https://access.redhat.com/articles/4731161)
-{%- if not (openshift_enterprise or openshift_webscale) %}
+{%- if not openshift_enterprise %}
 *   [GlusterFS installation guide](https://docs.gluster.org/en/latest/Install-Guide/Overview/)
 *   [GlusterFS administration guide](https://docs.gluster.org/en/latest/Administrator%20Guide/overview/)
 *   [OpenShift GlusterFS Ansible role](https://github.com/openshift/openshift-ansible/tree/master/roles/openshift_storage_glusterfs)
 {%- endif %}
-{%- if openshift_enterprise or openshift_webscale %}
+{%- if openshift_enterprise %}
 *   [Red Hat Gluster Storage installation guide](https://access.redhat.com/documentation/en-us/red_hat_gluster_storage/3.3/html/installation_guide/)
 *   [Red Hat Gluster Storage administration guide](https://access.redhat.com/documentation/en-us/red_hat_gluster_storage/3.3/html/administration_guide/)
 *   [Container-Native Storage for OpenShift Container Platform](https://access.redhat.com/documentation/en-us/red_hat_gluster_storage/3.3/html/container-native_storage_for_openshift_container_platform/)

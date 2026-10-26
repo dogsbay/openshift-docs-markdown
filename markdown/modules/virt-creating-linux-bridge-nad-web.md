@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a Linux bridge NAD by using the web console {id="virt-creating-linux-bridge-nad-web_{{ context }}"}
+# Create a Linux bridge NAD by using the web console {id="virt-creating-linux-bridge-nad-web_{{ context }}"}
 
-Use the {{ product_title }} web console to create a network attachment definition (NAD) that connects pods and virtual machines to a layer-2 network. {._abstract}
+Use the {{ product_title }} web console to create a `NetworkAttachmentDefinition` (`net-attach-def`) that connects pods and virtual machines to a layer-2 network. {._abstract}
 
 
 :::warning
@@ -30,7 +30,7 @@ Configuring IP address management (IPAM) in a network attachment definition for 
 
     :::note
 
-    Open Systems Adapter (OSA) interfaces on {{ ibm_z_name }} do not support VLAN filtering and drop VLAN-tagged traffic. Avoid using VLAN-tagged NADs with OSA interfaces.
+    Open Systems Adapter (OSA) interfaces on {{ ibm_z_name }} do not support VLAN filtering and drop VLAN-tagged traffic. Avoid using VLAN-tagged `NetworkAttachmentDefinitions` with OSA interfaces.
     
     :::
 

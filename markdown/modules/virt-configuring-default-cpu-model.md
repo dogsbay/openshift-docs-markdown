@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure the default CPU model {id="virt-configuring-default-cpu-model_{{ context }}"}
 
-Use the `defaultCPUModel` setting in the `HyperConverged` custom resource (CR) to define a cluster-wide default CPU model. {._abstract}
+Define a cluster-wide default CPU model. Every new virtual machine (VM) that does not specify its own CPU model uses the default, and runs only on nodes that support it. {._abstract}
 
 When you set a cluster-wide default CPU model:
 

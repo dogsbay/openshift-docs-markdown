@@ -9,7 +9,7 @@ title: Configuring a GitLab identity provider
 
 Configure the `gitlab` identity provider so users can log in to {{ product_title }} with GitLab account credentials through OAuth. {._abstract}
 
-{% if openshift_origin or openshift_enterprise or openshift_webscale %}
+{% if openshift_origin or openshift_enterprise %}
 {% leveloffset +1 %}{% include "./modules/identity-provider-overview.md" %}{% endleveloffset %}
 
 {% endif %}

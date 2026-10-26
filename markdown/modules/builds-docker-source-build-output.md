@@ -2,7 +2,7 @@
 # Build output {id="builds-docker-source-build-output_{{ context }}"}
 
 Builds that use the
-{%- if openshift_enterprise or openshift_webscale or openshift_origin %}
+{%- if openshift_enterprise or openshift_origin %}
 docker or
 {%- endif %}
 source-to-image (S2I) strategy result in the creation of a new container image. The image is then pushed to the container image registry specified in the `output` section of the `Build` specification.

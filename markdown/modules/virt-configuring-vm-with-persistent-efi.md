@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring VMs with persistent EFI {id="configuring-vm-with-persistent-efi_{{ context }}"}
+# Configure VMs with persistent EFI {id="configuring-vm-with-persistent-efi_{{ context }}"}
 
 You can configure a VM to have EFI persistence enabled by editing its manifest file. {._abstract}
 

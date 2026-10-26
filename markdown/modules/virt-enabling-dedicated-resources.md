@@ -1,14 +1,9 @@
-{% if context == "virt-dedicated-resources-vm" %}
-{%- set virt_vm = true -%}
-{%- set object = "virtual machine" -%}
-{%- set object_gui = "VirtualMachine" -%}
-{%- set tab = "Configuration -> Scheduling" -%}
-{% endif %}
-
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling dedicated resources for a {{ object }} {id="virt-enabling-dedicated-resources_{{ context }}"}
+# Enable dedicated resources for a virtual machine {id="virt-enabling-dedicated-resources_{{ context }}"}
 
-You can enable dedicated resources for a {{ object }} in the **Details** tab. Virtual machines that were created from a Red Hat template can be configured with dedicated resources. {._abstract}
+Enable dedicated resources for a virtual machine in the {{ product_title }} web console so that its workload gets exclusive use of its CPUs. {._abstract}
+
+You can configure dedicated resources for virtual machines that were created from a Red Hat template.
 
 **Prerequisites**
 
@@ -17,11 +12,8 @@ You can enable dedicated resources for a {{ object }} in the **Details** tab. Vi
 
 **Procedure**
 
-1.  In the {{ product_title }} console, click **Virtualization** → **{{ object_gui }}s** from the side menu.
-1.  Select a {{ object }} to open the **{{ object_gui }} details** page.
-1.  On the **{{ tab }}** tab, click the edit icon beside **Dedicated Resources**.
+1.  In the {{ product_title }} console, click **Virtualization** → **VirtualMachines** from the side menu.
+1.  Select a virtual machine to open the **VirtualMachine details** page.
+1.  On the **Configuration → Scheduling** tab, click the edit icon beside **Dedicated Resources**.
 1.  Select **Schedule this workload with dedicated resources (guaranteed policy)**.
 1.  Click **Save**.
-
-{% if context == "virt-dedicated-resources-vm" %}
-{% endif %}

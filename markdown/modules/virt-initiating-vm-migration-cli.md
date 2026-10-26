@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Initiating live migration by using the CLI {id="virt-initiating-vm-migration-cli_{{ context }}"}
+# Start live migration by using the CLI {id="virt-initiating-vm-migration-cli_{{ context }}"}
 
 You can initiate the live migration of a running virtual machine (VM) by using the command line to create a `VirtualMachineInstanceMigration` object for the VM. {._abstract}
 

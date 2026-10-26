@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Output image labels {id="builds-output-image-labels_{{ context }}"}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 docker and
 {%- endif %}
 source-to-image (S2I) builds set the following labels on output images:

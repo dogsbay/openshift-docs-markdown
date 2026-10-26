@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About using virtual GPUs with {{ VirtProductName }} {id="virt-about-using-virtual-gpus_{{ context }}"}
+# Virtual GPUs in {{ VirtProductName }} {id="virt-about-using-virtual-gpus_{{ context }}"}
 
 You can create vGPUs for your virtual machines (VMs) using supported GPU cards. Refer to your hardware vendor’s documentation for functionality and support details. {._abstract}
 

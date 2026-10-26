@@ -85,3 +85,36 @@
   padding: 1px 4px;
   margin: 0 -1px;
 }
+
+/* ── `collapse` fence option: line runs folded behind a toggle ──
+   No script: a checkbox inside the label. Lines hide only where :has() works,
+   so a browser without it shows every line rather than losing them. */
+.code-rich-body .code-collapse-label {
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+  user-select: none;
+  /* The code's own colour: a muted label fell under 4.5:1 on the code background */
+  border-block: 1px dashed color-mix(in oklab, currentColor 35%, transparent);
+  font-style: italic;
+}
+.code-rich-body .code-collapse-toggle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+.code-rich-body .code-collapse-label:has(.code-collapse-toggle:focus-visible) {
+  outline: 2px solid var(--ring);
+  outline-offset: -2px;
+}
+/* The label stays when open, so focus stays on the checkbox and it folds again */
+.code-rich-body .code-collapse-label::before {
+  content: "▸ ";
+}
+.code-rich-body .code-collapse-label:has(.code-collapse-toggle:checked)::before {
+  content: "▾ ";
+}
+.code-rich-body .code-collapse:has(.code-collapse-toggle:not(:checked)) > .code-collapse-lines {
+  display: none;
+}

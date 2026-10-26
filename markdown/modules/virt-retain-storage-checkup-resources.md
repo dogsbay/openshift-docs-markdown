@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Retaining resources for troubleshooting storage checkups {id="virt-retain-storage-checkup-resources_{{ context }}"}
+# Keep checkup resources for troubleshooting {id="virt-retain-storage-checkup-resources_{{ context }}"}
 
 The predefined storage checkup includes `skipTeardown` configuration options, which control resource clean up after a storage checkup runs.
 By default, the `skipTeardown` field value is `Never`, which means that the checkup always performs teardown steps and deletes all resources after the checkup runs. {._abstract}

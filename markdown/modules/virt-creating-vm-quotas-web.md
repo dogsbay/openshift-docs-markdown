@@ -1,12 +1,12 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating virtual machine quotas using the web console {id="virt-creating-vm-quotas-web_{{ context }}"}
+# Create VM quotas by using the web console {id="virt-creating-vm-quotas-web_{{ context }}"}
 
-You can create Application Aware Quota (AAQ) quotas that limit virtual machine resource consumption by using the guided form in the {{ product_title }} web console. The form is the recommended approach for simple virtualization quota use cases. {._abstract}
+Use the guided form in the {{ product_title }} web console to create an Application Aware Quota (AAQ) that limits virtual machine (VM) resource use in a project. The form is the simplest way to set quota limits without writing YAML. {._abstract}
 
 **Prerequisites**
 
 *   You have cluster administrator privileges.
-*   The Application Aware Quota operator is enabled in your cluster. See [Enabling the Application Aware Quota operator](#virt-enabling-aaq-operator_{{ context }}).
+*   The Application Aware Quota Operator is enabled in your cluster. See [Enable the Application Aware Quota Operator](#virt-enabling-aaq-operator_{{ context }}).
 *   The project where you want to create the quota exists.
 
 **Procedure**
@@ -32,18 +32,18 @@ You can create Application Aware Quota (AAQ) quotas that limit virtual machine r
 1.  Configure CPU, memory, and VMI limits for the quota:
 
     The fields displayed vary based on the selected quota calculation method. For example:
-    *   For the  `Virtual resources` or `Dedicated virtual resources` quota calculation method, the quotas exclude pod overhead:
-        *   Use the **vCPU allocation** field to set the maximum number of virtual CPUs permitted for all VMs in the project, excluding infrastructure overhead.
-        *   Use the **Virtual memory allocation** field to set the maximum memory capacity, in GiB, excluding infrastructure overhead. 
+    *   For the `Virtual resources` or `Dedicated virtual resources` quota calculation method, the quotas exclude the resources that the pod consumes:
+        *   Use the **vCPU allocation** field to set the maximum number of virtual CPUs permitted for all VMs in the project, excluding the CPU that infrastructure consumes.
+        *   Use the **Virtual memory allocation** field to set the maximum memory capacity, in GiB, excluding the memory that infrastructure consumes.
         *   Use the **VMI limits** field to set the maximum number of virtual machine instances.
-    *   For the `Virtual Machine Instance (VMI) pod usage` quota calculation method, the quotas include pod overhead:
+    *   For the `Virtual Machine Instance (VMI) pod usage` quota calculation method, the quotas include the resources that the pod consumes:
         *   Use the **CPU allocation** field to set the maximum number of CPU cores for pods that run VM workloads
         *   Use the **Memory allocation** field to set the maximum memory capacity, in GiB, for pods that run VM workloads.
         *   Use the **VMI limits** field to set the maximum number of virtual machine instances.
 
             :::note
 
-            Live migration overhead is excluded from the `Virtual Machine Instance (VMI) pod usage`  quota calculation method.
+            The resources consumed by live migration are excluded from the `Virtual Machine Instance (VMI) pod usage` quota calculation method.
             
             :::
 

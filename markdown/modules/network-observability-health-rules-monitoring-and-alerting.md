@@ -8,7 +8,7 @@ The Network Observability Operator displays network status in the following view
 
 
 **Alerting** UI
-:   Specific alerts appear in **Observe** → **Alerting**. Notifications are managed through the Prometheus `Alertmanager`.
+:   Specific alerts are displayed in **Observe** → **Alerting**. Notifications are managed through the Prometheus `Alertmanager`.
 
 **Network Health** dashboard
 :   A specialized dashboard in **Observe** → **Network Health** provides a summary of cluster network status.
@@ -19,6 +19,24 @@ The **Network Health** dashboard categorizes violations into tabs to isolate the
 *   **Nodes**: Violations specific to infrastructure nodes.
 *   **Namespaces**: Violations specific to individual namespaces.
 *   **Workloads**: Violations specific to resources, such as `Deployments` or `DaemonSets`.
+
+## Network health context tabs {id="network-observability-health-context-tabs_{{ context }}"}
+
+The **Network Health** dashboard organizes alerts and recording rules into separate context tabs. You can view network health from different perspectives, such as Network Observability metrics, OVN-Kubernetes platform alerts, or third-party service mesh monitoring.
+
+Context tabs include:
+
+
+**NetObserv**
+:   Default context for Network Observability Operator health rules. Rules in this context contribute to the 0-10 health score calculation.
+
+**External contexts**
+:   Read-only contexts for external monitoring sources, such as OpenShift OVN-Kubernetes platform alerts or Kiali service mesh health alerts. These contexts are displayed when external alerts are labeled for Network Health integration. External alerts provide additional visibility but do not affect the network observability health score.
+
+Rules are routed to a context tab based on the following priority order:
+
+1.  Annotation `netobserv_io_network_health` JSON field `contextTab` on the alert or recording rule.
+1.  Default: `netobserv` context for all rules with the `netobserv: "true"` label.
 
 ## Predefined health rules {id="network-observability-default-rules_{{ context }}"}
 The Network Observability Operator provides default rules for common networking scenarios. These rules are active only if the corresponding feature is enabled in the `FlowCollector` custom resource (CR).
@@ -44,6 +62,9 @@ The following list contains a subset of available default rules:
 `DNSErrors`
 :   Reports DNS errors. This rule requires the `DNSTracking` agent feature.
 
+`TLSInsecureVersion`
+:   Reports a high percentage of TLS traffic using insecure protocol versions (TLS 1.0, TLS 1.1, or SSL variants). This rule requires the `TLSTracking` agent feature.
+
 The following operational alerts apply to the Network Observability Operator:
 
 
@@ -55,7 +76,7 @@ The following operational alerts apply to the Network Observability Operator:
 
 For a complete list of rules and runbooks, see the [Network Observability Operator runbooks](https://github.com/openshift/runbooks/tree/master/alerts/network-observability-operator).
 
-## Enabling features for health monitoring {id="network-observability-enabling-features-for-health-monitoring_{{ context }}"}
+## Enable features for health monitoring {id="network-observability-enabling-features-for-health-monitoring_{{ context }}"}
 The Network Observability Operator creates rules based on the features enabled in the `FlowCollector` CR.
 
 For example, packet drop rules are created only if the `PacketDrop` agent feature is enabled. Rules depend on metrics; if the required metrics are unavailable, configuration warnings might appear. Configure metrics in the `spec.processor.metrics.includeList` field of the `FlowCollector` resource.

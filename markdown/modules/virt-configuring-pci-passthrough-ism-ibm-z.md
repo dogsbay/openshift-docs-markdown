@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configure PCI passthrough for {{ ibm_title }} ISM virtual PCI devices on {{ ibm_z_title }} {id="virt-configuring-pci-passthrough-ism-ibm-z_{{ context }}"}
+# Configure ISM device passthrough on {{ ibm_z_title }} {id="virt-configuring-pci-passthrough-ism-ibm-z_{{ context }}"}
 
 On {{ ibm_z_name }} and {{ ibm_linuxone_name }}, {{ ibm_name }} Internal Shared Memory (ISM) devices are exposed as virtual PCI devices. You can configure PCI passthrough for ISM devices by binding the device to the `vfio-pci` driver by using a single `MachineConfig`. {._abstract}
 

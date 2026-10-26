@@ -3,6 +3,8 @@
 
 When an Operator group is created, three cluster roles are generated. When the cluster roles are generated, they are automatically suffixed with a hash value to ensure that each cluster role is unique. {._abstract}
 
+{% include "./snippets/olmv0-operator-group-to-scoped-sa.md" %}
+
 Each Operator group contains a single aggregation rule with a cluster role selector set to match a label, as shown in the following table:
 
 | Cluster role | Label to match |

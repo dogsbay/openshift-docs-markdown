@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Defining a guest agent ping probe {id="virt-define-guest-agent-ping-probe_{{ context }}"}
+# Define a guest agent ping probe {id="virt-define-guest-agent-ping-probe_{{ context }}"}
 
 You can define a guest agent ping probe by setting the `spec.readinessProbe.guestAgentPing` field of the virtual machine (VM) configuration. {._abstract}
 

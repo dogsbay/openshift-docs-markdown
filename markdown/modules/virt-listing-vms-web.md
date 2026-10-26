@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # List virtual machines by using the web console {id="virt-listing-vms-web_{{ context }}"}
 
-You can list all of the virtual machines (VMs) in your cluster by using the web console. {._abstract}
+You can list all the virtual machines (VMs) in your cluster by using the {{ product_title }} web console. Search and filter options narrow the list. {._abstract}
 
 **Procedure**
 

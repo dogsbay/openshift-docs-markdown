@@ -9,14 +9,14 @@ title: Configuring an LDAP identity provider
 
 Configure an LDAP identity provider so users can log in to {{ product_title }} with usernames and passwords validated against your LDAPv3 directory. {._abstract}
 
-{% if openshift_origin or openshift_enterprise or openshift_webscale %}
+{% if openshift_origin or openshift_enterprise %}
 {% leveloffset +1 %}{% include "./modules/identity-provider-overview.md" %}{% endleveloffset %}
 
 {% endif %}
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-about-ldap.md" %}{% endleveloffset %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 {% leveloffset +1 %}{% include "./modules/identity-provider-ldap-secret.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-config-map.md" %}{% endleveloffset %}

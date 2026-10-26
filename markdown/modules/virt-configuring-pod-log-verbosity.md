@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring {{ VirtProductName }} pod log verbosity {id="virt-configuring-pod-log-verbosity_{{ context }}"}
+# Configure {{ VirtProductName }} pod log verbosity {id="virt-configuring-pod-log-verbosity_{{ context }}"}
 
 To gather more detailed diagnostic information for troubleshooting, you can configure the verbosity level of {{ VirtProductName }} pod logs. Edit the `HyperConverged` custom resource (CR) to configure this setting. {._abstract}
 

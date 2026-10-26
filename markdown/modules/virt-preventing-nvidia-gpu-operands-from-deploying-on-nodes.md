@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Preventing NVIDIA GPU operands from deploying on nodes {id="virt-preventing-nvidia-gpu-operands-from-deploying-on-nodes_{{ context }}"}
+# Prevent NVIDIA GPU operand deployment on nodes {id="virt-preventing-nvidia-gpu-operands-from-deploying-on-nodes_{{ context }}"}
 
-If you use the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/openshift/contents.html) in your cluster, you can apply the `nvidia.com/gpu.deploy.operands=false` label to nodes that you do not want to configure for GPU or vGPU operands. This prevents the creation of the pods that configure GPU or vGPU operands and terminates existing pods. {._abstract}
+If you use the NVIDIA GPU Operator in your cluster, you can apply the `nvidia.com/gpu.deploy.operands=false` label to nodes that you do not want to configure for GPU or vGPU operands. {._abstract}
+
+This prevents the creation of the pods that configure GPU or vGPU operands and terminates existing pods.
 
 **Prerequisites**
 

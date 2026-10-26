@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling load balancer service creation by using the web console {id="virt-enabling-load-balancer-service-web_{{ context }}"}
+# Enable load balancer services by using the web console {id="virt-enabling-load-balancer-service-web_{{ context }}"}
 
-You can enable the creation of load balancer services for a virtual machine (VM) by using the {{ product_title }} web console. {._abstract}
+You can enable the creation of load balancer services for a virtual machine (VM) from the {{ product_title }} web console. This setting must be on before you can create a load balancer service for SSH access. {._abstract}
 
 **Prerequisites**
 

@@ -9,6 +9,8 @@ title: Allowing non-cluster administrators to install Operators
 
 Cluster administrators can use _Operator groups_ to allow regular users to install Operators. {._abstract}
 
+{% include "./snippets/olmv0-cluster-scoped-rbac-warning.md" %}
+
 **Additional resources**
 {._additional-resources}
 

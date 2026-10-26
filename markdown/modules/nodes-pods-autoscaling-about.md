@@ -9,7 +9,7 @@ For replication controllers, this scaling corresponds directly to the replicas o
 
 {{ product_title }} automatically accounts for resources and prevents unnecessary autoscaling during resource spikes, such as during start up. Pods in the `unready` state have `0 CPU` usage when scaling up and the autoscaler ignores the pods when scaling down. Pods without known metrics have `0% CPU` usage when scaling up and `100% CPU` when scaling down. This allows for more stability during the HPA decision. To use this feature, you must configure readiness checks to determine if a new pod is ready for use.
 
-{% if openshift_origin or openshift_enterprise or openshift_webscale %}
+{% if openshift_origin or openshift_enterprise %}
 To use horizontal pod autoscalers, your cluster administrator must have properly configured cluster metrics.
 {% endif %}
 

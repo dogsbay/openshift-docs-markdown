@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About preparing a host device for PCI passthrough {id="virt-about_pci-passthrough_{{ context }}"}
+# Host device preparation for PCI passthrough {id="virt-about_pci-passthrough_{{ context }}"}
 
 To prepare a host device for PCI passthrough by using the CLI, create a `MachineConfig` object and add kernel arguments to enable the Input-Output Memory Management Unit (IOMMU). {._abstract}
 

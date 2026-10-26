@@ -46,8 +46,7 @@ You must create the `ocm-role` IAM role before you can create your {{ product_ti
         $ rosa create ocm-role --admin
         ```
 
-        This command allows you to create the role by specifying specific attributes. The following example output shows the "auto mode" selected, which lets the {{ rosa_cli }} (`rosa`) create your Operator roles and policies.
-        See "Methods of account-wide role creation" for more information. The following example shows what your creation flow might look like.
+        This command allows you to create the role by specifying specific attributes. The following example output shows the "auto mode" selected, which lets the {{ rosa_cli }} create your Operator roles and policies. See "Methods of account-wide role creation" for more information. The following example shows what your creation flow might look like.
         ```terminal
         I: Creating ocm role
         ? Role prefix: ManagedOpenShift

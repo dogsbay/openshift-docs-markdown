@@ -1,0 +1,35 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Enabling or disabling Dynamic Configuration Manager (DCM) {id="enabling-disabling-dcm_{{ context }}"}
+
+To reduce HAProxy reloads when endpoints change, you can enable DCM.
+DCM is disabled by default. {._abstract}
+
+
+:::warning
+
+Enabling DCM is an experimental feature that is not intended for production use.
+
+:::
+
+
+Configure the `spec.tuningOptions.configurationManagement` field on the `IngressController` resource to select either DCM or the standard fork-and-reload mechanism.
+
+**Prerequisites**
+
+*   You have access to the cluster as a user with the `cluster-admin` role.
+*   You have installed the {{ oc_first }}.
+
+**Procedure**
+
+*   If you need to enable dynamic updates by using DCM, enter the following command:
+    ```terminal
+    $ oc -n openshift-ingress-operator patch ingresscontrollers/default \
+      --type=merge \
+      --patch='{"spec":{"tuningOptions":{"configurationManagement":"Dynamic"}}}'
+    ```
+*   If you need to disable DCM and revert to the fork-and-reload mechanism, enter the following command:
+    ```terminal
+    $ oc -n openshift-ingress-operator patch ingresscontrollers/default \
+      --type=merge \
+      --patch='{"spec":{"tuningOptions":{"configurationManagement":"ForkAndReload"}}}'
+    ```

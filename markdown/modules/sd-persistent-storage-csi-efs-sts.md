@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Obtain a role Amazon Resource Name for Security Token Service {id="efs-sts_{{ context }}"}
+# Obtain an IAM role ARN for the AWS EFS CSI Driver Operator on STS clusters {id="efs-sts_{{ context }}"}
 
 To configure the AWS Elastic File System (EFS) Container Storage Interface (CSI) Driver Operator on clusters using Security Token Service (STS), obtain a role Amazon Resource Name (ARN) using the Cloud Credential Operator utility before installation. {._abstract}
 

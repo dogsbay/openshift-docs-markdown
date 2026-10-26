@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring additional routes to the `cdi-uploadproxy` service {id="virt-configuring-cdiuploadproxy-routes_{{ context }}"}
+# Configure additional routes to the `cdi-uploadproxy` service {id="virt-configuring-cdiuploadproxy-routes_{{ context }}"}
 
-As a cluster administrator, you can configure additional routes to the `cdi-uploadproxy` service, enabling users to upload virtual machine images from outside the cluster. {._abstract}
+Configure additional routes to the `cdi-uploadproxy` service to enable users to upload virtual machine images from outside the cluster. {._abstract}
 
 **Prerequisites**
 

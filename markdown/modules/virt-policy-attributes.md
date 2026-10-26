@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Policy attributes {id="policy-attributes_{{ context }}"}
+# CPU feature policy attributes {id="policy-attributes_{{ context }}"}
 
-You can schedule a virtual machine (VM) by specifying a policy attribute and a CPU feature that is matched for compatibility when the VM is scheduled on a node. A policy attribute specified for a VM determines how that VM is scheduled on a node. {._abstract}
+A policy attribute controls how strictly the scheduler enforces a CPU feature that you set on a virtual machine (VM). Use a policy attribute to require a feature, treat it as optional, or forbid it. {._abstract}
 
 | Policy attribute | Description |
 | --- | --- |

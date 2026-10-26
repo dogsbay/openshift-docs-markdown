@@ -16,7 +16,7 @@ To define an `htpasswd` identity provider, complete these tasks:
 1.  Define an `htpasswd` identity provider resource that references the secret.
 1.  Apply the resource to the default OAuth configuration to add the identity provider.
 
-{% if openshift_origin or openshift_enterprise or openshift_webscale %}
+{% if openshift_origin or openshift_enterprise %}
 {% leveloffset +1 %}{% include "./modules/identity-provider-overview.md" %}{% endleveloffset %}
 
 {% endif %}

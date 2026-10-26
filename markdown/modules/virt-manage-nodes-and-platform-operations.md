@@ -1,4 +1,4 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Manage nodes and platform operations {id="virt-manage-nodes-and-platform-operations_{{ context }}"}
+# Node lifecycle management and platform operations {id="virt-manage-nodes-and-platform-operations_{{ context }}"}
 
-Manage node lifecycle events and follow structured operational practices while operating {{ VirtProductName }} in production, so you can maintain platform reliability and prevent change-related incidents.
+Node lifecycle management and platform operations encompass the practices for safely handling node maintenance, configuring virtual machine behavior during disruptions, and managing system resources while operating {{ VirtProductName }} in production.

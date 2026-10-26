@@ -1,15 +1,17 @@
 ---
-title: Understanding the Compliance Operator
+title: About the Compliance Operator
 ---
 
 {%- set _mod_docs_content_type = "ASSEMBLY" %}
 {% include "./_attributes/common-attributes.md" %}
-# Understanding the Compliance Operator {id="understanding-compliance-operator"}
+# About the Compliance Operator {id="understanding-compliance-operator"}
 {%- set context = "understanding-compliance" %}
 
 The Compliance Operator evaluates your {{ product_title }} cluster against compliance benchmarks and identifies gaps so you can remediate them. The Operator uses profiles that target platform components, node configurations, or both depending on the compliance standard you need to meet. {._abstract}
 
 The Compliance Operator lets {{ product_title }} administrators describe the required compliance state of a cluster and provides them with an overview of gaps and ways to remediate them. The Compliance Operator assesses compliance of both the Kubernetes API resources of {{ product_title }}, and the nodes running the cluster. The Compliance Operator uses OpenSCAP, a NIST-certified tool, to scan and enforce security policies provided by the content.
+
+As of Compliance Operator 1.10.0, Common Expression Language (CEL) `Rule` and `CustomRule` objects are generally available (GA). CEL works alongside OpenSCAP as a scanning engine and does not replace Extensible Configuration Checklist Description Format (XCCDF) profiles.
 
 
 :::important

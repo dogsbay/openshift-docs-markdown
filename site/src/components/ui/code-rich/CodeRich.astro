@@ -64,6 +64,16 @@ interface Props {
    */
   diffAdd?: string;
   diffRemove?: string;
+  /**
+   * Lines to fold behind a toggle, e.g. "3-8,20-25" (Expressive Code's `collapse`), numbered from the
+   * block's first line (not `startLine`). Each run shows as "N collapsed lines"; a click or Space
+   * shows or hides it. No script: a checkbox in the label, and
+   * code-rich.css (render-html's code blocks use the same markup).
+   */
+  collapse?: string;
+  /** The toggle's text; `{n}` is the number of lines it hides. `collapsedLabelOne` for a single line. */
+  collapsedLabel?: string;
+  collapsedLabelOne?: string;
   class?: string;
   [key: string]: unknown;
 }
@@ -81,6 +91,9 @@ const {
   copyText: copyTextOverride,
   diffAdd,
   diffRemove,
+  collapse,
+  collapsedLabel = "{n} collapsed lines",
+  collapsedLabelOne = "1 collapsed line",
   class: className,
   ...rest
 } = Astro.props;
@@ -93,7 +106,8 @@ const parseLineSpec = (spec?: string): Set<number> => {
     if (!range) continue;
     const start = Number(range[1]);
     const end = range[2] ? Number(range[2]) : start;
-    for (let n = start; n <= end; n++) out.add(n);
+    // Capped as render-html's parseLineRanges: `1-999999999` would fill the Set and stall the build
+    for (let n = start; n <= Math.min(end, start + 5000); n++) out.add(n);
   }
   return out;
 };
@@ -181,6 +195,48 @@ transformers.push({
     }
   },
 });
+
+// Collapsed runs: after the gutter, so each folded line keeps its number. Lines are the
+// `.line` spans of <code>, separated by "\n" text nodes (render-html's collapseLines does the same).
+const collapseRuns: Array<[number, number]> = [];
+for (const n of [...parseLineSpec(collapse)].sort((a, b) => a - b)) {
+  const last = collapseRuns[collapseRuns.length - 1];
+  if (last && n === last[1] + 1) last[1] = n;
+  else collapseRuns.push([n, n]);
+}
+if (collapseRuns.length) {
+  transformers.push({
+    name: "collapse",
+    code(node) {
+      const kids = node.children as any[];
+      const linePos = kids.flatMap((c, i) => (c.type === "element" && c.tagName === "span" ? [i] : []));
+      for (const [a, b] of [...collapseRuns].reverse()) {
+        if (a > linePos.length) continue;
+        const end = Math.min(b, linePos.length);
+        const from = linePos[a - 1];
+        const to = linePos[end - 1];
+        const label = (end === a ? collapsedLabelOne : collapsedLabel).replace("{n}", String(end - a + 1));
+        kids.splice(from, to - from + 1, {
+          type: "element",
+          tagName: "span",
+          properties: { class: "code-collapse" },
+          children: [
+            {
+              type: "element",
+              tagName: "label",
+              properties: { class: "code-collapse-label", "data-pagefind-ignore": "" },
+              children: [
+                { type: "element", tagName: "input", properties: { type: "checkbox", class: "code-collapse-toggle" }, children: [] },
+                { type: "text", value: label },
+              ],
+            },
+            { type: "element", tagName: "span", properties: { class: "code-collapse-lines" }, children: kids.slice(from, to + 1) },
+          ],
+        });
+      }
+    },
+  });
+}
 
 // Build meta string
 let metaStr = "";

@@ -31,7 +31,7 @@ Consider using {{ sno }} when you want to run a cluster in a low-resource or an 
 {._additional-resources}
 
 *   [Persistent storage using logical volume manager storage](/storage/persistent_storage_local/persistent-storage-using-lvms#persistent-storage-using-lvms_logical-volume-manager-storage)
-*   [What you can do with OpenShift Virtualization](/virt/about_virt/about-virt#virt-what-you-can-do-with-virt_about-virt)
+*   [{{ VirtProductName }} capabilities](/virt/about_virt/about-virt#virt-what-you-can-do-with-virt_about-virt)
 
 {% leveloffset +2 %}{% include "./modules/install-sno-installing-with-the-assisted-installer.md" %}{% endleveloffset %}
 

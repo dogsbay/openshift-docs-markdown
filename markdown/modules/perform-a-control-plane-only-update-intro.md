@@ -1,4 +1,24 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Perform a Control Plane Only update {id="perform-a-control-plane-only-update-intro_{{ context }}"}
 
-A control plane only update updates the control plane without restarting worker nodes, reducing total update duration. You can perform a control plane only update between two Extended Update Support (EUS) versions, skipping intermediate minor versions.
+To reduce the rebooting of non-control plane hosts during cluster updates, you can perform a Control Plane Only update for your cluster. {._abstract}
+
+Due to fundamental Kubernetes design, all {{ product_title }} updates between minor versions must be serialized.
+You must update from {{ product_title }} &lt;4.y> to &lt;4.y+1>, and then to &lt;4.y+2>. You cannot update from {{ product_title }} &lt;4.y> to &lt;4.y+2> directly.
+However, administrators who want to update between two even-numbered minor versions can do so incurring only a single reboot of non-control plane hosts.
+
+
+:::important
+
+This update was previously known as an **EUS-to-EUS** update and is now referred to as a **Control Plane Only** update. These updates are only viable between **even-numbered minor versions** of {{ product_title }}.
+
+:::
+
+
+There are several caveats to consider when attempting a Control Plane Only update.
+
+*   Control Plane Only updates are only offered after updates between all versions involved have been made available in `stable` channels.
+*   If you encounter issues during or after updating to the odd-numbered minor version but before updating to the next even-numbered version, then remediation of those issues may require that non-control plane hosts complete the update to the odd-numbered version before moving forward.
+*   You can do a partial update by updating the worker or custom pool nodes to accommodate the time it takes for maintenance.
+*   Until the machine config pools are unpaused and the update is complete, some features and bugs fixes in &lt;4.y+1> and &lt;4.y+2> of {{ product_title }} are not available.
+*   All the clusters might update using EUS channels for a conventional update without pools paused, but only clusters with non control-plane `MachineConfigPools` objects can do Control Plane Only updates with pools paused.

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Generating a VM memory dump {id="virt-generating-a-vm-memory-dump_{{ context }}"}
+# Generate a VM memory dump {id="virt-generating-a-vm-memory-dump_{{ context }}"}
 
-When a virtual machine (VM) terminates unexpectedly, you can use the `virtctl memory-dump` to generate a memory dump command to output a VM memory dump and save it on a persistent volume claim (PVC). Afterwards, you can analyze the memory dump to diagnose and troubleshoot issues on the VM. {._abstract}
+When a virtual machine (VM) terminates unexpectedly, you can run the `virtctl memory-dump` command to output a VM memory dump and save it on a persistent volume claim (PVC). Afterward, you can analyze the memory dump to diagnose and troubleshoot issues on the VM. {._abstract}
 
 **Procedure**
 

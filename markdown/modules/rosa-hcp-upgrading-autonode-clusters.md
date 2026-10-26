@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Understanding upgrades for {{ product_title }} clusters configured with {{ autonode }} {id="rosa-nodes-autonode-upgrading-autonode_{{ context }}"}
 
-When {{ autonode }} is enabled, upgrade behavior for node pools depends on whether you pin their `OpenshiftEC2NodeClass` resource to an {{ ocp_short }} version. This helps you determine which node pools upgrade automatically with the hosted control plane and which node pools you control independently. {._abstract}
+When {{ autonode }} is enabled, upgrade behavior for node pools depends on whether you pin their `OpenshiftEC2NodeClass` resource to an {{ ocp_short }} version. This determines which node pools upgrade automatically with the hosted control plane and which you control independently. {._abstract}
 
 <a name="rosa-nodes-autonode-upgrading-autonode-openshiftec2nodeclass_{{ context }}"></a>
 

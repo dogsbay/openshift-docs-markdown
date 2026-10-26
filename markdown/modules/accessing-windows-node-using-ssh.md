@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accessing a Windows node using SSH {id="accessing-windows-node-using-ssh_{{ context }}"}
+# Access a Windows node by using SSH {id="accessing-windows-node-using-ssh_{{ context }}"}
 
 You can access a Windows node by using a secure shell (SSH). {._abstract}
 

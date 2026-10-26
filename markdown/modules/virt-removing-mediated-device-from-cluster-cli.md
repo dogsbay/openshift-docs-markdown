@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing mediated devices from the cluster {id="virt-removing-mediated-device-from-cluster-cli_{{ context }}"}
+# Remove mediated devices from the cluster {id="virt-removing-mediated-device-from-cluster-cli_{{ context }}"}
 
 As a cluster administrator you can remove mediated devices from the cluster so that you can reallocate GPU hardware. To remove a mediated device from the cluster, delete the information for that device from the `HyperConverged` CR. {._abstract}
 

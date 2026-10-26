@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Using Windows containers in a proxy-enabled cluster {id="wmco-cluster-wide-proxy_{{ context }}"}
+# Windows containers in a proxy-enabled cluster {id="wmco-cluster-wide-proxy_{{ context }}"}
 
 You can add Windows nodes and run workloads in a proxy-enabled cluster because Windows Machine Config Operator (WMCO) can consume and use the cluster-wide egress proxy when making external requests outside the cluster’s internal network. {._abstract}
 

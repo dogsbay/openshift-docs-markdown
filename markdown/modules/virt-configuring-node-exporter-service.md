@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring the node exporter service {id="virt-configuring-node-exporter-service_{{ context }}"}
+# Configure the node exporter service {id="virt-configuring-node-exporter-service_{{ context }}"}
 
 The node-exporter agent is deployed on every virtual machine in the cluster from which you want to collect metrics. Configure the node-exporter agent as a service to expose internal metrics and processes that are associated with virtual machines. {._abstract}
 

@@ -3,6 +3,24 @@
 
 To optimize the placement of high-performance workloads, deploy the NUMA-aware secondary pod scheduler. This component aligns pods with specific NUMA zones to ensure efficient resource utilization in your cluster. {._abstract}
 
+**Prerequisites**
+
+*   You have installed the OpenShift CLI (`oc`).
+*   You have logged in as a user with `cluster-admin` privileges.
+
+
+:::important
+
+Only cluster administrators should create or modify `NUMAResourcesScheduler` custom resources.
+The NUMA Resources scheduler runs with elevated privileges that allow it to bind pods to nodes, observe all pods and nodes across the cluster, and make scheduling decisions that affect workload placement.
+
+The `spec.imageSpec` field in the `NUMAResourcesScheduler` custom resource controls which container image runs with these scheduler privileges.
+Granting non-admin users write access to the `NUMAResourcesScheduler` resource creates a privilege escalation risk.
+An attacker with write access could substitute a malicious container image and run arbitrary code with scheduler privileges.
+
+:::
+
+
 **Procedure**
 
 1.  Create the `NUMAResourcesScheduler` custom resource that deploys the NUMA-aware custom pod scheduler:
@@ -17,18 +35,18 @@ To optimize the placement of high-performance workloads, deploy the NUMA-aware s
         # ...
         ```
         *   `spec.imageSpec`: In a disconnected environment, make sure to configure the resolution of this image by either:
-    1.  Create an `ImageTagMirrorSet` custom resource (CR). For more information, see "Configuring image registry repository mirroring" in the "Additional resources" section.
-    1.  Set the URL to the disconnected registry.
-    1.  Create the `NUMAResourcesScheduler` CR by running the following command:
-        ```terminal
-        $ oc create -f nro-scheduler.yaml
-        ```
+            1.  Create an `ImageTagMirrorSet` custom resource (CR). For more information, see "Configuring image registry repository mirroring" in the "Additional resources" section.
+            1.  Set the URL to the disconnected registry.
+            1.  Create the `NUMAResourcesScheduler` CR by running the following command:
+                ```terminal
+                $ oc create -f nro-scheduler.yaml
+                ```
 
-        :::note
+                :::note
 
-        In a hosted control plane cluster, run this command on the hosted control plane node.
-        
-        :::
+                In a hosted control plane cluster, run this command on the hosted control plane node.
+                
+                :::
 
 1.  After a few seconds, run the following command to confirm the successful deployment of the required resources:
     ```terminal

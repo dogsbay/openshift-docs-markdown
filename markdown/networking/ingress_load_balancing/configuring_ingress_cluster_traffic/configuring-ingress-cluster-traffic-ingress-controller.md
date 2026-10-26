@@ -9,7 +9,7 @@ title: Configuring ingress cluster traffic by using an Ingress Controller
 
 You can use the Ingress Controller to control how external users communicate with services that run inside the cluster. {._abstract}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 Before you begin any of the procedures that are listed in the Configuring ingress cluster traffic by using an Ingress Controller document, ensure that you meet the following prerequisites. A cluster administrator performs these prerequisites:
 
 *   Set up the external port to the cluster networking environment so that requests
@@ -28,7 +28,7 @@ to a user, run the following command:
 
 {% leveloffset +1 %}{% include "./modules/nw-exposing-service.md" %}{% endleveloffset %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 {% leveloffset +1 %}{% include "./modules/nw-ingress-sharding-concept.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/nw-ingress-sharding.md" %}{% endleveloffset %}

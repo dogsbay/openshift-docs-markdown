@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the virtctl binary on {{ op_system_base }} 9 or later, Linux, Windows, or macOS {id="virt-installing-virtctl-binary_{{ context }}"}
+# Install the virtctl binary {id="virt-installing-virtctl-binary_{{ context }}"}
 
-You can download the `virtctl` binary by using the {{ product_title }} web console and then install it on {{ op_system_base_full }} 9 or later, Linux, Windows, or macOS. {._abstract}
+Download and install the `virtctl` binary that is available from the {{ product_title }} web console. You can run `virtctl` on {{ op_system_base_full }} 9 or later, other Linux operating systems, Windows, or macOS. {._abstract}
 
 **Procedure**
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing guest system logs with the CLI {id="virt-view-guest-system-logs-cli_{{ context }}"}
+# View guest system logs with the CLI {id="virt-view-guest-system-logs-cli_{{ context }}"}
 
 To diagnose and troubleshoot issues with a virtual machine (VM) guest operating system, you can view the guest system logs by running the `oc logs` command. {._abstract}
 

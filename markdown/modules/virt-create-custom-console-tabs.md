@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create custom tabs in the web console {id="virt-create-custom-console-tabs_{{ context }}"}
 
-As a cluster administrator, you can customize the {{ product_title }} web console by adding customized tabs to the **Virtualization** page. {._abstract}
+You can add custom tabs to the **Virtualization** page of the {{ product_title }} web console by using a dynamic plugin. Control which pages display the tab so that it does not appear where it does not apply. {._abstract}
 
 **Prerequisites**
 

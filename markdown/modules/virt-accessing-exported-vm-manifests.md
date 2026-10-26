@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Accessing exported virtual machine manifests {id="virt-accessing-exported-vm-manifests_{{ context }}"}
+# Access exported VM manifests {id="virt-accessing-exported-vm-manifests_{{ context }}"}
 
-After you export a virtual machine (VM) or snapshot, you can get the `VirtualMachine` manifest and related information from the export server. {._abstract}
+You can retrieve the `VirtualMachine` manifest from the export server after you export a virtual machine (VM) or a VM snapshot. Use the manifest to create the VM on a target cluster. {._abstract}
 
 **Prerequisites**
 

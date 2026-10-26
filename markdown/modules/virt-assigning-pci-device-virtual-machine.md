@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Assigning a PCI device to a virtual machine {id="virt-assigning-pci-device-virtual-machine_{{ context }}"}
+# Assign a PCI device to a virtual machine {id="virt-assigning-pci-device-virtual-machine_{{ context }}"}
 
 When a PCI device is available in a cluster, you can assign it to a virtual machine and enable PCI passthrough. {._abstract}
 

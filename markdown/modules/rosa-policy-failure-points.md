@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Potential points of failure {id="rosa-policy-failure-points_{{ context }}"}
 
-{{ product_title }} protects workloads at multiple infrastructure levels and can further protect you against many common Kubernetes issues given Red&#160;Hat Site Reliability Engineering (SRE) support and the option to deploy machine pools into more than one availability zone. {._abstract}
+{{ product_title }} protects workloads at multiple infrastructure levels and further protects against common Kubernetes issues given Red&#160;Hat Site Reliability Engineering (SRE) support and the option to deploy machine pools into more than one availability zone. {._abstract}
 
 But outages can still occur at the container, worker node, cluster, zone, or storage level. By understanding potential points of failure, you can assess risks and appropriately architect your applications and clusters to handle each failure type.
 

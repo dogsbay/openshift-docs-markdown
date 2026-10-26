@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling hot plugging for all VMs on a cluster {id="virt-disable-kubervirt-hotplug-ratio_{{ context }}"}
+# Disable CPU hot plug for all VMs in a cluster {id="virt-disable-kubervirt-hotplug-ratio_{{ context }}"}
 
-If you are a cluster administrator and want to disable hot plugging for an entire cluster, you must modify the `spec.configuration.kubevirtConfiguration.developerConfiguration.maxHotplugRatio` setting in the `HyperConverged` custom resource (CR). {._abstract}
+You can disable hot plugging for every virtual machine (VM) in a cluster to give each VM a fixed CPU allocation, without configuring VMs or instance types individually. {._abstract}
 
 **Prerequisites**
 

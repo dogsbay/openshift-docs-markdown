@@ -45,14 +45,14 @@ $ oc get pv <pv_name> -o jsonpath='{.spec.claimRef.name}'
 {% endif %}
 
 *   AWS Elastic Block Store (EBS), which is installed by default.
-{%- if openshift_enterprise or openshift_webscale or openshift_origin or openshift_rosa or openshift_rosa_hcp %}
+{%- if openshift_enterprise or openshift_origin or openshift_rosa or openshift_rosa_hcp %}
 *   AWS Elastic File Store (EFS)
 {%- endif %}
-{%- if openshift_enterprise or openshift_webscale or openshift_origin or openshift_aro %}
+{%- if openshift_enterprise or openshift_origin or openshift_aro %}
 *   Azure Disk
 *   Azure File
 {%- endif %}
-{%- if openshift_enterprise or openshift_webscale or openshift_origin %}
+{%- if openshift_enterprise or openshift_origin %}
 *   Cinder
 *   Fibre Channel
 {%- endif %}
@@ -60,11 +60,11 @@ $ oc get pv <pv_name> -o jsonpath='{.spec.claimRef.name}'
 *   GCP Persistent Disk
 *   GCP Filestore
 {%- endif %}
-{%- if openshift_enterprise or openshift_webscale or openshift_origin %}
+{%- if openshift_enterprise or openshift_origin %}
 *   {{ ibm_power_server_title }} Block
 *   {{ ibm_cloud_name }} VPC Block
 {%- endif %}
-{%- if openshift_enterprise or openshift_webscale or openshift_origin or openshift_aro %}
+{%- if openshift_enterprise or openshift_origin or openshift_aro %}
 *   HostPath
 *   iSCSI
 *   Local volume
@@ -73,7 +73,7 @@ $ oc get pv <pv_name> -o jsonpath='{.spec.claimRef.name}'
 *   OpenStack Manila
 *   {{ rh_storage_first }}
 {%- endif %}
-{%- if openshift_enterprise or openshift_webscale or openshift_origin %}
+{%- if openshift_enterprise or openshift_origin %}
 *   CIFS/SMB
 *   VMware vSphere
 {%- endif %}
@@ -136,14 +136,14 @@ The following table lists the access modes:
   <td>The volume can be mounted as read/write by a single pod on a single node.</td>
 </tr>
 <tr>
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>ReadOnlyMany</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td><code>ROX</code></td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>The volume can be mounted as read-only by many nodes.</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>ReadOnlyMany</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td><code>ROX</code></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>The volume can be mounted as read-only by many nodes.</td>{% endif %}
 </tr>
 <tr>
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>ReadWriteMany</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td><code>RWX</code></td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>The volume can be mounted as read/write by many nodes.</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>ReadWriteMany</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td><code>RWX</code></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>The volume can be mounted as read/write by many nodes.</td>{% endif %}
 </tr>
 </tbody>
 </table>
@@ -176,39 +176,39 @@ The following table lists the access modes:
   <td>✅</td>
 </tr>
 <tr>
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>Azure File</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>Azure File</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
 </tr>
 <tr>
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>Azure Disk</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td></td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>Azure Disk</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td></td>{% endif %}
 </tr>
 <tr>
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>CIFS/SMB</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>CIFS/SMB</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
 </tr>
 <tr>
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>Cinder</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td></td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>Cinder</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td></td>{% endif %}
 </tr>
 <tr>
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>Fibre Channel</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅ <sup>[3]</sup></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>Fibre Channel</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅ <sup>[3]</sup></td>{% endif %}
 </tr>
 <tr>
   {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>GCP Persistent Disk</td>{% endif %}
@@ -225,39 +225,39 @@ The following table lists the access modes:
   {% if not (openshift_rosa or openshift_rosa_hcp) %}<td>✅</td>{% endif %}
 </tr>
 <tr>
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>HostPath</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td></td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>HostPath</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td></td>{% endif %}
 </tr>
 <tr>
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>{{ ibm_power_server_title }}  Disk</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>{{ ibm_power_server_title }}  Disk</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
 </tr>
 <tr>
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>{{ ibm_cloud_name }} VPC Disk</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td></td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>{{ ibm_cloud_name }} VPC Disk</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td></td>{% endif %}
 </tr>
 <tr>
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>iSCSI</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅ <sup>[3]</sup></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>iSCSI</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅ <sup>[3]</sup></td>{% endif %}
 </tr>
 <tr>
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>Local volume</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td></td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>Local volume</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td></td>{% endif %}
 </tr>
 <tr>
   <td>LVM Storage</td>
@@ -267,32 +267,32 @@ The following table lists the access modes:
   <td></td>
 </tr>
 <tr>
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>NFS</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>NFS</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
 </tr>
 <tr>
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>OpenStack Manila</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td></td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td></td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>OpenStack Manila</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
 </tr>
 <tr>
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>{{ rh_storage_first }}</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td></td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>{{ rh_storage_first }}</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
 </tr>
 <tr>
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>VMware vSphere</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅</td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td></td>{% endif %}
-  {% if openshift_enterprise or openshift_webscale or openshift_origin %}<td>✅ <sup>[5]</sup></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>VMware vSphere</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅</td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td></td>{% endif %}
+  {% if openshift_enterprise or openshift_origin %}<td>✅ <sup>[5]</sup></td>{% endif %}
 </tr>
 </tbody>
 </table>
@@ -323,28 +323,6 @@ The following table lists the access modes:
 {% if microshift %}
 ## Supported access modes {id="supported-access-modes_{{ context }}"}
 LVMS is the only CSI plugin {{ product_title }} supports. The hostPath and LVs built in to {{ OCP }} also support RWO.
-{% endif %}
-
-{% if openshift_online %}
-## Restrictions {id="pv-restrictions_{{ context }}"}
-The following restrictions apply when using PVs with {{ product_title }}:
-{% endif %}
-
-{% if openshift_online %}
-*   PVs are provisioned with EBS volumes (AWS).
-*   Only RWO access mode is applicable, as EBS volumes and GCE Persistent Disks cannot be mounted to multiple nodes.
-*   Docker volumes are disabled.
-    *   VOLUME directive without a mapped external volume fails to be
-    instantiated
-    .
-*   **emptyDir** is restricted to 512 Mi per project (group) per node.
-    *   A single pod for a project on a particular node can use up to 512 Mi
-    of **emptyDir** storage.
-    *   Multiple pods for a project on a particular node share the 512 Mi of
-    **emptyDir** storage.
-*   **emptyDir** has the same lifecycle as the pod:
-    *   **emptyDir** volumes survive container crashes/restarts.
-    *   **emptyDir** volumes are deleted when the pod is deleted.
 {% endif %}
 
 ## Phase {id="pv-phase_{{ context }}"}

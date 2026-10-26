@@ -22,7 +22,7 @@ Operators must handle setting environment variables for proxy settings in the po
 
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 *   Access to an {{ product_title }} cluster using an account with
-{%- if openshift_enterprise or openshift_webscale or openshift_origin %}
+{%- if openshift_enterprise or openshift_origin %}
 `cluster-admin` permissions.
 {%- endif %}
 {% endif %}

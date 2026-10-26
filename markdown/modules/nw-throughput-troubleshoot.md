@@ -23,7 +23,7 @@ If pod logs do not reveal any cause of the problem, use the following methods to
 
 *   Use a bandwidth measuring tool, such as `iperf`, to measure streaming throughput and UDP throughput. Locate any bottlenecks by running the tool from the pods first, and then running it from the nodes.
 
-{% if openshift_enterprise or openshift_webscale %}
+{% if openshift_enterprise %}
     *   For information on installing and using `iperf`, see the Red Hat Solution.
 {% endif %}
 {% if not microshift %}

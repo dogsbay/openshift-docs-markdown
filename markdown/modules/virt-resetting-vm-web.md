@@ -1,9 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Resetting a virtual machine {id="virt-resetting-vm-web_{{ context }}"}
+# Reset a VM {id="virt-resetting-vm-web_{{ context }}"}
 
-Unlike the **Restart** action, the **Reset** action preserves the pod in which the virtual machine (VM) is running and just hard resets the same VM inside it. When a VM is unresponsive or failed to boot, you can use the **Reset** action to bring it back immediately. {._abstract}
-
-You can reset a VM from the web console.
+You can reset a virtual machine (VM) from the {{ product_title }} web console when the VM is unresponsive or has failed to boot. Unlike **Restart**, the **Reset** action keeps the existing pod and hard resets the VM inside it. {._abstract}
 
 **Procedure**
 

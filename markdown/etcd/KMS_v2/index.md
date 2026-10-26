@@ -12,9 +12,9 @@ You can configure Kubernetes Key Management Service (KMS) v2 on {{ product_title
 {%- set FeatureName = "{{ KMS }}" %}
 {% include "./snippets/technology-preview.md" %}
 
-{% leveloffset +1 %}{% include "./modules/con_about-kms.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/con-about-kms.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/ref_kms-technology-preview-phases.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/ref-kms-technology-preview-phases.md" %}{% endleveloffset %}
 
 ## Additional resources {id="additional-resources_kms-v2-index" ._additional-resources}
 

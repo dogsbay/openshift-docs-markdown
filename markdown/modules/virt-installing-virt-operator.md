@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the {{ VirtProductName }} Operator by using the web console {id="virt-installing-virt-operator_{{ context }}"}
+# Install the {{ VirtProductName }} Operator by using the web console {id="virt-installing-virt-operator_{{ context }}"}
 
 You can deploy the {{ VirtProductName }} Operator by using the {{ product_title }} web console. {._abstract}
 

@@ -11,7 +11,7 @@ Create and deploy applications on {{ product_title }} by using the **Developer**
 
 The **Developer** perspective in the web console provides you the following options from the **+Add** view to create applications and associated services and deploy them on {{ product_title }}:
 
-{% if not (openshift_enterprise or openshift_webscale) %}
+{% if not openshift_enterprise %}
 {% include "./snippets/snip-unified-perspective-web-console.md" %}
 {% endif %}
 
@@ -47,7 +47,7 @@ The **Developer** perspective in the web console provides you the following opti
 *   **Helm Chart repositories**: Use this option to add Helm Chart repositories in a namespace.
 *   **Re-ordering of resources**: Use these resources to re-order pinned resources added to your navigation pane. The drag-and-drop icon is displayed on the left side of the pinned resource when you hover over it in the navigation pane. The dragged resource can be dropped only in the section where it is located.
 
-{% if openshift_enterprise or openshift_webscale %}
+{% if openshift_enterprise %}
 Note that certain options, such as **Pipelines**, **Event Source**, and **Import Virtual Machines**, are displayed only when the {{ pipelines_shortname }} Operator, {{ ServerlessOperatorName }}, and {{ CNVOperatorDisplayName }} are installed.
 {%- endif %}
 {%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
@@ -66,7 +66,7 @@ To create applications by using the **Developer** perspective, ensure that the f
 *   You have logged in to the web console.
 {% endif %}
 
-{%- if openshift_enterprise or openshift_webscale %}
+{%- if openshift_enterprise %}
 
 To create serverless applications, in addition to the preceding prerequisites, ensure that:
 

@@ -37,8 +37,7 @@ To run a self-service review, upload your cluster’s `must-gather` data to the 
 
 The self-service TSR provides a solid baseline for cluster health. If you need additional guidance or a more comprehensive review, contact your Red&#160;Hat account team to arrange an assisted review through a Technical Account Manager (TAM) or Red&#160;Hat consultant. An assisted review includes human analysis, deeper coverage, and access to checks that are updated more frequently than the self-service version.
 
-**Additional resources**
-{._additional-resources}
+## Additional resources {id="_additional_resources" ._additional-resources}
 
 *   [Technical Supportability Review with AI tool](https://access.redhat.com/support/cases/#/analyze)
 *   [Red&#160;Hat Technical Supportability Review with AI: Proactive AI-Driven Cluster Assessments for {{ product_title }}](https://access.redhat.com/solutions/7141255)

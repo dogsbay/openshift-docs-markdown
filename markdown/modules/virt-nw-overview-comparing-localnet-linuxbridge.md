@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Comparing Linux bridge CNI and OVN-Kubernetes localnet topology {id="virt-nw-overview-comparing-localnet-linuxbridge_{{ context }}"}
+# Linux bridge CNI and OVN-Kubernetes localnet comparison {id="virt-nw-overview-comparing-localnet-linuxbridge_{{ context }}"}
 
-A comparison of features available when using the Linux bridge CNI compared to the localnet topology for an OVN-Kubernetes plugin. {._abstract}
+The following table compares the features available when you use the Linux bridge CNI with the OVN-Kubernetes localnet topology. {._abstract}
 
 **Linux bridge CNI compared to an OVN-Kubernetes localnet topology**
 

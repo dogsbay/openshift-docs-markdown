@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Performance optimization with recording rules {id="network-observability-recording-rules-performance-optimization_{{ context }}"}
 
-In large-scale clusters, recording rules optimize how Prometheus handles network data. Recording rules improve dashboard responsiveness and reduce the computational overhead of complex queries. {._abstract}
+In large-scale clusters, recording rules optimize how Prometheus handles network data. Recording rules improve dashboard responsiveness and reduce the processing time for complex queries. {._abstract}
 
 ## Optimization benefits {id="network-observability-recording-rules-benefits_{{ context }}"}
 Recording rules pre-compute complex Prometheus Query Language (PromQL) expressions and save the results as new time series. Unlike alerting rules, recording rules do not monitor thresholds.
@@ -28,7 +28,7 @@ The following table compares rule modes based on the expected outcome:
 | UI visibility | **Alerting** and **Network Health** views. | **Metrics Explorer** and **Network Health** views. |
 | Notifications | Triggers `Alertmanager` notifications. | Does not trigger notifications. |
 
-## Integrating recording rules with the health dashboard {id="network-observability-integrating-recording-rules-with-health-dashboard_{{ context }}"}
+## Integrate recording rules with the health dashboard {id="network-observability-integrating-recording-rules-with-health-dashboard_{{ context }}"}
 
 Custom recording rules that contribute to the **Network Health** dashboard must meet specific metadata requirements.
 
@@ -38,7 +38,29 @@ Label requirements
 
 
 Annotation requirements
-:   Include the `netobserv.io/network-health` annotation in the `PrometheusRule` metadata. This annotation is required for recording rules to appear in the **Network Health** dashboard. The value is a JSON object where keys are the metric names (the `record` field of each rule). Each value consists of the following fields:
+:   Include the `netobserv.io/network-health` annotation in the `PrometheusRule` metadata. This annotation is required for recording rules to be displayed in the **Network Health** dashboard. The value is a JSON object where keys are the metric names (the `record` field of each rule). Each value consists of the following fields:
     *   `summary`: An optional short title. This field supports Prometheus template syntax, such as `{{ $labels.namespace }}`.
     *   `description`: An optional description. This field supports Prometheus template syntax.
-    *   `netobserv_io_network_health`: A required JSON string. For recording rules, use the `recordingThresholds` field instead of `threshold`. This field determines the health score and UI coloring, such as `{"info":"10","warning":"25","critical":"50"}`.
+    *   `netobserv_io_network_health`: A required JSON string that determines the health score and UI behavior. For recording rules, this JSON object supports the following fields:
+
+    **Fields for the `netobserv_io_network_health` annotation in recording rules**
+
+    | Field | Type | Description |
+    | --- | --- | --- |
+    | `recordingThresholds` | JSON object | Required. Defines the thresholds for health score calculation. Contains `info`, `warning`, and `critical` severity levels with numeric string values, such as `{"info":"10","warning":"25","critical":"50"}`. |
+    | `contextTab` | String | The context tab in which the recording rule is displayed. Valid values include `netobserv`, `ovn`, `kiali`, or other third-party context identifiers. If not specified, the recording rule is displayed in the default NetObserv tab. |
+    | `displayName` | String | A custom display name for the recording rule shown in the **Network Health** UI. If not specified, the recording rule uses the default naming convention. |
+    | `namespaceLabels` | List of strings | One or more labels containing namespaces. Recording rules are displayed under the **Namespaces** tab. |
+    | `nodeLabels` | List of strings | One or more labels containing node names. Recording rules are displayed under the **Nodes** tab. |
+    | `workloadLabels` | List of strings | One or more labels containing owner or workload names. Recording rules are displayed under the **Workloads** tab when `namespaceLabels` and `kindLabels` are also provided. |
+    | `kindLabels` | List of strings | One or more labels containing owner or workload kinds. Must be provided alongside `workloadLabels` and `namespaceLabels` for the recording rule to be displayed under the **Workloads** tab. |
+    | `unit` | String | The data unit for display purposes. |
+    | `upperBound` | String | An upper bound value used to calculate scores on a closed scale. Metric values exceeding this bound are clamped. |
+
+
+    :::note
+
+
+    If both `namespaceLabels` and `nodeLabels` are provided, `namespaceLabels` takes priority. If neither is provided, the recording rule is displayed under the **Global** tab.
+    
+    :::

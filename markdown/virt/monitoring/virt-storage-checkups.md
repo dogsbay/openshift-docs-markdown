@@ -23,6 +23,6 @@ You can use a storage checkup to verify that the cluster storage is optimally co
 {._additional-resources}
 
 *   [Collecting data for Red&#160;Hat Support](/virt/support/virt-collecting-virt-data#virt-collecting-virt-data)
-*   [Using the `must-gather` tool for {{ VirtProductName }}](/virt/support/virt-collecting-virt-data#virt-using-virt-must-gather_virt-collecting-virt-data)
+*   [Use the `must-gather` tool for {{ VirtProductName }}](/virt/support/virt-collecting-virt-data#virt-using-virt-must-gather_virt-collecting-virt-data)
 
 {% leveloffset +1 %}{% include "./modules/virt-troubleshoot-storage-checkup-error-codes.md" %}{% endleveloffset %}

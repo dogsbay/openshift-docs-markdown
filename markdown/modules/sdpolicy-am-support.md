@@ -1,4 +1,4 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # Support {id="support_{{ context }}"}
 
 {{ product_title }} includes Red Hat Premium Support, which can be accessed by using the [Red Hat Customer Portal](https://access.redhat.com/support?extIdCarryOver=true&sc_cid=701f2000001Css5AAC). {._abstract}

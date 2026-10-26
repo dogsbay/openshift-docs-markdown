@@ -70,4 +70,9 @@ const { class: className, ...rest } = Astro.props;
     background: var(--color-border);
     opacity: 0.6;
   }
+
+  /* A step's title on its own line, above its detail (format-astro and render-html mark it) */
+  .sub-steps-list > :global(li) > :global(.step-title) {
+    display: block;
+  }
 </style>

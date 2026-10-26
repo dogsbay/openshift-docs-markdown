@@ -3,7 +3,7 @@
 
 You can manage security context constraints (SCCs) in your instance as normal API objects by using the OpenShift CLI (`oc`). {._abstract}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 
 :::note
 
@@ -93,7 +93,7 @@ where
 `Groups`
 :   Lists which groups the SCC is applied to.
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 
 :::note
 

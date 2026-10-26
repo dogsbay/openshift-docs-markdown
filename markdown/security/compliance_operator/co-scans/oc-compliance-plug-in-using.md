@@ -25,4 +25,4 @@ Although the Compliance Operator automates many of the checks and remediations f
 
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
-*   [Understanding the Compliance Operator](/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)
+*   [About the Compliance Operator](/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)

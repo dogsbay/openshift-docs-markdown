@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Resolve EC2NodeClass not ready status {id="resolve-ec2nodeclass-not-ready-status_{{ context }}"}
 
-Karpenter discovers AWS subnets and security groups by searching for resources tagged with a cluster-specific discovery tag. When the EC2NodeClass resource reports `SubnetsReady` or `SecurityGroupsReady` conditions as `False`, you need to add the required discovery tag to your AWS Virtual Private Cloud (VPC) resources. {._abstract}
+Karpenter discovers AWS subnets and security groups by searching for resources with a cluster-specific discovery tag. When the EC2NodeClass resource reports `SubnetsReady` or `SecurityGroupsReady` as `False`, add the required discovery tag to your AWS Virtual Private Cloud (VPC) resources. {._abstract}
 
 **Procedure**
 

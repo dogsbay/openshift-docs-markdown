@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Resolve issues with ocm-roles and user-role IAM resources {id="rosa-sts-ocm-roles-and-permissions-troubleshooting_{{ context }}"}
 
-You might receive an error when trying to create a cluster by using the {{ rosa_cli_first }}. This error means that the `user-role` IAM role is not linked to your AWS account. The most likely cause of this error is that another user in your Red&#160;Hat organization created the `ocm-role` IAM role. Your `user-role` IAM role needs to be created. {._abstract}
+You might receive an error when trying to create a cluster by using the {{ rosa_cli_first }}. This error means that the `user-role` IAM role is not linked to your AWS account. {._abstract}
+
+The most likely cause of this error is that another user in your Red&#160;Hat organization created the `ocm-role` IAM role. Your `user-role` IAM role needs to be created.
 
 
 :::note

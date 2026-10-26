@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting a namespace using the web console {id="deleting-a-namespace-using-the-web-console_{{ context }}"}
+# Delete a namespace using the web console {id="deleting-a-namespace-using-the-web-console_{{ context }}"}
 
 You can delete a namespace by using the {{ product_title }} web console. {._abstract}
 

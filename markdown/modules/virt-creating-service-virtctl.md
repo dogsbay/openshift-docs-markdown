@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Create a service with virtctl {id="virt-creating-service-virtctl_{{ context }}"}
+# Create a service by using virtctl {id="virt-creating-service-virtctl_{{ context }}"}
 
-You can create a service for a virtual machine (VM) by using the `virtctl` command-line tool. {._abstract}
+You can create a service for a virtual machine (VM) with a single `virtctl` command. Choose the service type and the port to expose, such as port 22 for SSH access. {._abstract}
 
 **Prerequisites**
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About data volume conditions and events {id="virt-about-dv-conditions-and-events_{{ context }}"}
+# Data volume conditions and events {id="virt-about-dv-conditions-and-events_{{ context }}"}
 
-To diagnose data volume issues, you can examine the `Conditions` and `Events` sections of the `oc describe` command output.  {._abstract}
+To diagnose data volume issues, you can examine the `Conditions` and `Events` sections of the `oc describe` command output. {._abstract}
 
 Run the following command to inspect the data volume:
 

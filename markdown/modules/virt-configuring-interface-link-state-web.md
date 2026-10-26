@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting the VM interface link state by using the web console {id="virt-configuring-interface-link-state-web_{{ context }}"}
+# Set the VM interface link state by using the web console {id="virt-configuring-interface-link-state-web_{{ context }}"}
 
 You can set the link state of a primary or secondary virtual machine (VM) network interface by using the web console. {._abstract}
 

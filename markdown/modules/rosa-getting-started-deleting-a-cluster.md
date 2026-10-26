@@ -3,10 +3,14 @@
 # Delete a {{ product_title }} cluster and the AWS IAM STS resources {id="rosa-getting-started-deleting-a-cluster_{{ context }}"}
 
 {% if openshift_rosa_hcp %}
-You can use the {{ rosa_cli_first }} to delete a {{ product_title }} cluster, the AWS Identity and Access Management (IAM) account-wide roles, the cluster-specific Operator roles, and the OpenID Connect (OIDC) provider. To delete the account-wide and Operator policies, use the AWS IAM Console or the AWS CLI.
+You can use the {{ rosa_cli_first }} to delete a {{ product_title }} cluster, the AWS Identity and Access Management (IAM) account-wide roles, the cluster-specific Operator roles, and the OpenID Connect (OIDC) provider. {._abstract}
+
+To delete the account-wide and Operator policies, use the AWS IAM Console or the AWS CLI.
 {% endif %}
 {% if openshift_rosa %}
-You can use the {{ rosa_cli }} to delete a {{ product_title }} cluster that uses AWS Security Token Service (STS), the AWS Identity and Access Management (IAM) account-wide roles, cluster-specific Operator roles, and the OpenID Connect (OIDC) provider. To delete account-wide inline and Operator policies, use the AWS IAM Console or AWS CLI.
+You can use the {{ rosa_cli }} to delete a {{ product_title }} cluster that uses AWS Security Token Service (STS), the AWS Identity and Access Management (IAM) account-wide roles, cluster-specific Operator roles, and the OpenID Connect (OIDC) provider.
+
+To delete account-wide inline and Operator policies, use the AWS IAM Console or AWS CLI.
 {% endif %}
 
 

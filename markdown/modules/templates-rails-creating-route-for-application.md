@@ -3,7 +3,7 @@
 
 You can create a route for your application with the `oc expose service` command. The route makes the application accessible from outside the cluster. {._abstract}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 
 **Procedure**
 

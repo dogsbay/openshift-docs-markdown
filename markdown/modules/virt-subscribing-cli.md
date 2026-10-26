@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Subscribing to the {{ VirtProductName }} catalog by using the CLI {id="virt-subscribing-cli_{{ context }}"}
+# Subscribe to the {{ VirtProductName }} catalog by using the CLI {id="virt-subscribing-cli_{{ context }}"}
 
 Before you install {{ VirtProductName }}, you must subscribe to the {{ VirtProductName }} catalog. Subscribing gives the `{{ CNVNamespace }}`{minja} namespace access to the {{ VirtProductName }} Operators. {._abstract}
 
@@ -7,9 +7,12 @@ To subscribe, configure `Namespace`, `OperatorGroup`, and `Subscription` objects
 
 **Prerequisites**
 
-*   Install {{ product_title }} {{ product_version }} on your cluster.
-*   Install the {{ oc_first }}.
-*   Log in as a user with `cluster-admin` privileges.
+*   You have installed {{ product_title }} {{ product_version }} on your cluster.
+*   You have installed the {{ oc_first }}.
+*   You have logged in as a user with `cluster-admin` privileges.
+{%- if openshift_rosa or openshift_dedicated or openshift_rosa_hcp %}
+*   You have created a machine pool based on a bare metal compute node instance type.
+{%- endif %}
 
 **Procedure**
 

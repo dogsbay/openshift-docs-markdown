@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Manage overlay networks {id="virt-nw-overview-manage-overlay-nw_{{ context }}"}
+# Overlay networks {id="virt-nw-overview-manage-overlay-nw_{{ context }}"}
 
 To ensure your virtual machines (VMs) connect reliably by using the standard {{ product_title }} networking model, configure the default pod network for cluster-wide connectivity.  {._abstract}
 
@@ -34,7 +34,3 @@ Configure external ingress by exposing a VM as a service
 Configure external ingress by exposing a VM as a service
 :   You can expose a VM within the cluster or outside the cluster by creating a `Service` object.
 {% endif %}
-
-
-Add a VM to a {{ SMProductShortName }}
-:   {{ VirtProductName }} is integrated with {{ SMProductName }}. You can monitor, visualize, and control traffic between pods and virtual machines on the default pod network with IPv4.

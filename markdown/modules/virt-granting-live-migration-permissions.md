@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Granting live migration permissions {id="virt-granting-live-migration-permissions_{{ context }}"}
+# Grant live migration permissions {id="virt-granting-live-migration-permissions_{{ context }}"}
 
 You can grant trusted users or groups the ability to create, delete, and update live migration instances. {._abstract}
 

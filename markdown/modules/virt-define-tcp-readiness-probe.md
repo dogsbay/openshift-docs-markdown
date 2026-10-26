@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Defining a TCP readiness probe {id="virt-define-tcp-readiness-probe_{{ context }}"}
+# Define a TCP readiness probe {id="virt-define-tcp-readiness-probe_{{ context }}"}
 
 You can define a TCP readiness probe by setting the `spec.readinessProbe.tcpSocket` field of the virtual machine (VM) configuration. {._abstract}
 

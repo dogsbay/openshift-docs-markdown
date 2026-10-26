@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uninstalling the Windows Machine Config Operator {id="uninstalling-wmco_{{ context }}"}
+# Uninstall the Windows Machine Config Operator {id="uninstalling-wmco_{{ context }}"}
 
 If you want to disable the capability to run Windows container workloads, you can uninstall the Windows Machine Config Operator (WMCO) from your cluster. {._abstract}
 

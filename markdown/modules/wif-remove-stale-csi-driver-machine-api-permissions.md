@@ -2,7 +2,9 @@
 
 # Remove stale CSI driver and Machine API permissions from service accounts managed by a WIF configuration {id="wif-remove-stale-csi-driver-machine-api-permissions_{{ context }}"}
 
-The `wif-config` permission set enables Workload Identity Federation (WIF) authentication for {{ product_title }} service accounts to securely interact with {{ gcp_full }} services. You can remove stale permissions from the CSI driver and Machine API service accounts to reduce the scope of permissions to only those required for the cluster’s operation. {._abstract}
+You can remove stale permissions from the CSI driver and Machine API service accounts to reduce the scope of permissions to only those required for the cluster’s operation. {._abstract}
+
+The `wif-config` permission set enables Workload Identity Federation (WIF) authentication for {{ product_title }} service accounts to securely interact with {{ gcp_full }} services.
 
 
 :::note

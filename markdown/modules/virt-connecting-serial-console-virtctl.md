@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Connect to the serial console by using virtctl {id="virt-connecting-serial-console-virtctl_{{ context }}"}
 
-You can use the `virtctl` command-line tool to connect to the serial console of a running virtual machine. {._abstract}
+You can use the `virtctl` command-line tool to open the serial console of a running virtual machine from your terminal. {._abstract}
 
 
 :::note

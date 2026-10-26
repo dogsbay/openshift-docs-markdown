@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Quick start tours {id="virt-quick-starts_{{ context }}"}
+# Take a quick start tour {id="virt-quick-starts_{{ context }}"}
 
 You can explore several {{ VirtProductName }} capabilities by taking quick start tours in the web console. {._abstract}
 

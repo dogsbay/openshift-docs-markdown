@@ -1,12 +1,12 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# RBAC overview {id="authorization-overview_{{ context }}"}
+# Create and assign RBAC roles to users {id="authorization-overview_{{ context }}"}
 
 You can use role-based access control to configure whether users and groups can perform specific actions on cluster or project resources by evaluating roles, rules, and bindings. {._abstract}
 
 Role-based access control (RBAC) objects determine whether a user is allowed to
 perform a given action within a project.
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin %}
+{% if openshift_enterprise or openshift_origin %}
 Cluster administrators
 {% endif %}
 {% if openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
@@ -138,7 +138,7 @@ roles at the same time.
 
 Project administrators can use the CLI to
 {% endif %}
-{% if openshift_enterprise or openshift_webscale or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{% if openshift_enterprise or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 view local roles and bindings,
 {%- endif %}
 including a matrix of the verbs and resources each are associated with.
@@ -157,7 +157,7 @@ the cluster level or at the project level.
 
 {% endif %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{% if openshift_enterprise or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 ## Cluster role aggregation {id="cluster-role-aggregations_{{ context }}"}
 The default admin, edit, view, and cluster-reader cluster roles support cluster role aggregation, where the cluster rules for each role are dynamically updated as new rules are created. This feature is relevant only if you extend the Kubernetes API by creating custom resources.
 

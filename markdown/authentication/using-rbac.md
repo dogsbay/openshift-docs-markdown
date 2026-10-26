@@ -35,7 +35,7 @@ title: Using RBAC to define and apply permissions
 
 {% leveloffset +1 %}{% include "./modules/rbac-adding-roles.md" %}{% endleveloffset %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{% if openshift_enterprise or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 {% leveloffset +1 %}{% include "./modules/rbac-creating-local-role.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/rbac-creating-cluster-role.md" %}{% endleveloffset %}
@@ -44,7 +44,7 @@ title: Using RBAC to define and apply permissions
 
 {% leveloffset +1 %}{% include "./modules/rbac-local-role-binding-commands.md" %}{% endleveloffset %}
 
-{% if openshift_enterprise or openshift_webscale or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
+{% if openshift_enterprise or openshift_origin or openshift_dedicated or openshift_rosa or openshift_rosa_hcp %}
 {% leveloffset +1 %}{% include "./modules/rbac-cluster-role-binding-commands.md" %}{% endleveloffset %}
 
 {% endif %}

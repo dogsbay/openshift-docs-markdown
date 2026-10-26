@@ -34,7 +34,6 @@ The `test/run` script produced by the `s2i create` command requires that the sam
 
 :::
 
-{% if not openshift_online %}
 ## Testing locally {id="images-test-s21-testing-locally_{{ context }}"}
 The easiest way to run the S2I image tests locally is to use the generated `Makefile`.
 
@@ -102,4 +101,3 @@ Once you have a `Dockerfile` and the other artifacts that make up your new S2I b
 If your {{ product_title }} instance is hosted on a public IP address, the build can be triggered each time you push into your S2I builder image GitHub repository.
 
 You can also use the `ImageChangeTrigger` to trigger a rebuild of your applications that are based on the S2I builder image you updated.
-{% endif %}

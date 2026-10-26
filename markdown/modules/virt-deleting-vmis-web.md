@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting a standalone virtual machine instance using the web console {id="virt-deleting-vmis-web_{{ context }}"}
+# Delete a standalone VMI by using the web console {id="virt-deleting-vmis-web_{{ context }}"}
 
-You can delete a standalone virtual machine instance (VMI) from the web console. {._abstract}
+You can delete a standalone virtual machine instance (VMI) by using the {{ product_title }} web console. The deletion is permanent and you cannot recover the VMI. {._abstract}
 
 **Procedure**
 

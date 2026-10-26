@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a static IP address when creating a virtual machine by using the web console {id="virt-configuring-ip-vm-web_{{ context }}"}
+# Configure a VM IP address by using the web console {id="virt-configuring-ip-vm-web_{{ context }}"}
 
 You can configure a static IP address when you create a virtual machine (VM) by using the web console. The IP address is provisioned with cloud-init. {._abstract}
 

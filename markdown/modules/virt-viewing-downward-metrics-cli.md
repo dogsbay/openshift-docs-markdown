@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Viewing downward metrics by using the CLI {id="virt-viewing-downward-metrics-cli_{{ context }}"}
+# View downward metrics by using the CLI {id="virt-viewing-downward-metrics-cli_{{ context }}"}
 
 You can view downward metrics by entering a command from inside a guest virtual machine (VM). {._abstract}
 

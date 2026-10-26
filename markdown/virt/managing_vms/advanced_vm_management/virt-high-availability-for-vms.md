@@ -28,5 +28,5 @@ For more information on remediation, fencing, and maintaining nodes, see the "Wo
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 *   [Workload Availability for Red Hat OpenShift](https://docs.redhat.com/en/documentation/workload_availability_for_red_hat_openshift/24.3)
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
-*   [Delete a failed node to trigger virtual machine failover](/virt/nodes/virt-eviction-strategies#virt-delete-failed-node-vm-failover_virt-eviction-strategies)
+*   [Trigger VM failover by deleting the failed node](/virt/nodes/virt-eviction-strategies#virt-delete-failed-node-vm-failover_virt-eviction-strategies)
 {%- endif %}

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Attaching a virtual machine to an OVN-Kubernetes secondary network using the CLI {id="virt-attaching-vm-to-ovn-secondary-nw-cli_{{ context }}"}
+# Attach a VM to a secondary overlay network {id="virt-attaching-vm-to-ovn-secondary-nw-cli_{{ context }}"}
 
 You can connect a virtual machine (VM) to the OVN-Kubernetes secondary network by including the network details in the VM configuration. {._abstract}
 
