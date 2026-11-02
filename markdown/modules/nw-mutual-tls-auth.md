@@ -24,11 +24,12 @@ If the `clientCA` value specifies an X509v3 certificate revocation list (CRL) di
 1.  In the `openshift-config` namespace, create a config map from your CA bundle:
     ```terminal
     $ oc create configmap \
-       router-ca-certs-default \
-       --from-file=ca-bundle.pem=client-ca.crt \ (1)
-       -n openshift-config
+      router-ca-certs-default \
+      --from-file=ca-bundle.pem=client-ca.crt \//
+      -n openshift-config
     ```
-    1.  The config map data key must be `ca-bundle.pem`, and the data value must be a CA certificate in PEM format.
+
+    The config map data key must be `ca-bundle.pem`, and the data value must be a CA certificate in PEM format.
 1.  Edit the `IngressController` resource in the `openshift-ingress-operator` project:
     ```terminal
     $ oc edit IngressController default -n openshift-ingress-operator

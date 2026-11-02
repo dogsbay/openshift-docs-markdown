@@ -2,7 +2,7 @@
 
 # CustomPlugin type {id="customplugin-type_{{ context }}"}
 
-The following are `CustomPlugin` {{ oadp_short }} APIs: {._abstract}
+Use the `CustomPlugin` {{ oadp_short }} API type to define the name and container image of a custom Velero plugin for {{ oadp_short }} in {{ product_title }}. {._abstract}
 
 **CustomPlugin**
 

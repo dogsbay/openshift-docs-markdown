@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deleting the Argo CD pipeline post-migration {id="ztp-clusterinstance-cleanup_{{ context }}"}
 
-After you migrate all {{ sno }} clusters from using `SiteConfig` CRs to `ClusterInstance` CRs, you can delete the original Argo CD application and related resources that managed the `SiteConfig` CRs.
+After you migrate all {{ sno }} clusters from using `SiteConfig` CRs to `ClusterInstance` CRs, you can delete the original Argo CD application and related resources that managed the `SiteConfig` CRs. {._abstract}
 
 
 :::note

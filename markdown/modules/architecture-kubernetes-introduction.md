@@ -4,7 +4,7 @@
 Although container images and the containers that run from them are the
 primary building blocks for modern application development, to run them at scale
 requires a reliable and flexible distribution system. Kubernetes is the
-defacto standard for orchestrating containers.
+defacto standard for orchestrating containers. {._abstract}
 
 Kubernetes is an open source container orchestration engine for automating
 deployment, scaling, and management of containerized applications. The general

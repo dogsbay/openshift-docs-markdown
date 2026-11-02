@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Performing an image-based upgrade on managed clusters at scale in several steps {id="ztp-image-based-upgrade-procedure-steps_{{ context }}"}
 
-For use cases when you need better control of when the upgrade interrupts your service, you can upgrade a set of your managed clusters by using the `ImageBasedGroupUpgrade` CR. You can use the `ImageBasedGroupUpgrade` CR to add actions after the earlier step is complete.
-After evaluating the results of the earlier steps, you can move to the next upgrade stage or troubleshoot any failed steps throughout the procedure. {._abstract}
+For use cases when you need better control of when the upgrade interrupts your service, you can upgrade a set of your managed clusters by using the `ImageBasedGroupUpgrade` CR. You can use the `ImageBasedGroupUpgrade` CR to add actions after the earlier step is complete. {._abstract}
+
+After evaluating the results of the earlier steps, you can move to the next upgrade stage or troubleshoot any failed steps throughout the procedure.
 
 {% include "./snippets/ibu-supported-action-combinations.md" %}
 
@@ -49,17 +50,16 @@ After evaluating the results of the earlier steps, you can move to the next upgr
             timeout: 2400
     ```
 
-    Where:
+    where:
 
     *   `clusterLabelSelectors`: Clusters to upgrade.
     *   `seedImageRef`: Target platform version, the seed image, and the secret required to access the image.
 
+        :::note
 
-    :::note
-
-    If you add the seed image pull secret in the hub cluster, in the same namespace as the `ImageBasedGroupUpgrade` resource, the {{ lco }} adds the secret to the manifest list for the `Prep` stage. The {{ lco }} recreates the secret in each spoke cluster in the `openshift-lifecycle-agent` namespace.
-    
-    :::
+        If you add the seed image pull secret in the hub cluster, in the same namespace as the `ImageBasedGroupUpgrade` resource, the {{ lco }} adds the secret to the manifest list for the `Prep` stage. The {{ lco }} recreates the secret in each spoke cluster in the `openshift-lifecycle-agent` namespace.
+        
+        :::
 
     *   `extraManifests`: Optional: Applies additional manifests, which are not in the seed image, to the target cluster. Also applies `ConfigMap` objects for custom catalog sources.
     *   `oadpContent`: List of `ConfigMap` resources that contain the {{ oadp_short }} `Backup` and `Restore` CRs.
@@ -73,7 +73,9 @@ After evaluating the results of the earlier steps, you can move to the next upgr
     $ oc get ibgu -o yaml
     ```
 
-    ```yaml title="Example output"
+    Example output:
+
+    ```yaml
     # ...
     status:
       clusters:
@@ -132,7 +134,9 @@ After evaluating the results of the earlier steps, you can move to the next upgr
     $ oc get ibgu -o yaml
     ```
 
-    ```yaml title="Example output"
+    Example output:
+
+    ```yaml
     # ...
     status:
       clusters:

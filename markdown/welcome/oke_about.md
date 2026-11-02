@@ -31,4 +31,4 @@ You download and install {{ oke }} the same way as {{ product_title }},
 as they are the same binary distribution, but {{ oke }} offers a subset of the
 features that {{ product_title }} offers.
 
-{% leveloffset +1 %}{% include "./modules/oke_similarities_and_differences.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/oke-similarities-and-differences.md" %}{% endleveloffset %}

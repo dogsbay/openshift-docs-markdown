@@ -8,7 +8,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Catalog source {id="olm-catalogsource_{{ context }}"}
 
-A _catalog source_ represents a store of metadata, typically by referencing an _index image_ stored in a container registry. Operator Lifecycle Manager (OLM) queries catalog sources to discover and install Operators and their dependencies. The software catalog in the {{ product_title }} web console also displays the Operators provided by catalog sources. {._abstract}
+A _catalog source_ represents a store of metadata, typically by referencing an _index image_ stored in a container registry. Operator Lifecycle Manager (OLM) queries catalog sources to discover and install Operators and their dependencies.  {._abstract}
+
+The software catalog in the {{ product_title }} web console also displays the Operators provided by catalog sources.
 
 
 :::tip

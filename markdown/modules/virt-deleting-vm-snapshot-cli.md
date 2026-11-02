@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting a virtual machine snapshot in the CLI {id="virt-deleting-vm-snapshot-cli_{{ context }}"}
+# Delete a snapshot by using the CLI {id="virt-deleting-vm-snapshot-cli_{{ context }}"}
 
 You can delete an existing virtual machine (VM) snapshot by deleting the appropriate `VirtualMachineSnapshot` object. {._abstract}
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # generate {id="opm-cli-ref-generate_{{ Context }}"}
 
-Generate various artifacts for declarative config indexes.
+Generate various artifacts for declarative config indexes. {._abstract}
 
 ```terminal title="Command syntax"
 $ opm generate <subcommand> [<flags>]

@@ -13,9 +13,9 @@ This includes installing and configuring KubeVirt Redfish and creating the contr
 {%- set FeatureName = "KubeVirt Redfish" %}
 {% include "./snippets/technology-preview.md" %}
 
-{% leveloffset +1 %}{% include "./modules/proc_virt-installing-kubevirt-redfish.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/proc-virt-installing-kubevirt-redfish.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/proc_virt-creating-vcp-vms.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/proc-virt-creating-vcp-vms.md" %}{% endleveloffset %}
 
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 

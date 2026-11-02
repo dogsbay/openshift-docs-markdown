@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Late binding for bare-metal host pools in {{ ztp }} deployments {id="ztp-late-binding-bare-metal-host-pools_{{ context }}"}
 
-In the standard {{ ztp }} flow, the `InfraEnv` custom resource (CR) references a specific `ClusterDeployment` CR, and all discovered hosts are automatically associated with that cluster.
-Late binding separates host discovery from cluster assignment, so you can manage a pool of bare-metal hosts independently from cluster lifecycle. {._abstract}
+In the standard {{ ztp }} flow, the `InfraEnv` custom resource (CR) references a specific `ClusterDeployment` CR, and all discovered hosts are automatically associated with that cluster. {._abstract}
+
+Late binding separates host discovery from cluster assignment, so you can manage a pool of bare-metal hosts independently from cluster lifecycle.
 
 With late binding, you create an `InfraEnv` CR without a `ClusterDeployment` reference, so that all hosts booted from the discovery ISO remain unbound and available for assignment to any cluster.
 You then use the `bmac.agent-install.openshift.io/cluster-reference` annotation on `BareMetalHost` resources to declaratively bind individual hosts to specific `ClusterDeployment` CRs.

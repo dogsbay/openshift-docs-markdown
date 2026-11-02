@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# How node health monitoring protects virtual machines {id="virt-about-recommended-node-practices_{{ context }}"}
+# Node health monitoring for protection of virtual machines {id="virt-about-recommended-node-practices_{{ context }}"}
 
 By default, virtual machines (VMs) are not automatically recovered to other available nodes when a node fails. To minimize VM downtime and ensure workload resilience, configure node health monitoring and automated remediation. {._abstract}
 

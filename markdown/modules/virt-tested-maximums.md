@@ -47,7 +47,7 @@ The following maximums apply to objects defined in {{ VirtProductName }}.
 | Hosts | 500 hosts (100 or fewer recommended) <sup>[1]</sup> | Same as {{ product_title }} |
 | Defined VMs | 10,000 VMs <sup>[2]</sup> | Same as {{ product_title }} |
 
-1.  If you use more than 100 nodes, consider using {{ rh_rhacm_first }} to manage multiple clusters instead of scaling out a single control plane. Larger clusters add complexity, require longer updates, and depending on node size and total object density, they can increase control plane stress.
+1.  If you use more than 100 nodes, consider using Red&#160;Hat Advanced Cluster Management (RHACM) to manage multiple clusters instead of scaling out a single control plane. Larger clusters add complexity, require longer updates, and depending on node size and total object density, they can increase control plane stress.
 
     Using multiple clusters can be beneficial in areas like per-cluster isolation and high availability.
 1.  The maximum number of VMs per node depends on the host hardware and resource capacity. It is also limited by the following parameters:

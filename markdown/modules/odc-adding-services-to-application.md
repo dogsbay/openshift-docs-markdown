@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Adding services to your application {id="odc-adding-services-to-your-application_{{ context }}"}
 
-To add a service to your application use the **+Add** actions using the context menu in the topology **Graph view**.
+To add a service to your application use the **+Add** actions using the context menu in the topology **Graph view**. {._abstract}
 
 
 :::note

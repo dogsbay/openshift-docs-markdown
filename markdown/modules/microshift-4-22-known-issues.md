@@ -1,4 +1,4 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # Known issues {id="microshift-4-22-known-issues_{{ context }}"}
 
 Understand the known issues that impact your {{ microshift_short }} development and deployments. {._abstract}

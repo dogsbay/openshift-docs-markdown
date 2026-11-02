@@ -1,0 +1,169 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Create a VirtualMachineBackupsDiscovery CR {id="oadp-vmfr-creating-vmbd_{{ context }}"}
+
+Create a `VirtualMachineBackupsDiscovery` (VMBD) custom resource (CR) to identify which Velero backups contain a specified virtual machine (VM). You can locate available backups before performing a file-level restore. {._abstract}
+
+After you create a VMBD CR, the CR undergoes the following phases:
+
+*   The initial phase for the CR is `New`.
+*   The controller compiles candidate backups and verifies VM presence in each backup.
+*   Upon successful discovery, the `status.phase` field of the VMBD CR is updated to `Completed`.
+
+
+:::important
+
+Create all VMFR custom resources in the protected namespace, which is `openshift-adp` by default.
+
+:::
+
+
+**Prerequisites**
+
+*   You are logged in to the cluster with the `cluster-admin` role.
+*   You have installed the {{ oadp_short }} Operator.
+*   You have configured the `DataProtectionApplication` (DPA) CR with the VMFR feature enabled.
+*   You have existing Velero backups that contain virtual machine data.
+
+**Procedure**
+
+1.  Create a `VirtualMachineBackupsDiscovery` CR YAML manifest file with the following configuration:
+    ```yaml
+    apiVersion: oadp.openshift.io/v1alpha1
+    kind: VirtualMachineBackupsDiscovery
+    metadata:
+      name: find-my-vm-backups
+      namespace: openshift-adp
+    spec:
+      virtualMachineName: "production-web-server"
+      virtualMachineNamespace: "production"
+    ```
+
+    where:
+
+    `name`
+    :   Specifies a name for the VMBD CR. For example, `find-my-vm-backups`.
+
+    `namespace`
+    :   Specifies the namespace where the VMBD CR is created. This must be the {{ oadp_short }} protected namespace, typically `openshift-adp`.
+
+    `virtualMachineName`
+    :   Specifies the name of the virtual machine to search for in backups. For example, `production-web-server`.
+
+    `virtualMachineNamespace`
+    :   Specifies the namespace of the target virtual machine. For example, `production`.
+
+1.  Optional: To filter backups by a time range, add `startTime` and `endTime` fields to the `spec` section:
+    ```yaml
+    apiVersion: oadp.openshift.io/v1alpha1
+    kind: VirtualMachineBackupsDiscovery
+    metadata:
+      name: find-my-vm-backups
+      namespace: openshift-adp
+    spec:
+      virtualMachineName: "production-web-server"
+      virtualMachineNamespace: "production"
+      startTime: "2025-08-01"
+      endTime: "2025-09-01"
+    ```
+
+    where:
+
+    `startTime`
+    :   Specifies the start of the time range to filter backups. Backups created before this date are excluded.
+
+    `endTime`
+    :   Specifies the end of the time range to filter backups. Backups created after this date are excluded.
+
+1.  Optional: To discover specific backups by name, add the `requestedBackups` field to the `spec` section:
+    ```yaml
+    apiVersion: oadp.openshift.io/v1alpha1
+    kind: VirtualMachineBackupsDiscovery
+    metadata:
+      name: find-my-vm-backups
+      namespace: openshift-adp
+    spec:
+      virtualMachineName: "production-web-server"
+      virtualMachineNamespace: "production"
+      requestedBackups:
+        - "initial-backup-from-2024-01-01"
+        - "last-working-from-2025-07-28"
+    ```
+
+    where:
+
+    `requestedBackups`
+    :   Specifies a list of backup names to include in the discovery. These backups are included regardless of any time range filter.
+
+1.  To apply the VMBD CR configuration, run the following command:
+    ```terminal
+    $ oc apply -f <vmbd_cr_filename>
+    ```
+
+    Replace `<vmbd_cr_filename>` with the file name containing the VMBD CR configuration.
+
+**Verification**
+
+*   To verify that the VMBD CR is successfully created and discovery is complete, run the following command:
+    ```terminal
+    $ oc get vmbd find-my-vm-backups -n openshift-adp -o yaml
+    ```
+    ```yaml
+    apiVersion: oadp.openshift.io/v1alpha1
+    kind: VirtualMachineBackupsDiscovery
+    metadata:
+      name: find-my-vm-backups
+      namespace: openshift-adp
+    spec:
+      virtualMachineName: "production-web-server"
+      virtualMachineNamespace: "production"
+    status:
+      phase: Completed
+      validBackups:
+        - name: "backup-2025-09-20"
+          namespace: openshift-adp
+          createdAt: "2025-09-20T02:00:00Z"
+        - name: "backup-2025-09-15"
+          namespace: openshift-adp
+          createdAt: "2025-09-15T02:00:00Z"
+      backupDiscoveryProgress:
+        - name: "backup-2025-09-20"
+          namespace: openshift-adp
+          status: Completed
+          message: "VM found in backup"
+          createdAt: "2025-09-20T02:00:00Z"
+        - name: "backup-2025-09-15"
+          namespace: openshift-adp
+          status: Completed
+          message: "VM found in backup"
+          createdAt: "2025-09-15T02:00:00Z"
+      conditions:
+        - type: Ready
+          status: "True"
+          message: "Successfully discovered 2 valid backups"
+          reason: DiscoverySuccessful
+      discoveryStats:
+        totalCandidates: 2
+        completed: 2
+        failed: 0
+        inProgress: 0
+        pending: 0
+        skipped: 0
+      observedGeneration: 1
+    ```
+
+    where:
+
+    `phase: Completed`
+    :   Specifies that the discovery process is complete.
+
+    `validBackups`
+    :   Specifies the list of backups that contain the specified virtual machine. Each entry includes the `name`, `namespace`, and `createdAt` timestamp.
+
+    `backupDiscoveryProgress`
+    :   Specifies the discovery progress for each candidate backup, including the `status` and `message`.
+
+    `discoveryStats`
+    :   Specifies the total number of candidate backups processed and the count of completed, failed, in-progress, pending, and skipped results.
+
+    `observedGeneration`
+    :   Specifies the last generation value processed by the controller.

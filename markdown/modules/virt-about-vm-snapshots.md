@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About snapshots {id="virt-about-vm-snapshots_{{ context }}"}
+# VM snapshot concepts and components {id="virt-about-vm-snapshots_{{ context }}"}
 
 A _snapshot_ represents the state and data of a virtual machine (VM) at a specific point in time. You can use a snapshot to restore an existing VM to a previous state (represented by
 the snapshot) for backup and disaster recovery or to rapidly roll back to a previous development version. {._abstract}

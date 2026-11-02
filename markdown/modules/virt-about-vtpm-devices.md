@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About vTPM devices {id="virt-about-vtpm-devices_{{ context }}"}
+# vTPM devices and state persistence {id="virt-about-vtpm-devices_{{ context }}"}
 
 A virtual Trusted Platform Module (vTPM) device functions like a
 physical Trusted Platform Module (TPM) hardware chip.

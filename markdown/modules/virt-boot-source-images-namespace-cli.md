@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring a custom namespace for boot source images by using the CLI {id="virt-boot-source-images-namespace-cli_{{ context }}"}
+# Configure a boot source image namespace by using the CLI {id="virt-boot-source-images-namespace-cli_{{ context }}"}
 
 You can configure a custom namespace for boot source images in your cluster by setting the `spec.commonBootImageNamespace` field in the `HyperConverged` custom resource (CR). {._abstract}
 

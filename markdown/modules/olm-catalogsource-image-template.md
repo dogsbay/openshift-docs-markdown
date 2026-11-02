@@ -8,12 +8,14 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Image template for custom catalog sources {id="olm-catalogsource-image-template_{{ context }}"}
 
-Operator compatibility with the underlying cluster can be expressed by a catalog source in various ways. One way, which is used for the default Red Hat-provided catalog sources, is to identify image tags for index images that are specifically created for a particular platform release, for example
+Operator compatibility with the underlying cluster can be expressed by a catalog source in various ways.  {._abstract}
+
+One way, which is used for the default Red Hat-provided catalog sources, is to identify image tags for index images that are specifically created for a particular platform release, for example
 {%- if not (openshift_rosa or openshift_rosa_hcp or openshift_dedicated) %}
 {{ product_title }} {{ product_version }}.
 {%- endif %}
 {%- if openshift_rosa or openshift_rosa_hcp or openshift_dedicated %}
-{{ product_title }}. {._abstract}
+{{ product_title }}.
 {%- endif %}
 
 During a cluster upgrade, the index image tag for the default Red Hat-provided catalog sources are updated automatically by the Cluster Version Operator (CVO) so that Operator Lifecycle Manager (OLM) pulls the updated version of the catalog. For example during an upgrade from {{ product_title }} {{ ocp_nminus1 }} to {{ product_version }} {{ product_version }}, the `spec.image` field in the `CatalogSource` object for the `redhat-operators` catalog is updated from:

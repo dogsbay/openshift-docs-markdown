@@ -2,6 +2,8 @@
 
 # Installing a Helm chart on an {{ product_title }} cluster {id="installing-a-helm-chart-on-an-openshift-cluster_{{ context }}"}
 
+You can install a Helm chart on an {{ product_title }} cluster using the Helm CLI. {._abstract}
+
 **Prerequisites**
 
 *   You have a running {{ product_title }} cluster and you have logged into it.

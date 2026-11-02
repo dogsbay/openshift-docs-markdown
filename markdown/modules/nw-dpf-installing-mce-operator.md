@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Install the multicluster engine Operator {id="nw-dpf-installing-mce-operator_{{ context }}"}
 
-If you did not install the multicluster engine Operator by using the Assisted Installer, install it from the OpenShift CLI. You do not need to install Red Hat Advanced Cluster Management or create a `MultiClusterHub` resource to use the multicluster engine Operator. If the Assisted Installer already created a `MultiClusterEngine` resource, skip this procedure. {._abstract}
+If you did not install the multicluster engine Operator by using the Assisted Installer, install it from the OpenShift CLI.  {._abstract}
+
+You do not need to install Red Hat Advanced Cluster Management or create a `MultiClusterHub` resource to use the multicluster engine Operator. If the Assisted Installer already created a `MultiClusterEngine` resource, skip this procedure.
 
 **Prerequisites**
 

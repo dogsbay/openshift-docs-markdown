@@ -2,7 +2,7 @@
 
 # SnapshotLocation type {id="snapshotlocation-type_{{ context }}"}
 
-The following are `SnapshotLocation` {{ oadp_short }} APIs: {._abstract}
+Use the `SnapshotLocation` {{ oadp_short }} API type to define where {{ oadp_short }} stores volume snapshots in {{ product_title }}. It uses the Velero `VolumeSnapshotLocationSpec` to specify the snapshot storage backend. {._abstract}
 
 **SnapshotLocation**
 

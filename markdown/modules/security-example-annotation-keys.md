@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Example annotation keys {id="security-example-annotation-keys_{{ context }}"}
 
-The following are example annotation keys: {._abstract}
+The following text shows you example of four annotation keys. {._abstract}
 
 ```
 quality.images.openshift.io/vulnerability.blackduck: {}

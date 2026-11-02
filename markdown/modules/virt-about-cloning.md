@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About cloning {id="virt-about-cloning_{{ context }}"}
+# VM cloning methods {id="virt-about-cloning_{{ context }}"}
 
 When cloning a data volume, the Containerized Data Importer (CDI) chooses one of the Container Storage Interface (CSI) clone methods: CSI volume cloning or smart cloning. Both methods are efficient but have certain requirements. If the requirements are not met, the CDI uses host-assisted cloning. {._abstract}
 

@@ -10,7 +10,7 @@ To uninstall {{ VirtProductName }}, perform the following tasks:
 1.  Delete the `{{ CNVNamespace }}`{minja} namespace.
 1.  Delete the {{ VirtProductName }} custom resource definitions (CRDs).
 
-**Prerequisites**
+## Prerequisites {id="_prerequisites"}
 
 *   All virtual machine instances are deleted. You cannot uninstall {{ VirtProductName }} while its workloads remain on the cluster.
 

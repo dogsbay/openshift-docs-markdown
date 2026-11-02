@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Performing an Operator update with {{ policy_gen_cr }} CRs {id="talo-operator-update-{{ policy_gen_cr }}_{{ context }}"}
 
-You can perform an Operator update with the {{ cgu_operator }}. {._abstract}
+To update Day 2 Operators on managed {{ product_title }} clusters using {{ cgu_operator }}, you can create `{{ policy_gen_cr }}`{minja} CRs that specify the required catalog source and subscription versions. The {{ cgu_operator }} progressively rolls out the update across target clusters. {._abstract}
 
 **Prerequisites**
 

@@ -46,11 +46,11 @@ As a cluster administrator, you can configure the OVN-Kubernetes Container Netwo
 
 {%- if not (openshift_rosa or openshift_rosa_hcp) %}
 
-{% leveloffset +1 %}{% include "./modules/egressip_failover_concept.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/egressip-failover-concept.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/egressip_configure_failover_task.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/egressip-configure-failover-task.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/egressip_failover_reference.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/egressip-failover-reference.md" %}{% endleveloffset %}
 {%- endif %}
 
 {% leveloffset +1 %}{% include "./modules/nw-egress-ips-node.md" %}{% endleveloffset %}

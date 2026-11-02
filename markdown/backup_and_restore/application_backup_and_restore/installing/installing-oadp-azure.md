@@ -66,7 +66,7 @@ To install the OADP Operator in a restricted network environment, you must first
 
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
-*   [Velero {{ velero_version }}](https://{{ velero_domain }}/docs/v{{ velero_version }}/)
+*   [Velero {{ velero_version }}](https://velero.io/docs/)
 *   [Installing the OADP Operator](/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)
 *   [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
 *   [Installing the Data Protection Application with the `kubevirt` and `openshift` plugins](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-kubevirt#oadp-installing-dpa_installing-oadp-kubevirt)

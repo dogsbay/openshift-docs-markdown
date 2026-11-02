@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Excluding the SR-IOV network topology for NUMA-aware scheduling {id="nw-sriov-configure-exclude-topology-manager_{{ context }}"}
 
-To exclude advertising the SR-IOV network resource’s Non-Uniform Memory Access (NUMA) node to the Topology Manager, you can configure the `excludeTopology` specification in the `SriovNetworkNodePolicy` custom resource. Use this configuration for more flexible SR-IOV network deployments during NUMA-aware pod scheduling. {._abstract}
+To exclude advertising the SR-IOV network resource’s Non-Uniform Memory Access (NUMA) node to the Topology Manager, you can configure the `excludeTopology` specification in the `SriovNetworkNodePolicy` custom resource.  {._abstract}
+
+Use this configuration for more flexible SR-IOV network deployments during NUMA-aware pod scheduling.
 
 **Prerequisites**
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring a RoCE adapter for virtual machine networking on {{ ibm_z_name }} {id="virt-udn-roce-ibm-z_{{ context }}"}
 
-On {{ ibm_z_name }} z17, RoCE adapters support promiscuous mode at the hardware level, which forwards traffic for all virtual machine MAC addresses without manual registration. On earlier {{ ibm_z_name }} generations, each virtual machine MAC address must be manually registered with the RoCE interface because promiscuous mode is not available. {._abstract}
+On {{ ibm_z_name }} z17, RoCE adapters support promiscuous mode at the hardware level, which forwards traffic for all virtual machine MAC addresses. This prevents the requirement of manually registering each virtual machine MAC address with the RoCE interface. {._abstract}
 
 Use the following procedure to enable promiscuous mode on {{ ibm_z_name }} z17.
 

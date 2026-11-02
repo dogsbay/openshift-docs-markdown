@@ -51,8 +51,8 @@ Alertmanager
 {%- if openshift_dedicated or openshift_rosa %}
 *   [About {{ product_title }} monitoring](/observability/monitoring/about-ocp-monitoring/about-ocp-monitoring#about-ocp-monitoring)
 {%- endif %}
-*   [Installing the QEMU guest agent on a Linux VM](/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent-on-linux-vm_virt-installing-qemu-guest-agent)
-*   [Installing VirtIO drivers from a SATA CD drive on an existing Windows VM](/virt/managing_vms/virt-install-virtio-drivers-on-windows-vms#virt-installing-virtio-drivers-existing-windows_virt-install-virtio-drivers-on-windows-vms)
+*   [Install the QEMU guest agent on a Linux VM](/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent-on-linux-vm_virt-installing-qemu-guest-agent)
+*   [Install VirtIO drivers from a SATA CD on an existing VM](/virt/managing_vms/virt-install-virtio-drivers-on-windows-vms#virt-installing-virtio-drivers-existing-windows_virt-install-virtio-drivers-on-windows-vms)
 *   [Connect to the desktop viewer by using the web console](/virt/managing_vms/virt-accessing-vm-consoles#virt-connecting-desktop-viewer-web_virt-accessing-vm-consoles)
 *   [Generate a VM memory dump](/virt/support/virt-collecting-virt-data#virt-generating-a-vm-memory-dump_virt-collecting-virt-data)
 *   [Submitting a support case](/support/getting-support#support-submitting-a-case_getting-support)

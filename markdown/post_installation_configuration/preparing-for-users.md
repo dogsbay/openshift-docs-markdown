@@ -25,7 +25,7 @@ after you install your cluster.
 
 {% leveloffset +2 %}{% include "./modules/identity-provider-parameters.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/identity-provider-default-CR.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/identity-provider-default-cr.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/post-install-using-rbac-to-define-and-apply-permissions.md" %}{% endleveloffset %}
 

@@ -17,6 +17,8 @@ To create an additional SR-IOV network attachment with the CNI virtual routing a
 
 *   Install the {{ oc_first }}.
 *   Log in to the {{ product_title }} cluster as a user with cluster-admin privileges.
+*   The SR-IOV Network Operator is installed.
+*   The SR-IOV network devices are configured for the `resourceName` you specify.
 
 **Procedure**
 

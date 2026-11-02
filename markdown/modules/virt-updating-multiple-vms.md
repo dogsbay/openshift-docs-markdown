@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Updating multiple virtual machines {id="virt-updating-multiple-vms_{{ context }}"}
+# Update multiple virtual machines {id="virt-updating-multiple-vms_{{ context }}"}
 
 You can use the command line interface (CLI) to update multiple virtual machines (VMs) at the same time. {._abstract}
 

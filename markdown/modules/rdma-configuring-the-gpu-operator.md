@@ -2,7 +2,7 @@
 
 # Configuring the GPU Operator {id="rdma-configuring-the-gpu-operator_{{ context }}"}
 
-The GPU Operator automates the management of the NVIDIA drivers, device plugins for GPUs, the NVIDIA Container Toolkit, and other components required for GPU provisioning.  
+The GPU Operator automates the management of the NVIDIA drivers, device plugins for GPUs, the NVIDIA Container Toolkit, and other components required for GPU provisioning.   {._abstract}
 
 **Prerequisites**
 

@@ -1,9 +1,10 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Observability {id="telco-hub-observability_{{ context }}"}
 
-The {{ rh_rhacm_first }} multicluster engine Observability component provides centralized aggregation and visualization of metrics and alerts for all managed clusters.
+The {{ rh_rhacm_first }} multicluster engine Observability component provides centralized aggregation and visualization of metrics and alerts for all managed clusters. {._abstract}
+
 To balance performance and data analysis, the monitoring service maintains a subset list of aggregated metrics that are collected at a downsampled interval.
-The metrics can be accessed on the hub through a set of different preconfigured dashboards. {._abstract}
+The metrics can be accessed on the hub through a set of different preconfigured dashboards.
 
 
 Observability installation

@@ -1,0 +1,66 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
+# Prepare a container disk for VMs {id="conditional-virt-preparing-container-disk-for-vms_{{ context }}"}
+
+You can build a virtual machine (VM) image into a container disk and upload it to a registry. {._abstract}
+
+The size of a container disk is limited by the maximum layer size of the registry where the container disk is hosted.
+
+You create a VM from a container disk by performing the following steps:
+
+1.  Build an operating system image into a container disk and upload it to your container registry.
+1.  If your container registry does not have TLS, configure your environment to disable TLS for your registry.
+1.  Create a VM with the container disk as the disk source by using the {{ product_title }} web console or the command line.
+
+
+:::important
+
+If the container disks are large, the I/O traffic might increase and cause worker nodes to be unavailable. You can perform the following tasks to reclaim resources:
+
+*   Prune `DeploymentConfig` objects.
+*   Configure garbage collection.
+
+:::
+
+
+
+:::note
+
+For [Red&#160;Hat Quay](https://access.redhat.com/documentation/en-us/red_hat_quay/), you can change the maximum layer size by editing the YAML configuration file that is created when Red&#160;Hat Quay is first deployed.
+
+:::
+
+
+**Prerequisites**
+
+*   You must have `podman` installed.
+*   You must have a QCOW2 or RAW image file.
+
+**Procedure**
+
+1.  Create a Dockerfile to build the VM image into a container image. The VM image must be owned by QEMU, which has a UID of `107`, and placed in the `/disk/` directory inside the container. Permissions for the `/disk/` directory must then be set to `0440`.
+
+    The following example uses the Red Hat Universal Base Image (UBI) to handle these configuration changes in the first stage, and uses the minimal `scratch` image in the second stage to store the result:
+    ```terminal
+    $ cat > Dockerfile << EOF
+    FROM registry.access.redhat.com/ubi8/ubi:latest AS builder
+    ADD --chown=107:107 <vm_image>.qcow2 /disk/ //
+    RUN chmod 0440 /disk/*
+
+    FROM scratch
+    COPY --from=builder /disk/* /disk/
+    EOF
+    ```
+
+    where:
+
+    `<vm_image>`
+    :   Specifies the image in either QCOW2 or RAW format. If you use a remote image, replace `<vm_image>.qcow2` with the complete URL.
+
+1.  Build and tag the container:
+    ```terminal
+    $ podman build -t <registry>/<container_disk_name>:latest .
+    ```
+1.  Push the container image to the registry:
+    ```terminal
+    $ podman push <registry>/<container_disk_name>:latest
+    ```

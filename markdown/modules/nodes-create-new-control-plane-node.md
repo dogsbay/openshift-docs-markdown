@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating the new control plane node {id="create-new-machine_{{ context }}"}
 
-Begin creating the new control plane node by creating a `BareMetalHost` object and node.
+Begin creating the new control plane node by creating a `BareMetalHost` object and node. {._abstract}
 
 **Procedure**
 

@@ -110,7 +110,7 @@ For more information, see "Creating a manifest object that includes a customized
 
 *   [The NMPolicy project - Policy syntax](https://nmstate.io/nmpolicy/user-guide/102-policy-syntax.html)
 
-{% leveloffset +1 %}{% include "./modules/virt-example-nmstate-IP-management.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/virt-example-nmstate-ip-management.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/nw-nmstate-enable-per-interface-ip-forwarding.md" %}{% endleveloffset %}
 

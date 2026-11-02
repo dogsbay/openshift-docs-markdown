@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a VM from a VirtualMachine manifest {id="virt-creating-vm-cli_{{ context }}"}
+# Create a VM from a manifest {id="virt-creating-vm-cli_{{ context }}"}
 
 You can create a virtual machine (VM) from a `VirtualMachine` manifest. To simplify the creation of these manifests, you can use the `virtctl` command-line tool. {._abstract}
 

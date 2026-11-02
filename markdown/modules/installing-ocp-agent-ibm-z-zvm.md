@@ -1,9 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Adding {{ ibm_z_title }} agents with z/VM {id="installing-ocp-agent-ibm-z-zvm_{{ context }}"}
 
-You can manually add {{ ibm_z_name }} agents with z/VM. {._abstract}
-
-Only use this procedure for {{ ibm_z_name }} clusters with z/VM.
+You can manually add {{ ibm_z_name }} agents with z/VM. Only use this procedure for {{ ibm_z_name }} clusters with z/VM. {._abstract}
 
 **Prerequisites**
 

@@ -2,7 +2,7 @@
 
 # Creating a shared device RDMA on Infiniband {id="rdma-creating-shared-device-rdma-ib_{{ context }}"}
 
-Create the workload pods for a shared device Remote Direct Memory Access (RDMA) for an Infiniband installation.
+Create the workload pods for a shared device Remote Direct Memory Access (RDMA) for an Infiniband installation. {._abstract}
 
 **Procedure**
 

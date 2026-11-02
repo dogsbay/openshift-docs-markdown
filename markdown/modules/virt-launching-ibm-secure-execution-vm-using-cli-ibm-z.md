@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Launching an {{ ibm_title }} Secure Execution VM by using the CLI {id="virt-launching-ibm-secure-execution-vm-using-cli-ibm-z_{{ context }}"}
+# Launch a Secure Execution VM from the CLI {id="virt-launching-ibm-secure-execution-vm-using-cli-ibm-z_{{ context }}"}
 
 You can launch an {{ ibm_name }} Secure Execution VM on {{ ibm_z_name }} and {{ ibm_linuxone_name }} by using the command-line interface. {._abstract}
 

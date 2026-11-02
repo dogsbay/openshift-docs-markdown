@@ -2,7 +2,7 @@
 
 # ResticConfig type {id="resticconfig-type_{{ context }}"}
 
-The following are `ResticConfig` {{ oadp_short }} APIs: {._abstract}
+Use the `ResticConfig` {{ oadp_short }} API type to enable and configure Restic-based backup and restore in {{ product_title }}. It defines the Restic timeout, supplemental groups, and pod configuration. {._abstract}
 
 **ResticConfig**
 

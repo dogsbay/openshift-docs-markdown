@@ -24,7 +24,7 @@ cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/dynamic-plugin-proxy-service.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/proc_enabling-dynamic-plugin-using-cli.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/proc-enabling-dynamic-plugin-using-cli.md" %}{% endleveloffset %}
 
 {% if not (openshift_rosa or openshift_dedicated or openshift_rosa_hcp) %}
 

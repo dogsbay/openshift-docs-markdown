@@ -13,8 +13,8 @@ The {{ op_system_ostree }} Installer image pulls the commit from the running con
 **Procedure**
 
 1.  Start an `ostree` container image build by running the following command:
-    ```terminal
-    $ BUILDID=$(sudo composer-cli compose start-ostree --ref "rhel/{op-system-version-major}/$(uname -m)/edge" __<microshift_blueprint>__ edge-container | awk '/^Compose/ {print $2}')
+    ```terminal {minja}
+    $ BUILDID=$(sudo composer-cli compose start-ostree --ref "rhel/{{ op_system_version_major }}/$(uname -m)/edge" __<microshift_blueprint>__ edge-container | awk '/^Compose/ {print $2}')
     ```
 
     Replace `_<microshift_blueprint>_` with the name of your blueprint.

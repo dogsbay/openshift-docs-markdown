@@ -28,4 +28,4 @@ Velero uses the following algorithm to assign priorities to API versions, with `
 **Additional resources**
 {._additional-resources}
 
-*   [Enable API Group Versions Feature](https://velero.io/docs/v1.9/enable-api-group-versions-feature/)
+*   [Enable API Group Versions Feature](https://velero.io/docs/latest/enable-api-group-versions-feature/)

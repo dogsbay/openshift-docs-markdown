@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Sample YAML for a Windows MachineSet object on vSphere {id="windows-machineset-vsphere_{{ context }}"}
 
-You can define a Windows `MachineSet` object running on {{ vmw_first }} by creating a YAML file similar to the following example, which the Windows Machine Config Operator (WMCO) can react upon. {._abstract}
+You can define a Windows `MachineSet` object running on VMware vSphere by creating a YAML file similar to the following example, which the Windows Machine Config Operator (WMCO) can react upon. {._abstract}
 
 ```yaml
 apiVersion: machine.openshift.io/v1beta1

@@ -52,17 +52,17 @@ This is especially helpful if you need to tailor the web console to meet specifi
 
 {% leveloffset +1 %}{% include "./modules/odc-customizing-user-perspectives.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/odc-customizing-a-perspective-using-YAML-view.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/odc-customizing-a-perspective-using-yaml-view.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/odc-customizing-a-perspective-using-form-view.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/odc_con_customizing-a-developer-catalog-or-its-sub-catalogs.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/odc-con-customizing-a-developer-catalog-or-its-sub-catalogs.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/odc_customizing-a-developer-catalog-or-its-sub-catalogs-using-the-yaml-view.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/odc-customizing-a-developer-catalog-or-its-sub-catalogs-using-the-yaml-view.md" %}{% endleveloffset %}
 
-{% leveloffset +3 %}{% include "./modules/odc_con_example-yaml-file-changes.md" %}{% endleveloffset %}
+{% leveloffset +3 %}{% include "./modules/odc-con-example-yaml-file-changes.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/odc_customizing-a-developer-catalog-or-its-sub-catalogs-using-the-form-view.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/odc-customizing-a-developer-catalog-or-its-sub-catalogs-using-the-form-view.md" %}{% endleveloffset %}
 
 {% endif %}
 

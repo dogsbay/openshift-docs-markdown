@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Attaching VirtIO container disk to Windows VMs during installation {id="virt-attaching-virtio-disk-to-windows_{{ context }}"}
+# Attach a VirtIO container disk during Windows installation {id="virt-attaching-virtio-disk-to-windows_{{ context }}"}
 
 You must attach the VirtIO container disk to the Windows VM to install the necessary Windows drivers. This can be done during creation of the VM. {._abstract}
 

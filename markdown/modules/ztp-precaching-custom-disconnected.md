@@ -1,9 +1,10 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Pre-caching custom images in disconnected environments {id="ztp-custom-pre-caching-in-disconnected-environment_{{ context }}"}
 
-The `--generate-imageset` argument stops the {{ factory_prestaging_tool }} after the `ImageSetConfiguration` custom resource (CR) is generated.
+The `--generate-imageset` argument stops the {{ factory_prestaging_tool }} after the `ImageSetConfiguration` custom resource (CR) is generated. {._abstract}
+
 This allows you to customize the `ImageSetConfiguration` CR before downloading any images.
-After you customized the CR, you can use the `--skip-imageset` argument to download the images that you specified in the `ImageSetConfiguration` CR. {._abstract}
+After you customized the CR, you can use the `--skip-imageset` argument to download the images that you specified in the `ImageSetConfiguration` CR.
 
 You can customize the `ImageSetConfiguration` CR in the following ways:
 

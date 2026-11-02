@@ -33,7 +33,7 @@ Configure PSRP, WINRM, or SSH to manage Windows-detected hosts in OpenShift Virt
 Configuring PCI passthrough for the {{ ibm_name }} Spyre Accelerator for VMs on {{ ibm_z_name }} and {{ ibm_linuxone_name }} is generally available
 :   You can attach the {{ ibm_name }} Spyre Accelerator to VMs using PCI passthrough on {{ ibm_name }} z17 and {{ ibm_linuxone_name }} Emperor 5 or later. The {{ ibm_name }} Spyre Accelerator enhances AI inferencing capabilities on {{ ibm_z_name }} and {{ ibm_linuxone_name }} systems.
 
-    For more information, see [Configuring PCI passthrough](/managing_vms/advanced_vm_management/virt-configuring-pci-passthrough#virt-configuring-pci-passthrough).
+    For more information, see [Configuring PCI passthrough](/virt/managing_vms/advanced_vm_management/virt-configuring-pci-passthrough#virt-configuring-pci-passthrough).
 
     [CNV-83214](https://redhat.atlassian.net/browse/CNV-83214)
 
@@ -155,8 +155,8 @@ The `HotplugVolume` feature gate is deprecated
 [CNV-73301](https://issues.redhat.com/browse/CNV-73301)
 
 
-The {{ FusionSAN }} Operator is deprecated
-:   The {{ FusionSAN }} Operator is deprecated and will be removed in a future release. For new deployments, configure {{ IBMFusionFirst }} in Fusion Data Foundation as an external system.
+The Fusion Access for SAN Operator is deprecated
+:   The Fusion Access for SAN Operator is deprecated and will be removed in a future release. For new deployments, configure IBM Fusion Access for SAN in Fusion Data Foundation as an external system.
 
     For more information, see [Deploying IBM Fusion Access for SAN](https://www.ibm.com/docs/en/fusion-software/2.13.x?topic=san-deploying-fusion-access).
 
@@ -186,7 +186,7 @@ Some features in this release are currently in Technology Preview. These experim
 KubeVirt Redfish for VM management through the Redfish API (Technology Preview)
 :   KubeVirt Redfish exposes {{ VirtProductName }} virtual machines through the standard Redfish API. Using KubeVirt Redfish, administrators can manage VM power states, boot configuration, and virtual media attachments. This feature is available as a Technology Preview.
 
-    For more information, see [Install KubeVirt Redfish](/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish).
+    For more information, see [Install KubeVirt Redfish](/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish).
 
 
 Golden image support for heterogeneous clusters (Technology Preview)
@@ -222,7 +222,7 @@ Dual stream support for {{ VirtProductName }} clusters (Technology Preview)
 KubeVirt Redfish for VM management through the Redfish API (Technology Preview)
 :   KubeVirt Redfish exposes {{ VirtProductName }} virtual machines through the standard Redfish API. Using KubeVirt Redfish, administrators can manage VM power states, boot configuration, and virtual media attachments. This feature is available as a Technology Preview.
 
-    For more information, see [Install KubeVirt Redfish](/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish).
+    For more information, see [Install KubeVirt Redfish](/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish).
 
 ## Fixed issues {id="virt-4-22-bug-fixes_{{ context }}"}
 
@@ -271,10 +271,10 @@ VMs might lose ingress connectivity after live migration over an EVPN-enabled ne
     [OCPBUGS-86503](https://redhat.atlassian.net/browse/OCPBUGS-86503)
 
 
-{{ SMProductName }} 3.1.1 and Istio 1.25 and later are incompatible with {{ VirtProductName }}
-:   {{ SMProductName }} 3.1.1 and Istio versions 1.25 and later are incompatible with {{ VirtProductName }} {{ VirtVersion }} because the `traffic.sidecar.istio.io/kubevirtInterfaces` annotation is deprecated. As a consequence, service mesh integration with {{ VirtProductName }} can fail when you use these versions.
+Red&#160;Hat OpenShift Service Mesh 3.1.1 and Istio 1.25 and later are incompatible with {{ VirtProductName }}
+:   Red&#160;Hat OpenShift Service Mesh 3.1.1 and Istio versions 1.25 and later are incompatible with {{ VirtProductName }} {{ VirtVersion }} because the `traffic.sidecar.istio.io/kubevirtInterfaces` annotation is deprecated. As a consequence, service mesh integration with {{ VirtProductName }} can fail when you use these versions.
 
-    To work around this problem, when you install {{ SMProductShortName }} for integration with {{ VirtProductName }}, select {{ SMProductName }} version 3.0.4 and Istio 1.24.4 instead of the default versions that are displayed in the web console.
+    To work around this problem, when you install Service Mesh for integration with {{ VirtProductName }}, select Red&#160;Hat OpenShift Service Mesh version 3.0.4 and Istio 1.24.4 instead of the default versions that are displayed in the web console.
 
     [OSSM-10883](https://issues.redhat.com/browse/OSSM-10883)
 
@@ -307,3 +307,13 @@ Upgrading to {{ VirtProductName }} 4.22 when using wasp-agent
 
 
     [CNV-89504](https://redhat.atlassian.net/browse/CNV-89504)
+
+
+A storage migration can report completion before copying any data
+:   A `MultiNamespaceVirtualMachineStorageMigration` object can intermittently report the `Completed` phase within milliseconds of the migration starting, before the migration copies any data. By default, a migration plan that you create in the {{ product_title }} web console decommissions the source volumes after a successful migration.
+
+    As a consequence, the controller can delete the source persistent volume claims (PVCs) even though the migration never copied their contents to the target data volumes and PVCs. This can result in data loss.
+
+    To work around this problem, select the **Keep original volumes at source after successful migration** checkbox when you create the storage migration. Verify that the target volumes contain the migrated data, and then delete the source volumes manually. As a result, the source data remains available if a migration reports completion without copying data.
+
+    [CNV-98287](https://redhat.atlassian.net/browse/CNV-98287)

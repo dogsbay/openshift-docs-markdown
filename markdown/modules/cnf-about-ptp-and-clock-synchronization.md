@@ -2,8 +2,9 @@
 {%- set ptp_events_rest_api = "v2" %}
 # About PTP and clock synchronization error events {id="cnf-about-ptp-and-clock-synchronization_{{ context }}"}
 
-Cloud native applications such as virtual RAN (vRAN) require access to notifications about hardware timing events that are critical to the functioning of the overall network.
-PTP clock synchronization errors can negatively affect the performance and reliability of your low-latency application, for example, a vRAN application running in a distributed unit (DU). {._abstract}
+Cloud native applications such as virtual RAN (vRAN) require access to notifications about hardware timing events that are critical to the functioning of the overall network. {._abstract}
+
+PTP clock synchronization errors can negatively affect the performance and reliability of your low-latency application, for example, a vRAN application running in a distributed unit (DU).
 
 Loss of PTP synchronization is a critical error for a RAN network.
 If synchronization is lost on a node, the radio might be shut down and the network Over the Air (OTA) traffic might be shifted to another node in the wireless network.

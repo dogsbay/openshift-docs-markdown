@@ -1,12 +1,12 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Restoring a VM from a snapshot by using the CLI {id="virt-restoring-vm-from-snapshot-cli_{{ context }}"}
+# Restore a VM from a snapshot by using the CLI {id="virt-restoring-vm-from-snapshot-cli_{{ context }}"}
 
-You can restore an existing virtual machine (VM) to a previous configuration by using the command line. You can only restore from an offline VM snapshot. {._abstract}
+You can restore an existing virtual machine (VM) to a previous configuration by using the CLI. You can only restore from an offline VM snapshot. {._abstract}
 
 **Prerequisites**
 
-*   Install the {{ oc_first }}.
-*   Power down the VM you want to restore.
+*   You have installed the {{ oc_first }}.
+*   You have powered down the VM you want to restore.
 *   Optional: Adjust what happens if the target VM is not fully stopped (_ready_). To do so, set the `targetReadinessPolicy` parameter in the `vmrestore` YAML configuration to one of the following values:
     *   `FailImmediate` - The restore process fails immediately if the VM is not ready.
     *   `StopTarget` - If the VM is not ready, it gets stopped, and the restore process starts.

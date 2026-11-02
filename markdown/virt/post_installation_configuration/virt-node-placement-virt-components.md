@@ -21,7 +21,7 @@ You can configure node placement rules for some components after installing {{ V
 
 {% leveloffset +1 %}{% include "./modules/virt-applying-node-placement-rules.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/virt-node-placement-rule-examples.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/conditional-virt-node-placement-rule-examples.md" %}{% endleveloffset %}
 
 ## Additional resources {id="additional-resources_virt-node-placement-virt-components" ._additional-resources}
 *   [Specifying nodes for virtual machines](/virt/managing_vms/advanced_vm_management/virt-specifying-nodes-for-vms#virt-specifying-nodes-for-vms)

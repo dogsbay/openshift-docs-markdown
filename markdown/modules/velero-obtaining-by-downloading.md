@@ -10,6 +10,6 @@ Download and install the `velero` CLI tool from the Velero documentation page, w
 
 **Procedure**
 
-1.  Open a browser and navigate to {{ velero_cli_install }}.
+1.  Open a browser and navigate to ["Install the CLI" on the Velero website](https://velero.io/docs/basic-install/#install-the-cli).
 1.  Follow the appropriate procedure for macOS, GitHub, or Windows.
 1.  Download the Velero version appropriate for your version of OADP and {{ product_title }}.

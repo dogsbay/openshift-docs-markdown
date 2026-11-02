@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About VM templates {id="virt-about-vm-templates_{{ context }}"}
+# VM templates {id="virt-about-vm-templates_{{ context }}"}
 
 VM templates define a reusable VM configuration. You can create a VM from a template to deploy a standardized VM quickly. {._abstract}
 
@@ -22,5 +22,5 @@ Customize before starting the VM
 
 
 
-{{ sno_caps }}
-:   Due to differences in storage behavior, some templates are incompatible with {{ sno }}. To ensure compatibility, do not set the `evictionStrategy` field for templates or VMs that use data volumes or storage profiles.
+Single-node OpenShift
+:   Due to differences in storage behavior, some templates are incompatible with single-node OpenShift. To ensure compatibility, do not set the `evictionStrategy` field for templates or VMs that use data volumes or storage profiles.

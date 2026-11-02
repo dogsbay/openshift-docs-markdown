@@ -12,6 +12,10 @@ The Multiarch Tuning Operator (MTO) optimizes workload management within multi-a
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
 *   [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)
+*   [Configuring architecture placement rules by using CEL expressions](/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multi-arch-creating-namespace-podplacement-config-cel_multiarch-tuning-operator)
+*   [Network policies created by the Multiarch Tuning Operator](/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multi-arch-tuning-operator-network-policies_multiarch-tuning-operator)
+
+{% leveloffset +1 %}{% include "./modules/multi-arch-tuning-operator-release-notes-1-4-0.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/multi-arch-tuning-operator-release-notes-1-3-4.md" %}{% endleveloffset %}
 

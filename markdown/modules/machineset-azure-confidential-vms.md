@@ -33,9 +33,6 @@ For more information about related features and functionality, see the {{ azure_
 
 1.  In a text editor, open the YAML file for an existing machine set or create a new one.
 1.  Edit the following section under the `providerSpec` field:
-
-    **Sample configuration**
-
     ```yaml {minja}
     {% if not cpmso %}
     apiVersion: machine.openshift.io/v1beta1

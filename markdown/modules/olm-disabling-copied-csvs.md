@@ -34,10 +34,14 @@ If you disable copied CSVs, an Operator installed in `AllNamespaces` mode has th
       name: cluster
     spec:
       features:
-        disableCopiedCSVs: true (1)
+        disableCopiedCSVs: true
     EOF
     ```
-    1.  Disabled copied CSVs for `AllNamespaces` install mode Operators
+
+    where:
+
+    `spec.features.disableCopiedCSVs`
+    :   Disables copied CSVs for `AllNamespaces` install mode Operators when set to `true`.
 
 **Verification**
 

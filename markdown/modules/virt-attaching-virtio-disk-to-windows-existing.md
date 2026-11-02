@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Attaching VirtIO container disk to an existing Windows VM {id="virt-attaching-virtio-disk-to-windows-existing_{{ context }}"}
+# Attach a VirtIO container disk to an existing Windows VM {id="virt-attaching-virtio-disk-to-windows-existing_{{ context }}"}
 
 You must attach the VirtIO container disk to the Windows VM to install the necessary Windows drivers. This can be done to an existing VM. {._abstract}
 

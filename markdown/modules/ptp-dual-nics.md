@@ -47,4 +47,9 @@ Highly available system clock with dual-NIC boundary clocks
     If any single SFP port or cable failure occurs, the boundary clock stays in sync with the leader clock.
 
 
-    Boundary clock leader source selection is done using the A-BMCA algorithm. For more information, see [ITU-T recommendation G.8275.1](https://www.itu.int/rec/T-REC-G.8275.1/en).
+    Boundary clock leader source selection is done using the A-BMCA algorithm. For more information, see "ITU-T recommendation G.8275.1".
+
+**Additional resources**
+{._additional-resources}
+
+*   [ITU-T recommendation G.8275.1](https://www.itu.int/rec/T-REC-G.8275.1/en)

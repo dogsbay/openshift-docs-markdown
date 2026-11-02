@@ -11,10 +11,3 @@ Use the {{ op_system_base }} documentation in "Introduction to RHEL for Edge ima
 
 *   To build an {{ op_system_ostree_first }} {{ op_system_version }} image for a given CPU architecture, you need a {{ op_system_base }} {{ op_system_version }} build host of the same CPU architecture that meets the image builder system requirements.
 *   To install image builder and the `composer-cli` tool, see "Installing image builder".
-
-**Additional resources**
-{._additional-resources}
-
-*   [Introduction to RHEL for Edge images](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/composing_installing_and_managing_rhel_for_edge_images/introducing-rhel-for-edge-images_composing-installing-managing-rhel-for-edge-images)
-*   [Image builder system requirements](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/composing_installing_and_managing_rhel_for_edge_images/setting-up-image-builder_composing-installing-managing-rhel-for-edge-images#edge-image-builder-system-requirements_setting-up-image-builder)
-*   [Installing image builder](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/composing_installing_and_managing_rhel_for_edge_images/setting-up-image-builder_composing-installing-managing-rhel-for-edge-images#edge-installing-image-builder_setting-up-image-builder)

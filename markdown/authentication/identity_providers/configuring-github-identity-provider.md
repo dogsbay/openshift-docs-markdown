@@ -33,7 +33,7 @@ The following steps apply to both GitHub and GitHub Enterprise unless noted.
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-config-map.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/identity-provider-github-CR.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/identity-provider-github-cr.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}

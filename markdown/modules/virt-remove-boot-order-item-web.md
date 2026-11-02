@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing items from a boot order list in the web console {id="virt-remove-boot-order-item-web_{{ context }}"}
+# Remove items from a boot order list in the web console {id="virt-remove-boot-order-item-web_{{ context }}"}
 
 Remove items from a boot order list by using the web console. {._abstract}
 
@@ -11,7 +11,7 @@ Remove items from a boot order list by using the web console. {._abstract}
 1.  Click the **Configuration** tab.
 1.  Expand **Boot management**.
 1.  Click the pencil icon that is located on the right side of **Boot Order**.
-1.  Click the **Remove** icon {{ delete }} next to the item. The item is removed from the boot order list and saved in the list of available boot sources. If you remove all items from the boot order list, the following message displays: **No resource selected. VM will attempt to boot from disks by order of appearance in YAML file.**
+1.  Click the **Remove** icon ![delete](/images/delete.png "Delete") next to the item. The item is removed from the boot order list and saved in the list of available boot sources. If you remove all items from the boot order list, the following message displays: **No resource selected. VM will attempt to boot from disks by order of appearance in YAML file.**
 
     :::note
 

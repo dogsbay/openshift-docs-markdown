@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Preparing a parallel Argo CD pipeline for ClusterInstance CRs {id="ztp-creating-argocd-clusterinstance_{{ context }}"}
 
-Create a parallel Argo CD project and application to manage the new `ClusterInstance` CRs and associated cluster resources.
+Create a parallel Argo CD project and application to manage the new `ClusterInstance` CRs and associated cluster resources. {._abstract}
 
 **Prerequisites**
 
@@ -45,11 +45,16 @@ Create a parallel Argo CD project and application to manage the new `ClusterInst
           - group: 'metal3.io'
             kind: DataImage
           - group: 'siteconfig.open-cluster-management.io'
-            kind: ClusterInstance (1)
+            kind: ClusterInstance
           sourceRepos:
           - '*'
         ```
-        1.  The `ClusterInstance` CR manages the `siteconfig.open-cluster-management.io` object instead of the `SiteConfig` CR.
+
+        where:
+
+        `spec.namespaceResourceWhitelist[].kind`
+        :   The `ClusterInstance` CR manages the `siteconfig.open-cluster-management.io` object instead of the `SiteConfig` CR.
+
     1.  Create a YAML file that defines the `Application` resource:
         ```yaml title="Example clusters-v2.yaml file"
         apiVersion: argoproj.io/v1alpha1
@@ -66,9 +71,9 @@ Create a parallel Argo CD project and application to manage the new `ClusterInst
             kind: ManagedCluster
             managedFieldsManagers:
             - controller
-          project: ztp-app-project-v2 (1)
+          project: ztp-app-project-v2
           source:
-            path: site-configs-v2 (2)
+            path: site-configs-v2
             repoURL: http://infra.5g-deployment.lab:3000/student/ztp-repository.git
             targetRevision: main
           syncPolicy:
@@ -77,14 +82,21 @@ Create a parallel Argo CD project and application to manage the new `ClusterInst
             - PrunePropagationPolicy=background
             - RespectIgnoreDifferences=true
         ```
-        1.  The `project` field must match the name of the `AppProject` resource created in the previous step.
-        1.  The `path` field must match the root folder in your Git repository that will contain the `ClusterInstance` CRs and associated resources.
+
+        where:
+
+        `spec.project`
+        :   Specifies the Argo CD project. The value must match the name of the `AppProject` resource created in the previous step.
+
+        `spec.source.path`
+        :   Specifies the root folder in your Git repository that will contain the `ClusterInstance` CRs and associated resources.
 
         :::note
 
         By default, `auto-sync` is enabled. However, synchronization only occurs when you push configuration data for the cluster to the new configuration folder, or in this example, the `site-configs-v2/` folder.
         
         :::
+
 
 1.  Create and commit a root folder in your Git repository that will contain the `ClusterInstance` CRs and associated resources, for example:
     ```bash

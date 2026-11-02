@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Installation of {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes {id="virt-install-ibm-cloud-bm-nodes_{{ context }}"}
 
-Install {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes by using the Assisted Installer. The cluster has six bare-metal nodes: three control plane nodes and three compute nodes. An additional virtual machine is required for bootstrapping and to act as a Samba server, DHCP server, network gateway, and load balancer. {._abstract}
+Use the Assisted Installer to deploy a six-node {{ VirtProductName }} cluster on {{ ibm_cloud_title }} bare-metal nodes when you need dedicated hardware for your virtual machines. A bastion virtual server provides bootstrapping, DHCP, networking, and load balancing. {._abstract}
 
 ## Prerequisites {id="_prerequisites"}
 

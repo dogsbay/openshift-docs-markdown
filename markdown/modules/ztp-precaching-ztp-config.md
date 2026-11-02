@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Pre-caching images in {{ ztp }} {id="ztp-pre-caching-config-con_{{ context }}"}
 
-The `ClusterInstance` manifest defines the installation and configuration parameters for an {{ product_title }} cluster.
-In the {{ ztp_first }} provisioning workflow, the {{ factory_prestaging_tool }} uses the following fields in the `ClusterInstance` manifest to load the pre-cached images: {._abstract}
+The `ClusterInstance` manifest defines the installation and configuration parameters for an {{ product_title }} cluster. {._abstract}
+
+In the {{ ztp_first }} provisioning workflow, the {{ factory_prestaging_tool }} uses the following fields in the `ClusterInstance` manifest to load the pre-cached images:
 
 *   `spec.ignitionConfigOverride`
 *   `spec.nodes[].ignitionConfigOverride`

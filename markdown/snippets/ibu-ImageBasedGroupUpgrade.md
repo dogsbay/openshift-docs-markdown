@@ -1,4 +1,4 @@
-{%- set _mod_docs_content_type = "REFERENCE" %}
+{%- set _mod_docs_content_type = "SNIPPET" %}
 
 ```yaml
 apiVersion: lcm.openshift.io/v1alpha1

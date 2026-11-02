@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Windows Machine Config Operator known limitations {id="windows-wmco-known-limitations_{{ context }}"}
 
+You should familiarize yourself with the set of known limitations when working with Windows nodes managed by the Windows Machine Config Operator (WMCO). {._abstract}
+
 Note the following limitations when working with Windows nodes managed by the WMCO (Windows nodes):
 
 *   The following {{ product_title }} features are not supported on Windows nodes:
@@ -8,18 +10,18 @@ Note the following limitations when working with Windows nodes managed by the WM
     *   OpenShift Pipelines
     *   OpenShift Service Mesh
     *   OpenShift monitoring of user-defined projects
-    *   {{ ServerlessProductName }}
+    *   OpenShift Serverless
     *   Vertical Pod Autoscaling
     *   Hosted Control Planes
 *   The following Red Hat features are not supported on Windows nodes:
-    *   [{{ red_hat_lightspeed }} cost management](https://docs.redhat.com/en/documentation/cost_management_service/1-latest)
+    *   [Red&#160;Hat Lightspeed cost management](https://docs.redhat.com/en/documentation/cost_management_service/1-latest)
     *   [Red Hat OpenShift Local](https://developers.redhat.com/products/openshift-local/overview)
 *   Dual NIC is not supported on WMCO-managed Windows instances.
 *   Compute machine sets are not supported for bare metal or provider-agnostic clusters.
 *   Bring-Your-Own-Host (BYOH) Windows instances are supported as nodes only on {{ product_title }} 4.8 and later versions.
 *   Windows nodes do not support workloads created by using deployment configs. You can use a deployment or other method to deploy workloads.
-*   {{ productwinc }} does not support adding Windows nodes to a cluster through a trunk port. The only supported networking configuration for adding Windows nodes is through an access port that carries traffic for the VLAN.
-*   {{ productwinc }} does not support any Windows operating system language other than English (United States).
+*   Red&#160;Hat OpenShift support for Windows Containers does not support adding Windows nodes to a cluster through a trunk port. The only supported networking configuration for adding Windows nodes is through an access port that carries traffic for the VLAN.
+*   Red&#160;Hat OpenShift support for Windows Containers does not support any Windows operating system language other than English (United States).
 *   Due to a limitation within the Windows operating system, `clusterNetwork` CIDR addresses of class E, such as `240.0.0.0`, are not compatible with Windows nodes.
 *   Kubernetes has identified the following node feature limitations. For more information, see "Compatibility and limitations (Kubernetes documenation)".
     *   Huge pages are not supported for Windows containers.
@@ -27,7 +29,7 @@ Note the following limitations when working with Windows nodes managed by the WM
 *   Kubernetes has identified several API compatibility issues. For more information, see "API compatibility (Kubernetes documenation)".
 
 ## Additional resources {id="additional-resources-windows-wmco-known-limitations_{{ context }}" ._additional-resources}
-*   [{{ red_hat_lightspeed }} cost management](https://docs.redhat.com/en/documentation/cost_management_service/1-latest)
-*   [{{ openshift_local_productname }}](https://developers.redhat.com/products/openshift-local/overview)
+*   [Red&#160;Hat Lightspeed cost management](https://docs.redhat.com/en/documentation/cost_management_service/1-latest)
+*   [Red&#160;Hat OpenShift Local](https://developers.redhat.com/products/openshift-local/overview)
 *   [Compatibility and limitations (Kubernetes documenation)](https://kubernetes.io/docs/concepts/windows/intro/#limitations)
 *   [API compatibility (Kubernetes documenation)](https://kubernetes.io/docs/concepts/windows/intro/#api)

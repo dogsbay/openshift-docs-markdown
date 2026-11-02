@@ -20,7 +20,7 @@ The {{ product_title }} master includes a built-in OAuth server.
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-parameters.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/identity-provider-default-CR.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/identity-provider-default-cr.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-provisioning-user-lookup-mapping.md" %}{% endleveloffset %}
 

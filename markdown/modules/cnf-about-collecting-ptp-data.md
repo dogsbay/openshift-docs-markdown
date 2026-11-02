@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Collecting PTP Operator data {id="cnf-about-collecting-nro-data_{{ context }}"}
 
-You can use the `oc adm must-gather` command to collect information about your cluster, including features and objects associated with PTP Operator.
+You can use the `oc adm must-gather` command to collect information about your cluster, including features and objects associated with PTP Operator. {._abstract}
 
 **Prerequisites**
 

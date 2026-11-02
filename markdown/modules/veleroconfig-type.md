@@ -2,7 +2,7 @@
 
 # VeleroConfig type {id="veleroconfig-type_{{ context }}"}
 
-The following are `VeleroConfig` {{ oadp_short }} APIs: {._abstract}
+Use the `VeleroConfig` {{ oadp_short }} API type to configure the Velero server instance for {{ oadp_short }} in {{ product_title }}. It controls plugins, feature flags, pod configuration, and logging for the Velero server. {._abstract}
 
 **VeleroConfig**
 

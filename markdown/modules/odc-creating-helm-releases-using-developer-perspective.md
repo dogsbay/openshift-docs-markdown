@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating Helm releases using the Developer perspective {id="odc-creating-helm-releases-using-developer-perspective_{{ context }}"}
 
-You can use either the **Developer** perspective in the web console or the CLI to select and create a release from the Helm charts listed in the **Developer Catalog**. You can create Helm releases by installing Helm charts and see them in the **Developer** perspective of the web console.
+You can use either the **Developer** perspective in the web console or the CLI to select and create a release from the Helm charts listed in the **Developer Catalog**. You can create Helm releases by installing Helm charts and see them in the **Developer** perspective of the web console. {._abstract}
 
 **Prerequisites**
 
@@ -13,8 +13,6 @@ You can use either the **Developer** perspective in the web console or the CLI t
 {% endif %}
 
 **Procedure**
-
-To create Helm releases from the Helm charts provided in the **Developer Catalog**:
 
 1.  In the **Developer** perspective, navigate to the **+Add** view and select a project. Then click **Helm Chart** option to see all the Helm Charts in the **Developer Catalog**.
 1.  Select a chart and read the description, README, and other details about the chart.
@@ -41,4 +39,4 @@ To create Helm releases from the Helm charts provided in the **Developer Catalog
         If a Helm chart creates workloads, the web console displays them on the **Topology** or **Helm release details** page. The workloads are `DaemonSet`, `CronJob`, `Pod`, `Deployment`, and `DeploymentConfig`.
     1.  View the newly created Helm release in the **Helm Releases** page.
 
-You can upgrade, rollback, or delete a Helm release by using the **Actions** button on the side panel or by right-clicking a Helm release.
+        You can upgrade, rollback, or delete a Helm release by using the **Actions** button on the side panel or by right-clicking a Helm release.

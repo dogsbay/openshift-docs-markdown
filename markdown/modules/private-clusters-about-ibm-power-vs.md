@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Private clusters in {{ ibm_power_server_title }} {id="private-clusters-about-ibm-power-virtual-server_{{ context }}"}
 
-To create a private cluster on {{ ibm_power_server_name }}, you must provide an existing private Virtual Private Cloud (VPC) and subnets to host the cluster. The installation program must also be able to resolve the DNS records that the cluster requires. The installation program configures the Ingress Operator and API server for only internal traffic.
+To create a private cluster on {{ ibm_power_server_name }}, you must provide an existing private Virtual Private Cloud (VPC) and subnets to host the cluster. The installation program configures the Ingress Operator and API server for only internal traffic. {._abstract}
 
 The cluster still requires access to internet to access the {{ ibm_cloud_name }} APIs.
 

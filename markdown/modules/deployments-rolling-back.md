@@ -18,7 +18,6 @@ To revert an application to a previous revision, you can perform a roll back by 
     $ oc set triggers dc/<name> --auto
     ```
 
-
     :::note
 
     Deployment configs also support automatically rolling back to the last successful revision of the configuration in case the latest deployment process fails. In that case, the latest template that failed to deploy stays intact by the system and it is up to users to fix their configurations.

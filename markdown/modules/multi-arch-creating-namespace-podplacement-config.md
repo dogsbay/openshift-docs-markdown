@@ -5,6 +5,8 @@ After creating the `ClusterPodPlacementConfig` object, you can configure pod pla
 
 `PodPlacementConfig` objects modify the pod placement controller’s behavior at the namespace level, and take precedence over the `ClusterPodPlacementConfig` object.
 
+The `PodPlacementConfig` object supports the `nodeAffinityScoring` plugin and the `celArchitecturePlacement` plugin. The `celArchitecturePlacement` plugin uses Common Expression Language (CEL) expressions to place workloads on specific architectures based on pod metadata such as labels and annotations, instead of relying on image inspection.
+
 **Prerequisites**
 
 *   You have created a `ClusterPodPlacementConfig` object.

@@ -2,7 +2,7 @@
 # Retrieving PTP events with the PTP events REST API v2 {id="cnf-about-ptp-events-using-ptp-event-producer-with-o-ran-api_{{ context }}"}
 
 Applications subscribe to PTP events by using an O-RAN v4 compatible REST API in the producer-side cloud event proxy sidecar.
-The `cloud-event-proxy` sidecar container can access the same resources as the primary application container without using any of the resources of the primary application and with no significant latency.
+The `cloud-event-proxy` sidecar container can access the same resources as the primary application container without using any of the resources of the primary application and with no significant latency. {._abstract}
 
 **Figure 1. Overview of consuming PTP fast events from the PTP event producer REST API v2**
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Adding the new etcd member {id="add-new-etcd-member_{{ context }}"}
 
-Finish adding the new control plane node by adding the new etcd member to the cluster.
+Finish adding the new control plane node by adding the new etcd member to the cluster. {._abstract}
 
 **Procedure**
 

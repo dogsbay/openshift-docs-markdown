@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring policy compliance evaluation timeouts for {{ policy_gen_cr }} CRs {id="ztp-configuring-pgt-compliance-eval-timeouts_{{ context }}"}
 
-Use {{ rh_rhacm_first }} installed on a hub cluster to monitor and report on whether your managed clusters are compliant with applied policies. {{ rh_rhacm }} uses policy templates to apply predefined policy controllers and policies. Policy controllers are Kubernetes custom resource definition (CRD) instances. {._abstract}
+Use {{ rh_rhacm_first }} installed on a hub cluster to monitor and report on whether your managed clusters are compliant with applied policies.  {._abstract}
+
+{{ rh_rhacm }} uses policy templates to apply predefined policy controllers and policies. Policy controllers are Kubernetes custom resource definition (CRD) instances.
 
 You can override the default policy evaluation intervals with `{{ policy_gen_cr }}`{minja} custom resources (CRs). You configure duration settings that define how long a `ConfigurationPolicy` CR can be in a state of policy compliance or non-compliance before {{ rh_rhacm }} re-evaluates the applied cluster policies.
 

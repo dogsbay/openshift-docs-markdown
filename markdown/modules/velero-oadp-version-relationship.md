@@ -20,6 +20,6 @@ Review the version relationship between {{ oadp_short }}, Velero, and {{ product
 **Additional resources**
 {._additional-resources}
 
-*   [Velero 1.12 documentation](https://{{ velero_domain }}/docs/v1.12/)
-*   [Velero 1.14 documentation](https://{{ velero_domain }}/docs/v1.14/)
-*   [Velero 1.16 documentation](https://{{ velero_domain }}/docs/v1.16/)
+*   [Velero 1.12 documentation](https://velero.io/docs/v1.12/)
+*   [Velero 1.14 documentation](https://velero.io/docs/v1.14/)
+*   [Velero 1.16 documentation](https://velero.io/docs/v1.16/)

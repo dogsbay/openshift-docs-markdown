@@ -17,11 +17,11 @@ The **Observe** view in the **Developer** perspective enables you to monitor pro
 
 {% include "./snippets/snip-unified-perspective-web-console.md" %}
 
-{% leveloffset +1 %}{% include "./modules/enabling-developer-perspective_web-console.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/enabling-developer-perspective-web-console.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/con_monitoring-capabilities-in-the-developer-perspective.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/con-monitoring-capabilities-in-the-developer-perspective.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/proc_view-project-dashboards.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/proc-view-project-dashboards.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/odc-monitoring-your-application-metrics.md" %}{% endleveloffset %}
 

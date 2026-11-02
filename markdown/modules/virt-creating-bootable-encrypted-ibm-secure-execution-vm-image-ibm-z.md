@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a bootable and encrypted {{ ibm_title }} Secure Execution VM image on {{ ibm_z_title }} and {{ ibm_linuxone_title }} {id="virt-creating-bootable-encrypted-ibm-secure-execution-vm-image-ibm-z_{{ context }}"}
+# Create an encrypted Secure Execution VM image for {{ ibm_z_title }} {id="virt-creating-bootable-encrypted-ibm-secure-execution-vm-image-ibm-z_{{ context }}"}
 
-You can create a bootable and encrypted {{ ibm_title }} Secure Execution VM image for {{ op_system_base_full }} on {{ ibm_z_title }} and {{ ibm_linuxone_title }}. {._abstract}
+You can create a bootable and encrypted IBM Secure Execution VM image for {{ op_system_base_full }} on {{ ibm_z_title }} and IBM LinuxONE. {._abstract}
 
 **Prerequisites**
 
@@ -192,7 +192,7 @@ You can create a bootable and encrypted {{ ibm_title }} Secure Execution VM imag
         ```terminal
         [secure guest ~]$ echo "blacklist virtio-rng" | tee /etc/modprobe.d/virtio-rng.conf
         ```
-1.  Enable {{ ibm_title }} Secure Execution for the guest.
+1.  Enable IBM Secure Execution for the guest.
     1.  Copy the current command line to a file by running the following command:
         ```terminal
         [secure guest ~]$ cat /proc/cmdline > parmfile
@@ -201,7 +201,7 @@ You can create a bootable and encrypted {{ ibm_title }} Secure Execution VM imag
         ```terminal
         loglevel=0 systemd.show_status=0 panic=0 crashkernel=196M swiotlb=262144
         ```
-    1.  Generate the {{ ibm_title }} SEL image on the `/se` partition by running the following command:
+    1.  Generate the IBM SEL image on the `/se` partition by running the following command:
         ```terminal
         [secure guest ~]$ genprotimg -i <image> \
                                      -r <ramdisk> \

@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Troubleshooting Operator groups {id="olm-operatorgroups-troubleshooting_{{ context }}"}
 
+Use the following information to troubleshoot common Operator group issues in Operator Lifecycle Manager (OLM). {._abstract}
+
 ## Membership {id="olm-operatorgroups-troubleshooting-membership_{{ context }}"}
 
 *   An install plan’s namespace must contain only one Operator group. When attempting to generate a cluster service version (CSV) in a namespace, an install plan considers an Operator group invalid in the following scenarios:

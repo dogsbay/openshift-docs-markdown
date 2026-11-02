@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Operator installation and upgrade workflow in OLM {id="olm-upgrades_{{ context }}"}
 
-In the Operator Lifecycle Manager (OLM) ecosystem, the following resources are used to resolve Operator installations and upgrades:
+In the Operator Lifecycle Manager (OLM) ecosystem, the `ClusterServiceVersion` (CSV), `CatalogSource`, and `Subscription` resources are used to resolve Operator installations and upgrades. {._abstract}
+
+The following resources are used to resolve Operator installations and upgrades:
 
 *   `ClusterServiceVersion` (CSV)
 *   `CatalogSource`

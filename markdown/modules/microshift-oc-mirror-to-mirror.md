@@ -19,8 +19,8 @@ You can use the oc-mirror plugin to mirror an image set directly to a target mir
     ```
     *   You must use the `--workspace` flag for the mirror-to-mirror process. Replace _&lt;v2_workspace>_ with the directory you want to use to store custom resources for the mirroring process.
     *   Replace _&lt;remote_registry>_ with the name of the registry to mirror the image set file to. The registry must start with `docker://`. If you specify a top-level namespace for the mirror registry, you must also use this same namespace on later executions.
-        ```terminal title="Example output"
-        Rendering catalog image "registry.example.com/redhat/redhat-operator-index:v{ocp-version}" with file-based catalog
+        ```terminal title="Example output" {minja}
+        Rendering catalog image "registry.example.com/redhat/redhat-operator-index:v{{ ocp_version }}" with file-based catalog
         ```
 
         :::important

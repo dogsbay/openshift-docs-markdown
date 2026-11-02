@@ -1,10 +1,10 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Compare a cluster with the {{ rds }} reference configuration {id="using-cluster-compare-telco_core_{{ context }}"}
+# Compare a cluster with the telco core reference configuration {id="using-cluster-compare-telco_core_{{ context }}"}
 
-After you deploy a {{ rds }} cluster, you can use the `cluster-compare` OpenShift CLI (`oc`) plugin to assess compliance with the {{ rds }} reference design specifications (RDS). {._abstract}
+After you deploy a telco core cluster, you can use the `cluster-compare` OpenShift CLI (`oc`) plugin to assess compliance with the telco core reference design specifications (RDS). {._abstract}
 
-The plugin-specific reference configuration for {{ rds }} is packaged in a container image with the {{ rds }} CRs.
+The plugin-specific reference configuration for telco core is packaged in a container image with the telco core CRs.
 
 For further information about the `cluster-compare` plugin, see "Understanding the cluster-compare plugin".
 

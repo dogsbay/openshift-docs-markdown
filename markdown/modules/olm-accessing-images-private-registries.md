@@ -111,11 +111,11 @@ Operator and Operand images
       namespace: openshift-marketplace
     spec:
       sourceType: grpc
-      secrets: (1)
+      secrets:
       - "<secret_name_1>"
       - "<secret_name_2>"
       grpcPodConfig:
-        securityContextConfig: <security_mode> (2)
+        securityContextConfig: <security_mode>
       image: <registry>:<port>/<namespace>/<image>:<tag>
       displayName: My Operator Catalog
       publisher: <publisher_name>
@@ -123,10 +123,18 @@ Operator and Operand images
         registryPoll:
           interval: 30m
     ```
-    1.  Add a `spec.secrets` section and specify any required secrets.
-    1.  Specify the value of `legacy` or `restricted`. If the field is not set, the default value is `legacy`. In a future {{ product_title }} release, it is planned that the default value will be `restricted`.
+    +
+    where:
+
+
+    `spec.secrets`
+    :   Specifies required secrets. Add a `spec.secrets` section and specify any required secrets.
+
+    `spec.grpcPodConfig.securityContextConfig`
+    :   Specifies the security context value. Set to `legacy` or `restricted`. If the field is not set, the default value is `legacy`. In a future {{ product_title }} release, it is planned that the default value will be `restricted`.
 
         :::note
+
 
         If your catalog cannot run with `restricted` permissions, it is recommended that you manually set this field to `legacy`.
         
@@ -148,10 +156,18 @@ Operator and Operand images
         1.  Update the `.dockerconfigjson` file with your authentication credentials for the required private registry or registries and save it as a new file:
             ```terminal
             $ cat .dockerconfigjson | \
-                jq --compact-output '.auths["<registry>:<port>/<namespace>/"] |= . + {"auth":"<token>"}' \ (1)
+                jq --compact-output '.auths["<registry>:<port>/<namespace>/"] |= . + {"auth":"<token>"}' \
                 > new_dockerconfigjson
             ```
-            1.  Replace `<registry>:<port>/<namespace>` with the private registry details and `<token>` with your authentication credentials.
+
+            where:
+
+            `<registry>:<port>/<namespace>`
+            :   Specifies the private registry details.
+
+            `<token>`
+            :   Specifies your authentication credentials.
+
         1.  Update the global pull secret with the new file:
             ```terminal
             $ oc set data secret/pull-secret -n openshift-config \
@@ -167,17 +183,23 @@ Operator and Operand images
             ```
         1.  Verify the name of the service account for the Operator by searching the tenant namespace:
             ```terminal
-            $ oc get sa -n <tenant_namespace> (1)
+            $ oc get sa -n <tenant_namespace>
             ```
-            1.  If the Operator was installed in an individual namespace, search that namespace. If the Operator was installed for all namespaces, search the `openshift-operators` namespace.
-            ```terminal title="Example output"
+            +
+
+            :::note
+
+            If the Operator was installed in an individual namespace, search that namespace. If the Operator was installed for all namespaces, search the `openshift-operators` namespace.
+            
+            :::
+
+            ```terminal
             NAME            SECRETS   AGE
             builder         2         6m1s
             default         2         6m1s
             deployer        2         6m1s
-            etcd-operator   2         5m18s (1)
+            etcd-operator   2         5m18s
             ```
-            1.  Service account for an installed etcd Operator.
         1.  Link the secret to the service account for the Operator:
             ```terminal
             $ oc secrets link <operator_sa> \

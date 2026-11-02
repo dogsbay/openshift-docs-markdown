@@ -13,8 +13,7 @@ Before you upgrade a cluster with manually maintained credentials, you must crea
 **Procedure**
 
 1.  Create YAML files with secrets for any `CredentialsRequest` custom resources that the new release image adds. The secrets must be stored using the namespace and secret name defined in the `spec.secretRef` for each `CredentialsRequest` object.
-
-    ```yaml title="Sample AWS CredentialsRequest object with secrets"
+    ```yaml
     apiVersion: cloudcredential.openshift.io/v1
     kind: CredentialsRequest
     metadata:
@@ -38,7 +37,7 @@ Before you upgrade a cluster with manually maintained credentials, you must crea
       ...
     ```
 
-    ```yaml title="Sample AWS Secret object"
+    ```yaml
     apiVersion: v1
     kind: Secret
     metadata:
@@ -56,7 +55,7 @@ Before you upgrade a cluster with manually maintained credentials, you must crea
     :::
 
 
-    ```yaml title="Sample Azure CredentialsRequest object with secrets"
+    ```yaml
     apiVersion: cloudcredential.openshift.io/v1
     kind: CredentialsRequest
     metadata:
@@ -76,7 +75,7 @@ Before you upgrade a cluster with manually maintained credentials, you must crea
       ...
     ```
 
-    ```yaml title="Sample Azure Secret object"
+    ```yaml
     apiVersion: v1
     kind: Secret
     metadata:
@@ -92,7 +91,7 @@ Before you upgrade a cluster with manually maintained credentials, you must crea
       azure_region: <base64_encoded_azure_region>
     ```
 
-    ```yaml title="Sample {{ gcp_short }} CredentialsRequest object with secrets"
+    ```yaml
     apiVersion: cloudcredential.openshift.io/v1
     kind: CredentialsRequest
     metadata:
@@ -114,7 +113,7 @@ Before you upgrade a cluster with manually maintained credentials, you must crea
       ...
     ```
 
-    ```yaml title="Sample {{ gcp_short }} Secret object"
+    ```yaml
     apiVersion: v1
     kind: Secret
     metadata:

@@ -31,14 +31,14 @@ AWS Load Balancer Operator currently does not support AWS GovCloud.
 
 *   [AWS Load Balancer Operator in {{ product_title }}](/networking/networking_operators/aws_load_balancer_operator/understanding-aws-load-balancer-operator#aws-load-balancer-operator)
 
-{% leveloffset +1 %}{% include "./modules/aws-load-balancer-operator-release-notes-1.2-0.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/aws-load-balancer-operator-release-notes-1-2-0.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/aws-load-balancer-operator-release-notes-1.1.1.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/aws-load-balancer-operator-release-notes-1-1-1.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/aws-load-balancer-operator-release-notes-1.1.0.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/aws-load-balancer-operator-release-notes-1-1-0.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/aws-load-balancer-operator-release-notes-1.0.1.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/aws-load-balancer-operator-release-notes-1-0-1.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/aws-load-balancer-operator-release-notes-1.0.0.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/aws-load-balancer-operator-release-notes-1-0-0.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/aws-load-balancer-operator-release-notes-earlier-versions.md" %}{% endleveloffset %}

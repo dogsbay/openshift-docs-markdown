@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Verifying network connectivity for an endpoint {id="nw-pod-network-connectivity-verify_{{ context }}"}
 
-As a cluster administrator, you can verify the connectivity of an endpoint, such as an API server, load balancer, service, or pod, and verify that network diagnostics is enabled.
+As a cluster administrator, you can verify the connectivity of an endpoint, such as an API server, load balancer, service, or pod, and verify that network diagnostics is enabled. {._abstract}
 
 **Prerequisites**
 

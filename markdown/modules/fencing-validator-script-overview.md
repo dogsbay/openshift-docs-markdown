@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Fencing validator script overview {id="fencing-validator-script-overview_{{ context }}"}
 
-A two-node {{ product_title }} cluster with fencing (TNF) relies on the Shoot The Other Node In The Head (STONITH) mechanism to ensure data integrity during node failures. If the fencing subsystem is misconfigured, the cluster might fail to recover safely, resulting in data corruption or a split-brain scenario. {._abstract}
+A two-node {{ product_title }} cluster with fencing (TNF) relies on the Shoot The Other Node In The Head (STONITH) mechanism to ensure data integrity during node failures.  {._abstract}
+
+If the fencing subsystem is misconfigured, the cluster might fail to recover safely, resulting in data corruption or a split-brain scenario.
 
 Before the introduction of this utility, administrators or support engineers had to manually verify several subsystems, including:
 

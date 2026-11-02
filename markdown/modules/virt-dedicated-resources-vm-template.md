@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling dedicated resources for a virtual machine template {id="virt-dedicated-resources-vm-template_{{ context }}"}
+# Enable dedicated resources for a VM template {id="virt-dedicated-resources-vm-template_{{ context }}"}
 
 You can enable dedicated resources for a virtual machine (VM) template in the {{ product_title }} web console.
 VMs that are created from this template will be scheduled with dedicated resources. {._abstract}

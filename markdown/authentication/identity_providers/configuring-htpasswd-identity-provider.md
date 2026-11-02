@@ -31,7 +31,7 @@ To define an `htpasswd` identity provider, complete these tasks:
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-htpasswd-secret.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/identity-provider-htpasswd-CR.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/identity-provider-htpasswd-cr.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}

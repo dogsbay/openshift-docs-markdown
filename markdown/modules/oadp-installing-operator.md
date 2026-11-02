@@ -3,7 +3,7 @@
 
 You install the OpenShift API for Data Protection (OADP) Operator on {{ product_title }} {{ product_version }} by using Operator Lifecycle Manager (OLM).
 
-The OADP Operator installs [Velero {{ velero_version }}](https://{{ velero_domain }}/docs/v{{ velero_version }}/).
+The OADP Operator installs [Velero {{ velero_version }}](https://velero.io/docs/).
 
 **Prerequisites**
 

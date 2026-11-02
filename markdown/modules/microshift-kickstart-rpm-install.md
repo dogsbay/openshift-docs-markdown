@@ -29,8 +29,8 @@ The subscription must include access to the `rhocp-4.x-for-rhel-{{ op_system_ver
         $ export RHSM_KEY="$(cat ~/.rhsm-activation-key)"
         ```
     *   The `MICROSHIFT_VER` variable references the {{ microshift_short }} version to install using the `4.y` format. The latest available `.z` version of the `4.y` version set in this variable is automatically installed.
-        ```terminal
-        $ export MICROSHIFT_VER={product-version}
+        ```terminal {minja}
+        $ export MICROSHIFT_VER={{ product_version }}
         ```
 
         In this example, the latest `.z` of the minor version that you set is installed.

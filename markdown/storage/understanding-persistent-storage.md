@@ -53,19 +53,11 @@ Persistent storage decouples data from pod lifecycles, allowing stateful applica
 
 {% leveloffset +1 %}{% include "./modules/storage-persistent-storage-fsgroup.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/storage-persistent-storage-fsGroup-namespace.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/storage-persistent-storage-fsgroup-namespace.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/storage-persistent-storage-fsGroup-pod.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/storage-persistent-storage-fsgroup-pod.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/storage-persistent-storage-selinuxChangePolicy.md" %}{% endleveloffset %}
-
-**Additional resources**
-{._additional-resources}
-
-*   [OpenShift reports SELinux-related conflicts when creating Pods (Red&#160;Hat Knowledgebase)](https://access.redhat.com/solutions/7131398)
-*   [Opting out of the SELinux mount option default](/storage/understanding-persistent-storage#using_selinuxChangePolicy_pod-opt-out_understanding-persistent-storage)
-
-{% leveloffset +2 %}{% include "./modules/storage-persistent-storage-selinuxChangePolicy-testing-mountoption-RWO-RWX.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/storage-persistent-storage-selinuxchangepolicy.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}
@@ -73,11 +65,19 @@ Persistent storage decouples data from pod lifecycles, allowing stateful applica
 *   [OpenShift reports SELinux-related conflicts when creating Pods (Red&#160;Hat Knowledgebase)](https://access.redhat.com/solutions/7131398)
 *   [Opting out of the SELinux mount option default](/storage/understanding-persistent-storage#using_selinuxChangePolicy_pod-opt-out_understanding-persistent-storage)
 
-{% leveloffset +2 %}{% include "./modules/storage-persistent-storage-selinuxChangePolicy-opt-out.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/storage-persistent-storage-selinuxchangepolicy-testing-mountoption-rwo-rwx.md" %}{% endleveloffset %}
 
-{% leveloffset +3 %}{% include "./modules/storage-persistent-storage-selinuxChangePolicy-namespace.md" %}{% endleveloffset %}
+**Additional resources**
+{._additional-resources}
 
-{% leveloffset +3 %}{% include "./modules/storage-persistent-storage-selinuxChangePolicy-pod.md" %}{% endleveloffset %}
+*   [OpenShift reports SELinux-related conflicts when creating Pods (Red&#160;Hat Knowledgebase)](https://access.redhat.com/solutions/7131398)
+*   [Opting out of the SELinux mount option default](/storage/understanding-persistent-storage#using_selinuxChangePolicy_pod-opt-out_understanding-persistent-storage)
+
+{% leveloffset +2 %}{% include "./modules/storage-persistent-storage-selinuxchangepolicy-opt-out.md" %}{% endleveloffset %}
+
+{% leveloffset +3 %}{% include "./modules/storage-persistent-storage-selinuxchangepolicy-namespace.md" %}{% endleveloffset %}
+
+{% leveloffset +3 %}{% include "./modules/storage-persistent-storage-selinuxchangepolicy-pod.md" %}{% endleveloffset %}
 
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}

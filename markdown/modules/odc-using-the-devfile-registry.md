@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Using the Devfile registry to access devfiles {id="odc-using-the-devfile-registry_{{ context }}"}
 
-You can use the devfiles in the **+Add** flow of the **Developer** perspective to create an application. The **+Add** flow provides a complete integration with the [devfile community registry](https://registry.devfile.io/viewer). A devfile is a portable YAML file that describes your development environment without needing to configure it from scratch. Using the **Devfile registry**, you can use a preconfigured devfile to create an application.
+You can use the devfiles in the **+Add** flow of the **Developer** perspective to create an application from a preconfigured devfile in the devfile community registry. A devfile is a portable YAML file that describes your development environment without needing to configure it from scratch. {._abstract}
 
 **Procedure**
 

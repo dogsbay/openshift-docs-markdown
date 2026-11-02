@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring disk sharing by using LUN {id="virt-configuring-disk-sharing-lun_{{ context }}"}
+# Share a LUN-backed disk between multiple VMs {id="virt-configuring-disk-sharing-lun_{{ context }}"}
 
 To secure data on your VM from outside access, you can enable SCSI persistent reservation and configure a LUN-backed virtual machine disk to be shared among multiple virtual machines. {._abstract}
 

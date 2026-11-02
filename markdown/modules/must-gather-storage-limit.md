@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Changing the must-gather storage limit {id="must-gather-storage-limit_{{ context }}"}
 
-When using the `oc adm must-gather` command to collect data the default maximum storage for the information is 30% of the storage capacity of the container. After the 30% limit is reached the container is killed and the gathering process stops. Information already gathered is downloaded to your local storage. To run the must-gather command again, you need either a container with more storage capacity or to adjust the maximum volume percentage. {._abstract}
+When using the `oc adm must-gather` command to collect data the default maximum storage for the information is 30% of the storage capacity of the container.  {._abstract}
+
+After the 30% limit is reached the container is killed and the gathering process stops. Information already gathered is downloaded to your local storage. To run the must-gather command again, you need either a container with more storage capacity or to adjust the maximum volume percentage.
 
 **Prerequisites**
 

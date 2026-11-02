@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Disabling node auto-scaling for the hosted cluster {id="hcp-bm-autoscale-disable_{{ context }}"}
 
-If needed, you can disable node auto-scaling. {._abstract}
+If needed, you can disable node auto-scaling for the hosted cluster. {._abstract}
 
 **Procedure**
 

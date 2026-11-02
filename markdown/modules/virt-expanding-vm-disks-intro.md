@@ -1,0 +1,16 @@
+{%- set _mod_docs_content_type = "CONCEPT" %}
+
+# Virtual machine disk expansion {id="virt-expanding-vm-disks-intro_{{ context }}"}
+
+You can expand the persistent volume claim (PVC) of a virtual machine (VM) disk to accommodate growing data requirements. You can expand a disk PVC by using the web console or the CLI, and the VM can keep running while you do so. {._abstract}
+
+You cannot reduce the size of a VM disk.
+
+If your storage provider does not support volume expansion, you can expand the available virtual storage of a VM by adding blank data volumes instead. Each blank data volume adds a new empty disk rather than increasing the capacity of an existing one.
+
+
+:::note
+
+If the PVC uses the file system volume mode, the disk image file expands to the available size while reserving some space for file system overhead.
+
+:::

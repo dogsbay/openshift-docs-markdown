@@ -106,7 +106,7 @@ After successfully deploying a bare-metal cluster, you can perform post installa
 
 {% leveloffset +2 %}{% include "./modules/bmo-performing-a-live-update-to-the-hostfirmwarecomponents-resource.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/bmo-getting-the-hostfirmwarecomponents-resource_nic.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/bmo-getting-the-hostfirmwarecomponents-resource-nic.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/bmo-about-the-hostupdatepolicy-resource.md" %}{% endleveloffset %}
 

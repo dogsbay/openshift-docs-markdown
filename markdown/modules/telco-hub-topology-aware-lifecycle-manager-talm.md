@@ -1,8 +1,12 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # {{ cgu_operator_full }} {id="telco-hub-topology-aware-lifecycle-manager-talm_{{ context }}"}
 
+{{ cgu_operator_full }} is an Operator that runs on the {{ product_title }} hub cluster to manage the progressive rollout of cluster upgrades, Operator upgrades, and configuration changes to managed cluster fleets.  {._abstract}
 
-New in this release {._abstract}
+It supports configurable batch sizes, per-cluster labeling, and optional pre-caching of images before upgrades.
+
+
+New in this release
 
 :   *   No reference design updates in this release.
 

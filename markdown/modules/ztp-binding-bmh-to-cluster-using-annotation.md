@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Bind bare-metal hosts to clusters using the cluster-reference annotation in {{ ztp }} deployments {id="ztp-binding-bmh-to-cluster-using-annotation_{{ context }}"}
 
-In {{ ztp }} deployments, you can declaratively bind individual `BareMetalHost` resources from a shared `InfraEnv` pool to specific `ClusterDeployment` CRs by using the `bmac.agent-install.openshift.io/cluster-reference` annotation.
-This approach is compatible with GitOps workflows because the binding is managed through annotations on the `BareMetalHost` resource rather than by patching `Agent` CRs directly. {._abstract}
+In {{ ztp }} deployments, you can declaratively bind individual `BareMetalHost` resources from a shared `InfraEnv` pool to specific `ClusterDeployment` CRs by using the `bmac.agent-install.openshift.io/cluster-reference` annotation. {._abstract}
+
+This approach is compatible with GitOps workflows because the binding is managed through annotations on the `BareMetalHost` resource rather than by patching `Agent` CRs directly.
 
 **Prerequisites**
 

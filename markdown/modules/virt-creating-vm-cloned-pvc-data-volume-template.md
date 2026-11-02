@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a VM from a cloned PVC by using a data volume template {id="virt-creating-vm-cloning-pvc-data-volume-template_{{ context }}"}
+# Create a VM from a cloned PVC data volume template {id="virt-creating-vm-cloning-pvc-data-volume-template_{{ context }}"}
 
 You can create a virtual machine (VM) that clones the persistent volume claim (PVC) of an existing VM by using a data volume template. This method creates a data volume whose lifecycle is independent on the original VM. {._abstract}
 

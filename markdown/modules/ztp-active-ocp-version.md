@@ -1,7 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Transitioning the active-ocp-version ClusterImageSet {id="ztp-active-ocp-version_{{ context }}"}
 
-Optionally, the `active-ocp-version` `ClusterImageSet` is a {{ ztp_first }} convention used in {{ ztp }} deployments.
+Optionally, the `active-ocp-version` `ClusterImageSet` is a {{ ztp_first }} convention used in {{ ztp }} deployments. {._abstract}
+
 It provides a single, central definition of the {{ product_title }} release image to use when provisioning clusters.  
 By default, this resource is synchronized to the hub cluster from the `site-config/resources/` folder.
 

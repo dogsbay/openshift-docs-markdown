@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Migrating VM disks to a different storage class by using the web console {id="virt-migrating-storage-class-ui_{{ context }}"}
+# Migrate VM disks to another storage class in the web console {id="virt-migrating-storage-class-ui_{{ context }}"}
 
 You can migrate one or more disks attached to a virtual machine (VM) to a different storage class by using the {{ product_title }} web console. When performing this action on a running VM, the operation of the VM is not interrupted and the data on the migrated disks remains accessible. {._abstract}
 

@@ -15,7 +15,7 @@ Configure the `request-header` identity provider to identify users from request 
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-config-map.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/identity-provider-request-header-CR.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/identity-provider-request-header-cr.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}

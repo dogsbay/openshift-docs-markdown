@@ -1,6 +1,10 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Managed cluster updates {id="telco-hub-managed-cluster-updates-and-upgrades_{{ context }}"}
 
+You can upgrade {{ product_title }} versions, Day 2 Operators, and managed cluster configurations by declaring the required versions in Policy custom resources (CRs).  {._abstract}
+
+The {{ cgu_operator_first }} manages progressive rollout of these changes across fleets of clusters.
+
 
 Description
 :   You can upgrade versions of {{ product_title }}, Day 2 Operators, and managed cluster configurations, by declaring the required version in the `Policy` custom resources (CRs) that target the clusters to be upgraded.

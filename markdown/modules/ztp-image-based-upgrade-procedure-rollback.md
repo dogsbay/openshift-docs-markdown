@@ -57,8 +57,9 @@ You need to create a separate `ImageBasedGroupUpgrade` CR and define the set of 
     ```terminal
     $ oc get ibgu -o yaml
     ```
-
-    ```yaml title="Example output"
+    +
+    .Example output
+    ```yaml
     # ...
     status:
       clusters:

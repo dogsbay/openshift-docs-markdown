@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running the example pipelines using the web console {id="virt-running-tto-pipeline-web_{{ context }}"}
+# Run the example pipelines in the web console {id="virt-running-tto-pipeline-web_{{ context }}"}
 
 You can run the example pipelines from the **Pipelines** menu in the web console. {._abstract}
 

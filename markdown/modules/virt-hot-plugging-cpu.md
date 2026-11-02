@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Hot plugging CPUs on a virtual machine {id="virt-hot-plugging-cpu_{{ context }}"}
+# Change VM CPU sockets without a restart {id="virt-hot-plugging-cpu_{{ context }}"}
 
 You can increase or decrease the number of CPU sockets allocated to a virtual machine (VM) without having to restart the VM by using the {{ product_title }} web console. {._abstract}
 

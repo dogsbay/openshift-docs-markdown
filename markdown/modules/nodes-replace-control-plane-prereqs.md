@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Prerequisites {id="prerequisites_{{ context }}"}
 
+Before replacing a failed bare-metal control plane node without BMC credentials in {{ product_title }}, verify that you meet the access, backup, and tooling requirements. You must also confirm that no control plane `machineset` exists for your cluster. {._abstract}
+
 *   You have identified the unhealthy bare metal etcd member.
 *   You have verified that either the machine is not running or the node is not ready.
 *   You have access to the cluster as a user with the `cluster-admin` role.

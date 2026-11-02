@@ -2,7 +2,7 @@
 # Monitoring PTP fast event metrics {id="cnf-monitoring-fast-events-metrics-{{ ptp_events_rest_api }}_{{ context }}"}
 
 You can monitor PTP fast events metrics from cluster nodes where the `linuxptp-daemon` is running.
-You can also monitor PTP fast event metrics in the {{ product_title }} web console by using the preconfigured and self-updating Prometheus monitoring stack.
+You can also monitor PTP fast event metrics in the {{ product_title }} web console by using the preconfigured and self-updating Prometheus monitoring stack. {._abstract}
 
 **Prerequisites**
 

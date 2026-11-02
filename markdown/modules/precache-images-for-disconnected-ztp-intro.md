@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Precache images for disconnected ZTP {id="precache-images-for-disconnected-ztp-intro_{{ context }}"}
 
-In environments with limited bandwidth where you use the {{ ztp }} solution to deploy a large number of clusters, you want to avoid downloading all the images that are required for bootstrapping and installing {{ product_title }}. The limited bandwidth at remote {{ sno }} sites can cause long deployment times. The `factory-precaching-cli` tool allows you to pre-stage servers before shipping them to the remote site for ZTP provisioning. {._abstract}
+In environments with limited bandwidth where you use the {{ ztp }} solution to deploy a large number of clusters, you want to avoid downloading all the images that are required for bootstrapping and installing {{ product_title }}.  {._abstract}
+
+The limited bandwidth at remote {{ sno }} sites can cause long deployment times. The `factory-precaching-cli` tool allows you to pre-stage servers before shipping them to the remote site for ZTP provisioning.
 
 {%- set FeatureName = "The `factory-precaching-cli` tool" %}
 {% include "./snippets/technology-preview.md" %}

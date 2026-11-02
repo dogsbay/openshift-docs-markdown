@@ -3,7 +3,7 @@
 
 When the {{ oadp_short }} Operator is configured with `nonAdmin.requireApprovalForBSL: true`, non-admin users who create a `NonAdminBackupStorageLocation` (NABSL) object trigger an approval request. You can use the {{ oadp_short }} command-line interface (CLI) to view, describe, approve, and reject these requests. {._abstract}
 
-**Prerequisites**
+Before you use these commands, ensure that the following conditions are met:
 
 *   The {{ oadp_short }} CLI plugin is installed and configured in admin mode.
 *   You are logged in to the {{ product_title }} cluster as a user with `cluster-admin` privileges.

@@ -1,4 +1,6 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Troubleshoot the Compliance Operator {id="troubleshoot-the-compliance-operator_{{ context }}"}
 
-You can troubleshoot the Compliance Operator to diagnose a problem or provide information in a bug report. When troubleshooting, review Kubernetes events for the Operator, filter controller logs for the affected API object, and collect a `must-gather` archive to share diagnostic information with Red&#160;Hat support.
+You can troubleshoot the Compliance Operator to diagnose a problem or provide information in a bug report.  {._abstract}
+
+When troubleshooting, review Kubernetes events for the Operator, filter controller logs for the affected API object, and collect a `must-gather` archive to share diagnostic information with Red&#160;Hat support.

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Enabling the PersistentReservation feature gate {id="virt-enabling-persistentreservation-feature-gate_{{ context }}"}
+# SCSI persistent reservation for shared LUN disks {id="virt-enabling-persistentreservation_{{ context }}"}
 
 You can enable the SCSI `persistentReservation` feature gate and allow a LUN-backed block mode virtual machine (VM) disk to be shared among multiple virtual machines. {._abstract}
 

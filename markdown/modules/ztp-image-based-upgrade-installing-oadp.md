@@ -244,11 +244,10 @@ Install and configure the {{ oadp_short }} Operator with {{ ztp }} before starti
               policyName: "config-policy"
         ```
 
-where:
+        where:
 
-
-`your_credentials`
-:   Specifies your credentials for your S3 storage backend.
+        `your_credentials`
+        :   Specifies your credentials for your S3 storage backend.
 
 
 `OadpDataProtectionApplication.yaml`

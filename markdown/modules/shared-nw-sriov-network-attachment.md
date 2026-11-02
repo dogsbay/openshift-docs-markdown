@@ -1,26 +1,13 @@
-{% if context == "configuring-sriov-net-attach" %}
-{%- set rs = "SriovNetwork" -%}
-{%- set ocp_sriov_net = true -%}
-{%- set object = "pods" -%}
-{% endif %}
-
-{% if context == "configuring-sriov-ib-attach" %}
-{%- set rs = "SriovIBNetwork" -%}
-{%- set ocp_sriov_net = true -%}
-{%- set object = "pods" -%}
-{% endif %}
-
-{%- set _mod_docs_content_type = "PROCEDURE" -%}
-{% if ocp_sriov_net %}
+{%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure SR-IOV additional network {id="shared-nw-sriov-network-attachment_{{ context }}"}
 
-You can configure an additional network that uses SR-IOV hardware by creating an `{{ rs }}`{minja} object.
-When you create an `{{ rs }}`{minja} object, the SR-IOV Network Operator automatically creates a `NetworkAttachmentDefinition` object. {._abstract}
+You can configure an additional network that uses SR-IOV hardware by creating an `SriovNetwork` object.
+When you create an `SriovNetwork` object, the SR-IOV Network Operator automatically creates a `NetworkAttachmentDefinition` object. {._abstract}
 
 
 :::note
 
-Do not modify or delete an `{{ rs }}`{minja} object if it is attached to any {{ object }} in a `running` state.
+Do not modify or delete an `SriovNetwork` object if it is attached to any pods in a `running` state.
 
 :::
 
@@ -32,10 +19,10 @@ Do not modify or delete an `{{ rs }}`{minja} object if it is attached to any {{ 
 
 **Procedure**
 
-1.  Create a `{{ rs }}`{minja} object, and then save the YAML in the `<name>.yaml` file, where `<name>` is a name for this additional network. The object specification might resemble the following example:
-    ```yaml {minja}
+1.  Create a `SriovNetwork` object, and then save the YAML in the `<name>.yaml` file, where `<name>` is a name for this additional network. The object specification might resemble the following example:
+    ```yaml
     apiVersion: sriovnetwork.openshift.io/v1
-    kind: {{ rs }}
+    kind: SriovNetwork
     metadata:
       name: attach1
       namespace: openshift-sriov-network-operator
@@ -61,20 +48,7 @@ Do not modify or delete an `{{ rs }}`{minja} object if it is attached to any {{ 
     `<name>`
     :   Specifies the name of the additional network.
 
-1.  Optional: To confirm that the `NetworkAttachmentDefinition` object that is associated with the `{{ rs }}`{minja} object that you created in the previous step exists, enter the following command. Replace `<namespace>` with the `networkNamespace` value you specified in the `{{ rs }}`{minja} object.
+1.  Optional: To confirm that the `NetworkAttachmentDefinition` object that is associated with the `SriovNetwork` object that you created in the previous step exists, enter the following command. Replace `<namespace>` with the `networkNamespace` value you specified in the `SriovNetwork` object.
     ```terminal
     $ oc get net-attach-def -n <namespace>
     ```
-{% endif %}
-
-{% if object %}
-{%- set object = "" -%}
-{% endif %}
-
-{% if rs %}
-{%- set rs = "" -%}
-{% endif %}
-
-{% if context == "configuring-sriov-net-attach" %}
-{%- set ocp_sriov_net = "" -%}
-{% endif %}

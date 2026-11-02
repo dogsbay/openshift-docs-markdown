@@ -34,7 +34,11 @@ Digital Phase-Locked Loop (DPLL)
 
 A leap second is a one-second adjustment that is occasionally applied to Coordinated Universal Time (UTC) to keep it synchronized with International Atomic Time (TAI).
 UTC leap seconds are unpredictable.
-Internationally agreed leap seconds are listed in [leap-seconds.list](https://hpiers.obspm.fr/iers/bul/bulc/ntp/leap-seconds.list).
-This file is regularly updated by the International Earth Rotation and Reference Systems Service (IERS).
+Internationally agreed leap seconds are listed in the `leap-seconds.list` file, which is regularly updated by the International Earth Rotation and Reference Systems Service (IERS).
 An unhandled leap second can have a significant impact on far edge RAN networks.
 It can cause the far edge RAN application to immediately disconnect voice calls and data sessions.
+
+**Additional resources**
+{._additional-resources}
+
+*   [leap-seconds.list](https://hpiers.obspm.fr/iers/bul/bulc/ntp/leap-seconds.list)

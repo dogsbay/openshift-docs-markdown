@@ -17,8 +17,8 @@ The `must-gather` tool generates a Markdown output file with the collected infor
 
 For more information about the supported flags, use the help flag with the `must-gather` tool as shown in the following example:
 
-```terminal {minja}
-$ oc adm must-gather --image={{ must_gather_v1_5 }} -- /usr/bin/gather -h
+```terminal
+$ oc adm must-gather --image=registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.5 -- /usr/bin/gather -h
 ```
 
 **Prerequisites**
@@ -31,22 +31,22 @@ $ oc adm must-gather --image={{ must_gather_v1_5 }} -- /usr/bin/gather -h
 1.  Navigate to the directory where you want to store the `must-gather` data.
 1.  Run the `oc adm must-gather` command for one of the following data collection options:
     *   To use the default configuration of the `must-gather` tool, run the following command:
-        ```terminal {minja}
-        $ oc adm must-gather --image={{ must_gather_v1_5 }}
+        ```terminal
+        $ oc adm must-gather --image=registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.5
         ```
     *   To use the timeout flag with the `must-gather` tool, run the following command:
-        ```terminal {minja}
-        $ oc adm must-gather --image={{ must_gather_v1_5 }} -- /usr/bin/gather --request-timeout 1m
+        ```terminal
+        $ oc adm must-gather --image=registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.5 -- /usr/bin/gather --request-timeout 1m
         ```
 
         In this example, the timeout is 1 minute.
     *   To use the insecure TLS connection flag with the `must-gather` tool, run the following command:
-        ```terminal {minja}
-        $ oc adm must-gather --image={{ must_gather_v1_5 }} -- /usr/bin/gather --skip-tls
+        ```terminal
+        $ oc adm must-gather --image=registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.5 -- /usr/bin/gather --skip-tls
         ```
     *   To use a combination of the insecure TLS connection and the timeout flags with the `must-gather` tool, run the following command:
-        ```terminal {minja}
-        $ oc adm must-gather --image={{ must_gather_v1_5 }} -- /usr/bin/gather --request-timeout 15s --skip-tls
+        ```terminal
+        $ oc adm must-gather --image=registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.5 -- /usr/bin/gather --request-timeout 15s --skip-tls
         ```
 
         In this example, the timeout is 15 seconds. By default, the `--skip-tls` flag value is `false`. Set the value to `true` to allow insecure TLS connections.

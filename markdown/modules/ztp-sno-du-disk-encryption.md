@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # About disk encryption with TPM and PCR protection {id="ztp-sno-du-disk-encryption_{{ context }}"}
 
-You can use the `diskEncryption` field in the `ClusterInstance` custom resource (CR) to configure disk encryption with Trusted Platform Module (TPM) and Platform Configuration Registers (PCRs) protection. 
+You can use the `diskEncryption` field in the `ClusterInstance` custom resource (CR) to configure disk encryption with Trusted Platform Module (TPM) and Platform Configuration Registers (PCRs) protection.  {._abstract}
 
 TPM is a hardware component that stores cryptographic keys and evaluates the security state of your system. PCRs within the TPM store hash values that represent the current hardware and software configuration of your system. You can use the following PCR registers to protect the encryption keys for disk encryption:
 

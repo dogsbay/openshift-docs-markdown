@@ -100,13 +100,13 @@ Before you can install an {{ product_title }} cluster on bare metal, you must se
 
 {% leveloffset +2 %}{% include "./modules/ipi-install-modifying-install-config-for-dual-stack-network.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/ipi-install-configuring-host-network-interfaces-in-the-install-config.yaml-file.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/ipi-install-configuring-host-network-interfaces-in-the-install-config-yaml-file.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/ipi-install-configuring-host-network-interfaces-for-subnets.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/ipi-install-modifying-install-config-for-slaac-dual-stack-network.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/ipi-install-configuring-host-dual-network-interfaces-in-the-install-config.yaml-file.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/ipi-install-configuring-host-dual-network-interfaces-in-the-install-config-yaml-file.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}

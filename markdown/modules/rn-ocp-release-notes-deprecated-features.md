@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Deprecated features {id="rn-ocp-release-notes-deprecated-features_{{ context }}"}
 
+This section lists the features that are deprecated in {{ product_title }} {{ product_version }} and may be removed in a future release. {._abstract}
+
 
 Deprecation of Fujitsu Integrated Remote Management Controller (iRMC) driver for bare-metal machines
 :   As of {{ product_title }} 4.21, support for the Fujitsu iRMC baseboard management controller (BMC) driver has been deprecated and will be removed in a future release.

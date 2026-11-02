@@ -1,14 +1,3 @@
-{% if context == "configuring-sriov-device" %}
-{%- set ocp_sriov = true -%}
-{% endif %}
-
-{% if context == "virt-connecting-vm-to-sriov" %}
-{%- set virt_sriov = true -%}
-{% endif %}
-{% if context == "virt-post-install-network-config" %}
-{%- set virt_sriov = true -%}
-{% endif %}
-
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure SR-IOV network devices {id="shared-nw-sriov-configuring-device_{{ context }}"}
 
@@ -39,7 +28,6 @@ It might take several minutes for a configuration change to apply.
 **Procedure**
 
 1.  Create an `SriovNetworkNodePolicy` object, and then save the YAML in the `<name>-sriov-node-network.yaml` file. Replace `<name>` with the name for this configuration.
-{%- if virt_sriov %}
     ```yaml
     apiVersion: sriovnetwork.openshift.io/v1
     kind: SriovNetworkNodePolicy
@@ -93,8 +81,6 @@ It might take several minutes for a configuration change to apply.
         
         :::
 
-
-{% endif %}
 1.  Optional: Label the SR-IOV capable cluster nodes with `SriovNetworkNodePolicy.Spec.NodeSelector` if they are not already labeled. For more information about labeling nodes, see "Understanding how to update labels on nodes".
 1.  Create the `SriovNetworkNodePolicy` object. When running the following command, replace `<name>` with the name for this configuration:
     ```terminal
@@ -106,11 +92,3 @@ It might take several minutes for a configuration change to apply.
     ```terminal
     $ oc get sriovnetworknodestates -n openshift-sriov-network-operator <node_name> -o jsonpath='{.status.syncStatus}'
     ```
-
-{% if virt_sriov %}
-{%- set virt_sriov = "" -%}
-{% endif %}
-
-{% if ocp_sriov %}
-{%- set ocp_sriov = "" -%}
-{% endif %}

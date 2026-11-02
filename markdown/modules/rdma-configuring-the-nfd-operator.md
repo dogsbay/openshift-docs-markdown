@@ -2,7 +2,7 @@
 
 # Configuring the NFD Operator {id="rdma-configuring-the-nfd-operator_{{ context }}"}
 
-The Node Feature Discovery (NFD) Operator manages the detection of hardware features and configuration in an {{ product_title }} cluster by labeling the nodes with hardware-specific information. NFD labels the host with node-specific attributes, such as PCI cards, kernel, operating system version, and so on.
+The Node Feature Discovery (NFD) Operator manages the detection of hardware features and configuration in an {{ product_title }} cluster by labeling the nodes with hardware-specific information. {._abstract}
 
 **Prerequisites**
 

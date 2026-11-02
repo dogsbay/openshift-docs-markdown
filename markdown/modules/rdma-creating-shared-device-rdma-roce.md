@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-
 # Creating a shared device RDMA on RoCE {id="rdma-creating-shared-device-rdma-roce_{{ context }}"}
 
-Create the workload pods for a shared device RDMA on RDMA over Converged Ethernet (RoCE) for the NVIDIA Network Operator and test the pod configuration.
+Create the workload pods for a shared device RDMA on RDMA over Converged Ethernet (RoCE) for the NVIDIA Network Operator and test the pod configuration. {._abstract}
 
 The NVIDIA GPUDirect RDMA device is shared among pods on the {{ product_title }} worker node where the device is exposed. 
 

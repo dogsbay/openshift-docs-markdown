@@ -1,7 +1,7 @@
-{%- set _mod_docs_content_type = "PROCEDURE" %}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # Example node disruption policies {id="machine-config-node-disruption-example_{{ context }}"}
 
-The following example `MachineConfiguration` objects contain a node disruption policy.
+The following example `MachineConfiguration` objects contain a node disruption policy. {._abstract}
 
 
 :::tip

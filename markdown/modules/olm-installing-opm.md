@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Installing the opm CLI {id="olm-installing-opm_{{ context }}"}
 
-You can install the `opm` CLI tool on your Linux, macOS, or Windows workstation.
+You can install the `opm` CLI tool on your Linux, macOS, or Windows workstation. {._abstract}
 
 **Prerequisites**
 

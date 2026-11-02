@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring an Ingress load balancer for a two-node cluster with fencing {id="two-node-ingress-lb-configuration_{{ context }}"}
 
-You must configure an external Ingress load balancer (LB) before you install a two-node OpenShift cluster with fencing. The Ingress LB forwards external application traffic to the Ingress Controller pods that run on the control plane nodes. Both nodes can actively receive traffic.
+You must configure an external Ingress load balancer (LB) before you install a two-node OpenShift cluster with fencing. The Ingress LB forwards external application traffic to the Ingress Controller pods that run on the control plane nodes. Both nodes can actively receive traffic. {._abstract}
 
 **Prerequisites**
 
@@ -55,4 +55,4 @@ You must configure an external Ingress load balancer (LB) before you install a t
         $ curl https://<app>.<cluster_name>.<base_domain>
         ```
 
-You can shut down a control plane node and verify that the load balancer stops sending traffic to that node while the other node continues to serve requests.
+        You can shut down a control plane node and verify that the load balancer stops sending traffic to that node while the other node continues to serve requests.

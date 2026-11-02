@@ -41,7 +41,7 @@ Review platform compatibility information before you install {{ VirtProductName 
 *   [{{ product_title }} object maximums](/scalability_and_performance/planning-your-environment-according-to-object-maximums#planning-your-environment-according-to-object-maximums)
 *   [{{ VirtProductName }} supported limits](/virt/about_virt/virt-supported-limits#virt-supported-limits)
 *   [Installing a FIPS-compliant cluster](/installing/overview/installing-fips#installing-fips-mode_installing-fips)
-*   [Configure CPU models](/virt/managing_vms/cpu_models/virt-configuring-default-cpu-model#virt-configuring-default-cpu-model)
+*   [Configure the default CPU model](/virt/managing_vms/cpu_models/virt-configuring-default-cpu-model#virt-configuring-default-cpu-model)
 *   [Deleting a virtual machine by using the web console](/virt/managing_vms/virt-delete-vms#virt-delete-vm-web_virt-delete-vms)
 *   [Configure a downward metrics device](/virt/monitoring/virt-exposing-downward-metrics#virt-configuring-downward-metrics_virt-exposing-downward-metrics)
 *   [Instance types](/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)

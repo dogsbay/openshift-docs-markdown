@@ -50,11 +50,10 @@ The ArgoCD pipeline uses `{{ policy_gen_cr }}`{minja} CRs in Git to generate the
         1.  Click **Governance** → **Find policies**.
         1.  Click on a cluster policy to check its status.
 
+            :::note
 
-        :::note
+            When all of the cluster policies become compliant, {{ ztp }} installation and configuration for the cluster is complete. The `ztp-done` label is added to the cluster.
 
-        When all of the cluster policies become compliant, {{ ztp }} installation and configuration for the cluster is complete. The `ztp-done` label is added to the cluster.
-
-        In the reference configuration, the final policy that becomes compliant is the one defined in the `*-du-validator-policy` policy. This policy, when compliant on a cluster, ensures that all cluster configuration, Operator installation, and Operator configuration is complete.
-        
-        :::
+            In the reference configuration, the final policy that becomes compliant is the one defined in the `*-du-validator-policy` policy. This policy, when compliant on a cluster, ensures that all cluster configuration, Operator installation, and Operator configuration is complete.
+            
+            :::

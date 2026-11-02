@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing VirtIO drivers during Windows installation {id="virt-installing-virtio-drivers-installing-windows_{{ context }}"}
+# Install VirtIO drivers during Windows setup {id="virt-installing-virtio-drivers-installing-windows_{{ context }}"}
 
 You can install the VirtIO drivers while installing Windows on a virtual machine (VM). {._abstract}
 

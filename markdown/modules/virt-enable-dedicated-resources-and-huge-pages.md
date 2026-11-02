@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Enable dedicated resources and huge pages {id="virt-enable-dedicated-resources-and-huge-pages_{{ context }}"}
 
-Enable dedicated CPUs and huge pages for latency-sensitive virtual machine (VM) workloads. When you configure dedicated CPUs, you provide exclusive access to physical hardware cores, which removes possible resource contention from the VM. Huge pages reduce the load on the memory management hardware cache. {._abstract}
+Enable dedicated CPUs and huge pages for latency-sensitive virtual machine (VM) workloads. Dedicated CPUs provide exclusive access to physical hardware cores, removing resource contention. Huge pages reduce the load on the memory management hardware cache. {._abstract}
 
 Use huge pages to optimize memory mapping efficiency. Unlike standard 4Ki blocks, huge pages are larger memory segments that reduce the tracking load on the translation lookaside buffer (TLB) hardware cache.
 

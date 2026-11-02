@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring Discovery ISO kernel arguments for manual installations using {{ ztp }} {id="setting-managed-bare-metal-host-kernel-arguments_{{ context }}"}
 
-The {{ ztp_first }} workflow uses the Discovery ISO as part of the {{ product_title }} installation process on managed bare-metal hosts. You can edit the `InfraEnv` resource to specify kernel arguments for the Discovery ISO. This is useful for cluster installations with specific environmental requirements. For example, configure the `rd.net.timeout.carrier` kernel argument for the Discovery ISO to facilitate static networking for the cluster or to receive a DHCP address before downloading the root file system during installation. In {{ product_title }} {{ product_version }}, you can only add kernel arguments. You can not replace or delete kernel arguments. {._abstract}
+The {{ ztp_first }} workflow uses the Discovery ISO as part of the {{ product_title }} installation process on managed bare-metal hosts. You can edit the `InfraEnv` resource to specify kernel arguments for the Discovery ISO.  {._abstract}
+
+This is useful for cluster installations with specific environmental requirements. For example, configure the `rd.net.timeout.carrier` kernel argument for the Discovery ISO to facilitate static networking for the cluster or to receive a DHCP address before downloading the root file system during installation. In {{ product_title }} {{ product_version }}, you can only add kernel arguments. You can not replace or delete kernel arguments.
 
 **Prerequisites**
 

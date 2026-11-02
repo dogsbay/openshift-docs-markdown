@@ -35,9 +35,9 @@ Troubleshoot the {{ product_title }} installation process to identify and resolv
 
 {% leveloffset +1 %}{% include "./modules/ipi-install-troubleshooting-troubleshooting-the-cluster-network-operator.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/ipi-install-troubleshooting_unable-to-discover-new-bare-metal-hosts-using-the-bmc.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/ipi-install-troubleshooting-unable-to-discover-new-bare-metal-hosts-using-the-bmc.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/ipi-install-troubleshooting_proc_worker-nodes-cannot-join-the-cluster.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/ipi-install-troubleshooting-proc-worker-nodes-cannot-join-the-cluster.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/ipi-install-troubleshooting-cleaning-up-previous-installations.md" %}{% endleveloffset %}
 

@@ -73,4 +73,4 @@ Before starting an installer-provisioned installation of {{ product_title }}, en
 
 {% leveloffset +1 %}{% include "./modules/ipi-install-validation-checklist-for-nodes.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/ref_ipi-installation-overview.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/ref-ipi-installation-overview.md" %}{% endleveloffset %}

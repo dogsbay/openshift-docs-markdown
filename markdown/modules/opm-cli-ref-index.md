@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # index {id="opm-cli-ref-index_{{ context }}"}
 
-Generate Operator index for SQLite database format container images from pre-existing Operator bundles.
+Generate Operator index for SQLite database format container images from pre-existing Operator bundles. {._abstract}
 
 
 :::important

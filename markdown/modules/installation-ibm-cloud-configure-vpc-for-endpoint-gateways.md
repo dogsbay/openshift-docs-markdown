@@ -28,7 +28,6 @@ If you choose to configure a new security group, the security group must be conf
     $ ibmcloud is security-group-rule-add $DEFAULT_SG inbound tcp --remote 0.0.0.0/0 --port-min 443 --port-max 443
     ```
 
-
     :::note
 
     Be sure that your endpoint gateways are configured to use this security group.

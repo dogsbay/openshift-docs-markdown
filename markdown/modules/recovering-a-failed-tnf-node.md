@@ -2,7 +2,9 @@
 # Recovering a failed TNF node {id="recovering-a-failed-tnf-node_{{ context }}"}
 
 Recovery is automatic when the failed node is powered on and rejoins the network. 
-Degraded operation is a temporary state. Restore the failed node as soon as possible to regain fault tolerance, fencing protection, and the ability to perform upgrades and maintenance. If the original node cannot be recovered, replace it. {._abstract}
+Degraded operation is a temporary state.  {._abstract}
+
+Restore the failed node as soon as possible to regain fault tolerance, fencing protection, and the ability to perform upgrades and maintenance. If the original node cannot be recovered, replace it.
 
 
 :::important

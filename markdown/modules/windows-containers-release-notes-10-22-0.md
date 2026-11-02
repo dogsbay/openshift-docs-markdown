@@ -1,4 +1,4 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # Release notes for Red Hat Windows Machine Config Operator 10.22.0 {id="windows-containers-release-notes-10-22-0_{{ context }}"}
 
 Issued: 20 May 2026

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Expanding a VM disk PVC by using the CLI {id="virt-expanding-vm-disk-pvc-cli_{{ context }}"}
+# Expand a VM disk PVC by using the CLI {id="virt-expanding-vm-disk-pvc-cli_{{ context }}"}
 
 You can increase the size of a virtual machine (VM) disk by expanding the persistent volume claim (PVC) of the disk. To specify the increased PVC volume, you can edit the `PersistentVolumeClaim` manifest by using the {{ oc_first }}. {._abstract}
 

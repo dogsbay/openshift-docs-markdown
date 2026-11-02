@@ -2,7 +2,7 @@
 
 # Configuring the SR-IOV Operator {id="rdma-configuring-the-sriov-operator_{{ context }}"}
 
-Single root I/O virtualization (SR-IOV) enhances the performance of NVIDIA GPUDirect RDMA by providing sharing across multiple pods from a single device. 
+Single root I/O virtualization (SR-IOV) enhances the performance of NVIDIA GPUDirect RDMA by providing sharing across multiple pods from a single device.  {._abstract}
 
 **Prerequisites**
 

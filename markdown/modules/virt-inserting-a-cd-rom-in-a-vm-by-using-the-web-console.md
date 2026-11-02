@@ -2,7 +2,7 @@
 {%- set _template_generated = "2025-09-11" -%}
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Inserting a CD-ROM in a live VM by using the web console {id="virt-inserting-a-cd-rom-in-a-vm-by-using-the-web-console_{{ context }}"}
+# Insert a CD-ROM into a running VM from the web console {id="virt-inserting-a-cd-rom-in-a-vm-by-using-the-web-console_{{ context }}"}
 
 To make data on a CD-ROM storage device available to a running virtual machine (VM), create a virtual CD-ROM drive in the VM and insert the CD-ROM into the drive as an ISO image. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a custom VM template in the web console {id="virt-creating-template_{{ context }}"}
+# Create a custom VM template in the web console {id="virt-creating-template_{{ context }}"}
 
 You can create a virtual machine template by editing a YAML file example in the {{ product_title }} web console. {._abstract}
 

@@ -3,4 +3,9 @@
 
 You can familiarize yourself with the scope of support for layered and dependent components of {{ product_title }}, which changes independently of the {{ product_title }} version. {._abstract}
 
-To determine the current support status and compatibility for an add-on, refer to its release notes. For more information, see the [Red Hat {{ product_title }} Life Cycle Policy](https://access.redhat.com/support/policy/updates/openshift).
+To determine the current support status and compatibility for an add-on, refer to its release notes.
+
+**Additional resources**
+{._additional-resources}
+
+*   [Red Hat {{ product_title }} Life Cycle Policy](https://access.redhat.com/support/policy/updates/openshift)

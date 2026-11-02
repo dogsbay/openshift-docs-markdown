@@ -1,13 +1,15 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Local Storage Operator {id="telco-hub-local-storage-operator_{{ context }}"}
 
+The Local Storage Operator creates persistent volumes (PVs) that applications in {{ product_title }} can consume as PersistentVolumeClaim (PVC) resources. The number and type of PVs you create depends on your storage requirements. {._abstract}
+
 
 New in this release
 :   *   No reference design updates in this release
 
 Description
 :   You can create persistent volumes that can be used as `PVC` resources by applications with the Local Storage Operator.
-    The number and type of `PV` resources that you create depends on your requirements. {._abstract}
+    The number and type of `PV` resources that you create depends on your requirements.
 
 
 Engineering considerations

@@ -71,9 +71,9 @@ Review the default Velero plugins provided by {{ oadp_first }} that integrate wi
 1.  The `csi` plugin uses the Kubernetes CSI snapshot API.
     *   OADP 1.1 or later uses `snapshot.storage.k8s.io/v1`
     *   OADP 1.0 uses `snapshot.storage.k8s.io/v1beta1`
-1.  Do not add the `hypershift` plugin in the `DataProtectionApplication` custom resource if the cluster is not a HyperShift hosted cluster. 
+1.  Do not add the `hypershift` plugin in the `DataProtectionApplication` custom resource if the cluster is not a HyperShift hosted cluster.
 
 **Additional resources**
 {._additional-resources}
 
-*   [Custom plugins](https://{{ velero_domain }}/docs/v{{ velero_version }}/custom-plugins/)
+*   [Custom plugins](https://velero.io/docs/latest/custom-plugins/)

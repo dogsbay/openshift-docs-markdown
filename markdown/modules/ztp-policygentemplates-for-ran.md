@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # {{ policy_gen_cr }} CRs for RAN deployments {id="ztp-policygentemplates-for-ran_{{ context }}"}
 
-Use `{{ policy_gen_cr }}`{minja} custom resources (CRs) to customize the configuration applied to the cluster by using the {{ ztp_first }} pipeline. The `{{ policy_gen_cr }}`{minja} CR allows you to generate one or more policies to manage the set of configuration CRs on your fleet of clusters. The `{{ policy_gen_cr }}`{minja} CR identifies the set of managed CRs, bundles them into policies, builds the policy wrapping around those CRs, and associates the policies with clusters by using label binding rules. {._abstract}
+Use `{{ policy_gen_cr }}`{minja} custom resources (CRs) to customize the configuration applied to the cluster by using the {{ ztp_first }} pipeline. The `{{ policy_gen_cr }}`{minja} CR allows you to generate one or more policies to manage the set of configuration CRs on your fleet of clusters.  {._abstract}
+
+The `{{ policy_gen_cr }}`{minja} CR identifies the set of managed CRs, bundles them into policies, builds the policy wrapping around those CRs, and associates the policies with clusters by using label binding rules.
 
 The reference configuration, obtained from the {{ ztp }} container, is designed to provide a set of critical features and node tuning settings that ensure the cluster can support the stringent performance and resource utilization constraints typical of RAN (Radio Access Network) Distributed Unit (DU) applications. Changes or omissions from the baseline configuration can affect feature availability, performance, and resource utilization. Use the reference `{{ policy_gen_cr }}`{minja} CRs as the basis to create a hierarchy of configuration files tailored to your specific site requirements.
 

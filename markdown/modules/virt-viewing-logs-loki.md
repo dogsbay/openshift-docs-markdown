@@ -5,7 +5,7 @@ You can use the Loki logging component to view aggregated logs for {{ VirtProduc
 
 **Prerequisites**
 
-*   You have installed the {{ loki_op }} and deployed the `LokiStack` custom resource (CR).
+*   You have installed the Loki Operator and deployed the `LokiStack` custom resource (CR).
 
 **Procedure**
 

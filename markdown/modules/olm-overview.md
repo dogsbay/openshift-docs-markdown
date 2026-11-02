@@ -12,7 +12,9 @@
 {{ olmv0 }} provides the features for the `OperatorLifecycleManager` capability. {._abstract}
 {% endif %}
 
-{{ olmv0_first }} helps users install, update, and manage the lifecycle of Kubernetes native applications (Operators) and their associated services running across their {{ product_title }} clusters. {{ olmv0_first }} forms part of the Operator Framework, an open source toolkit designed to manage Operators in an effective, automated, and scalable way.
+{{ olmv0_first }} helps users install, update, and manage the lifecycle of Kubernetes native applications (Operators) and their associated services running across their {{ product_title }} clusters. 
+
+{{ olmv0_first }} forms part of the Operator Framework, an open source toolkit designed to manage Operators in an effective, automated, and scalable way.
 
 {% if not cluster_caps %}
 

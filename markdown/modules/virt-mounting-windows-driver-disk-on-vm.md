@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Mounting a Windows driver disk on a virtual machine {id="virt-mounting-windows-driver-disk-on-vm_{{ context }}"}
+# Mount a Windows driver disk on a virtual machine {id="virt-mounting-windows-driver-disk-on-vm_{{ context }}"}
 
 You can mount a Windows driver disk on a virtual machine (VM) by using the {{ product_title }} web console. {._abstract}
 

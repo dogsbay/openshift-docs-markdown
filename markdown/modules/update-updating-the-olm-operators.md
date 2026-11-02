@@ -1,10 +1,11 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Updating the OLM Operators {id="update-updating-the-olm-operators_{{ context }}"}
 
-Software needs to vetted before it is loaded onto a production cluster.
+Software needs to vetted before it is loaded onto a production cluster. {._abstract}
+
 Production clusters are also quite often configured in disconnected network, which means that they are not always directly connected to the internet.
 Because the clusters are in a disconnected network, the {{ product_title }} Operators are configured for manual update during installation so that new versions can be managed on a cluster-by-cluster basis.
-Complete the following procedure to move the Operators to the newer versions. {._abstract}
+Complete the following procedure to move the Operators to the newer versions.
 
 **Procedure**
 

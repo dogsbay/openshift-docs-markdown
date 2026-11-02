@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Grouping multiple components within an application {id="odc-grouping-multiple-components_{{ context }}"}
 
-You can use the **+Add** view to add multiple components or services to your project and use the topology **Graph view** to group applications and resources within an application group.
+You can use the **+Add** view to add multiple components or services to your project and use the topology **Graph view** to group applications and resources within an application group. {._abstract}
 
 **Prerequisites**
 
@@ -15,11 +15,10 @@ You can use the **+Add** view to add multiple components or services to your pro
 
     ![odc_app_grouping_label](/images/odc_app_grouping_label.png)
 
-Alternatively, you can also add the component to an application as follows:
+    Alternatively, you can also add the component to an application as follows:
+    1.  Click the service pod to see the **Overview** panel to the right.
+    1.  Click the **Actions** drop-down menu and select **Edit Application Grouping**.
+    1.  In the **Edit Application Grouping** dialog box, click the **Application** drop-down list, and select an appropriate application group.
+    1.  Click **Save** to add the service to the application group.
 
-1.  Click the service pod to see the **Overview** panel to the right.
-1.  Click the **Actions** drop-down menu and select **Edit Application Grouping**.
-1.  In the **Edit Application Grouping** dialog box, click the **Application** drop-down list, and select an appropriate application group.
-1.  Click **Save** to add the service to the application group.
-
-You can remove a component from an application group by selecting the component and using <kbd>Shift</kbd>+ drag to drag it out of the application group.
+        You can remove a component from an application group by selecting the component and using <kbd>Shift</kbd>+ drag to drag it out of the application group.

@@ -1,10 +1,11 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Managing the image-based upgrade at scale using the ImageBasedGroupUpgrade CR on the hub {id="ztp-image-based-upgrade-concept_{{ context }}"}
 
-The `ImageBasedGroupUpgrade` CR combines the `ImageBasedUpgrade` and `ClusterGroupUpgrade` APIs.
+The `ImageBasedGroupUpgrade` CR combines the `ImageBasedUpgrade` and `ClusterGroupUpgrade` APIs. {._abstract}
+
 For example, you can define the cluster selection and rollout strategy with the `ImageBasedGroupUpgrade` API in the same way as the `ClusterGroupUpgrade` API.
 The stage transitions are different from the `ImageBasedUpgrade` API.
-You can use the `ImageBasedGroupUpgrade` API to combine several stage transitions, also called actions, into one step that share one rollout strategy. {._abstract}
+You can use the `ImageBasedGroupUpgrade` API to combine several stage transitions, also called actions, into one step that share one rollout strategy.
 
 **Example `ImageBasedGroupUpgrade.yaml`**
 

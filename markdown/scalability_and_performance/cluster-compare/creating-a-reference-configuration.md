@@ -7,7 +7,7 @@ title: Creating a reference configuration
 # Creating a reference configuration {id="creating-a-reference-configuration"}
 {%- set context = "creating-a-reference-configuration" %}
 
-Configure a reference configuration to validate configuration resources from a cluster.
+Configure a reference configuration to validate configuration resources from a cluster. {._abstract}
 
 {% leveloffset +1 %}{% include "./modules/cluster-compare-metadata-structure.md" %}{% endleveloffset %}
 
@@ -24,6 +24,18 @@ Configure a reference configuration to validate configuration resources from a c
 
 {% leveloffset +1 %}{% include "./modules/cluster-compare-exclude-metadata.md" %}{% endleveloffset %}
 
+{% leveloffset +1 %}{% include "./modules/cluster-compare-ignore-all-fields.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/cluster-compare-ignore-default-fields.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/cluster-compare-ignore-specified-fields.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/cluster-compare-ignore-default-groups.md" %}{% endleveloffset %}
+
 {% leveloffset +1 %}{% include "./modules/cluster-compare-configure-inline-diff.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/cluster-compare-configure-regex.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/cluster-compare-configure-capturegroups.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/cluster-compare-output-description.md" %}{% endleveloffset %}

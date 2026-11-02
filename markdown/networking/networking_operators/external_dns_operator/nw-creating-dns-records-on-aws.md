@@ -19,4 +19,4 @@ Usage of External DNS Operator on an STS-enabled cluster that runs in AWS Govern
 
 {% leveloffset +1 %}{% include "./modules/nw-control-dns-records-public-hosted-zone-aws.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/nw-control-dns-records-public-aws-with-VPC.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/nw-control-dns-records-public-aws-with-vpc.md" %}{% endleveloffset %}

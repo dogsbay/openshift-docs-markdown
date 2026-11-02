@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Coordinating reboots for configuration changes {id="ztp-coordinating-reboots-for-config-changes_{{ context }}"}
 
-You can use {{ cgu_operator_full }} (TALM) to coordinate reboots across a fleet of spoke clusters when configuration changes require a reboot, such as deferred tuning changes. {{ cgu_operator }} reboots all nodes in the targeted `MachineConfigPool` on the selected clusters when the reboot policy is applied. {._abstract}
+You can use {{ cgu_operator_full }} (TALM) to coordinate reboots across a fleet of spoke clusters when configuration changes require a reboot, such as deferred tuning changes. {._abstract}
+
+{{ cgu_operator }} reboots all nodes in the targeted `MachineConfigPool` on the selected clusters when the reboot policy is applied.
 
 Instead of rebooting nodes after each individual change, you can apply all configuration updates through policies and then trigger a single, coordinated reboot. 
 

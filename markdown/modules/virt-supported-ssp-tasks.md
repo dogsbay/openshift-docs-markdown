@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Supported virtual machine tasks {id="virt-supported-ssp-tasks_{{ context }}"}
 
-Automate virtual machine (VM) provisioning and management in your CI/CD workflows with {{ pipelines_shortname }} tasks designed for virtualization. These tasks allow you to manage VMs and their disks as part of your automated deployment pipelines, streamlining VM lifecycle management. {._abstract}
+Automate virtual machine (VM) provisioning and management in your CI/CD workflows with OpenShift Pipelines tasks designed for virtualization. These tasks allow you to manage VMs and their disks as part of your automated deployment pipelines, streamlining VM lifecycle management. {._abstract}
 
 **Supported virtual machine tasks**
 

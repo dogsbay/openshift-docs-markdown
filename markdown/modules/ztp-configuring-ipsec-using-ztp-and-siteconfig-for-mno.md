@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring IPsec encryption for multi-node clusters using {{ ztp }} and ClusterInstance resources {id="ztp-configuring-ipsec-using-ztp-and-siteconfig-for-mno_{{ context }}"}
 
-You can enable IPsec encryption in managed multi-node clusters that you install using {{ ztp }} and {{ rh_rhacm_first }}.
-You can encrypt traffic between the managed cluster and IPsec endpoints external to the managed cluster. All network traffic between nodes on the OVN-Kubernetes cluster network is encrypted with IPsec in Transport mode. {._abstract}
+You can enable IPsec encryption in managed multi-node clusters that you install using {{ ztp }} and {{ rh_rhacm_first }}. {._abstract}
+
+You can encrypt traffic between the managed cluster and IPsec endpoints external to the managed cluster. All network traffic between nodes on the OVN-Kubernetes cluster network is encrypted with IPsec in Transport mode.
 
 **Prerequisites**
 

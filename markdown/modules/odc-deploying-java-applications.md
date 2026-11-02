@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deploying a Java application by uploading a JAR file {id="odc-deploying-java-applications_{{ context }}"}
 
-You can use the web console **Developer** perspective to upload a JAR file by using the following options:
+You can use the web console **Developer** perspective to deploy a Java application by uploading a JAR file. {._abstract}
+
+You can upload a JAR file by using the following options:
 
 *   Navigate to the **+Add** view of the **Developer** perspective, and click **Upload JAR file** in the **From Local Machine** tile. Browse and select your JAR file, or drag a JAR file to deploy your application.
 *   Navigate to the **Topology** view and use the **Upload JAR file** option, or drag a JAR file to deploy your application.
@@ -29,12 +31,11 @@ You can use the web console **Developer** perspective to upload a JAR file by us
 1.  In the **Advanced options** menu, click **Create a Route to the Application** to configure a public URL for your deployed application.
 1.  Click **Create** to deploy the application. A toast notification is shown to notify you that the JAR file is being uploaded. The toast notification also includes a link to view the build logs.
 
+    :::note
 
-:::note
-
-If you attempt to close the browser tab while the build is running, a web alert is displayed.
-
-:::
+    If you attempt to close the browser tab while the build is running, a web alert is displayed.
+    
+    :::
 
 
-After the JAR file is uploaded and the application is deployed, you can view the application in the **Topology** view.
+    After the JAR file is uploaded and the application is deployed, you can view the application in the **Topology** view.

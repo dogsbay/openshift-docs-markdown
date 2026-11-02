@@ -2,7 +2,7 @@
 
 # Creating a host device RDMA on RoCE {id="rdma-creating-host-device-rdma-roce_{{ context }}"}
 
-Create the workload pods for a host device Remote Direct Memory Access (RDMA) for the NVIDIA Network Operator and test the pod configuration.
+Create the workload pods for a host device Remote Direct Memory Access (RDMA) for the NVIDIA Network Operator and test the pod configuration. {._abstract}
 
 **Prerequisites**
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Performing bulk actions on virtual machines {id="virt-performing-actions-on-multiple-virtual-machines_{{ context }}"}
+# Bulk actions on virtual machines {id="virt-performing-actions-on-multiple-virtual-machines_{{ context }}"}
 
 You can perform bulk actions on multiple virtual machines (VMs) simultaneously by using the **VirtualMachines** list view in the web console. This allows you to efficiently manage a group of VMs with minimal manual effort. {._abstract}
 

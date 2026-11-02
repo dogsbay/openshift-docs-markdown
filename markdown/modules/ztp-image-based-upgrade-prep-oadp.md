@@ -30,7 +30,7 @@ Prepare your {{ oadp_short }} resources to restore your application after an upg
 
     The `source-crs/ibu/PlatformBackupRestoreWithIBGU.yaml` file is provided in the ZTP container image.
 
-    **PlatformBackupRestoreWithIBGU.yaml**
+    `PlatformBackupRestoreWithIBGU.yaml`:
 
     {% include "./snippets/ibu-PlatformBackupRestoreWithIBGU.md" %}
 
@@ -44,22 +44,20 @@ Prepare your {{ oadp_short }} resources to restore your application after an upg
 
     If you use {{ lvms }} to create persistent volumes, you can use the `source-crs/ibu/PlatformBackupRestoreLvms.yaml` provided in the ZTP container image to back up your {{ lvms }} resources.
 
-    **PlatformBackupRestoreLvms.yaml**
+    `PlatformBackupRestoreLvms.yaml`:
 
     {% include "./snippets/ibu-PlatformBackupRestoreLvms.md" %}
 1.  If you need to restore applications after the upgrade, create the {{ oadp_short }} `Backup` and `Restore` CRs for your application in the `openshift-adp` namespace:
     1.  Create the {{ oadp_short }} CRs for cluster-scoped application artifacts in the `openshift-adp` namespace:
-
-        **Example {{ oadp_short }} CRs for cluster-scoped application artifacts for LSO and {{ LVMS }}**
+        Example {{ oadp_short }} CRs for cluster-scoped application artifacts for LSO and {{ LVMS }}:
 
         {% include "./snippets/ibu-ApplicationClusterScopedBackupRestore.md" %}
     1.  Create the {{ oadp_short }} CRs for your namespace-scoped application artifacts in the `source-crs/custom-crs` directory:
-
-        **Example {{ oadp_short }} CRs namespace-scoped application artifacts when LSO is used**
+        Example {{ oadp_short }} CRs namespace-scoped application artifacts when LSO is used:
 
         {% include "./snippets/ibu-ApplicationBackupRestoreLso.md" %}
 
-        **Example {{ oadp_short }} CRs namespace-scoped application artifacts when {{ lvms }} is used**
+        Example {{ oadp_short }} CRs namespace-scoped application artifacts when {{ lvms }} is used:
 
         {% include "./snippets/ibu-ApplicationBackupRestoreLvms.md" %}
 

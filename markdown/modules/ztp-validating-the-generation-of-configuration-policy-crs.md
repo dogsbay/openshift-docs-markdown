@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Validating the generation of configuration policy CRs {id="ztp-validating-the-generation-of-configuration-policy-crs_{{ context }}"}
 
-`Policy` custom resources (CRs) are generated in the same namespace as the `{{ policy_gen_cr }}`{minja} from which they are created. The same troubleshooting flow applies to all policy CRs generated from a `{{ policy_gen_cr }}`{minja} regardless of whether they are `ztp-common`, `ztp-group`, or `ztp-site` based, as shown using the following commands: {._abstract}
+`Policy` custom resources (CRs) are generated in the same namespace as the `{{ policy_gen_cr }}`{minja} from which they are created.  {._abstract}
+
+The same troubleshooting flow applies to all policy CRs generated from a `{{ policy_gen_cr }}`{minja} regardless of whether they are `ztp-common`, `ztp-group`, or `ztp-site` based, as shown using the following commands:
 
 ```terminal
 $ export NS=<namespace>

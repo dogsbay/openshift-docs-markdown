@@ -9,8 +9,9 @@ Configure ephemeral storage requests and limits in the pod spec to control how t
 {% endif %}
 
 {% if microshift %}
-## Ephemeral storage configuration effects pod eviction {id="storage-ephemeral-storage-eviction_{{ context }}"}
-At the container level, because the first container sets a resource limit, kubelet eviction manager measures the disk usage of this container and evicts the pod if the storage usage of the container exceeds its limit (4GiB). The kubelet eviction manager also marks the pod for eviction if the total usage exceeds the overall pod storage limit (8GiB).
+# Ephemeral storage configuration effects pod eviction {id="storage-ephemeral-storage-eviction_{{ context }}"}
+
+At the container level, because the first container sets a resource limit, kubelet eviction manager measures the disk usage of this container and evicts the pod if the storage usage of the container exceeds its limit (4GiB). The kubelet eviction manager also marks the pod for eviction if the total usage exceeds the overall pod storage limit (8GiB). {._abstract}
 
 
 :::note

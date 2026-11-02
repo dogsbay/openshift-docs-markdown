@@ -1,6 +1,10 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Storage considerations {id="telco-hub-storage-considerations_{{ context }}"}
 
+Storage in the {{ product_title }} telco hub cluster reference configuration must meet high availability, performance, and capacity requirements.  {._abstract}
+
+The reference configuration uses {{ rh_storage_first }}, backed by the Local Storage Operator, for block, file, and object storage.
+
 
 Limits and requirements
 :   *   Minimum {{ product_title }} and {{ rh_rhacm_first }} limits apply

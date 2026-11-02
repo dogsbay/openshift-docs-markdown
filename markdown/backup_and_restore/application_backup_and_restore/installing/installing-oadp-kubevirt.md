@@ -79,6 +79,6 @@ Red Hat only supports the combination of {{ oadp_short }} versions 1.3.0 and lat
 *   [`Backup` custom resource (CR)](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
 *   [`Restore` CR](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications#restoring-applications)
 *   [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
-*   [Velero {{ velero_version }}](https://velero.io/docs/v{{ velero_version }})
+*   [Velero {{ velero_version }}](https://velero.io/docs)
 
 {%- set installing_oadp_kubevirt = "" -%}

@@ -99,8 +99,5 @@ As an administrator, you can create mediated devices and expose them to the clus
 
 *   Confirm that the virtual GPU is attached to the node by running the following command:
     ```terminal
-    $ oc get node <node_name> -o json \
-      | jq '.status.allocatable \
-      | with_entries(select(.key | startswith("nvidia.com/"))) \
-      | with_entries(select(.value != "0"))'
+    $ oc get node <node_name> -o json | jq '.status.allocatable | with_entries(select(.key | startswith("nvidia.com/"))) | with_entries(select(.value != "0"))'
     ```

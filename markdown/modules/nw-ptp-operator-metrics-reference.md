@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # PTP fast event metrics reference {id="nw-ptp-operator-metrics-reference-{{ ptp_events_rest_api }}_{{ context }}"}
 
-The following table describes the PTP fast events metrics that are available from cluster nodes where the `linuxptp-daemon` service is running.
+The following table describes the PTP fast events metrics that are available from cluster nodes where the `linuxptp-daemon` service is running. {._abstract}
 
 **PTP fast event metrics**
 

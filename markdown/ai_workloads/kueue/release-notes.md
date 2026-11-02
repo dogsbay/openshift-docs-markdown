@@ -11,6 +11,8 @@ title: Release notes
 
 {% leveloffset +1 %}{% include "./modules/kueue-compatible-environments.md" %}{% endleveloffset %}
 
+{% leveloffset +1 %}{% include "./modules/kueue-release-notes-1-5.md" %}{% endleveloffset %}
+
 {% leveloffset +1 %}{% include "./modules/kueue-release-notes-1-4-3.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/kueue-release-notes-1-4-2.md" %}{% endleveloffset %}

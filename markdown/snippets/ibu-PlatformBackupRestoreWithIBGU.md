@@ -1,3 +1,5 @@
+{%- set _mod_docs_content_type = "SNIPPET" %}
+
 ```yaml
 apiVersion: velero.io/v1
 kind: Backup

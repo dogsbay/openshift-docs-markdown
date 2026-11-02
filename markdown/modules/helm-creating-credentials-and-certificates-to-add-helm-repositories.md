@@ -1,11 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating credentials and CA certificates to add Helm chart repositories {id="creating-credentials-and-certificates-to-add-helm-repositories_{{ context }}"}
 
-Some Helm chart repositories need credentials and custom certificate authority (CA) certificates to connect to it. You can use the web console as well as the CLI to add credentials and certificates.
+Some Helm chart repositories need credentials and custom certificate authority (CA) certificates to connect to it. You can use the web console as well as the CLI to add credentials and certificates. {._abstract}
 
 **Procedure**
-
-To configure the credentials and certificates, and then add a Helm chart repository using the CLI:
 
 1.  In the `openshift-config` namespace, create a `ConfigMap` object with a custom CA certificate in PEM encoded format, and store it under the `ca-bundle.crt` key within the config map:
     ```terminal

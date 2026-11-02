@@ -7,7 +7,7 @@ title: Backing up applications on AWS STS using OADP
 # Backing up applications on AWS STS using OADP {id="oadp-aws-sts"}
 {%- set context = "oadp-aws-sts-backing-up-applications" %}
 
-Install the {{ oadp_first }} with {{ aws_first }} by installing the OADP Operator. The Operator installs {{ velero_link }}. {._abstract}
+Install the {{ oadp_first }} with {{ aws_first }} by installing the OADP Operator. The Operator installs Velero {{ velero_version }}. {._abstract}
 
 You configure {{ aws_short }} for Velero, create a default `Secret`, and then install the Data Protection Application. For more details, see _Installing the OADP Operator_.
 
@@ -26,14 +26,14 @@ This process is performed in the following two stages:
 
 {% leveloffset +1 %}{% include "./modules/installing-oadp-aws-sts.md" %}{% endleveloffset %}
 
-**Additional resources**
-{._additional-resources}
+{% leveloffset +1 %}{% include "./modules/performing-a-backup-oadp-aws-sts.md" %}{% endleveloffset %}
 
+{% leveloffset +2 %}{% include "./modules/cleanup-a-backup-oadp-aws-sts.md" %}{% endleveloffset %}
+
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
+
+*   [Velero {{ velero_version }}](https://velero.io/docs/)
 *   [Installing the OADP Operator](/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)
 *   [Using Operator Lifecycle Manager in disconnected environments](/disconnected/using-olm#olm-restricted-networks)
 *   [Installing from the software catalog using the web console](/operators/user/olm-installing-operators-in-namespace#olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace)
 *   [Backing up applications](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
-
-{% leveloffset +1 %}{% include "./modules/performing-a-backup-oadp-aws-sts.md" %}{% endleveloffset %}
-
-{% leveloffset +2 %}{% include "./modules/cleanup-a-backup-oadp-aws-sts.md" %}{% endleveloffset %}

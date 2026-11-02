@@ -1,10 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating MachineConfigPool groups for the cluster {id="update-creating-mcp-groups-for-the-cluster_{{ context }}"}
 
-Creating `mcp` groups is a 2-step process: {._abstract}
-
-1.  Add an `mcp` label to the nodes in the cluster
-1.  Apply an `mcp` CR to the cluster that organizes the nodes based on their labels
+To control the rollout of configuration updates across worker nodes in {{ product_title }}, you can create MachineConfigPool (mcp) groups. Label nodes with `mcp` roles and apply `MachineConfigPool` custom resources (CRs) to organize them into groups. {._abstract}
 
 **Procedure**
 

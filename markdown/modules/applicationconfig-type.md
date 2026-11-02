@@ -2,7 +2,7 @@
 
 # ApplicationConfig type {id="applicationconfig-type_{{ context }}"}
 
-The following are `ApplicationConfig` {{ oadp_short }} APIs: {._abstract}
+Use the `ApplicationConfig` {{ oadp_short }} API type to define Velero and Restic server configuration for {{ oadp_short }} backup and restore operations in {{ product_title }}. {._abstract}
 
 **ApplicationConfig**
 

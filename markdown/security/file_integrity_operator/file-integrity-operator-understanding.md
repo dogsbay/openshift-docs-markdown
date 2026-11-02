@@ -21,7 +21,7 @@ Currently, only {{ op_system_first }} nodes are supported.
 
 {% leveloffset +1 %}{% include "./modules/checking-file-intergrity-cr-status.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/file-integrity-CR-phases.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/file-integrity-cr-phases.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/file-integrity-understanding-file-integrity-node-statuses-object.md" %}{% endleveloffset %}
 

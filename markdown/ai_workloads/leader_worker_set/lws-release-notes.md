@@ -16,4 +16,4 @@ These release notes track the development of the {{ lws_operator }}.
 
 For more information, see [About the {{ lws_operator }}](/ai_workloads/leader_worker_set/index#lws-about_lws-about).
 
-{% leveloffset +1 %}{% include "./modules/lws-rn-1.0.0.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/lws-rn-1-0-0.md" %}{% endleveloffset %}

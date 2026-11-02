@@ -57,7 +57,7 @@ The following procedures deploy a single-node {{ product_title }} cluster in a d
 
 {% leveloffset +2 %}{% include "./modules/installation-user-infra-machines-advanced-disk.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/installing-ocp-agent-ZTP.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/installing-ocp-agent-ztp.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}

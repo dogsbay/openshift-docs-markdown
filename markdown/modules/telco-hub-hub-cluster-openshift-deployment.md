@@ -1,6 +1,10 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # {{ product_title }} installation on the hub cluster {id="telco-hub-hub-cluster-openshift-deployment_{{ context }}"}
 
+The reference method for installing {{ product_title }} on the hub cluster uses the Agent-based Installer, which requires no additional centralized infrastructure.  {._abstract}
+
+You can apply the reference configuration custom resources (CRs) manually or through ArgoCD after installation is complete.
+
 
 Description
 :   The reference method for installing {{ product_title }} for the hub cluster is through the Agent-based Installer.

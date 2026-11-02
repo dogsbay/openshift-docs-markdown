@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# How KubeVirt Redfish differs from physical BMC Redfish {id="con_virt-kubevirt-redfish-vs-bmc_{{ context }}"}
+# KubeVirt Redfish compared to physical BMC Redfish {id="con_virt-kubevirt-redfish-vs-bmc_{{ context }}"}
 
 Redfish is commonly used with physical baseboard management controllers (BMCs) for bare metal deployments, where it manages hardware power state, boot configuration, and provisioning. {._abstract}
 

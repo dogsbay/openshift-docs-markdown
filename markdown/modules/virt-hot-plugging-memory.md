@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Hot plugging memory on a virtual machine {id="virt-hot-plugging-memory_{{ context }}"}
+# Change VM memory without a restart {id="virt-hot-plugging-memory_{{ context }}"}
 
 You can add or remove the amount of memory allocated to a virtual machine (VM) without having to restart the VM by using the {{ product_title }} web console. {._abstract}
 

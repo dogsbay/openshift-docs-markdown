@@ -14,7 +14,7 @@ By default, the `Subscription` CR assigns the namespace to `metallb-system` and 
 
 If you need to manually control upgrading the MetalLB Operator, set the `installPlanApproval` parameter to `Manual`. 
 
-{% leveloffset +1 %}{% include "./modules/nw-metalLB-basic-upgrade-operator.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/nw-metallb-basic-upgrade-operator.md" %}{% endleveloffset %}
 
 ## Additional resources {id="additional-resources"}
 

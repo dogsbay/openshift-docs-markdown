@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Setting the inferFromVolume labels {id="inferfromvolume-labels_{{ context }}"}
+# Set volume inference labels {id="inferfromvolume-labels_{{ context }}"}
 
 Use the following labels on your PVC, data source, or data volume to instruct the inference mechanism which instance type, preference, or both to use when trying to boot from a volume. {._abstract}
 

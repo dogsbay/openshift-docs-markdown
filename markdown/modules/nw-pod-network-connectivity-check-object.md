@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # PodNetworkConnectivityCheck object fields {id="nw-pod-network-connectivity-check-object_{{ context }}"}
 
-The `PodNetworkConnectivityCheck` object fields are described in the following tables.
+The `PodNetworkConnectivityCheck` object fields are described in the following tables. {._abstract}
 
 **PodNetworkConnectivityCheck object fields**
 

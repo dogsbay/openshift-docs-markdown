@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Gather data from an sos report {id="gathering-data-microshift-sos-report_{{ context }}"}
 
-You can create an `sosreport` archive about a failing {{ op_system_full }} host that you can share with Red&#160;Hat support for troubleshooting. {._abstract}
+You can create an `sosreport` archive about a failing {{ op_system_base_full }} host that you can share with Red&#160;Hat support for troubleshooting. {._abstract}
 
 **Prerequisites**
 
@@ -15,7 +15,7 @@ You can create an `sosreport` archive about a failing {{ op_system_full }} host 
     ```terminal
     $ microshift-sos-report
     ```
-    ```terminal title="Example output"
+    ```text title="Example output"
     sosreport (version 4.5.1)
 
     This command will collect diagnostic and configuration information from

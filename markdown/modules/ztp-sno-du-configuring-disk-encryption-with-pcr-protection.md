@@ -1,7 +1,7 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
+{%- set _mod_docs_content_type = "PROCEDURE" %}
 # Enabling disk encryption with TPM and PCR protection {id="ztp-sno-du-configuring-disk-encryption-with-pcr-protection_{{ context }}"}
 
-You can use the `diskEncryption` field in the `ClusterInstance` custom resource (CR) to configure disk encryption with Trusted Platform Module (TPM) and Platform Configuration Registers (PCRs) protection. 
+You can use the `diskEncryption` field in the `ClusterInstance` custom resource (CR) to configure disk encryption with Trusted Platform Module (TPM) and Platform Configuration Registers (PCRs) protection.  {._abstract}
 
 Configuring the `ClusterInstance` CR enables disk encryption at the time of cluster installation.
 
@@ -25,23 +25,33 @@ Configuring the `ClusterInstance` CR enables disk encryption at the time of clus
       - clusterName: "encryption-tpm2"
         clusterImageSetNameRef: "openshift-v4.22.0"
         diskEncryption: 
-          type: "tpm2" (1)
+          type: "tpm2"
           tpm2:
-            pcrList: "1,7" (2)
+            pcrList: "1,7"
         nodes:
           - hostName: "node1"
             role: master
     ```
-    1.  Set the disk encryption type to `tpm2`.
-    1.  Configure the list of PCRs to be used for disk encryption. You must use PCR registers 1 and 7.
+
+    where:
+
+    `spec.clusters[].diskEncryption.type`
+    :   Specifies the disk encryption type. Set to `tpm2` to use Trusted Platform Module encryption.
+
+    `spec.clusters[].diskEncryption.tpm2.pcrList`
+    :   Specifies the list of PCRs to use for disk encryption. You must use PCR registers 1 and 7.
 
 **Verification**
 
 *   Check that the disk encryption with TPM and PCR protection is enabled by running the following command:
     ```terminal
-    $ clevis luks list -d <disk_path> (1)
+    $ clevis luks list -d <disk_path>
     ```
-    1.  Replace `<disk_path>` with the path to the disk. For example, `/dev/sda4`.
+
+    where:
+
+    `<disk_path>`
+    :   Specifies the path to the disk. For example, `/dev/sda4`.
     ```terminal title="Example output"
     1: tpm2 '{"hash":"sha256","key":"ecc","pcr_bank":"sha256","pcr_ids":"1,7"}'
     ```

@@ -1,7 +1,7 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
+{%- set _mod_docs_content_type = "PROCEDURE" %}
 # Workload partitioning {id="ztp-sno-du-enabling-workload-partitioning_{{ context }}"}
 
-{{ sno_caps }} clusters that run DU workloads require workload partitioning. This limits the cores allowed to run platform services, maximizing the CPU core for application payloads.
+{{ sno_caps }} clusters that run DU workloads require workload partitioning. This limits the cores allowed to run platform services, maximizing the CPU core for application payloads. {._abstract}
 
 
 :::note
@@ -15,14 +15,16 @@ Changes to CPU settings cause the node to reboot.
 
 
 
-:::note[Upgrading from {product-title} 4.12 to 4.13+]
+:::note
 
-When transitioning to using `cpuPartitioningMode` for enabling workload partitioning, remove the workload partitioning `MachineConfig` CRs from the `/extra-manifest` folder that you use to provision the cluster.
+
+Upgrading from {{ product_title }} 4.12 to 4.13+
+:   When transitioning to using `cpuPartitioningMode` for enabling workload partitioning, remove the workload partitioning `MachineConfig` CRs from the `/extra-manifest` folder that you use to provision the cluster.
 
 :::
 
 
-```yaml title="Recommended ClusterInstance CR configuration for workload partitioning"
+```yaml
 apiVersion: ran.openshift.io/v1
 kind: ClusterInstance
 metadata:
@@ -30,13 +32,16 @@ metadata:
   namespace: "<site_name>"
 spec:
   baseDomain: "example.com"
-  cpuPartitioningMode: AllNodes (1)
+  cpuPartitioningMode: AllNodes
 ```
-1.  Set the `cpuPartitioningMode` field to `AllNodes` to configure workload partitioning for all nodes in the cluster.
 
-**Verification**
+where:
 
-Check that the applications and cluster system CPU pinning is correct. Run the following commands:
+
+`spec.cpuPartitioningMode`
+:   Set to `AllNodes` to configure workload partitioning for all nodes in the cluster.
+
+**Procedure**
 
 1.  Open a remote shell prompt to the managed cluster:
     ```terminal

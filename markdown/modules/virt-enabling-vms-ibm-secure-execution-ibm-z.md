@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling VMs to run {{ ibm_title }} Secure Execution on {{ ibm_z_title }} and {{ ibm_linuxone_title }} {id="virt-enabling-vms-ibm-secure-execution-ibm-z_{{ context }}"}
+# Enable Secure Execution for VMs on {{ ibm_z_title }} {id="virt-enabling-vms-ibm-secure-execution-ibm-z_{{ context }}"}
 
 To enable {{ ibm_name }} Secure Execution virtual machines (VMs) on {{ ibm_z_name }} and {{ ibm_linuxone_name }} on the compute nodes of your cluster, you must ensure that you meet the prerequisites and complete the following steps. {._abstract}
 

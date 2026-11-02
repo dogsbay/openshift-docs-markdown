@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# {{ ibm_z_title }} and {{ ibm_linuxone_title }} compatibility {id="virt-ibm-z-compatibility_{{ context }}"}
+# {{ ibm_z_title }} and IBM LinuxONE compatibility {id="virt-ibm-z-compatibility_{{ context }}"}
 
 You can use {{ VirtProductName }} in an {{ product_title }} cluster that is installed in logical partitions (LPARs) on an {{ ibm_z_name }} or {{ ibm_linuxone_name }} (`s390x` architecture) system. {._abstract}
 
@@ -16,7 +16,7 @@ Currently unavailable features
     *   {{ VirtProductName }} on a cluster installed in FIPS mode
     *   IPv6
     *   {{ ibm_name }} Storage scale
-    *   {{ hcp_capital }} for {{ VirtProductName }}
+    *   Hosted control planes for {{ VirtProductName }}
     *   VM pages using HugePages
 
     The following features are not applicable on `s390x` architecture:

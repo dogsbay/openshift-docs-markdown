@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Customizing extra installation manifests in the {{ ztp }} pipeline {id="ztp-customizing-the-install-extra-manifests_{{ context }}"}
 
-You can define a set of extra manifests for inclusion in the installation phase of the {{ ztp_first }} pipeline. These manifests are linked to the `ClusterInstance` custom resources (CRs) and are applied to the cluster during installation. Including `MachineConfig` CRs at install time makes the installation process more efficient. {._abstract}
+You can define a set of extra manifests for inclusion in the installation phase of the {{ ztp_first }} pipeline.  {._abstract}
+
+These manifests are linked to the `ClusterInstance` custom resources (CRs) and are applied to the cluster during installation. Including `MachineConfig` CRs at install time makes the installation process more efficient.
 
 Extra manifests must be packaged in `ConfigMap` resources and referenced in the `extraManifestsRefs` field of the `ClusterInstance` CR.
 

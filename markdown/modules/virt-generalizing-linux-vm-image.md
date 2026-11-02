@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Generalizing a VM image {id="virt-generalizing-linux-vm-image_{{ context }}"}
+# Generalize a VM image {id="virt-generalizing-linux-vm-image_{{ context }}"}
 
 You can generalize a {{ op_system_base_full }} image to remove all system-specific configuration data before you use the image to create a boot source image, a preconfigured snapshot of a virtual machine (VM). You can use a boot source image to deploy new VMs. {._abstract}
 

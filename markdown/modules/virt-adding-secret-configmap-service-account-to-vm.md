@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Adding a secret, config map, or service account to a virtual machine {id="virt-adding-secret-configmap-service-account-to-vm_{{ context }}"}
+# Add a secret, config map, or service account to a VM {id="virt-adding-secret-configmap-service-account-to-vm_{{ context }}"}
 
 You can add a secret, config map, or service account to a virtual machine by using the {{ product_title }} web console. {._abstract}
 

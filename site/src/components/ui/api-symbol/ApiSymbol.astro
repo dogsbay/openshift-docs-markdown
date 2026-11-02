@@ -18,7 +18,7 @@ const slug = name.toLowerCase().replace(/[^\w]/g, "-").replace(/-+/g, "-");
 const HeadingTag = `h${level}` as any;
 ---
 
-<div class="api-symbol not-prose" data-kind={kind}>
+<div class="api-symbol" data-kind={kind}>
   <div class="api-symbol-heading">
     <span class={`api-badge api-badge-${badgeKind}`}>{badgeKind}</span>
     <HeadingTag id={slug} class="!mt-0 !mb-0 !border-0">

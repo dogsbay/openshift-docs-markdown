@@ -26,4 +26,5 @@ With the Cluster Network Operator, you can manage networking in {{ product_title
 ## Additional resources {id="cluster-network-operator-additional-resources" ._additional-resources}
 *   [`Network` API in the `operator.openshift.io` API group](/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1)
 *   [Expanding the cluster network IP address range](/networking/configuring_network_settings/configuring-cluster-network-range#nw-cluster-network-range-edit_configuring-cluster-network-range)
+*   [Increasing the cluster network hostPrefix](/networking/ovn_kubernetes_network_provider/increasing-cluster-network-hostprefix#increasing-cluster-network-hostprefix)
 *   [How to configure OVN to use kernel routing table](https://access.redhat.com/solutions/6969174)

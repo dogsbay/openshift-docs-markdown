@@ -14,13 +14,22 @@ You can create an index image based on the SQLite database format by using the `
 1.  Start a new index:
     ```terminal
     $ opm index add \
-        --bundles <registry>/<namespace>/<bundle_image_name>:<tag> \ (1)
-        --tag <registry>/<namespace>/<index_image_name>:<tag> \ (2)
-        [--binary-image <registry_base_image>] (3)
+        --bundles <registry>/<namespace>/<bundle_image_name>:<tag> \
+        --tag <registry>/<namespace>/<index_image_name>:<tag> \
+        [--binary-image <registry_base_image>]
     ```
-    1.  Comma-separated list of bundle images to add to the index.
-    1.  The image tag that you want the index image to have.
-    1.  Optional: An alternative registry base image to use for serving the catalog.
+
+    where:
+
+    `--bundles`
+    :   Specifies a comma-separated list of bundle images to add to the index.
+
+    `--tag`
+    :   Specifies the image tag that you want the index image to have.
+
+    `--binary-image`
+    :   Optional: Specifies an alternative registry base image to use for serving the catalog.
+
 1.  Push the index image to a registry.
     1.  If required, authenticate with your target registry:
         ```terminal

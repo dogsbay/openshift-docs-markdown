@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Hub cluster architecture overview {id="telco-hub-architecture-overview_{{ context }}"}
+# Review how the hub cluster manages the fleet {id="telco-hub-architecture-overview_{{ context }}"}
 
 Use the features and components running on the management hub cluster to manage many other clusters in a hub-and-spoke topology.
 The hub cluster provides a highly available and centralized interface for managing the configuration, lifecycle, and observability of the fleet of deployed clusters. {._abstract}

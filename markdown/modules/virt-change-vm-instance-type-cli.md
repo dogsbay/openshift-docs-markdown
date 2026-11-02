@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Changing the instance type of a VM by using the CLI {id="virt-change-vm-instance-type-cli_{{ context }}"}
+# Change a VM instance type from the CLI {id="virt-change-vm-instance-type-cli_{{ context }}"}
 
 To change the instance type of a VM, change the `name` field in the VM spec. This triggers the update logic, which ensures that a new, immutable controller revision snapshot is taken of the new resource configuration. {._abstract}
 

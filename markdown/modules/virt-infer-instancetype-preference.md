@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Inferring an instance type or preference {id="virt-infer-instancetype-preference_{{ context }}"}
+# Infer instance types from volumes {id="virt-infer-instancetype-preference_{{ context }}"}
 
 Inferring instance types, preferences, or both is enabled by default, and the `inferFromVolumeFailure` policy of the `inferFromVolume` attribute is set to `Ignore`. When inferring from the boot volume, errors are ignored, and the VM is created with the instance type and preference left unset. {._abstract}
 

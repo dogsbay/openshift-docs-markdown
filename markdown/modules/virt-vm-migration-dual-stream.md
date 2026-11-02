@@ -1,10 +1,10 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # VM migration support for {{ op_system }} 10.x {id="virt-vm-migration-dual-stream_{{ context }}"}
 
+    {VirtProductName} 4.22 and later supports live migration to, from, and between {op-system} 10.x worker nodes as a Technology Preview feature. This includes clusters that run a mix of {op-system} 9.x and 10.x worker nodes. {._abstract}
+
 {%- set FeatureName = "Live migration support for {{ op_system }} 10.x" %}
 {% include "./snippets/technology-preview.md" %}
-
-{{ VirtProductName }} 4.22 and later versions supports live migration with {{ op_system }} 10.x worker nodes as a Technology Preview feature. {._abstract}
 
 For information on configuring your cluster to use {{ op_system }} 10.x, refer to the {{ product_title }} documentation.
 

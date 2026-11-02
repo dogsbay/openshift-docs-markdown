@@ -9,6 +9,6 @@ title: Configuring PXE booting for virtual machines
 
 PXE booting, or network booting, allows a computer to boot and load an operating system or other program without requiring a locally attached storage device. For example, you can use it to choose your desired OS image from a PXE server when deploying a new host. {._abstract}
 
-{% leveloffset +1 %}{% include "./modules/virt-pxe-booting-with-mac-address.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/conditional-virt-pxe-booting-with-mac-address.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/virt-networking-glossary.md" %}{% endleveloffset %}

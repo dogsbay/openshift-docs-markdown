@@ -1,9 +1,10 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # PTP {id="ztp-sno-du-configuring-ptp_{{ context }}"}
 
-{{ sno_caps }} clusters use Precision Time Protocol (PTP) for network time synchronization.
+{{ sno_caps }} clusters use Precision Time Protocol (PTP) for network time synchronization. {._abstract}
+
 The following example `PtpConfig` custom resources (CRs) illustrate configurations for ordinary clocks, boundary clocks, and Telecom Grandmaster clocks on supported Intel Ethernet hardware.
-You must select the profile that matches your qualified GNR-D hardware layout and complete interface renaming prerequisites before you apply Granite Rapids-D Telecom Grandmaster YAML on Intel Granite Rapids-D servers. {._abstract}
+You must select the profile that matches your qualified GNR-D hardware layout and complete interface renaming prerequisites before you apply Granite Rapids-D Telecom Grandmaster YAML on Intel Granite Rapids-D servers.
 
 ```yaml title="Recommended PTP ordinary clock configuration (PtpConfigSlave.yaml)" {minja}
 {% include "./snippets/ztp_PtpConfigSlave.yaml" %}

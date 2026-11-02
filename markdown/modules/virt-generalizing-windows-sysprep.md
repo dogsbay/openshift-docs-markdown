@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Generalizing a Windows VM image {id="virt-generalizing-windows-sysprep_{{ context }}"}
+# Generalize a Windows VM image {id="virt-generalizing-windows-sysprep_{{ context }}"}
 
 You can generalize a Windows operating system image to remove all system-specific configuration data before you use the image to create a new virtual machine (VM). {._abstract}
 

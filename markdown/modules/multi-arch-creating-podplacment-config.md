@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # The ClusterPodPlacementConfig object {id="multi-architecture-creating-podplacement-config_{{ context }}"}
 
-After installing the Multiarch Tuning Operator, you must create a `ClusterPodPlacementConfig` object. The object instructs the Operator to deploy its operand, which enables architecture-aware workload scheduling across your cluster. {._abstract}
+After installing the Multiarch Tuning Operator, create a `ClusterPodPlacementConfig` object to enable architecture-aware workload scheduling across your cluster. {._abstract}
+
+The object instructs the Operator to deploy its operands and network policies that restrict network traffic to and from the operands.
 
 The `ClusterPodPlacementConfig` object supports two optional plugins:
 

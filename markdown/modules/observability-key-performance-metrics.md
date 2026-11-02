@@ -20,7 +20,7 @@ If a metric is important, set up an alert for it.
 You can check the available metrics by running the following command:
 
 ```terminal
-$ oc -n openshift-monitoring exec -c prometheus prometheus-k8s-0 -- curl -qsk http://localhost:9090/api/v1/metadata | jq '.data
+$ oc -n openshift-monitoring exec -c prometheus prometheus-k8s-0 -- curl -qsk \http://localhost:9090/api/v1/metadata | jq '.data
 ```
 
 :::
@@ -33,8 +33,8 @@ Using the {{ product_title }} console, you can explore the following queries in 
 
 :::note
 
-The URL for the console is https://&lt;OpenShift Console FQDN>/monitoring/query-browser.
-You can get the Openshift Console FQDN by running the following command:
+You can access the metrics query browser at the `/monitoring/query-browser` path of your {{ product_title }} web console.
+You can get the {{ product_title }} console FQDN by running the following command:
 
 ```terminal
 $ oc get routes -n openshift-console console -o jsonpath='{.status.ingress[0].host}'

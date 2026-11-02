@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # AWS S3 compatible backup storage providers {id="oadp-s3-compatible-backup-storage-providers_{{ context }}"}
 
-{{ oadp_short }} works with many S3-compatible object storage providers. Several object storage providers are certified and tested with every release of {{ oadp_short }}. Various S3 providers are known to work with {{ oadp_short }} but are not specifically tested and certified. These providers will be supported on a best-effort basis. Additionally, there are a few S3 object storage providers with known issues and limitations that are listed in this documentation.
+{{ oadp_short }} works with many S3-compatible object storage providers. Several object storage providers are certified and tested with every release of {{ oadp_short }}. {._abstract}
+
+Various S3 providers are known to work with {{ oadp_short }} but are not specifically tested and certified. These providers will be supported on a best-effort basis. Additionally, there are a few S3 object storage providers with known issues and limitations that are listed in this documentation.
 
 
 :::note
@@ -60,3 +62,4 @@ The following AWS S3 compatible object storage providers are known to work with 
 {._additional-resources}
 
 *   [Scality ARTESCA S3 object storage (Scality documentation)](https://downloads.scality.com/artesca-ova/doc/general_introduction.html#)
+*   [Accessing the Multicloud Object Gateway with your applications](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/4.13/html-single/managing_hybrid_and_multicloud_resources/index#accessing-the-multicloud-object-gateway-with-your-applications_rhodf)

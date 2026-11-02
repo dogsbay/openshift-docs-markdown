@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring node health checks for virtual machines {id="virt-configuring-node-health-checks-for-vms_{{ context }}"}
+# Configure node health checks for virtual machines {id="virt-configuring-node-health-checks-for-vms_{{ context }}"}
 
 You can configure the Node Health Check Operator to monitor node status and trigger automated remediation when a node becomes unhealthy. {._abstract}
 

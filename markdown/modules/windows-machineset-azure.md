@@ -1,9 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Sample YAML for a Windows MachineSet object on Azure {id="windows-machineset-azure_{{ context }}"}
 
-You can add Windows nodes to an {{ azure_first }} cluster by defining a Windows `MachineSet` object that the Windows Machine Config Operator (WMCO) can react upon. {._abstract}
+You can add Windows nodes to an Microsoft Azure cluster by defining a Windows `MachineSet` object that the Windows Machine Config Operator (WMCO) can react upon. {._abstract}
 
-The following example is a YAML file for creating a `MachineSet` object for {{ azure_short }}.
+The following example is a YAML file for creating a `MachineSet` object for Azure.
 
 ```yaml
 apiVersion: machine.openshift.io/v1beta1

@@ -1,7 +1,7 @@
-{%- set _mod_docs_content_type = "PROCEDURE" %}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # Reference flags for the siteconfig-converter tool {id="ztp-site_converter-ref_{{ context }}"}
 
-The following matrix describes the flags for the `siteconfig-converter` tool.
+The following matrix describes the flags for the `siteconfig-converter` tool. {._abstract}
 
 | Flag | Type | Description |
 | --- | --- | --- |

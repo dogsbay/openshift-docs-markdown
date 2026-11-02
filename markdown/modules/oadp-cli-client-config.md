@@ -3,7 +3,7 @@
 
 You can use the {{ oadp_short }} command-line interface (CLI) to view and modify client configuration settings. Configuration is stored in `~/.config/velero/config.json`. {._abstract}
 
-**Prerequisites**
+Before you use these commands, ensure that the following conditions are met:
 
 *   The {{ oadp_short }} CLI plugin is installed.
 

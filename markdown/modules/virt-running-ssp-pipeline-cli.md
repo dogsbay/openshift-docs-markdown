@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Running the example pipelines using the CLI {id="virt-running-tto-pipeline-cli_{{ context }}"}
+# Run the example pipelines by using the CLI {id="virt-running-tto-pipeline-cli_{{ context }}"}
 
 Use a `PipelineRun` resource to run the example pipelines. A `PipelineRun` object is the running instance of a pipeline. It instantiates a pipeline for execution with specific inputs, outputs, and execution parameters on a cluster. It also creates a `TaskRun` object for each task in the pipeline. {._abstract}
 

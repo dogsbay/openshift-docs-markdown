@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing VirtIO drivers from a container disk added as a SATA CD drive {id="virt-adding-container-disk-as-cd_{{ context }}"}
+# Install VirtIO drivers from a container disk SATA CD {id="virt-adding-container-disk-as-cd_{{ context }}"}
 
 You can install VirtIO drivers from a container disk that you add to a Windows virtual machine (VM) as a SATA CD drive. {._abstract}
 

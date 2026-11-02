@@ -8,7 +8,7 @@ You do not need to specify a snapshot location in the `DataProtectionApplication
 
 :::important
 
-Restic does not support backing up `hostPath` volumes. For more information, see [additional Restic limitations](https://{{ velero_domain }}/docs/v{{ velero_version }}/restic/#limitations).
+Restic does not support backing up `hostPath` volumes. For more information, see [additional Restic limitations](https://velero.io/docs/restic/#limitations).
 
 :::
 

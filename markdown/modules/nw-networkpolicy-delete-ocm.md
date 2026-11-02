@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Delete a network policy using {{ cluster_manager }} {id="nw-networkpolicy-delete-ocm_{{ context }}"}
 
-You can delete a network policy in a namespace. {._abstract}
+You can delete a network policy in a namespace by using {{ cluster_manager }}. {._abstract}
 
 **Prerequisites**
 

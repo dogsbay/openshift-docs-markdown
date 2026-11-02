@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # SPIRE UpstreamAuthority plugins for Zero Trust Workload Identity Manager {id="zero-trust-manager-plugins-con_{{ context }}"}
 
-To integrate {{ spire_full }} (SPIRE) with your existing certificate management infrastructure and keep {{ spiffe_full }} (SPIFFE) identity standards, configure SPIRE Server with UpstreamAuthority plugins. These plugins obtain intermediate signing certificates from external certificate authorities. {._abstract}
+To integrate {{ spire_full }} (SPIRE) with your existing certificate management infrastructure and keep {{ spiffe_full }} (SPIFFE) identity standards, configure SPIRE Server with UpstreamAuthority plugins.  {._abstract}
+
+These plugins obtain intermediate signing certificates from external certificate authorities.
 
 You can configure SPIRE Server to use one of the following UpstreamAuthority plugins:
 

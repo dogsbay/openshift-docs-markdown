@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Restoring a VM from a snapshot by using the web console {id="virt-restoring-vm-from-snapshot-web_{{ context }}"}
+# Restore a VM from a snapshot by using the web console {id="virt-restoring-vm-from-snapshot-web_{{ context }}"}
 
 You can restore a virtual machine (VM) to a previous configuration represented by a snapshot in the {{ product_title }} web console. {._abstract}
 

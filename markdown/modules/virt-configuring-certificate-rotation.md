@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configure certificate rotation in `HyperConverged` CR {id="virt-configuring-certificate-rotation_{{ context }}"}
+# Configure certificate rotation {id="virt-configuring-certificate-rotation_{{ context }}"}
 
 If you did not configure certificate rotation during {{ VirtProductName }} installation in the web console, you can use the `HyperConverged` custom resource (CR) to apply the configuration after installation. {._abstract}
 

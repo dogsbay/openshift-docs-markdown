@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Hub cluster networking {id="telco-hub-networking_{{ context }}"}
 
-The reference hub cluster is designed to operate in a disconnected networking environment where direct access to the internet is not possible.
-As with all {{ product_title }} clusters, the hub cluster requires access to an image registry hosting all OpenShift and Day 2 {{ olm_first }} images. {._abstract}
+The reference hub cluster is designed to operate in a disconnected networking environment where direct access to the internet is not possible. {._abstract}
+
+As with all {{ product_title }} clusters, the hub cluster requires access to an image registry hosting all OpenShift and Day 2 {{ olm_first }} images.
 
 The hub cluster supports dual-stack networking support for IPv6 and IPv4 networks.
 IPv6 is typical in edge or far-edge network segments, while IPv4 is more prevalent for use with legacy equipment in the data center.

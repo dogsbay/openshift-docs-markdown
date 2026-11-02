@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the QEMU guest agent on a Linux VM {id="virt-installing-qemu-guest-agent-on-linux-vm_{{ context }}"}
+# Install the QEMU guest agent on a Linux VM {id="virt-installing-qemu-guest-agent-on-linux-vm_{{ context }}"}
 
 The `qemu-guest-agent` is available by default in {{ op_system_base_full }} virtual machines (VMs). To create snapshots of a VM in the `Running` state with the highest integrity, install the QEMU guest agent. {._abstract}
 

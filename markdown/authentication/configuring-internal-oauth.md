@@ -19,7 +19,7 @@ The {{ product_title }} Control Plane includes a built-in OAuth server for user 
 
 {% leveloffset +1 %}{% include "./modules/oauth-configuring-token-inactivity-timeout.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/oauth-customizing-the-oauth-server-URL.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/oauth-customizing-the-oauth-server-url.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/oauth-server-metadata.md" %}{% endleveloffset %}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Using flags to specify instance types and preferences {id="virt-using-flags-specify_{{ context }}"}
+# Specify instance types and preferences with flags {id="virt-using-flags-specify_{{ context }}"}
 
 You can specify instance types and preferences by using flags. {._abstract}
 

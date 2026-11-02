@@ -1,10 +1,11 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Automatic kernel crash dumps with kdump {id="ztp-sno-du-enabling-kdump_{{ context }}"}
 
-`kdump` is a Linux kernel feature that creates a kernel crash dump when the kernel crashes.
+`kdump` is a Linux kernel feature that creates a kernel crash dump when the kernel crashes. {._abstract}
+
 You can use the crash dump to debug and find the cause of the kernel crash.
 To enable `kdump`, you apply `MachineConfig` custom resources (CRs) that reserve memory for the crash kernel and enable the `kdump` systemd service.
-The `ztp-site-generate` container provides the following reference CRs for this configuration: {._abstract}
+The `ztp-site-generate` container provides the following reference CRs for this configuration:
 
 *   `06-kdump-master.yaml` for control plane nodes
 *   `06-kdump-worker.yaml` for worker nodes

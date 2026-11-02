@@ -1,14 +1,11 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Logging {id="telco-hub-logging_{{ context }}"}
 
+The Cluster Logging Operator collects and ships logs off {{ product_title }} hub cluster nodes for remote archival and analysis. The reference configuration uses Kafka to ship audit and infrastructure logs to a remote archive. {._abstract}
+
 
 New in this release
 :   *   No reference design updates in this release
-
-Description
-:   Use the Cluster Logging Operator to collect and ship logs off the node for remote archival and analysis.
-    The reference configuration uses Kafka to ship audit and infrastructure logs to a remote archive. {._abstract}
-
 
 Limits and requirements
 :   *   The reference configuration does not include local log storage.

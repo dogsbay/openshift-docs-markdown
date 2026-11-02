@@ -7,8 +7,7 @@ title: Using the must-gather tool
 # Using the must-gather tool {id="using-the-must-gather-tool"}
 {%- set toc = true %}
 
-{%- set context = "using-the-must-gather-tool" -%}
-{%- set must_gather_v1_5 = "registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.5" %}
+{%- set context = "using-the-must-gather-tool" %}
 
 Collect logs and information about {{ oadp_short }} custom resources by using the `must-gather` tool. The `must-gather` data must be attached to all customer cases. {._abstract}
 

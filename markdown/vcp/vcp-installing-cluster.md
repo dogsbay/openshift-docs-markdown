@@ -13,11 +13,11 @@ The agent-based installer and {{ ztp_first }} are the recommended methods for vi
 {%- set FeatureName = "KubeVirt Redfish" %}
 {% include "./snippets/technology-preview.md" %}
 
-{% leveloffset +1 %}{% include "./modules/proc_virt-installing-vcp-abi.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/proc-virt-installing-vcp-abi.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/proc_virt-installing-vcp-ztp.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/proc-virt-installing-vcp-ztp.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/proc_virt-installing-vcp-ipi.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/proc-virt-installing-vcp-ipi.md" %}{% endleveloffset %}
 
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 

@@ -1,3 +1,4 @@
+{%- set _mod_docs_content_type = "PROCEDURE" %}
 # Investigate why a Windows machine does not become a compute node {id="investigating-why-windows-machine-compute-node_{{ context }}"}
 
 There are various reasons why a Windows Machine does not become a compute node. The best way to investigate this problem is to collect the Windows Machine Config Operator (WMCO) logs. {._abstract}

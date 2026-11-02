@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Adding components to an existing project {id="odc-adding-components-to-an-existing-project_{{ context }}"}
 
-You can add components to a project.
+You can add components or services to an existing project from the **+Add** view in the **Developer** perspective. {._abstract}
 
 **Procedure**
 
@@ -13,8 +13,8 @@ You can add components to a project.
 
     ![odc_quick_search](/images/odc_quick_search.png)
 
-Alternatively, you can also use the available  options in the context menu, such as **Import from Git**, **Container Image**, **Database**, **From Catalog**, **Operator Backed**, **Helm Charts**, **Samples**, or **Upload JAR file**, by right-clicking in the topology **Graph view** to add a component to your project.
+    Alternatively, you can also use the available  options in the context menu, such as **Import from Git**, **Container Image**, **Database**, **From Catalog**, **Operator Backed**, **Helm Charts**, **Samples**, or **Upload JAR file**, by right-clicking in the topology **Graph view** to add a component to your project.
 
-**Figure 2. Context menu to add services**
+    **Figure 2. Context menu to add services**
 
-![odc_context_project](/images/odc_context_project.png)
+    ![odc_context_project](/images/odc_context_project.png)

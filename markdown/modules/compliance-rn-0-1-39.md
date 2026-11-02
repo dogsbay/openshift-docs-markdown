@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Release notes for OpenShift Compliance Operator 0.1.39 {id="compliance-operator-release-notes-0-1-39_{{ context }}"}
 
-Release Notes for Compliance Operator 0.1.39. {._abstract}
+The Compliance Operator 0.1.39 release adds support for parsing PCI DSS compliance references and fixes permissions for running AU-5 control rules in the moderate profile. {._abstract}
 
 The following Red Hat Bug Fix Advisory (RHBA) is available for the OpenShift Compliance Operator 0.1.39:
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Reference event consumer deployment and service CRs using PTP events REST API v2 {id="ptp-reference-deployment-and-service-crs-v2_{{ context }}"}
 
-Use the following example PTP event consumer custom resources (CRs) as a reference when deploying your PTP events consumer application for use with the PTP events REST API v2.
+Use the following example PTP event consumer custom resources (CRs) as a reference when deploying your PTP events consumer application for use with the PTP events REST API v2. {._abstract}
 
 ```yaml title="Reference cloud event consumer namespace"
 apiVersion: v1

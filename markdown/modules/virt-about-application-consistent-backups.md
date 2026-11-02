@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About application-consistent snapshots and backups {id="virt-about-application-consistent-backups_{{ context }}"}
+# Application-consistent snapshots and backups {id="virt-about-application-consistent-backups_{{ context }}"}
 
 You can configure application-consistent snapshots and backups for Linux or Windows virtual machines (VMs) through a cycle of freezing and thawing. For any application, you can configure a script on a Linux VM or register on a Windows VM to be notified when a snapshot or backup is due to begin. {._abstract}
 

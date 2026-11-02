@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Subscribing to PTP events with the REST API {{ ptp_events_rest_api }} {id="ptp-subscribing-consumer-app-to-events-{{ ptp_events_rest_api }}_{{ context }}"}
 
+You can subscribe PTP event consumer applications to PTP events posted by the `cloud-event-proxy` container managed by the PTP Operator. {._abstract}
+
 {% if ptp-events-rest-api == "v2" %}
 Deploy your `cloud-event-consumer` application container and subscribe the `cloud-event-consumer` application to PTP events posted by the `cloud-event-proxy` container in the pod managed by the PTP Operator.
 

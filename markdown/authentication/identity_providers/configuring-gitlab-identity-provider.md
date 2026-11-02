@@ -26,7 +26,7 @@ Configure the `gitlab` identity provider so users can log in to {{ product_title
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-config-map.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/identity-provider-gitlab-CR.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/identity-provider-gitlab-cr.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}

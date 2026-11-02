@@ -17,7 +17,7 @@ Configure a Keystone identity provider to connect {{ product_title }} to an Open
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-config-map.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/identity-provider-keystone-CR.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/identity-provider-keystone-cr.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}

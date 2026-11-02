@@ -2,7 +2,7 @@
 
 # Creating persistent naming rules {id="rdma-creating-persistent-naming-rules_{{ context }}"}
 
-In some cases, device names won’t persist following a reboot. For example, on R760xa systems Mellanox devices might be renamed after a reboot. You can avoid this problem by using a `MachineConfig` to set persistence.
+In some cases, device names won’t persist following a reboot. For example, on R760xa systems Mellanox devices might be renamed after a reboot. You can avoid this problem by using a `MachineConfig` to set persistence. {._abstract}
 
 **Procedure**
 
@@ -62,4 +62,4 @@ In some cases, device names won’t persist following a reboot. For example, on 
     worker   rendered-worker-4568f1b174066b4b1a4de794cf538fee   False     True       False      2              0                   0                     0                      6h21m
     ```
 
-The nodes will reboot and when the updating field returns to `false`, you can validate on the nodes by looking at the devices in a debug pod.
+    The nodes will reboot and when the updating field returns to `false`, you can validate on the nodes by looking at the devices in a debug pod.

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Editing a boot order list in the YAML configuration file {id="virt-edit-boot-order-yaml-web_{{ context }}"}
+# Edit a boot order list by using the CLI {id="virt-edit-boot-order-yaml-web_{{ context }}"}
 
 You can edit the boot order list in a YAML configuration file by using the CLI. {._abstract}
 

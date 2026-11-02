@@ -2,7 +2,9 @@
 
 # Object ownership for cluster extensions {id="olmv1-object-ownership_{{ context }}"}
 
-In {{ olmv1_first }}, a Kubernetes object can only be owned by a single `ClusterExtension` object at a time. This ensures that objects within an {{ product_title }} cluster are managed consistently and prevents conflicts between multiple cluster extensions attempting to control the same object. {._abstract}
+In {{ olmv1_first }}, a Kubernetes object can only be owned by a single `ClusterExtension` object at a time.  {._abstract}
+
+This ensures that objects within an {{ product_title }} cluster are managed consistently and prevents conflicts between multiple cluster extensions attempting to control the same object.
 
 ## Single ownership {id="olmv1-single-ownership_{{ context }}"}
 

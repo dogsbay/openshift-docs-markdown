@@ -1,4 +1,4 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # About this release {id="microshift-4-22-about-this-release_{{ context }}"}
 
 Built on {{ OCP }} and Kubernetes, {{ microshift_short }} provides an efficient way to operate a single node in low-resource edge environments. {._abstract}

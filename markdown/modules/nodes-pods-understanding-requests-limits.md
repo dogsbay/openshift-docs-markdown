@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Understanding resource requests and limits {id="nodes-pods-understanding-requests-limits_{{ context }}"}
 
-To manage how your applications consume compute resources, you can define CPU and memory requests and limits in your pod specifications. Requests ensure a minimum amount of resources for scheduling, where limits prevent a container from consuming excessive resources that could impact other pods on the node.  {._abstract}
+To manage how your applications consume compute resources, you can define CPU and memory requests and limits in your pod specifications.  {._abstract}
+
+Requests ensure a minimum amount of resources for scheduling, where limits prevent a container from consuming excessive resources that could impact other pods on the node. 
 
 CPU and memory _requests_ specify the minimum amount of a resource that a pod needs to run, helping {{ product_title }} to schedule pods on nodes with sufficient resources. 
 

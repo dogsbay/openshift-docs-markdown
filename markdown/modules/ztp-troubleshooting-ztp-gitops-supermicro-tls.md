@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Troubleshooting {{ ztp }} virtual media booting on SuperMicro servers {id="ztp-troubleshooting-ztp-gitops-supermicro-tls_{{ context }}"}
 
-SuperMicro X11 servers do not support virtual media installations when the image is served using the `https` protocol. As a result, {{ sno }} deployments for this environment fail to boot on the target node. To avoid this issue, log in to the hub cluster and disable Transport Layer Security (TLS) in the `Provisioning` resource. This ensures the image is not served with TLS even though the image address uses the `https` scheme.  {._abstract}
+SuperMicro X11 servers do not support virtual media installations when the image is served using the `https` protocol.  {._abstract}
+
+As a result, {{ sno }} deployments for this environment fail to boot on the target node. To avoid this issue, log in to the hub cluster and disable Transport Layer Security (TLS) in the `Provisioning` resource. This ensures the image is not served with TLS even though the image address uses the `https` scheme. 
 
 **Prerequisites**
 

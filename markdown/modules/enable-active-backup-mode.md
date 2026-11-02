@@ -1,4 +1,4 @@
-{%- set _mod_docs_content_type = "PROCEDURE" %}
+{%- set _mod_docs_content_type = "CONCEPT" %}
 # Enable active-backup mode for your cluster {id="enable-active-backup-mode_{{ context }}"}
 
 The `active-backup` mode provides fault tolerance for network connections by switching to a backup link where the primary link fails. {._abstract}

@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Technology Preview features status {id="hcp-release-notes-technology-preview-tables_{{ context }}"}
 
+Some features in this release are currently in Technology Preview and are not intended for production use. {._abstract}
+
 Some features in this release are currently in Technology Preview. These experimental features are not intended for production use. Note the following scope of support on the Red&#160;Hat Customer Portal for these features:
 
 [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview)

@@ -94,6 +94,7 @@ The earlier list includes join, transit, and masquerade IPv4 and IPv6 address su
 
 *   [Cluster Network Operator configuration](/networking/networking_operators/cluster-network-operator#nw-operator-cr_cluster-network-operator)
 *   [Configuring the cluster network range](/networking/configuring_network_settings/configuring-cluster-network-range#configuring-cluster-network-range)
+*   [Increasing the cluster network hostPrefix](/networking/ovn_kubernetes_network_provider/increasing-cluster-network-hostprefix#increasing-cluster-network-hostprefix)
 {% endif %}
 
 {% leveloffset +1 %}{% include "./modules/host-prefix-description.md" %}{% endleveloffset %}

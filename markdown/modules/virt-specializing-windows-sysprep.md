@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Specializing a Windows VM image {id="virt-specializing-windows-sysprep_{{ context }}"}
+# Specialize a Windows VM image {id="virt-specializing-windows-sysprep_{{ context }}"}
 
 Specializing a Windows virtual machine (VM) configures the computer-specific information from a generalized Windows image onto the VM. {._abstract}
 

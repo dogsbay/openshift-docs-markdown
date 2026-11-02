@@ -21,7 +21,7 @@ Use KubeVirt Redfish when you need programmatic control over VMs using Redfish, 
 
 {% leveloffset +1 %}{% include "./modules/con_virt-kubevirt-redfish-vs-bmc.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/proc_virt-installing-kubevirt-redfish.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/proc-virt-installing-kubevirt-redfish.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/ref_virt-kubevirt-redfish-api-endpoints.md" %}{% endleveloffset %}
 

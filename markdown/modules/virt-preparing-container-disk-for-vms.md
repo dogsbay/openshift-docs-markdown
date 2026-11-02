@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Building and uploading a container disk {id="virt-preparing-container-disk-for-vms_{{ context }}"}
+# Prepare a container disk for VMs {id="virt-preparing-container-disk-for-vms_{{ context }}"}
 
 You can build a virtual machine (VM) image into a container disk and upload it to a registry. {._abstract}
 

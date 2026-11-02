@@ -11,6 +11,8 @@ In {{ product_title }} version {{ product_version }}, you can install a cluster 
 
 {% leveloffset +1 %}{% include "./modules/installing-aws-vpc-prereqs.md" %}{% endleveloffset %}
 
+{% leveloffset +2 %}{% include "./modules/installation-aws-dualstack-ipv6-subnet-requirements.md" %}{% endleveloffset %}
+
 {% leveloffset +1 %}{% include "./modules/installation-custom-aws-vpc.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/installation-aws-security-groups.md" %}{% endleveloffset %}

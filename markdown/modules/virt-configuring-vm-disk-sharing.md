@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring disk sharing by using virtual machine disks {id="virt-configuring-vm-disk-sharing_{{ context }}"}
+# Share a block disk between multiple VMs {id="virt-configuring-vm-disk-sharing_{{ context }}"}
 
 You can configure block volumes so that multiple virtual machines (VMs) can share storage. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Self Node Remediation configuration parameters {id="virt-snr-configuration-parameters_{{ context }}"}
+# Self Node Remediation (SNR) configuration parameters {id="virt-snr-configuration-parameters_{{ context }}"}
 
 You can tune the Self Node Remediation (SNR) Operator configuration to optimize recovery times and ensure availability of VM workloads. {._abstract}
 

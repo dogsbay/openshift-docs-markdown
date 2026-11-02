@@ -1,8 +1,12 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # {{ rh_rhacm_first }} {id="telco-hub-red-hat-advanced-cluster-management-rhacm_{{ context }}"}
 
+{{ rh_rhacm_first }} provides multicluster engine installation and ongoing lifecycle management for {{ product_title }} clusters.  {._abstract}
 
-New in this release {._abstract}
+You can manage cluster configuration and upgrades declaratively by applying Policy custom resources (CRs) during maintenance windows.
+
+
+New in this release
 
 :   *   No reference design updates in this release.
 
@@ -37,7 +41,7 @@ Description
 
 Limits and requirements
 
-:   *   For more information about limits on number of clusters managed by a single hub cluster, see "Telco management hub cluster use model".
+:   *   For more information about limits on number of clusters managed by a single hub cluster, see "Hub cluster scaling target".
     *   The number of managed clusters that can be effectively managed by the hub depends on various factors, including:
         *   Resource availability at each managed cluster
         *   Policy complexity and cluster size

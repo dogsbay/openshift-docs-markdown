@@ -78,8 +78,8 @@ For catalogs made for proprietary Operators, you can format image references for
 
     Use the value in the `mirror.catalog` catalog image reference for the following `jq` command to get the image digest. In this example, _&lt;registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }}>_.
 1.  Get the SHA of the catalog index image by running the following command:
-    ```terminal
-    $ skopeo inspect docker://_<registry.redhat.io/redhat/redhat-operator-index:v{product-version}>_ | jq `.Digest`
+    ```terminal {minja}
+    $ skopeo inspect docker://_<registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }}>_ | jq `.Digest`
     ```
 
     Use the value in the `mirror.catalog` catalog image reference for the `jq` command to get the image digest. In this example, _&lt;registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }}>_.
@@ -91,7 +91,7 @@ For catalogs made for proprietary Operators, you can format image references for
     [[containers]]
     source = "registry.redhat.io/redhat/redhat-operator-index@sha256:7a76c0880a839035eb6e896d54ebd63668bb37b82040692141ba39ab4c539bc6"
     ```
-1.  Add the image references from all of the previous steps to the image builder blueprint.
+1.  Add the image references from all of the previous steps to the image builder blueprint by using the following example:
     ```text title="Generated image builder blueprint example snippet" {minja}
     name = "microshift_blueprint"
     description = "MicroShift {{ product_version }}.1 on x86_64 platform"
@@ -143,7 +143,7 @@ For catalogs made for proprietary Operators, you can format image references for
     where:
 
     `packages`
-    :   Specifies the references for all non-optional {{ microshift_short }} RPM packages using the same version compatible with the `microshift-release-info` RPM.
+    :   Specifies the references for all non-optional {{ microshift_short }} RPM packages by using the same version compatible with the `microshift-release-info` RPM.
 
     `customizations.services`
     :   Specifies the references for automatically enabling {{ microshift_short }} on system startup and applying default networking settings.

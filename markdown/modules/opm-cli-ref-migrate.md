@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # migrate {id="opm-cli-ref-migrate_{{ context }}"}
 
-Migrate a SQLite database format index image or database file to a file-based catalog.
+Migrate a SQLite database format index image or database file to a file-based catalog. {._abstract}
 
 {%- set FeatureName = "The SQLite-based catalog format, including the related CLI commands," %}
 {% include "./snippets/deprecated-feature.md" %}

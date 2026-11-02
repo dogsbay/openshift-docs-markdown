@@ -1,9 +1,10 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Overview of linuxptp and gpsd in {{ product_title }} nodes {id="ptp-linuxptp-introduction_{{ context }}"}
 
-{{ product_title }} uses the PTP Operator with `linuxptp` and `gpsd` packages for high precision network synchronization.
+{{ product_title }} uses the PTP Operator with `linuxptp` and `gpsd` packages for high precision network synchronization. {._abstract}
+
 The `linuxptp` package provides tools and daemons for PTP timing in networks.
-Cluster hosts with Global Navigation Satellite System (GNSS) capable NICs use `gpsd` to interface with GNSS clock sources. {._abstract}
+Cluster hosts with Global Navigation Satellite System (GNSS) capable NICs use `gpsd` to interface with GNSS clock sources.
 
 The `linuxptp` package includes the `ts2phc`, `pmc`, `ptp4l`, and `phc2sys` programs for system clock synchronization.
 

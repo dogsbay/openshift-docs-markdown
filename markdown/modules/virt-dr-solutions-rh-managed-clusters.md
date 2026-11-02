@@ -1,9 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Disaster recovery solutions for Red&#160;Hat managed clusters {id="virt-dr-solutions-rh-managed-clusters_{{ context }}"}
 
-You can use disaster recovery (DR) solutions that combine {{ rh_rhacm_first }}, Red&#160;Hat Ceph Storage, and {{ rh_storage }} components to failover applications between sites. {._abstract}
+You can use disaster recovery (DR) solutions that combine Red&#160;Hat Advanced Cluster Management (RHACM), Red&#160;Hat Ceph Storage, and {{ rh_storage }} components to failover applications between sites. {._abstract}
 
-## Metro-DR for {{ rh_storage_first }} {id="metro-dr-odf_{{ context }}"}
+## Metro-DR for Red Hat OpenShift Data Foundation {id="metro-dr-odf_{{ context }}"}
 
 {{ VirtProductName }} supports the Metro-DR solution for {{ rh_storage }}, which provides two-way synchronous data replication between managed {{ VirtProductName }} clusters installed on primary and secondary sites.
 
@@ -20,9 +20,9 @@ You can use disaster recovery (DR) solutions that combine {{ rh_rhacm_first }}, 
     :::
 
 
-For more information about using the Metro-DR solution for {{ rh_storage }} with {{ VirtProductName }}, see {{ ibm_title }}'s {{ rh_storage }} Metro-DR documentation.
+For more information about using the Metro-DR solution for {{ rh_storage }} with {{ VirtProductName }}, see IBM’s {{ rh_storage }} Metro-DR documentation.
 
-## Regional-DR for {{ rh_storage_first }} {id="regional-dr-odf_{{ context }}"}
+## Regional-DR for Red Hat OpenShift Data Foundation {id="regional-dr-odf_{{ context }}"}
 
 {{ VirtProductName }} supports the Regional-DR solution for {{ rh_storage }}, which provides asynchronous data replication at regular intervals between managed {{ VirtProductName }} clusters installed on primary and secondary sites.
 
@@ -32,4 +32,4 @@ For more information about using the Metro-DR solution for {{ rh_storage }} with
 *   Regional-DR uses RBD snapshots to replicate data asynchronously. Currently, your applications must be resilient to small variances between VM disks. You can prevent these variances by using single disk VMs.
 *   Using the import method when selecting a population source for your VM disk is recommended. However, you can protect VMs that use cloned PVCs if you select a `VolumeReplicationClass` that enables image flattening. For more information, see the {{ rh_storage }} documentation.
 
-For more information about using the Regional-DR solution for {{ rh_storage }} with {{ VirtProductName }}, see {{ ibm_title }}'s {{ rh_storage }} Regional-DR documentation.
+For more information about using the Regional-DR solution for {{ rh_storage }} with {{ VirtProductName }}, see IBM’s {{ rh_storage }} Regional-DR documentation.

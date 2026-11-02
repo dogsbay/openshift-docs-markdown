@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Hot plugging and hot unplugging a disk by using the web console {id="virt-hot-plugging-disks-ui_{{ context }}"}
+# Hot plug and unplug disks by using the web console {id="virt-hot-plugging-disks-ui_{{ context }}"}
 
 You can hot plug a disk by attaching it to a virtual machine (VM) while the VM is running by using the {{ product_title }} web console. {._abstract}
 

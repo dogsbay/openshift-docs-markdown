@@ -5,14 +5,12 @@ The `{{ policy_gen_cr }}`{minja} custom resource definition (CRD) tells the `Pol
 
 The following example shows a `{{ policy_gen_cr }}`{minja} CR (`{{ policy_prefix }}common-du-ranGen.yaml`{minja}) extracted from the `ztp-site-generate` reference container. The `{{ policy_prefix }}common-du-ranGen.yaml`{minja} file defines two {{ rh_rhacm_first }} policies. The policies manage a collection of configuration CRs, one for each unique value of `policyName` in the CR. `{{ policy_prefix }}common-du-ranGen.yaml`{minja} creates a single placement binding and a placement rule to bind the policies to clusters based on the labels listed in the `{{ binding_field }}`{minja} section.
 
-**Example {{ policy_gen_cr }} CR - {{ policy_prefix }}common-ranGen.yaml**
-
-{%- if policy-gen-cr == "PolicyGenTemplate" %}
+{% if policy-gen-cr == "PolicyGenTemplate" %}
 {% include "./snippets/pgt-ztp-the-policygentemplate.md" %}
-{%- endif %}
-{%- if policy-gen-cr == "PolicyGenerator" %}
+{% endif %}
+{% if policy-gen-cr == "PolicyGenerator" %}
 {% include "./snippets/pg-ztp-the-policygenerator.md" %}
-{%- endif %}
+{% endif %}
 
 A `{{ policy_gen_cr }}`{minja} CR can be constructed with any number of included CRs. Apply the following example CR in the hub cluster to generate a policy containing a single CR:
 

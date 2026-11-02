@@ -19,7 +19,7 @@ Configure a Google identity provider so users can authenticate to {{ product_tit
 {% if openshift_enterprise or openshift_origin %}
 {% leveloffset +1 %}{% include "./modules/identity-provider-secret.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/identity-provider-google-CR.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/identity-provider-google-cr.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Adding items to a boot order list in the web console {id="virt-add-boot-order-web_{{ context }}"}
+# Add items to a boot order list in the web console {id="virt-add-boot-order-web_{{ context }}"}
 
 You can add items to a boot order list by using the web console. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Expanding available virtual storage by adding blank data volumes {id="virt-expanding-storage-with-data-volumes_{{ context }}"}
+# Expand VM storage by adding blank data volumes {id="virt-expanding-storage-with-data-volumes_{{ context }}"}
 
 You can expand the available storage of a virtual machine (VM) by adding blank data volumes. {._abstract}
 

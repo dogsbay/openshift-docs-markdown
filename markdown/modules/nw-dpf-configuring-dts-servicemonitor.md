@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure the DTS ServiceMonitor {id="nw-dpf-configuring-dts-servicemonitor_{{ context }}"}
 
-Create a `ServiceMonitor` resource to instruct the user workload monitoring Prometheus instance to scrape the DOCA Telemetry Service (DTS) metrics endpoint.
-The `ServiceMonitor` selects the mirrored DTS service in the `dpf-operator-system` namespace and scrapes its `/metrics` path on the `httpserverport` every 30 seconds. {._abstract}
+Create a `ServiceMonitor` resource to instruct the user workload monitoring Prometheus instance to scrape the DOCA Telemetry Service (DTS) metrics endpoint. {._abstract}
+
+The `ServiceMonitor` selects the mirrored DTS service in the `dpf-operator-system` namespace and scrapes its `/metrics` path on the `httpserverport` every 30 seconds.
 
 **Prerequisites**
 

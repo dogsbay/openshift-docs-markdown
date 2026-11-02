@@ -1,19 +1,21 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Comparing a cluster with the {{ rds }} reference configuration {id="using-cluster-compare-telco_hub_{{ context }}"}
+# Comparing a cluster with the telco hub reference configuration {id="using-cluster-compare-telco_hub_{{ context }}"}
 
-After you deploy a {{ rds }} cluster, you can use the `cluster-compare` plugin to assess the cluster’s compliance with the {{ rds }} reference design specifications (RDS). The `cluster-compare` plugin is an OpenShift CLI (`oc`) plugin. The plugin uses a {{ rds }} reference configuration to validate the cluster with the {{ rds }} custom resources (CRs). {._abstract}
+After you deploy a telco hub cluster, you can use the `cluster-compare` plugin to assess the cluster’s compliance with the telco hub reference design specifications (RDS).  {._abstract}
 
-The plugin-specific reference configuration for {{ rds }} is packaged in a container image with the {{ rds }} CRs.
+The `cluster-compare` plugin is an OpenShift CLI (`oc`) plugin. The plugin uses a telco hub reference configuration to validate the cluster with the telco hub custom resources (CRs).
+
+The plugin-specific reference configuration for telco hub is packaged in a container image with the telco hub CRs.
 
 For further information about the `cluster-compare` plugin, see "Understanding the cluster-compare plugin".
 
-The following example shows how to compare the configuration of a cluster to the {{ rds }} reference configuration by using `must-gather` data.
+The following example shows how to compare the configuration of a cluster to the telco hub reference configuration by using `must-gather` data.
 
 
 :::note
 
-When comparing a cluster to the {{ rds }} reference configuration by using `must-gather` data, you must use the `--all-images` flag when generating the `must-gather` data. You must also collect cluster-scoped resource information, as well as Operator and registry configurations. Without this data, the plugin might report false positives.
+When comparing a cluster to the telco hub reference configuration by using `must-gather` data, you must use the `--all-images` flag when generating the `must-gather` data. You must also collect cluster-scoped resource information and Operator and registry configurations. Without this data, the plugin might report false positives.
 
 :::
 
@@ -23,7 +25,7 @@ When comparing a cluster to the {{ rds }} reference configuration by using `must
 *   You have access to the cluster as a user with the `cluster-admin` role.
 *   You have credentials to access the `registry.redhat.io` container image registry.
 *   You installed the `cluster-compare` plugin.
-*   You extracted the {{ rds }} reference configuration from the `openshift-telco-hub-rds-rhel9` container image.
+*   You extracted the telco hub reference configuration from the `openshift-telco-hub-rds-rhel9` container image.
 
 **Procedure**
 
@@ -31,7 +33,7 @@ When comparing a cluster to the {{ rds }} reference configuration by using `must
     ```terminal
     $ oc adm must-gather --all-images
     ```
-    *   The `--all-images` flag ensures that the `must-gather` command collects all the data required by the {{ rds }} reference configuration.
+    *   The `--all-images` flag ensures that the `must-gather` command collects all the data required by the telco hub reference configuration.
 1.  Collect cluster-scoped resource information by running the following command:
     ```terminal
     $ oc adm inspect clusterroles,clusterrolebindings,namespaces,nodes --dest-dir=./cluster-scoped

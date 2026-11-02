@@ -41,9 +41,9 @@ With {{ hcp_capital }}, the control plane runs as pods with container-level isol
 :::
 
 
-{% leveloffset +1 %}{% include "./modules/con_virt-vcp-architecture.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/con-virt-vcp-architecture.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/proc_virt-vcp-deployment-workflow.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/con-virt-vcp-deployment-workflow.md" %}{% endleveloffset %}
 
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Linking the node, bare metal host, and machine together {id="linking-node-machine-bmh_{{ context }}"}
 
-Continue creating the new control plane node by creating a machine and then linking it with the new `BareMetalHost` object and node.
+Continue creating the new control plane node by creating a machine and then linking it with the new `BareMetalHost` object and node. {._abstract}
 
 **Procedure**
 

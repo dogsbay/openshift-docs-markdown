@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Setting SELinux booleans {id="nodes-nodes-working-setting-booleans_{{ context }}"}
 
-{{ product_title }} allows you to enable and disable an SELinux boolean on a {{ op_system_first }} node. The following procedure explains how to modify SELinux booleans on nodes using the Machine Config Operator (MCO). This procedure uses `container_manage_cgroup` as the example boolean. You can modify this value to whichever boolean you need. {._abstract}
+{{ product_title }} allows you to enable and disable an SELinux boolean on a {{ op_system_first }} node.  {._abstract}
+
+The following procedure explains how to modify SELinux booleans on nodes using the Machine Config Operator (MCO). This procedure uses `container_manage_cgroup` as the example boolean. You can modify this value to whichever boolean you need.
 
 **Prerequisites**
 

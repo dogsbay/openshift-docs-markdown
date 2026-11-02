@@ -17,7 +17,7 @@ Configure the `basic-authentication` identity provider. Users can log in to {{ p
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-config-map.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/identity-provider-basic-authentication-CR.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/identity-provider-basic-authentication-cr.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}

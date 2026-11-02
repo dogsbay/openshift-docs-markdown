@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configure SR-IOV RDMA CNI {id="nw-sriov-configuring-sriov-rdma-cni_{{ context }}"}
 
-Configure an RDMA CNI on SR-IOV. {._abstract}
+Configure an RDMA CNI on SR-IOV for Mellanox devices. {._abstract}
 
 
 :::note

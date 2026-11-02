@@ -2,9 +2,10 @@
 
 # Structure of the metadata.yaml file {id="cluster-compare-metadata-structure_{{ context }}"}
 
-The `metadata.yaml` file provides a central configuration point to define and configure the templates in a reference configuration.
+The `metadata.yaml` file provides a central configuration point to define and configure the templates in a reference configuration. {._abstract}
+
 The file features a hierarchy of `parts` and `components`. `parts` are groups of `components` and `components` are groups of templates.
-Under each component, you can configure template dependencies, validation rules, and add descriptive metadata. {._abstract}
+Under each component, you can configure template dependencies, validation rules, and add descriptive metadata.
 
 ```yaml title="Example metadata.yaml file"
 apiVersion: v2

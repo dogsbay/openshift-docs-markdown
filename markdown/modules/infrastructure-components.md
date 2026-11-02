@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# {{ product_title }} infrastructure components {id="infrastructure-components_{{ context }}"}
+# Move components to infrastructure nodes to reduce costs {id="infrastructure-components_{{ context }}"}
 
 To reduce subscription costs, you can review the following information to understand which components you can move to an infrastructure node. Components that you move to an infrastructure node do not need to be accounted for during sizing. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Editing a boot order list in the web console {id="virt-edit-boot-order-web_{{ context }}"}
+# Edit a boot order list in the web console {id="virt-edit-boot-order-web_{{ context }}"}
 
 You can edit the boot order list in the web console. {._abstract}
 

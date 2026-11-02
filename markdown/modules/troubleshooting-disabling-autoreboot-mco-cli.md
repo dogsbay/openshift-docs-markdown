@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Disabling the Machine Config Operator from automatically rebooting by using the CLI {id="troubleshooting-disabling-autoreboot-mco-cli_{{ context }}"}
 
-To avoid unwanted disruptions from changes made by the Machine Config Operator (MCO), you can modify the machine config pool (MCP) using the OpenShift CLI (oc) to prevent the MCO from making any changes to nodes in that pool. This prevents any reboots that would normally be part of the MCO update process. {._abstract}
+To avoid unwanted disruptions from changes made by the Machine Config Operator (MCO), you can modify the machine config pool (MCP) using the OpenShift CLI (oc) to prevent the MCO from making any changes to nodes in that pool.  {._abstract}
+
+This prevents any reboots that would normally be part of the MCO update process.
 
 
 :::note

@@ -1,10 +1,12 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Comparing a cluster with the {{ rds }} reference configuration {id="using-cluster-compare-telco-ran_{{ context }}"}
+# Comparing a cluster with the telco RAN DU reference configuration {id="using-cluster-compare-telco-ran_{{ context }}"}
 
-After you deploy a {{ rds }} cluster, you can use the `cluster-compare` plugin to assess the cluster’s compliance with the {{ rds }} reference design specifications (RDS). The `cluster-compare` plugin is an OpenShift CLI (`oc`) plugin. The plugin uses a {{ rds }} reference configuration to validate the cluster with the {{ rds }} custom resources (CRs). {._abstract}
+After you deploy a telco RAN DU cluster, you can use the `cluster-compare` plugin to assess the cluster’s compliance with the telco RAN DU reference design specifications (RDS).  {._abstract}
 
-The plugin-specific reference configuration for {{ rds }} is packaged in a container image with the {{ rds }} CRs.
+The `cluster-compare` plugin is an OpenShift CLI (`oc`) plugin. The plugin uses a telco RAN DU reference configuration to validate the cluster with the telco RAN DU custom resources (CRs).
+
+The plugin-specific reference configuration for telco RAN DU is packaged in a container image with the telco RAN DU CRs.
 
 For further information about the `cluster-compare` plugin, see "Understanding the cluster-compare plugin".
 

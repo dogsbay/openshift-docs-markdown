@@ -19,6 +19,8 @@ To edit a VM to configure disk sharing by using virtual disks or LUN, see "Confi
 
 {% leveloffset +1 %}{% include "./modules/virt-hot-plugging-cpu.md" %}{% endleveloffset %}
 
+{% leveloffset +2 %}{% include "./modules/virt-hot-plugging-cpu-support.md" %}{% endleveloffset %}
+
 {% leveloffset +1 %}{% include "./modules/virt-editing-vm-cli.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/virt-add-disk-to-vm.md" %}{% endleveloffset %}

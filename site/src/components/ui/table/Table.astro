@@ -26,7 +26,8 @@ const { class: className, caption, ...rest } = Astro.props;
 const captionClass = "mb-2 text-left text-sm font-medium text-foreground";
 ---
 
-<div class={tableContainer()}>
+{/* Focusable, so a table wider than the screen scrolls from the keyboard (axe `scrollable-region-focusable`), as render-html's */}
+<div class={tableContainer()} tabindex="0">
   <table class={table({ class: className })} {...rest}>
     {Astro.slots.has("caption") ? (
       <caption class={captionClass}><slot name="caption" /></caption>

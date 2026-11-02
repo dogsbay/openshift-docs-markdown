@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # View Ingress Controller logs {id="nw-ingress-operator-logs_{{ context }}"}
 
-You can view your Ingress Controller logs. {._abstract}
+You can view your Ingress Controller logs by using the `oc logs` command. {._abstract}
 
 **Procedure**
 

@@ -85,7 +85,7 @@ Use the following reference performance profiles as the basis to develop your ow
 
 *   [Affinity of managed interrupts cannot be changed even if they target isolated CPU](https://access.redhat.com/solutions/4819541)
 
-{% leveloffset +2 %}{% include "./modules/cnf-configure_for_irq_dynamic_load_balancing.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/cnf-configure-for-irq-dynamic-load-balancing.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/cnf-memory-optimization.md" %}{% endleveloffset %}
 

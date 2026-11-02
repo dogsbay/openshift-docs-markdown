@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # render {id="opm-cli-ref-render_{{ context }}"}
 
-Generate a declarative config blob from the provided index images, bundle images, and SQLite database files.
+Generate a declarative config blob from the provided index images, bundle images, and SQLite database files. {._abstract}
 
 ```terminal title="Command syntax"
 $ opm render <index_image | bundle_image | sqlite_file> [<flags>]

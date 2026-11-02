@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# About the telco core cluster use model {id="telco-core-about-the-telco-core-cluster-use-model_{{ context }}"}
+# Check that your workloads fit the telco core use model {id="telco-core-about-the-telco-core-cluster-use-model_{{ context }}"}
 
 The telco core cluster use model supports large-scale telco applications on commodity hardware, including control plane functions and centralized data plane functions such as 5G user plane functions (UPF). {._abstract}
 

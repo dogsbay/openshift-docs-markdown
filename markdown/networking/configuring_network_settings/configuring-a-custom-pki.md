@@ -22,9 +22,9 @@ The cluster Proxy object is the mechanism for managing the cluster-wide truststo
 :::
 
 
-{% leveloffset +1 %}{% include "./modules/adding-a-custom-CA-during-cluster-installation.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/adding-a-custom-ca-during-cluster-installation.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/adding-a-custom-CA-to-a-running-cluster.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/adding-a-custom-ca-to-a-running-cluster.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/verifying-the-custom-ca-configuration.md" %}{% endleveloffset %}
 

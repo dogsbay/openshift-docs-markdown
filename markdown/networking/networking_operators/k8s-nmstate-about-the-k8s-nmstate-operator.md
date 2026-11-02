@@ -66,7 +66,7 @@ You can install the Kubernetes NMState Operator by using the web console or the 
 
 {% leveloffset +2 %}{% include "./modules/k8s-nmstate-installing-the-kubernetes-nmstate-operator.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/k8s-nmstate-deploying-nmstate-CLI.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/k8s-nmstate-deploying-nmstate-cli.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/viewing-stats-collected-kubernetes-nmstate-op.md" %}{% endleveloffset %}
 

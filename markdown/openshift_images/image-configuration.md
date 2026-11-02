@@ -27,7 +27,7 @@ You can configure an image registry to store and serve container images. {._abst
 
 {% leveloffset +2 %}{% include "./modules/images-configuration-insecure.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/images_configuration_shortname_con.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/images-configuration-shortname-con.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/images-configuration-shortname-when-not-to-use.md" %}{% endleveloffset %}
 
@@ -41,7 +41,7 @@ You can configure an image registry to store and serve container images. {._abst
 
 {% leveloffset +2 %}{% include "./modules/images-configuration-registry-mirror-configuring.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/images_configuring_registry_mirror_config_params.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/images-configuring-registry-mirror-config-params.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/images-configuration-registry-mirror-convert.md" %}{% endleveloffset %}
 

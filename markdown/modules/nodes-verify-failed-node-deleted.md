@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Verifying that the failed node was deleted {id="verify-machine-deleted_{{ context }}"}
 
-Before proceeding to create a replacement control plane node, verify that the failed node was successfully deleted.
+Before proceeding to create a replacement control plane node, verify that the failed node was successfully deleted. {._abstract}
 
 **Procedure**
 

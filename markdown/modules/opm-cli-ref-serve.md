@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # serve {id="opm-cli-ref-server_{{ context }}"}
 
-Serve declarative configs via a GRPC server.
+Serve declarative configs via a GRPC server. {._abstract}
 
 
 :::note

@@ -17,4 +17,4 @@ The {{ oadp_short }} Operator installs Velero {{ velero_version }}.
 
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
-*   [Velero {{ velero_version }}](https://{{ velero_domain }}/docs/v{{ velero_version }}/)
+*   [Velero {{ velero_version }}](https://velero.io/docs/)

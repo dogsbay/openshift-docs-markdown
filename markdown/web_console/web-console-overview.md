@@ -18,11 +18,11 @@ The {{ product_title }} web console provides a graphical user interface to visua
 
 You can create quick start tutorials for {{ product_title }} that provide guided steps within the web console with user tasks. They are helpful for getting oriented with an application, Operator, or other product offering.
 
-{% leveloffset +1 %}{% include "./modules/about-administrator_web-console.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/about-administrator-web-console.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/about-developer_web-console.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/about-developer-web-console.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/enabling-developer-perspective_web-console.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/enabling-developer-perspective-web-console.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}

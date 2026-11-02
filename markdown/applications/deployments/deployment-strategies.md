@@ -29,7 +29,7 @@ A deployment strategy uses readiness checks to determine if a new pod is ready f
 
 {% leveloffset +2 %}{% include "./modules/deployments-canary-deployments.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/creating-rolling-deployments-CLI.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/creating-rolling-deployments-cli.md" %}{% endleveloffset %}
 
 {%- set context = "rolling-strategy" %}
 {% leveloffset +2 %}{% include "./modules/odc-editing-deployments.md" %}{% endleveloffset %}

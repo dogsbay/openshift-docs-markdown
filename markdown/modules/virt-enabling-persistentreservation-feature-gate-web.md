@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Enabling the PersistentReservation feature gate by using the web console {id="virt-enabling-persistentreservation-feature-gate-web_{{ context }}"}
+# Enable SCSI persistent reservation by using the web console {id="virt-enabling-persistentreservation-web_{{ context }}"}
 
 You must enable the PersistentReservation feature gate to allow a LUN-backed block mode virtual machine (VM) disk to be shared among multiple virtual machines. Enabling the feature gate requires cluster administrator privileges. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a snapshot by using the CLI {id="virt-creating-vm-snapshot-cli_{{ context }}"}
+# Create a snapshot by using the CLI {id="virt-creating-vm-snapshot-cli_{{ context }}"}
 
 You can create a virtual machine (VM) snapshot for an offline or online VM by creating a `VirtualMachineSnapshot` object. {._abstract}
 

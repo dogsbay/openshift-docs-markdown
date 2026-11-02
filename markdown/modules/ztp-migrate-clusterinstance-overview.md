@@ -1,7 +1,8 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Overview of migrating from SiteConfig CRs to ClusterInstance CRs {id="ztp-migrate-clusterinstance-overview_{{ context }}"}
 
-The `ClusterInstance` CR provides a more unified and generic approach to defining clusters and is the preferred method for managing cluster deployments in the {{ ztp }} workflow.
+The `ClusterInstance` CR provides a more unified and generic approach to defining clusters and is the preferred method for managing cluster deployments in the {{ ztp }} workflow. {._abstract}
+
 The SiteConfig Operator, which manages the `ClusterInstance` custom resource (CR), is a fully developed controller shipped as an add-on within {{ rh_rhacm_first }}.
 
 
@@ -12,7 +13,7 @@ The SiteConfig Operator only reconciles updates for `ClusterInstance` objects. T
 :::
 
 
-The migration from `SiteConfig` CRs to `ClusterInstance` CRs provides several improvements, such as enhanced scalability and a clear separation of cluster parameters from the cluster deployment method. For more information about these improvements, and the SiteConfig Operator, see [SiteConfig](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.12/html-single/multicluster_engine_operator_with_red_hat_advanced_cluster_management/index#siteconfig-intro).
+The migration from `SiteConfig` CRs to `ClusterInstance` CRs provides several improvements, such as enhanced scalability and a clear separation of cluster parameters from the cluster deployment method.
 
 The migration process involves the following high-level steps:
 
@@ -65,3 +66,8 @@ The following Git repository folder structure is used as a basis for this exampl
 └── site-policies/ #Policies and configurations implemented for the clusters
 ...
 ```
+
+**Additional resources**
+{._additional-resources}
+
+*   [SiteConfig](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.12/html-single/multicluster_engine_operator_with_red_hat_advanced_cluster_management/index#siteconfig-intro)

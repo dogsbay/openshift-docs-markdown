@@ -1,11 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Rolling back a Helm release {id="odc-rolling-back-helm-release_{{ context }}"}
 
-If a release fails, you can rollback the Helm release to a previous version.
+If a release fails, you can rollback the Helm release to a previous version. {._abstract}
 
 **Procedure**
-
-To rollback a release using the **Helm** view:
 
 1.  In the **Developer** perspective, navigate to the **Helm** view to see the **Helm Releases** in the namespace.
 1.  Click the Options menu {{ kebab }} adjoining the listed release, and select **Rollback**.

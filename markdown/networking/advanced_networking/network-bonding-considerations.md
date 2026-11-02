@@ -13,6 +13,6 @@ You can use network bonding, also known as _link aggregration_, to combine many 
 
 {% leveloffset +2 %}{% include "./modules/enable-active-backup-mode.md" %}{% endleveloffset %}
 
-{% leveloffset +2 %}{% include "./modules/enabling-OVS-balance-slb-mode.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/enabling-ovs-balance-slb-mode.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/nw-kernel-bonding.md" %}{% endleveloffset %}

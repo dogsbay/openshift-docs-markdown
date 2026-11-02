@@ -1,4 +1,4 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # Technology Preview features {id="microshift-4-22-tech-preview_{{ context }}"}
 
 Some features in this release are currently in Technology Preview. These experimental features are not intended for production use. Note the following scope of support on the Red&#160;Hat Customer Portal for these features: {._abstract}

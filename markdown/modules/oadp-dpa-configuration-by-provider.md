@@ -357,7 +357,7 @@ MCG (Multicloud Object Gateway)
 :   Optional: The `kubevirt` plugin is used with {{ VirtProductName }}.
 
 `csi`
-:   Specifies the `csi` default plugin if you use CSI snapshots to back up PVs. The `csi` plugin uses the [Velero CSI beta snapshot APIs](https://{{ velero_domain }}/docs/main/csi/). You do not need to configure a snapshot location.
+:   Specifies the `csi` default plugin if you use CSI snapshots to back up PVs. The `csi` plugin uses the [Velero CSI beta snapshot APIs](https://velero.io/docs/main/csi/). You do not need to configure a snapshot location.
 
 `provider`
 :   Specifies the backup provider.
@@ -406,7 +406,7 @@ KubeVirt ({{ VirtProductName }})
 :   Specifies the plugin for the backup provider, for example, `gcp`, if it exists.
 
 `csi`
-:   Specifies that the `csi` plugin is mandatory for backing up PVs with CSI snapshots. The `csi` plugin uses the [Velero CSI beta snapshot APIs](https://{{ velero_domain }}/docs/main/csi/). You do not need to configure a snapshot location.
+:   Specifies that the `csi` plugin is mandatory for backing up PVs with CSI snapshots. The `csi` plugin uses the [Velero CSI beta snapshot APIs](https://velero.io/docs/main/csi/). You do not need to configure a snapshot location.
 
 `provider`
 :   Specifies the backup provider.

@@ -1,11 +1,11 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Accelerated provisioning of {{ ztp }} {id="ztp-sno-accelerated-ztp_{{ context }}"}
 
+You can reduce the time taken for cluster installation by using accelerated provisioning of {{ ztp }} for {{ sno }}.
+Accelerated ZTP speeds up installation by applying Day 2 manifests derived from policies at an earlier stage. {._abstract}
+
 {%- set FeatureName = "Accelerated provisioning of {{ ztp }}" %}
 {% include "./snippets/technology-preview.md" %}
-
-You can reduce the time taken for cluster installation by using accelerated provisioning of {{ ztp }} for {{ sno }}.
-Accelerated ZTP speeds up installation by applying Day 2 manifests derived from policies at an earlier stage.
 
 
 :::important

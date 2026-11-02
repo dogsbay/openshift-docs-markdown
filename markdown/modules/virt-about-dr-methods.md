@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About disaster recovery methods {id="virt-about-dr-methods_{{ context }}"}
+# Disaster recovery methods {id="virt-about-dr-methods_{{ context }}"}
 
 The two primary DR methods for {{ VirtProductName }} are Metropolitan Disaster Recovery (Metro-DR) and Regional-DR. {._abstract}
 

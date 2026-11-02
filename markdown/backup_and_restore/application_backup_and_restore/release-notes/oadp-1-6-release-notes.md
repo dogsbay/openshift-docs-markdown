@@ -21,6 +21,8 @@ For additional information about {{ oadp_short }}, see _{{ oadp_first }} FAQ_.
 :::
 
 
+{% leveloffset +1 %}{% include "./modules/oadp-1-6-2-release-notes.md" %}{% endleveloffset %}
+
 {% leveloffset +1 %}{% include "./modules/oadp-1-6-1-release-notes.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/oadp-1-6-0-release-notes.md" %}{% endleveloffset %}

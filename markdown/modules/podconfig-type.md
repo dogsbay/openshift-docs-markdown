@@ -2,7 +2,7 @@
 
 # PodConfig type {id="podconfig-type_{{ context }}"}
 
-The following are `PodConfig` {{ oadp_short }} APIs: {._abstract}
+Use the `PodConfig` {{ oadp_short }} API type to configure pod-level settings for Velero and Restic pods in {{ product_title }}. It defines node selectors, tolerations, resource limits, and labels for backup and restore pods. {._abstract}
 
 **PodConfig**
 

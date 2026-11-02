@@ -1,9 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Sample YAML for a Windows MachineSet object on AWS {id="windows-machineset-aws_{{ context }}"}
 
-You can add Windows nodes to an {{ aws_first }} cluster by defining a Windows `MachineSet` object that the Windows Machine Config Operator (WMCO) can react upon. {._abstract}
+You can add Windows nodes to an Amazon Web Services (AWS) cluster by defining a Windows `MachineSet` object that the Windows Machine Config Operator (WMCO) can react upon. {._abstract}
 
-The following example is a YAML file for creating a `MachineSet` object for {{ aws_short }}.
+The following example is a YAML file for creating a `MachineSet` object for AWS.
 
 ```yaml
 apiVersion: machine.openshift.io/v1beta1

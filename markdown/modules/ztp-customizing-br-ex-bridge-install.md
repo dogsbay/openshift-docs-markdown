@@ -1,10 +1,11 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Customizing the br-ex bridge at installation time in the {{ ztp }} pipeline {id="ztp-customizing-br-ex-bridge-install_{{ context }}"}
 
-By default, {{ product_title }} automatically configures the Open vSwitch (OVS) `br-ex` bridge on bare-metal nodes.
+By default, {{ product_title }} automatically configures the Open vSwitch (OVS) `br-ex` bridge on bare-metal nodes. {._abstract}
+
 For advanced networking requirements, you can override this default behavior by defining a customized `br-ex` bridge in an NMState configuration.
 When you configure the customized `br-ex` bridge as part of the {{ ztp_first }} installation, the configuration is applied during cluster provisioning.
-This eliminates the need for the Day 2 migration procedure, which requires a node reboot. {._abstract}
+This eliminates the need for the Day 2 migration procedure, which requires a node reboot.
 
 To customize the `br-ex` bridge at installation time in the {{ ztp }} pipeline, you create a `MachineConfig` object that includes the customized `br-ex` bridge configuration, package it as a `ConfigMap`, and reference it in your `ClusterInstance` CR.
 

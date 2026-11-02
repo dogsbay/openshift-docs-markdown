@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Deleting a snapshot by using the web console {id="virt-deleting-vm-snapshot-web_{{ context }}"}
+# Delete a snapshot by using the web console {id="virt-deleting-vm-snapshot-web_{{ context }}"}
 
 You can delete an existing virtual machine (VM) snapshot by using the web console. {._abstract}
 

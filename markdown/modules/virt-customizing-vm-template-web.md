@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Removing a deprecated designation from a customized VM template by using the web console {id="virt-customizing-vm-template-web_{{ context }}"}
+# Undeprecate a customized VM template in the web console {id="virt-customizing-vm-template-web_{{ context }}"}
 
 You can customize an existing virtual machine (VM) template before you start the VM, by modifying the VM or template parameters, such as data sources, cloud-init, or SSH keys. {._abstract}
 

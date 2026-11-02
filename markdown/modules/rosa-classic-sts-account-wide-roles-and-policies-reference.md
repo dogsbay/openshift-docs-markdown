@@ -313,7 +313,8 @@ The account number present in the `sts_installer_trust_policy.json` and `sts_sup
                 "elasticloadbalancing:DescribeListeners",
                 "elasticloadbalancing:DescribeTargetGroups",
                 "elasticloadbalancing:DescribeTargetHealth",
-                "elasticloadbalancing:DescribeLoadBalancerPolicies"
+                "elasticloadbalancing:DescribeLoadBalancerPolicies",
+                "elasticloadbalancing:DescribeTargetGroupAttributes"
             ],
             "Resource": [
                 "*"

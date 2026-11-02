@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring the cert-manager upstream authority plugin {id="zero-trust-manager-config-cert-manager_{{ context }}"}
 
-Configure SPIRE Server to obtain intermediate signing certificates from {{ cert_manager_operator }} by setting `spec.upstreamAuthority.certManager` on the `SpireServer` custom resource. {{ zero_trust_full }} generates SPIRE Server configuration and reconciles the SPIRE Server `StatefulSet. {._abstract}
+Configure SPIRE Server to obtain intermediate signing certificates from {{ cert_manager_operator }} by setting `spec.upstreamAuthority.certManager` on the `SpireServer` custom resource.  {._abstract}
+
+{{ zero_trust_full }} generates SPIRE Server configuration and reconciles the SPIRE Server `StatefulSet.
 
 **Prerequisites**
 

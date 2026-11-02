@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing the QEMU guest agent on a Windows VM {id="installing-qemu-guest-agent-on-windows-vm_{{ context }}"}
+# Install the QEMU guest agent on a Windows VM {id="installing-qemu-guest-agent-on-windows-vm_{{ context }}"}
 
 For Windows virtual machines (VMs), the QEMU guest agent is included in the VirtIO drivers. You can install the drivers during a Windows installation or on an existing Windows VM. {._abstract}
 

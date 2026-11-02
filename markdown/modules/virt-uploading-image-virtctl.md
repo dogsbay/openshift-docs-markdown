@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Uploading a virtual machine image by using the CLI {id="virt-uploading-image-virtctl_{{ context }}"}
+# Upload a VM image by using the CLI {id="virt-uploading-image-virtctl_{{ context }}"}
 
 You can upload an operating system image by using the `virtctl` command-line tool. You can use an existing data volume or create a new data volume for the image. {._abstract}
 

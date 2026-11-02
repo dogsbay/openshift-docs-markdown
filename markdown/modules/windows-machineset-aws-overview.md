@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Windows machine set on AWS {id="windows-machineset-aws-overview_{{ context }}"}
 
-You can use a `MachineSet` custom resource (CR) to add a Windows compute node to your {{ aws_full }} cluster, where you can run Windows container workloads. {._abstract}
+You can use a `MachineSet` custom resource (CR) to add a Windows compute node to your Amazon Web Services cluster, where you can run Windows container workloads. {._abstract}
 
 For example, you might create infrastructure Windows machine sets and related machines so that you can move supporting Windows workloads to the new Windows machines. For more information about machine sets, see "Overview of machine management" in the _Additional resources_ section.
 

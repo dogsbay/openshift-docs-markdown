@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Enabling Pressure Stall Information (PSI) monitoring {id="nodes-nodes-psi-enable_{{ context }}"}
 
-You can enable Linux Pressure Stall Information (PSI) monitoring by using a `MachineConfig` object. Enabling PSI monitoring makes PSI metrics for CPU, memory, and I/O available for your cluster. You can use the metrics to help identify disruptions caused by CPU, memory, and I/O resource issues for better scheduling and eviction decisions. {._abstract}
+You can enable Linux Pressure Stall Information (PSI) monitoring by using a `MachineConfig` object.  {._abstract}
+
+Enabling PSI monitoring makes PSI metrics for CPU, memory, and I/O available for your cluster. You can use the metrics to help identify disruptions caused by CPU, memory, and I/O resource issues for better scheduling and eviction decisions.
 
 
 :::important

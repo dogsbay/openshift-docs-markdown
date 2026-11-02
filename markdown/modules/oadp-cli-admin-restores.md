@@ -3,7 +3,7 @@
 
 You can use the {{ oadp_short }} command-line interface (CLI) to create, view, describe, and delete restores. {._abstract}
 
-**Prerequisites**
+Before you use these commands, ensure that the following conditions are met:
 
 *   The {{ oadp_short }} CLI plugin is installed and configured in admin mode.
 *   You are logged in to the {{ product_title }} cluster as a user with `cluster-admin` privileges.

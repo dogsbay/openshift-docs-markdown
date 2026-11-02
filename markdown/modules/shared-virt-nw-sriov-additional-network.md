@@ -52,8 +52,8 @@ Do not modify or delete an `SriovNetwork` object if it is attached to a virtual 
         :::
 
     *   `spec.linkState` an optional field that defines the link state of virtual function (VF). Allowed values are `enable`, `disable` and `auto`.
-    *   `spec.maxTxRate` an optional field that defines the maximum transmission rate, in Mbps, for the VF.
-    *   `spec.minTxRate` an optional field that defines the minimum transmission rate, in Mbps, for the VF. This value should always be less than or equal to the maximum transmission rate.
+    *   `spec.maxTxRate` an optional field that defines the maximum transmission rate, in MBps, for the VF.
+    *   `spec.minTxRate` an optional field that defines the minimum transmission rate, in MBps, for the VF. This value should always be less than or equal to the maximum transmission rate.
 
         :::note
 

@@ -92,15 +92,26 @@ For the steps in this procedure, the target registry is an existing mirror regis
 1.  Run the following command to prune the source index of all but the specified packages:
     ```text {minja}
     $ opm index prune \
-        -f {{ index_image_pullspec }} \ (1)
-        -p {{ package1 }},{{ package2 }},{{ package3 }} \ (2)
-        [-i {{ registry_image }}] \ (3)
-        -t <target_registry>:<port>/<namespace>/{{ index_image }} (4)
+        -f {{ index_image_pullspec }} \
+        -p {{ package1 }},{{ package2 }},{{ package3 }} \
+        [-i {{ registry_image }}] \
+        -t <target_registry>:<port>/<namespace>/{{ index_image }}
     ```
-    1.  Index to prune.
-    1.  Comma-separated list of packages to keep.
-    1.  Required only for {{ ibm_power_name }} and {{ ibm_z_name }} images: Operator Registry base image with the tag that matches the target {{ product_title }} cluster major and minor version.
-    1.  Custom tag for new index image being built.
+
+    where:
+
+    `-f`
+    :   Specifies the index to prune.
+
+    `-p`
+    :   Specifies a comma-separated list of packages to keep.
+
+    `-i`
+    :   Required only for {{ ibm_power_name }} and {{ ibm_z_name }} images: Specifies the Operator Registry base image with the tag that matches the target {{ product_title }} cluster major and minor version.
+
+    `-t`
+    :   Specifies the custom tag for the new index image being built.
+
 1.  Run the following command to push the new index image to your target registry:
     ```text {minja}
     $ podman push <target_registry>:<port>/<namespace>/{{ index_image }}

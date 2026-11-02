@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About KubeVirt Redfish {id="con_virt-about-kubevirt-redfish_{{ context }}"}
+# KubeVirt Redfish API for VM management {id="con_virt-about-kubevirt-redfish_{{ context }}"}
 
 KubeVirt Redfish is a Redfish-compatible API that exposes virtual machines (VMs) managed by {{ VirtProductName }} on {{ product_title }}. {._abstract}
 

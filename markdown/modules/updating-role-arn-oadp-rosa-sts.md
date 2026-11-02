@@ -132,8 +132,8 @@ cluster, if you provide an incorrect IAM role Amazon Resource Name (ARN), the `o
           type: Reconciled
     ```
 1.  Verify that the `BackupStorageLocation` CR is in an available state by running the following command:
-    ```terminal {minja}
-    $ oc get {{ oadp_bsl_api }} -n openshift-adp
+    ```terminal
+    $ oc get backupstoragelocations.velero.io -n openshift-adp
     ```
     ```terminal title="Example BackupStorageLocation"
     NAME       PHASE       LAST VALIDATED   AGE   DEFAULT

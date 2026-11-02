@@ -13,7 +13,7 @@ A mirror registry can also be used with a {{ product_title }} cluster in a disco
 
 Using a mirror registry requires the following general steps:
 
-*   Create the mirror registry, using a tool such as {{ quay }}.
+*   Create the mirror registry, using a tool such as Red&#160;Hat Quay.
 *   Create a container image registry credentials file.
 *   Copy the images from your online image repository to your mirror registry.
 

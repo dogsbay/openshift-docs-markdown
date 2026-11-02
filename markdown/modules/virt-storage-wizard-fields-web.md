@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Storage fields {id="virt-storage-wizard-fields-web_{{ context }}"}
+# Virtual machine storage fields {id="virt-storage-wizard-fields-web_{{ context }}"}
 
 To optimize storage performance and ensure data availability for your workloads, configure the storage fields to define the source, size, and disk characteristics of your virtual machine (VM). {._abstract}
 

@@ -3,7 +3,9 @@
 
 Issued: 30 Jun 2026
 
-This release adds integration and operational capabilities for workloads that use external certificate authorities, service mesh deployments, or file-based Transport Layer Security (TLS) credentials. The release includes a supported SPIFFE Helper container image, SPIRE UpstreamAuthority plugins for cert-manager and HashiCorp Vault, and {{ SMProductName }} integration with SPIRE for single-cluster and federated multi-cluster mutual Transport Layer Security (mTLS). {._abstract}
+This release adds integration and operational capabilities for workloads that use external certificate authorities, service mesh deployments, or file-based Transport Layer Security (TLS) credentials.  {._abstract}
+
+The release includes a supported SPIFFE Helper container image, SPIRE UpstreamAuthority plugins for cert-manager and HashiCorp Vault, and {{ SMProductName }} integration with SPIRE for single-cluster and federated multi-cluster mutual Transport Layer Security (mTLS).
 
 The following advisories are available for {{ zero_trust_full }}:
 

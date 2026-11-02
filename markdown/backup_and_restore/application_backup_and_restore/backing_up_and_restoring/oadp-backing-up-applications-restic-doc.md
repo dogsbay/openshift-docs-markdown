@@ -44,4 +44,4 @@ FSB does not support backing up `hostPath` volumes. For more information, see _F
 **Additional resources**
 {._additional-resources}
 
-*   [FSB limitations](https://velero.io/docs/v1.12/file-system-backup/#limitations)
+*   [FSB limitations](https://velero.io/docs/latest/file-system-backup/#limitations)

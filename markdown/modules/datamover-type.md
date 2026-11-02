@@ -2,7 +2,7 @@
 
 # DataMover type {id="datamover-type_{{ context }}"}
 
-The following are `DataMover` {{ oadp_short }} APIs: {._abstract}
+Use the `DataMover` {{ oadp_short }} API type to enable and configure the volume snapshot mover controller and CSI Data Mover plugin in {{ product_title }}. It controls data movement for volume snapshot backup and restore operations. {._abstract}
 
 **DataMover**
 

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Zero Trust Workload Identity Manager 0.1.0 (General Availability) {id="zero-trust-manager-release-notes-0-1-0_{{ context }}"}
 
-Issued: 16 June 2025 {._abstract}
+The {{ zero_trust_full }} 0.1.0 General Availability release was issued on June 16, 2025. It includes multiple Red Hat advisory updates for {{ product_title }}. {._abstract}
+
+Issued: 16 June 2025
 
 The following advisories are available for the {{ zero_trust_full }}:
 

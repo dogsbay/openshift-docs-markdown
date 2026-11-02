@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # TNF cluster degradation causes {id="tnf-cluster-degradation-causes_{{ context }}"}
 
-A two-node OpenShift cluster with fencing (TNF) becomes degraded when one node fails or loses communication with the cluster. Identifying the specific cause of degradation is essential because it determines whether the cluster can automatically recover or if manual intervention, such as fencing or hardware repair, is required to prevent data corruption and maintain service availability. {._abstract}
+A two-node OpenShift cluster with fencing (TNF) becomes degraded when one node fails or loses communication with the cluster.  {._abstract}
+
+Identifying the specific cause of degradation is essential because it determines whether the cluster can automatically recover or if manual intervention, such as fencing or hardware repair, is required to prevent data corruption and maintain service availability.
 
 Some common causes of cluster degradation include:
 

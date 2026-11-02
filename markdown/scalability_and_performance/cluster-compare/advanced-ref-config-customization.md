@@ -7,7 +7,7 @@ title: Performing advanced reference configuration customization
 # Performing advanced reference configuration customization {id="advanced-ref-config-customization"}
 {%- set context = "advanced-ref-config-customization" %}
 
-For scenarios where you want to allow temporary deviations from the reference design, you can apply more advanced customizations. 
+For scenarios where you want to allow temporary deviations from the reference design, you can apply more advanced customizations.  {._abstract}
 
 
 :::warning
@@ -25,3 +25,7 @@ Some advanced tasks to dynamically customize your reference configuration includ
 {% leveloffset +1 %}{% include "./modules/cluster-compare-manual-match.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/cluster-compare-patching.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/cluster-compare-generate-patch.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/cluster-compare-create-patch-manually.md" %}{% endleveloffset %}

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Verifying SPIRE integration with Istio on each cluster {id="zero-trust-manager-verify-spire-istio-multi-cluster_{{ context }}"}
 
-Verify that {{ SMProductName }} on Cluster A and Cluster B obtains workload certificates from {{ spire_full }} (SPIRE). This confirms Istio sidecars use SPIRE-issued identities rather than the built-in Istio certificate authority (CA) before you proceed with cross-cluster mesh verification. {._abstract}
+Verify that {{ SMProductName }} on Cluster A and Cluster B obtains workload certificates from {{ spire_full }} (SPIRE).  {._abstract}
+
+This confirms Istio sidecars use SPIRE-issued identities rather than the built-in Istio certificate authority (CA) before you proceed with cross-cluster mesh verification.
 
 **Prerequisites**
 

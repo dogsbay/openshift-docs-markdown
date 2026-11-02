@@ -10,7 +10,7 @@ title: About installing OADP
 
 {%- set context = "about-installing-oadp" %}
 
-As a cluster administrator, you install the OpenShift API for Data Protection (OADP) by installing the OADP Operator. The OADP Operator installs {{ velero_link }}. {._abstract}
+As a cluster administrator, you install the OpenShift API for Data Protection (OADP) by installing the OADP Operator. The OADP Operator installs Velero {{ velero_version }}. {._abstract}
 
 To back up Kubernetes resources and internal images, you must have object storage as a backup location, such as one of the following storage types:
 
@@ -44,8 +44,18 @@ You create a default `Secret` and then you install the Data Protection Applicati
 
 {% leveloffset +1 %}{% include "./modules/oadp-configuring-noobaa-for-dr.md" %}{% endleveloffset %}
 
+{% leveloffset +1 %}{% include "./modules/about-oadp-update-channels.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/about-installing-oadp-on-multiple-namespaces.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-support-backup-data-immutability.md" %}{% endleveloffset %}
+
+{% leveloffset +1 %}{% include "./modules/oadp-velero-cpu-memory-requirements.md" %}{% endleveloffset %}
+{% leveloffset +2 %}{% include "./modules/oadp-backup-restore-for-large-usage.md" %}{% endleveloffset %}
+
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 
+*   [Velero {{ velero_version }}](https://velero.io/docs/)
 *   [Installing OADP on Amazon Web Services](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#installing-oadp-aws)
 *   [Installing OADP on Microsoft Azure](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-azure#installing-oadp-azure)
 *   [Installing OADP on {{ gcp_full }}](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-gcp#installing-oadp-gcp)
@@ -53,10 +63,3 @@ You create a default `Secret` and then you install the Data Protection Applicati
 *   [Installing OADP on {{ rh_storage }}](/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ocs#installing-oadp-ocs)
 *   [Backing up applications with File System Backup: Kopia or Restic](/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc#backing-up-applications)
 *   [Cluster service version](/operators/understanding/olm/olm-understanding-olm#olm-csv_olm-understanding-olm)
-
-{% leveloffset +1 %}{% include "./modules/about-oadp-update-channels.md" %}{% endleveloffset %}
-{% leveloffset +1 %}{% include "./modules/about-installing-oadp-on-multiple-namespaces.md" %}{% endleveloffset %}
-{% leveloffset +1 %}{% include "./modules/oadp-support-backup-data-immutability.md" %}{% endleveloffset %}
-
-{% leveloffset +1 %}{% include "./modules/oadp-velero-cpu-memory-requirements.md" %}{% endleveloffset %}
-{% leveloffset +2 %}{% include "./modules/oadp-backup-restore-for-large-usage.md" %}{% endleveloffset %}

@@ -20,6 +20,13 @@ For AArch64 architecture nodes, you can use the following dual-port NICs only:
 
 *   NVIDIA ConnectX-7 series
 *   NVIDIA BlueField-3 series, in NIC mode
-    *   You must configure the NVIDIA BlueField-3 series DPU in NIC mode before configuring the interface as an ordinary clock with improved redundancy. For further information about configuring NIC mode, see [NIC Mode for BlueField-3](https://docs.nvidia.com/networking/display/bluefielddpubspv422/modes+of+operation#src-141856548_ModesofOperation-NICModeforBlueField-3) (NVIDIA documentation), [BlueField Management](https://docs.nvidia.com/networking/display/bluefieldbmcv2504/bluefield+managementink) (NVIDIA documentation), and [Configuring NIC Mode on BlueField-3 from Host BIOS HII UEFI Menu](https://docs.nvidia.com/networking/display/bluefielddpuosv470/modes+of+operation#src-2821766680_ModesofOperation-ConfiguringNICModeonBlueField-3fromHostHIIUEFI) (NVIDIA documentation).
-    *   You must restart the card after changing to NIC mode. For more information about restarting the card, see [NVIDIA BlueField Reset and Reboot Procedures](https://docs.nvidia.com/doca/sdk/nvidia+bluefield+reset+and+reboot+procedures/index.html) (NVIDIA documentation).
+    *   You must configure the NVIDIA BlueField-3 series DPU in NIC mode before configuring the interface as an ordinary clock with improved redundancy. For further information about configuring NIC mode, see "NIC Mode for BlueField-3" (NVIDIA documentation), "BlueField Management" (NVIDIA documentation), and "Configuring NIC Mode on BlueField-3 from Host BIOS HII UEFI Menu" (NVIDIA documentation).
+    *   You must restart the card after changing to NIC mode. For more information about restarting the card, see "NVIDIA BlueField Reset and Reboot Procedures" (NVIDIA documentation).
 *   Use the latest supported NVIDIA drivers and firmware to ensure proper PTP support and to expose a single PHC per NIC.
+
+**Additional resources**
+{._additional-resources}
+
+*   [NIC Mode for BlueField-3](https://docs.nvidia.com/networking/display/bluefielddpubspv422/modes+of+operation#src-141856548_ModesofOperation-NICModeforBlueField-3)
+*   [BlueField Management](https://docs.nvidia.com/networking/display/bluefieldbmcv2504/bluefield+managementink)
+*   [Configuring NIC Mode on BlueField-3 from Host BIOS HII UEFI Menu](https://docs.nvidia.com/networking/display/bluefielddpuosv470/modes+of+operation#src-2821766680_ModesofOperation-ConfiguringNICModeonBlueField-3fromHostHIIUEFI)

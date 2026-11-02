@@ -21,7 +21,7 @@ Configure an LDAP identity provider so users can log in to {{ product_title }} w
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-config-map.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/identity-provider-ldap-CR.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/identity-provider-ldap-cr.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}

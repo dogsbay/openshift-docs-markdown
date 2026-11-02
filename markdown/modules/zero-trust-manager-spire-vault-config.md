@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Configuring the SPIRE Vault UpstreamAuthority plugin {id="zero-trust-manager-spire-vault-config_{{ context }}"}
 
-Configure SPIRE Server to obtain intermediate signing certificates from HashiCorp Vault by setting `spec.upstreamAuthority.vault` on the `SpireServer` custom resource (CR). {{ zero_trust_full }} generates the SPIRE Server configuration, mounts Vault credentials into the SPIRE Server pod, and reconciles the SPIRE Server `StatefulSet`. {._abstract}
+Configure SPIRE Server to obtain intermediate signing certificates from HashiCorp Vault by setting `spec.upstreamAuthority.vault` on the `SpireServer` custom resource (CR). {._abstract}
+
+{{ zero_trust_full }} generates the SPIRE Server configuration, mounts Vault credentials into the SPIRE Server pod, and reconciles the SPIRE Server `StatefulSet`.
 
 On {{ product_title }}, the `SpireServer` CR supports Vault authentication only through the Kubernetes auth method. {{ zero_trust_full }} mounts a projected SPIRE Server `ServiceAccount` token and, when configured, a Vault CA certificate Secret at fixed paths inside the pod.
 

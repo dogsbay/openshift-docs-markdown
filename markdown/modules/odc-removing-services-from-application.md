@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Removing services from your application {id="odc-removing-services-from-your-application_{{ context }}"}
 
-In the topology **Graph view** remove a service from your application using the context menu.
+In the topology **Graph view** remove a service from your application using the context menu. {._abstract}
 
 **Procedure**
 

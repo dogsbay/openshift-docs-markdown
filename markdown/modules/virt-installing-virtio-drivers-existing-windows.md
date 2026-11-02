@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Installing VirtIO drivers from a SATA CD drive on an existing Windows VM {id="virt-installing-virtio-drivers-existing-windows_{{ context }}"}
+# Install VirtIO drivers from a SATA CD on an existing VM {id="virt-installing-virtio-drivers-existing-windows_{{ context }}"}
 
 You can install the VirtIO drivers from a SATA CD drive on an existing Windows virtual machine (VM). {._abstract}
 

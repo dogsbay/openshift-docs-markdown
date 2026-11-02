@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring disk sharing by using LUN and the CLI {id="virt-configuring-disk-sharing-lun-cli_{{ context }}"}
+# Share a LUN-backed disk by using the CLI {id="virt-configuring-disk-sharing-lun-cli_{{ context }}"}
 
 You can use the command line to configure disk sharing by using LUN. {._abstract}
 

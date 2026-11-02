@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Reference design specifications for telco RAN DU 5G deployments {id="telco-ref-design-overview_{{ context }}"}
+# Review the validated RAN DU reference design {id="telco-ref-design-overview_{{ context }}"}
 
 Red Hat and certified partners offer deep technical expertise and support for networking and operational capabilities required to run telco applications on {{ product_title }} {{ product_version }} clusters. {._abstract}
 

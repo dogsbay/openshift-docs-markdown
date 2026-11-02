@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Changing the instance type of a VM by using the web console {id="virt-change-vm-instance-type_{{ context }}"}
+# Change a VM instance type in the web console {id="virt-change-vm-instance-type_{{ context }}"}
 
 You can change the instance type associated with a running virtual machine (VM) by using the web console. The change takes effect immediately. {._abstract}
 

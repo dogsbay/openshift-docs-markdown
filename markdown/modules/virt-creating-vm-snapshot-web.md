@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a snapshot by using the web console {id="virt-creating-vm-snapshot-web_{{ context }}"}
+# Create a snapshot by using the web console {id="virt-creating-vm-snapshot-web_{{ context }}"}
 
 You can create a snapshot of a virtual machine (VM) by using the {{ product_title }} web console. {._abstract}
 

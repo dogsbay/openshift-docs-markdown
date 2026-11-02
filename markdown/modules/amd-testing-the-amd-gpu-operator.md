@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Testing the AMD GPU Operator {id="amd-testing-the-amd-gpu-operator_{{ context }}"}
 
-Use the following procedure to test the ROCmInfo installation and view the logs for the AMD MI210 GPU. 
+Use the following procedure to test the ROCmInfo installation and view the logs for the AMD MI210 GPU.  {._abstract}
 
 **Procedure**
 

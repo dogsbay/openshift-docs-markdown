@@ -1,8 +1,10 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Performing an image-based upgrade on managed clusters at scale in one step {id="ztp-image-based-upgrade-procedure-one-step_{{ context }}"}
 
-For use cases when service interruption is not a concern, you can upgrade a set of your managed clusters by using the `ImageBasedGroupUpgrade` custom resource (CR). You can use the `ImageBasedGroupUpgrade` CR to combine several actions in one step with one rollout strategy.
-With one rollout strategy, you can reduce the upgrade time but you can only troubleshoot failed clusters after the upgrade plan is complete. {._abstract}
+For use cases when service interruption is not a concern, you can upgrade a set of your managed clusters by using the `ImageBasedGroupUpgrade` custom resource (CR).  {._abstract}
+
+You can use the `ImageBasedGroupUpgrade` CR to combine several actions in one step with one rollout strategy.
+With one rollout strategy, you can reduce the upgrade time but you can only troubleshoot failed clusters after the upgrade plan is complete.
 
 **Prerequisites**
 
@@ -26,7 +28,9 @@ With one rollout strategy, you can reduce the upgrade time but you can only trou
     $ oc get ibgu -o yaml
     ```
 
-    ```yaml title="Example output"
+    Example output:
+
+    ```yaml
     # ...
     status:
       clusters:

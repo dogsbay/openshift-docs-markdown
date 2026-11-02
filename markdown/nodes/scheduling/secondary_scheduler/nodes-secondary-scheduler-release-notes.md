@@ -13,4 +13,4 @@ The {{ secondary_scheduler_operator }} allows you to deploy a custom secondary s
 
 For more information, see [About the {{ secondary_scheduler_operator }}](/nodes/scheduling/secondary_scheduler/index#nodes-secondary-scheduler-about_nodes-secondary-scheduler-about).
 
-{% leveloffset +1 %}{% include "./modules/nodes-secondary-scheduler-rn-1.6.0.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/nodes-secondary-scheduler-rn-1-6-0.md" %}{% endleveloffset %}

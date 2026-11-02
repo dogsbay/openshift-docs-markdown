@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Engineering considerations for the RAN DU use model {id="telco-ran-engineering-considerations-for-the-ran-du-use-model_{{ context }}"}
+# Plan a RAN DU cluster within the validated limits {id="telco-ran-engineering-considerations-for-the-ran-du-use-model_{{ context }}"}
 
 The RAN DU use model configures an {{ product_title }} cluster running on commodity hardware for hosting RAN distributed unit (DU) workloads. {._abstract}
 
@@ -15,8 +15,8 @@ This information is only available to customers and partners.
 
 Cluster topology
 :   The recommended topology for RAN DU workloads is {{ sno }}.
-    DU workloads may be run on other cluster topologies such as 3-node compact cluster, high availability (3 control plane + n worker nodes), or SNO+1 as needed.
-    Multiple SNO clusters, or a highly-available 3-node compact cluster, are recommended over the SNO+1 topology.
+    DU workloads can be run on other cluster topologies such as 3-node compact cluster, high availability (3 control plane + n worker nodes), or {{ sno }} configured with one additional dedicated worker node, as needed.
+    Multiple {{ sno }} clusters, or a highly-available 3-node compact cluster, are recommended over the {{ sno }} configured with one additional dedicated worker node topology.
 
 
     Under the standard cluster topology case (3+n), a mixed architecture cluster is allowed only if:
@@ -40,7 +40,7 @@ Supported cluster topologies for RAN DU
 
     **Supported cluster topologies for RAN DU**
 
-:   | Architecture | SNO | SNO+1 | 3-node  | Standard  | RWN |
+:   | Architecture | {{ sno }} | {{ sno }} configured with one additional dedicated worker node | 3-node  | Standard  | RWN |
     | --- | --- | --- | --- | --- | --- |
     | x86_64 | Yes | Yes | Yes | Yes | No |
     | aarch64 | Yes | No | No | No | No |
@@ -49,7 +49,7 @@ Supported cluster topologies for RAN DU
     *   The standard mixed-architecture topology uses `x86_64` control plane nodes and `AArch64` worker nodes.
 
 Workloads
-:   1.  DU workloads are described in [Telco RAN DU application workloads](/scalability_and_performance/telco-ran-du-rds#telco-ran-du-application-workloads_telco-ran-du).
+:   1.  DU workloads are described in [Review the application limits for a RAN DU workload](/scalability_and_performance/telco-ran-du-rds#telco-ran-du-application-workloads_telco-ran-du).
     1.  DU worker nodes are Intel 3rd Generation Xeon (Ice Lake) 2.20 GHz or newer with host firmware tuned for maximum performance.
 
 Resources
@@ -119,7 +119,7 @@ Hub cluster management characteristics
     1.  Use a maximum of 10 {{ rh_rhacm }} configuration policies, comprising 5 Red&#160;Hat provided policies and up to 5 custom configuration policies with a compliant evaluation interval of not less than 10 minutes.
     1.  Use a minimal number (up to 10) of managed cluster templates in cluster policies.
     Use hub-side templating.
-    1.  Disable {{ rh_rhacm }} addons with the exception of the `policyController` and configure observability with the default configuration.
+    1.  Disable {{ rh_rhacm }} add-ons with the exception of the `policyController` and configure observability with the default configuration.
 
 
     The following table describes resource utilization under reference application load.

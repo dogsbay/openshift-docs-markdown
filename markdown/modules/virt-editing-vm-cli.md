@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Editing a virtual machine by using the CLI {id="virt-editing-vm-cli_{{ context }}"}
+# Edit a virtual machine by using the CLI {id="virt-editing-vm-cli_{{ context }}"}
 
 You can edit a virtual machine (VM) by using the command line. {._abstract}
 

@@ -1,9 +1,11 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Getting the {{ factory_prestaging_tool }} {id="ztp-getting-tool_{{ context }}"}
 
+The {{ factory_prestaging_tool }} Go binary in the container image is executed on the server running an {{ op_system }} live image using `podman`. {._abstract}
+
 The {{ factory_prestaging_tool }} Go binary is publicly available in [the {{ rds_first }} tools container image](https://quay.io/openshift-kni/telco-ran-tools:latest).
-The {{ factory_prestaging_tool }} Go binary in the container image is executed on the server running an {{ op_system }} live image using `podman`.
-If you are working in a disconnected environment or have a private registry, you need to copy the image there so you can download the image to the server. {._abstract}
+
+If you are working in a disconnected environment or have a private registry, you need to copy the image there so you can download the image to the server.
 
 **Procedure**
 

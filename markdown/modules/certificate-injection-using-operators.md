@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Certificate injection using Operators {id="certificate-injection-using-operators_{{ context }}"}
 
-In {{ product_title }}, certificate injection using Operators merges your custom Certificate Authorities (CAs) with system certificates and injects the merged bundle into Operators that request it. You can use this feature so your Operators trust custom certificates without requiring manual certificate bundle management. {._abstract}
+In {{ product_title }}, certificate injection using Operators merges your custom Certificate Authorities (CAs) with system certificates and injects the merged bundle into Operators that request it.  {._abstract}
+
+You can use this feature so your Operators trust custom certificates without requiring manual certificate bundle management.
 
 
 :::important

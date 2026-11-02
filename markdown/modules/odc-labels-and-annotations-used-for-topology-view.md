@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Labels and annotations used for the Topology view {id="odc-labels-and-annotations-used-for-topology-view_{{ context }}"}
 
+The **Topology** view uses labels and annotations to display icons, source links, node connectors, and application groupings on the topology graph. {._abstract}
+
 The **Topology** view uses the following labels and annotations:
 
 
@@ -16,4 +18,7 @@ Node Connector
 App grouping
 :   The `app.kubernetes.io/part-of=<appname>` label is used to group the applications, services, and components.
 
-For detailed information on the labels and annotations {{ product_title }} applications must use, see [Guidelines for labels and annotations for OpenShift applications](https://github.com/redhat-developer/app-labels/blob/master/labels-annotation-for-openshift.adoc).
+**Additional resources**
+{._additional-resources}
+
+*   [Guidelines for labels and annotations for OpenShift applications](https://github.com/redhat-developer/app-labels/blob/master/labels-annotation-for-openshift.adoc)

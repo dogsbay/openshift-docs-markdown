@@ -67,11 +67,11 @@ While a project is in **Terminating** status, you cannot add new content to the 
 
 *   [Customizing the available cluster roles using the web console](/applications/projects/working-with-projects#odc-customizing-available-cluster-roles-using-the-web-console_projects)
 
-{% leveloffset +1 %}{% include "./modules/creating-a-project-using-the-CLI.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/creating-a-project-using-the-cli.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/viewing-a-project-using-the-web-console.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/viewing-a-project-using-the-CLI.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/viewing-a-project-using-the-cli.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/odc-providing-project-permissions-using-developer-perspective.md" %}{% endleveloffset %}
 
@@ -81,11 +81,11 @@ While a project is in **Terminating** status, you cannot add new content to the 
 
 {% leveloffset +1 %}{% include "./modules/checking-project-status-using-the-web-console.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/checking-project-status-using-the-CLI.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/checking-project-status-using-the-cli.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/deleting-a-project-using-the-web-console.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/deleting-a-project-using-the-CLI.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/deleting-a-project-using-the-cli.md" %}{% endleveloffset %}
 
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 

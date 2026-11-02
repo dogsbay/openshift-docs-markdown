@@ -12,15 +12,15 @@ Before deploying a virtualized control plane cluster, ensure your environment me
 {%- set FeatureName = "KubeVirt Redfish" %}
 {% include "./snippets/technology-preview.md" %}
 
-{% leveloffset +1 %}{% include "./modules/con_virt-vcp-hosting-cluster-requirements.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/con-virt-vcp-hosting-cluster-requirements.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/con_virt-vcp-storage-requirements.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/con-virt-vcp-storage-requirements.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/con_virt-vcp-network-requirements.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/con-virt-vcp-network-requirements.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/con_virt-vcp-control-plane-vm-requirements.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/con-virt-vcp-control-plane-vm-requirements.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/con_virt-vcp-kubevirt-redfish-requirements.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/con-virt-vcp-kubevirt-redfish-requirements.md" %}{% endleveloffset %}
 
 ## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
 

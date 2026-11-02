@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 
-# Telco RAN DU application workloads {id="telco-ran-du-application-workloads_{{ context }}"}
+# Review the application limits for a RAN DU workload {id="telco-ran-du-application-workloads_{{ context }}"}
 
 Develop RAN DU applications that are subject to the following requirements and limitations. {._abstract}
 

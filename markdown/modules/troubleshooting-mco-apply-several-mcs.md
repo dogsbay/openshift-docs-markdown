@@ -1,9 +1,10 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Applying several machine config files at the same time {id="troubleshooting-mco-apply-several-mcs_{{ context }}"}
 
-When you need to change the machine config for a group of nodes in the cluster, also known as machine config pools (MCPs), sometimes the changes must be applied with several different machine config files.
+When you need to change the machine config for a group of nodes in the cluster, also known as machine config pools (MCPs), sometimes the changes must be applied with several different machine config files. {._abstract}
+
 The nodes need to restart for the machine config file to be applied.
-After each machine config file is applied to the cluster, all nodes restart that are affected by the machine config file. {._abstract}
+After each machine config file is applied to the cluster, all nodes restart that are affected by the machine config file.
 
 To prevent the nodes from restarting for each machine config file, you can apply all of the changes at the same time by pausing each MCP that is updated by the new machine config file.
 

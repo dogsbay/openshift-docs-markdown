@@ -17,4 +17,4 @@ Allocating only full physical cores is important on simultaneous multi-threading
 *   Offers predictable latency
 *   Guarantees exclusive CPU resources
 
-{% leveloffset +1 %}{% include "./modules/virt-CPU-manager-policy.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/virt-cpu-manager-policy.md" %}{% endleveloffset %}

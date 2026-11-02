@@ -2,7 +2,7 @@
 
 # Features type {id="features-type_{{ context }}"}
 
-The following are `Features` {{ oadp_short }} APIs: {._abstract}
+Use the `Features` {{ oadp_short }} API type to configure optional {{ oadp_short }} features in {{ product_title }}. It defines the Data Mover configuration for volume snapshot data movement. {._abstract}
 
 **Features**
 

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # cert-manager upstream authority plugin reference {id="zero-trust-manager-cert-manager-plugin-ref_{{ context }}"}
 
-This reference describes `spec.upstreamAuthority.certManager` fields on the `SpireServer` custom resource and how {{ zero_trust_full }} uses them to request intermediate certificates from {{ cert_manager_operator }}. Use it when you configure or troubleshoot the {{ cert_manager_operator }} UpstreamAuthority plugin and need field descriptions or defaults. {._abstract}
+This reference describes `spec.upstreamAuthority.certManager` fields on the `SpireServer` custom resource and how {{ zero_trust_full }} uses them to request intermediate certificates from {{ cert_manager_operator }}.  {._abstract}
+
+Use it when you configure or troubleshoot the {{ cert_manager_operator }} UpstreamAuthority plugin and need field descriptions or defaults.
 
 ## SpireServer CR fields {id="cert-manager-plugin-spireserver-cr-reference_{{ context }}"}
 

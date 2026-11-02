@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-
 # Creating the machine configuration {id="rdma-creating-the-machine-configuration_{{ context }}"}
 
-Before you create the resource pods, you need to create the `machineconfig.yaml` custom resource (CR) that provides access to the GPU and networking resources without the need for user privileges.
+Before you create the resource pods, you need to create the `machineconfig.yaml` custom resource (CR) that provides access to the GPU and networking resources without the need for user privileges. {._abstract}
 
 **Procedure**
 

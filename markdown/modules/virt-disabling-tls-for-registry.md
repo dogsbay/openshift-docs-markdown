@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Disabling TLS for a container registry {id="virt-disabling-tls-for-registry_{{ context }}"}
+# Disable TLS for an insecure registry {id="virt-disabling-tls-for-registry_{{ context }}"}
 
 You can disable TLS (transport layer security) for one or more container registries by editing the `insecureRegistries` field of the `HyperConverged` custom resource. {._abstract}
 

@@ -1,12 +1,14 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # {{ rh_storage_first }} {id="telco-hub-openshift-data-foundation_{{ context }}"}
 
+{{ rh_storage_first }} provides file, block, and object storage services to the {{ product_title }} hub cluster. It is the recommended storage solution for telco hub cluster deployments. {._abstract}
+
 
 New in this release
 :   *   No reference design updates in this release
 
 Description
-:   {{ rh_storage_first }} provides file, block, and object storage services to the hub cluster. {._abstract}
+:   {{ rh_storage_first }} provides file, block, and object storage services to the hub cluster.
 
 
 Limits and requirements

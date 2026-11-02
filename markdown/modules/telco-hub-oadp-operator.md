@@ -1,6 +1,10 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # {{ oadp_full }} {id="telco-hub-oadp-operator_{{ context }}"}
 
+{{ oadp_first }} is automatically installed and managed by {{ rh_rhacm_first }} when the backup feature is enabled, facilitating backup and restore of workloads in {{ product_title }} clusters.  {._abstract}
+
+Enabling {{ oadp_short }} is required for {{ rh_rhacm }} disaster recovery solutions.
+
 
 New in this release
 :   *   No reference design updates in this release

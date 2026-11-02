@@ -156,14 +156,11 @@ If you are using a storage provider other than AWS S3, you will need to add `--e
     $ kopia repository status
     ```
 
-**Example output**
+    ```terminal title="Example output"
 
+    Hash:                BLAKE3-256
+    Encryption:          CHACHA20-POLY1305-HMAC-SHA256
+    Splitter:            DYNAMIC-8M-RABINKARP
+    Format version:      3
 
-```terminal
-
-Hash:                BLAKE3-256
-Encryption:          CHACHA20-POLY1305-HMAC-SHA256
-Splitter:            DYNAMIC-8M-RABINKARP
-Format version:      3
-
-```
+    ```

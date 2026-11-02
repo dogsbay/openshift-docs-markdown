@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Create a license-compliant AWS EC2 Windows VM by using the web console {id="virt-create-aws-li-windows-vm-web-console_{{ context }}"}
+# Create an AWS-licensed Windows VM by using the web console {id="virt-create-aws-li-windows-vm-web-console_{{ context }}"}
 
 Create license-compliant Windows virtual machines (VMs) by enabling the `dedicatedCpuPlacement` attribute. This is enabled by default on **Dedicated vCPU** instance types. {._abstract}
 

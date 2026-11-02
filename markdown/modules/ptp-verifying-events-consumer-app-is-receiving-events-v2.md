@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Verifying that the PTP events REST API v2 consumer application is receiving events {id="ptp-verifying-events-consumer-app-is-receiving-events-v2_{{ context }}"}
 
-Verify that the `cloud-event-consumer` container in the application pod is receiving Precision Time Protocol (PTP) events.
+Verify that the `cloud-event-consumer` container in the application pod is receiving Precision Time Protocol (PTP) events. {._abstract}
 
 **Prerequisites**
 

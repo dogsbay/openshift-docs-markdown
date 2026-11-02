@@ -31,21 +31,27 @@
 @source inline("-mb-px [&>:first-child]:mt-0! [&>:last-child]:mb-0! aria-selected:bg-primary aria-selected:bg-transparent aria-selected:border-primary aria-selected:shadow-none aria-selected:text-foreground aria-selected:text-primary-foreground bg-background bg-danger/5 bg-info/5 bg-success/5 bg-transparent bg-warning/5 border border-b border-b-0 border-b-2 border-border border-danger/50 border-info/50 border-success/50 border-transparent border-warning/50 dark disabled:opacity-50 disabled:pointer-events-none flex flex-wrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ring font-medium gap-2 gap-6 hover:text-foreground inline-flex items-center justify-center my-6 p-0 p-6 pb-1 pb-2 pt-3 px-0.5 px-3 px-4 py-1.5 ring-offset-background rounded-full rounded-none rounded-xl text-foreground text-muted-foreground text-sm transition-all whitespace-nowrap"); /* ASTRO-ONLY: variants, tones, theme scopes */
 
 /* Prose typography for rendered content.
-   Every element rule is guarded with :not(.dba-api *): API-reference
-   regions (ApiLayout root carries the dba-api marker) compose their own
-   typography from utility classes, and unguarded .docs-prose rules would
-   out-specify them. The guard lets mixed prose+endpoint pages (MDX
-   imports) keep full typography outside the cards. */
+   Every element rule is guarded with :not(.dba-api *, .not-prose, .not-prose *).
+   API-reference regions (ApiLayout root carries the dba-api marker) compose
+   their own typography from utility classes, and unguarded .docs-prose rules
+   would out-specify them (these rules are unlayered, so they beat every
+   utility). The guard lets mixed prose+endpoint pages (MDX imports) keep full
+   typography outside the cards. .not-prose means what it means in Tailwind
+   Typography: that element and everything inside it is UI, not prose. Only
+   the heading and link rules skipped it, and only the element itself, so a
+   search page's facet list and result list inside an article got bullets,
+   indents and underlines. A wrapper around AUTHORED content (a card group, an
+   API symbol) must therefore not carry it. */
 .docs-prose {
   line-height: 1.7;
 
   /* A heading that is part of a component (a card title: h3.not-prose) keeps the component look */
-  & h1:not(.dba-api *):not(.not-prose) { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; margin-top: 0; margin-bottom: 1rem; line-height: 1.2; letter-spacing: -0.025em; }
-  & h2:not(.dba-api *):not(.not-prose) { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.75rem; line-height: 1.3; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; letter-spacing: -0.015em; }
-  & h3:not(.dba-api *):not(.not-prose) { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.5rem; line-height: 1.4; }
-  & h4:not(.dba-api *):not(.not-prose) { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+  & h1:not(.dba-api *, .not-prose, .not-prose *) { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; margin-top: 0; margin-bottom: 1rem; line-height: 1.2; letter-spacing: -0.025em; }
+  & h2:not(.dba-api *, .not-prose, .not-prose *) { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.75rem; line-height: 1.3; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; letter-spacing: -0.015em; }
+  & h3:not(.dba-api *, .not-prose, .not-prose *) { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.5rem; line-height: 1.4; }
+  & h4:not(.dba-api *, .not-prose, .not-prose *) { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; }
 
-  & p:not(.dba-api *) { margin-top: 0.75rem; margin-bottom: 0.75rem; }
+  & p:not(.dba-api *, .not-prose, .not-prose *) { margin-top: 0.75rem; margin-bottom: 0.75rem; }
 
   /* The :not([data-variant]) guard exempts anchors that ARE components. A
      link-button renders as an <a> carrying bg-primary + text-primary-foreground
@@ -57,48 +63,45 @@
      (No backticks in this comment: the whole stylesheet is a template
      literal.) */
   /* Not a whole-card link (LinkCard, the video card: `a.not-prose`): its underline ran under every line of the card */
-  & a:not(.dba-api *):not([data-variant]):not(.not-prose) { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
-  & a:hover:not(.dba-api *):not([data-variant]):not(.not-prose) { opacity: 0.8; }
+  & a:not(.dba-api *, .not-prose, .not-prose *):not([data-variant]) { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+  & a:hover:not(.dba-api *, .not-prose, .not-prose *):not([data-variant]) { opacity: 0.8; }
 
-  & strong:not(.dba-api *) { font-weight: 600; }
-  & code:not(.dba-api *) { font-size: 0.875em; padding: 0.15em 0.35em; border-radius: 0.25rem; background: var(--muted); font-family: var(--font-code, ui-monospace, monospace); }
-  & pre code:not(.dba-api *) { padding: 0; background: none; font-size: 1em; }
+  & strong:not(.dba-api *, .not-prose, .not-prose *) { font-weight: 600; }
+  & code:not(.dba-api *, .not-prose, .not-prose *) { font-size: 0.875em; padding: 0.15em 0.35em; border-radius: 0.25rem; background: var(--muted); font-family: var(--font-code, ui-monospace, monospace); }
+  & pre code:not(.dba-api *, .not-prose, .not-prose *) { padding: 0; background: none; font-size: 1em; }
 
   /* Spacing between consecutive block elements (code blocks, alerts, etc.) */
   & > * + * { margin-top: 0.75rem; }
-  & li > * + *:not(.dba-api *) { margin-top: 0.75rem; }
+  & li > * + *:not(.dba-api *, .not-prose *) { margin-top: 0.75rem; }
 
-  & ul:not(.dba-api *) { list-style: disc; padding-left: 1.5rem; margin: 0.75rem 0; }
+  & ul:not(.dba-api *, .not-prose, .not-prose *) { list-style: disc; padding-left: 1.5rem; margin: 0.75rem 0; }
   /* Not a step list, nor a list inside one: Steps.astro draws their numbers as circles, and this
      rule (one class and an element) outranked its .steps-list { list-style: none }, so each step
      showed its "2." beside its circle */
-  & ol:not(.dba-api *):not(.steps-list, .sub-steps-list, .steps-list ol) { list-style: decimal; padding-left: 1.5rem; margin: 0.75rem 0; }
-  & li:not(.dba-api *) { margin: 0.25rem 0; }
-  & li > ul:not(.dba-api *), & li > ol:not(.dba-api *) { margin: 0.25rem 0; }
-  /* A file tree draws its own folder and file icons (files/markup.ts): the list rules above gave it bullets too */
-  & [data-component="files"] ul:not(.dba-api *) { list-style: none; padding-left: 0; }
-  & [data-component="files"] li > ul:not(.dba-api *) { padding-left: 1rem; }
+  & ol:not(.dba-api *, .not-prose, .not-prose *):not(.steps-list, .sub-steps-list, .steps-list ol) { list-style: decimal; padding-left: 1.5rem; margin: 0.75rem 0; }
+  & li:not(.dba-api *, .not-prose, .not-prose *) { margin: 0.25rem 0; }
+  & li > ul:not(.dba-api *, .not-prose, .not-prose *), & li > ol:not(.dba-api *, .not-prose, .not-prose *) { margin: 0.25rem 0; }
 
-  & blockquote:not(.dba-api *) { border-left: 4px solid var(--border); padding-left: 1rem; color: var(--muted-foreground); font-style: italic; margin: 1rem 0; }
+  & blockquote:not(.dba-api *, .not-prose, .not-prose *) { border-left: 4px solid var(--border); padding-left: 1rem; color: var(--muted-foreground); font-style: italic; margin: 1rem 0; }
 
-  & hr:not(.dba-api *) { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+  & hr:not(.dba-api *, .not-prose, .not-prose *) { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
 
-  & table:not(.dba-api *) { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.875rem; }
-  & th:not(.dba-api *) { text-align: left; vertical-align: bottom; font-weight: 600; padding: 0.5rem; border-bottom: 2px solid var(--border); }
-  & td:not(.dba-api *) { padding: 0.5rem; vertical-align: top; border-bottom: 1px solid var(--border); }
+  & table:not(.dba-api *, .not-prose, .not-prose *) { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.875rem; }
+  & th:not(.dba-api *, .not-prose, .not-prose *) { text-align: left; vertical-align: bottom; font-weight: 600; padding: 0.5rem; border-bottom: 2px solid var(--border); }
+  & td:not(.dba-api *, .not-prose, .not-prose *) { padding: 0.5rem; vertical-align: top; border-bottom: 1px solid var(--border); }
   /* A table's caption is its title, above it; the same for Table components and raw HTML tables */
-  & caption:not(.dba-api *) { caption-side: top; text-align: left; font-weight: 500; color: var(--foreground); padding-bottom: 0.5rem; }
+  & caption:not(.dba-api *, .not-prose, .not-prose *) { caption-side: top; text-align: left; font-weight: 500; color: var(--foreground); padding-bottom: 0.5rem; }
 
     /* Tailwind Preflight sets display: block on every img, which turns an
        INLINE icon into its own line and splits the sentence around it —
        AsciiDoc UI macros render mid-step and were breaking every procedure
        that used one. inline-block restores the flow and leaves a standalone
        image (the only child of its paragraph) looking exactly as before. */
-    & img:not(.dba-api *) { display: inline-block; max-width: 100%; border-radius: 0.5rem; }
+    & img:not(.dba-api *, .not-prose, .not-prose *) { display: inline-block; max-width: 100%; border-radius: 0.5rem; }
     /* A standalone image — the only child of its paragraph — keeps block
        layout, so the vertical rhythm and the absence of baseline descender
        space are exactly what they were before inline icons were fixed. */
-    & p > img:only-child:not(.dba-api *) { display: block; }
+    & p > img:only-child:not(.dba-api *, .not-prose, .not-prose *) { display: block; }
 
   & .heading-anchor { text-decoration: none; opacity: 0; margin-right: 0.25rem; transition: opacity 0.2s; }
   & h1:hover .heading-anchor, & h2:hover .heading-anchor, & h3:hover .heading-anchor, & h4:hover .heading-anchor { opacity: 0.4; }
@@ -107,19 +110,19 @@
      callouts) is a <details> too, with its own border and spacing; it
      carries data-variant, and without the exclusion it got a second border
      and 1rem of padding around its title bar. */
-  & details:not(.dba-api *):not([data-variant]) { border: 1px solid var(--border); border-radius: 0.5rem; padding: 1rem; margin: 1rem 0; }
-  & summary:not(.dba-api *) { cursor: pointer; font-weight: 600; }
+  & details:not(.dba-api *, .not-prose, .not-prose *):not([data-variant]) { border: 1px solid var(--border); border-radius: 0.5rem; padding: 1rem; margin: 1rem 0; }
+  & summary:not(.dba-api *, .not-prose, .not-prose *) { cursor: pointer; font-weight: 600; }
 
   /* mark is emitted by the highlight directive AND can arrive as raw HTML
      from an importer. Without a rule here it renders as the browser default
      yellow, which clashes in light mode and is unreadable on a dark page
      (nothing declares color-scheme). Token-based so it follows the theme. */
-  & mark:not(.dba-api *) { background: var(--dsb-mark-bg, rgb(254 240 138 / 0.6)); color: inherit; border-radius: 0.125rem; padding: 0 0.125rem; }
-  &:where(.dark *) mark:not(.dba-api *), .dark & mark:not(.dba-api *) { background: var(--dsb-mark-bg-dark, rgb(234 179 8 / 0.3)); }
+  & mark:not(.dba-api *, .not-prose, .not-prose *) { background: var(--dsb-mark-bg, rgb(254 240 138 / 0.6)); color: inherit; border-radius: 0.125rem; padding: 0 0.125rem; }
+  &:where(.dark *) mark:not(.dba-api *, .not-prose, .not-prose *), .dark & mark:not(.dba-api *, .not-prose, .not-prose *) { background: var(--dsb-mark-bg-dark, rgb(234 179 8 / 0.3)); }
 
-  & dl:not(.dba-api *) { margin: 1rem 0; }
-  & dt:not(.dba-api *) { font-weight: 600; margin-top: 0.75rem; }
-  & dd:not(.dba-api *) { margin-left: 1.5rem; color: var(--muted-foreground); }
+  & dl:not(.dba-api *, .not-prose, .not-prose *) { margin: 1rem 0; }
+  & dt:not(.dba-api *, .not-prose, .not-prose *) { font-weight: 600; margin-top: 0.75rem; }
+  & dd:not(.dba-api *, .not-prose, .not-prose *) { margin-left: 1.5rem; color: var(--muted-foreground); }
 
   /* In-cell admonitions. Inside a raw HTML table cell nothing
      markdown-native works, so the AsciiDoc engine emits a neutral

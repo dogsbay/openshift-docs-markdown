@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Creating a Windows VM {id="virt-creating-windows-vm_{{ context }}"}
+# Create a Windows VM from an uploaded image {id="virt-creating-windows-vm_{{ context }}"}
 
 You can create a Windows virtual machine (VM) by uploading a Windows image to a persistent volume claim (PVC) and then cloning the PVC when you create a VM by using the {{ product_title }} web console. {._abstract}
 

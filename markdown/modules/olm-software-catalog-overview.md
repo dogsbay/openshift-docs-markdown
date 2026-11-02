@@ -2,7 +2,9 @@
 
 # About the software catalog {id="olm-software-catalog-overview_{{ context }}"}
 
-The _software catalog_ is the web console interface in {{ product_title }} that cluster administrators use to discover and install Operators. With one click, an Operator can be pulled from its off-cluster source, installed and subscribed on the cluster, and made ready for engineering teams to self-service manage the product across deployment environments using Operator Lifecycle Manager (OLM). {._abstract}
+The _software catalog_ is the web console interface in {{ product_title }} that cluster administrators use to discover and install Operators.  {._abstract}
+
+With one click, an Operator can be pulled from its off-cluster source, installed and subscribed on the cluster, and made ready for engineering teams to self-service manage the product across deployment environments using Operator Lifecycle Manager (OLM).
 
 {% if not openshift_origin %}
 Cluster administrators can choose from catalogs grouped into the following categories:

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Velero CPU and memory requirements based on collected data {id="oadp-velero-cpu-memory-requirements_{{ context }}"}
 
-The following recommendations are based on observations of performance made in the scale and performance lab. The backup and restore resources can be impacted by the type of plugin, the amount of resources required by that backup or restore, and the respective data contained in the persistent volumes (PVs) related to those resources. {._abstract}
+The following recommendations are based on observations of performance made in the scale and performance lab. {._abstract}
+
+The backup and restore resources can be impacted by the type of plugin, the amount of resources required by that backup or restore, and the respective data contained in the persistent volumes (PVs) related to those resources.
 
 ## CPU and memory requirement for configurations {id="_cpu_and_memory_requirement_for_configurations"}
 | Configuration types | <sup>[1]</sup> Average usage | <sup>[2]</sup> Large usage | resourceTimeouts |
@@ -26,4 +28,4 @@ The resource requirements listed throughout the guide are for average usage only
 
 ## Additional resources {id="_additional_resources" ._additional-resources}
 
-*   [Customize Velero Install (Velero documentation)](https://velero.io/docs/v1.11/customize-installation/#customize-resource-requests-and-limits/)
+*   [Customize Velero Install (Velero documentation)](https://velero.io/docs/latest/customize-installation/#customize-resource-requests-and-limits/)

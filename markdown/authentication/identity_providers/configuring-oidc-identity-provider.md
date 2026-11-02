@@ -36,7 +36,7 @@ To integrate {{ product_title }} with an external OpenID Connect (OIDC) identity
 
 {% leveloffset +1 %}{% include "./modules/identity-provider-config-map.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/identity-provider-oidc-CR.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/identity-provider-oidc-cr.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}

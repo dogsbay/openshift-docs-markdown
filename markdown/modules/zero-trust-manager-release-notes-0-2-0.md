@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # {{ zero_trust_full }} 0.2.0 (General Availability) {id="zero-trust-manager-release-notes-0-2-0_{{ context }}"}
 
-Issued: 09 August 2025 {._abstract}
+The {{ zero_trust_full }} 0.2.0 General Availability release was issued on August 9, 2025. This release adds managed OIDC Discovery Provider Route support, custom certificate authority TTL settings, and manual user configuration capabilities. {._abstract}
+
+Issued: 09 August 2025
 
 The following advisories are available for the {{ zero_trust_full }}:
 

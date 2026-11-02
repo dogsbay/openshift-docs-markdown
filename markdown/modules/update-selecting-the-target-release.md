@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Selecting the target release {id="update-selecting-the-target-release_{{ context }}"}
 
-Use the [Red Hat {{ product_title }} Update Graph](https://access.redhat.com/labs/ocpupgradegraph/update_path) or the
-[cincinnati-graph-data repository](https://github.com/openshift/cincinnati-graph-data/tree/master/channels) to determine what release to update to. {._abstract}
+Use the Red Hat {{ product_title }} Update Graph or the cincinnati-graph-data repository to determine what release to update to. {._abstract}
 
 ## Determining what z-stream updates are available {id="update-determining-available-z-streams_{{ context }}"}
 
@@ -170,3 +169,9 @@ Run the following command:
       4.14.36     quay.io/openshift-release-dev/ocp-release@sha256:f21253
       4.14.35     quay.io/openshift-release-dev/ocp-release@sha256:2dd69c5
     ```
+
+**Additional resources**
+{._additional-resources}
+
+*   [Red Hat {{ product_title }} Update Graph](https://access.redhat.com/labs/ocpupgradegraph/update_path)
+*   [cincinnati-graph-data repository](https://github.com/openshift/cincinnati-graph-data/tree/master/channels)

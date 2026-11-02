@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Determining the cluster version update path {id="update-determining-the-cluster-version-update-path_{{ context }}"}
 
-Use the [Red Hat {{ product_title }} Update Graph](https://access.redhat.com/labs/ocpupgradegraph/update_path/) tool to determine if the path is valid for the z-stream release you want to update to. {._abstract}
+Use the Red Hat {{ product_title }} Update Graph tool to determine if the path is valid for the z-stream release you want to update to. {._abstract}
 
 
 :::important
@@ -25,3 +25,9 @@ For example, a bug must be fixed in 4.16.z before it is fixed in 4.15.z.
 This means that the update graph does not allow for updates to chronologically older releases even if the minor version is greater, for example, updating from 4.15.24 to 4.16.2.
 
 :::
+
+
+**Additional resources**
+{._additional-resources}
+
+*   [Red Hat {{ product_title }} Update Graph](https://access.redhat.com/labs/ocpupgradegraph/update_path/)

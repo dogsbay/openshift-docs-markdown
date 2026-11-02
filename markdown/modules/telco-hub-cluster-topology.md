@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
-# Hub cluster topology {id="telco-hub-cluster-topology_{{ context }}"}
+# Plan the hub cluster node layout {id="telco-hub-cluster-topology_{{ context }}"}
 
 In production environments, the {{ product_title }} hub cluster must be highly available to maintain high availability of the management functions. {._abstract}
 

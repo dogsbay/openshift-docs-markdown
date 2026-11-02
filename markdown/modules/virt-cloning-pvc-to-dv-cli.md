@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Cloning a PVC to a data volume {id="virt-cloning-pvc-to-dv-cli_{{ context }}"}
+# Clone a PVC to a data volume {id="virt-cloning-pvc-to-dv-cli_{{ context }}"}
 
 You can clone the persistent volume claim (PVC) of an existing virtual machine (VM) disk to a data volume by using the command line. {._abstract}
 

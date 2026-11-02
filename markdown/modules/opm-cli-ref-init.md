@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # init {id="opm-cli-ref-init_{{ context }}"}
 
-Generate an `olm.package` declarative config blob.
+Generate an `olm.package` declarative config blob. {._abstract}
 
 ```terminal title="Command syntax"
 $ opm init <package_name> [<flags>]

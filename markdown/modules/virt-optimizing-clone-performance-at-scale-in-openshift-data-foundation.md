@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Optimizing clone Performance at scale in {{ rh_storage }} {id="virt-optimizing-clone-performance-at-scale-in-openshift-data-foundation_{{ context }}"}
+# Optimize clone performance at scale in {{ rh_storage }} {id="virt-optimizing-clone-performance-at-scale-in-openshift-data-foundation_{{ context }}"}
 
 When you use {{ rh_storage }}, the storage profile configures the default cloning strategy as `csi-clone`. However, this method has limitations, as shown in the following link. {._abstract}
 

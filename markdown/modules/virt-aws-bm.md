@@ -1,12 +1,12 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # {{ VirtProductName }} on AWS bare metal {id="virt-aws-bm_{{ context }}"}
 
-You can run {{ VirtProductName }} on an {{ aws_first }} bare metal {{ product_title }} cluster. {._abstract}
+You can run {{ VirtProductName }} on an Amazon Web Services (AWS) bare metal {{ product_title }} cluster. {._abstract}
 
 
 :::note
 
-{{ VirtProductName }} is also supported on {{ product_rosa }} (ROSA) Classic clusters, which have the same configuration requirements as {{ aws_short }} bare-metal clusters.
+{{ VirtProductName }} is also supported on Red&#160;Hat OpenShift Service on AWS (ROSA) Classic clusters, which have the same configuration requirements as AWS bare-metal clusters.
 
 :::
 
@@ -18,7 +18,7 @@ Installing
 :   *   You can install the cluster by using installer-provisioned infrastructure, ensuring that you specify bare-metal instance types for the worker nodes. For example, you can use the `c5n.metal` type value for a machine based on x86_64 architecture.
     You specify bare-metal instance types by editing the `install-config.yaml` file.
 
-    For more information, see the {{ product_title }} documentation about installing on {{ aws_short }}.
+    For more information, see the {{ product_title }} documentation about installing on AWS.
 
 
 Accessing virtual machines (VMs)
@@ -28,7 +28,7 @@ Accessing virtual machines (VMs)
     :::note
 
 
-    The load balancer approach is preferable because {{ product_title }} automatically creates the load balancer in {{ aws_short }} and manages its lifecycle. A security group is also created for the load balancer, and you can use annotations to attach existing security groups. When you remove the service, {{ product_title }} removes the load balancer and its associated resources.
+    The load balancer approach is preferable because {{ product_title }} automatically creates the load balancer in AWS and manages its lifecycle. A security group is also created for the load balancer, and you can use annotations to attach existing security groups. When you remove the service, {{ product_title }} removes the load balancer and its associated resources.
     
     :::
 
@@ -45,11 +45,11 @@ Storage
     :::important
 
 
-    {{ aws_short }} bare metal, {{ product_rosa }}, and {{ product_rosa }} classic architecture clusters might have different supported storage solutions. Ensure that you confirm support with your storage vendor.
+    AWS bare metal, Red&#160;Hat OpenShift Service on AWS, and Red&#160;Hat OpenShift Service on AWS classic architecture clusters might have different supported storage solutions. Ensure that you confirm support with your storage vendor.
     
     :::
 
 
 
 Hosted control planes (HCPs)
-:   *   You can run {{ VirtProductName }} on HCP clusters that use {{ aws_short }} bare-metal nodes. However, using {{ VirtProductName }} VMs as HCP nodes is not currently supported on {{ aws_short }}.
+:   *   You can run {{ VirtProductName }} on HCP clusters that use AWS bare-metal nodes. However, using {{ VirtProductName }} VMs as HCP nodes is not currently supported on AWS.

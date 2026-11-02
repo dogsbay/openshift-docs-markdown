@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring multiple I/O threads for fast storage access {id="virt-configure-multiple-iothreads_{{ context }}"}
+# Configure multiple I/O threads for fast storage access {id="virt-configure-multiple-iothreads_{{ context }}"}
 
 You can improve storage performance by configuring multiple I/O threads for a virtual machine (VM) that uses fast storage, such as solid-state drive (SSD) or non-volatile memory express (NVMe). This configuration option is only available by editing YAML of the VM. {._abstract}
 

@@ -39,7 +39,7 @@ Red Hat recommends that customers who use OADP 1.2 Data Mover in order to back u
     :::
 
 *   You have verified that only one `storageClass` CR has the annotation `storageclass.kubernetes.io/is-default-class: true`.
-*   You have included the label `{{ velero_domain }}/csi-volumesnapshot-class: 'true'`{minja} in your `VolumeSnapshotClass` CR.
+*   You have included the label `velero.io/csi-volumesnapshot-class: 'true'` in your `VolumeSnapshotClass` CR.
 *   You have verified that the `OADP namespace` has the annotation `oc annotate --overwrite namespace/openshift-adp volsync.backube/privileged-movers='true'`.
 *   You have installed the VolSync Operator by using Operator Lifecycle Manager (OLM).
 

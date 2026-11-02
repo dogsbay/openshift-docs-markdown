@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # New features and enhancements {id="hcp-release-notes-new-features_{{ context }}"}
 
+This release includes new features and enhancements to {{ hcp }} components, including connectivity monitoring, network segmentation, cloud infrastructure support, and cluster management capabilities. {._abstract}
+
 This release adds improvements related to the following components and concepts:
 
 

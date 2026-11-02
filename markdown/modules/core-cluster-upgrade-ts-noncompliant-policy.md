@@ -1,9 +1,10 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Resolving a noncompliant policy hold during an update {id="core-cluster-upgrade-ts-noncompliant-policy_{{ context }}"}
 
-During the update, {{ cgu_operator }} verifies the status of `ClusterVersion` for the {{ product_title }} update and `Subscription` for OLM Operators.
+During the update, {{ cgu_operator }} verifies the status of `ClusterVersion` for the {{ product_title }} update and `Subscription` for OLM Operators. {._abstract}
+
 If errors occur during those updates, the status does not change to the expected value and the policies do not become compliant.
-{{ cgu_operator }} holds at that point waiting for compliance. {._abstract}
+{{ cgu_operator }} holds at that point waiting for compliance.
 
 If you are monitoring the update, you can fix the issue on the target cluster and the update continues automatically when the policy becomes compliant.
 

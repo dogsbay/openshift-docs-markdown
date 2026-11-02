@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Sample YAML for a Windows MachineSet object on {{ gcp_short }} {id="windows-machineset-gcp_{{ context }}"}
 
-You can add Windows nodes to a {{ gcp_first }} cluster by defining a Windows `MachineSet` object that the Windows Machine Config Operator (WMCO) can react upon. {._abstract}
+You can add Windows nodes to a Google Cloud cluster by defining a Windows `MachineSet` object that the Windows Machine Config Operator (WMCO) can react upon. {._abstract}
 
 The following example is a YAML file for creating a `MachineSet` object for {{ gcp_short }}.
 

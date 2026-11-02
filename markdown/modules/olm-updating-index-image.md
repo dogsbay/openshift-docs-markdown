@@ -31,38 +31,46 @@ You can update an existing index image using the `opm index add` command.
 1.  Update the existing index by adding bundle images:
     ```terminal
     $ opm index add \
-        --bundles <registry>/<namespace>/<new_bundle_image>@sha256:<digest> \ (1)
-        --from-index <registry>/<namespace>/<existing_index_image>:<existing_tag> \ (2)
-        --tag <registry>/<namespace>/<existing_index_image>:<updated_tag> \ (3)
-        --pull-tool podman (4)
+        --bundles <registry>/<namespace>/<new_bundle_image>@sha256:<digest> \
+        --from-index <registry>/<namespace>/<existing_index_image>:<existing_tag> \
+        --tag <registry>/<namespace>/<existing_index_image>:<updated_tag> \
+        --pull-tool podman
     ```
-    1.  The `--bundles` flag specifies a comma-separated list of additional bundle images to add to the index.
-    1.  The `--from-index` flag specifies the previously pushed index.
-    1.  The `--tag` flag specifies the image tag to apply to the updated index image.
-    1.  The `--pull-tool` flag specifies the tool used to pull container images.
 
-        where:
+    where:
 
-        `<registry>`
-        :   Specifies the hostname of the registry, such as `quay.io` or `mirror.example.com`.
+    `--bundles`
+    :   Specifies a comma-separated list of additional bundle images to add to the index.
 
-        `<namespace>`
-        :   Specifies the namespace of the registry, such as `ocs-dev` or `abc`.
+    `--from-index`
+    :   Specifies the previously pushed index.
 
-        `<new_bundle_image>`
-        :   Specifies the new bundle image to add to the registry, such as `ocs-operator`.
+    `--tag`
+    :   Specifies the image tag to apply to the updated index image.
 
-        `<digest>`
-        :   Specifies the SHA image ID, or digest, of the bundle image, such as `c7f11097a628f092d8bad148406aa0e0951094a03445fd4bc0775431ef683a41`.
+    `--pull-tool`
+    :   Specifies the tool used to pull container images.
 
-        `<existing_index_image>`
-        :   Specifies the previously pushed image, such as `abc-redhat-operator-index`.
+    `<registry>`
+    :   Specifies the hostname of the registry, such as `quay.io` or `mirror.example.com`.
 
-        `<existing_tag>`
-        :   Specifies a previously pushed image tag, such as `{{ product_version }}`{minja}.
+    `<namespace>`
+    :   Specifies the namespace of the registry, such as `ocs-dev` or `abc`.
 
-        `<updated_tag>`
-        :   Specifies the image tag to apply to the updated index image, such as `{{ product_version }}.1`{minja}.
+    `<new_bundle_image>`
+    :   Specifies the new bundle image to add to the registry, such as `ocs-operator`.
+
+    `<digest>`
+    :   Specifies the SHA image ID, or digest, of the bundle image, such as `c7f11097a628f092d8bad148406aa0e0951094a03445fd4bc0775431ef683a41`.
+
+    `<existing_index_image>`
+    :   Specifies the previously pushed image, such as `abc-redhat-operator-index`.
+
+    `<existing_tag>`
+    :   Specifies a previously pushed image tag, such as `{{ product_version }}`{minja}.
+
+    `<updated_tag>`
+    :   Specifies the image tag to apply to the updated index image, such as `{{ product_version }}.1`{minja}.
     ```terminal title="Example command" {minja}
     $ opm index add \
         --bundles quay.io/ocs-dev/ocs-operator@sha256:c7f11097a628f092d8bad148406aa0e0951094a03445fd4bc0775431ef683a41 \

@@ -2,7 +2,7 @@
 
 # Configuring the NVIDIA network Operator {id="rdma-configuring-the-nvidia-network-operator_{{ context }}"}
 
-The NVIDIA network Operator manages NVIDIA networking resources and networking related components such as drivers and device plugins to enable NVIDIA GPUDirect RDMA workloads.
+The NVIDIA network Operator manages NVIDIA networking resources and networking related components such as drivers and device plugins to enable NVIDIA GPUDirect RDMA workloads. {._abstract}
 
 **Prerequisites**
 

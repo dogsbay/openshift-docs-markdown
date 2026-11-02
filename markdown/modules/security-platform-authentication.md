@@ -1,9 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Authentication and authorization {id="security-platform-authentication_{{ context }}"}
 
-## Controlling access using OAuth {id="security-platform-auth-controlling-access_{{ context }}"}
-
 You can use API access control through authentication and authorization for securing your container platform. The {{ product_title }} master includes a built-in OAuth server. Users can obtain OAuth access tokens to authenticate themselves to the API. {._abstract}
+
+## Controlling access using OAuth {id="security-platform-auth-controlling-access_{{ context }}"}
 
 As an administrator, you can configure OAuth to authenticate using an _identity provider_, such as LDAP, GitHub, or Google. The identity provider is used by default for new {{ product_title }} deployments, but you can configure this at initial installation time or postinstallation.
 

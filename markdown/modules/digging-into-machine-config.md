@@ -50,6 +50,6 @@ The input `MachineConfig` objects are unioned into a "rendered" `MachineConfig` 
                 Path:            /etc/crio/crio.conf
     ```
 
-    Rememeber to give the machine config file a later name (such as `10-worker-container-runtime`). 
+    Remember to give the machine config file a later name (such as `10-worker-container-runtime`). 
     Also remember that the content of each file is in URL-style data. 
     You can then apply the new machine config to the cluster.

@@ -21,7 +21,6 @@ You can restart policy reconciliation when unexpected compliance issues occur, f
     $ oc delete clustergroupupgrades -n ztp-install $CLUSTER
     ```
 
-
     :::note
 
     When the `ClusterGroupUpgrade` CR completes with status `UpgradeCompleted` and the managed cluster has the label `ztp-done` applied, you can make additional configuration changes by using `{{ policy_gen_cr }}`{minja}. Deleting the existing `ClusterGroupUpgrade` CR will not make the {{ cgu_operator }} generate a new CR.

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Security considerations {id="security-sec-considerations-{{ context }}"}
 
-Workloads might handle sensitive data and demand high reliability. A single security vulnerability might lead to broader, cluster-wide compromises. With numerous components running on an {{ product_title }} cluster, you must secure each component to prevent any breach from escalating. Ensuring security across the entire infrastructure, including all components, is essential to maintaining the integrity of the network and avoiding vulnerabilities. {._abstract}
+Workloads might handle sensitive data and demand high reliability. A single security vulnerability might lead to broader, cluster-wide compromises.  {._abstract}
+
+With numerous components running on an {{ product_title }} cluster, you must secure each component to prevent any breach from escalating. Ensuring security across the entire infrastructure, including all components, is essential to maintaining the integrity of the network and avoiding vulnerabilities.
 
 The following key security features are essential for all industries that handle sensitive data:
 

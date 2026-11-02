@@ -26,7 +26,7 @@ Note the following limitations when planning a cluster with remote worker nodes:
 *   Proxies and firewalls can present additional limitations that are beyond the scope of this document. See the relevant {{ product_title }} documentation for how to address such limitations, such as [Configuring your firewall](/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall).
 *   You are responsible for configuring and maintaining L2/L3-level network connectivity between the control plane and the network-edge nodes.
 
-{% leveloffset +1 %}{% include "./modules/nodes-rwn_con_adding-remote-worker-nodes.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/nodes-rwn-con-adding-remote-worker-nodes.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/nodes-edge-remote-workers-network.md" %}{% endleveloffset %}
 

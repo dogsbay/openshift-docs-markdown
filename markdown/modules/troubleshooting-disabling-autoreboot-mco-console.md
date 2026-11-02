@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Disabling the Machine Config Operator from automatically rebooting by using the console {id="troubleshooting-disabling-autoreboot-mco-console_{{ context }}"}
 
-To avoid unwanted disruptions from changes made by the Machine Config Operator (MCO), you can use the {{ product_title }} web console to modify the machine config pool (MCP) to prevent the MCO from making any changes to nodes in that pool. This prevents any reboots that would normally be part of the MCO update process. {._abstract}
+To avoid unwanted disruptions from changes made by the Machine Config Operator (MCO), you can use the {{ product_title }} web console to modify the machine config pool (MCP) to prevent the MCO from making any changes to nodes in that pool.  {._abstract}
+
+This prevents any reboots that would normally be part of the MCO update process.
 
 **Prerequisites**
 

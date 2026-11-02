@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About instance types {id="virt-about-instance-types_{{ context }}"}
+# Instance types {id="virt-about-instance-types_{{ context }}"}
 
 An instance type is a reusable object where you can define resources and characteristics to apply to new VMs. You can define custom instance types or use the variety that are included when you install {{ VirtProductName }}. {._abstract}
 

@@ -2,7 +2,7 @@
 
 # BackupLocation type {id="backuplocation-type_{{ context }}"}
 
-The following are `BackupLocation` {{ oadp_short }} APIs: {._abstract}
+Use the `BackupLocation` {{ oadp_short }} API type to define where {{ oadp_short }} stores backups in {{ product_title }}. You can specify a Velero backup storage location or an automatically provisioned cloud storage bucket. {._abstract}
 
 **BackupLocation**
 

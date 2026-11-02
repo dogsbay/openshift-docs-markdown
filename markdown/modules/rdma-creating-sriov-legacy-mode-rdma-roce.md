@@ -1,8 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-
 # Creating a SR-IOV legacy mode RDMA on RoCE {id="rdma-creating-sriov-legacy-mode-rdma-roce_{{ context }}"}
 
-Configure a Single Root I/O Virtualization (SR-IOV) legacy mode host device RDMA on RoCE.
+Configure a Single Root I/O Virtualization (SR-IOV) legacy mode host device RDMA on RoCE. {._abstract}
 
 **Procedure**
 

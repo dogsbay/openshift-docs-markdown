@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating applications by using Quick Starts {id="odc-using-quickstarts_{{ context }}"}
 
-The **Quick Starts** page shows you how to create, import, and run applications on {{ product_title }}, with step-by-step instructions and tasks.
+The **Quick Starts** page shows you how to create, import, and run applications on {{ product_title }}, with step-by-step instructions and tasks. {._abstract}
 
 **Prerequisites**
 

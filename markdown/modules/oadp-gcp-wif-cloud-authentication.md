@@ -23,7 +23,7 @@ If you do not use Google workload identity federation cloud authentication, cont
 
 **Prerequisites**
 
-*   You have installed a cluster in manual mode with [{{ gcp_short }} Workload Identity configured](https://docs.openshift.com/container-platform/latest/installing/installing_gcp/installing-gcp-customizations.html#installing-gcp-with-short-term-creds_installing-gcp-customizations).
+*   You have installed a cluster in manual mode with {{ gcp_short }} Workload Identity configured.
 *   You have access to the Cloud Credential Operator utility (`ccoctl`) and to the associated workload identity pool.
 
 **Procedure**

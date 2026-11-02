@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Provided APIs annotation {id="olm-operatorgroups-provided-apis-annotation_{{ context }}"}
 
-A _group/version/kind (GVK)_ is a unique identifier for a Kubernetes API. Information about what GVKs are provided by an Operator group are shown in an `olm.providedAPIs` annotation. The value of the annotation is a string consisting of `<kind>.<version>.<group>` delimited with commas. The GVKs of CRDs and API services provided by all active member CSVs of an Operator group are included. {._abstract}
+A _group/version/kind (GVK)_ is a unique identifier for a Kubernetes API. Information about what GVKs are provided by an Operator group are shown in an `olm.providedAPIs` annotation.  {._abstract}
+
+The value of the annotation is a string consisting of `<kind>.<version>.<group>` delimited with commas. The GVKs of CRDs and API services provided by all active member CSVs of an Operator group are included.
 
 Review the following example of an `OperatorGroup` object with a single active member CSV that provides the `PackageManifest` resource:
 

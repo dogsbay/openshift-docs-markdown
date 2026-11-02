@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Troubleshooting the migration to ClusterInstance CRs {id="ztp-clusterinstance-troubleshooting_{{ context }}"}
 
-Consider the following troubleshooting steps if you encounter issues during the migration from `SiteConfig` CRs to `ClusterInstance` CRs.
+Consider the following troubleshooting steps if you encounter issues during the migration from `SiteConfig` CRs to `ClusterInstance` CRs. {._abstract}
 
 **Procedure**
 

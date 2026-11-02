@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Creating a custom Helm chart on {{ product_title }} {id="creating-a-custom-helm-chart-on-openshift_{{ context }}"}
 
+You can create a custom Helm chart on {{ product_title }} to package and deploy application resources using the Helm CLI. {._abstract}
+
 **Procedure**
 
 1.  Create a new project:
@@ -17,17 +19,30 @@
     ```
 1.  Edit the `Chart.yaml` file  and add a description of your chart:
     ```yaml
-    apiVersion: v2 (1)
-    name: nodejs-ex-k (2)
-    description: A Helm chart for OpenShift (3)
-    icon: https://static.redhat.com/libs/redhat/brand-assets/latest/corp/logo.svg (4)
-    version: 0.2.1 (5)
+    apiVersion: v2
+    name: nodejs-ex-k
+    description: A Helm chart for OpenShift
+    icon: https://static.redhat.com/libs/redhat/brand-assets/latest/corp/logo.svg
+    version: 0.2.1
     ```
-    1.  The chart API version. It should be `v2` for Helm charts that require at least Helm 3.
-    1.  The name of your chart.
-    1.  The description of your chart.
-    1.  The URL to an image to be used as an icon.
-    1.  The Version of your chart as per the Semantic Versioning (SemVer) 2.0.0 Specification.
+
+    where:
+
+    `apiVersion`
+    :   Specifies the chart API version. It should be `v2` for Helm charts that require at least Helm 3.
+
+    `name`
+    :   Specifies the name of your chart.
+
+    `description`
+    :   Specifies the description of your chart.
+
+    `icon`
+    :   Specifies the URL to an image to be used as an icon.
+
+    `version`
+    :   Specifies the version of your chart as per the Semantic Versioning (SemVer) 2.0.0 Specification.
+
 1.  Verify that the chart is formatted properly:
     ```terminal
     $ helm lint

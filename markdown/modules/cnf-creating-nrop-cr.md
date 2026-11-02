@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Create the NUMAResourcesOperator custom resource {id="cnf-creating-nrop-cr_{{ context }}"}
 
-After you have installed the NUMA Resources Operator, you can create the `NUMAResourcesOperator` custom resource (CR). This CR instructs the NUMA Resources Operator to deploy the Resource Topology Exporter (RTE) as a daemon set on worker nodes and install all the cluster infrastructure that is needed to support the NUMA-aware scheduler. {._abstract}
+After you have installed the NUMA Resources Operator, you can create the `NUMAResourcesOperator` custom resource (CR).  {._abstract}
+
+This CR instructs the NUMA Resources Operator to deploy the Resource Topology Exporter (RTE) as a daemon set on worker nodes and install all the cluster infrastructure that is needed to support the NUMA-aware scheduler.
 
 **Prerequisites**
 

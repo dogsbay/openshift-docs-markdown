@@ -1,4 +1,4 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # Additional release notes {id="microshift-4-22-additional-release-notes_{{ context }}"}
 
 Release notes for related components and products are available in the following documentation: {._abstract}

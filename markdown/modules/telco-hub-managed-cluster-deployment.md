@@ -1,13 +1,20 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Managed cluster deployment {id="telco-hub-managed-cluster-deployment_{{ context }}"}
 
+As of {{ rh_rhacm_first }} 2.12, the SiteConfig Operator is the recommended method for deploying managed {{ product_title }} clusters.  {._abstract}
+
+It introduces a unified `ClusterInstance` API that decouples cluster parameters from the deployment method and uses a GitOps workflow to generate installation manifests.
+
 
 Description
 :   As of {{ rh_rhacm_first }} 2.12, using the SiteConfig Operator is the recommended method for deploying managed clusters.
-    The SiteConfig Operator introduces a unified ClusterInstance API that decouples the parameters that define the cluster from the manner in which it is deployed.
-    The SiteConfig Operator uses a set of cluster templates that are instantiated using the data from a `ClusterInstance` custom resource (CR) to dynamically generate installation manifests.
+    The SiteConfig Operator introduces a unified ClusterInstance API that decouples the parameters that define the cluster 
+    from the manner in which it is deployed.
+    The SiteConfig Operator uses a set of cluster templates that are instantiated using the data from a `ClusterInstance` 
+    custom resource (CR) to dynamically generate installation manifests.
     Following the GitOps methodology, the `ClusterInstance` CR is sourced from a Git repository through ArgoCD.
-    The `ClusterInstance` CR can be used to initiate cluster installation by using either Assisted Installer, or the image-based installation available in multicluster engine. {._abstract}
+    The `ClusterInstance` CR can be used to initiate cluster installation by using either Assisted Installer, or the 
+    image-based installation available in multicluster engine.
 
 
 Limits and requirements

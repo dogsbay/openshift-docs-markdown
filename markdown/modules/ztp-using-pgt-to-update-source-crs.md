@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Using {{ policy_gen_cr }} CRs to override source CRs content {id="ztp-using-pgt-to-update-source-crs_{{ context }}"}
 
-`{{ policy_gen_cr }}`{minja} custom resources (CRs) allow you to overlay additional configuration details on top of the base source CRs provided with the GitOps plugin in the `ztp-site-generate` container. You can think of `{{ policy_gen_cr }}`{minja} CRs as a logical merge or patch to the base CR. Use `{{ policy_gen_cr }}`{minja} CRs to update a single field of the base CR, or overlay the entire contents of the base CR. You can update values and insert fields that are not in the base CR. {._abstract}
+`{{ policy_gen_cr }}`{minja} custom resources (CRs) allow you to overlay additional configuration details on top of the base source CRs provided with the GitOps plugin in the `ztp-site-generate` container.  {._abstract}
+
+You can think of `{{ policy_gen_cr }}`{minja} CRs as a logical merge or patch to the base CR. Use `{{ policy_gen_cr }}`{minja} CRs to update a single field of the base CR, or overlay the entire contents of the base CR. You can update values and insert fields that are not in the base CR.
 
 The following example procedure describes how to update fields in the generated `PerformanceProfile` CR for the reference configuration based on the `{{ policy_gen_cr }}`{minja} CR in the `{{ policy_prefix }}group-du-sno-ranGen.yaml`{minja} file. Use the procedure as a basis for modifying other parts of the `{{ policy_gen_cr }}`{minja} based on your requirements.
 

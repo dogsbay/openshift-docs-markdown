@@ -5,9 +5,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Adding {{ ibm_z_title }} agents with {{ op_system_base }} KVM {id="installing-ocp-agent-ibm-z-kvm_{{ context }}"}
 
-You can manually add {{ ibm_z_name }} agents with {{ op_system_base }} KVM. {._abstract}
-
-Only use this procedure for {{ ibm_z_name }} clusters with {{ op_system_base }} KVM.
+You can manually add {{ ibm_z_name }} agents with {{ op_system_base }} KVM. Only use this procedure for {{ ibm_z_name }} clusters with {{ op_system_base }} KVM. {._abstract}
 
 
 :::note

@@ -1,7 +1,7 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Verifying online snapshots by using snapshot indications {id="virt-verifying-online-snapshot-creation-with-snapshot-indications_{{ context }}"}
+# Verify online snapshots by using snapshot indications {id="virt-verifying-online-snapshot-creation-with-snapshot-indications_{{ context }}"}
 
-Snapshot indications are contextual information about online virtual machine (VM) snapshot operations. Indications are not available for offline virtual machine (VM) snapshot operations. Indications are helpful in describing details about the online snapshot creation. {._abstract}
+Snapshot indications are contextual information about online virtual machine (VM) snapshot operations. Indications are not available for offline VM snapshot operations. Indications are helpful in describing details about the online snapshot creation. {._abstract}
 
 **Prerequisites**
 

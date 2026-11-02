@@ -1,6 +1,10 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # GitOps Operator and {{ ztp }} {id="telco-hub-gitops-operator-and-ztp-plugins_{{ context }}"}
 
+GitOps Operator and {{ ztp }} provide a GitOps-based infrastructure for managing cluster deployment and configuration in {{ product_title }}.  {._abstract}
+
+You can maintain cluster definitions as a declarative state in Git and apply `ClusterInstance` custom resources (CRs) to the hub cluster for rendering as installation CRs.
+
 
 New in this release
 :   *   No reference design updates in this release
@@ -15,7 +19,7 @@ Description
 
     You can deploy and manage multiple versions of {{ product_title }} on managed clusters by using the baseline reference configuration CRs.
     You can use custom CRs alongside the baseline CRs.
-    To maintain multiple per-version policies simultaneously, use Git to manage the versions of the source and policy CRs by using the `PolicyGenerator` or the `PolicyGenTemplate` CRs. {._abstract}
+    To maintain multiple per-version policies simultaneously, use Git to manage the versions of the source and policy CRs by using the `PolicyGenerator` or the `PolicyGenTemplate` CRs.
 
 
 Limits and requirements

@@ -1,6 +1,6 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 
-# Adding a disk to a virtual machine {id="virt-add-disk-to-vm_{{ context }}"}
+# Add a disk to a virtual machine {id="virt-add-disk-to-vm_{{ context }}"}
 
 You can add a virtual disk to a virtual machine (VM) by using the {{ product_title }} web console. {._abstract}
 

@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Creating a VM from a PVC by using the CLI {id="virt-creating-vm-by-cloning-pvcs-cli_{{ context }}"}
+# VM creation from a cloned PVC {id="virt-creating-vm-by-cloning-pvcs-cli_{{ context }}"}
 
 You can create a virtual machine (VM) by cloning the persistent volume claim (PVC) of an existing VM by using the command line. {._abstract}
 

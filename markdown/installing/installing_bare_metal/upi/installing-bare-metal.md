@@ -92,7 +92,7 @@ While you might be able to follow this procedure to deploy a cluster on virtuali
 
 {% leveloffset +2 %}{% include "./modules/creating-scaling-machine-sets-compute-nodes-networking.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/enabling-OVS-balance-slb-mode.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/enabling-ovs-balance-slb-mode.md" %}{% endleveloffset %}
 
 {% leveloffset +1 %}{% include "./modules/installation-infrastructure-user-infra.md" %}{% endleveloffset %}
 

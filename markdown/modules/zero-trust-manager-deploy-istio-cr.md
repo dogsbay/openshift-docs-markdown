@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Deploying the Istio custom resource with the federation configuration {id="zero-trust-manager-deploy-istio-cr_{{ context }}"}
 
-Deploy the Istio custom resource on Cluster A and Cluster B with {{ spire_full }} (SPIRE) federation and multi-cluster {{ SMProductName }} settings. This configures Istiod to obtain workload certificates from SPIRE and to trust SPIFFE bundles from both clusters for cross-cluster mTLS. {._abstract}
+Deploy the Istio custom resource on Cluster A and Cluster B with {{ spire_full }} (SPIRE) federation and multi-cluster {{ SMProductName }} settings.  {._abstract}
+
+This configures Istiod to obtain workload certificates from SPIRE and to trust SPIFFE bundles from both clusters for cross-cluster mTLS.
 
 The Istio CR must include the following fields and values:
 

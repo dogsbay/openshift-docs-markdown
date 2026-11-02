@@ -15,8 +15,8 @@ For more information, see [About the descheduler](/nodes/scheduling/descheduler/
 
 {% leveloffset +1 %}{% include "./modules/nodes-descheduler-rn-5-4-3.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/nodes-descheduler-rn-5.4.2.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/nodes-descheduler-rn-5-4-2.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/nodes-descheduler-rn-5.4.1.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/nodes-descheduler-rn-5-4-1.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/nodes-descheduler-rn-5.4.0.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/nodes-descheduler-rn-5-4-0.md" %}{% endleveloffset %}

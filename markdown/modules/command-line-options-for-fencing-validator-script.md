@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Command-line options for fencing validator script {id="command-line-options-for-fencing-validator-script_{{ context }}"}
 
-To quickly verify a high-availability configuration of your two-node {{ product_title }} cluster with fencing (TNF), you can review the available command-line options and environment variables for the `fencing_validator` script. This reference helps you customize your connection methods, set execution timeouts, and safely test node reboots to ensure your fencing mechanism is reliable before moving to production. {._abstract}
+To quickly verify a high-availability configuration of your two-node {{ product_title }} cluster with fencing (TNF), you can review the available command-line options and environment variables for the `fencing_validator` script.  {._abstract}
+
+This reference helps you customize your connection methods, set execution timeouts, and safely test node reboots to ensure your fencing mechanism is reliable before moving to production.
 
 You can see different command-line options for the `fencing_ validator` script by running the following command: 
 

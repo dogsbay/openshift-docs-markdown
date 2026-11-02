@@ -1,8 +1,9 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Git repository {id="telco-hub-git-repository_{{ context }}"}
 
-The telco management hub cluster supports a GitOps-driven methodology for installing and managing the configuration of OpenShift clusters for various telco applications.
-This methodology requires an accessible Git repository that serves as the authoritative source of truth for cluster definitions and configuration artifacts. {._abstract}
+The telco management hub cluster supports a GitOps-driven methodology for installing and managing the configuration of OpenShift clusters for various telco applications. {._abstract}
+
+This methodology requires an accessible Git repository that serves as the authoritative source of truth for cluster definitions and configuration artifacts.
 
 Red Hat does not offer a commercially supported Git server.
 An existing Git server provided in the production environment can be used.

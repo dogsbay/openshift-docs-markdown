@@ -1,9 +1,10 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Cluster updates for OpenShift clusters {id="update-introduction_{{ context }}"}
 
-Updating your cluster is a critical task that ensures that bugs and potential security vulnerabilities are patched.
+Updating your cluster is a critical task that ensures that bugs and potential security vulnerabilities are patched. {._abstract}
+
 Often, updates to cloud-native applications require additional functionality from the platform that comes when you update the cluster version.
-You also must update the cluster periodically to ensure that the cluster platform version is supported. {._abstract}
+You also must update the cluster periodically to ensure that the cluster platform version is supported.
 
 You can minimize the effort required to stay current with updates by keeping up-to-date with EUS releases and upgrading to select important z-stream releases only.
 

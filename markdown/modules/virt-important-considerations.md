@@ -8,8 +8,8 @@ Installation method considerations
 :   You can use any installation method, including user-provisioned, installer-provisioned, or Assisted Installer, to deploy {{ product_title }}. However, the installation method and the cluster topology might affect {{ VirtProductName }} functionality, such as snapshots or live migration. For more information about live migration, see "Hardware, software, and operational requirements" in the Additional resources section.
 
 
-{{ rh_storage_first }}
-:   If you deploy {{ VirtProductName }} with {{ rh_storage_first }}, you must create a dedicated storage class for Windows virtual machine disks. For more information, see "Optimizing ODF PersistentVolumes for Windows VMs" in the Additional resources section.
+Red Hat OpenShift Data Foundation
+:   If you deploy {{ VirtProductName }} with Red Hat OpenShift Data Foundation, you must create a dedicated storage class for Windows virtual machine disks. For more information, see "Optimizing ODF PersistentVolumes for Windows VMs" in the Additional resources section.
 
 
 IPv6

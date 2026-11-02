@@ -1,4 +1,4 @@
-{%- set _mod_docs_content_type = "CONCEPT" %}
+{%- set _mod_docs_content_type = "REFERENCE" %}
 # New features and enhancements {id="microshift-4-22-new-features-enhancements_{{ context }}"}
 
 This release adds improvements related to the following components and concepts. {._abstract}

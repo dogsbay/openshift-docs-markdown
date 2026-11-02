@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# About storage class migration {id="virt-about-storage-class-migration_{{ context }}"}
+# Storage class migration {id="virt-about-storage-class-migration_{{ context }}"}
 
 A persistent volume claim (PVC) requests storage with specific attributes, such as size and performance, defined by its storage class. You cannot change a PVC’s storage class after you create it. {._abstract}
 

@@ -1,7 +1,9 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
 # Fencing validator script for non-disruptive checks {id="fencing-validator-script-for-non-disruptive-checks_{{ context }}"}
 
-To ensure your two-node {{ product_title }} cluster with fencing (TNF) remains highly available without risking downtime, you can run the `fencing_validator` script in validation mode. This script performs a series of read-only health checks to verify cluster quorum, daemon health, and STONITH device status without disrupting active services. {._abstract}
+To ensure your two-node {{ product_title }} cluster with fencing (TNF) remains highly available without risking downtime, you can run the `fencing_validator` script in validation mode.  {._abstract}
+
+This script performs a series of read-only health checks to verify cluster quorum, daemon health, and STONITH device status without disrupting active services.
 
 The simplest way to run the script is from a debug session on either control plane node by running the following command:
 

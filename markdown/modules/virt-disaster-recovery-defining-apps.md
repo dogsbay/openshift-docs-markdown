@@ -1,13 +1,13 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Defining applications for disaster recovery {id="virt-disaster-recovery-defining-apps_{{ context }}"}
+# Definition of applications for disaster recovery {id="virt-disaster-recovery-defining-apps_{{ context }}"}
 
-Define applications for disaster recovery by using VMs that {{ rh_rhacm_first }} manages or discovers. {._abstract}
+You can define applications for disaster recovery by using VMs that Red&#160;Hat Advanced Cluster Management (RHACM) manages or discovers. {._abstract}
 
-## Best practices when defining an {{ rh_rhacm }}-managed VM {id="best-practices-rhacm-managed-vm_{{ context }}"}
+## Best practices when defining an RHACM-managed VM {id="best-practices-rhacm-managed-vm_{{ context }}"}
 
-When creating an {{ rh_rhacm }}-managed application that includes a VM, you must use a GitOps workflow and create an {{ rh_rhacm }} application or `ApplicationSet` resource.
+When creating an RHACM-managed application that includes a VM, you must use a GitOps workflow and create an RHACM application or `ApplicationSet` resource.
 
-You can take several actions to improve your experience and chance of success when defining an {{ rh_rhacm }}-managed VM.
+You can take several actions to improve your experience and chance of success when defining an RHACM-managed VM.
 
 
 Use a PVC and populator to define storage for the VM
@@ -21,11 +21,11 @@ Use the import method when choosing a population source for your VM disk
 Use `pullMethod: node`
 :   Use the pod `pullMethod: node` when creating a data volume from a registry source to take advantage of the {{ product_title }} pull secret, which is required to pull container images from the Red&#160;Hat registry.
 
-## Best practices when defining an {{ rh_rhacm }}-discovered VM {id="best-practices-rhacm-discovered-vm_{{ context }}"}
+## Best practices when defining an RHACM-discovered VM {id="best-practices-rhacm-discovered-vm_{{ context }}"}
 
-You can configure any VM in the cluster that is not an {{ rh_rhacm }}-managed application as an {{ rh_rhacm }}-discovered application. This includes VMs imported by using the {{ mtv_first }}, VMs created by using the {{ product_title }} web console, or VMs created by any other means, such as the CLI.
+You can configure any VM in the cluster that is not an RHACM-managed application as an RHACM-discovered application. This includes VMs imported by using the Migration Toolkit for Virtualization (MTV), VMs created by using the {{ product_title }} web console, or VMs created by any other means, such as the CLI.
 
-You can take several actions to improve your experience and chance of success when defining an {{ rh_rhacm }}-discovered VM.
+You can take several actions to improve your experience and chance of success when defining an RHACM-discovered VM.
 
 
 Protecting the VM when using MTV, the {{ product_title }} web console, or a custom VM

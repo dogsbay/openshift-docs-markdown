@@ -1,6 +1,8 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Overriding Operator conditions {id="olm-supported-operatorconditions_{{ context }}"}
 
+You can override a supported Operator condition to allow Operator Lifecycle Manager (OLM) to complete an action that the condition would otherwise prevent. {._abstract}
+
 {% if not (openshift_dedicated or openshift_rosa or openshift_rosa_hcp) %}
 As a cluster administrator,
 {% endif %}

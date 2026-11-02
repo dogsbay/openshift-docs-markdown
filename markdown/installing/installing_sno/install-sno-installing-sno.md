@@ -117,7 +117,7 @@ Consider using {{ sno }} when you want to run a cluster in a low-resource or an 
 
 {% leveloffset +1 %}{% include "./modules/install-sno-supported-cloud-providers-for-single-node-openshift.md" %}{% endleveloffset %}
 
-{% leveloffset +1 %}{% include "./modules/installation-aws_con_installing-sno-on-aws.md" %}{% endleveloffset %}
+{% leveloffset +1 %}{% include "./modules/installation-aws-con-installing-sno-on-aws.md" %}{% endleveloffset %}
 
 **Additional resources**
 {._additional-resources}

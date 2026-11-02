@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
-# Configuring disk sharing by using LUN and the web console {id="virt-configuring-disk-sharing-lun-web_{{ context }}"}
+# Share a LUN-backed disk by using the web console {id="virt-configuring-disk-sharing-lun-web_{{ context }}"}
 
 You can use the {{ product_title }} web console to configure disk sharing by using LUN. {._abstract}
 
