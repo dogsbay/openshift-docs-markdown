@@ -1,12 +1,28 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Add tags to a machine pool by using the {{ rosa_cli }} {id="rosa-adding-tags-cli_{{ context }}"}
 
-You cannot not edit the tags after after you create the machine pool. {._abstract}
+Add custom AWS tags to a new machine pool by running the `rosa create machinepool` command with the `--tags` option.
+{%- if openshift_rosa %}
+You cannot edit the tags after you create the machine pool.
+{%- endif %}
+{%- if openshift_rosa_hcp %}
+On clusters that run version 4.20.0 and later, you can edit the tags after you create the machine pool by running the `rosa edit machinepool` command. {._abstract}
+{%- endif %}
 
 
 :::important
 
-You must ensure that your tag keys are not `aws`, `red-hat-managed`, `red-hat-clustertype`, or `Name`. In addition, you must not set a tag key that begins with `kubernetes.io/cluster/`. Your tag’s key cannot be longer than 128 characters, while your tag’s value cannot be longer than 256 characters. Red&#160;Hat reserves the right to add additional reserved tags in the future.
+You must ensure that your tag keys are not `aws`, `red-hat-managed`, `red-hat-clustertype`, or `Name`, which are existing reserved tags. Red&#160;Hat reserves the right to add additional reserved tags in the future. In addition, you must not set a tag key that begins with `kubernetes.io/cluster/`.
+
+Your tag’s key cannot be longer than 128 characters, while your tag’s value cannot be longer than 256 characters.
+{%- if openshift_rosa %}
+Tag keys and values can contain only ASCII letters (A–Z, a–z), digits (0–9), and the following symbols: _ . : / = + - @. Tag values may be empty.
+{%- endif %}
+{%- if openshift_rosa_hcp %}
+Tag keys and values can contain only ASCII letters (A–Z, a–z), digits (0–9), spaces, and the following symbols: _ . : / = + - @. Tag values cannot be empty.
+
+If a tag key is defined on both the cluster and the machine pool, the machine pool tag value takes precedence over the cluster tag value.
+{%- endif %}
 
 :::
 

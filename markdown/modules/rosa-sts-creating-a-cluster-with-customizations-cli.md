@@ -203,6 +203,13 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
         You can reference the ARN of your KMS key when you create the cluster in the next step.
 1.  Create a cluster with STS using custom installation options. You can use the `--interactive` mode to interactively specify custom settings:
 
+    :::note
+
+    With {{ rosa_cli }} 1.2.66 and later, the `Deploy cluster with Hosted Control Plane` prompt defaults to `Yes`. To create a {{ rosa_classic_title }} cluster, you must answer `No` at this prompt or specify the `--hosted-cp=false` option.
+    
+    :::
+
+
     :::warning
 
     You cannot install a {{ product_title }} cluster into an existing VPC that was created by the {{ OCP_short }} installer. These VPCs are created during the cluster deployment process and must only be associated with a single cluster to ensure that cluster provisioning and deletion operations work correctly.
@@ -225,7 +232,6 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
     I: cluster admin user is cluster-admin
     I: cluster admin password is password
     ? OpenShift version: <openshift_version>
-    ? Configure the use of IMDSv2 for ec2 instances optional/required (optional):
     I: Using arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-Installer-Role for the Installer role
     I: Using arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-ControlPlane-Role for the ControlPlane role
     I: Using arn:aws:iam::<aws_account_id>:role/ManagedOpenShift-Worker-Role for the Worker role

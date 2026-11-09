@@ -302,7 +302,7 @@ Only public and AWS PrivateLink clusters are supported with STS. Regular private
 1.  If you did not enable autoscaling, select a compute node count for your default machine pool:
     *   If you deployed your cluster using a single availability zone, select a **Compute node count** from the drop-down menu. This defines the number of compute nodes to provision to the machine pool for the zone.
     *   If you deployed your cluster using multiple availability zones, select a **Compute node count (per zone)** from the drop-down menu. This defines the number of compute nodes to provision to the machine pool per zone.
-1.  Optional: Select an EC2 Instance Metadata Service (IMDS) configuration - `optional` (default) or `required` - to enforce use of IMDSv2. For more information regarding IMDS, see [Instance metadata and user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) in the AWS documentation.
+1.  Optional: Select an EC2 Instance Metadata Service (IMDS) configuration - `required` (default) to enforce use of IMDSv2, or `optional` to allow the use of both IMDSv1 and IMDSv2. For more information regarding IMDS, see [Instance metadata and user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) in the AWS documentation.
 {% if openshift_rosa %}
 
     :::important

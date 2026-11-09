@@ -4,6 +4,14 @@
 
 After you configure your [offline {{ cluster_manager_first }} token](https://console.redhat.com/openshift/token), you need to create the Terraform files locally to build your cluster. You can create these files by using the following code templates. {._abstract}
 
+
+:::note
+
+If a tag key is defined on both the cluster and the machine pool, the machine pool tag value takes precedence over the cluster tag value for AWS resources created by that machine pool.
+
+:::
+
+
 **Procedure**
 
 1.  Create the `main.tf` file by running the following command:

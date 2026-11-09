@@ -1,5 +1,5 @@
 {%- set _mod_docs_content_type = "CONCEPT" %}
-# Hosted Control Planes and Classic architecture comparison {id="rosa-hcp-classic-comparison_{{ context }}"}
+# Hosted control planes and classic architecture comparison {id="rosa-hcp-classic-comparison_{{ context }}"}
 
 {{ hcp_title_first }} and {{ rosa_classic_title }} differ in how they host the control plane, deploy infrastructure, and handle upgrades. {._abstract}
 
@@ -9,7 +9,7 @@
 <thead>
 <tr>
   <th></th>
-  <th><strong>Hosted Control Plane (HCP)</strong></th>
+  <th><strong>Hosted control planes (HCP)</strong></th>
   <th><strong>Classic</strong></th>
 </tr>
 </thead>
@@ -48,6 +48,11 @@
   <td><strong>Cluster upgrades</strong></td>
   <td>The control plane and each machine pool can be upgraded separately.</td>
   <td>The entire cluster must be upgraded at the same time.</td>
+</tr>
+<tr>
+  <td><strong>OpenShift 5.x support</strong></td>
+  <td>OpenShift 5.x is supported. You can upgrade {{ hcp }} clusters from version 4.x to version 5.x.</td>
+  <td>OpenShift 5.x is not supported. You cannot upgrade classic clusters to version 5.x. To adopt OpenShift 5.x, you must migrate workloads to a {{ hcp }} cluster.</td>
 </tr>
 <tr>
   <td><strong>Minimum EC2 footprint</strong></td>

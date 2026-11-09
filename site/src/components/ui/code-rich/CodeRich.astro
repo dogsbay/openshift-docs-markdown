@@ -1,6 +1,7 @@
 ---
 import "./code-rich.css";
 import { stripMarkersForCopy, stripUnprocessableMarkers } from "./markers";
+import { ansiColoursOnly, stripAnsi } from "../code-block/ansi";
 import { codeToHtml, bundledLanguages, type BundledLanguage, type BundledTheme } from "shiki";
 import {
   transformerNotationDiff,
@@ -246,19 +247,22 @@ if (wordHighlights) metaStr += `/${wordHighlights}/ `;
 // Copy text: explicit override (diff blocks pass the post-change code)
 // or the block's own code — either way every annotation form is
 // stripped (see ./markers.ts).
-const copyText = stripMarkersForCopy(copyTextOverride ?? code);
+const copyText = stripMarkersForCopy(copyTextOverride ?? (lang.toLowerCase() === "ansi" ? stripAnsi(code) : code));
 
 // Unknown languages (package-install, mdx-ish doc tokens) fall back
 // to plaintext instead of throwing — same behavior as CodeBlock's
 // <Code>. The header still shows the declared language label.
 const requestedLang = lang.toLowerCase();
+// `ansi` is no grammar: Shiki colours its escape codes itself (as CodeBlock's <Code>), and it has
+// no comments for [!code] markers, so they are stripped as in plain text.
+const isAnsi = requestedLang === "ansi";
 const isPlainGrammar =
-  !(requestedLang in bundledLanguages) || ["plaintext", "text", "txt", "ansi"].includes(requestedLang);
-const shikiLang = isPlainGrammar ? "plaintext" : requestedLang;
+  !isAnsi && (!(requestedLang in bundledLanguages) || ["plaintext", "text", "txt"].includes(requestedLang));
+const shikiLang = isAnsi ? "ansi" : isPlainGrammar ? "plaintext" : requestedLang;
 
 // Markers Shiki cannot process would render as literal text — strip
 // exactly those, leave the rest for the notation transformers.
-const highlightCode = stripUnprocessableMarkers(code, isPlainGrammar);
+const highlightCode = stripUnprocessableMarkers(isAnsi ? ansiColoursOnly(code) : code, isPlainGrammar || isAnsi);
 
 const html = await codeToHtml(highlightCode, {
   lang: shikiLang as BundledLanguage,
@@ -275,7 +279,10 @@ const html = await codeToHtml(highlightCode, {
 const hasCaption = Astro.slots.has("caption");
 const Wrapper = hasCaption ? "figure" : "div";
 const Header = hasCaption ? "figcaption" : "div";
-const hasLabel = hasCaption || !!title || (lang !== "plaintext");
+// Tags that mean "no language" show no label, as CodeBlock and render-html
+const PLAIN = new Set(["", "text", "txt", "plain", "plaintext", "none", "output", "log", "code", "codeblock"]);
+const plain = PLAIN.has(requestedLang.trim());
+const hasLabel = hasCaption || !!title || !plain;
 const showHeader = hasLabel;
 // When no header, copy button floats inside the code body
 const floatingCopy = copy && !showHeader;
@@ -301,7 +308,7 @@ const floatingCopy = copy && !showHeader;
         <span class="select-none">{lang}</span>
       )}
       <span class="flex shrink-0 items-center gap-2">
-      {(hasCaption || title) && lang !== "plaintext" && <span class="select-none" data-part="language">{lang}</span>}
+      {(hasCaption || title) && !plain && <span class="select-none" data-part="language">{lang}</span>}
       {copy && (
         <button
           class={codeRichCopy()}

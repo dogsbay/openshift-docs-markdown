@@ -3,15 +3,9 @@
 
 {% include "./snippets/mco-update-boot-images-abstract.md" %}
 
-
-:::note
-
 {% include "./snippets/mco-update-boot-images-intro.md" %}
 
-:::
-
-
-To enable the boot image management feature for control plane machine sets or to re-enable the boot image management feature for worker machine sets where it was disabled, edit the `MachineConfiguration` object. You can enable the feature for all of the machine sets in the cluster or specific machine sets.
+To enable the boot image management feature for control plane machine sets or to re-enable the boot image management feature for worker machine sets where it was disabled, edit the `MachineConfiguration` object. You can enable the feature for all of the machine sets in the cluster or specific machine sets. {._abstract}
 
 
 :::note
@@ -22,6 +16,14 @@ Because the boot image management feature for worker nodes is default for the {{
 
 
 Enabling the feature updates the boot image to the {{ op_system_first }} boot image version appropriate for your cluster. If the cluster is again updated to a new {{ product_title }} version in the future, the boot image is updated again. New nodes created after enabling the feature use the updated boot image. This feature has no effect on existing nodes.
+
+
+:::note
+
+On {{ vmw_full }}, the MCO automatically derives topology information from each provider specification of a machine set when no matching failure domain exists. No additional configuration is required for clusters without failure domains.
+
+:::
+
 
 When boot image management is enabled, the MCO automatically enables boot image skew enforcement to ensure that the boot image version is compliant for your cluster. For more information, see "Boot image skew enforcement".
 

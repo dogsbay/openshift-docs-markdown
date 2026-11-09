@@ -25,7 +25,7 @@ The following table describes the interactive cluster creation mode options:
 </tr>
 <tr>
   <td><code>Deploy cluster with Hosted Control Plane (optional)</code></td>
-  <td>Enable the use of Hosted Control Planes.</td>
+  <td>Enable the use of {{ hcp }}. The default is <code>Yes</code>.<br><br>If you specify options that are only compatible with {{ rosa_classic_title }} clusters, such as <code>--disable-workload-monitoring</code>, the prompt is skipped. The {{ rosa_cli }} displays an informational message that lists the incompatible options and continues with the classic architecture.<br><br>This default applies to interactive mode only. In non-interactive mode, the <code>--hosted-cp</code> option continues to default to <code>false</code>.</td>
 </tr>
 <tr>
   <td><code>Create cluster admin user</code></td>
@@ -36,16 +36,8 @@ The following table describes the interactive cluster creation mode options:
   <td>Create a custom password for the <code>cluster-admin</code> user, or use a system-generated password. If you create a custom password, the password must be at least 14 characters (ASCII-standard) and contain no whitespace characters. If you do not create a custom password, the system generates a password and displays it in the command-line output.</td>
 </tr>
 <tr>
-  <td><code>Deploy cluster using AWS STS</code></td>
-  <td>Create an OpenShift cluster that uses the AWS Security Token Service (STS) to allocate temporary, limited-privilege credentials for component-specific AWS Identity and Access Management (IAM) roles. The service enables cluster components to make AWS API calls using secure cloud resource management practices. The default is <code>Yes</code>.</td>
-</tr>
-<tr>
   <td><code>OpenShift version</code></td>
   <td>Select the version of OpenShift to install, for example {{ product_version }}. The default is the latest version. The listed <code>OpenShift version</code> options include the major, minor, and patch versions, for example <code>4.22.0</code>.</td>
-</tr>
-<tr>
-  <td><code>Configure the use of IMDSv2 for ec2 instances optional/required (optional)</code></td>
-  <td>Specify <code>optional</code> to configure all EC2 instances to use both v1 and v2 endpoints of EC2 Instance Metadata Service (IMDS). This is the default value. Specify <code>required</code> to configure all EC2 instances to use IMDSv2 only. {% if openshift_rosa %} <dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>The Instance Metadata Service settings cannot be changed after your cluster is created.</dd></dl> {% endif %}</td>
 </tr>
 <tr>
   <td><code>Installer role ARN</code></td>
@@ -65,7 +57,7 @@ The following table describes the interactive cluster creation mode options:
 </tr>
 <tr>
   <td><code>Tags (optional)</code></td>
-  <td>Specify a tag that is used on all resources created by {{ product_title }} in AWS. Tags can help you manage, identify, organize, search for, and filter resources within AWS. Tags are comma separated, for example: <code>key value, data input</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>{{ product_title }} only supports custom tags to Red&#160;Hat OpenShift resources during cluster creation. Once added, the tags cannot be removed or edited. Tags that are added by Red&#160;Hat are required for clusters to stay in compliance with Red&#160;Hat production service level agreements (SLAs). These tags must not be removed.<br><br>{{ product_title }} does not support adding additional tags outside of ROSA cluster-managed resources. These tags can be lost when AWS resources are managed by the ROSA cluster. In these cases, you might need custom solutions or tools to reconcile the tags and keep them intact.</dd></dl></td>
+  <td>Specify a tag that is used on all resources created by {{ product_title }} in AWS. Tags can help you manage, identify, organize, search for, and filter resources within AWS. Tags are comma separated, for example: <code>key value, data input</code>.<dl class="db-admonition db-admonition-important"><dt>Important</dt><dd>{% if openshift_rosa %} {{ product_title }} only supports custom tags to Red&#160;Hat OpenShift resources during cluster creation. Once added, the tags cannot be removed or edited. {% endif %} {% if openshift_rosa_hcp %} On clusters that run version 4.20.0 and later, you can add, edit, and remove custom tags after cluster creation by running the <code>rosa edit cluster</code> command with {{ rosa_cli }} 1.2.68 or later. On clusters that run earlier versions, you can add custom tags only during cluster creation, and you cannot remove or edit them. {% endif %} <br><br>Tags that are added by Red&#160;Hat are required for clusters to stay in compliance with Red&#160;Hat production service level agreements (SLAs). These tags must not be removed.<br><br>{{ product_title }} does not support adding additional tags outside of ROSA cluster-managed resources. These tags can be lost when AWS resources are managed by the ROSA cluster. In these cases, you might need custom solutions or tools to reconcile the tags and keep them intact. {% if openshift_rosa_hcp %} <br><br>If a tag key is defined on both the cluster and the machine pool, the machine pool tag value takes precedence over the cluster tag value for AWS resources created by that machine pool. {% endif %}</dd></dl></td>
 </tr>
 <tr>
   <td><code>Multiple availability zones (optional)</code></td>
@@ -154,6 +146,10 @@ The following table describes the interactive cluster creation mode options:
 <tr>
   <td><code>Enable cluster deletion protection (optional)</code></td>
   <td>Enable cluster deletion protection to prevent accidental deletion. By default, clusters are created with deletion protection disabled.<br><br>When deletion protection is enabled, attempts to delete the cluster using <code>rosa delete cluster</code> fail immediately before prompting for deletion confirmation. To delete a cluster, disable the protection first by running <code>rosa edit cluster -c &lt;cluster_name&gt; --enable-delete-protection=false</code>.<br><br>Deletion protection only blocks deletion requests made through the {{ rosa_cli }}. It does not set any AWS-level resource protections, and you can still delete cluster resources directly in AWS, risking data loss or cluster outage.</td>
+</tr>
+<tr>
+  <td><code>Notification contact usernames or emails (comma-separated, leave empty to skip)</code></td>
+  <td>Specify a comma-separated list of {{ cluster_manager }} account usernames or email addresses to receive cluster notification emails. All contacts must belong to the same Red&#160;Hat organization as the cluster. Leave the value empty to skip this option.<br><br>After you create the cluster, you can change or remove the notification contacts by running <code>rosa edit cluster -c &lt;cluster_name&gt; --notification-contacts &lt;contacts&gt;</code>. To remove all notification contacts, specify an empty value, for example <code>--notification-contacts ""</code>.</td>
 </tr>
 <tr>
   <td><code>Route Selector for ingress (optional)</code></td>

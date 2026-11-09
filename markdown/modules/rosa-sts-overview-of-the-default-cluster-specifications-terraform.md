@@ -19,7 +19,7 @@ You can quickly create a {{ product_title }} cluster by using the default instal
 </tr>
 <tr>
   <td>Cluster settings</td>
-  <td><ul><li>Default cluster version: <code>4.14</code></li><li>Cluster name: <code>rosa-&lt;6-digit-alphanumeric-string&gt;</code></li><li>Default AWS region for installations using the {{ cluster_manager_first }} {{ hybrid_console_second }}: us-east-2 (US East, Ohio)</li><li>Availability: Multi zone for the data plane</li><li>EC2 Instance Metadata Service (IMDS) is enabled and allows the use of IMDSv1 or IMDSv2 (token optional)</li></ul> {% if not openshift_rosa_hcp %} <ul><li>EC2 Instance Metadata Service (IMDS) is enabled and allows the use of IMDSv1 or IMDSv2 (token optional)</li></ul> {% endif %} <ul><li>Availability: Single zone for the data plane</li></ul> {% if not openshift_rosa_hcp %} <ul><li>Monitoring for user-defined projects: Enabled</li></ul> {% endif %} {% if openshift_rosa_hcp %} <ul><li>No cluster admin role created</li></ul> {% endif %}</td>
+  <td><ul><li>Default cluster version: <code>4.14</code></li><li>Cluster name: <code>rosa-&lt;6-digit-alphanumeric-string&gt;</code></li><li>Default AWS region for installations using the {{ cluster_manager_first }} {{ hybrid_console_second }}: us-east-2 (US East, Ohio)</li><li>Availability: Multi zone for the data plane</li><li>EC2 Instance Metadata Service (IMDS) is enabled and requires the use of IMDSv2 (token required)</li><li>Availability: Single zone for the data plane</li></ul> {% if not openshift_rosa_hcp %} <ul><li>Monitoring for user-defined projects: Enabled</li></ul> {% endif %} {% if openshift_rosa_hcp %} <ul><li>No cluster admin role created</li></ul> {% endif %}</td>
 </tr>
 <tr>
   {% if not openshift_rosa_hcp %}<td>Encryption</td>{% endif %}

@@ -21,13 +21,7 @@ To allow the update, perform one of the following tasks:
 
 You disable the boot image management feature for the control plane or worker machine sets in your cluster by editing the `MachineConfiguration` object.
 
-
-:::note
-
 {% include "./snippets/mco-update-boot-images-intro.md" %}
-
-:::
-
 
 Disabling this feature does not rollback the nodes or machine sets to the originally-installed boot image. The machine sets retain the boot image version that was present when the feature was disabled and is not updated if the cluster is upgraded to a new {{ product_title }} version in the future. This feature has no effect on existing nodes.
 

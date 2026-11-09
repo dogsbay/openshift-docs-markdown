@@ -9,6 +9,14 @@ title: Create virtual machines by using the web console
 
 You can create virtual machines (VMs) by using the {{ product_title }} web console. The web console creation wizard provides workflows for configuring a custom VM, creating a VM from a template, and cloning an existing VM. {._abstract}
 
+
+:::important
+
+You must install VirtIO drivers on Windows VMs. Download VirtIO drivers only from official Red&#160;Hat sources. For more information, see "Additional resources".
+
+:::
+
+
 {% leveloffset +1 %}{% include "./modules/virt-choosing-vm-creation-method-web.md" %}{% endleveloffset %}
 
 **Additional resources**
@@ -43,3 +51,8 @@ You can create virtual machines (VMs) by using the {{ product_title }} web conso
 {% endif %}
 
 {% leveloffset +1 %}{% include "./modules/virt-vm-creation-considerations-web.md" %}{% endleveloffset %}
+
+## Additional resources {id="additional-resources_{{ context }}" ._additional-resources}
+*   [Red&#160;Hat VirtIO drivers download page](https://access.redhat.com/downloads/content/virtio-win)
+*   [How to check virtio-win drivers version on Windows guest](https://access.redhat.com/solutions/764103)
+*   [Installing and updating VirtIO drivers for Windows virtual machines](https://access.redhat.com/solutions/6957701)

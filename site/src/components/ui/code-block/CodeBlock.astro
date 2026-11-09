@@ -1,5 +1,6 @@
 ---
 import { Code } from "astro/components";
+import { ansiColoursOnly, stripAnsi } from "./ansi";
 import { tv } from "tailwind-variants";
 
 const codeBlockWrapper = tv({
@@ -55,6 +56,16 @@ const LANG_ALIASES: Record<string, string> = {
 };
 const shikiLang = LANG_ALIASES[lang.toLowerCase()] ?? lang.toLowerCase();
 
+// Tags that mean "no language": no label, as render-html (its PLAIN set, @dogsbay/render-html/lines).
+// Only `plaintext` was hidden, so `txt` and `output` blocks showed "txt" and "output".
+const PLAIN = new Set(["", "text", "txt", "plain", "plaintext", "none", "output", "log", "code", "codeblock"]);
+const plain = PLAIN.has(lang.toLowerCase().trim());
+// An `ansi` block shows its colours, not its escape codes: copy the text as shown
+const isAnsi = shikiLang === "ansi";
+const copyText = isAnsi ? stripAnsi(code) : code;
+// Shiki draws colours only; any other sequence would garble the text (./ansi.ts)
+const shownCode = isAnsi ? ansiColoursOnly(code) : code;
+
 // Show header bar based on showTitle prop:
 // - true: show when there's a title or a declared language (default, original behavior)
 // - false: never show
@@ -66,7 +77,7 @@ const showHeader =
   hasCaption ? true
   : showTitle === false ? false
   : showTitle === "auto" ? !!title
-  : !!title || lang !== "plaintext";
+  : !!title || !plain;
 // When no header, copy button floats inside the code body
 const floatingCopy = copy && !showHeader;
 ---
@@ -90,12 +101,12 @@ const floatingCopy = copy && !showHeader;
         <span class="select-none">{lang}</span>
       )}
       <span class="flex shrink-0 items-center gap-2">
-      {(hasCaption || title) && lang !== "plaintext" && <span class="select-none" data-part="language">{lang}</span>}
+      {(hasCaption || title) && !plain && <span class="select-none" data-part="language">{lang}</span>}
       {copy && (
         <button
           class={codeBlockCopy()}
           data-part="copy"
-          data-copy-text={code}
+          data-copy-text={copyText}
           type="button"
           aria-label="Copy code"
         >
@@ -137,12 +148,12 @@ const floatingCopy = copy && !showHeader;
     </Header>
   )}
   <div class="relative overflow-x-auto [&_pre]:!m-0 [&_pre]:!rounded-none [&_pre]:!border-0 [&_pre]:px-4 [&_pre]:py-3">
-    <Code code={code} lang={shikiLang} themes={{ light: "github-light-default", dark: theme }} defaultColor={false} />
+    <Code code={shownCode} lang={shikiLang} themes={{ light: "github-light-default", dark: theme }} defaultColor={false} />
     {floatingCopy && (
       <button
         class:list={[codeBlockCopy(), "absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity"]}
         data-part="copy"
-        data-copy-text={code}
+        data-copy-text={copyText}
         type="button"
         aria-label="Copy code"
       >

@@ -3,14 +3,14 @@
 
 To create an {{ product_title }} cluster on {{ VirtProductName }}, you must meet several prerequisites. {._abstract}
 
-*   You have administrator access to an {{ product_title }} cluster, version 4.14 or later, specified in the `KUBECONFIG` environment variable.
+*   You have administrator access to an {{ product_title }} cluster, version 4.14 or later, specified in the `KUBECONFIG` environment variable. For {{ ibm_z_title }} (`s390x`), the cluster version must be 4.22 or later.
 *   The {{ product_title }} management cluster must have wildcard DNS routes enabled, as shown in the following command:
     ```terminal
     $ oc patch ingresscontroller -n openshift-ingress-operator default \
       --type=json \
       -p '[{ "op": "add", "path": "/spec/routeAdmission", "value": {wildcardPolicy: "WildcardsAllowed"}}]'
     ```
-*   The {{ product_title }} management cluster has {{ VirtProductName }}, version 4.14 or later, installed on it. For more information, see "Installing OpenShift Virtualization using the web console".
+*   The {{ product_title }} management cluster has {{ VirtProductName }}, version 4.14 or later, installed on it. For {{ ibm_z_title }} (`s390x`), {{ VirtProductName }} version 4.22 or later is required. For more information, see "Installing OpenShift Virtualization using the web console".
 *   The {{ product_title }} management cluster is on-premise bare metal.
 *   The {{ product_title }} management cluster must be configured with `OVNKubernetes` as the default pod network Container Network Interface (CNI). Live migration is supported for nodes only if the CNI is OVN-Kubernetes.
 *   The {{ product_title }} management cluster has a default storage class. For more information, see "Postinstallation storage configuration". The following example shows how to set a default storage class:

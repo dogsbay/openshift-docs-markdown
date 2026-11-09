@@ -3,13 +3,54 @@
 
 The following table lists the general availability, maintenance support end date, and Extended Update Support Add-On - Term 1 end date for each supported {{ product_title }} version. {._abstract}
 
-| Version | General availability | Maintenance support ends | Extended Update Support Add-On - Term 1 ends |
-| --- | --- | --- | --- |
-| 4.22 | Jun  9, 2026 | Dec 31, 2027 | Jun 30, 2028 |
-| 4.21 | Feb  4, 2026 | Aug  3, 2027 |  |
-| 4.20 | Oct 21, 2025 | Apr 21, 2027 | Oct 21, 2027 |
-| 4.19 | Jun 17, 2025 | Dec 17, 2026 |  |
-| 4.18 | Feb 25, 2025 | Aug 25, 2026 | Feb 25, 2027 |
+<table>
+<thead>
+<tr>
+  <th>Version</th>
+  <th>General availability</th>
+  <th>Maintenance support ends</th>
+  <th>Extended Update Support Add-On - Term 1 ends</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  {% if openshift_rosa_hcp %}<td>5.0</td>{% endif %}
+  {% if openshift_rosa_hcp %}<td>Nov  9, 2026</td>{% endif %}
+  {% if openshift_rosa_hcp %}<td>Nov 30, 2028</td>{% endif %}
+  {% if openshift_rosa_hcp %}<td></td>{% endif %}
+</tr>
+<tr>
+  <td>4.22</td>
+  <td>Jun  9, 2026</td>
+  <td>Dec 31, 2027</td>
+  <td>Jun 30, 2028</td>
+</tr>
+<tr>
+  <td>4.21</td>
+  <td>Feb  4, 2026</td>
+  <td>Aug  3, 2027</td>
+  <td></td>
+</tr>
+<tr>
+  <td>4.20</td>
+  <td>Oct 21, 2025</td>
+  <td>Apr 21, 2027</td>
+  <td>Oct 21, 2027</td>
+</tr>
+<tr>
+  <td>4.19</td>
+  <td>Jun 17, 2025</td>
+  <td>Dec 17, 2026</td>
+  <td></td>
+</tr>
+<tr>
+  <td>4.18</td>
+  <td>Feb 25, 2025</td>
+  <td>Aug 25, 2026</td>
+  <td>Feb 25, 2027</td>
+</tr>
+</tbody>
+</table>
 
 The Extended Update Support Add-On - Term 1 is available for {{ product_title }} customers using even-numbered versions, starting with 4.16, and is included with your {{ product_title }} subscription.
 
