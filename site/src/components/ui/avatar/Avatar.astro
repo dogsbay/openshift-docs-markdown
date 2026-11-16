@@ -6,7 +6,7 @@ const avatar = tv({
 });
 
 const avatarImage = tv({
-  base: "aspect-square h-full w-full object-cover",
+  base: "absolute inset-0 aspect-square h-full w-full object-cover before:absolute before:inset-0 before:flex before:items-center before:justify-center before:rounded-full before:bg-muted before:text-sm before:font-semibold before:text-muted-foreground before:content-[attr(data-initials)]",
 });
 
 const avatarFallback = tv({
@@ -31,7 +31,10 @@ const initials =
     .slice(0, 2)
     .toUpperCase();
 // The name is on the avatar itself, so it is read whether the image loads, fails or was never given:
-// the initials stand in visually only, and a failed image is hidden with its alt.
+// the initials stand in visually only. They sit UNDER the image, which covers them once it loads; an
+// image that fails draws them again in its ::before (Chrome draws a broken-image icon even with alt="",
+// and a ::before only on a failed image), or draws nothing, so they show. No script: an inline onerror needed CSP
+// 'unsafe-hashes' (dogsbay-ssg, 2026-11-15). An image with transparent areas shows them through.
 // An author's own aria-label wins (an empty one does not); the role is ours, as in render-html.
 const label = alt ? { role: "img", "aria-label": (rest["aria-label"] as string | undefined) || alt } : {};
 ---
@@ -40,17 +43,10 @@ const label = alt ? { role: "img", "aria-label": (rest["aria-label"] as string |
   {
     src ? (
       <>
-        <img
-          class={avatarImage()}
-          src={src}
-          alt=""
-          width="40"
-          height="40"
-          onerror="this.hidden=true;this.nextElementSibling.hidden=false"
-        />
-        <span class={avatarFallback()} aria-hidden="true" hidden>
+        <span class={avatarFallback()} aria-hidden="true">
           {initials}
         </span>
+        <img class={avatarImage()} src={src} alt="" width="40" height="40" data-initials={initials} />
       </>
     ) : (
       <span class={avatarFallback()} aria-hidden="true">

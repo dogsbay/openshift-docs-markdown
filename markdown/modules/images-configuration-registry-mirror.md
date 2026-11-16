@@ -53,27 +53,80 @@ Each of these custom resource objects identify the following information:
 *   The source of the container image repository you want to mirror.
 *   A separate entry for each mirror repository you want to offer the content
 
-Note the following actions and how they affect node drain behavior:
+The following table shows how specific actions on these custom resource objects affect node drain behavior.
 
-*   If you create an IDMS or ICSP CR object, the MCO does not drain or reboot the node.
-*   If you create an ITMS CR object, the MCO drains and reboots the node.
-{%- if not winc %}
-*   If you delete an ITMS, IDMS, or ICSP CR object, the MCO drains and reboots the node.
-*   If you modify an ITMS, IDMS, or ICSP CR object, the MCO drains and reboots the node.
+**Node actions and drain/reboot behahior**
 
-    :::important
+<table>
+<thead>
+<tr>
+  <th>Object</th>
+  <th>Operation</th>
+  <th>Drain</th>
+  <th>Reboot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td rowspan="3">IDMS</td>
+  <td>Create</td>
+  <td>No</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>Modify</td>
+  <td>Yes</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>Delete</td>
+  <td>Yes</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td rowspan="3">ITMS</td>
+  <td>Create</td>
+  <td>Yes</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>Modify</td>
+  <td>Yes</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>Delete</td>
+  <td>Yes</td>
+  <td>No</td>
+</tr>
+<tr>
+  {% if not winc %}<td rowspan="3">ISCP</td>{% endif %}
+  {% if not winc %}<td>Create</td>{% endif %}
+  {% if not winc %}<td>Yes</td>{% endif %}
+  {% if not winc %}<td>No</td>{% endif %}
+</tr>
+<tr>
+  {% if not winc %}<td>Modify</td>{% endif %}
+  {% if not winc %}<td>Yes</td>{% endif %}
+  {% if not winc %}<td>No</td>{% endif %}
+</tr>
+<tr>
+  {% if not winc %}<td>Delete</td>{% endif %}
+  {% if not winc %}<td>Yes</td>{% endif %}
+  {% if not winc %}<td>No</td>{% endif %}
+</tr>
+</tbody>
+</table>
 
-    {% include "./snippets/node-icsp-no-drain.md" %}
+{% if not winc %}
 
-    
-    :::
+:::important
 
-{%- endif %}
-{%- if winc %}
-*   If you delete an ITMS or IDMS CR object, the MCO drains and reboots the node.
-*   If you modify an ITMS or IDMS CR object, the MCO drains and reboots the node.
-{%- endif %}
+{% include "./snippets/node-icsp-no-drain.md" %}
 
+:::
+
+{% endif %}
 {% if not winc %}
 For new clusters, you can use IDMS, ITMS, and ICSP CRs objects as needed. However, using IDMS and ITMS is recommended.
 

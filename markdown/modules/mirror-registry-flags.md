@@ -1,28 +1,78 @@
 {%- set _mod_docs_content_type = "REFERENCE" %}
 # Mirror registry for Red Hat OpenShift flags {id="mirror-registry-flags_{{ context }}"}
 
-You can use flags when managing the _mirror registry for Red&#160;Hat OpenShift_. {._abstract}
+You can use flags when managing the _mirror registry for Red&#160;Hat OpenShift_. Flags are organized by subcommand. Global flags apply to all subcommands. {._abstract}
 
-The following flags are available for the _mirror registry for Red&#160;Hat OpenShift_:
+## Global flags {id="mirror-registry-global-flags_{{ context }}"}
 
-| Flags | Description |
-| --- | --- |
-| `--autoApprove` | A boolean value that disables interactive prompts. If set to `true`, the `quayRoot` directory is automatically deleted when uninstalling the mirror registry. Defaults to `false` if left unspecified. |
-| `--initPassword` | The password of the init user created during Quay installation. Must be at least eight characters and contain no whitespace. |
-| `--initUser string` | Shows the username of the initial user. Defaults to `init` if left unspecified. |
-| `--no-color`, `-c` | Allows users to disable color sequences and propagate that to Ansible when running install, uninstall, and upgrade commands. |
-| `--quayHostname` | The fully-qualified domain name of the mirror registry that clients will use to contact the registry. Equivalent to `SERVER_HOSTNAME` in the Quay `config.yaml`. Must resolve by DNS. Defaults to `<targetHostname>:8443` if left unspecified. <sup>[1]</sup> |
-| `--quayStorage` | The folder where Quay persistent storage data is saved. Defaults to the `quay-storage` Podman volume. Root privileges are required to uninstall. |
-| `--quayRoot`, `-r` | The directory where container image layer and configuration data is saved, including `rootCA.key`, `rootCA.pem`, and `rootCA.srl` certificates. Defaults to `$HOME/quay-install` if left unspecified. |
-| `--sqliteStorage` | The folder where SQLite database data is saved. Defaults to `sqlite-storage` Podman volume if not specified. Root is required to uninstall. |
-| `--ssh-key`, `-k` | The path of your SSH identity key. Defaults to `~/.ssh/quay_installer` if left unspecified. |
-| `--sslCert` | The path to the SSL/TLS public key / certificate. Defaults to `{{ quayRoot }}/quay-config`{minja} and is auto-generated if left unspecified. |
-| `--sslCheckSkip` | Skips the check for the certificate hostname against the `SERVER_HOSTNAME` in the `config.yaml` file. <sup>[2]</sup> |
-| `--sslKey` | The path to the SSL/TLS private key used for HTTPS communication. Defaults to `{{ quayRoot }}/quay-config`{minja} and is auto-generated if left unspecified. |
-| `--targetHostname`, `-H` | The hostname of the target you want to install Quay to. Defaults to `$HOST`, for example, a local host, if left unspecified. |
-| `--targetUsername`, `-u` | The user on the target host which will be used for SSH. Defaults to `$USER`, for example, the current user if left unspecified. |
-| `--verbose`, `-v` | Shows debug logs and Ansible Playbook outputs. |
-| `--version` | Shows the version for the _mirror registry for Red&#160;Hat OpenShift_. |
+The following flags are available for all `mirror-registry` subcommands:
 
-1.  `--quayHostname` must be modified if the public DNS name of your system is different from the local hostname. Additionally, the `--quayHostname` flag does not support installation with an IP address. Installation with a hostname is required.
-1.  `--sslCheckSkip` is used in cases when the mirror registry is set behind a proxy and the exposed hostname is different from the internal Quay hostname. It can also be used when users do not want the certificates to be validated against the provided Quay hostname during installation.
+| Flag | Default | Description |
+| --- | --- | --- |
+| `-log-format` | `json` | The log output format. Accepted values are `json` and `text`. |
+| `-log-level` | `info` | The log verbosity level. Accepted values are `debug`, `info`, `warn`, and `error`. |
+
+## install flags {id="mirror-registry-install-flags_{{ context }}"}
+
+The `install` subcommand sets up a new registry. If a registry is already installed on the host, use `mirror-registry upgrade` instead.
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `-data-dir` | `/var/lib/quay` | The directory for the database, image storage, TLS certificates, and credentials. All registry data is stored under this path. |
+| `-hostname` | Auto-detected FQDN | The server hostname or IP address used for TLS configuration and the registry URL. When auto-detected, the hostname must be a fully qualified domain name (FQDN). IP addresses are supported when passed explicitly with `-hostname`. The hostname or IP address must resolve by DNS or be present in `/etc/hosts` on all clients. |
+| `-port` | `8443` | The HTTPS port for the registry. |
+| `-image-archive` | _(none)_ | The path to the container image tar archive. Required for air-gapped installations. If omitted on a connected host, the image is pulled from the registry automatically. |
+| `-init-user` | `admin` | The username of the initial admin user created during installation. |
+| `-init-password-stdin` | `false` | When set, reads the admin password from stdin instead of auto-generating one. |
+| `-ssl-cert` | _(auto-generated)_ | The path to a custom TLS certificate in PEM format. If omitted, a self-signed certificate is generated. |
+| `-ssl-key` | _(auto-generated)_ | The path to the TLS private key in PEM format. Must be provided together with `-ssl-cert`. |
+| `-ssl-skip-hostname-verification` | `false` | Skips the check that the TLS certificate hostname matches `-hostname`. Use when you have a wildcard or internal CA certificate. |
+
+## upgrade flags {id="mirror-registry-upgrade-flags_{{ context }}"}
+
+The `upgrade` subcommand replaces the container image of an existing installation in place. The hostname, port, and data directory are preserved from the existing installation unless explicitly overridden.
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `-image-archive` | _(none)_ | The path to the new container image tar archive. Required for air-gapped upgrades. If omitted on a connected host, the image is pulled automatically. |
+| `-data-dir` | _(detected from the existing installation)_ | Must match the data directory of the installed registry. Passing a path that differs from the installed one is rejected before any changes are made. |
+| `-hostname` | _(preserved from the existing installation)_ | Overrides the server hostname. Use only when you want to change the hostname. |
+| `-port` | _(preserved from the existing installation)_ | Overrides the HTTPS port. Use only when you want to change the port. |
+| `-ssl-cert` | _(preserved from the existing installation)_ | The path to a replacement TLS certificate in PEM format. Must be provided together with `-ssl-key`. |
+| `-ssl-key` | _(preserved from the existing installation)_ | The path to a replacement TLS private key in PEM format. Must be provided together with `-ssl-cert`. |
+| `-ssl-skip-hostname-verification` | `false` | Skips the check that the TLS certificate hostname matches `-hostname`. Use together with `-ssl-cert` and `-ssl-key` when you have a wildcard or internal CA certificate. |
+
+## migrate flags {id="mirror-registry-migrate-flags_{{ context }}"}
+
+The `migrate` subcommand is used to migrate a 2.0.x installation to a 3.0.x installation.
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `-source-root` | _(auto-detected)_ | The path to the old `quay-install` directory from the 2.0.x installation. |
+| `-source-db` | _(auto-detected)_ | The path to the old `quay_sqlite.db` file. Supported for SQLite source only. Use when auto-detection fails. |
+| `-source-storage` | _(auto-detected)_ | The path to the old image blob storage directory. Use when auto-detection fails. |
+| `-source-certs` | _(auto-detected)_ | The path to the old TLS certificate directory (`quay-config/`). Use when auto-detection fails. |
+| `-data-dir` | `/var/lib/quay` | The target directory for the new 3.0 installation. |
+| `-hostname` | _(auto-detected from the old configuration)_ | The server hostname for the new registry. Defaults to the hostname from the old installation. |
+| `-image-archive` | _(auto-detected)_ | The path to the container image tar archive for the new installation. |
+| `-dry-run` | `false` | Shows the migration plan without making any changes. Supported for SQLite source only. |
+| `-cleanup` | `false` | Removes the old 2.0.x services, Podman volumes, and the Redis secret after a successful migration. Supported for SQLite source only. |
+| `-skip-install` | `false` | Copies data only and does not deploy the Quadlet service. Supported for SQLite source only. |
+
+## uninstall flags {id="mirror-registry-uninstall-flags_{{ context }}"}
+
+The `uninstall` subcommand is used to uninstall the mirror registry.
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `-data-dir` | `/var/lib/quay` | The data directory of the registry to uninstall. Must match the path used during installation. |
+| `-auto-approve` | `false` | Skips the confirmation prompt and deletes the data directory along with the registry. |
+
+## config validate flags {id="mirror-registry-config-validate-flags_{{ context }}"}
+
+The `config validate` subcommand is used to validate the configuration file.
+
+| Flag | Default | Description |
+| --- | --- | --- |
+| `-config` | _(required)_ | The path to the `config.yaml` file or the configuration directory to validate. |
+| `-mode` | `offline` | The validation mode. Accepted values are `offline` and `online`. |

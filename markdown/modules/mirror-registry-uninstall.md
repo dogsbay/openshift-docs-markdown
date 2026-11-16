@@ -5,19 +5,22 @@ You can uninstall the _mirror registry for Red&#160;Hat OpenShift_ from your loc
 
 **Prerequisites**
 
-*   You have installed _mirror registry for Red&#160;Hat OpenShift_ on a local host.
+*   You have installed the _mirror registry for Red&#160;Hat OpenShift_ on the local host.
 
 **Procedure**
 
 *   Uninstall the _mirror registry for Red&#160;Hat OpenShift_ from your local host by running the following command:
     ```terminal
-    $ ./mirror-registry uninstall -v \
-      --quayRoot <example_directory_name>
+    $ ./mirror-registry uninstall -data-dir /var/lib/quay
+    ```
+
+    You are prompted for confirmation before the registry is removed. To skip the confirmation prompt and also delete the data directory, add the `-auto-approve` flag:
+    ```terminal
+    $ ./mirror-registry uninstall -data-dir /var/lib/quay -auto-approve
     ```
 
     :::note
 
-    *   Deleting the _mirror registry for Red&#160;Hat OpenShift_ prompts the user before deletion. You can use `--autoApprove` to skip this prompt.
-    *   Users who install the _mirror registry for Red&#160;Hat OpenShift_ with the `--quayRoot` flag must include the `--quayRoot` flag when uninstalling. For example, if you installed the _mirror registry for Red&#160;Hat OpenShift_ with `--quayRoot example_directory_name`, you must include that string to properly uninstall the mirror registry.
+    You must pass the same `-data-dir` path that was used during installation. The uninstall command stops the `quay.service`, removes the systemd Quadlet unit file, and, when `-auto-approve` is specified, deletes the data directory.
     
     :::

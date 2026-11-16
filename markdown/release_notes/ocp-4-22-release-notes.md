@@ -39,6 +39,10 @@ Built on {{ op_system_base_full }} and Kubernetes, {{ product_title }} provides 
 
 {% leveloffset +2 %}{% include "./modules/zstream-4-22-21.md" %}{% endleveloffset %}
 
+{% leveloffset +2 %}{% include "./modules/zstream-4-22-20.md" %}{% endleveloffset %}
+
+{% leveloffset +2 %}{% include "./modules/zstream-4-22-19.md" %}{% endleveloffset %}
+
 {% leveloffset +2 %}{% include "./modules/zstream-4-22-18.md" %}{% endleveloffset %}
 
 {% leveloffset +2 %}{% include "./modules/zstream-4-22-17.md" %}{% endleveloffset %}

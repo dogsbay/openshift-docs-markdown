@@ -1,25 +1,33 @@
 {%- set _mod_docs_content_type = "PROCEDURE" %}
 # Troubleshooting mirror registry for Red Hat OpenShift {id="mirror-registry-troubleshooting_{{ context }}"}
 
-To assist in troubleshooting _mirror registry for Red&#160;Hat OpenShift_, you can gather logs of systemd services installed by the mirror registry. {._abstract}
-
-The following services are installed:
-
-*   quay-app.service
-*   quay-redis.service
-*   quay-pod.service
+To assist in troubleshooting the _mirror registry for Red&#160;Hat OpenShift_, you can check the status of the systemd service, view registry logs, and verify the registry health endpoint. {._abstract}
 
 **Prerequisites**
 
-*   You have installed _mirror registry for Red&#160;Hat OpenShift_.
+*   You have installed the _mirror registry for Red&#160;Hat OpenShift_.
 
 **Procedure**
 
-*   If you installed _mirror registry for Red&#160;Hat OpenShift_ with root privileges, you can get the status information of its systemd services by entering the following command:
+*   Check the status of the `quay.service` systemd service:
+    *   For a root installation, enter the following command:
+        ```terminal
+        $ systemctl status quay.service
+        ```
+    *   For a non-root installation, enter the following command:
+        ```terminal
+        $ systemctl --user status quay.service
+        ```
+*   View the registry container logs by entering the following command:
     ```terminal
-    $ sudo systemctl status <service>
+    $ podman logs systemd-quay
     ```
-*   If you installed _mirror registry for Red&#160;Hat OpenShift_ as a standard user, you can get the status information of its systemd services by entering the following command:
+*   Verify that the registry is healthy by querying the health endpoint:
     ```terminal
-    $ systemctl --user status <service>
+    $ curl -k https://<host_example_com>:8443/healthz
+    ```
+*   If the registry is unresponsive or corrupted, you can reset it by uninstalling and reinstalling:
+    ```terminal
+    $ ./mirror-registry uninstall -data-dir /var/lib/quay -auto-approve
+    $ ./mirror-registry install -data-dir /var/lib/quay -image-archive image-archive.tar
     ```

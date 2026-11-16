@@ -52,7 +52,7 @@
 <tr>
   <td><strong>OpenShift 5.x support</strong></td>
   <td>OpenShift 5.x is supported. You can upgrade {{ hcp }} clusters from version 4.x to version 5.x.</td>
-  <td>OpenShift 5.x is not supported. You cannot upgrade classic clusters to version 5.x. To adopt OpenShift 5.x, you must migrate workloads to a {{ hcp }} cluster.</td>
+  <td>OpenShift 5.x is not supported. You cannot upgrade {{ rosa_classic_title }} to version 5.x. To adopt OpenShift 5.x, you must migrate workloads to a {{ hcp }} cluster.</td>
 </tr>
 <tr>
   <td><strong>Minimum EC2 footprint</strong></td>

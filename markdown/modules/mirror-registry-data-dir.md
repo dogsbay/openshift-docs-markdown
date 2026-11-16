@@ -1,0 +1,36 @@
+{%- set _mod_docs_content_type = "REFERENCE" %}
+# Data directory layout for mirror registry for Red Hat OpenShift {id="mirror-registry-data-dir_{{ context }}"}
+
+After installation, the _mirror registry for Red&#160;Hat OpenShift_ stores all data under a single configurable data directory. The following describes the contents of the data directory. {._abstract}
+
+```text
+<data_dir>/
+├── quay.db
+├── auth/
+│   └── admin-password
+├── ssl.cert
+├── ssl.key
+├── registry-jwt.pem
+└── storage/
+    ├── sha256/
+    └── uploads/
+```
+
+
+`<data_dir>/quay.db`
+:   The SQLite database containing users, repositories, and manifests.
+
+`<data_dir>/auth/admin-password`
+:   The admin credentials file. This file has mode 0600 and can only be read by the user who ran `mirror-registry install`.
+
+`<data_dir>/ssl.cert`
+:   The TLS certificate used for HTTPS.
+
+`<data_dir>/ssl.key`
+:   The TLS private key used for HTTPS.
+
+`<data_dir>/registry-jwt.pem`
+:   The JWT signing key used for registry authentication tokens.
+
+`<data_dir>/storage/`
+:   The image blob storage directory containing content-addressable blobs and in-progress uploads.
